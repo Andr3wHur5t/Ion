@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IonRapidStartupViewConfiguration.h"
 
 @interface IonApplication : UIResponder <UIApplicationDelegate>
 /**
@@ -33,7 +34,7 @@
  * *subclassed for customization*
  * @returns {rapidStartSplashConfiguration} with the default configuration.
  */
-- (bool) loadRapidStartSplashConfiguration;
+- (IonRapidStartupViewConfiguration) loadRapidStartSplashConfiguration;
 
 /**
  * This configures the first real view controller.

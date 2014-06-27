@@ -17,3 +17,10 @@ FOUNDATION_EXPORT const unsigned char IonVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <Ion/PublicHeader.h>
 
 #import "IonApplication.h"
+
+/** Ion Rapid Start System */
+#import "IonRapidStartupViewConfiguration.h"
+#import "IonRapidStartViewController.h"
+#import "IonRapidStartManager.h"
+
+/** Utilities */

@@ -7,10 +7,19 @@
 //
 
 #import "IonApplication.h"
+#import "IonRapidStartManager.h"
 
 @interface IonApplication () {
     
+    #pragma mark managers
+    
+    /* This manages the rapid start of the application.
+     */
+    IonRapidStartManager* rapidStartManager;
 }
+
+
+
 
 
 #pragma mark constructors
@@ -52,9 +61,15 @@
  */
 - (void) constructOptionialManagersFromManagerManifest;
 
-
-
 @end
+
+/**
+ * ============================================================
+ * ============================================================
+ *                    Implmentation Start
+ * ============================================================
+ * ============================================================
+ */
 
 
 @implementation IonApplication
@@ -73,6 +88,10 @@
     return self;
 }
 
+- (void) dealloc {
+    
+}
+
 #pragma mark constructors
 
 /**
@@ -80,8 +99,7 @@
  * @returns {void}
  */
 - (void) constructRapidStartManager {
-    //initilize the rapid start manager.
-    
+    rapidStartManager = [[IonRapidStartManager alloc] init];
 }
 
 /**
@@ -99,10 +117,12 @@
  * @returns {void}
  */
 - (void) configureRapidStart {
-    // set configuration of the splash
-    [self loadRapidStartSplashConfiguration];
-    // set the post display callback
-    [self postDisplaySetup];
+    [rapidStartManager setViewConfiguration: [self loadRapidStartSplashConfiguration]];
+    
+    __weak typeof(self) weakSelf = self;
+    [rapidStartManager setPostDisplayCallback:^{
+        [weakSelf postDisplaySetup];
+    }];
 }
 
 
@@ -122,11 +142,11 @@
  * This gets the default configuration for the rapid splash.
  * Called once per start up.
  * *subclassed for customization*
- * @returns {rapidStartSplashConfiguration} with the default configuration.
+ * @returns {IonRapidStartupViewConfiguration} with the default configuration.
  */
-- (bool) loadRapidStartSplashConfiguration {
+- (IonRapidStartupViewConfiguration) loadRapidStartSplashConfiguration {
     // retun a static default splash configuration manifest
-    return true;
+    return (IonRapidStartupViewConfiguration){true};
 }
 
 /**
@@ -153,7 +173,7 @@
 #pragma mark start up utilities
 
 /**
- * This calls all the intensive processes after the rapid splash view has been rendered
+ * This calls all the resource intensive processes after the rapid splash view has been rendered.
  * @returns {void}
  */
 - (void) postDisplaySetup {
@@ -186,11 +206,11 @@
  */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [self applicationWindow];
-    
-    //temp content
-    self.window.backgroundColor = [UIColor greenColor];
+    self.window.backgroundColor = [UIColor blackColor];
     
     //set the root view controller to the the rapid start view controller
+    [rapidStartManager prepareToDisplay];
+    self.window.rootViewController = rapidStartManager.viewController;
     
     //Display the rapid start controller
     [self.window makeKeyAndVisible];
