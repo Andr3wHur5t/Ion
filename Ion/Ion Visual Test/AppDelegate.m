@@ -15,32 +15,7 @@
 
 @implementation AppDelegate
 
-
-/**
- * This gets the on boarding screen version string.
- * @returns {NSString*}
- */
-- (NSString*) currentOnBoardingScreenVersion {
-    return NULL;
-}
-
-/**
- * This states if we use the demo window which displays touch points or not.
- * @returns {bool}
- */
-- (bool) isInDemoMode {
-    return false;
-}
-
-
-/**
- * We set our propriatary manifest here
- * @returns {managerManifest}
- */
-- (bool) loadManagerManifest {
-    NSLog(@"Load Manifest called");
-    return true;
-}
+#pragma mark Init Hooks
 
 /**
  * This is where we initiliza all non visual elements of our application.
@@ -51,7 +26,7 @@
 }
 
 
-#pragma mark Controller Set up
+#pragma mark Controller Init
 
 /**
  * This configures the first real view controller.
@@ -64,7 +39,6 @@
     
     vc.view.backgroundColor = [UIColor greenColor];
     
-    // Call compleation if it exsists.
     if ( finished )
         finished(vc);
 }
@@ -94,6 +68,36 @@
     
     return vc;
 }
+
+
+#pragma mark Configuration
+
+/**
+ * We set our propriatary manifest here
+ * @returns {managerManifest}
+ */
+- (bool) loadManagerManifest {
+    NSLog(@"Load Manifest called");
+    return true;
+}
+
+
+/**
+ * This gets the on boarding screen version string.
+ * @returns {NSString*}
+ */
+- (NSString*) currentOnBoardingScreenVersion {
+    return NULL;
+}
+
+/**
+ * This states if we use the demo window which displays touch points or not.
+ * @returns {bool}
+ */
+- (bool) isInDemoMode {
+    return false;
+}
+
 
 
 @end
