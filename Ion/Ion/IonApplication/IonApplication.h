@@ -7,19 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IonRapidStartupViewConfiguration.h"
+#import "IonRapidStartManager.h"
 
-@interface IonApplication : UIResponder <UIApplicationDelegate>
+@interface IonApplication : UIResponder <UIApplicationDelegate, IonRapidStartManagerDeligate>
 /**
  * This is the application window.
  */
 @property (strong, nonatomic) UIWindow *window;
 
-/**
- * This is the
- */
+#pragma mark controlls
+
 
 #pragma mark customization points
+
+/**
+ * This states if we use the demo window which displays touch points or not.
+ * @returns {bool}
+ */
+- (bool) isInDemoMode;
 
 /**
  * This gets the default manifest of optionial managers.
@@ -29,19 +34,34 @@
 -(bool) loadManagerManifest;
 
 /**
- * This gets the configuration for the rapid splash.
- * Called once per start up.
+ * This is the rapid splash view that will be used when the application has already been opened in the system once before.
  * *subclassed for customization*
- * @returns {rapidStartSplashConfiguration} with the default configuration.
+ * @returns {IonRapidStartViewController}
  */
-- (IonRapidStartupViewConfiguration) loadRapidStartSplashConfiguration;
+- (IonRapidStartViewController*) rapidSplash;
+
+/**
+ * This is the rapid splash view that will be used when the application has not been opened in the system once before.
+ * You should return a on boarding controller here.
+ * *subclassed for customization*
+ * @returns {IonRapidStartViewController}
+ */
+- (IonRapidStartViewController*) onBoardingRapidSplash;
+
+/**
+ * This gets the on boarding screen version string.
+ * *subclassed for customization*
+ * @returns {NSString*}
+ */
+- (NSString*) currentOnBoardingScreenVersion;
+
 
 /**
  * This configures the first real view controller.
  * @peram {block} this is the block we will call when we are finished with prepareing the view.
  * @returns {void}
  */
-- (void) configureFirstRealViewController:(void(^)()) finished;
+- (void) configureFirstRealViewController:(void(^)( UIViewController* frvc )) finished;
 
 /**
  * This is a customiziation point for executing arbitrary code after the construction of the first real view controller.

@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		377C3EBD196F316900EA6599 /* IonApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3EB5196F316900EA6599 /* IonApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377C3EBE196F316900EA6599 /* IonApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 377C3EB6196F316900EA6599 /* IonApplication.m */; };
+		377C3EBF196F316900EA6599 /* IonRapidStartManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3EB8196F316900EA6599 /* IonRapidStartManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377C3EC0196F316900EA6599 /* IonRapidStartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 377C3EB9196F316900EA6599 /* IonRapidStartManager.m */; };
+		377C3EC2196F316900EA6599 /* IonRapidStartViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3EBB196F316900EA6599 /* IonRapidStartViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377C3EC3196F316900EA6599 /* IonRapidStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 377C3EBC196F316900EA6599 /* IonRapidStartViewController.m */; };
+		377C3EC4196F333800EA6599 /* Ion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EBAC53195C9A93008D6BD6 /* Ion.framework */; };
+		377C3EC5196F333800EA6599 /* Ion.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37EBAC53195C9A93008D6BD6 /* Ion.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		377C3ECC196F52AE00EA6599 /* IonDemoUIWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3ECA196F52AE00EA6599 /* IonDemoUIWindow.h */; };
+		377C3ECD196F52AE00EA6599 /* IonDemoUIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 377C3ECB196F52AE00EA6599 /* IonDemoUIWindow.m */; };
+		377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3ECE196F58A900EA6599 /* UITouch + IonDemoTouch.h */; };
+		377C3ED1196F58A900EA6599 /* UITouch + IonDemoTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 377C3ECF196F58A900EA6599 /* UITouch + IonDemoTouch.m */; };
+		377C3EDB1970C2C400EA6599 /* IONgraphics.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 377C3EDA1970C2C300EA6599 /* IONgraphics.xcassets */; };
 		37EBAC59195C9A93008D6BD6 /* Ion.h in Headers */ = {isa = PBXBuildFile; fileRef = 37EBAC58195C9A93008D6BD6 /* Ion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37EBAC5F195C9A93008D6BD6 /* Ion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EBAC53195C9A93008D6BD6 /* Ion.framework */; };
 		37EBAC66195C9A93008D6BD6 /* IonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EBAC65195C9A93008D6BD6 /* IonTests.m */; };
@@ -17,6 +30,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		377C3EC6196F333800EA6599 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37EBAC4A195C9A93008D6BD6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37EBAC52195C9A93008D6BD6;
+			remoteInfo = Ion;
+		};
 		37EBAC60195C9A93008D6BD6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 37EBAC4A195C9A93008D6BD6 /* Project object */;
@@ -40,7 +60,32 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		377C3EC8196F333800EA6599 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				377C3EC5196F333800EA6599 /* Ion.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		377C3EB5196F316900EA6599 /* IonApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonApplication.h; sourceTree = "<group>"; };
+		377C3EB6196F316900EA6599 /* IonApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonApplication.m; sourceTree = "<group>"; };
+		377C3EB8196F316900EA6599 /* IonRapidStartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonRapidStartManager.h; sourceTree = "<group>"; };
+		377C3EB9196F316900EA6599 /* IonRapidStartManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonRapidStartManager.m; sourceTree = "<group>"; };
+		377C3EBB196F316900EA6599 /* IonRapidStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonRapidStartViewController.h; sourceTree = "<group>"; };
+		377C3EBC196F316900EA6599 /* IonRapidStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonRapidStartViewController.m; sourceTree = "<group>"; };
+		377C3ECA196F52AE00EA6599 /* IonDemoUIWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonDemoUIWindow.h; path = "Demo Window/IonDemoUIWindow.h"; sourceTree = "<group>"; };
+		377C3ECB196F52AE00EA6599 /* IonDemoUIWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonDemoUIWindow.m; path = "Demo Window/IonDemoUIWindow.m"; sourceTree = "<group>"; };
+		377C3ECE196F58A900EA6599 /* UITouch + IonDemoTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITouch + IonDemoTouch.h"; path = "Demo Window/UITouch + IonDemoTouch.h"; sourceTree = "<group>"; };
+		377C3ECF196F58A900EA6599 /* UITouch + IonDemoTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITouch + IonDemoTouch.m"; path = "Demo Window/UITouch + IonDemoTouch.m"; sourceTree = "<group>"; };
+		377C3EDA1970C2C300EA6599 /* IONgraphics.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = IONgraphics.xcassets; sourceTree = "<group>"; };
 		37EBAC53195C9A93008D6BD6 /* Ion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37EBAC57195C9A93008D6BD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37EBAC58195C9A93008D6BD6 /* Ion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ion.h; sourceTree = "<group>"; };
@@ -78,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				377C3EC4196F333800EA6599 /* Ion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +137,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		377C3EB4196F316900EA6599 /* Ion Application */ = {
+			isa = PBXGroup;
+			children = (
+				377C3EB5196F316900EA6599 /* IonApplication.h */,
+				377C3EB6196F316900EA6599 /* IonApplication.m */,
+			);
+			name = "Ion Application";
+			path = IonApplication;
+			sourceTree = "<group>";
+		};
+		377C3EB7196F316900EA6599 /* Rapid Startup */ = {
+			isa = PBXGroup;
+			children = (
+				377C3EB8196F316900EA6599 /* IonRapidStartManager.h */,
+				377C3EB9196F316900EA6599 /* IonRapidStartManager.m */,
+				377C3EBB196F316900EA6599 /* IonRapidStartViewController.h */,
+				377C3EBC196F316900EA6599 /* IonRapidStartViewController.m */,
+			);
+			path = "Rapid Startup";
+			sourceTree = "<group>";
+		};
+		377C3EC9196F520900EA6599 /* Demo Window */ = {
+			isa = PBXGroup;
+			children = (
+				377C3ECA196F52AE00EA6599 /* IonDemoUIWindow.h */,
+				377C3ECB196F52AE00EA6599 /* IonDemoUIWindow.m */,
+				377C3ECE196F58A900EA6599 /* UITouch + IonDemoTouch.h */,
+				377C3ECF196F58A900EA6599 /* UITouch + IonDemoTouch.m */,
+			);
+			name = "Demo Window";
+			sourceTree = "<group>";
+		};
 		37EBAC49195C9A93008D6BD6 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +195,9 @@
 			isa = PBXGroup;
 			children = (
 				37EBAC58195C9A93008D6BD6 /* Ion.h */,
+				377C3EB4196F316900EA6599 /* Ion Application */,
+				377C3EB7196F316900EA6599 /* Rapid Startup */,
+				377C3EC9196F520900EA6599 /* Demo Window */,
 				37EBAC56195C9A93008D6BD6 /* Supporting Files */,
 			);
 			path = Ion;
@@ -154,6 +235,7 @@
 				37EBAC7A195C9B35008D6BD6 /* AppDelegate.m */,
 				37EBAC7C195C9B35008D6BD6 /* Images.xcassets */,
 				37EBAC75195C9B35008D6BD6 /* Supporting Files */,
+				377C3EDA1970C2C300EA6599 /* IONgraphics.xcassets */,
 			);
 			path = "Ion Visual Test";
 			sourceTree = "<group>";
@@ -191,7 +273,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				377C3EBD196F316900EA6599 /* IonApplication.h in Headers */,
+				377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */,
 				37EBAC59195C9A93008D6BD6 /* Ion.h in Headers */,
+				377C3EC2196F316900EA6599 /* IonRapidStartViewController.h in Headers */,
+				377C3ECC196F52AE00EA6599 /* IonDemoUIWindow.h in Headers */,
+				377C3EBF196F316900EA6599 /* IonRapidStartManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,10 +328,12 @@
 				37EBAC6F195C9B35008D6BD6 /* Sources */,
 				37EBAC70195C9B35008D6BD6 /* Frameworks */,
 				37EBAC71195C9B35008D6BD6 /* Resources */,
+				377C3EC8196F333800EA6599 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				377C3EC7196F333800EA6599 /* PBXTargetDependency */,
 			);
 			name = "Ion Visual Test";
 			productName = "Ion Visual Test";
@@ -335,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37EBAC7D195C9B35008D6BD6 /* Images.xcassets in Resources */,
+				377C3EDB1970C2C400EA6599 /* IONgraphics.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +442,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				377C3EC0196F316900EA6599 /* IonRapidStartManager.m in Sources */,
+				377C3ED1196F58A900EA6599 /* UITouch + IonDemoTouch.m in Sources */,
+				377C3ECD196F52AE00EA6599 /* IonDemoUIWindow.m in Sources */,
+				377C3EBE196F316900EA6599 /* IonApplication.m in Sources */,
+				377C3EC3196F316900EA6599 /* IonRapidStartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +478,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		377C3EC7196F333800EA6599 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 37EBAC52195C9A93008D6BD6 /* Ion */;
+			targetProxy = 377C3EC6196F333800EA6599 /* PBXContainerItemProxy */;
+		};
 		37EBAC61195C9A93008D6BD6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 37EBAC52195C9A93008D6BD6 /* Ion */;
@@ -630,6 +730,7 @@
 				37EBAC6B195C9A93008D6BD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		37EBAC6C195C9A93008D6BD6 /* Build configuration list for PBXNativeTarget "IonTests" */ = {
 			isa = XCConfigurationList;
@@ -638,6 +739,7 @@
 				37EBAC6E195C9A93008D6BD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		37EBAC8A195C9B35008D6BD6 /* Build configuration list for PBXNativeTarget "Ion Visual Test" */ = {
 			isa = XCConfigurationList;
@@ -646,6 +748,7 @@
 				37EBAC8C195C9B35008D6BD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		37EBAC8D195C9B35008D6BD6 /* Build configuration list for PBXNativeTarget "Ion Visual TestTests" */ = {
 			isa = XCConfigurationList;
@@ -654,6 +757,7 @@
 				37EBAC8F195C9B35008D6BD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

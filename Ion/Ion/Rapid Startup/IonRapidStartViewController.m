@@ -7,14 +7,33 @@
 //
 
 #import "IonRapidStartViewController.h"
+#import "IonApplication.h"
 
 @interface IonRapidStartViewController () {
     void (^postAppearCallback)(void);
+    
+    void (^finishedDispatchingCallback)(void);
+    
+    
 }
+// This is the first real root view controller which we will transision to.
+@property (strong, nonatomic) UIViewController* frvc;
+
+
 
 @end
 
 @implementation IonRapidStartViewController
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        
+        // Enabel automatic transision
+        _readyForViewToDispatchToFRVC = true;
+    }
+    return self;
+}
 
 #pragma mark animations
 
@@ -22,7 +41,7 @@
  * This initilizes all configured animations
  * @returns {void}
  */
-- (void) initilizeAnimations {
+- (void) initAnimations {
     
 }
 
@@ -56,13 +75,58 @@
 }
 
 /**
- * This sets the configuration object of the view.
- @ @returns {void}
+ * this sets the finished dispatching callback which will be called after the view removes itself from root.
+ # @returns {void}
  */
-- (void) setViewConfiguration:(IonRapidStartupViewConfiguration)viewConfiguration {
-    _viewConfiguration = viewConfiguration;
-    NSLog(@"set View configuration");
-    self.view.backgroundColor = [UIColor orangeColor];
+- (void) setFinishedDispatchingCallback:(void(^)()) callback {
+    finishedDispatchingCallback = callback;
+}
+
+/**
+ * This is called when the manager tells us its time to dispatch from the view.
+ * @param {UIViewController*} the controller we will be dispatching to.
+ * @returns {void}
+ */
+- (void) prepareToDispatchWithNewController:(UIViewController*) vc {
+    _frvc = vc;
+
+    [self goToNextRootViewControllerIfReady];
+}
+
+
+#pragma mark public internial Interface
+/**
+ * This will Transision to the next root view controller if it has been loaded.
+ * @returns {bool} true if successfull, else it failed.
+ */
+- (bool) goToNextRootViewControllerIfReady {
+    if ( _readyForViewToDispatchToFRVC )
+        [self transisionToTheNextRootViewController];
+    
+    return _readyForViewToDispatchToFRVC;
+}
+
+#pragma mark private internial interface
+
+/**
+ * This will transision the window the next root view controller which has been provided to us.
+ * @returns {void}
+ */
+- (void) transisionToTheNextRootViewController {
+    // if the view exsists
+    if ( _frvc )
+        [UIView transitionWithView: ((IonApplication*)[UIApplication sharedApplication].delegate).window
+                          duration:0.3 // TODO: Load From Defaults
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            ((IonApplication*)[UIApplication sharedApplication].delegate).window.rootViewController = _frvc;
+                        }
+                        completion:^(BOOL finished) {
+                            _frvc = NULL;
+                            
+                            if ( finishedDispatchingCallback )
+                                finishedDispatchingCallback();
+                        }];
 }
 
 
@@ -81,7 +145,7 @@
         postAppearCallback();
     
     //initilize and start animations
-    [self initilizeAnimations];
+    [self initAnimations];
     [self startAnimations];
 }
 

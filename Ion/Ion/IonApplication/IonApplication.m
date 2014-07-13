@@ -9,6 +9,10 @@
 #import "IonApplication.h"
 #import "IonRapidStartManager.h"
 
+// Demo Mode Only
+#import "IonDemoUIWindow.h"
+
+
 @interface IonApplication () {
     
     #pragma mark managers
@@ -88,10 +92,6 @@
     return self;
 }
 
-- (void) dealloc {
-    
-}
-
 #pragma mark constructors
 
 /**
@@ -107,7 +107,11 @@
  * @returns {UIWindow} the application window to be used
  */
 - (UIWindow*) applicationWindow {
-    return [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Select the correct window acording to the mode.
+    if ( ![self isInDemoMode] )
+        return [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    else
+        return [[IonDemoUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 }
 
 #pragma mark configuration utilities
@@ -117,7 +121,10 @@
  * @returns {void}
  */
 - (void) configureRapidStart {
-    [rapidStartManager setViewConfiguration: [self loadRapidStartSplashConfiguration]];
+    if ( !rapidStartManager )
+        return;
+    
+    rapidStartManager.deligate = self;
     
     __weak typeof(self) weakSelf = self;
     [rapidStartManager setPostDisplayCallback:^{
@@ -127,6 +134,14 @@
 
 
 #pragma mark customization points
+
+/**
+ * This states if we use the demo window which displays touch points or not.
+ * @returns {bool}
+ */
+- (bool) isInDemoMode {
+    return false;
+}
 
 /**
  * This gets the default manifest of optionial managers.
@@ -139,26 +154,47 @@
 }
 
 /**
- * This gets the default configuration for the rapid splash.
- * Called once per start up.
+ * This is the rapid splash view that will be used when the application has already been opened in the system once before.
  * *subclassed for customization*
- * @returns {IonRapidStartupViewConfiguration} with the default configuration.
+ * @returns {IonRapidStartViewController}
  */
-- (IonRapidStartupViewConfiguration) loadRapidStartSplashConfiguration {
-    // retun a static default splash configuration manifest
-    return (IonRapidStartupViewConfiguration){true};
+- (IonRapidStartViewController*) rapidSplash {
+    return [[IonRapidStartViewController alloc] init];
+}
+
+/**
+ * This is the rapid splash view that will be used when the application has not been opened in the system once before.
+ * You should return a on boarding controller here.
+ * *subclassed for customization*
+ * @returns {IonRapidStartViewController}
+ */
+- (IonRapidStartViewController*) onBoardingRapidSplash {
+    return [self rapidSplash];
+}
+
+/**
+ * This gets the on boarding screen version string.
+ * *subclassed for customization*
+ * @returns {NSString*}
+ */
+- (NSString*) currentOnBoardingScreenVersion {
+    return NULL;
 }
 
 /**
  * This configures the first real view controller.
- * @peram {block} this is the block we will call when we are finished with prepareing the view.
+ * @peram { ^(UIViewController* frvc) } frvc is the "First Real View Conroller" to be presented.
  * @returns {void}
  */
-- (void) configureFirstRealViewController:(void(^)()) finished {
+- (void) configureFirstRealViewController:(void(^)( UIViewController* frvc )) finished {
     // configure the default first root view controller here.
+    UIViewController* vc = [[UIViewController alloc] initWithNibName:NULL bundle:NULL];
     
+    vc.view.backgroundColor = [UIColor grayColor];
+    
+    // Call compleation if it exsists.
     if ( finished )
-        finished();
+        finished(vc);
 }
 
 /**
@@ -184,8 +220,9 @@
     [self constructOptionialManagersFromManagerManifest];
     
     // Call the custom view dependent setup here
-    [self configureFirstRealViewController: ^{
-        // hand off controll from the rapid start manager to the view controller manager.
+    [self configureFirstRealViewController: ^(UIViewController* frvc){
+        // Hand off control from the rapid start view to the next FRVC
+        [rapidStartManager.viewController prepareToDispatchWithNewController: frvc];
         
         // Call the custom setup function
         [self setupApplication];
@@ -209,7 +246,6 @@
     self.window.backgroundColor = [UIColor blackColor];
     
     //set the root view controller to the the rapid start view controller
-    [rapidStartManager prepareToDisplay];
     self.window.rootViewController = rapidStartManager.viewController;
     
     //Display the rapid start controller
@@ -239,5 +275,16 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+#pragma mark memory management utils
+
+/**
+ * This is where we kill the rapid splash manager, it served us well but now it is useless.
+ * @returns {void}
+ */
+- (void) freeRapidSplashManager {
+    rapidStartManager = NULL;
+}
+
 
 @end

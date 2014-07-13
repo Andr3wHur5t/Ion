@@ -15,6 +15,24 @@
 
 @implementation AppDelegate
 
+
+/**
+ * This gets the on boarding screen version string.
+ * @returns {NSString*}
+ */
+- (NSString*) currentOnBoardingScreenVersion {
+    return NULL;
+}
+
+/**
+ * This states if we use the demo window which displays touch points or not.
+ * @returns {bool}
+ */
+- (bool) isInDemoMode {
+    return false;
+}
+
+
 /**
  * We set our propriatary manifest here
  * @returns {managerManifest}
@@ -25,15 +43,6 @@
 }
 
 /**
- * This is where we set our rapid splash configuration
- * @returns {rapidSplashConfiguration}
- */
-- (IonRapidStartupViewConfiguration) loadRapidStartSplashConfiguration {
-    NSLog(@"Load Rapid Splash called");
-    return (IonRapidStartupViewConfiguration){true};
-}
-
-/**
  * This is where we initiliza all non visual elements of our application.
  * @returns {void}
  */
@@ -41,17 +50,50 @@
     NSLog(@"externial application startup called");
 }
 
+
+#pragma mark Controller Set up
+
 /**
- * This is where we configure our first real view controller.
+ * This configures the first real view controller.
+ * @peram { ^(UIViewController* frvc) } frvc is the "First Real View Conroller" to be presented.
  * @returns {void}
  */
-- (void) configureFirstRealViewController:(void (^)())finished {
-    NSLog(@"externial configuring first real view controller");
+- (void) configureFirstRealViewController:(void(^)( UIViewController* frvc )) finished {
+    // configure the default first root view controller here.
+    UIViewController* vc = [[UIViewController alloc] initWithNibName:NULL bundle:NULL];
     
-    if( finished )
-        finished();
+    vc.view.backgroundColor = [UIColor greenColor];
+    
+    // Call compleation if it exsists.
+    if ( finished )
+        finished(vc);
+}
+/**
+ * This is the rapid splash view that will be used when the application has already been opened in the system once before.
+ * *subclassed for customization*
+ * @returns {IonRapidStartViewController}
+ */
+- (IonRapidStartViewController*) rapidSplash {
+    IonRapidStartViewController* vc = [[IonRapidStartViewController alloc] init];
+    
+    vc.view.backgroundColor = [UIColor magentaColor];
+    
+    return vc;
 }
 
+/**
+ * This is the rapid splash view that will be used when the application has not been opened in the system once before.
+ * You should return a on boarding controller here.
+ * *subclassed for customization*
+ * @returns {IonRapidStartViewController}
+ */
+- (IonRapidStartViewController*) onBoardingRapidSplash {
+    IonRapidStartViewController* vc = [[IonRapidStartViewController alloc] init];
+    
+    vc.view.backgroundColor = [UIColor yellowColor];
+    
+    return vc;
+}
 
 
 @end

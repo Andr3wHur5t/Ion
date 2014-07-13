@@ -19,7 +19,6 @@ FOUNDATION_EXPORT const unsigned char IonVersionString[];
 #import "IonApplication.h"
 
 /** Ion Rapid Start System */
-#import "IonRapidStartupViewConfiguration.h"
 #import "IonRapidStartViewController.h"
 #import "IonRapidStartManager.h"
 

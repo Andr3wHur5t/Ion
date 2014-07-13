@@ -9,22 +9,54 @@
 #import <Foundation/Foundation.h>
 #import "IonRapidStartViewController.h"
 
+
+/**
+ * This is the rapid start manager deligate protocal
+ */
+@protocol IonRapidStartManagerDeligate <NSObject>
+
+@required
+/**
+ * This is the rapid splash view that will be used when the application has already been opened in the system once before.
+ * @returns {IonRapidStartViewController}
+ */
+- (IonRapidStartViewController*) rapidSplash;
+
+/**
+ * This is the rapid splash view that will be used when the application has not been opened in the system once before.
+ * You should return a on boarding controller here.
+ * @returns {IonRapidStartViewController}
+ */
+- (IonRapidStartViewController*) onBoardingRapidSplash;
+
+/**
+ * This gets the on boarding screen version string.
+ * @returns {NSString*}
+ */
+- (NSString*) currentOnBoardingScreenVersion;
+
+
+/**
+ * This is where we kill the rapid splash manager, it served us well but now it is useless.
+ * @returns {void}
+ */
+- (void) freeRapidSplashManager;
+
+@end
+
+
 @interface IonRapidStartManager : NSObject
 
+/**
+ * This is the deligate object.
+ */
+@property (weak, nonatomic) id<IonRapidStartManagerDeligate> deligate;
 
+/**
+ * This is the active view controller to be presented as the rapid controller
+ */
 @property (nonatomic, strong) IonRapidStartViewController* viewController;
 
-/**
- * This prepares us to display.
- * @returns {void}
- */
--(void) prepareToDisplay;
-
-/**
- * This sets the rapid view controller configuration
- * @returns {void}
- */
--(void) setViewConfiguration:(IonRapidStartupViewConfiguration) configuration;
 
 /**
  * this sets the did display callback.
