@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "IonRapidStartManager.h"
+#import "IonViewController.h"
 
 @interface IonApplication : UIResponder <UIApplicationDelegate, IonRapidStartManagerDeligate>
 /**
@@ -61,7 +62,7 @@
  * @peram {block} this is the block we will call when we are finished with prepareing the view.
  * @returns {void}
  */
-- (void) configureFirstRealViewController:(void(^)( UIViewController* frvc )) finished;
+- (void) configureFirstRealViewController:(void(^)( IonViewController* frvc )) finished;
 
 /**
  * This is a customiziation point for executing arbitrary code after the construction of the first real view controller.

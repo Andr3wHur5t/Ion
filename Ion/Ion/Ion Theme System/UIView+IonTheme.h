@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIView+IonBackgroundUtilities.h"
 
 @interface UIView (IonTheme)
 

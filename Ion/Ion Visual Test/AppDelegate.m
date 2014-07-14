@@ -33,15 +33,26 @@
  * @peram { ^(UIViewController* frvc) } frvc is the "First Real View Conroller" to be presented.
  * @returns {void}
  */
-- (void) configureFirstRealViewController:(void(^)( UIViewController* frvc )) finished {
+- (void) configureFirstRealViewController:(void(^)( IonViewController* frvc )) finished {
     // configure the default first root view controller here.
-    UIViewController* vc = [[UIViewController alloc] initWithNibName:NULL bundle:NULL];
+    IonViewController* vc = [[IonViewController alloc] initWithNibName:NULL bundle:NULL];
     
     vc.view.backgroundColor = [UIColor greenColor];
     
-    if ( finished )
-        finished(vc);
+    
+    
+    // Render Debug
+    UIImageView* imgView = [[UIImageView alloc] init];
+    [vc.view addSubview:imgView];
+    imgView.frame = (CGRect) {CGPointZero,vc.view.frame.size};
+    
+    [imgView setBackgroundToLinearGradient:[[IonLinearGradientConfiguration alloc] init] compleation:^{
+        if (finished)
+            finished(vc);
+    }];
 }
+
+
 /**
  * This is the rapid splash view that will be used when the application has already been opened in the system once before.
  * *subclassed for customization*

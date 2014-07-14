@@ -186,9 +186,9 @@
  * @peram { ^(UIViewController* frvc) } frvc is the "First Real View Conroller" to be presented.
  * @returns {void}
  */
-- (void) configureFirstRealViewController:(void(^)( UIViewController* frvc )) finished {
+- (void) configureFirstRealViewController:(void(^)( IonViewController* frvc )) finished {
     // configure the default first root view controller here.
-    UIViewController* vc = [[UIViewController alloc] initWithNibName:NULL bundle:NULL];
+    IonViewController* vc = [[IonViewController alloc] initWithNibName:NULL bundle:NULL];
     
     vc.view.backgroundColor = [UIColor grayColor];
     

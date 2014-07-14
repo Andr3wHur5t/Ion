@@ -11,5 +11,7 @@
 #import "UIView+IonAnimation.h"
 
 @interface IonView : UIView
-
+/**
+ * DO NOT PUT ANY MEMBERS HERE, THIS CLASS IS INTENDED TO BE A EASY ACCESS UTILITIY.
+ */
 @end

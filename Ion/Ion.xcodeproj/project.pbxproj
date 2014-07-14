@@ -7,12 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		372DD22C1972764D00CC0A58 /* IonView.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD22A1972764D00CC0A58 /* IonView.h */; };
+		372DD22C1972764D00CC0A58 /* IonView.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD22A1972764D00CC0A58 /* IonView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		372DD22D1972764D00CC0A58 /* IonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD22B1972764D00CC0A58 /* IonView.m */; };
-		372DD23D19727C9800CC0A58 /* UIView+IonTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD23B19727C9800CC0A58 /* UIView+IonTheme.h */; };
+		372DD23D19727C9800CC0A58 /* UIView+IonTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD23B19727C9800CC0A58 /* UIView+IonTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		372DD23E19727C9800CC0A58 /* UIView+IonTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD23C19727C9800CC0A58 /* UIView+IonTheme.m */; };
-		372DD24119727D0C00CC0A58 /* UIView+IonAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD23F19727D0C00CC0A58 /* UIView+IonAnimation.h */; };
+		372DD24119727D0C00CC0A58 /* UIView+IonAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD23F19727D0C00CC0A58 /* UIView+IonAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		372DD24219727D0C00CC0A58 /* UIView+IonAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD24019727D0C00CC0A58 /* UIView+IonAnimation.m */; };
+		372DD246197281F400CC0A58 /* IonViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD244197281F400CC0A58 /* IonViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		372DD247197281F400CC0A58 /* IonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD245197281F400CC0A58 /* IonViewController.m */; };
+		372DD24F19731F0200CC0A58 /* UIView+IonBackgroundUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD24D19731F0200CC0A58 /* UIView+IonBackgroundUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		372DD25019731F0200CC0A58 /* UIView+IonBackgroundUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD24E19731F0200CC0A58 /* UIView+IonBackgroundUtilities.m */; };
+		372DD25519737F9200CC0A58 /* IonRenderUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD25319737F9200CC0A58 /* IonRenderUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		372DD25619737F9200CC0A58 /* IonRenderUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD25419737F9200CC0A58 /* IonRenderUtilities.m */; };
+		372DD25B1973B05400CC0A58 /* IonMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD2591973B05400CC0A58 /* IonMath.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		372DD25C1973B05400CC0A58 /* IonMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD25A1973B05400CC0A58 /* IonMath.m */; };
+		372DD2601973B5E800CC0A58 /* IonGradientConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD25E1973B5E800CC0A58 /* IonGradientConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		372DD2611973B5E800CC0A58 /* IonGradientConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD25F1973B5E800CC0A58 /* IonGradientConfiguration.m */; };
 		377C3EBD196F316900EA6599 /* IonApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3EB5196F316900EA6599 /* IonApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		377C3EBE196F316900EA6599 /* IonApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 377C3EB6196F316900EA6599 /* IonApplication.m */; };
 		377C3EBF196F316900EA6599 /* IonRapidStartManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3EB8196F316900EA6599 /* IonRapidStartManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -87,6 +97,16 @@
 		372DD23C19727C9800CC0A58 /* UIView+IonTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+IonTheme.m"; path = "Ion Theme System/UIView+IonTheme.m"; sourceTree = "<group>"; };
 		372DD23F19727D0C00CC0A58 /* UIView+IonAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+IonAnimation.h"; path = "IonView/UIView+IonAnimation.h"; sourceTree = "<group>"; };
 		372DD24019727D0C00CC0A58 /* UIView+IonAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+IonAnimation.m"; path = "IonView/UIView+IonAnimation.m"; sourceTree = "<group>"; };
+		372DD244197281F400CC0A58 /* IonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonViewController.h; path = "Ion View Controller/IonViewController.h"; sourceTree = "<group>"; };
+		372DD245197281F400CC0A58 /* IonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonViewController.m; path = "Ion View Controller/IonViewController.m"; sourceTree = "<group>"; };
+		372DD24D19731F0200CC0A58 /* UIView+IonBackgroundUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+IonBackgroundUtilities.h"; path = "IonView/UIView+IonBackgroundUtilities.h"; sourceTree = "<group>"; };
+		372DD24E19731F0200CC0A58 /* UIView+IonBackgroundUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+IonBackgroundUtilities.m"; path = "IonView/UIView+IonBackgroundUtilities.m"; sourceTree = "<group>"; };
+		372DD25319737F9200CC0A58 /* IonRenderUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonRenderUtilities.h; path = Utilities/Render/IonRenderUtilities.h; sourceTree = "<group>"; };
+		372DD25419737F9200CC0A58 /* IonRenderUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonRenderUtilities.m; path = Utilities/Render/IonRenderUtilities.m; sourceTree = "<group>"; };
+		372DD2591973B05400CC0A58 /* IonMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonMath.h; path = Utilities/Math/IonMath.h; sourceTree = "<group>"; };
+		372DD25A1973B05400CC0A58 /* IonMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonMath.m; path = Utilities/Math/IonMath.m; sourceTree = "<group>"; };
+		372DD25E1973B5E800CC0A58 /* IonGradientConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonGradientConfiguration.h; path = Utilities/Render/IonGradientConfiguration.h; sourceTree = "<group>"; };
+		372DD25F1973B5E800CC0A58 /* IonGradientConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonGradientConfiguration.m; path = Utilities/Render/IonGradientConfiguration.m; sourceTree = "<group>"; };
 		377C3EB5196F316900EA6599 /* IonApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonApplication.h; sourceTree = "<group>"; };
 		377C3EB6196F316900EA6599 /* IonApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonApplication.m; sourceTree = "<group>"; };
 		377C3EB8196F316900EA6599 /* IonRapidStartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonRapidStartManager.h; sourceTree = "<group>"; };
@@ -164,18 +184,11 @@
 			name = UIControls;
 			sourceTree = "<group>";
 		};
-		372DD231197276E900CC0A58 /* ViewController */ = {
+		372DD232197276F300CC0A58 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = ViewController;
-			sourceTree = "<group>";
-		};
-		372DD232197276F300CC0A58 /* ViewController Managers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "ViewController Managers";
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		372DD233197277F000CC0A58 /* UIView */ = {
@@ -191,6 +204,7 @@
 		372DD234197277FC00CC0A58 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				372DD24C19731ED000CC0A58 /* Background Utilis */,
 				372DD2361972781800CC0A58 /* Animations */,
 				372DD2351972781000CC0A58 /* Frame Utils */,
 			);
@@ -216,8 +230,9 @@
 		372DD238197278A800CC0A58 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
-				372DD232197276F300CC0A58 /* ViewController Managers */,
-				372DD231197276E900CC0A58 /* ViewController */,
+				372DD232197276F300CC0A58 /* Managers */,
+				372DD244197281F400CC0A58 /* IonViewController.h */,
+				372DD245197281F400CC0A58 /* IonViewController.m */,
 			);
 			name = UIViewController;
 			sourceTree = "<group>";
@@ -225,6 +240,8 @@
 		372DD2391972790A00CC0A58 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				372DD24B197286C300CC0A58 /* Center Nav Page */,
+				372DD249197286AC00CC0A58 /* Startup */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -236,6 +253,82 @@
 				372DD23C19727C9800CC0A58 /* UIView+IonTheme.m */,
 			);
 			name = "View Extension";
+			sourceTree = "<group>";
+		};
+		372DD2481972869B00CC0A58 /* On Boarding Screen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "On Boarding Screen";
+			sourceTree = "<group>";
+		};
+		372DD249197286AC00CC0A58 /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				372DD24A197286B900CC0A58 /* Rapid Splash */,
+				372DD2481972869B00CC0A58 /* On Boarding Screen */,
+			);
+			name = Startup;
+			sourceTree = "<group>";
+		};
+		372DD24A197286B900CC0A58 /* Rapid Splash */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Rapid Splash";
+			sourceTree = "<group>";
+		};
+		372DD24B197286C300CC0A58 /* Center Nav Page */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Center Nav Page";
+			sourceTree = "<group>";
+		};
+		372DD24C19731ED000CC0A58 /* Background Utilis */ = {
+			isa = PBXGroup;
+			children = (
+				372DD24D19731F0200CC0A58 /* UIView+IonBackgroundUtilities.h */,
+				372DD24E19731F0200CC0A58 /* UIView+IonBackgroundUtilities.m */,
+			);
+			name = "Background Utilis";
+			sourceTree = "<group>";
+		};
+		372DD25119737F5C00CC0A58 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				372DD2571973B03900CC0A58 /* Math */,
+				372DD25219737F6400CC0A58 /* Render */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		372DD25219737F6400CC0A58 /* Render */ = {
+			isa = PBXGroup;
+			children = (
+				372DD25D1973B5A900CC0A58 /* Gradient Configuration */,
+				372DD25319737F9200CC0A58 /* IonRenderUtilities.h */,
+				372DD25419737F9200CC0A58 /* IonRenderUtilities.m */,
+			);
+			name = Render;
+			sourceTree = "<group>";
+		};
+		372DD2571973B03900CC0A58 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				372DD2591973B05400CC0A58 /* IonMath.h */,
+				372DD25A1973B05400CC0A58 /* IonMath.m */,
+			);
+			name = Math;
+			sourceTree = "<group>";
+		};
+		372DD25D1973B5A900CC0A58 /* Gradient Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				372DD25E1973B5E800CC0A58 /* IonGradientConfiguration.h */,
+				372DD25F1973B5E800CC0A58 /* IonGradientConfiguration.m */,
+			);
+			name = "Gradient Configuration";
 			sourceTree = "<group>";
 		};
 		377C3EB4196F316900EA6599 /* Ion Application */ = {
@@ -300,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				37EBAC58195C9A93008D6BD6 /* Ion.h */,
+				372DD25119737F5C00CC0A58 /* Utilities */,
 				377C3EB4196F316900EA6599 /* Ion Application */,
 				372DD22F1972766000CC0A58 /* Ion Theme System */,
 				372DD230197276A700CC0A58 /* UIControls */,
@@ -381,12 +475,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37EBAC59195C9A93008D6BD6 /* Ion.h in Headers */,
+				372DD25519737F9200CC0A58 /* IonRenderUtilities.h in Headers */,
+				372DD246197281F400CC0A58 /* IonViewController.h in Headers */,
 				377C3EBD196F316900EA6599 /* IonApplication.h in Headers */,
 				377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */,
-				37EBAC59195C9A93008D6BD6 /* Ion.h in Headers */,
 				372DD24119727D0C00CC0A58 /* UIView+IonAnimation.h in Headers */,
 				372DD22C1972764D00CC0A58 /* IonView.h in Headers */,
+				372DD24F19731F0200CC0A58 /* UIView+IonBackgroundUtilities.h in Headers */,
+				372DD25B1973B05400CC0A58 /* IonMath.h in Headers */,
 				372DD23D19727C9800CC0A58 /* UIView+IonTheme.h in Headers */,
+				372DD2601973B5E800CC0A58 /* IonGradientConfiguration.h in Headers */,
 				377C3EC2196F316900EA6599 /* IonRapidStartViewController.h in Headers */,
 				377C3ECC196F52AE00EA6599 /* IonDemoUIWindow.h in Headers */,
 				377C3EBF196F316900EA6599 /* IonRapidStartManager.h in Headers */,
@@ -553,14 +652,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				372DD25C1973B05400CC0A58 /* IonMath.m in Sources */,
 				377C3EC0196F316900EA6599 /* IonRapidStartManager.m in Sources */,
 				377C3ED1196F58A900EA6599 /* UITouch + IonDemoTouch.m in Sources */,
+				372DD25019731F0200CC0A58 /* UIView+IonBackgroundUtilities.m in Sources */,
 				377C3ECD196F52AE00EA6599 /* IonDemoUIWindow.m in Sources */,
 				372DD23E19727C9800CC0A58 /* UIView+IonTheme.m in Sources */,
+				372DD25619737F9200CC0A58 /* IonRenderUtilities.m in Sources */,
 				372DD22D1972764D00CC0A58 /* IonView.m in Sources */,
 				377C3EBE196F316900EA6599 /* IonApplication.m in Sources */,
 				377C3EC3196F316900EA6599 /* IonRapidStartViewController.m in Sources */,
+				372DD2611973B5E800CC0A58 /* IonGradientConfiguration.m in Sources */,
 				372DD24219727D0C00CC0A58 /* UIView+IonAnimation.m in Sources */,
+				372DD247197281F400CC0A58 /* IonViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
