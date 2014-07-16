@@ -26,10 +26,17 @@
  * @param {(void(^)())} the compleation to be called when finished
  * @returns {void}
  */
-- (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig compleation:(void(^)())compleation;
+- (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig compleation:( void(^)( ) )compleation;
 
 
 #pragma mark Image Backgrounds
+
+/**
+ * This sets the image to the specified CALayer and configures it.
+ * @param {UIImage*} the image to be set
+ * @param {CALayer*} the layer for the image to be set to
+ */
++ (void) setImage:(UIImage*)image toLayer:(CALayer*)layer;
 
 /**
  * This sets the current background image.
@@ -37,14 +44,13 @@
  */
 -(void) setBackgroundImage:(UIImage*)image;
 
+/**
+ * This sets the mask Image of the view.
+ * @param {UIImage*} The image to be set as the mask
+ * @return {void}
+ */
+- (void) setMaskImage:(UIImage*)image;
 
-
-
-
-
-/** TODO: Add Easy Mask Mode */
-
-/** TODO: Add Easy Background image setting */
 
 /** TODO: Add Border Size Setting, Note causes Offscreen calls*/
 

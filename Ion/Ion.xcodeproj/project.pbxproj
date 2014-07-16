@@ -23,6 +23,10 @@
 		372DD25C1973B05400CC0A58 /* IonMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD25A1973B05400CC0A58 /* IonMath.m */; };
 		372DD2601973B5E800CC0A58 /* IonGradientConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD25E1973B5E800CC0A58 /* IonGradientConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		372DD2611973B5E800CC0A58 /* IonGradientConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD25F1973B5E800CC0A58 /* IonGradientConfiguration.m */; };
+		372DD265197494E500CC0A58 /* UIColor+IonColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD263197494E500CC0A58 /* UIColor+IonColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		372DD266197494E500CC0A58 /* UIColor+IonColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD264197494E500CC0A58 /* UIColor+IonColor.m */; };
+		376DA8A719766DFA008D692E /* IonColorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DA8A619766DFA008D692E /* IonColorTests.m */; };
+		376DA8A919767429008D692E /* IonRenderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DA8A819767429008D692E /* IonRenderTests.m */; };
 		377C3EBD196F316900EA6599 /* IonApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3EB5196F316900EA6599 /* IonApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		377C3EBE196F316900EA6599 /* IonApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 377C3EB6196F316900EA6599 /* IonApplication.m */; };
 		377C3EBF196F316900EA6599 /* IonRapidStartManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3EB8196F316900EA6599 /* IonRapidStartManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -107,6 +111,10 @@
 		372DD25A1973B05400CC0A58 /* IonMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonMath.m; path = Utilities/Math/IonMath.m; sourceTree = "<group>"; };
 		372DD25E1973B5E800CC0A58 /* IonGradientConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonGradientConfiguration.h; path = Utilities/Render/IonGradientConfiguration.h; sourceTree = "<group>"; };
 		372DD25F1973B5E800CC0A58 /* IonGradientConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonGradientConfiguration.m; path = Utilities/Render/IonGradientConfiguration.m; sourceTree = "<group>"; };
+		372DD263197494E500CC0A58 /* UIColor+IonColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+IonColor.h"; path = "Utilities/Render/UIColor+IonColor.h"; sourceTree = "<group>"; };
+		372DD264197494E500CC0A58 /* UIColor+IonColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+IonColor.m"; path = "Utilities/Render/UIColor+IonColor.m"; sourceTree = "<group>"; };
+		376DA8A619766DFA008D692E /* IonColorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonColorTests.m; path = IonColor/IonColorTests.m; sourceTree = "<group>"; };
+		376DA8A819767429008D692E /* IonRenderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonRenderTests.m; sourceTree = "<group>"; };
 		377C3EB5196F316900EA6599 /* IonApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonApplication.h; sourceTree = "<group>"; };
 		377C3EB6196F316900EA6599 /* IonApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonApplication.m; sourceTree = "<group>"; };
 		377C3EB8196F316900EA6599 /* IonRapidStartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonRapidStartManager.h; sourceTree = "<group>"; };
@@ -240,7 +248,7 @@
 		372DD2391972790A00CC0A58 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				372DD24B197286C300CC0A58 /* Center Nav Page */,
+				372DD24B197286C300CC0A58 /* Main Controllers */,
 				372DD249197286AC00CC0A58 /* Startup */,
 			);
 			name = Views;
@@ -278,11 +286,11 @@
 			name = "Rapid Splash";
 			sourceTree = "<group>";
 		};
-		372DD24B197286C300CC0A58 /* Center Nav Page */ = {
+		372DD24B197286C300CC0A58 /* Main Controllers */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "Center Nav Page";
+			name = "Main Controllers";
 			sourceTree = "<group>";
 		};
 		372DD24C19731ED000CC0A58 /* Background Utilis */ = {
@@ -306,6 +314,7 @@
 		372DD25219737F6400CC0A58 /* Render */ = {
 			isa = PBXGroup;
 			children = (
+				372DD262197494B600CC0A58 /* Ion Color */,
 				372DD25D1973B5A900CC0A58 /* Gradient Configuration */,
 				372DD25319737F9200CC0A58 /* IonRenderUtilities.h */,
 				372DD25419737F9200CC0A58 /* IonRenderUtilities.m */,
@@ -329,6 +338,15 @@
 				372DD25F1973B5E800CC0A58 /* IonGradientConfiguration.m */,
 			);
 			name = "Gradient Configuration";
+			sourceTree = "<group>";
+		};
+		372DD262197494B600CC0A58 /* Ion Color */ = {
+			isa = PBXGroup;
+			children = (
+				372DD263197494E500CC0A58 /* UIColor+IonColor.h */,
+				372DD264197494E500CC0A58 /* UIColor+IonColor.m */,
+			);
+			name = "Ion Color";
 			sourceTree = "<group>";
 		};
 		377C3EB4196F316900EA6599 /* Ion Application */ = {
@@ -417,6 +435,8 @@
 			children = (
 				37EBAC65195C9A93008D6BD6 /* IonTests.m */,
 				37EBAC63195C9A93008D6BD6 /* Supporting Files */,
+				376DA8A619766DFA008D692E /* IonColorTests.m */,
+				376DA8A819767429008D692E /* IonRenderTests.m */,
 			);
 			path = IonTests;
 			sourceTree = "<group>";
@@ -486,6 +506,7 @@
 				372DD25B1973B05400CC0A58 /* IonMath.h in Headers */,
 				372DD23D19727C9800CC0A58 /* UIView+IonTheme.h in Headers */,
 				372DD2601973B5E800CC0A58 /* IonGradientConfiguration.h in Headers */,
+				372DD265197494E500CC0A58 /* UIColor+IonColor.h in Headers */,
 				377C3EC2196F316900EA6599 /* IonRapidStartViewController.h in Headers */,
 				377C3ECC196F52AE00EA6599 /* IonDemoUIWindow.h in Headers */,
 				377C3EBF196F316900EA6599 /* IonRapidStartManager.h in Headers */,
@@ -656,6 +677,7 @@
 				377C3EC0196F316900EA6599 /* IonRapidStartManager.m in Sources */,
 				377C3ED1196F58A900EA6599 /* UITouch + IonDemoTouch.m in Sources */,
 				372DD25019731F0200CC0A58 /* UIView+IonBackgroundUtilities.m in Sources */,
+				372DD266197494E500CC0A58 /* UIColor+IonColor.m in Sources */,
 				377C3ECD196F52AE00EA6599 /* IonDemoUIWindow.m in Sources */,
 				372DD23E19727C9800CC0A58 /* UIView+IonTheme.m in Sources */,
 				372DD25619737F9200CC0A58 /* IonRenderUtilities.m in Sources */,
@@ -672,6 +694,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376DA8A719766DFA008D692E /* IonColorTests.m in Sources */,
+				376DA8A919767429008D692E /* IonRenderTests.m in Sources */,
 				37EBAC66195C9A93008D6BD6 /* IonTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

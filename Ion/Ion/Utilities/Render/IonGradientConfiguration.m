@@ -16,7 +16,7 @@
 
 @implementation IonColorWeight
 
-- (instancetype)init {
+- (instancetype) init {
     self = [super init];
     if (self) {
         self.color = [UIColor purpleColor];
@@ -25,7 +25,7 @@
     return self;
 }
 
-- (instancetype) initWithColor:(UIColor*)color andWeight:(CGFloat)weight {
+- (instancetype) initWithColor:(UIColor*) color andWeight:(CGFloat) weight {
     self = [super init];
     if( self ) {
         self.color = color;
@@ -39,7 +39,7 @@
  * @param {CGFloat} the new weight
  * @returns {void}
  */
-- (void) setWeight:(CGFloat)weight {
+- (void) setWeight:(CGFloat) weight {
     _weight = CLAMP(weight, 0.0f, 1.0f);
 }
 
@@ -55,7 +55,7 @@
     return [self initWithColorWeights:[IonGradientConfiguration defaultColorConfiguration]];
 }
 
-- (instancetype) initWithColorWeights:(NSArray*)colorWeights {
+- (instancetype) initWithColorWeights:(NSArray*) colorWeights {
     self = [super init];
     if (self)
         self.colorWeights = colorWeights;
@@ -86,7 +86,7 @@
 
 @implementation IonLinearGradientConfiguration
 
-- (instancetype)init {
+- (instancetype) init {
     self = [super init];
     
     if (self)
@@ -95,8 +95,9 @@
     return self;
 }
 
-- (instancetype) initWithColor:(NSArray*)colorWeights andAngel:(CGFloat)angle {
+- (instancetype) initWithColor:(NSArray*) colorWeights andAngel:(CGFloat) angle {
     self = [super initWithColorWeights:colorWeights];
+    
     if (self)
         self.angle = angle;
     

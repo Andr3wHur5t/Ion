@@ -31,7 +31,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
    inContextWithSize: (CGSize) contextSize
                scale: (CGFloat) scale
         thatHasAlpha: (bool) isAlpha
-      andReturnBlock: (void(^)(UIImage* image)) returnBlock {
+      andReturnBlock: (void(^)( UIImage* image )) returnBlock {
     
     // Check if we have work to do, and that we have a place to return the results of our labor.
     if ( block && returnBlock ) {
@@ -75,7 +75,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
 + (void) renderBlock: (void(^)()) block
    inContextWithSize: (CGSize) contextSize
         thatHasAlpha: (bool) isAlpha
-      andReturnBlock: (void(^)(UIImage* image)) returnBlock {
+      andReturnBlock: (void(^)( UIImage* image )) returnBlock {
     
     [IonRenderUtilities renderBlock: block
                   inContextWithSize: contextSize
@@ -94,7 +94,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
  */
 + (void) renderBlock: (void(^)()) block
    inContextWithSize: (CGSize) contextSize
-      andReturnBlock: (void(^)(UIImage* image)) returnBlock {
+      andReturnBlock: (void(^)( UIImage* image )) returnBlock {
     
     [IonRenderUtilities renderBlock: block
                   inContextWithSize: contextSize
@@ -103,6 +103,49 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
                      andReturnBlock: returnBlock];
 }
 
+
+
+/**
+ * This renders the inputed render block in the render thread, and returns the result in the result block.
+ * Note: this uses CGContext based rendering.
+ * @param {void^()} the work to be rendered
+ * @param {CGSize} the size of the context
+ * @param {CGFloat} this is the scale of the context
+ * @param {bool} states if the context and the resulting imgae have an alpha channel
+ * @param {void^(UIImage*)} the block to be called once the work is done
+ * @returns {void}
+ */
++ (void) renderTestingInMainBlock: (void(^)()) block
+   inContextWithSize: (CGSize) contextSize
+               scale: (CGFloat) scale
+        thatHasAlpha: (bool) isAlpha
+      andReturnBlock: (void(^)( UIImage* image )) returnBlock {
+    
+    // Check if we have work to do, and that we have a place to return the results of our labor.
+    if ( block && returnBlock ) {
+        
+            UIImage* restultImage;
+            
+            // Create the context for drawing
+            UIGraphicsBeginImageContextWithOptions( contextSize, !isAlpha , scale );
+            
+            // Render Inputed work
+            block();
+            
+            // Record Result
+            restultImage = UIGraphicsGetImageFromCurrentImageContext();
+            
+            // Clean Up
+            UIGraphicsEndImageContext();
+            
+            // Return result on the main thread
+            returnBlock(restultImage);
+    } else {
+        [NSException exceptionWithName:@"Missing Argument!"
+                                reason:@"IonRenderUtilities was told to do work with out any work Block or any Result block."
+                              userInfo:NULL];
+    }
+}
 
 #pragma mark Gradient Utilities
 
@@ -153,7 +196,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
  */
 + (void) renderLinearGradient:(IonLinearGradientConfiguration*)gradientConfig
                    resultSize:(CGSize)size
-              withReturnBlock:(void(^)(UIImage* image)) returnBlock {
+              withReturnBlock:(void(^)( UIImage* image )) returnBlock {
     
     [IonRenderUtilities renderBlock: ^{
         //Get the current context state
@@ -171,7 +214,24 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
 
 #pragma mark Image Sizing Utilities
 
-
+/**
+ * This will render an image at the inputted size.
+ * @param {UIImage*} the image to render
+ * @param {CGSize} the size to render the image at
+ * @param {void(^)( UIImage* image )} this is the block we will call with the resulting image once it is generated.
+ * @returns {void}
+ */
++ (void) renderImage:(UIImage*)image
+      withSize:(CGSize)size
+      andReturnBlock:(void(^)( UIImage* image )) returnBlock {
+    [IonRenderUtilities renderBlock: ^{
+        // Draw the Image
+        [image drawInRect: (CGRect){ CGPointZero, size } ];
+        
+    }
+                  inContextWithSize: size
+                     andReturnBlock: returnBlock];
+}
 
 #pragma mark Singletons
 

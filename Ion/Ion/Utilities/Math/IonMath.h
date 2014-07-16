@@ -30,6 +30,6 @@
  * This gets the point at the edge of the frame where the ray "emiting from the center of the view" will hit with the specified angle
  * @returns
  */
-+ (CGPoint) pointAtEdgeOfFrame:(CGSize) frameSize angleOfRay:(CGFloat)angle;
++ (CGPoint) pointAtEdgeOfFrame:(CGSize) frameSize angleOfRay:(CGFloat) angle;
 
 @end

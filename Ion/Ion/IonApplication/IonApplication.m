@@ -186,7 +186,7 @@
  * @peram { ^(UIViewController* frvc) } frvc is the "First Real View Conroller" to be presented.
  * @returns {void}
  */
-- (void) configureFirstRealViewController:(void(^)( IonViewController* frvc )) finished {
+- (void) configureFirstRealViewController:( void(^)( IonViewController* frvc ) ) finished {
     // configure the default first root view controller here.
     IonViewController* vc = [[IonViewController alloc] initWithNibName:NULL bundle:NULL];
     

@@ -18,7 +18,7 @@
 #pragma mark Init Hooks
 
 /**
- * This is where we initiliza all non visual elements of our application.
+ * This is where we initilize all non visual elements of our application.
  * @returns {void}
  */
 - (void) setupApplication {

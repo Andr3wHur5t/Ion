@@ -14,7 +14,7 @@
 
 @interface IonColorWeight : NSObject
 
-- (instancetype) initWithColor:(UIColor*)color andWeight:(CGFloat)weight;
+- (instancetype) initWithColor:(UIColor*) color andWeight:(CGFloat) weight;
 
 @property (strong, nonatomic) UIColor* color;
 @property (assign, nonatomic) CGFloat weight;
@@ -28,7 +28,7 @@
 
 @interface IonGradientConfiguration : NSObject
 
-- (instancetype) initWithColorWeights:(NSArray*)colorWeights;
+- (instancetype) initWithColorWeights:(NSArray*) colorWeights;
 
 @property (strong, nonatomic) NSArray* colorWeights;
 
@@ -40,7 +40,7 @@
 
 @interface IonLinearGradientConfiguration : IonGradientConfiguration
 
-- (instancetype) initWithColor:(NSArray*)colorWeights andAngel:(CGFloat)angle;
+- (instancetype) initWithColor:(NSArray*) colorWeights andAngel:(CGFloat) angle;
 
 @property (assign, nonatomic) CGFloat angle;
 

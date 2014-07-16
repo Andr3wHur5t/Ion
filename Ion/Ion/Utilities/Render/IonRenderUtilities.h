@@ -48,11 +48,11 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
  * @param {void^(UIImage*)} the block to be called once the work is done
  * @returns {void}
  */
-+ (void) renderBlock: (void(^)()) block
++ (void) renderBlock: (void(^)( )) block
    inContextWithSize: (CGSize) contextSize
                scale: (CGFloat) scale
         thatHasAlpha: (bool) isAlpha
-      andReturnBlock: (void(^)(UIImage* image)) returnBlock;
+      andReturnBlock: (void(^)( UIImage* image )) returnBlock;
 
 /**
  * This renders the inputed render block in the render thread, and returns the result in the result block.
@@ -63,10 +63,10 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
  * @param {void^(UIImage*)} the block to be called once the work is done
  * @returns {void}
  */
-+ (void) renderBlock: (void(^)()) block
++ (void) renderBlock: (void(^)( )) block
    inContextWithSize: (CGSize) contextSize
         thatHasAlpha: (bool) isAlpha
-      andReturnBlock: (void(^)(UIImage* image)) returnBlock;
+      andReturnBlock: (void(^)( UIImage* image )) returnBlock;
 
 /**
  * This renders the inputed render block in the render thread, and returns the result in the result block.
@@ -76,9 +76,9 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
  * @param {void^(UIImage*)} the block to be called once the work is done
  * @returns {void}
  */
-+ (void) renderBlock: (void(^)()) block
++ (void) renderBlock: (void(^)( )) block
    inContextWithSize: (CGSize) contextSize
-      andReturnBlock: (void(^)(UIImage* image)) returnBlock;
+      andReturnBlock: (void(^)( UIImage* image )) returnBlock;
 
 
 #pragma mark Gradient Utilities
@@ -97,9 +97,9 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
  * @param {(void(^)(UIImage* image))} this is the block we will call with the resulting image once it is generated.
  * @returns {void}
  */
-+ (void) renderLinearGradient:(IonLinearGradientConfiguration*)gradientConfig
-                   resultSize:(CGSize)size
-              withReturnBlock:(void(^)(UIImage* image)) returnBlock;
++ (void) renderLinearGradient:(IonLinearGradientConfiguration*) gradientConfig
+                   resultSize:(CGSize) size
+              withReturnBlock:(void(^)( UIImage* image )) returnBlock;
 
 /**
  * This will create a linear gradient in a render block.
@@ -108,12 +108,23 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
  * @param {CGFloat} the angle of the gradient
  * @returns {void}
  */
-+ (void) linearGradientWithContextState:(IonContextState)state
-                   gradientColorWeights:(NSArray*)colorWeights
-                                  angle:(CGFloat)angle;
++ (void) linearGradientWithContextState:(IonContextState) state
+                   gradientColorWeights:(NSArray*) colorWeights
+                                  angle:(CGFloat) angle;
 
 
 #pragma mark Image Sizing Utilities
+
+/**
+ * This will render an image at the inputted size.
+ * @param {UIImage*} the image to render
+ * @param {CGSize} the size to render the image at
+ * @param {void(^)( UIImage* image )} this is the block we will call with the resulting image once it is generated.
+ * @returns {void}
+ */
++ (void) renderImage:(UIImage*)image
+            withSize:(CGSize)size
+      andReturnBlock:(void(^)( UIImage* image )) returnBlock;
 
 
 #pragma mark Singletons
@@ -123,5 +134,15 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
  * @returns {dispatch_queue_t}
  */
 + (dispatch_queue_t) renderDispatchQueue;
+
+
+
+#pragma Mark Testing In Main
+
++ (void) renderTestingInMainBlock: (void(^)()) block
+                inContextWithSize: (CGSize) contextSize
+                            scale: (CGFloat) scale
+                     thatHasAlpha: (bool) isAlpha
+                   andReturnBlock: (void(^)( UIImage* image )) returnBlock;
 
 @end
