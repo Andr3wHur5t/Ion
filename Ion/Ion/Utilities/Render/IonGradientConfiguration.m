@@ -8,6 +8,7 @@
 
 #import "IonGradientConfiguration.h"
 #import "IonMath.h"
+#import "UIColor+IonColor.h"
 
 
 /**
@@ -73,6 +74,11 @@ static const NSString* sWeightKey = @"weight";
     _weight = CLAMP(weight, 0.0f, 1.0f);
 }
 
+- (NSString*) description {
+    return [NSString stringWithFormat:@"{Color: %@, Weight:%f}",[_color toHex],_weight];
+}
+
+
 @end
 
 /**
@@ -106,6 +112,10 @@ static const NSString* sWeightKey = @"weight";
     return arr;
 }
 
+- (NSString*) description {
+    return [NSString stringWithFormat:@"ColorWeights: %@",_colorWeights];
+}
+
 @end
 
 /**
@@ -131,6 +141,10 @@ static const NSString* sWeightKey = @"weight";
         self.angle = angle;
     
     return self;
+}
+
+- (NSString*) description {
+    return [NSString stringWithFormat:@"\n{Angle:%f, %@}\n",RadiansToDegrees( _angle ), [super description]];
 }
 
 @end

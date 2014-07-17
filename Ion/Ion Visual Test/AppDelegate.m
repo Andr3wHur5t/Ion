@@ -60,10 +60,13 @@
     [vc.view setIonTheme:theme];
     
     vc.view.backgroundColor = [theme.attributes colorWithName:@"yellow"];
-    [theme.attributes colorWithName:@"yellow"];
-    [theme.attributes colorWithName:@"yellow"];
     
-    [imgView setBackgroundToLinearGradient:[[IonLinearGradientConfiguration alloc] init] compleation:^{
+    IonLinearGradientConfiguration* gradientConfig = (IonLinearGradientConfiguration*)[theme.attributes gradientWithName:@"Spottr"];
+    
+    NSLog(@"%@",gradientConfig);
+    
+    UIView* view = vc.view;
+    [view setBackgroundToLinearGradient:gradientConfig compleation:^{
         if (finished)
             finished(vc);
     }];

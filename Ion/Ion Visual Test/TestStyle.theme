@@ -2,9 +2,10 @@
     "colors": {
         "BLACK": "#FFFFFF",
         "WHITE": "#000000",
-        "TROLOLO": "#EB1A1Ass",
+        "TROLOLO": "Purple",
         "LEET": "#001337",
         "green": "TROLOLO",
+        "Purple": "#921",
         "yellow": "green"
     },
     "images": {
@@ -25,7 +26,7 @@
                     "weight": 0
                 },
                 {
-                    "color": "WHITE",
+                    "color": "#ED413D",
                     "weight": 1
                 }
             ]
@@ -47,18 +48,25 @@
                     "weight": 1
                 }
             ]
-        }
-    },
-    "styles": {
-        "simpleStyle": {
-            "bgColor": {
-                "type": "color",
-                "name": "WHITE"
-            },
-            "fontColor": {
-                "type": "color",
-                "name": "BLACK"
-            }
-        }
-    }
+        }, "Spottr":{
+"type":"linear",
+"angle":90,
+"colorWeights": [
+{"color":"#ED5936","weight":1.0},
+{"color":"#ED413D","weight":0.0}
+]
+}
+},
+"styles": {
+"simpleStyle": {
+"bgColor": {
+"type": "color",
+"name": "WHITE"
+},
+"fontColor": {
+"type": "color",
+"name": "BLACK"
+}
+}
+}
 }
