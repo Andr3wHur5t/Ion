@@ -43,8 +43,25 @@
     
     // Render Debug
     UIImageView* imgView = [[UIImageView alloc] init];
-    [vc.view addSubview:imgView];
+    //[vc.view addSubview:imgView];
     imgView.frame = (CGRect) {CGPointZero,vc.view.frame.size};
+    
+    //
+    
+    
+    IonTheme* theme = [[IonTheme alloc] initWithFileName:@"TestStyle"];
+    
+    imgView.themeClass = @"Image";
+    imgView.themeID = @"backgroundGrad";
+   
+    vc.view.themeClass = @"body";
+    vc.view.themeID = @"background";
+    
+    [vc.view setIonTheme:theme];
+    
+    vc.view.backgroundColor = [theme.attributes colorWithName:@"yellow"];
+    [theme.attributes colorWithName:@"yellow"];
+    [theme.attributes colorWithName:@"yellow"];
     
     [imgView setBackgroundToLinearGradient:[[IonLinearGradientConfiguration alloc] init] compleation:^{
         if (finished)

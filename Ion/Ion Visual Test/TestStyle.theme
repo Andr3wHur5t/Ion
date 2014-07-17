@@ -1,0 +1,64 @@
+{
+    "colors": {
+        "BLACK": "#FFFFFF",
+        "WHITE": "#000000",
+        "TROLOLO": "#EB1A1Ass",
+        "LEET": "#001337",
+        "green": "TROLOLO",
+        "yellow": "green"
+    },
+    "images": {
+        "Image1": "Path1.png",
+        "Image2": "Path2.png"
+    },
+    "kvp": {
+        "PointlessProperty": "PointlessValue",
+        "UsefulProperty": "UsefulValue"
+    },
+    "gradients": {
+        "BLACKTOWHITE": {
+            "type": "linear",
+            "angle": 90,
+            "colorWeights": [
+                {
+                    "color": "BLACK",
+                    "weight": 0
+                },
+                {
+                    "color": "WHITE",
+                    "weight": 1
+                }
+            ]
+        },
+        "TROLOLOTOLEETTOTROLOLO": {
+            "type": "linear",
+            "angle": 125,
+            "colorWeights": [
+                {
+                    "color": "TROLOLO",
+                    "weight": 0
+                },
+                {
+                    "color": "LEET",
+                    "weight": 0.5
+                },
+                {
+                    "color": "TROLOLO",
+                    "weight": 1
+                }
+            ]
+        }
+    },
+    "styles": {
+        "simpleStyle": {
+            "bgColor": {
+                "type": "color",
+                "name": "WHITE"
+            },
+            "fontColor": {
+                "type": "color",
+                "name": "BLACK"
+            }
+        }
+    }
+}

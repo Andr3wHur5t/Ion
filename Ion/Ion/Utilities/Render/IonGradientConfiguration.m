@@ -14,6 +14,9 @@
  * ==================== Ion Color Weight ====================
  */
 
+static const NSString* sColorKey =  @"color";
+static const NSString* sWeightKey = @"weight";
+
 @implementation IonColorWeight
 
 - (instancetype) init {
@@ -32,6 +35,33 @@
         self.weight = weight;
     }
     return self;
+}
+
+/**
+ * This creates a color weight set using a NSDictionary configuration.
+ * if any data is invalid it will return NULL.
+ */
+- (instancetype) initWithConfiguration:(NSDictionary*) config {
+    id unverifiedColor, unverifiedWeight;
+    UIColor* color;
+    CGFloat weight;
+    
+    if ( !unverifiedColor || !unverifiedWeight )
+        return NULL;
+    
+    if ( [unverifiedColor isKindOfClass:[UIColor class]] ) {
+        color = (UIColor*) unverifiedColor;
+    } else {
+        return NULL;
+    }
+    
+    if ( [unverifiedWeight isKindOfClass:[NSNumber class]] ) {
+        weight = [(NSNumber*)unverifiedWeight floatValue];
+    } else {
+        return NULL;
+    }
+    
+    return [self initWithColor:color andWeight:weight];
 }
 
 /**
@@ -61,7 +91,6 @@
         self.colorWeights = colorWeights;
     return self;
 }
-
 
 /**
  * This is the default color configuration we will start with.
