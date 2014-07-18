@@ -8,7 +8,50 @@
 
 #import "UIColor+IonColor.h"
 
+// Limit our search depth incase of evil recusion loops!
+static const unsigned int sMaxColorResolveDepth = 2500;
+unsigned int currentColorResolveDepth;
+
 @implementation UIColor (IonColor)
+
+#pragma mark Constructors
+
+/**
+ * This will resolve a color using a map and an Attrbute Set.
+ * @param {NSString*} the string to process
+ * @param {IonThemeAttributes*} the theme attrubute set to do our searches on if needed.
+ * @returns {UIColor*} representation, or NULL of invalid
+ */
++ (UIColor*) resolveWithValue:(NSString*) value andAttrubutes:(IonThemeAttributes*) attributes {
+    ++currentColorResolveDepth;
+    UIColor* result;
+    
+    // Check if the value is a string.
+    if ( ![value isKindOfClass: [NSString class]] )
+        return NULL;
+    
+    // Check if the string is a hex
+    if ( [UIColor stingIsValidHex:value] ) {
+        // We found it!
+        result = [UIColor colorFromHexString: value];
+        
+        --currentColorResolveDepth;
+        return result;
+    } else {
+        if ( false ) // do we contain illegal char?
+            return NULL;
+        
+        if ( currentColorResolveDepth <= sMaxColorResolveDepth )
+            result = (UIColor*)[attributes.colors objectForKey:value];     // Go farther down the rabbit hole!
+        
+        --currentColorResolveDepth;
+        return result;
+    }
+    
+    return NULL;
+}
+
+#pragma mark Utilities
 
 /**
  * This converts a UIColor to a #RRGGBBAA hex string.
@@ -91,5 +134,39 @@
     [[NSScanner scannerWithString: fullHex] scanHexInt: &hexComponent];
     
     return hexComponent / 255.0;
+}
+
+
+#pragma mark Verification
+/**
+ * This checks if the inputted string is a valid hex.
+ * @param {NSString*} this is the string to be validated
+ * @returns {BOOL} true if the hex is valid, false if it has failed
+ */
++ (BOOL) stingIsValidHex:(NSString*)str {
+    int strLength = [str length];
+    
+    if ( [[str substringToIndex:1] isEqualToString:@"#"] && strLength < 9) {
+        // Check for valid length
+        switch ( strLength - 1 ) {
+            case 8:  // RRGGBBAA
+                return true;
+                break;
+            case 6:  // RRGGBB
+                return true;
+                break;
+            case 4:  // RGBA
+                return true;
+                break;
+            case 3:  // RGB
+                return true;
+                break;
+            default: // Fail Not Hex
+                return false;
+                break;
+        }
+    }
+    else
+        return false;
 }
 @end

@@ -8,6 +8,7 @@
 
 #import "UIView+IonTheme.h"
 #import <objc/runtime.h>
+#import "IonStyle.h"
 
 static char* sThemeIDkey = "IonThemeID";
 static void* sThemeClassKey = "IonThemeClass";
@@ -76,16 +77,13 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
     return [(NSNumber*)objc_getAssociatedObject(self, sThemeWasSetByUserKey) boolValue];
 }
 
-/**
- *
- */
 
 /**
  * This sets the theme of the view, this should be called externialy.
  * @praram {NSObject} the theme object to set.
  * @returns {void}
  */
-- (void) setIonTheme:(IonTheme*) themeObject {
+- (void) setIonTheme:(IonTheme*) themeObject{
     // Flip the was set by user latch; note if done through system this should cancel out.
     self.themeWasSetByUser = YES;
     
@@ -105,16 +103,10 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
 
 /**
  * This will retrun the object theme settings formated as a combined string.
+ * @returns {NSString*}
  */
-- (NSString*) themeToString {
+- (NSString*) description {
     return [NSString stringWithFormat:@"Theme-Config:{Class:%@,ID:%@}", self.themeClass, self.themeID];
-}
-
-/**
- * This will log the theme Debug.
- */
-- (void) themeToLog {
-    NSLog(@"%@",[self themeToString]);
 }
 
 #pragma mark Internial

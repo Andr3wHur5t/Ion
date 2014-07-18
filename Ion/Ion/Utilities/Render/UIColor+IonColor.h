@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IonThemeAttributes.h"
 
 /**
  * Utility Color Macro
@@ -17,6 +18,18 @@
 
 
 @interface UIColor (IonColor)
+
+#pragma mark Constructors
+
+/**
+ * This will resolve a color using a string and an Attrbute Set.
+ * @param {NSString*} the string to process
+ * @param {IonThemeAttributes*} the theme attrubute set to do our searches on if needed.
+ * @returns {UIColor*} representation, or NULL of invalid
+ */
++ (UIColor*) resolveWithValue:(NSString*) value andAttrubutes:(IonThemeAttributes*) attributes;
+
+#pragma mark Utilities
 
 /**
  * This converts a UIColor to a #RRGGBBAA hex string.
@@ -40,5 +53,14 @@
  * @retuns {CGFloat} the net color componet
  */
 + (CGFloat) colorComponentFrom:(NSString*) string start:(NSUInteger) start length:(NSUInteger) length;
+
+#pragma mark Verification
+
+/**
+ * This checks if the inputted string is a valid hex.
+ * @param {NSString*} this is the string to be validated
+ * @returns {BOOL} true if the hex is valid, false if it has failed
+ */
++ (BOOL) stingIsValidHex:(NSString*)str;
 
 @end

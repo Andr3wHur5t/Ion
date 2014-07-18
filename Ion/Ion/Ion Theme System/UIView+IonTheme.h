@@ -39,17 +39,6 @@
  */
 - (void) setIonTheme:(IonTheme*) themeObject;
 
-#pragma mark Debug
-
-/**
- * This will retrun the object theme settings formated as a combined string.
- */
-- (NSString*) themeToString;
-
-/**
- * This will log the theme Debug.
- */
-- (void) themeToLog;
 
 #pragma mark Internial
 

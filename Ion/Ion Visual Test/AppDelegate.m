@@ -43,33 +43,32 @@
     
     // Render Debug
     UIImageView* imgView = [[UIImageView alloc] init];
-    //[vc.view addSubview:imgView];
-    imgView.frame = (CGRect) {CGPointZero,vc.view.frame.size};
+    [vc.view addSubview:imgView];
     
-    //
+    CGSize s = vc.view.frame.size;
+    s.height = 20 + 70;
+    imgView.frame = (CGRect) {CGPointZero,s};
+    
+    /*
+    [imgView.layer setShadowColor:[UIColor blackColor].CGColor];
+    [imgView.layer setShadowOpacity:0.5];
+    [imgView.layer setShadowRadius:3.0];
+    [imgView.layer setShadowOffset:CGSizeMake(0.0, 2.0)];
+     */
     
     
+    imgView.themeClass = @"secondaryStyle";
+    //imgView.themeID = @"backgroundGrad";
+   
+    vc.view.themeClass = @"simpleStyle";
+    //vc.view.themeID = @"background";
+
     IonTheme* theme = [[IonTheme alloc] initWithFileName:@"TestStyle"];
     
-    imgView.themeClass = @"Image";
-    imgView.themeID = @"backgroundGrad";
-   
-    vc.view.themeClass = @"body";
-    vc.view.themeID = @"background";
-    
-    [vc.view setIonTheme:theme];
-    
-    vc.view.backgroundColor = [theme.attributes colorWithName:@"yellow"];
-    
-    IonLinearGradientConfiguration* gradientConfig = (IonLinearGradientConfiguration*)[theme.attributes gradientWithName:@"Spottr"];
-    
-    NSLog(@"%@",gradientConfig);
-    
-    UIView* view = vc.view;
-    [view setBackgroundToLinearGradient:gradientConfig compleation:^{
-        if (finished)
-            finished(vc);
-    }];
+    [theme.attributes resolveColorAttrubute:@"Yellow"];
+    [vc.view setIonTheme:  theme];
+    if (finished)
+        finished(vc);
 }
 
 

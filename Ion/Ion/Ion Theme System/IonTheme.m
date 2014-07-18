@@ -7,10 +7,12 @@
 //
 
 #import "IonTheme.h"
-
+#import "IonStyle.h"
+#import "UIView+IonTheme.h"
 
 
 static NSString* sIonThemeFileExtension = @"theme";
+static NSString* sIonThemeDefaultStyleKey = @"default";
 
 @interface IonTheme () {
     
@@ -34,19 +36,24 @@ static NSString* sIonThemeFileExtension = @"theme";
 #pragma mark Construction
 
 /**
- * Default constructor
+ * Standerd constructor
+ * @returns {instancetype}
  */
 - (instancetype) init {
     self = [super init];
     
-    if ( self )
+    if ( self ) {
         self.attributes = [[IonThemeAttributes alloc] init];
+    
+    }
     
     return self;
 }
 
 /**
  * This will construct a theme with the provided name from application resources.
+ * @param {NSString*} the file name of the theme in the file system
+ * @returns {instancetype}
  */
 - (instancetype) initWithFileName:(NSString*) fileName {
     return [self initWithFileAtPath: [[NSBundle mainBundle] pathForResource: fileName
@@ -55,8 +62,10 @@ static NSString* sIonThemeFileExtension = @"theme";
 
 /**
  * This constructs and cofigures a theme using the file at the provided path.
+ * @param {NSString*} the literal path of the theme file.
+ * @returns {instancetype}
  */
-- (instancetype) initWithFileAtPath:(NSString*)path {
+- (instancetype) initWithFileAtPath:(NSString*) path {
     // Do in Ion File manager
     NSData* file = [[NSData alloc] initWithContentsOfFile:path];
     NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:file options:0 error:NULL];
@@ -65,25 +74,63 @@ static NSString* sIonThemeFileExtension = @"theme";
 
 /**
  * This constructs and configures a theme using the provided configuration object
+ * @param {NSDictionary*} the config object to create the theme with.
+ * @returns {instancetype}
  */
-- (instancetype) initWithConfiguration:(NSDictionary*)config {
+- (instancetype) initWithConfiguration:(NSDictionary*) config {
     self = [self init];
-    
     if ( self ) {
+        if ( !config )
+            return NULL;
         [_attributes setAttributeGroupsWithConfiguration: config];
+        
+        _name = [config objectForKey:@"name"];
     }
-    
     return self;
 }
 
+#pragma mark External Interface
+/**
+ * This gets the style for the inputted view.
+ * @param {UIView*} the view to get the style for the view.
+ * @param {IonStyle*] will return the net style
+ */
+- (IonStyle*) styleForView: (UIView*)view {
+    IonStyle *idAndClassStyle, *elementStyle;
+    if ( !view )
+        return NULL;
+    
+    idAndClassStyle = [self styleForThemeClass: view.themeClass andThemeID: view.themeID];
+    elementStyle = [self styleForElementName:@"Test"]; // TODO Add and check element theme name
+    
+    if ( elementStyle ) {
+        idAndClassStyle = [elementStyle overideStyleWithStyle: idAndClassStyle ];
+    }
+    
+    
+    return idAndClassStyle;
+}
 
-#pragma mark Internial Interface
+/**
+ * This gets the style for the inputted element name.
+ * @param {NSString*} the element name to search for
+ * @retutns {IonStyle*} will return the net style
+ */
+- (IonStyle*) styleForElementName:(NSString*) name {
+    IonStyle* result;
+    if ( !name )
+        return NULL;
+    
+    result = [self.attributes resolveStyleAttribute: name];
+    
+    return result;
+}
 
 /**
  * This compiles the theme into a style class for the sepecified view.
  * @param {NSString*} the theme class to look for; Can Be NULL if other provided
  * @param {NSString*} the theme id to look for; Can Be NULL if other provided
- * @returns {IonStyle*} will returned the style
+ * @returns {IonStyle*} will return the net style
  */
 - (IonStyle*) styleForThemeClass:(NSString*) themeClass andThemeID:(NSString*) themeID {
     IonStyle *classStyle, *idStyle;
@@ -91,45 +138,45 @@ static NSString* sIonThemeFileExtension = @"theme";
     // Search if we have generated one with the same parameters; Optomization;
     
     if ( themeClass )
-        if ( true ) // if the Key exsists in theme
             classStyle = [self styleForClassName: themeClass];
         
     
     if ( themeID )
-        if ( true ) // if the Key exsists in theme
             idStyle = [self styleForIdName: themeID];
     
     return [self styleFromCompositedClassStyle: classStyle andIdStyle: idStyle];
 }
 
-
-
 #pragma mark Internal Interface
-
 /**
- * This gets the style for the inputed class name.
+ * This gets the style for the inputted class name.
  * @param {NSString*} the class name to search for
  * @retutns {IonStyle*}
  */
 - (IonStyle*) styleForClassName:(NSString*) className {
     IonStyle* result;
-    NSString* fullClassName = [NSString stringWithFormat:@"%@",className];
+    if ( !className )
+        return NULL;
     
-    result = [self.attributes styleWithName: fullClassName];
+    NSString* fullClassName = [NSString stringWithFormat: @"cls_%@", className];
+    
+    result = [self.attributes resolveStyleAttribute: fullClassName];
     
     return result;
 }
 
 /**
- * This gets the style for the inputed id name.
+ * This gets the style for the inputted id name.
  * @param {NSString*} the class ID to search for.
  * @retutns {IonStyle*}
  */
 - (IonStyle*) styleForIdName:(NSString*) idName {
     IonStyle* result;
-    NSString* fullIdName = [NSString stringWithFormat:@"%@",idName];
+    if ( !idName )
+        return NULL;
+    NSString* fullIdName = [NSString stringWithFormat: @"id_%@", idName];
     
-    result = [self.attributes styleWithName: fullIdName];
+    result = [self.attributes resolveStyleAttribute: fullIdName];
     
     return result;
 }
@@ -140,11 +187,12 @@ static NSString* sIonThemeFileExtension = @"theme";
  * @param {IonStyle*} the id style to composite
  * @returns {IonStyle*} the resulting style
  */
-- (IonStyle*) styleFromCompositedClassStyle:(IonStyle*)classStyle andIdStyle:(IonStyle*)idStyle {
+- (IonStyle*) styleFromCompositedClassStyle:(IonStyle*) classStyle andIdStyle:(IonStyle*) idStyle {
     IonStyle* result = [self currentDefaultStyle];
+
     
     if ( classStyle && idStyle ) {
-        result = [classStyle overideStyleWithStyle:idStyle];
+        result = [classStyle overideStyleWithStyle: idStyle];
     } else if ( idStyle ) {
         result = idStyle;
     } else if ( classStyle ) {
@@ -160,6 +208,9 @@ static NSString* sIonThemeFileExtension = @"theme";
  * @returns {IonStyle*} the current default style.
  */
 - (IonStyle*) currentDefaultStyle {
+    if ( !_defaultStyle )
+        _defaultStyle = [self.attributes resolveStyleAttribute: sIonThemeDefaultStyleKey];
+    
     if ( !_defaultStyle )
         _defaultStyle = [[IonStyle alloc] init];
     

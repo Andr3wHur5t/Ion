@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IonThemeAttributes.h"
 
 @interface IonStyle : NSObject
 #pragma mark External Interface
 
 /**
- * This is a Parseing constructor
+ * This will resolve a style using a map and an Attrbute Set.
+ * @param {NSDictionary*} the map to process
+ * @param {IonThemeAttributes*} the theme attrubute set to do our searches on if needed.
+ * @returns {UIColor*} representation, or NULL of invalid
  */
-- (instancetype) initWithConfiguration:(NSDictionary*) config;
++ (IonStyle*) resolveWithMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes;
 
 /**
  * This applys the current style to the inputted view.

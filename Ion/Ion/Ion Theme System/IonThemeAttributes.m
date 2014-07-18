@@ -9,135 +9,141 @@
 #import "IonThemeAttributes.h"
 #import "IonMath.h"
 
-
-static const NSString* sColorsKey = @"colors";
-static const NSString* sGradientsKey = @"gradients";
-static const NSString* sImagesKey = @"images";
-static const NSString* sKVPKey = @"kvp";
-static const NSString* sStylesKey = @"styles";
-
-/** Gradient Sub Keys
- */
-static const NSString* sGradientTypeKey = @"type";
-
-static const NSString* sGradientColorWeightsKey = @"colorWeights";
-static const NSString* sGradientColorKey = @"color";
-static const NSString* sGradientWeightKey = @"weight";
-
-static const NSString* sGradientLinearKey = @"linear";
-static const NSString* sGradientLinearAngleKey = @"angle";
-static const CGFloat   sGradientLinearAngleDefault = 90.0f;
-
-// Limit our search depth incase of evil recusion loops!
-static const unsigned int sMaxColorResolveDepth = 2500;
-
-
-@interface IonThemeAttributes () {
-    unsigned int currentColorResolveDepth;
-}
-
-@end
+#import "IonStyle.h"
+#import "UIColor+IonColor.h"
+#import "IonGradientConfiguration.h"
 
 @implementation IonThemeAttributes
 
+#pragma mark Constructors
 /**
  * Standerd constructor
  * @returns {instancetype}
  */
 - (instancetype) init {
     self = [super init];
-    
     if ( self ) {
-        [self constructGroupMaps];
-        [self setGenerationBlocks];
+        [self constructAttributeMaps];
+        [self setAttributeGenerationBlocks];
     }
-    
     return self;
 }
 
 /**
- * This will init the attributes using the inputed configuration.
- * @param {NSDictionary*} a configuration dictionary
+ * This will construct our attribute using the inputed configuration object.
+ * @param {NSDictionary*} the configuration to use.
  * @returns {instancetype}
  */
 - (instancetype) initWithConfiguration:(NSDictionary*) configuration {
     self = [self init];
-    
     if ( self ) {
         [self setAttributeGroupsWithConfiguration:configuration];
     }
-    
     return self;
 }
-
 
 #pragma mark Construction Utilities
 
 /**
- * This constructs the groups maps
+ * This is where we construct all our Attrubute maps.
+ * @returns {void}
  */
-- (void) constructGroupMaps {
+- (void) constructAttributeMaps {
+    // Colors
     _colors = [[IonAccessBasedGenerationMap alloc] init];
+    
+    // Images
     _images = [[IonAccessBasedGenerationMap alloc] init];
+    
+    // Gradients
     _gradients = [[IonAccessBasedGenerationMap alloc] init];
+    
+    // Key Value Pairs
     _kvp = [[IonAccessBasedGenerationMap alloc] init];
+    
+    // Styles
     _styles = [[IonAccessBasedGenerationMap alloc] init];
 }
 
 /**
- * This sets the generation blocks
+ * This sets the Attribute generation construction block.
+ * @returns {void}
  */
-- (void) setGenerationBlocks {
+- (void) setAttributeGenerationBlocks {
     __weak typeof(self) weakSelf = self;
-    
     // Style
-    [_styles setGenerationBlock:^id(id data) {
-        return [[IonStyle alloc] initWithConfiguration: (NSDictionary*)data];
+    [_styles setGenerationBlock: ^id( id data ) {
+        return [IonStyle resolveWithMap: (NSDictionary*)data andAttrubutes: weakSelf];
     }];
     
     // Color
-    [_colors setGenerationBlock:^id(id data) {
-        return [weakSelf resolveColorAttrubute: (NSString*)data];
+    [_colors setGenerationBlock: ^id( id data ) {
+        return [UIColor resolveWithValue: (NSString*)data andAttrubutes: weakSelf];
     }];
     
     // Gradient
-    [_gradients setGenerationBlock:^id(id data) {
-        return [weakSelf resolveGradientAttribute: (NSDictionary*)data];
+    [_gradients setGenerationBlock: ^id( id data ) {
+        return [IonGradientConfiguration resolveWithMap: (NSDictionary*)data andAttrubutes: weakSelf];
     }];
 }
 
 
 #pragma mark External Interface
 
+/**
+ * This is our logging function.
+ * @returns {NSString*}
+ */
+- (NSString*) description {
+    return [NSString stringWithFormat: @"\nColors: %@ \n\n Gradents: %@ \n\n Styles: %@ \n\n Images: %@ \n\n KVP: %@ \n\n", _colors, _gradients, _styles, _images, _kvp ];
+}
 
 
-#pragma mark Search Queries
+#pragma mark Attribute Resolution
 
 /**
- * This will try to find a color using the inputed name
- * @param {NSString*} the name of the color we want.
- * @returns {UIColor*} a color object, or NULL if nothing could be found.
+ * This resolves a color key into a UIColor.
+ * @param {NSString*} the key for us to look for.
+ * @returns {IonGradientConfiguration*} representation of the input, or NULL if invalid.
  */
-- (UIColor*) colorWithName:(NSString*) name {
-    return (UIColor*)[_colors objectForKey:name];
+- (UIColor*) resolveColorAttrubute:(NSString*) value {
+    return [UIColor resolveWithValue:value andAttrubutes: self];
 }
 
 /**
- * This will try to find a gradient using the inputed name
- * @param {NSString*} the name of the gradient we want.
- * @returns {IonGradientConfiguration} a gradient configuration object, or NULL if nothing could be found.
+ * This resolves a gradient key into a gradientConfiguration
+ * @param {NSString*} the key for us to look for.
+ * @returns {IonGradientConfiguration*} representation of the input, or NULL if invalid.
  */
-- (IonGradientConfiguration*) gradientWithName:(NSString*) name {
-    return (IonGradientConfiguration*)[_gradients objectForKey:name];
+- (IonGradientConfiguration*) resolveGradientAttribute:(NSString*) value {
+    return (IonGradientConfiguration*)[_gradients objectForKey: value];
 }
 
 /**
- * This will try to find a style using the inputed name
- * @param {NSString*} the name of the style we want.
- * @returns {IonStyle} a style object, or NULL if nothing could be found
+ * This resolves a style key into a IonStyle object.
+ * @param {NSString*} the key for us to look for.
+ * @returns {IonStyle*} representation of the input, or NULL if invalid.
  */
-- (IonStyle*) styleWithName:(NSString*) name {
-    return (IonStyle*)[_styles objectForKey:name];
+- (IonStyle*) resolveStyleAttribute:(NSString*) value {
+    return (IonStyle*)[_styles objectForKey: value];
+}
+
+/**
+ * This resolves a Image key into a UIImage object.
+ * @param {NSString*} the key for us to look for.
+ * @returns {UIImage*} representation of the input, or NULL if invalid.
+ */
+- (UIImage*) resolveImageAttribute:(NSString*) value {
+    return (UIImage*)[_images objectForKey: value];
+}
+
+/**
+ * This resolves a KVP key into a KVP object.
+ * @param {NSString*} the key for us to look for.
+ * @returns {UIImage*} representation of the input, or NULL if invalid.
+ */
+- (NSObject*) resolveKVPAttribute:(NSString*) value {
+    return (NSObject*)[_kvp objectForKey: value];
 }
 
 #pragma mark Internal Interface
@@ -151,43 +157,34 @@ static const unsigned int sMaxColorResolveDepth = 2500;
     NSDictionary *unverifiedColors, *unverifiedGradients, *unverifiedImages, *unverifiedKVP, *unverifiedStyles;
     if ( !config )
         return;
-    
-    unverifiedColors = [config objectForKey: sColorsKey];
-    unverifiedGradients = [config objectForKey: sGradientsKey];
-    unverifiedImages = [config objectForKey: sImagesKey];
-    unverifiedKVP = [config objectForKey: sKVPKey];
-    unverifiedStyles = [config objectForKey: sStylesKey];
-    
+
     // Colors
+    unverifiedColors = [config objectForKey: sColorsKey];
     if ( [self highLevelAttributeGroupIsValid: unverifiedColors] )
         [_colors setRawData: unverifiedColors];
     
     // Gradients
+    unverifiedGradients = [config objectForKey: sGradientsKey];
     if ( [self highLevelAttributeGroupIsValid: unverifiedGradients] )
         [_gradients setRawData: unverifiedGradients];
     
     // Images
+    unverifiedImages = [config objectForKey: sImagesKey];
     if ( [self highLevelAttributeGroupIsValid: unverifiedImages] )
         [_images setRawData: unverifiedImages];
     
     // KVP
+    unverifiedKVP = [config objectForKey: sKVPKey];
     if ( [self highLevelAttributeGroupIsValid: unverifiedKVP] )
         [_kvp setRawData: unverifiedKVP];
     
     // Styles
+    unverifiedStyles = [config objectForKey: sStylesKey];
     if ( [self highLevelAttributeGroupIsValid: unverifiedStyles] )
         [_styles setRawData: unverifiedStyles];
 }
 
-
-/**
- * This is our logging function.
- */
-- (NSString*) description {
-    return [NSString stringWithFormat: @"\nColors: %@ \n\n Gradents: %@ \n\n Styles: %@ \n\n Images: %@ \n\n KVP: %@ \n\n", _colors, _gradients, _styles, _images, _kvp ];
-}
-
-#pragma mark Verification and Item Resolution
+#pragma mark validation
 
 /**
  * This dose basic inspection that the high level higharchy of a attribute group is valid.
@@ -206,205 +203,6 @@ static const unsigned int sMaxColorResolveDepth = 2500;
     // Put additional verification tests here
     
     return true;
-}
-
-
-/**
- * This will resolve a color attribute.
- * @param {NSString*} the unresolved, and unverified color attribute
- * @returns {UIColor*} the resolved and verified UIColor, or NULL if it couldnt be verified or resolved.
- */
-- (UIColor*) resolveColorAttrubute:(NSString*) value {
-    ++currentColorResolveDepth;
-    UIColor* result;
-    
-    // Check if the value is a string.
-    if ( ![value isKindOfClass: [NSString class]] )
-        return NULL;
-    
-    // Check if the string is a hex
-    if ( [self stingIsValidHex:value] ) {
-        // We found it!
-        result = [UIColor colorFromHexString: value];
-        
-        --currentColorResolveDepth;
-        return result;
-    } else {
-        if ( false ) // do we contain illegal char?
-            return NULL;
-        
-        if ( currentColorResolveDepth <= sMaxColorResolveDepth )
-            result = [self colorWithName: value];     // Go farther down the rabbit hole!
-        
-        --currentColorResolveDepth;
-        return result;
-    }
-    
-    return NULL;
-}
-
-/**
- * This checks if the inputted string is a valid hex.
- * @param {NSString*} this is the string to be validated
- * @returns {BOOL} true if the hex is valid, false if it has failed
- */
-- (BOOL) stingIsValidHex:(NSString*)str {
-    int strLength = [str length];
-    
-    if ( [[str substringToIndex:1] isEqualToString:@"#"] && strLength < 9) {
-        
-        // Check for valid length
-        switch ( strLength - 1 ) {
-            case 8:  // RRGGBBAA
-                return true;
-                break;
-            case 6:  // RRGGBB
-                return true;
-                break;
-            case 4:  // RGBA
-                return true;
-                break;
-            case 3:  // RGB
-                return true;
-                break;
-            default: // Fail Not Hex
-                return false;
-                break;
-        }
-    }
-    else
-        return false;
-    
-}
-
-/**
- * This Resolves a gradient object into a gradientConfiguration
- * @param {NSDictionary*} the object for us to process and convert
- * @returns {IonGradientConfiguration*} representation of the input, or NULL if invalid.
- */
-- (IonGradientConfiguration*) resolveGradientAttribute:(NSDictionary*) value {
-    IonGradientConfiguration* result;
-    NSArray* colorWeights;
-
-    if ( !value )
-        return NULL;
-    
-    if ( ![value isKindOfClass:[NSDictionary class]] )
-        return NULL;
-    
-    result = [self gradientTypeConfiguration: value];
-    
-    if ( !result )
-        return NULL;
-    
-    colorWeights = [self colorWeightArrayFromGradientMap: value];
-    
-    if ( !colorWeights )
-        return NULL;
-    
-    result.colorWeights = colorWeights;
-    
-    return result;
-}
-
-/**
- * This generates the corect configuration acording to the confis
- * @param {NSDictionary*} the gradient object map
- * @returns {IonGradientConfiguration*} the correct configuration, NULL if invalid
- */
-- (IonGradientConfiguration*) gradientTypeConfiguration:(NSDictionary*) dict {
-    NSString* type;
-    if ( !dict )
-        return NULL;
-    
-    // Get the Keys
-    type = [dict objectForKey:sGradientTypeKey] ;
-    
-    if ( !type )
-        return NULL;
-    
-    // Specific Gradient Type Generation
-    // Add More Gradients here
-    if ( [type.lowercaseString isEqualToString: sGradientLinearKey.lowercaseString] )
-        return [self gradientLinearConfiguration:dict];
-    else
-        return [self gradientLinearConfiguration:dict];
-    
-}
-
-/**
- * This gets the correct configuration for a linear gradent using an inputed map.
- * @param {NSDictionary*} map of the gradient configuration
- * @returns {IonGradientConfiguration*} configuration representing the map, or NULL because of invalid data.
- */
-- (IonGradientConfiguration*) gradientLinearConfiguration:(NSDictionary*) dict {
-    IonLinearGradientConfiguration* result;
-    NSNumber* intermedeateAngle;
-    
-    if ( !dict )
-        return NULL;
-    
-    result = [[IonLinearGradientConfiguration alloc] init];
-    
-    // Get the angle
-    intermedeateAngle = [dict objectForKey: sGradientLinearAngleKey];
-    if ( !intermedeateAngle )
-        result.angle = DegreesToRadians( sGradientLinearAngleDefault );
-    else
-        result.angle = DegreesToRadians( [intermedeateAngle floatValue] );
-    
-    return result;
-}
-
-/**
- * This generates the color weight array from the inputted gradient map.
- * @param {NSDictionary*} the gradient map.
- * @returns {NSArray} the resulting color weight array, or NULL if invalid.
- */
-- (NSArray*) colorWeightArrayFromGradientMap:(NSDictionary*) dict {
-    NSMutableArray* resultArray;
-    NSArray* kvpColorWeightsUnverified;
-    
-    if ( !dict )
-        return NULL;
-    
-    resultArray = [[NSMutableArray alloc] init];
-    kvpColorWeightsUnverified = [dict objectForKey:sGradientColorWeightsKey];
-    
-    // Verify status of kvpColorWeightsUnverified
-    if ( !kvpColorWeightsUnverified )
-        return NULL;
-    if ( kvpColorWeightsUnverified.count < 1 )
-        return NULL;
-    
-    // Setup Enviorment
-    NSString* colorString;
-    NSNumber* weight;
-    UIColor* color;
-    
-    // Go through each KVP verify them and add them
-    for ( NSDictionary* kvp in kvpColorWeightsUnverified ) {
-        colorString = [kvp objectForKey:sGradientColorKey];
-        weight = [kvp objectForKey:sGradientWeightKey];
-        
-        if ( !colorString || !weight )
-            break;
-        
-        color = [self resolveColorAttrubute: colorString];
-        
-        if ( !color )
-            break;
-        
-        // Add Color Weight
-        [resultArray addObject: [[IonColorWeight alloc] initWithColor: color andWeight: [weight floatValue]]];
-        
-        // Clean UP
-        color = NULL;
-        colorString = NULL;
-        weight = NULL;
-    }
-    
-    return resultArray;
 }
 
 @end

@@ -6,12 +6,21 @@
 //  Copyright (c) 2014 Ion. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "IonAccessBasedGenerationMap.h"
 
-#import "IonStyle.h"
-#import "IonGradientConfiguration.h"
-#import "UIColor+IonColor.h"
+
+@class IonGradientConfiguration;
+
+/** Group Definitions
+ */
+static const NSString* sColorsKey = @"colors";
+static const NSString* sGradientsKey = @"gradients";
+static const NSString* sImagesKey = @"images";
+static const NSString* sKVPKey = @"kvp";
+static const NSString* sStylesKey = @"styles";
+
+@class IonStyle;
 
 @interface IonThemeAttributes : NSObject
 
@@ -38,8 +47,8 @@
 #pragma mark Interfaces
 
 /**
- * This will init the attributes using the inputed configuration.
- * @param {NSDictionary*} a configuration dictionary
+ * This will construct our attribute using the inputed configuration object.
+ * @param {NSDictionary*} the configuration to use.
  * @returns {instancetype}
  */
 - (instancetype) initWithConfiguration:(NSDictionary*) configuration;
@@ -52,28 +61,41 @@
 - (void) setAttributeGroupsWithConfiguration:(NSDictionary*) config;
 
 
-#pragma mark search queries
+#pragma mark Attrubute Resolution
 
 /**
- * This will try to find a style using the inputed name
- * @param {NSString*} the name of the style we want.
- * @returns {IonStyle} a style object, or NULL if nothing could be found
+ * This resolves a color key into a UIColor.
+ * @param {NSString*} the key for us to look for.
+ * @returns {IonGradientConfiguration*} representation of the input, or NULL if invalid.
  */
-- (IonStyle*) styleWithName:(NSString*) name;
+- (UIColor*) resolveColorAttrubute:(NSString*) value;
 
 /**
- * This will try to find a color using the inputed name
- * @param {NSString*} the name of the color we want.
- * @returns {UIColor*} a color object, or NULL if nothing could be found.
+ * This resolves a gradient key into a gradientConfiguration
+ * @param {NSString*} the key for us to look for.
+ * @returns {IonGradientConfiguration*} representation of the input, or NULL if invalid.
  */
-- (UIColor*) colorWithName:(NSString*) name;
+- (IonGradientConfiguration*) resolveGradientAttribute:(NSString*) value;
 
 /**
- * This will try to find a gradient using the inputed name
- * @param {NSString*} the name of the gradient we want.
- * @returns {IonGradientConfiguration} a gradient configuration object, or NULL if nothing could be found.
+ * This resolves a style key into a IonStyle object.
+ * @param {NSString*} the key for us to look for.
+ * @returns {IonStyle*} representation of the input, or NULL if invalid.
  */
-- (IonGradientConfiguration*) gradientWithName:(NSString*) name;
+- (IonStyle*) resolveStyleAttribute:(NSString*) value;
 
+/**
+ * This resolves a Image key into a UIImage object.
+ * @param {NSString*} the key for us to look for.
+ * @returns {UIImage*} representation of the input, or NULL if invalid.
+ */
+- (UIImage*) resolveImageAttribute:(NSString*) value;
+
+/**
+ * This resolves a KVP key into a KVP object.
+ * @param {NSString*} the key for us to look for.
+ * @returns {UIImage*} representation of the input, or NULL if invalid.
+ */
+- (NSObject*) resolveKVPAttribute:(NSString*) value;
 
 @end

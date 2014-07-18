@@ -44,9 +44,9 @@
 		377C3EC3196F316900EA6599 /* IonRapidStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 377C3EBC196F316900EA6599 /* IonRapidStartViewController.m */; };
 		377C3EC4196F333800EA6599 /* Ion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EBAC53195C9A93008D6BD6 /* Ion.framework */; };
 		377C3EC5196F333800EA6599 /* Ion.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37EBAC53195C9A93008D6BD6 /* Ion.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		377C3ECC196F52AE00EA6599 /* IonDemoUIWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3ECA196F52AE00EA6599 /* IonDemoUIWindow.h */; };
+		377C3ECC196F52AE00EA6599 /* IonDemoUIWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3ECA196F52AE00EA6599 /* IonDemoUIWindow.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		377C3ECD196F52AE00EA6599 /* IonDemoUIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 377C3ECB196F52AE00EA6599 /* IonDemoUIWindow.m */; };
-		377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3ECE196F58A900EA6599 /* UITouch + IonDemoTouch.h */; };
+		377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3ECE196F58A900EA6599 /* UITouch + IonDemoTouch.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		377C3ED1196F58A900EA6599 /* UITouch + IonDemoTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 377C3ECF196F58A900EA6599 /* UITouch + IonDemoTouch.m */; };
 		377C3EDB1970C2C400EA6599 /* IONgraphics.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 377C3EDA1970C2C300EA6599 /* IONgraphics.xcassets */; };
 		37EBAC59195C9A93008D6BD6 /* Ion.h in Headers */ = {isa = PBXBuildFile; fileRef = 37EBAC58195C9A93008D6BD6 /* Ion.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -195,7 +195,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		372DD22F1972766000CC0A58 /* Ion Theme System */ = {
+		372DD22F1972766000CC0A58 /* Theme System */ = {
 			isa = PBXGroup;
 			children = (
 				376DA8AA1976FAD7008D692E /* Theme Object */,
@@ -203,7 +203,7 @@
 				376DA8AB1976FADD008D692E /* Style Object */,
 				372DD23A19727C6400CC0A58 /* View Extension */,
 			);
-			name = "Ion Theme System";
+			name = "Theme System";
 			sourceTree = "<group>";
 		};
 		372DD230197276A700CC0A58 /* UIControls */ = {
@@ -326,6 +326,7 @@
 		372DD25119737F5C00CC0A58 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				372DD262197494B600CC0A58 /* Ion Color */,
 				376DA8B419774A90008D692E /* Data Structures */,
 				372DD2571973B03900CC0A58 /* Math */,
 				372DD25219737F6400CC0A58 /* Render */,
@@ -336,7 +337,6 @@
 		372DD25219737F6400CC0A58 /* Render */ = {
 			isa = PBXGroup;
 			children = (
-				372DD262197494B600CC0A58 /* Ion Color */,
 				372DD25D1973B5A900CC0A58 /* Gradient Configuration */,
 				372DD25319737F9200CC0A58 /* IonRenderUtilities.h */,
 				372DD25419737F9200CC0A58 /* IonRenderUtilities.m */,
@@ -407,7 +407,7 @@
 			name = "Theme Attrabutes";
 			sourceTree = "<group>";
 		};
-		377C3EB4196F316900EA6599 /* Ion Application */ = {
+		377C3EB4196F316900EA6599 /* IonApplication */ = {
 			isa = PBXGroup;
 			children = (
 				377C3EB7196F316900EA6599 /* Rapid Startup */,
@@ -415,7 +415,6 @@
 				377C3EB5196F316900EA6599 /* IonApplication.h */,
 				377C3EB6196F316900EA6599 /* IonApplication.m */,
 			);
-			name = "Ion Application";
 			path = IonApplication;
 			sourceTree = "<group>";
 		};
@@ -470,8 +469,8 @@
 			children = (
 				37EBAC58195C9A93008D6BD6 /* Ion.h */,
 				372DD25119737F5C00CC0A58 /* Utilities */,
-				377C3EB4196F316900EA6599 /* Ion Application */,
-				372DD22F1972766000CC0A58 /* Ion Theme System */,
+				377C3EB4196F316900EA6599 /* IonApplication */,
+				372DD22F1972766000CC0A58 /* Theme System */,
 				372DD230197276A700CC0A58 /* UIControls */,
 				372DD233197277F000CC0A58 /* UIView */,
 				372DD238197278A800CC0A58 /* UIViewController */,
@@ -555,22 +554,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				37EBAC59195C9A93008D6BD6 /* Ion.h in Headers */,
+				372DD25B1973B05400CC0A58 /* IonMath.h in Headers */,
 				372DD25519737F9200CC0A58 /* IonRenderUtilities.h in Headers */,
 				372DD246197281F400CC0A58 /* IonViewController.h in Headers */,
-				377C3EBD196F316900EA6599 /* IonApplication.h in Headers */,
-				377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */,
-				372DD24119727D0C00CC0A58 /* UIView+IonAnimation.h in Headers */,
 				372DD22C1972764D00CC0A58 /* IonView.h in Headers */,
 				372DD24F19731F0200CC0A58 /* UIView+IonBackgroundUtilities.h in Headers */,
-				372DD25B1973B05400CC0A58 /* IonMath.h in Headers */,
 				372DD23D19727C9800CC0A58 /* UIView+IonTheme.h in Headers */,
+				372DD265197494E500CC0A58 /* UIColor+IonColor.h in Headers */,
+				372DD24119727D0C00CC0A58 /* UIView+IonAnimation.h in Headers */,
 				372DD2601973B5E800CC0A58 /* IonGradientConfiguration.h in Headers */,
 				376DA8AE1976FB37008D692E /* IonStyle.h in Headers */,
 				376DA8B21976FB47008D692E /* IonTheme.h in Headers */,
-				372DD265197494E500CC0A58 /* UIColor+IonColor.h in Headers */,
 				376DA8BE19778E3F008D692E /* IonThemeAttributes.h in Headers */,
-				377C3EC2196F316900EA6599 /* IonRapidStartViewController.h in Headers */,
+				377C3EBD196F316900EA6599 /* IonApplication.h in Headers */,
 				376DA8B719774AE6008D692E /* IonAccessBasedGenerationMap.h in Headers */,
+				377C3EC2196F316900EA6599 /* IonRapidStartViewController.h in Headers */,
+				377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */,
 				377C3ECC196F52AE00EA6599 /* IonDemoUIWindow.h in Headers */,
 				377C3EBF196F316900EA6599 /* IonRapidStartManager.h in Headers */,
 			);

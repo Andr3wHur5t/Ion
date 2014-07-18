@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IonThemeAttributes.h"
 
 /**
  * ==================== Ion Color Weight ====================
@@ -27,6 +28,8 @@
  */
 
 @interface IonGradientConfiguration : NSObject
+
++ (IonGradientConfiguration*) resolveWithMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes;
 
 - (instancetype) initWithColorWeights:(NSArray*) colorWeights;
 

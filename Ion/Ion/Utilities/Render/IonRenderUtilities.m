@@ -155,19 +155,34 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
  * @returns {CGGradientRef}
  */
 + (CGGradientRef) refrenceGradientFromColorWeights:(NSArray*) colorWeights {
-    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-    NSMutableArray* colors = [[NSMutableArray alloc] init];
-    CGFloat* weights = (CGFloat*)malloc( sizeof(float) * [colorWeights count] );
-    unsigned int index = 0;
+    @autoreleasepool {
+        if ( !colorWeights )
+            return NULL;
     
-    for( IonColorWeight* colorWeight in colorWeights) {
-        [colors addObject: (id)colorWeight.color.CGColor ];
-        weights[index] = colorWeight.weight;
+        CGGradientRef result;
+        CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+        NSMutableArray* colors = [[NSMutableArray alloc] init];
+        CGFloat* weights = (CGFloat*)malloc( sizeof(float) * [colorWeights count] );
+        unsigned int index = 0;
+    
+        for( IonColorWeight* colorWeight in colorWeights) {
+            [colors addObject: (id)colorWeight.color.CGColor ];
+            weights[index] = colorWeight.weight;
         
-        ++index;
-    }
+            ++index;
+        }
     
-    return CGGradientCreateWithColors(space, (CFArrayRef)colors, weights);
+        result = CGGradientCreateWithColors(space, (CFArrayRef)colors, weights );
+        
+    
+        // Clean Up
+        CFBridgingRelease( space );
+        free( weights );
+        colors = NULL;
+        
+        return result;
+        
+    }
 }
 
 /**
@@ -186,7 +201,9 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
     CGGradientRef gradColorRef = [IonRenderUtilities refrenceGradientFromColorWeights: colorWeights];
     
     CGContextDrawLinearGradient( state.context, gradColorRef, startPoint, endPoint, kCGGradientDrawsAfterEndLocation + kCGGradientDrawsBeforeStartLocation);
+    CFBridgingRelease( gradColorRef );
 }
+
 /**
  * This will render a linear gradient using the inputed config, and result size.
  * @param {IonLinearGradientConfiguration} this is the config we will use to generate the gradient.
@@ -197,7 +214,6 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
 + (void) renderLinearGradient:(IonLinearGradientConfiguration*)gradientConfig
                    resultSize:(CGSize)size
               withReturnBlock:(void(^)( UIImage* image )) returnBlock {
-    
     [IonRenderUtilities renderBlock: ^{
         //Get the current context state
         IonContextState currentState = currentContextStateWithSize(size);
