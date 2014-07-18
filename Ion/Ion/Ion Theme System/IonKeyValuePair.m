@@ -13,6 +13,7 @@
 #import "IonStyle.h"
 #import "IonGradientConfiguration.h"
 #import "UIColor+IonColor.h"
+#import "IonThemePointer.h"
 
 @implementation IonKeyValuePair
 
@@ -149,6 +150,18 @@
         return NULL;
     
     return [IonStyle resolveWithMap: map andAttrubutes: _attributes];
+}
+
+/**
+ * This gets the IonThemePointer form of our value.
+ * @returns {IonThemePointer*} representation, or NULL if incorect type.
+ */
+- (IonThemePointer*) toThemePointer {
+    NSDictionary* map = [self toDictionary];
+    if ( !map || !_attributes )
+        return NULL;
+    
+    return [[IonThemePointer alloc] initWithMap: map andAttrubutes: _attributes];
 }
 
 

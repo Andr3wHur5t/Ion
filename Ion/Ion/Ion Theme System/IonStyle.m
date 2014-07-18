@@ -20,7 +20,7 @@ static NSString* sStyleBackgroundKey = @"background";
 
 /** This is the config that states what we are.
  */
-@property (strong, nonatomic) NSDictionary* config;
+@property (strong, nonatomic) NSMutableDictionary* config;
 
 /** This are the attrubutes we will resolve with.
  */
@@ -58,7 +58,7 @@ static NSString* sStyleBackgroundKey = @"background";
     if ( !configMap )
         return;
     
-    _config = configMap;
+    _config = [[NSMutableDictionary alloc] initWithDictionary:configMap];
 }
 /**
  * This sets the attributes that we should resolve with.
@@ -133,19 +133,29 @@ static NSString* sStyleBackgroundKey = @"background";
  * @returns {IonStyle*} the net style of the overide
  */
 - (IonStyle*) overideStyleWithStyle:(IonStyle*)overideingStyle {
+    id newObject;
     NSArray* keys;
+    IonStyle* result;
     if ( !overideingStyle )
         return self;
-    NSLog(@"Called");
     
+    // Construct Object
+    result = [IonStyle resolveWithMap: _config andAttrubutes: _attributes];
+    
+    // Get Keys
     keys = [overideingStyle.config allKeys];
     
+   
     //overide proproties with the overideing styles proproties.
-    for ( NSString* key in keys ) {
-        [_config setValue: [overideingStyle.config objectForKey:key] forKey: key];
+    for ( id key in keys ) {
+        newObject = [overideingStyle.config objectForKey:key];
+        if ( !newObject )
+            break;
+        
+        [result.config setValue: newObject forKey: key];
     }
     
-    return self;
+    return result;
 }
 
 /**

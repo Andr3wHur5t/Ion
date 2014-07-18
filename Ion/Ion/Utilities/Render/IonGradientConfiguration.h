@@ -20,7 +20,7 @@
  * @param {NSDictionary*} the gradient map.
  * @returns {NSArray} the resulting color weight array, or NULL if invalid.
  */
-+ (NSArray*) colorWeightArrayFromMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes
++ (NSArray*) colorWeightArrayFromMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes;
 
 /**
  * This generates the color weight array from the inputted gradient map.

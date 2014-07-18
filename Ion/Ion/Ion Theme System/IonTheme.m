@@ -10,9 +10,18 @@
 #import "IonStyle.h"
 #import "UIView+IonTheme.h"
 
-
+/**
+ * Search Keys
+ */
 static NSString* sIonThemeFileExtension = @"theme";
 static NSString* sIonThemeDefaultStyleKey = @"default";
+static NSString* sIonThemeThemeNameKey = @"name";
+
+/**
+ * Search Formats
+ */
+static NSString* sIonThemeClassFormat = @"cls_%@";
+static NSString* sIonThemeIdFormat = @"id_%@";
 
 @interface IonTheme () {
     
@@ -84,7 +93,7 @@ static NSString* sIonThemeDefaultStyleKey = @"default";
             return NULL;
         [_attributes setAttributeGroupsWithConfiguration: config];
         
-        _name = [config objectForKey:@"name"];
+        _name = [config objectForKey: sIonThemeThemeNameKey];
     }
     return self;
 }
@@ -101,7 +110,7 @@ static NSString* sIonThemeDefaultStyleKey = @"default";
         return NULL;
     
     idAndClassStyle = [self styleForThemeClass: view.themeClass andThemeID: view.themeID];
-    elementStyle = [self styleForElementName:@"Test"]; // TODO Add and check element theme name
+    elementStyle = [self styleForElementName: view.themeElementName];
     
     if ( elementStyle ) {
         idAndClassStyle = [elementStyle overideStyleWithStyle: idAndClassStyle ];
@@ -158,7 +167,7 @@ static NSString* sIonThemeDefaultStyleKey = @"default";
     if ( !className )
         return NULL;
     
-    NSString* fullClassName = [NSString stringWithFormat: @"cls_%@", className];
+    NSString* fullClassName = [NSString stringWithFormat: sIonThemeClassFormat, className];
     
     result = [self.attributes resolveStyleAttribute: fullClassName];
     
@@ -174,7 +183,7 @@ static NSString* sIonThemeDefaultStyleKey = @"default";
     IonStyle* result;
     if ( !idName )
         return NULL;
-    NSString* fullIdName = [NSString stringWithFormat: @"id_%@", idName];
+    NSString* fullIdName = [NSString stringWithFormat: sIonThemeIdFormat, idName];
     
     result = [self.attributes resolveStyleAttribute: fullIdName];
     
@@ -190,7 +199,6 @@ static NSString* sIonThemeDefaultStyleKey = @"default";
 - (IonStyle*) styleFromCompositedClassStyle:(IonStyle*) classStyle andIdStyle:(IonStyle*) idStyle {
     IonStyle* result = [self currentDefaultStyle];
 
-    
     if ( classStyle && idStyle ) {
         result = [classStyle overideStyleWithStyle: idStyle];
     } else if ( idStyle ) {

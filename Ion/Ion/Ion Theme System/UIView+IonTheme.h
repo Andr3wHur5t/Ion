@@ -16,6 +16,11 @@
 #pragma mark Externial Interface
 
 /**
+ * This is the theme object element name, this is used to select the attributes to be used.
+ */
+@property (strong, nonatomic) NSString* themeElementName;
+
+/**
  * This is the theme object class name, this is used to select the attributes to be used.
  */
 @property (strong, nonatomic) NSString* themeClass;

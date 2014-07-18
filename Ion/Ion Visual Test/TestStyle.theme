@@ -230,7 +230,7 @@
             "fontColor":{ "type": "color", "name": "BLACK" }
         },
         "body": {
-            "background": { "type": "gradient", "name": "Clean" },
+            "background": { "type": "gradient", "name": "Onyx" },
             "fontColor":{ "type": "color", "name": "BLACK" }
         },
         "titleBar": {
@@ -240,6 +240,9 @@
         "cls_simpleStyle": {
             "background": { "type": "color", "name": "cleanWhite" },
             "fontColor":{ "type": "color", "name": "BLACK" }
+        },
+        "id_simpleStyle": {
+            "background": { "type": "gradient", "name": "Inferno" }
         },
         "cls_secondaryStyle": {
             "background": { "type": "gradient", "name": "Spottr" },

@@ -12,6 +12,7 @@
 
 static char* sThemeIDkey = "IonThemeID";
 static void* sThemeClassKey = "IonThemeClass";
+static void* sThemeElementNameKey = "IonThemeElementName";
 //static void* sThemeObjectKey;
 //static void* sStyleKey;
 static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
@@ -22,11 +23,25 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
 @dynamic themeID;
 
 
+#pragma mark Theme Element Name
+/**
+ * This is the setter for the themeElementName
+ * @returns {void}
+ */
+- (void) setThemeElementName:(NSString *)themeElementName {
+    objc_setAssociatedObject(self, sThemeElementNameKey, themeElementName,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    // Note Need to re-compile the style here
+}
 
+/**
+ * This is the getter for the themeElementName
+ * @returns {NSString*}
+ */
+- (NSString*) themeElementName {
+    return objc_getAssociatedObject(self, sThemeElementNameKey);
+}
 
-
-#pragma mark Externial Interface
-
+#pragma mark Theme ID
 /**
  * This is the setter for the ThemeID
  * @returns {void}
@@ -44,6 +59,7 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
     return objc_getAssociatedObject(self, sThemeIDkey);
 }
 
+#pragma mark Theme Class
 /**
  * This is the setter for the
  * @returns {void}
@@ -61,6 +77,7 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
     return objc_getAssociatedObject(self, sThemeClassKey);
 }
 
+#pragma mark Externial Interface
 /**
  * This is the setter for theme was set by user
  * @returns {void}

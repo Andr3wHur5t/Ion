@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class IonThemeAttributes;
+@class IonKeyValuePair;
 
 @interface IonThemePointer : NSObject
 
@@ -16,8 +17,30 @@
  * This resolves pointers into objects
  * @param {NSDictionary*} representation of a valid pointer.
  * @param {IonThemeAttributes*} the attrubute we should resolve with.
- * @returns {id} the resulting object, or NULL if invalid.
+ * @returns {IonKeyValuePair} the resulting object, or NULL if invalid.
  */
-+ (id) resolvePointer:(NSDictionary*) pointer withAttributes:(IonThemeAttributes*) attributes;
++ (IonKeyValuePair*) resolvePointer:(NSDictionary*) pointer withAttributes:(IonThemeAttributes*) attributes;
+
+/**
+ * This creates a theme pointer which can be resolved latter.
+ * @param {NSDictionary*} the map to configure our self with.
+ * @param {IonThemeAttributes*} the attrbutes object to reslove with.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes;
+
+
+/**
+ * This will set our target with the inputed map.
+ * @param {NSDictionary*} the map to configure our self with.
+ * @returns {void}
+ */
+- (void) setTargetWithMap:(NSDictionary*) map;
+
+/**
+ * This will resolve the pointer into a KVP
+ * @return {IonKeyValuePair}
+ */
+- (IonKeyValuePair*) resolve;
 
 @end

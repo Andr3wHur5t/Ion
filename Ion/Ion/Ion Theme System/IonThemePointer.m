@@ -8,6 +8,7 @@
 
 #import "IonThemePointer.h"
 #import "IonThemeAttributes.h"
+#import "IonKeyValuePair.h"
 
 
 /** Keys for pointer
@@ -21,51 +22,117 @@ static NSString* sPointerTargetTypeImage = @"image";
 static NSString* sPointerTargetTypeKVP = @"kvp";
 static NSString* sPointerTargetTypeStyle = @"style";
 
+
+@interface IonThemePointer ()
+
+/**
+ * This is the attrbutes object we will resolve with.
+ */
+@property (strong, nonatomic) IonThemeAttributes* attributes;
+
+/**
+ * This is the target name we will resolve with.
+ */
+@property (strong, nonatomic) NSString* targetName;
+
+/**
+ * This is the target type we will resolve with.
+ */
+@property (strong, nonatomic) NSString* targetType;
+
+@end
+
 @implementation IonThemePointer
 
 /**
  * This resolves pointers into objects
  * @param {NSDictionary*} representation of a valid pointer.
  * @param {IonThemeAttributes*} the attrubute we should resolve with.
- * @returns {id} the resulting object, or NULL if invalid.
+ * @returns {IonKeyValuePair} the resulting object, or NULL if invalid.
  */
-+ (id) resolvePointer:(NSDictionary*) pointer withAttributes:(IonThemeAttributes*) attributes {
-    NSString *targetType, *targetName;
-    id result;
++ (IonKeyValuePair*) resolvePointer:(NSDictionary*) pointer withAttributes:(IonThemeAttributes*) attributes {
+    IonThemePointer* pointerObject;
     if ( !pointer || !attributes )
         return NULL;
     
+    pointerObject = [[IonThemePointer alloc] initWithMap: pointer andAttrubutes: attributes];
+    
+    return [pointerObject resolve];
+}
+
+
+
+/**
+ * This creates a theme pointer which can be resolved latter.
+ * @param {NSDictionary*} the map to configure our self with.
+ * @param {IonThemeAttributes*} the attrbutes object to reslove with.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes {
+    self = [super init];
+    if ( self && attributes && map ) {
+        _attributes = attributes;
+        [self setTargetWithMap: map];
+    }
+    return self;
+}
+
+/**
+ * This will set our target with the inputed map.
+ * @param {NSDictionary*} the map to configure our self with.
+ * @returns {void}
+ */
+- (void) setTargetWithMap:(NSDictionary*) map {
+    NSString *targetType, *targetName;
+    if ( !map )
+        return;
+    
     // Get Keys
-    targetType = [pointer objectForKey:sPointerTypeKey];
-    targetName = [pointer objectForKey:sPointerNameKey];
+    targetType = [map objectForKey:sPointerTypeKey];
+    targetName = [map objectForKey:sPointerNameKey];
     
     // Is Valid?
     if ( !targetType || !targetName )
-        return  NULL;
+        return;
     if ( ![targetType isKindOfClass:[NSString class]] || ![targetName isKindOfClass:[NSString class]] )
-        return  NULL;
+        return;
+    
+    // Set Keys
+    _targetName = targetName;
+    _targetType = targetType;
+}
+
+/**
+ * This will resolve the pointer into a KVP
+ * @return {IonKeyValuePair}
+ */
+- (IonKeyValuePair*) resolve {
+    id result;
+    if ( !_targetName || !_targetType )
+        return NULL;
     
     // Resolve Color
-    if ( [targetType isEqualToString: sPointerTargetTypeColor] )
-        result = [attributes resolveColorAttrubute: targetName];
+    if ( [_targetType isEqualToString: sPointerTargetTypeColor] )
+        result = [_attributes resolveColorAttrubute: _targetName];
     
     // Resolve Gradient
-    else if ( [targetType isEqualToString: sPointerTargetTypeGradient] )
-        result = [attributes resolveGradientAttribute: targetName];
+    else if ( [_targetType isEqualToString: sPointerTargetTypeGradient] )
+        result = [_attributes resolveGradientAttribute: _targetName];
     
     // Resolve  Image
-    else if ( [targetType isEqualToString: sPointerTargetTypeImage] )
-        result = [attributes resolveImageAttribute: targetName];
+    else if ( [_targetType isEqualToString: sPointerTargetTypeImage] )
+        result = [_attributes resolveImageAttribute: _targetName];
     
     // Resolve KVP
-    else if ( [targetType isEqualToString: sPointerTargetTypeKVP] )
-        result = [attributes resolveKVPAttribute: targetName];
+    else if ( [_targetType isEqualToString: sPointerTargetTypeKVP] )
+        result = [_attributes resolveKVPAttribute: _targetName];
     
     // Resolve Style
-    else if ( [targetType isEqualToString: sPointerTargetTypeStyle] )
-        result = [attributes resolveStyleAttribute: targetName];
+    else if ( [_targetType isEqualToString: sPointerTargetTypeStyle] )
+        result = [_attributes resolveStyleAttribute: _targetName];
     
     return result;
+
 }
 
 @end

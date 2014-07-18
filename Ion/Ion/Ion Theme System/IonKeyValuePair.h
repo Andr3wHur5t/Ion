@@ -11,6 +11,7 @@
 @class IonStyle;
 @class IonGradientConfiguration;
 @class IonImageRef;
+@class IonThemePointer;
 
 @class IonThemeAttributes;
 
@@ -83,6 +84,12 @@
  * @returns {IonStyle*} representation, or NULL if incorect type.
  */
 - (IonStyle*) toStyle;
+
+/**
+ * This gets the IonThemePointer form of our value.
+ * @returns {IonThemePointer*} representation, or NULL if incorect type.
+ */
+- (IonThemePointer*) toThemePointer;
 
 
 @end

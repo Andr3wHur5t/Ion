@@ -64,8 +64,9 @@
     // Theme Testing
     
     imgView.themeClass = @"secondaryStyle";
-    //imgView.themeID = @"backgroundGrad";
+    imgView.themeID = @"simpleStyle";
     
+    vc.view.themeElementName = @"body";
     vc.view.themeClass = @"simpleStyle";
     //vc.view.themeID = @"background";
     
