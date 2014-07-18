@@ -93,9 +93,10 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
     return result;
 }
 
-
-
-
+/**
+ * This is the standerd constructor.
+ * @returns {instancetype}
+ */
 - (instancetype) init {
     self = [super init];
     if (self) {
@@ -105,6 +106,12 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
     return self;
 }
 
+/**
+ * This is a convience constructor.
+ * @param {UIColor*} the color to assign to the inputted weight
+ * @param {CGFloat*} the weight to assign to the inputted color
+ * @returns {instancetype}
+ */
 - (instancetype) initWithColor:(UIColor*) color andWeight:(CGFloat) weight {
     self = [super init];
     if( self ) {
@@ -117,6 +124,8 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
 /**
  * This creates a color weight set using a NSDictionary configuration.
  * if any data is invalid it will return NULL.
+ * @param {NSDictionary*} the configuration of the color weight
+ @ @returns {instancetype}
  */
 - (instancetype) initWithConfiguration:(NSDictionary*) config {
     id unverifiedColor, unverifiedWeight;
@@ -150,6 +159,11 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
     _weight = CLAMP(weight, 0.0f, 1.0f);
 }
 
+
+/**
+ * This is the debug description.
+ # @returns {NSString*}
+ */
 - (NSString*) description {
     return [NSString stringWithFormat:@"{Color: %@, Weight:%f}",[_color toHex],_weight];
 }
@@ -163,6 +177,12 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
 
 @implementation IonGradientConfiguration
 
+/**
+ * This is a resolution constructor, so we can resolve a configurationObject from the inputed map.
+ * @param {NSDictionary*} the map we will resolve from.
+ * @param {IonThemeAttributes*} the attributes we should search to get correct values.
+ * @returns {IonGradientConfiguration}
+ */
 + (IonGradientConfiguration*) resolveWithMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes {
     IonGradientConfiguration* result;
     NSString* type;
@@ -192,13 +212,18 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
     return result;
 }
 
-
-
-
+/**
+ * This is the standerd constructor;
+ * @returns {instancetype}
+ */
 - (instancetype)init {
     return [self initWithColorWeights:[IonGradientConfiguration defaultColorConfiguration]];
 }
 
+/**
+ * This is a convience constructor.
+ * @param {NSArray*} the color weights for the configuration.
+ */
 - (instancetype) initWithColorWeights:(NSArray*) colorWeights {
     self = [super init];
     if (self)
@@ -211,15 +236,19 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
  * @returns {NSArray*} of color weights
  */
 + (NSArray*) defaultColorConfiguration {
-    NSMutableArray* arr = [[NSMutableArray alloc] init];
+    NSMutableArray* array = [[NSMutableArray alloc] init];
     
-    [arr addObject:[[IonColorWeight alloc] initWithColor:[UIColor redColor] andWeight:0.0]];
-    [arr addObject:[[IonColorWeight alloc] initWithColor:[UIColor blackColor] andWeight:0.5]];
-    [arr addObject:[[IonColorWeight alloc] initWithColor:[UIColor purpleColor] andWeight:1.0]];
+    [array addObject:[[IonColorWeight alloc] initWithColor:[UIColor redColor] andWeight:0.0]];
+    [array addObject:[[IonColorWeight alloc] initWithColor:[UIColor blackColor] andWeight:0.5]];
+    [array addObject:[[IonColorWeight alloc] initWithColor:[UIColor purpleColor] andWeight:1.0]];
     
-    return arr;
+    return array;
 }
 
+/**
+ * This is the debug description.
+ * @returns {NSString*}
+ */
 - (NSString*) description {
     return [NSString stringWithFormat:@"ColorWeights: %@",_colorWeights];
 }
@@ -233,6 +262,12 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
 
 @implementation IonLinearGradientConfiguration
 
+/**
+ * This is a resolution constructor, so we can resolve a configurationObject from the inputed map.
+ * @param {NSDictionary*} the map we will resolve from.
+ * @param {IonThemeAttributes*} the attributes we should search to get correct values.
+ * @returns {IonLinearGradientConfiguration*}
+ */
 + (IonLinearGradientConfiguration*) resolveWithMap:(NSDictionary*) map
                                      andAttrubutes:(IonThemeAttributes*) attributes {
     IonLinearGradientConfiguration* result;
@@ -262,6 +297,10 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
     return result;
 }
 
+/**
+ * This is the standerd constructor
+ * @returns {instancetype}
+ */
 - (instancetype) init {
     self = [super init];
     
@@ -271,6 +310,13 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
     return self;
 }
 
+
+/**
+ * This is a convience constructor.
+ * @param {NSArray*} the color weights for the configuration.
+ * @param {CGFloat} the angle of the linear gradient.
+ * @returns {instancetype}
+ */
 - (instancetype) initWithColor:(NSArray*) colorWeights andAngel:(CGFloat) angle {
     self = [super initWithColorWeights:colorWeights];
     
@@ -280,6 +326,10 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
     return self;
 }
 
+/**
+ * This is the debug description.
+ * @returns {NSString*}
+ */
 - (NSString*) description {
     return [NSString stringWithFormat:@"\n{Angle:%f, %@}\n",RadiansToDegrees( _angle ), [super description]];
 }
