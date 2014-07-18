@@ -10,6 +10,9 @@
 #import "IonAccessBasedGenerationMap.h"
 
 
+@class IonKeyValuePair;
+@class IonImageRef;
+@class IonStyle;
 @class IonGradientConfiguration;
 
 /** Group Definitions
@@ -89,13 +92,13 @@ static const NSString* sStylesKey = @"styles";
  * @param {NSString*} the key for us to look for.
  * @returns {UIImage*} representation of the input, or NULL if invalid.
  */
-- (UIImage*) resolveImageAttribute:(NSString*) value;
+- (IonImageRef*) resolveImageAttribute:(NSString*) value;
 
 /**
  * This resolves a KVP key into a KVP object.
  * @param {NSString*} the key for us to look for.
  * @returns {UIImage*} representation of the input, or NULL if invalid.
  */
-- (NSObject*) resolveKVPAttribute:(NSString*) value;
+- (IonKeyValuePair*) resolveKVPAttribute:(NSString*) value;
 
 @end

@@ -57,15 +57,32 @@
      */
     
     
+
+    
+    
+    
+    // Theme Testing
+    
     imgView.themeClass = @"secondaryStyle";
     //imgView.themeID = @"backgroundGrad";
-   
+    
     vc.view.themeClass = @"simpleStyle";
     //vc.view.themeID = @"background";
-
+    
     IonTheme* theme = [[IonTheme alloc] initWithFileName:@"TestStyle"];
     
-    [theme.attributes resolveColorAttrubute:@"Yellow"];
+    /*
+    NSLog(@"\n\n Theme Test: \n\n");
+    NSLog(@"Color: %@", [theme.attributes resolveColorAttrubute:@"yellow"]);
+    NSLog(@"KVP: %@", [theme.attributes resolveKVPAttribute:@"PointlessProperty"]);
+    NSLog(@"Image Ref: %@", [theme.attributes resolveImageAttribute:@"Image1"]);
+    NSLog(@"Style: %@", [theme.attributes resolveStyleAttribute:@"cls_simpleStyle"]);
+    NSLog(@"Gradient: %@\n\n\n", [theme.attributes resolveGradientAttribute:@"Royal"]);
+    */
+    
+    
+    
+    
     [vc.view setIonTheme:  theme];
     if (finished)
         finished(vc);

@@ -7,11 +7,10 @@
 //
 
 #import "IonThemeAttributes.h"
-#import "IonMath.h"
 
-#import "IonStyle.h"
+#import "IonKeyValuePair.h"
 #import "UIColor+IonColor.h"
-#import "IonGradientConfiguration.h"
+
 
 @implementation IonThemeAttributes
 
@@ -73,17 +72,27 @@
     __weak typeof(self) weakSelf = self;
     // Style
     [_styles setGenerationBlock: ^id( id data ) {
-        return [IonStyle resolveWithMap: (NSDictionary*)data andAttrubutes: weakSelf];
+        return [[IonKeyValuePair resolveWithValue: data andAttrubutes: weakSelf] toStyle];
     }];
     
     // Color
     [_colors setGenerationBlock: ^id( id data ) {
-        return [UIColor resolveWithValue: (NSString*)data andAttrubutes: weakSelf];
+        return [[IonKeyValuePair resolveWithValue: data andAttrubutes: weakSelf] toColor];
     }];
     
     // Gradient
     [_gradients setGenerationBlock: ^id( id data ) {
-        return [IonGradientConfiguration resolveWithMap: (NSDictionary*)data andAttrubutes: weakSelf];
+        return [[IonKeyValuePair resolveWithValue: data andAttrubutes: weakSelf] toGradientConfiguration];
+    }];
+    
+    // KVP
+    [_kvp setGenerationBlock: ^id( id data ) {
+        return [IonKeyValuePair resolveWithValue: data andAttrubutes: weakSelf];
+    }];
+    
+    // Images
+    [_images setGenerationBlock: ^id( id data ) {
+        return [[IonKeyValuePair resolveWithValue: data andAttrubutes: weakSelf] toImageRef];
     }];
 }
 
@@ -133,8 +142,8 @@
  * @param {NSString*} the key for us to look for.
  * @returns {UIImage*} representation of the input, or NULL if invalid.
  */
-- (UIImage*) resolveImageAttribute:(NSString*) value {
-    return (UIImage*)[_images objectForKey: value];
+- (IonImageRef*) resolveImageAttribute:(NSString*) value {
+    return (IonImageRef*)[_images objectForKey: value];
 }
 
 /**
@@ -142,8 +151,8 @@
  * @param {NSString*} the key for us to look for.
  * @returns {UIImage*} representation of the input, or NULL if invalid.
  */
-- (NSObject*) resolveKVPAttribute:(NSString*) value {
-    return (NSObject*)[_kvp objectForKey: value];
+- (IonKeyValuePair*) resolveKVPAttribute:(NSString*) value {
+    return (IonKeyValuePair*)[_kvp objectForKey: value];
 }
 
 #pragma mark Internal Interface

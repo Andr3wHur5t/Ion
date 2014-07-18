@@ -169,4 +169,5 @@ unsigned int currentColorResolveDepth;
     else
         return false;
 }
+
 @end
