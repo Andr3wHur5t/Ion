@@ -7,8 +7,8 @@
 //
 
 #import "IonKeyValuePair.h"
-#import "IonThemeAttributes.h"
-
+#import "IonKVPAccessBasedGenerationMap.h"
+#import "IonAttrubutesStanderdResolution.h"
 #import "IonImageRef.h"
 #import "IonStyle.h"
 #import "IonGradientConfiguration.h"
@@ -23,7 +23,7 @@
  * @param {IonThemeAttributes*} the theme attrubute set to do our searches on if needed.
  * @returns {IonKeyValuePair*} representation, or NULL of invalid
  */
-+ (IonKeyValuePair*) resolveWithValue:(id) value andAttrubutes:(IonThemeAttributes*) attributes {
++ (IonKeyValuePair*) resolveWithValue:(id) value andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes {
     IonKeyValuePair* result;
     if ( !value || !attributes )
         return NULL;
@@ -103,6 +103,29 @@
     return [(NSNumber*)_value boolValue];
 }
 
+/**
+ * This gets the IonKVPAccessBasedGenerationMap form of our value.
+ * @returns {IonKVPAccessBasedGenerationMap*} representation, or NULL if incorect type.
+ */
+- (IonKVPAccessBasedGenerationMap*) toKVPAccessBasedGenerationMap {
+    NSDictionary* map = [self toDictionary];
+    if ( !map )
+        return NULL;
+    
+    return [[IonKVPAccessBasedGenerationMap alloc] initWithRawData:map];
+}
+
+/**
+ * This gets the IonKVPAccessBasedGenerationMap in balanced mode of our value.
+ * @returns {IonKVPAccessBasedGenerationMap*} representation, or NULL if incorect type.
+ */
+- (IonKVPAccessBasedGenerationMap*) toBalancedKVPAccessBasedGenerationMap {
+    NSDictionary* map = [self toDictionary];
+    if ( !map )
+        return NULL;
+    
+    return [[IonKVPAccessBasedGenerationMap alloc] initWithRawData: map ];
+}
 
 /**
  * This gets the UIColor form of our value.
@@ -113,7 +136,7 @@
     if ( !colorString || !_attributes )
         return NULL;
         
-    return [_attributes resolveColorAttrubute: colorString];
+    return [UIColor resolveWithValue: colorString andAttrubutes: _attributes];
 }
 
 /**
@@ -121,11 +144,11 @@
  * @returns {IonImageRef*} representation, or NULL if incorect type.
  */
 - (IonImageRef*) toImageRef {
-    NSString* value = [self toString];
-    if ( !value || !_attributes )
+    NSString* fileNameString = [self toString];
+    if ( !fileNameString || !_attributes )
         return NULL;
     
-    return [IonImageRef resolveWithValue:value andAttrubutes: _attributes];
+    return [IonImageRef resolveWithValue: fileNameString andAttrubutes: _attributes];
 }
 
 /**
@@ -164,5 +187,16 @@
     return [[IonThemePointer alloc] initWithMap: map andAttrubutes: _attributes];
 }
 
+/**
+ * This gets the IonThemePointer form of our value.
+ * @returns {IonThemePointer*} representation, or NULL if incorect type.
+ */
+- (IonThemePointer*) toThemePointerWithAttrbutes:(IonKVPAccessBasedGenerationMap*) attributes {
+    NSDictionary* map = [self toDictionary];
+    if ( !map || !_attributes )
+        return NULL;
+    
+    return [[IonThemePointer alloc] initWithMap: map andAttrubutes: attributes];
+}
 
 @end

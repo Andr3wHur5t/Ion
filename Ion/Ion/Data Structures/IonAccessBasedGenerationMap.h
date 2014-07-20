@@ -61,6 +61,12 @@ typedef id(^IonGenerationBlock)( id data );
  */
 - (void) setGenerationBlock:(IonGenerationBlock) newGenerationBlock;
 
+/**
+ * This reports if the generation block has been generated.
+ * @returns {BOOL} true if it's not NULL, false if it is.
+ */
+- (BOOL) generationBlockIsSet;
+
 #pragma mark Data Management
 
 /**
@@ -70,5 +76,19 @@ typedef id(^IonGenerationBlock)( id data );
  * @returns {id} the generated class, or NULL if invalid.
  */
 - (id) objectForKey:(id) key;
+
+
+/**
+ * This will generate the item for the specified key and return it.
+ * @param {NSString*} the key to search for.
+ * @returns {id} the restulting object.
+ */
+- (id) generateItemForKey:(NSString*) key;
+
+/**
+ * This will remove all data from the cache.
+ * @returns {BOOL} true if sucsess, false if invalid or failure.
+ */
+- (BOOL) pergeCache;
 
 @end

@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IonKVPAccessBasedGenerationMap.h"
 
 @class IonStyle;
 @class IonGradientConfiguration;
 @class IonImageRef;
 @class IonThemePointer;
-
 @class IonThemeAttributes;
 
 @interface IonKeyValuePair : NSObject
@@ -25,7 +25,7 @@
 /**
  * This is where we hold the parent attributes refrence.
  */
-@property (strong, nonatomic) IonThemeAttributes* attributes;
+@property (strong, nonatomic) IonKVPAccessBasedGenerationMap* attributes;
 
 /**
  * This will resolve a KVP object using a map and an Attrbute Set.
@@ -33,7 +33,7 @@
  * @param {IonThemeAttributes*} the theme attrubute set to do our searches on if needed.
  * @returns {IonKeyValuePair*} representation, or NULL of invalid
  */
-+ (IonKeyValuePair*) resolveWithValue:(id) value andAttrubutes:(IonThemeAttributes*) attributes;
++ (IonKeyValuePair*) resolveWithValue:(id) value andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes;
 
 #pragma Conversions
 
@@ -60,6 +60,18 @@
  * @returns {BOOL} representation, or NO if incorect type.
  */
 - (BOOL) toBOOL;
+
+/**
+ * This gets the IonKVPAccessBasedGenerationMap form of our value.
+ * @returns {IonKVPAccessBasedGenerationMap*} representation, or NULL if incorect type.
+ */
+- (IonKVPAccessBasedGenerationMap*) toKVPAccessBasedGenerationMap;
+
+/**
+ * This gets the IonKVPAccessBasedGenerationMap in balanced mode of our value.
+ * @returns {IonKVPAccessBasedGenerationMap*} representation, or NULL if incorect type.
+ */
+- (IonKVPAccessBasedGenerationMap*) toBalancedKVPAccessBasedGenerationMap;
 
 /**
  * This gets the UIColor form of our value.
@@ -90,6 +102,12 @@
  * @returns {IonThemePointer*} representation, or NULL if incorect type.
  */
 - (IonThemePointer*) toThemePointer;
+
+/**
+ * This gets the IonThemePointer form of our value.
+ * @returns {IonThemePointer*} representation, or NULL if incorect type.
+ */
+- (IonThemePointer*) toThemePointerWithAttrbutes:(IonKVPAccessBasedGenerationMap*) attributes;
 
 
 @end

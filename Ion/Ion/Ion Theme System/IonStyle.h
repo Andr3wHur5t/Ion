@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IonThemeAttributes.h"
+
+@class IonKVPAccessBasedGenerationMap;
 
 @interface IonStyle : NSObject
 #pragma mark External Interface
@@ -18,7 +19,7 @@
  * @param {IonThemeAttributes*} the theme attrubute set to do our searches on if needed.
  * @returns {UIColor*} representation, or NULL of invalid
  */
-+ (IonStyle*) resolveWithMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes;
++ (IonStyle*) resolveWithMap:(NSDictionary*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes;
 
 /**
  * This applys the current style to the inputted view.
@@ -33,4 +34,11 @@
  * @returns {IonStyle*} the net style of the overide
  */
 - (IonStyle*) overideStyleWithStyle:(IonStyle*)overideingStyle;
+
+/**
+ * This sets the attributes that we should resolve with.
+ * @param {IonThemeAttributes*} the attrubute we should resolve with.
+ * @returns {void}
+ */
+- (void) setResolutionAttributes:(IonKVPAccessBasedGenerationMap*) attributes;
 @end

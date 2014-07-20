@@ -213,6 +213,14 @@
                 {"color":"#9C9C9C","weight":0.0}
             ]
         },
+        "Ion":{
+            "type":"linear",
+            "angle":90,
+            "colorWeights": [
+                {"color":"#33ACE0","weight":1.0},
+                {"color":"#1274B9","weight":0.0}
+            ]
+        },
         "OceanviewTest":{
             "type":"linear",
             "angle":75,
@@ -238,7 +246,7 @@
             "fontColor":{ "type": "color", "name": "BLACK" }
         },
         "cls_simpleStyle": {
-            "background": { "type": "color", "name": "cleanWhite" },
+            "background": { "type": "gradient", "name": "Ion" },
             "fontColor":{ "type": "color", "name": "BLACK" }
         },
         "id_simpleStyle": {

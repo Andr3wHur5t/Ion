@@ -49,12 +49,11 @@
     s.height = 20 + 70;
     imgView.frame = (CGRect) {CGPointZero,s};
     
-    /*
+    
     [imgView.layer setShadowColor:[UIColor blackColor].CGColor];
     [imgView.layer setShadowOpacity:0.5];
     [imgView.layer setShadowRadius:3.0];
     [imgView.layer setShadowOffset:CGSizeMake(0.0, 2.0)];
-     */
     
     
 
@@ -62,29 +61,25 @@
     
     
     // Theme Testing
-    
     imgView.themeClass = @"secondaryStyle";
-    imgView.themeID = @"simpleStyle";
+    //imgView.themeID = @"simpleStyle";
     
     vc.view.themeElementName = @"body";
     vc.view.themeClass = @"simpleStyle";
     //vc.view.themeID = @"background";
     
     IonTheme* theme = [[IonTheme alloc] initWithFileName:@"TestStyle"];
-    
+
     /*
     NSLog(@"\n\n Theme Test: \n\n");
-    NSLog(@"Color: %@", [theme.attributes resolveColorAttrubute:@"yellow"]);
+    NSLog(@"Color: %@", [theme.attributes resolveColorAttrubute:@"Purple"]);
     NSLog(@"KVP: %@", [theme.attributes resolveKVPAttribute:@"PointlessProperty"]);
     NSLog(@"Image Ref: %@", [theme.attributes resolveImageAttribute:@"Image1"]);
     NSLog(@"Style: %@", [theme.attributes resolveStyleAttribute:@"cls_simpleStyle"]);
-    NSLog(@"Gradient: %@\n\n\n", [theme.attributes resolveGradientAttribute:@"Royal"]);
-    */
+    NSLog(@"Gradient: %@\n\n\n", [theme.attributes resolveGradientAttribute:@"Royal"]);*/
     
     
-    
-    
-    [vc.view setIonTheme:  theme];
+    [vc.view setIonTheme: theme];
     if (finished)
         finished(vc);
 }

@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "IonImage.h"
 
-@class IonThemeAttributes;
+
+@class IonKVPAccessBasedGenerationMap;
 @interface IonImageRef : NSObject
 
 /** This is the name of the image we want to get.
@@ -19,7 +20,7 @@
 /**
  * This is where we hold the parent attributes refrence.
  */
-@property (strong, nonatomic) IonThemeAttributes* attributes;
+@property (strong, nonatomic) IonKVPAccessBasedGenerationMap* attributes;
 
 /**
  * This will resolve a Image object using a map and an Attrbute Set.
@@ -27,6 +28,6 @@
  * @param {IonThemeAttributes*} the theme attrubute set to do our searches on if needed.
  * @returns {IonImageRef*} representation, or NULL of invalid
  */
-+ (IonImageRef*) resolveWithValue:(NSString*) value andAttrubutes:(IonThemeAttributes*) attributes;
++ (IonImageRef*) resolveWithValue:(NSString*) value andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes;
 
 @end

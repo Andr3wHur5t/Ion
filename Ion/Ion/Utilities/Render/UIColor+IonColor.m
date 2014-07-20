@@ -7,6 +7,9 @@
 //
 
 #import "UIColor+IonColor.h"
+#import "IonAccessBasedGenerationMap.h"
+#import "IonAttrubutesStanderdResolution.h"
+#import "IonKeyValuePair.h"
 
 // Limit our search depth incase of evil recusion loops!
 static const unsigned int sMaxColorResolveDepth = 2500;
@@ -22,9 +25,10 @@ unsigned int currentColorResolveDepth;
  * @param {IonThemeAttributes*} the theme attrubute set to do our searches on if needed.
  * @returns {UIColor*} representation, or NULL of invalid
  */
-+ (UIColor*) resolveWithValue:(NSString*) value andAttrubutes:(IonThemeAttributes*) attributes {
++ (UIColor*) resolveWithValue:(NSString*) value andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes {
     ++currentColorResolveDepth;
     UIColor* result;
+    
     
     // Check if the value is a string.
     if ( ![value isKindOfClass: [NSString class]] )
@@ -41,8 +45,11 @@ unsigned int currentColorResolveDepth;
         if ( false ) // do we contain illegal char?
             return NULL;
         
-        if ( currentColorResolveDepth <= sMaxColorResolveDepth )
-            result = (UIColor*)[attributes.colors objectForKey:value];     // Go farther down the rabbit hole!
+        // Attempt to continue resolution
+        if ( currentColorResolveDepth <= sMaxColorResolveDepth ) {
+            // Go farther down the rabbit hole!
+            result = [attributes colorFromMapWithKey: value];
+        }
         
         --currentColorResolveDepth;
         return result;

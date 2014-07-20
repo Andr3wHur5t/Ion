@@ -36,7 +36,7 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
  * @param {NSDictionary*} the gradient map.
  * @returns {NSArray} the resulting color weight array, or NULL if invalid.
  */
-+ (NSArray*) colorWeightArrayFromMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes {
++ (NSArray*) colorWeightArrayFromMap:(NSDictionary*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes {
     NSMutableArray* resultArray;
     IonColorWeight* colorWeight;
     NSArray* kvpColorWeightsUnverified;
@@ -69,7 +69,7 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
  * @param {NSDictionary*} the gradient map.
  * @returns {NSArray} the resulting color weight array, or NULL if invalid.
  */
-+ (IonColorWeight*) colorWeightFromMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes {
++ (IonColorWeight*) colorWeightFromMap:(NSDictionary*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes {
     IonColorWeight* result;
     NSString* colorString;
     NSNumber* weight;
@@ -84,7 +84,7 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
     if ( !colorString || !weight )
         return NULL;
     
-    color = [attributes resolveColorAttrubute: colorString];
+    color = [UIColor resolveWithValue: colorString andAttrubutes: attributes];
     if ( !color )
         return NULL;
     
@@ -183,7 +183,7 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
  * @param {IonThemeAttributes*} the attributes we should search to get correct values.
  * @returns {IonGradientConfiguration}
  */
-+ (IonGradientConfiguration*) resolveWithMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes {
++ (IonGradientConfiguration*) resolveWithMap:(NSDictionary*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes {
     IonGradientConfiguration* result;
     NSString* type;
     
@@ -269,7 +269,7 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
  * @returns {IonLinearGradientConfiguration*}
  */
 + (IonLinearGradientConfiguration*) resolveWithMap:(NSDictionary*) map
-                                     andAttrubutes:(IonThemeAttributes*) attributes {
+                                     andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes {
     IonLinearGradientConfiguration* result;
     NSNumber* intermedeateAngle;
     NSArray* colorWeights;

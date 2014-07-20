@@ -9,6 +9,7 @@
 #import "IonTheme.h"
 #import "IonStyle.h"
 #import "UIView+IonTheme.h"
+#import "IonAttrubutesStanderdResolution.h"
 
 /**
  * Search Keys
@@ -52,7 +53,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
     self = [super init];
     
     if ( self ) {
-        self.attributes = [[IonThemeAttributes alloc] init];
+        self.attributes = [[IonKVPAccessBasedGenerationMap alloc] init];
     
     }
     
@@ -91,7 +92,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
     if ( self ) {
         if ( !config )
             return NULL;
-        [_attributes setAttributeGroupsWithConfiguration: config];
+        [_attributes setRawData: config];
         
         _name = [config objectForKey: sIonThemeThemeNameKey];
     }

@@ -9,9 +9,26 @@
 #import <UIKit/UIKit.h>
 #import "IonTheme.h"
 
+/**
+ * These are Standerd element names.
+ */
+static const NSString* sIonThemeElementBody =                                   @"body";
+static const NSString* sIonThemeElementTitleBar =                               @"titleBar";
+
+static const NSString* sIonThemeElementInteractiveUpState =                     @"interactive_up";
+static const NSString* sIonThemeElementInteractiveDownState =                   @"interactive_down";
+static const NSString* sIonThemeElementInteractiveActiveState =                 @"interactive_active";
+static const NSString* sIonThemeElementInteractiveInActiveState =               @"interactive_inactive";
+
+static const NSString* sIonThemeElementStateGood =                              @"state_good";
+static const NSString* sIonThemeElementStateBad =                               @"state_bad";
+static const NSString* sIonThemeElementStateWorking =                           @"state_working";
+static const NSString* sIonThemeElementStateUnknown =                           @"state_unknown";
+
+
+
+
 @interface UIView (IonTheme)
-
-
 
 #pragma mark Externial Interface
 

@@ -7,7 +7,7 @@
 //
 
 #import "IonImageRef.h"
-#import "IonThemeAttributes.h"
+#import "IonKVPAccessBasedGenerationMap.h"
 
 @implementation IonImageRef
 
@@ -18,7 +18,7 @@
  * @param {IonThemeAttributes*} the theme attrubute set to do our searches on if needed.
  * @returns {IonImageRef*} representation, or NULL of invalid
  */
-+ (IonImageRef*) resolveWithValue:(id) value andAttrubutes:(IonThemeAttributes*) attributes {
++ (IonImageRef*) resolveWithValue:(id) value andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes {
     IonImageRef* result;
     if ( !value || !attributes )
         return NULL;

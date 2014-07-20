@@ -10,6 +10,7 @@
 
 @class IonThemeAttributes;
 @class IonKeyValuePair;
+@class IonKVPAccessBasedGenerationMap;
 
 @interface IonThemePointer : NSObject
 
@@ -19,7 +20,7 @@
  * @param {IonThemeAttributes*} the attrubute we should resolve with.
  * @returns {IonKeyValuePair} the resulting object, or NULL if invalid.
  */
-+ (IonKeyValuePair*) resolvePointer:(NSDictionary*) pointer withAttributes:(IonThemeAttributes*) attributes;
++ (IonKeyValuePair*) resolvePointer:(NSDictionary*) pointer withAttributes:(IonKVPAccessBasedGenerationMap*) attributes;
 
 /**
  * This creates a theme pointer which can be resolved latter.
@@ -27,7 +28,7 @@
  * @param {IonThemeAttributes*} the attrbutes object to reslove with.
  * @returns {instancetype}
  */
-- (instancetype) initWithMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes;
+- (instancetype) initWithMap:(NSDictionary*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes;
 
 
 /**

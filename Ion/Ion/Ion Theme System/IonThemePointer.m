@@ -7,8 +7,10 @@
 //
 
 #import "IonThemePointer.h"
-#import "IonThemeAttributes.h"
+
 #import "IonKeyValuePair.h"
+#import "IonKVPAccessBasedGenerationMap.h"
+#import "IonAttrubutesStanderdResolution.h"
 
 
 /** Keys for pointer
@@ -28,7 +30,7 @@ static NSString* sPointerTargetTypeStyle = @"style";
 /**
  * This is the attrbutes object we will resolve with.
  */
-@property (strong, nonatomic) IonThemeAttributes* attributes;
+@property (strong, nonatomic) IonKVPAccessBasedGenerationMap* attributes;
 
 /**
  * This is the target name we will resolve with.
@@ -50,7 +52,7 @@ static NSString* sPointerTargetTypeStyle = @"style";
  * @param {IonThemeAttributes*} the attrubute we should resolve with.
  * @returns {IonKeyValuePair} the resulting object, or NULL if invalid.
  */
-+ (IonKeyValuePair*) resolvePointer:(NSDictionary*) pointer withAttributes:(IonThemeAttributes*) attributes {
++ (IonKeyValuePair*) resolvePointer:(NSDictionary*) pointer withAttributes:(IonKVPAccessBasedGenerationMap*) attributes {
     IonThemePointer* pointerObject;
     if ( !pointer || !attributes )
         return NULL;
@@ -68,7 +70,7 @@ static NSString* sPointerTargetTypeStyle = @"style";
  * @param {IonThemeAttributes*} the attrbutes object to reslove with.
  * @returns {instancetype}
  */
-- (instancetype) initWithMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes {
+- (instancetype) initWithMap:(NSDictionary*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes {
     self = [super init];
     if ( self && attributes && map ) {
         _attributes = attributes;
@@ -116,8 +118,9 @@ static NSString* sPointerTargetTypeStyle = @"style";
         result = [_attributes resolveColorAttrubute: _targetName];
     
     // Resolve Gradient
-    else if ( [_targetType isEqualToString: sPointerTargetTypeGradient] )
+    else if ( [_targetType isEqualToString: sPointerTargetTypeGradient] ) {
         result = [_attributes resolveGradientAttribute: _targetName];
+    }
     
     // Resolve  Image
     else if ( [_targetType isEqualToString: sPointerTargetTypeImage] )

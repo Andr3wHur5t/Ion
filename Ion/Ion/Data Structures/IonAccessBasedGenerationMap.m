@@ -16,12 +16,19 @@
  */
 @property (strong, nonatomic) NSMutableDictionary* localRawData;
 
+/**
+ * This is the cached data we will search from.
+ */
 @property (strong, nonatomic) NSMutableDictionary* cachedData;
 
+
+
 /**
- * This will generate the item for the specified key and return it.
+ * This will report if we should remove the raw data with the specified key.
+ * @param {NSString*} the key to search for.
+ * @returns {BOOL} false if we shoulnd remove it, true if we should or Invalid.
  */
-- (id) generateItemForKey:(NSString*) key;
+- (BOOL) shouldRemoveRawDataWithKey:(NSString*) key;
 
 @end
 
@@ -93,6 +100,14 @@
     generationBlock = newGenerationBlock;
 }
 
+/**
+ * This reports if the generation block has been generated.
+ * @returns {BOOL} true if it's not NULL, false if it is.
+ */
+- (BOOL) generationBlockIsSet {
+    return (BOOL) generationBlock;
+}
+
 #pragma mark Data Management
 
 /**
@@ -110,25 +125,15 @@
     
     if ( !returnedItem ) {
         returnedItem = [self generateItemForKey: key];
-        
         // Cache generated data
         [_cachedData setValue: returnedItem forKey: key];
+        
+        // Remove raw data if aplicable
+        if ( [self shouldRemoveRawDataWithKey: key] && returnedItem )
+            ;// [_localRawData removeObjectForKey:key];
     }
-    
-    // Idea Remove the raw data once generated in balanced Mode.
-    
     return returnedItem;
 }
-
-/**
- * This will write a description about the class in its current state.
- * @retuns {NSString*}
- */
-- (NSString *)description {
-    return [_localRawData description];
-}
-
-#pragma mark Internal Interface
 
 /**
  * This will generate the item for the specified key if there is data to construct it.
@@ -141,12 +146,49 @@
     
     rawItem = [_localRawData objectForKey:key];
     if ( rawItem  && generationBlock ) {
-        return generationBlock(rawItem);
+        id itm =generationBlock(rawItem);
+        
+        return itm;
     }
     
     return NULL;
 }
 
+/**
+ * This will remove all data from the cache.
+ * @returns {BOOL} true if sucsess, false if invalid or failure.
+ */
+- (BOOL) pergeCache {
+    if ( !_cachedData )
+        return false;
+    
+    [_cachedData removeAllObjects];
+    
+    return true;
+}
+
+
+
+/**
+ * This will write a description about the class in its current state.
+ * @retuns {NSString*}
+ */
+- (NSString *)description {
+    return [_localRawData description];
+}
+
+#pragma mark Internal Interface
+
+
+
+/**
+ * This will report if we should remove the raw data with the specified key.
+ * @param {NSString*} the key to search for.
+ * @returns {BOOL} false if we shoulnd remove it, true if we should or Invalid.
+ */
+- (BOOL) shouldRemoveRawDataWithKey:(NSString*) key {
+    return false;
+}
 
 
 @end

@@ -8,7 +8,7 @@
 
 #import "IonStyle.h"
 #import "UIView+IonBackgroundUtilities.h"
-#import "IonAccessBasedGenerationMap.h"
+#import "IonKVPAccessBasedGenerationMap.h"
 #import "IonThemePointer.h"
 
 /** Keys for style
@@ -24,7 +24,7 @@ static NSString* sStyleBackgroundKey = @"background";
 
 /** This are the attrubutes we will resolve with.
  */
-@property (strong, nonatomic) IonThemeAttributes* attributes;
+@property (strong, nonatomic) IonKVPAccessBasedGenerationMap* attributes;
 
 @end
 
@@ -35,7 +35,7 @@ static NSString* sStyleBackgroundKey = @"background";
  * @param {IonThemeAttributes*} the theme attrubute set to do our searches on if needed.
  * @returns {UIColor*} representation, or NULL of invalid
  */
-+ (IonStyle*) resolveWithMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes {
++ (IonStyle*) resolveWithMap:(NSDictionary*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes {
     if ( !attributes || !map)
         return NULL;
     
@@ -65,7 +65,7 @@ static NSString* sStyleBackgroundKey = @"background";
  * @param {IonThemeAttributes*} the attrubute we should resolve with.
  * @returns {void}
  */
-- (void) setResolutionAttributes:(IonThemeAttributes*) attributes {
+- (void) setResolutionAttributes:(IonKVPAccessBasedGenerationMap*) attributes {
     if ( !attributes )
         return;
     
@@ -115,10 +115,8 @@ static NSString* sStyleBackgroundKey = @"background";
         return;
     
     } else if ( [pointedObject isKindOfClass:[IonGradientConfiguration class]] ) {
-        if ( [pointedObject isKindOfClass:[IonLinearGradientConfiguration class]] ) {
+        if ( [pointedObject isKindOfClass:[IonLinearGradientConfiguration class]] )
             [view setBackgroundToLinearGradient: (IonLinearGradientConfiguration*)pointedObject];
-            
-        }
         return;
         
     } else if ( [pointedObject isKindOfClass:[UIImage class]] ) {
@@ -128,11 +126,15 @@ static NSString* sStyleBackgroundKey = @"background";
 }
 
 /**
+ * This retrives the root attrbute object.
+ */
+
+/**
  * This overrides the current styles proproties with the inputed style.
  * @param {IonStyle*} the style to override the current style
  * @returns {IonStyle*} the net style of the overide
  */
-- (IonStyle*) overideStyleWithStyle:(IonStyle*)overideingStyle {
+- (IonStyle*) overideStyleWithStyle:(IonStyle*) overideingStyle {
     id newObject;
     NSArray* keys;
     IonStyle* result;

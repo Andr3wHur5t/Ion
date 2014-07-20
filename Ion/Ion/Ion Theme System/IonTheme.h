@@ -6,14 +6,20 @@
 //  Copyright (c) 2014 Ion. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "IonThemeAttributes.h"
+#import "IonKVPAccessBasedGenerationMap.h"
+
+@class IonKeyValuePair;
+@class IonImageRef;
+@class IonStyle;
+@class IonGradientConfiguration;
 
 @interface IonTheme : NSObject
 
 /* This is the attribute object which holds all of our configurations, we preform all resolution searches here.
  */
-@property (strong) IonThemeAttributes* attributes;
+@property (strong) IonKVPAccessBasedGenerationMap* attributes;
 
 /**
  * This is the style name.

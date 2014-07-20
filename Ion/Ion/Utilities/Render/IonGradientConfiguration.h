@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IonThemeAttributes.h"
-
+#import "IonKVPAccessBasedGenerationMap.h"
 /**
  * ==================== Ion Color Weight ====================
  */
@@ -20,14 +19,14 @@
  * @param {NSDictionary*} the gradient map.
  * @returns {NSArray} the resulting color weight array, or NULL if invalid.
  */
-+ (NSArray*) colorWeightArrayFromMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes;
++ (NSArray*) colorWeightArrayFromMap:(NSDictionary*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes;
 
 /**
  * This generates the color weight array from the inputted gradient map.
  * @param {NSDictionary*} the gradient map.
  * @returns {NSArray} the resulting color weight array, or NULL if invalid.
  */
-+ (IonColorWeight*) colorWeightFromMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes;
++ (IonColorWeight*) colorWeightFromMap:(NSDictionary*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes;
 
 /**
  * This is a convience constructor.
@@ -70,7 +69,7 @@
  * @param {IonThemeAttributes*} the attributes we should search to get correct values.
  * @returns {IonGradientConfiguration*}
  */
-+ (IonGradientConfiguration*) resolveWithMap:(NSDictionary*) map andAttrubutes:(IonThemeAttributes*) attributes;
++ (IonGradientConfiguration*) resolveWithMap:(NSDictionary*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes;
 
 /**
  * This is a convience constructor.
@@ -99,7 +98,7 @@
  * @returns {IonLinearGradientConfiguration*}
  */
 + (IonLinearGradientConfiguration*) resolveWithMap:(NSDictionary*) map
-                                     andAttrubutes:(IonThemeAttributes*) attributes;
+                                     andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes;
 /**
  * This is a convience constructor.
  * @param {NSArray*} the color weights for the configuration.
