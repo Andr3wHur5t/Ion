@@ -76,7 +76,7 @@ unsigned int currentColorResolveDepth = 0;
         result = [NSString stringWithFormat:@"#%02x%02x%02x%02x",r,g,b,a];
     }
     
-    return result;
+    return result.uppercaseString;
 }
 
 /**

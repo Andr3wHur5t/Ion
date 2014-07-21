@@ -46,21 +46,6 @@ static NSString* sIonThemeIdFormat = @"id_%@";
 #pragma mark Construction
 
 /**
- * Standerd constructor
- * @returns {instancetype}
- */
-- (instancetype) init {
-    self = [super init];
-    
-    if ( self ) {
-        self.attributes = [[IonKVPAccessBasedGenerationMap alloc] init];
-    
-    }
-    
-    return self;
-}
-
-/**
  * This will construct a theme with the provided name from application resources.
  * @param {NSString*} the file name of the theme in the file system
  * @returns {instancetype}
@@ -92,7 +77,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
     if ( self ) {
         if ( !config )
             return NULL;
-        [_attributes setRawData: config];
+        [self setRawData: config];
         _name = [config objectForKey: sIonThemeThemeNameKey];
     }
     return self;
@@ -132,7 +117,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
     if ( !name )
         return NULL;
     
-    result = [self.attributes resolveStyleAttribute: name];
+    result = [self resolveStyleAttribute: name];
     if ( ![result isKindOfClass:[IonStyle class]] )
         return NULL;
     
@@ -178,7 +163,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
     
     NSString* fullClassName = [NSString stringWithFormat: sIonThemeClassFormat, className];
     
-    result = [self.attributes resolveStyleAttribute: fullClassName];
+    result = [self resolveStyleAttribute: fullClassName];
     
     if ( ![result isKindOfClass:[IonStyle class]] )
         return NULL;
@@ -197,7 +182,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
         return NULL;
     NSString* fullIdName = [NSString stringWithFormat: sIonThemeIdFormat, idName];
     
-    result = [self.attributes resolveStyleAttribute: fullIdName];
+    result = [self resolveStyleAttribute: fullIdName];
     
     if ( ![result isKindOfClass:[IonStyle class]] )
         return NULL;
@@ -236,7 +221,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
  */
 - (IonStyle*) currentDefaultStyle {
     if ( !_defaultStyle )
-        _defaultStyle = [self.attributes resolveStyleAttribute: sIonThemeDefaultStyleKey];
+        _defaultStyle = [self resolveStyleAttribute: sIonThemeDefaultStyleKey];
     
     if ( !_defaultStyle )
         _defaultStyle = [[IonStyle alloc] init];
@@ -245,14 +230,6 @@ static NSString* sIonThemeIdFormat = @"id_%@";
         return NULL;
     
     return _defaultStyle;
-}
-
-
-/**
- * This is debug text
- */
-- (NSString*) description {
-    return [_attributes description];
 }
 
 @end

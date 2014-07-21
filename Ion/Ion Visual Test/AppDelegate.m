@@ -70,6 +70,9 @@
     [vc.view setIonInternialSystemTheme:self.window.systemTheme];
     
     
+    /**
+     * This is to debug the theme system.
+     */
     [self runThemeTests];
    
     
@@ -77,30 +80,71 @@
         finished(vc);
 }
 
+/**
+ * This runs all of our theme tests, Note Should move these to unit tests.
+ */
 - (void) runThemeTests {
     [self overviewThemeTest];
     [self bulkColorTest];
 }
 
+/**
+ * This reads out the metrics, and the results of diffrent attributes.
+ */
 - (void) overviewThemeTest {
-    NSString* logString = @"\n\nTheme Test:\n";
+    NSString* logString = @"\nTheme Test:";
+    UIColor                                 *resultColor;
+    IonKeyValuePair                         *resultKVP;
+    IonImageRef                             *resultImageRef;
+    IonStyle                                *resultStyle;
+    IonGradientConfiguration                *resultGradient;
+    // Metrics
+    double  colorStart, colorEnd,
+            kvpStart, kvpEnd,
+            imageStart, imageEnd,
+            styleStart, styleEnd,
+            gradientStart, gradientEnd;
+    // Test
+    colorStart = [[NSDate date] timeIntervalSince1970];
+    resultColor = [self.window.systemTheme resolveColorAttrubute:@"yellow"];
+    colorEnd = [[NSDate date] timeIntervalSince1970];
     
-    logString = [logString stringByAppendingString:@"\nColor: %@"];
-    logString = [logString stringByAppendingString:@"\nKVP: \"%@\""];
-    logString = [logString stringByAppendingString:@"\nImage Ref: \"%@\""];
-    logString = [logString stringByAppendingString:@"\nStyle: %@"];
-    logString = [logString stringByAppendingString:@"\nGradient: %@\n"];
+    kvpStart = [[NSDate date] timeIntervalSince1970];
+    resultKVP = [self.window.systemTheme resolveKVPAttribute:@"PointlessProperty"];
+    kvpEnd = [[NSDate date] timeIntervalSince1970];
+    
+    imageStart = [[NSDate date] timeIntervalSince1970];
+    resultImageRef = [self.window.systemTheme resolveImageAttribute:@"Image1"];
+    imageEnd = [[NSDate date] timeIntervalSince1970];
+    
+    styleStart = [[NSDate date] timeIntervalSince1970];
+    resultStyle = [self.window.systemTheme resolveStyleAttribute:@"cls_simpleStyle"];
+    styleEnd = [[NSDate date] timeIntervalSince1970];
+    
+    gradientStart = [[NSDate date] timeIntervalSince1970];
+    resultGradient = [self.window.systemTheme resolveGradientAttribute:@"Royal"];
+    gradientEnd = [[NSDate date] timeIntervalSince1970];
+    
+    // Reporting
+    logString = [logString stringByAppendingString:@"\nColor: %@ \nTook: %.4f ms\n"];
+    logString = [logString stringByAppendingString:@"\nKVP: \"%@\" \nTook: %.4f ms\n"];
+    logString = [logString stringByAppendingString:@"\nImage Ref: \"%@\" \nTook: %.4f ms\n"];
+    logString = [logString stringByAppendingString:@"\nStyle: %@ \nTook: %.4f ms\n"];
+    logString = [logString stringByAppendingString:@"\nGradient: %@Took: %.4f ms \n\n"];
     
     logString = [NSString stringWithFormat:logString,
-                 [self.window.systemTheme.attributes resolveColorAttrubute:@"yellow"],
-                 [self.window.systemTheme.attributes resolveKVPAttribute:@"PointlessProperty"],
-                 [self.window.systemTheme.attributes resolveImageAttribute:@"Image1"],
-                 [self.window.systemTheme.attributes resolveStyleAttribute:@"cls_simpleStyle"],
-                 [self.window.systemTheme.attributes resolveGradientAttribute:@"Royal"]];
+                 [resultColor toHex], (colorEnd - colorStart) * 1000,
+                 resultKVP, (kvpEnd - kvpStart) * 1000,
+                 resultImageRef,  (imageEnd - imageStart) * 1000,
+                 resultStyle, (styleEnd - styleStart) * 1000,
+                 resultGradient, (gradientEnd - gradientStart) * 1000];
     
     NSLog(@"%@", logString);
 }
 
+/**
+ * This test if we can resolve larger than allowed depth level.
+ */
 - (void) bulkColorTest {
     NSString* targetColorKey = @"yellow";
     double startTime, endTime, acumulatedTime;
@@ -108,7 +152,7 @@
     UIColor *expectedColor, *resultColor;
     
     // Setup
-    expectedColor = [self.window.systemTheme.attributes resolveColorAttrubute: targetColorKey];
+    expectedColor = [self.window.systemTheme resolveColorAttrubute: targetColorKey];
     acumulatedTime = 0.0f;
     failures = 0;
     count = 5000;
@@ -118,7 +162,7 @@
     for (NSInteger i = 0; i <= count; ++i) {
         startTime =  [[NSDate date] timeIntervalSince1970];
         
-        resultColor = [self.window.systemTheme.attributes resolveColorAttrubute: targetColorKey];
+        resultColor = [self.window.systemTheme resolveColorAttrubute: targetColorKey];
         
         endTime =  [[NSDate date] timeIntervalSince1970];
         
@@ -135,8 +179,9 @@
     }
     
     // Report
-     NSLog(@"\nResult Avrage Time: %.4f ms, Failures %i out of %i calls\n\n", (acumulatedTime / count) * 1000, failures, count );
+     NSLog(@"\nBullk Color Search Test: (key:\"%@\", end value:\"%@\")\nAvarage Time %.4f ms, Failures %i out of %i invocations\n\n",targetColorKey, [expectedColor toHex], (acumulatedTime / count) * 1000, failures, count );
 }
+
 
 /**
  * This is the rapid splash view that will be used when the application has already been opened in the system once before.

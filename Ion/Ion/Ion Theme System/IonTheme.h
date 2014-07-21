@@ -15,11 +15,7 @@
 @class IonStyle;
 @class IonGradientConfiguration;
 
-@interface IonTheme : NSObject
-
-/* This is the attribute object which holds all of our configurations, we preform all resolution searches here.
- */
-@property (strong) IonKVPAccessBasedGenerationMap* attributes;
+@interface IonTheme : IonKVPAccessBasedGenerationMap
 
 /**
  * This is the style name.
