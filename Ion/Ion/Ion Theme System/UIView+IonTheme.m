@@ -100,18 +100,19 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
  * @praram {NSObject} the theme object to set.
  * @returns {void}
  */
-- (void) setIonTheme:(IonTheme*) themeObject{
+- (void) setIonTheme:(IonTheme*) themeObject {
     // Flip the was set by user latch; note if done through system this should cancel out.
     self.themeWasSetByUser = YES;
-    
     if ( !themeObject ) {
         [NSException exceptionWithName:@"Missing Argument" reason:@"No theme object provided!" userInfo:NULL];
         return;
     }
-    IonStyle* currentStyle = [themeObject styleForThemeClass: self.themeClass andThemeID: self.themeID];
     
-    if ( currentStyle )
+    IonStyle* currentStyle = [themeObject styleForThemeClass: self.themeClass andThemeID: self.themeID];
+    if ( [currentStyle isKindOfClass:[IonStyle class]] && currentStyle ) {
+        
         [currentStyle applyToView: self];
+    }
     
     [self setThemeToChildren: themeObject];
 }
@@ -119,7 +120,7 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
 #pragma mark Debug
 
 /**
- * This will retrun the object theme settings formated as a combined string.
+ * This will return the object theme settings formated as a combined string.
  * @returns {NSString*}
  */
 - (NSString*) description {

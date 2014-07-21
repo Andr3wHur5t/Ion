@@ -48,6 +48,9 @@
 		376DA8E11979D5AF008D692E /* IonKVPAccessBasedGenerationMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DA8DF1979D5AF008D692E /* IonKVPAccessBasedGenerationMap.m */; };
 		376DA8E4197B4597008D692E /* IonAttrubutesStanderdResolution.h in Headers */ = {isa = PBXBuildFile; fileRef = 376DA8E2197B4597008D692E /* IonAttrubutesStanderdResolution.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		376DA8E5197B4597008D692E /* IonAttrubutesStanderdResolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DA8E3197B4597008D692E /* IonAttrubutesStanderdResolution.m */; };
+		376DA8E9197BAD83008D692E /* IonWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 376DA8E7197BAD83008D692E /* IonWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		376DA8EA197BAD83008D692E /* IonWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DA8E8197BAD83008D692E /* IonWindow.m */; };
+		376DA8EC197BB496008D692E /* appDefault.theme in Resources */ = {isa = PBXBuildFile; fileRef = 376DA8EB197BB496008D692E /* appDefault.theme */; };
 		377C3EBD196F316900EA6599 /* IonApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3EB5196F316900EA6599 /* IonApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		377C3EBE196F316900EA6599 /* IonApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 377C3EB6196F316900EA6599 /* IonApplication.m */; };
 		377C3EBF196F316900EA6599 /* IonRapidStartManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3EB8196F316900EA6599 /* IonRapidStartManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -157,6 +160,9 @@
 		376DA8DF1979D5AF008D692E /* IonKVPAccessBasedGenerationMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonKVPAccessBasedGenerationMap.m; path = "Data Structures/IonKVPAccessBasedGenerationMap.m"; sourceTree = "<group>"; };
 		376DA8E2197B4597008D692E /* IonAttrubutesStanderdResolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonAttrubutesStanderdResolution.h; path = "Ion Theme System/IonAttrubutesStanderdResolution.h"; sourceTree = "<group>"; };
 		376DA8E3197B4597008D692E /* IonAttrubutesStanderdResolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonAttrubutesStanderdResolution.m; path = "Ion Theme System/IonAttrubutesStanderdResolution.m"; sourceTree = "<group>"; };
+		376DA8E7197BAD83008D692E /* IonWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonWindow.h; sourceTree = "<group>"; };
+		376DA8E8197BAD83008D692E /* IonWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonWindow.m; sourceTree = "<group>"; };
+		376DA8EB197BB496008D692E /* appDefault.theme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = appDefault.theme; sourceTree = "<group>"; };
 		377C3EB5196F316900EA6599 /* IonApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonApplication.h; sourceTree = "<group>"; };
 		377C3EB6196F316900EA6599 /* IonApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonApplication.m; sourceTree = "<group>"; };
 		377C3EB8196F316900EA6599 /* IonRapidStartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonRapidStartManager.h; sourceTree = "<group>"; };
@@ -506,9 +512,19 @@
 			name = "KVP ABG map";
 			sourceTree = "<group>";
 		};
+		376DA8E6197BAD68008D692E /* IonWindow */ = {
+			isa = PBXGroup;
+			children = (
+				376DA8E7197BAD83008D692E /* IonWindow.h */,
+				376DA8E8197BAD83008D692E /* IonWindow.m */,
+			);
+			name = IonWindow;
+			sourceTree = "<group>";
+		};
 		377C3EB4196F316900EA6599 /* IonApplication */ = {
 			isa = PBXGroup;
 			children = (
+				376DA8E6197BAD68008D692E /* IonWindow */,
 				377C3EB7196F316900EA6599 /* Rapid Startup */,
 				377C3EC9196F520900EA6599 /* Demo Window */,
 				377C3EB5196F316900EA6599 /* IonApplication.h */,
@@ -616,6 +632,7 @@
 				37EBAC75195C9B35008D6BD6 /* Supporting Files */,
 				377C3EDA1970C2C300EA6599 /* IONgraphics.xcassets */,
 				376DA8B919777B7F008D692E /* TestStyle.theme */,
+				376DA8EB197BB496008D692E /* appDefault.theme */,
 			);
 			path = "Ion Visual Test";
 			sourceTree = "<group>";
@@ -675,6 +692,7 @@
 				376DA8D019791EA2008D692E /* IonImage.h in Headers */,
 				377C3EBF196F316900EA6599 /* IonRapidStartManager.h in Headers */,
 				376DA8E4197B4597008D692E /* IonAttrubutesStanderdResolution.h in Headers */,
+				376DA8E9197BAD83008D692E /* IonWindow.h in Headers */,
 				376DA8E01979D5AF008D692E /* IonKVPAccessBasedGenerationMap.h in Headers */,
 				377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */,
 				377C3ECC196F52AE00EA6599 /* IonDemoUIWindow.h in Headers */,
@@ -824,6 +842,7 @@
 			files = (
 				37EBAC7D195C9B35008D6BD6 /* Images.xcassets in Resources */,
 				377C3EDB1970C2C400EA6599 /* IONgraphics.xcassets in Resources */,
+				376DA8EC197BB496008D692E /* appDefault.theme in Resources */,
 				376DA8BA19777B7F008D692E /* TestStyle.theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -848,6 +867,7 @@
 				372DD25C1973B05400CC0A58 /* IonMath.m in Sources */,
 				377C3EC0196F316900EA6599 /* IonRapidStartManager.m in Sources */,
 				376DA8D51979202B008D692E /* IonImageRef.m in Sources */,
+				376DA8EA197BAD83008D692E /* IonWindow.m in Sources */,
 				377C3ED1196F58A900EA6599 /* UITouch + IonDemoTouch.m in Sources */,
 				372DD25019731F0200CC0A58 /* UIView+IonBackgroundUtilities.m in Sources */,
 				372DD266197494E500CC0A58 /* UIColor+IonColor.m in Sources */,

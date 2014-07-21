@@ -56,10 +56,6 @@
     [imgView.layer setShadowOffset:CGSizeMake(0.0, 2.0)];
     
     
-
-    
-    
-    
     // Theme Testing
     imgView.themeClass = @"secondaryStyle";
     //imgView.themeID = @"simpleStyle";
@@ -68,22 +64,79 @@
     vc.view.themeClass = @"simpleStyle";
     //vc.view.themeID = @"background";
     
-    IonTheme* theme = [[IonTheme alloc] initWithFileName:@"TestStyle"];
-
-    /*
-    NSLog(@"\n\n Theme Test: \n\n");
-    NSLog(@"Color: %@", [theme.attributes resolveColorAttrubute:@"Purple"]);
-    NSLog(@"KVP: %@", [theme.attributes resolveKVPAttribute:@"PointlessProperty"]);
-    NSLog(@"Image Ref: %@", [theme.attributes resolveImageAttribute:@"Image1"]);
-    NSLog(@"Style: %@", [theme.attributes resolveStyleAttribute:@"cls_simpleStyle"]);
-    NSLog(@"Gradient: %@\n\n\n", [theme.attributes resolveGradientAttribute:@"Royal"]);*/
+    /**
+     * Note do this in Ion View controller and document for propriatary view controllers.
+     */
+    [vc.view setIonInternialSystemTheme:self.window.systemTheme];
     
     
-    [vc.view setIonTheme: theme];
+    [self runThemeTests];
+   
+    
     if (finished)
         finished(vc);
 }
 
+- (void) runThemeTests {
+    [self overviewThemeTest];
+    [self bulkColorTest];
+}
+
+- (void) overviewThemeTest {
+    NSString* logString = @"\n\nTheme Test:\n";
+    
+    logString = [logString stringByAppendingString:@"\nColor: %@"];
+    logString = [logString stringByAppendingString:@"\nKVP: \"%@\""];
+    logString = [logString stringByAppendingString:@"\nImage Ref: \"%@\""];
+    logString = [logString stringByAppendingString:@"\nStyle: %@"];
+    logString = [logString stringByAppendingString:@"\nGradient: %@\n"];
+    
+    logString = [NSString stringWithFormat:logString,
+                 [self.window.systemTheme.attributes resolveColorAttrubute:@"yellow"],
+                 [self.window.systemTheme.attributes resolveKVPAttribute:@"PointlessProperty"],
+                 [self.window.systemTheme.attributes resolveImageAttribute:@"Image1"],
+                 [self.window.systemTheme.attributes resolveStyleAttribute:@"cls_simpleStyle"],
+                 [self.window.systemTheme.attributes resolveGradientAttribute:@"Royal"]];
+    
+    NSLog(@"%@", logString);
+}
+
+- (void) bulkColorTest {
+    NSString* targetColorKey = @"yellow";
+    double startTime, endTime, acumulatedTime;
+    NSInteger count, failures;
+    UIColor *expectedColor, *resultColor;
+    
+    // Setup
+    expectedColor = [self.window.systemTheme.attributes resolveColorAttrubute: targetColorKey];
+    acumulatedTime = 0.0f;
+    failures = 0;
+    count = 5000;
+    
+    
+    // Test
+    for (NSInteger i = 0; i <= count; ++i) {
+        startTime =  [[NSDate date] timeIntervalSince1970];
+        
+        resultColor = [self.window.systemTheme.attributes resolveColorAttrubute: targetColorKey];
+        
+        endTime =  [[NSDate date] timeIntervalSince1970];
+        
+        if( ![resultColor isEqual: expectedColor] )
+            ++failures;
+        
+        
+        
+        acumulatedTime += endTime - startTime;
+        
+        endTime = 0;
+        startTime = 0;
+        resultColor = NULL;
+    }
+    
+    // Report
+     NSLog(@"\nResult Avrage Time: %.4f ms, Failures %i out of %i calls\n\n", (acumulatedTime / count) * 1000, failures, count );
+}
 
 /**
  * This is the rapid splash view that will be used when the application has already been opened in the system once before.

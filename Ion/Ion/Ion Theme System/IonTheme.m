@@ -93,7 +93,6 @@ static NSString* sIonThemeIdFormat = @"id_%@";
         if ( !config )
             return NULL;
         [_attributes setRawData: config];
-        
         _name = [config objectForKey: sIonThemeThemeNameKey];
     }
     return self;
@@ -117,6 +116,8 @@ static NSString* sIonThemeIdFormat = @"id_%@";
         idAndClassStyle = [elementStyle overideStyleWithStyle: idAndClassStyle ];
     }
     
+    if ( ![idAndClassStyle isKindOfClass:[IonStyle class]] )
+        return NULL;
     
     return idAndClassStyle;
 }
@@ -132,6 +133,8 @@ static NSString* sIonThemeIdFormat = @"id_%@";
         return NULL;
     
     result = [self.attributes resolveStyleAttribute: name];
+    if ( ![result isKindOfClass:[IonStyle class]] )
+        return NULL;
     
     return result;
 }
@@ -143,6 +146,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
  * @returns {IonStyle*} will return the net style
  */
 - (IonStyle*) styleForThemeClass:(NSString*) themeClass andThemeID:(NSString*) themeID {
+    id result;
     IonStyle *classStyle, *idStyle;
     
     // Search if we have generated one with the same parameters; Optomization;
@@ -154,7 +158,11 @@ static NSString* sIonThemeIdFormat = @"id_%@";
     if ( themeID )
             idStyle = [self styleForIdName: themeID];
     
-    return [self styleFromCompositedClassStyle: classStyle andIdStyle: idStyle];
+    result = [self styleFromCompositedClassStyle: classStyle andIdStyle: idStyle];
+    if ( ![result isKindOfClass:[IonStyle class]] )
+        return NULL;
+    
+    return result;
 }
 
 #pragma mark Internal Interface
@@ -172,6 +180,9 @@ static NSString* sIonThemeIdFormat = @"id_%@";
     
     result = [self.attributes resolveStyleAttribute: fullClassName];
     
+    if ( ![result isKindOfClass:[IonStyle class]] )
+        return NULL;
+    
     return result;
 }
 
@@ -187,6 +198,9 @@ static NSString* sIonThemeIdFormat = @"id_%@";
     NSString* fullIdName = [NSString stringWithFormat: sIonThemeIdFormat, idName];
     
     result = [self.attributes resolveStyleAttribute: fullIdName];
+    
+    if ( ![result isKindOfClass:[IonStyle class]] )
+        return NULL;
     
     return result;
 }
@@ -208,6 +222,10 @@ static NSString* sIonThemeIdFormat = @"id_%@";
         result = classStyle;
     }
     
+    if ( ![result isKindOfClass:[IonStyle class]] )
+        return NULL;
+    
+    
     return result;
 }
 
@@ -223,7 +241,18 @@ static NSString* sIonThemeIdFormat = @"id_%@";
     if ( !_defaultStyle )
         _defaultStyle = [[IonStyle alloc] init];
     
+    if ( ![_defaultStyle isKindOfClass:[IonStyle class]] )
+        return NULL;
+    
     return _defaultStyle;
+}
+
+
+/**
+ * This is debug text
+ */
+- (NSString*) description {
+    return [_attributes description];
 }
 
 @end

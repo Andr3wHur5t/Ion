@@ -116,7 +116,7 @@
     // if the view exsists
     if ( _frvc )
         [UIView transitionWithView: ((IonApplication*)[UIApplication sharedApplication].delegate).window
-                          duration:0.3 // TODO: Load From Defaults
+                          duration:0.5 // TODO: Load From Defaults
                            options:UIViewAnimationOptionTransitionCrossDissolve
                         animations:^{
                             ((IonApplication*)[UIApplication sharedApplication].delegate).window.rootViewController = _frvc;

@@ -17,8 +17,13 @@
  */
 - (void) setGenerationBlock {
     __weak typeof( self ) weakSelf = self;
-    [self setGenerationBlock: ^id( id data ) {
-        return [weakSelf resolveData: data];
+    [self setGenerationBlock: ^id( id data, IonGenerationBlock generationBlock ) {
+        id result = [IonKeyValuePair resolveWithValue: data andAttrubutes: weakSelf];
+        
+        if ( generationBlock )
+            result = generationBlock( result );
+        
+        return result;
     }];
 }
 
@@ -42,8 +47,7 @@
     if ( !key )
         return NULL;
     
-    IonKeyValuePair* result = [self objectForKey: key];
-    return result;
+    return (IonKeyValuePair*)[self objectForKey: key];
 }
 
 /**
@@ -51,10 +55,10 @@
  * @param {NSString} the key to look for.
  * @retunrs {id} the resulting object to be set.
  */
-- (id) generateItemForKey:(NSString*) key {
+- (id) generateItemForKey:(NSString*) key usingGenerationBlock:(IonGenerationBlock) specialGenerationBlock {
     if ( ![self generationBlockIsSet] )
         [self setGenerationBlock];
-    return [super generateItemForKey: key];
+    return [super generateItemForKey: key usingGenerationBlock: specialGenerationBlock];
 }
 
 @end

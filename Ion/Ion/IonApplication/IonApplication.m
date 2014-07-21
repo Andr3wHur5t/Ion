@@ -8,12 +8,22 @@
 
 #import "IonApplication.h"
 #import "IonRapidStartManager.h"
+#import "IonWindow.h"
 
 // Demo Mode Only
 #import "IonDemoUIWindow.h"
 
 
 @interface IonApplication () {
+    
+#pragma mark Metrics
+    double  startupInitTime;
+    // application Launch
+    double  applicationLaunchBeginTime;
+    double  applicationLaunchEndTime;
+    // rapid splash Launch
+    double  splashDisplayCallbackTime;
+    
     
     #pragma mark managers
     
@@ -38,8 +48,7 @@
  * This constructs the application window to be used
  * @returns {UIWindow} the application window to be used
  */
-- (UIWindow*) applicationWindow;
-
+- (IonWindow*) applicationWindow;
 
 #pragma mark configuration utilities
 
@@ -48,8 +57,6 @@
  * @returns {void}
  */
 - (void) configureRapidStart;
-
-
 
 #pragma mark start up utilities
 
@@ -64,6 +71,7 @@
  * @returns {void}
  */
 - (void) constructOptionialManagersFromManagerManifest;
+
 
 @end
 
@@ -86,8 +94,13 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        // Record Metrics
+        startupInitTime = [[NSDate date] timeIntervalSince1970];
+        
+        // Construct
         [self constructRapidStartManager];
         [self configureRapidStart];
+        
     }
     return self;
 }
@@ -106,12 +119,16 @@
  * This constructs the application window to be used
  * @returns {UIWindow} the application window to be used
  */
-- (UIWindow*) applicationWindow {
+- (IonWindow*) applicationWindow {
+    IonWindow* returnedWindow;
+    
     // Select the correct window acording to the mode.
     if ( ![self isInDemoMode] )
-        return [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        returnedWindow = [[IonWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     else
-        return [[IonDemoUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        returnedWindow = [[IonDemoUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    return returnedWindow;
 }
 
 #pragma mark configuration utilities
@@ -131,6 +148,7 @@
         [weakSelf postDisplaySetup];
     }];
 }
+
 
 
 #pragma mark customization points
@@ -213,6 +231,10 @@
  * @returns {void}
  */
 - (void) postDisplaySetup {
+    // Record Metrics
+    splashDisplayCallbackTime = [[NSDate date] timeIntervalSince1970];
+    [self logMetrics];
+    
     // Load & Set the application manifest
     [self loadManagerManifest];
     
@@ -242,8 +264,11 @@
  * This is called when we should present our first view controller.
  */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Record Metrics
+    applicationLaunchBeginTime = [[NSDate date] timeIntervalSince1970];
+    
     self.window = [self applicationWindow];
-    self.window.backgroundColor = [UIColor blackColor];
+    self.window.backgroundColor = [UIColor whiteColor];
     
     //set the root view controller to the the rapid start view controller
     self.window.rootViewController = rapidStartManager.viewController;
@@ -251,6 +276,8 @@
     //Display the rapid start controller
     [self.window makeKeyAndVisible];
     
+    // Record Metrics
+    applicationLaunchEndTime = [[NSDate date] timeIntervalSince1970];
     return YES;
 }
 
@@ -286,5 +313,34 @@
     rapidStartManager = NULL;
 }
 
+/**
+ * This will display startup metrics affter launch.
+ * @returns {void}
+ */
+- (void) logMetrics {
+    double initToLaunch, launching, toFirstSplash, toRapidSplashDisplay;
+    NSString* logString = @"\nStartup Metrics:\n";
+    
+    // Create string with format
+    logString = [logString stringByAppendingString:@"Time from init to launch: %.2f ms (Note: Shared with OS) \n"];
+    logString = [logString stringByAppendingString:@"Time Spent Launching: %.2f ms \n"];
+    logString = [logString stringByAppendingString:@"Time Generating Rapid Splash: %.2f ms\n"];
+    logString = [logString stringByAppendingString:@"Time To First Rapid Splash Render: %.2f ms \n\n"];
+    
+    // get relitive times
+    initToLaunch = applicationLaunchBeginTime - startupInitTime;
+    launching = applicationLaunchEndTime - applicationLaunchBeginTime;
+    toFirstSplash = applicationLaunchEndTime -  startupInitTime;
+    toRapidSplashDisplay = splashDisplayCallbackTime - startupInitTime;
+    
+    // format the string
+    logString = [NSString stringWithFormat:logString,
+                 initToLaunch * 1000,
+                 launching * 1000,
+                 toFirstSplash,toRapidSplashDisplay * 1000 ];
+    
+    // Send to the console
+    NSLog(@"%@",logString);
+}
 
 @end

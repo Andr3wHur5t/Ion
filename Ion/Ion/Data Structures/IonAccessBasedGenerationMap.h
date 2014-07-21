@@ -15,6 +15,13 @@
  */
 typedef id(^IonGenerationBlock)( id data );
 
+/**
+ * This is the block type which will be used to generate real data from raw data Internaly.
+ * @param {id} this is the raw data wich should be processed to return the real object.
+ * @returns {id} the resulting object, or NULL if invalid.
+ */
+typedef id(^IonInternialGenerationBlock)( id data , IonGenerationBlock specialGenerationBlock );
+
 
 
 /**
@@ -42,7 +49,7 @@ typedef id(^IonGenerationBlock)( id data );
  * @returns {instancetype}
  */
 - (instancetype) initWithRawData:(NSDictionary*) data
-              andGenerationBlock:(IonGenerationBlock) itemGenerationBlock;
+              andGenerationBlock:(IonInternialGenerationBlock) itemGenerationBlock;
 
 
 #pragma mark Externial Interface
@@ -59,7 +66,7 @@ typedef id(^IonGenerationBlock)( id data );
  * @param {IonGenerationBlock} the block we will call to generate the real data.
  * @return {void}
  */
-- (void) setGenerationBlock:(IonGenerationBlock) newGenerationBlock;
+- (void) setGenerationBlock:(IonInternialGenerationBlock) newGenerationBlock;
 
 /**
  * This reports if the generation block has been generated.
@@ -70,6 +77,14 @@ typedef id(^IonGenerationBlock)( id data );
 #pragma mark Data Management
 
 /**
+ * This gets the object for the specified key using the specified Generation callback.
+ * @param {id} the key to search for.
+ * @param {generationBlock} the block to call to generate the data from the raw object if NULL.
+ * @returns {id} the generated class, or NULL if invalid.
+ */
+- (id) objectForKey:(id) key usingGenerationBlock: (IonGenerationBlock) specialGenerationBlock;
+
+/**
  * This gets an object with the specified key from the cache,
  * if it dosnt exsist we will generate it from raw data if avalable.
  * @param {id} the key to search for.
@@ -77,13 +92,12 @@ typedef id(^IonGenerationBlock)( id data );
  */
 - (id) objectForKey:(id) key;
 
-
 /**
- * This will generate the item for the specified key and return it.
- * @param {NSString*} the key to search for.
- * @returns {id} the restulting object.
+ * This will generate the item for the specified key if there is data to construct it.
+ * @returns {id} the class that was generated from the raw data.
  */
-- (id) generateItemForKey:(NSString*) key;
+- (id) generateItemForKey:(NSString*) key usingGenerationBlock:(IonGenerationBlock) specialGenerationBlock;
+
 
 /**
  * This will remove all data from the cache.

@@ -17,13 +17,22 @@
 
 /** Group Definitions
  */
-static const NSString* sColorsGroupKey = @"colors";
-static const NSString* sGradientsGroupKey = @"gradients";
-static const NSString* sImagesGroupKey = @"images";
-static const NSString* sKVPGroupKey = @"kvp";
-static const NSString* sStylesGroupKey = @"styles";
+static NSString* sColorsGroupKey = @"colors";
+static NSString* sGradientsGroupKey = @"gradients";
+static NSString* sImagesGroupKey = @"images";
+static NSString* sKVPGroupKey = @"kvp";
+static NSString* sStylesGroupKey = @"styles";
+
+/** The Attribute Generation Block;
+ * @param {IonKVPAccessBasedGenerationMap*} this is the context of generation, this is normaly the root map, or the parrent map.
+ * @param {IonKeyValuePair*} this is the data in KeyValuePair fourm.
+ * @retruns {id} the object that should be cached, and returned.
+ */
+typedef id(^IonAttributeGenerationBlock)(IonKVPAccessBasedGenerationMap* context, IonKeyValuePair* data);
 
 @interface IonKVPAccessBasedGenerationMap (StanderdResolution)
+
+@property (strong, nonatomic) IonKVPAccessBasedGenerationMap* parrentMap;
 
 /**
  * This resolves a color key into a UIColor.
@@ -60,6 +69,11 @@ static const NSString* sStylesGroupKey = @"styles";
  */
 - (IonKeyValuePair*) resolveKVPAttribute:(NSString*) value;
 
+/**
+ * This will resolve the map for the specified key.
+ * @returns {IonKVPAccessBasedGenerationMap*} representation of the map, or NULL if invalid.
+ */
+- (IonKVPAccessBasedGenerationMap*) resolveMapAttribute:(NSString*) key;
 #pragma mark Color Getter
 
 /**
@@ -69,36 +83,7 @@ static const NSString* sStylesGroupKey = @"styles";
  */
 - (UIColor*) colorFromMapWithKey:(NSString*) colorKey;
 
-#pragma mark Group Getters
-/**
- * This will get the color group map.
- * @returns {IonKVPAccessBasedGenerationMap*} representation of the group, or NULL if invalid.
- */
-- (IonKVPAccessBasedGenerationMap*) colorMap;
 
-/**
- * This will get the color group map.
- * @returns {IonKVPAccessBasedGenerationMap*} representation of the group, or NULL if invalid.
- */
-- (IonKVPAccessBasedGenerationMap*) gradientMap;
-
-/**
- * This will get the color group map.
- * @returns {IonKVPAccessBasedGenerationMap*} representation of the group, or NULL if invalid.
- */
-- (IonKVPAccessBasedGenerationMap*) imageMap;
-
-/**
- * This will get the color group map.
- * @returns {IonKVPAccessBasedGenerationMap*} representation of the group, or NULL if invalid.
- */
-- (IonKVPAccessBasedGenerationMap*) kvpMap;
-
-/**
- * This will get the color group map.
- * @returns {IonKVPAccessBasedGenerationMap*} representation of the group, or NULL if invalid.
- */
-- (IonKVPAccessBasedGenerationMap*) styleMap;
 
 
 

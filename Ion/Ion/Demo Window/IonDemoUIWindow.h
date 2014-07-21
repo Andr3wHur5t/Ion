@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IonWindow.h"
 
-@interface IonDemoUIWindow : UIWindow
+@interface IonDemoUIWindow : IonWindow
 
 
 /**

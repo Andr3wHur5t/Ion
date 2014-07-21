@@ -9,7 +9,8 @@
 #import "IonAccessBasedGenerationMap.h"
 
 @interface IonAccessBasedGenerationMap () {
-    IonGenerationBlock generationBlock;
+    @protected
+    IonInternialGenerationBlock generationBlock;
 }
 /**
  * This is the raw data that we will generate from.
@@ -21,6 +22,11 @@
  */
 @property (strong, nonatomic) NSMutableDictionary* cachedData;
 
+/**
+ * This is where we store the items we are currently generating.
+ */
+@property (strong, nonatomic) NSMutableDictionary* currentlyGenerating;
+
 
 
 /**
@@ -29,6 +35,8 @@
  * @returns {BOOL} false if we shoulnd remove it, true if we should or Invalid.
  */
 - (BOOL) shouldRemoveRawDataWithKey:(NSString*) key;
+
+
 
 @end
 
@@ -49,6 +57,7 @@
     if ( self ) {
         _localRawData = [[NSMutableDictionary alloc] init];
         _cachedData = [[NSMutableDictionary alloc] init];
+        _currentlyGenerating = [[NSMutableDictionary alloc] init];
     }
     
     return self;
@@ -61,7 +70,7 @@
  * @returns {instancetype}
  */
 - (instancetype) initWithRawData:(NSDictionary*) data
-             andGenerationBlock:(IonGenerationBlock) itemGenerationBlock  {
+             andGenerationBlock:(IonInternialGenerationBlock) itemGenerationBlock  {
     self = [self init];
     if (self) {
         [self setGenerationBlock: itemGenerationBlock];
@@ -96,7 +105,7 @@
  * @param {IonGenerationBlock} the block we will call to generate the real data.
  * @return {void}
  */
-- (void) setGenerationBlock:(IonGenerationBlock) newGenerationBlock {
+- (void) setGenerationBlock:(IonInternialGenerationBlock) newGenerationBlock {
     generationBlock = newGenerationBlock;
 }
 
@@ -109,14 +118,13 @@
 }
 
 #pragma mark Data Management
-
 /**
- * This gets an object with the specified key from the cache,
- * if it dosnt exsist we will generate it from raw data if avalable.
+ * This gets the object for the specified key using the specified Generation callback.
  * @param {id} the key to search for.
+ * @param {generationBlock} the block to call to generate the data from the raw object if NULL.
  * @returns {id} the generated class, or NULL if invalid.
  */
-- (id) objectForKey:(id) key {
+- (id) objectForKey:(id) key usingGenerationBlock: (IonGenerationBlock) specialGenerationBlock {
     id returnedItem;
     if ( !key )
         return NULL;
@@ -124,7 +132,7 @@
     returnedItem = [_cachedData objectForKey: key];
     
     if ( !returnedItem ) {
-        returnedItem = [self generateItemForKey: key];
+        returnedItem = [self generateItemForKey: key usingGenerationBlock: specialGenerationBlock];
         // Cache generated data
         [_cachedData setValue: returnedItem forKey: key];
         
@@ -136,19 +144,33 @@
 }
 
 /**
+ * This gets an object with the specified key from the cache,
+ * if it dosnt exsist we will generate it from raw data if avalable.
+ * @param {id} the key to search for.
+ * @returns {id} the generated class, or NULL if invalid.
+ */
+- (id) objectForKey:(id) key {
+    return [self objectForKey: key usingGenerationBlock: NULL];
+}
+
+
+
+/**
  * This will generate the item for the specified key if there is data to construct it.
  * @returns {id} the class that was generated from the raw data.
  */
-- (id) generateItemForKey:(NSString*) key {
-    id rawItem;
+- (id) generateItemForKey:(NSString*) key usingGenerationBlock:(IonGenerationBlock) specialGenerationBlock {
+    id rawItem, result;
     if ( !key )
         return NULL;
     
+   
     rawItem = [_localRawData objectForKey:key];
-    if ( rawItem  && generationBlock ) {
-        id itm =generationBlock(rawItem);
-        
-        return itm;
+    if ( rawItem  && generationBlock && ![_currentlyGenerating objectForKey: key] ) {
+        [_currentlyGenerating setObject:@1 forKey: key];
+        result = generationBlock( rawItem, specialGenerationBlock );
+        [_currentlyGenerating removeObjectForKey: key];
+        return result;
     }
     
     return NULL;

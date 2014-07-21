@@ -13,7 +13,7 @@
 
 // Limit our search depth incase of evil recusion loops!
 static const unsigned int sMaxColorResolveDepth = 2500;
-unsigned int currentColorResolveDepth;
+unsigned int currentColorResolveDepth = 0;
 
 @implementation UIColor (IonColor)
 
@@ -28,11 +28,10 @@ unsigned int currentColorResolveDepth;
 + (UIColor*) resolveWithValue:(NSString*) value andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes {
     ++currentColorResolveDepth;
     UIColor* result;
-    
-    
     // Check if the value is a string.
     if ( ![value isKindOfClass: [NSString class]] )
         return NULL;
+    
     
     // Check if the string is a hex
     if ( [UIColor stingIsValidHex:value] ) {
@@ -50,7 +49,6 @@ unsigned int currentColorResolveDepth;
             // Go farther down the rabbit hole!
             result = [attributes colorFromMapWithKey: value];
         }
-        
         --currentColorResolveDepth;
         return result;
     }

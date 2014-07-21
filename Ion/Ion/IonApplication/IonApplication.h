@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IonWindow.h"
 #import "IonRapidStartManager.h"
 #import "IonViewController.h"
+
 
 @interface IonApplication : UIResponder <UIApplicationDelegate, IonRapidStartManagerDeligate>
 /**
  * This is the application window.
  */
-@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) IonWindow *window;
 
 #pragma mark controlls
 
