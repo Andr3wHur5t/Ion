@@ -71,6 +71,12 @@
 		37EBAC7B195C9B35008D6BD6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EBAC7A195C9B35008D6BD6 /* AppDelegate.m */; };
 		37EBAC7D195C9B35008D6BD6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EBAC7C195C9B35008D6BD6 /* Images.xcassets */; };
 		37EBAC89195C9B35008D6BD6 /* Ion_Visual_TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EBAC88195C9B35008D6BD6 /* Ion_Visual_TestTests.m */; };
+		37FCF135197CDD42004C14C8 /* UIView+IonViewProperties.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF133197CDD42004C14C8 /* UIView+IonViewProperties.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37FCF136197CDD42004C14C8 /* UIView+IonViewProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FCF134197CDD42004C14C8 /* UIView+IonViewProperties.m */; };
+		37FCF13B197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF139197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37FCF13C197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FCF13A197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.m */; };
+		37FCF141197DB9C3004C14C8 /* IonMethodMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF13F197DB9C3004C14C8 /* IonMethodMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37FCF142197DB9C3004C14C8 /* IonMethodMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FCF140197DB9C3004C14C8 /* IonMethodMap.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,6 +195,12 @@
 		37EBAC82195C9B35008D6BD6 /* Ion Visual TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ion Visual TestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37EBAC87195C9B35008D6BD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37EBAC88195C9B35008D6BD6 /* Ion_Visual_TestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ion_Visual_TestTests.m; sourceTree = "<group>"; };
+		37FCF133197CDD42004C14C8 /* UIView+IonViewProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+IonViewProperties.h"; path = "IonView/UIView+IonViewProperties.h"; sourceTree = "<group>"; };
+		37FCF134197CDD42004C14C8 /* UIView+IonViewProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+IonViewProperties.m"; path = "IonView/UIView+IonViewProperties.m"; sourceTree = "<group>"; };
+		37FCF139197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IonStyle+IonStdStyleApplyMethods.h"; path = "Ion Theme System/IonStyle+IonStdStyleApplyMethods.h"; sourceTree = "<group>"; };
+		37FCF13A197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IonStyle+IonStdStyleApplyMethods.m"; path = "Ion Theme System/IonStyle+IonStdStyleApplyMethods.m"; sourceTree = "<group>"; };
+		37FCF13F197DB9C3004C14C8 /* IonMethodMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonMethodMap.h; path = "Data Structures/IonMethodMap.h"; sourceTree = "<group>"; };
+		37FCF140197DB9C3004C14C8 /* IonMethodMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonMethodMap.m; path = "Data Structures/IonMethodMap.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +277,7 @@
 		372DD234197277FC00CC0A58 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				37FCF137197CDD50004C14C8 /* View Properties */,
 				372DD24C19731ED000CC0A58 /* Background Utilis */,
 				372DD2361972781800CC0A58 /* Animations */,
 				372DD2351972781000CC0A58 /* Frame Utils */,
@@ -415,6 +428,7 @@
 		376DA8AB1976FADD008D692E /* Style Object */ = {
 			isa = PBXGroup;
 			children = (
+				37FCF138197DB1E5004C14C8 /* Std Method Extension */,
 				376DA8AC1976FB37008D692E /* IonStyle.h */,
 				376DA8AD1976FB37008D692E /* IonStyle.m */,
 			);
@@ -424,9 +438,8 @@
 		376DA8B419774A90008D692E /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
-				376DA8DD1979D518008D692E /* KVP ABG map */,
-				376DA8DC1979D3CB008D692E /* Balanced ABG Map */,
-				376DA8DB1979D3BB008D692E /* ABG Map */,
+				37FCF13E197DB9A6004C14C8 /* Method Map */,
+				37FCF13D197DB987004C14C8 /* Access Based Generation Map */,
 			);
 			name = "Data Structures";
 			sourceTree = "<group>";
@@ -663,6 +676,43 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		37FCF137197CDD50004C14C8 /* View Properties */ = {
+			isa = PBXGroup;
+			children = (
+				37FCF133197CDD42004C14C8 /* UIView+IonViewProperties.h */,
+				37FCF134197CDD42004C14C8 /* UIView+IonViewProperties.m */,
+			);
+			name = "View Properties";
+			sourceTree = "<group>";
+		};
+		37FCF138197DB1E5004C14C8 /* Std Method Extension */ = {
+			isa = PBXGroup;
+			children = (
+				37FCF139197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.h */,
+				37FCF13A197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.m */,
+			);
+			name = "Std Method Extension";
+			sourceTree = "<group>";
+		};
+		37FCF13D197DB987004C14C8 /* Access Based Generation Map */ = {
+			isa = PBXGroup;
+			children = (
+				376DA8DD1979D518008D692E /* KVP ABG map */,
+				376DA8DC1979D3CB008D692E /* Balanced ABG Map */,
+				376DA8DB1979D3BB008D692E /* ABG Map */,
+			);
+			name = "Access Based Generation Map";
+			sourceTree = "<group>";
+		};
+		37FCF13E197DB9A6004C14C8 /* Method Map */ = {
+			isa = PBXGroup;
+			children = (
+				37FCF13F197DB9C3004C14C8 /* IonMethodMap.h */,
+				37FCF140197DB9C3004C14C8 /* IonMethodMap.m */,
+			);
+			name = "Method Map";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -693,7 +743,10 @@
 				377C3EBF196F316900EA6599 /* IonRapidStartManager.h in Headers */,
 				376DA8E4197B4597008D692E /* IonAttrubutesStanderdResolution.h in Headers */,
 				376DA8E9197BAD83008D692E /* IonWindow.h in Headers */,
+				37FCF141197DB9C3004C14C8 /* IonMethodMap.h in Headers */,
 				376DA8E01979D5AF008D692E /* IonKVPAccessBasedGenerationMap.h in Headers */,
+				37FCF13B197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.h in Headers */,
+				37FCF135197CDD42004C14C8 /* UIView+IonViewProperties.h in Headers */,
 				377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */,
 				377C3ECC196F52AE00EA6599 /* IonDemoUIWindow.h in Headers */,
 			);
@@ -870,7 +923,9 @@
 				376DA8EA197BAD83008D692E /* IonWindow.m in Sources */,
 				377C3ED1196F58A900EA6599 /* UITouch + IonDemoTouch.m in Sources */,
 				372DD25019731F0200CC0A58 /* UIView+IonBackgroundUtilities.m in Sources */,
+				37FCF136197CDD42004C14C8 /* UIView+IonViewProperties.m in Sources */,
 				372DD266197494E500CC0A58 /* UIColor+IonColor.m in Sources */,
+				37FCF13C197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.m in Sources */,
 				377C3ECD196F52AE00EA6599 /* IonDemoUIWindow.m in Sources */,
 				376DA8AF1976FB37008D692E /* IonStyle.m in Sources */,
 				376DA8CB197919FA008D692E /* IonKeyValuePair.m in Sources */,
@@ -881,6 +936,7 @@
 				372DD22D1972764D00CC0A58 /* IonView.m in Sources */,
 				376DA8C619791299008D692E /* IonThemePointer.m in Sources */,
 				377C3EBE196F316900EA6599 /* IonApplication.m in Sources */,
+				37FCF142197DB9C3004C14C8 /* IonMethodMap.m in Sources */,
 				377C3EC3196F316900EA6599 /* IonRapidStartViewController.m in Sources */,
 				372DD2611973B5E800CC0A58 /* IonGradientConfiguration.m in Sources */,
 				372DD24219727D0C00CC0A58 /* UIView+IonAnimation.m in Sources */,

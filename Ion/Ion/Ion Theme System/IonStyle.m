@@ -7,35 +7,26 @@
 //
 
 #import "IonStyle.h"
-#import "UIView+IonBackgroundUtilities.h"
+#import "IonStyle+IonStdStyleApplyMethods.h"
+
 #import "IonKVPAccessBasedGenerationMap.h"
 #import "IonThemePointer.h"
 
-/** Keys for style
- */
-static NSString* sStyleBackgroundKey = @"background";
+
 
 
 @interface IonStyle ()
-
-/** This is the config that states what we are.
- */
-@property (strong, nonatomic) NSMutableDictionary* config;
-
-/** This are the attrubutes we will resolve with.
- */
-@property (strong, nonatomic) IonKVPAccessBasedGenerationMap* attributes;
 
 @end
 
 @implementation IonStyle
 /**
- * This will resolve a style using a map and an Attrbute Set.
+ * This will resolve a style using a map and an Attribute Set.
  * @param {NSDictionary*} the map to process
- * @param {IonThemeAttributes*} the theme attrubute set to do our searches on if needed.
+ * @param {IonThemeAttributes*} the theme attributes set to do our searches on if needed.
  * @returns {UIColor*} representation, or NULL of invalid
  */
-+ (IonStyle*) resolveWithMap:(NSDictionary*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes {
++ (IonStyle*) resolveWithMap:(NSDictionary*) map andAttributes:(IonKVPAccessBasedGenerationMap*) attributes {
     if ( !attributes || !map)
         return NULL;
     
@@ -45,6 +36,22 @@ static NSString* sStyleBackgroundKey = @"background";
     [result setObjectConfig: map];
     
     return result;
+}
+
+#pragma mark Constructors
+
+/**
+ * This is the default constructor
+ * @returns {instancetpe}
+ */
+- (instancetype) init {
+    self = [super init];
+    if ( self ) {
+        _proprietyMethodMap = [[IonMethodMap alloc] initWithTarget: self];
+        [self addIonStdStyleApplyProprieties];
+    }
+    
+    return self;
 }
 
 #pragma mark External Interface
@@ -62,7 +69,7 @@ static NSString* sStyleBackgroundKey = @"background";
 }
 /**
  * This sets the attributes that we should resolve with.
- * @param {IonThemeAttributes*} the attrubute we should resolve with.
+ * @param {IonThemeAttributes*} the attributes we should resolve with.
  * @returns {void}
  */
 - (void) setResolutionAttributes:(IonKVPAccessBasedGenerationMap*) attributes {
@@ -74,83 +81,51 @@ static NSString* sStyleBackgroundKey = @"background";
 
 
 /**
- * This applys the current style to the inputted view.
- * @param {UIVIew*} the view to apply the style to.
+ * This applies the current style to the inputted view.
+ * @param {UIView*} the view to apply the style to.
  * @returns {void}
  */
 - (void) applyToView:(UIView*) view {
+    NSArray* keys;
     if ( !_attributes || !_config)
         return;
-    // Call all seting to view here
     
-    [self setBackgroundOnView: view];
+    keys =  _config.allKeys;
     
-    // Call the deligate and dasiy chanined deligates.
+    // Call all setting to view here
+    //[self setBackgroundOnView: view];
+    
+    // Set each
+    [UIView animateWithDuration:1.5 animations:^{
+        for ( NSString* key in keys )
+            [_proprietyMethodMap invokeMethodOnTargetWithKey: key withObject: view];
+    }];
+    
 }
 
-/**
- * This sets the background of the view if it has a valid effect pointer.
- * @param {UIView*} the view to set the background of.
- * @returns {void}
- */
-- (void) setBackgroundOnView:(UIView*) view{
-    id pointedObject;
-    NSDictionary* pointer;
-    if ( !_attributes || !_config)
-        return;
-
-    // Get the pointer
-    pointer = (NSDictionary*)[_config objectForKey:sStyleBackgroundKey];
-    if ( !pointer )
-        return;
-    
-    // Get the object
-    pointedObject = [IonThemePointer resolvePointer: pointer withAttributes: _attributes];
-    if ( !pointedObject )
-        return;
-    
-    // Set for type of object
-    if ( [pointedObject isKindOfClass:[UIColor class]] ) {
-          view.backgroundColor = (UIColor*)pointedObject;
-        return;
-    
-    } else if ( [pointedObject isKindOfClass:[IonGradientConfiguration class]] ) {
-        if ( [pointedObject isKindOfClass:[IonLinearGradientConfiguration class]] )
-            [view setBackgroundToLinearGradient: (IonLinearGradientConfiguration*)pointedObject];
-        return;
-        
-    } else if ( [pointedObject isKindOfClass:[UIImage class]] ) {
-        [view setBackgroundImage: (UIImage *)pointedObject];
-        return;
-    }
-}
 
 /**
- * This retrives the root attrbute object.
- */
-
-/**
- * This overrides the current styles proproties with the inputed style.
+ * This overrides the current styles proprieties with the inputed style.
  * @param {IonStyle*} the style to override the current style
- * @returns {IonStyle*} the net style of the overide
+ * @returns {IonStyle*} the net style of the override
  */
-- (IonStyle*) overideStyleWithStyle:(IonStyle*) overideingStyle {
+- (IonStyle*) overrideStyleWithStyle:(IonStyle*) overridingStyle {
     id newObject;
     NSArray* keys;
     IonStyle* result;
-    if ( !overideingStyle )
+    if ( !overridingStyle )
         return self;
     
     // Construct Object
-    result = [IonStyle resolveWithMap: _config andAttrubutes: _attributes];
+    result = [IonStyle resolveWithMap: _config andAttributes: _attributes];
     
     // Get Keys
-    keys = [overideingStyle.config allKeys];
+    keys = [overridingStyle.config allKeys];
     
    
-    //overide proproties with the overideing styles proproties.
+    //override proprieties with the overriding styles proprieties.
     for ( id key in keys ) {
-        newObject = [overideingStyle.config objectForKey:key];
+        newObject = [overridingStyle.config objectForKey:key];
         if ( !newObject )
             break;
         
@@ -167,7 +142,5 @@ static NSString* sStyleBackgroundKey = @"background";
 - (NSString*) description {
     return [_config description];
 }
-
-#pragma mark Base View Interface
 
 @end

@@ -246,7 +246,7 @@
             "fontColor":{ "type": "color", "name": "BLACK" }
         },
         "cls_simpleStyle": {
-            "background": { "type": "gradient", "name": "Ion" },
+            "background": { "type": "color", "name": "BLACK" },
             "fontColor":{ "type": "color", "name": "BLACK" }
         },
         "id_simpleStyle": {
@@ -254,7 +254,8 @@
         },
         "cls_secondaryStyle": {
             "background": { "type": "gradient", "name": "Spottr" },
-            "fontColor":{ "type": "color", "name": "BLACK" }
+            "fontColor":{ "type": "color", "name": "BLACK" },
+            "cornerRadius": 50
         }
     }
 

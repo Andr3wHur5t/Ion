@@ -172,7 +172,7 @@
     if ( !map || !_attributes )
         return NULL;
     
-    return [IonStyle resolveWithMap: map andAttrubutes: _attributes];
+    return [IonStyle resolveWithMap: map andAttributes: _attributes];
 }
 
 /**

@@ -223,7 +223,18 @@
     // Should be subclassed
 }
 
+/**
+ * This is a customization point where we add our theme proproties to the Ion style manifest.
+ * *Should be subclassed, needs to call super*
+ * @returns {void}
+ */
+- (void) addMethodClassPairsToStyleManifest {
+    // Add to manifest there
+}
 
+/**
+ * 
+ */
 #pragma mark start up utilities
 
 /**

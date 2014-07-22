@@ -237,7 +237,8 @@
     "styles": {
         "default": {
             "background": { "type": "gradient", "name": "Ion" },
-            "fontColor":{ "type": "color", "name": "BLACK" }
+            "fontColor":{ "type": "color", "name": "BLACK" },
+            "shadowColor": { "type": "color", "name": "BLACK" }
         },
         "body": {
             "background": { "type": "color", "name": "WHITE" },
@@ -256,7 +257,17 @@
         },
         "cls_secondaryStyle": {
             "background": { "type": "gradient", "name": "Ion" },
-            "fontColor":{ "type": "color", "name": "BLACK" }
+            "fontColor":{ "type": "color", "name": "BLACK" },
+            "cornerRadius": 0,
+            "shadow": {
+                "color":"BLACK",
+                "radius":10,
+                "offset":{"x":20,"y":20}
+            },
+            "border":{
+                "color":"#1CA59B",
+                "width":10
+            }
         }
     }
 

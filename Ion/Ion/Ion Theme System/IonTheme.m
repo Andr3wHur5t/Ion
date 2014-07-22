@@ -98,7 +98,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
     elementStyle = [self styleForElementName: view.themeElementName];
     
     if ( elementStyle ) {
-        idAndClassStyle = [elementStyle overideStyleWithStyle: idAndClassStyle ];
+        idAndClassStyle = [elementStyle overrideStyleWithStyle: idAndClassStyle ];
     }
     
     if ( ![idAndClassStyle isKindOfClass:[IonStyle class]] )
@@ -200,7 +200,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
     IonStyle* result = [self currentDefaultStyle];
 
     if ( classStyle && idStyle ) {
-        result = [classStyle overideStyleWithStyle: idStyle];
+        result = [classStyle overrideStyleWithStyle: idStyle];
     } else if ( idStyle ) {
         result = idStyle;
     } else if ( classStyle ) {

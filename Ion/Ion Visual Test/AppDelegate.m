@@ -50,10 +50,13 @@
     imgView.frame = (CGRect) {CGPointZero,s};
     
     
-    [imgView.layer setShadowColor:[UIColor blackColor].CGColor];
-    [imgView.layer setShadowOpacity:0.5];
-    [imgView.layer setShadowRadius:3.0];
-    [imgView.layer setShadowOffset:CGSizeMake(0.0, 2.0)];
+    /**
+    [imgView setCornerRadius: 50.0];
+    [imgView setDropShadowWithColor:[[UIColor blackColor] colorWithAlphaComponent:0.7]
+                             radius:5
+                  andOffsetPosition:CGSizeMake(0, 2)];
+    [imgView setBorderColor:[UIColor purpleColor] andWidth:5];
+    **/
     
     
     // Theme Testing
@@ -75,6 +78,8 @@
      */
     [self runThemeTests];
    
+    // Test transisions between themes
+    [self testTransision: NULL];
     
     if (finished)
         finished(vc);
@@ -182,6 +187,21 @@
      NSLog(@"\nBullk Color Search Test: (key:\"%@\", end value:\"%@\")\nAvarage Time %.4f ms, Failures %i out of %i invocations\n\n",targetColorKey, [expectedColor toHex], (acumulatedTime / count) * 1000, failures, count );
 }
 
+/**
+ * This is the transision Test
+ */
+- (void) testTransision:(IonTheme*) theme {
+    if ( !theme ) {
+        IonTheme* newtheme = [[IonTheme alloc] initWithFileName:@"TestStyle"];
+        if ( !newtheme )
+            return;
+        // Execute after delay to show diffrence
+        [self performSelector:@selector(testTransision:) withObject:newtheme afterDelay:1.5];
+        return;
+    }
+    
+    self.window.systemTheme = theme;
+}
 
 /**
  * This is the rapid splash view that will be used when the application has already been opened in the system once before.

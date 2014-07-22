@@ -77,7 +77,7 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
     return objc_getAssociatedObject(self, sThemeClassKey);
 }
 
-#pragma mark Externial Interface
+#pragma mark External Interface
 /**
  * This is the setter for theme was set by user
  * @returns {void}
@@ -96,7 +96,7 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
 
 
 /**
- * This sets the theme of the view, this should be called externialy.
+ * This sets the theme of the view, this should be called externally.
  * @praram {NSObject} the theme object to set.
  * @returns {void}
  */
@@ -120,14 +120,14 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
 #pragma mark Debug
 
 /**
- * This will return the object theme settings formated as a combined string.
+ * This will return the object theme settings formatted as a combined string.
  * @returns {NSString*}
  */
 - (NSString*) description {
     return [NSString stringWithFormat:@"Theme-Config:{Class:%@,ID:%@}", self.themeClass, self.themeID];
 }
 
-#pragma mark Internial
+#pragma mark Internal
 
 /**
   * This sets the theme of the view if the theme hasn't been set by the user
@@ -138,13 +138,13 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
     if ( !self.themeWasSetByUser ) {
         [self setIonTheme:themeObject];
         
-        // Cancel out the latch flip so we remain in the correnct state
+        // Cancel out the latch flip so we remain in the correct state
         self.themeWasSetByUser = NO;
     }
 }
 
 /**
- * This sets theme to the childeren views.
+ * This sets theme to the children views.
  * @praram {NSObject} the theme object to set
  * @returns {void}
  */
