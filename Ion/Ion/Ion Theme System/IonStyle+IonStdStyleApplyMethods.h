@@ -16,11 +16,12 @@ static NSString* sStyleSTDBackgroundKey = @"background";
 static NSString* sStyleSTDCornerRadiusKey = @"cornerRadius";
 static NSString* sStyleSTDBorderKey = @"border";
 static NSString* sStyleSTDShadowKey = @"shadow";
+static NSString* sStyleSTDParametersKey = @"parameters";
 
 /** Keys For Border
  */
 static NSString* sBorderColorKey = @"color";
-static NSString* sBorderWidthKey = @"color";
+static NSString* sBorderWidthKey = @"width";
 
 /** Keys For shadow
  */
@@ -37,7 +38,7 @@ static NSString* sShadowRadiusKey = @"radius";
 @interface IonStyle (IonStdStyleApplyMethods)
 
 /**
- * This adds the STD proprieties to the method map.
+ * Adds the STD proprieties to the method map.
  * @returns {void}
  */
 - (void) addIonStdStyleApplyProprieties;
@@ -45,10 +46,44 @@ static NSString* sShadowRadiusKey = @"radius";
 #pragma mark Processors
 
 /**
- * This sets the background of the view if it has a valid effect pointer.
- * @param {UIView*} the view to set the background of.
- * @returns {id} null when finished.
+ * Sets the background of the view if provided a valid effect pointer.
+ * @param {UIView*} the view to set to.
+ * @param {NSDitionary*} the effect pointer.
+ * @returns {id} null when finshed.
  */
-- (id) setBackgroundOnView:(UIView*) view;
+- (id) setBackgroundOnView:(UIView*) view withPointer:(NSDictionary*) pointer;
+
+
+/**
+ * Sets the corner radius on the inputted view to the inputted value.
+ * @param {UIView*} the view to set to.
+ * @param {NSNumber*} the radius to use.
+ * @returns {id} null when finshed.
+ */
+- (id) setCornerRadius:(UIView*) view withRaidus:(NSNumber*) radius;
+
+/**
+ * Sets the border color, and width on the inputted view to match the inputted config.
+ * @param {UIView*} the view to set to.
+ * @param {NSDictionary*} the configuration object to use.
+ * @returns {id} null when finshed.
+ */
+- (id) setBorder:(UIView*) view withConfig:(NSDictionary*) config;
+
+/**
+ * Sets the shadow on the inputted view to match the inputted config.
+ * @param {UIView*} the view to set to.
+ * @param {NSDictionary*} the configuration object to use.
+ * @returns {id} null when finshed.
+ */
+- (id) setShadow:(UIView*) view withConfig:(NSDictionary*) config;
+
+/**
+ * Sets the inputted view theme parameters object to match the inptted parameters object.
+ * @param {UIView*} the view to set the parameters object of.
+ * @param {NSDictionary*} the parameters object to set.
+ * @retruns {id} null when finshed.
+ */
+- (id) setView:(UIView*) view parameterObjectToMatch:(NSDictionary*) newParameters;
 
 @end

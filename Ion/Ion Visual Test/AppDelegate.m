@@ -49,16 +49,6 @@
     s.height = 20 + 70;
     imgView.frame = (CGRect) {CGPointZero,s};
     
-    
-    /**
-    [imgView setCornerRadius: 50.0];
-    [imgView setDropShadowWithColor:[[UIColor blackColor] colorWithAlphaComponent:0.7]
-                             radius:5
-                  andOffsetPosition:CGSizeMake(0, 2)];
-    [imgView setBorderColor:[UIColor purpleColor] andWidth:5];
-    **/
-    
-    
     // Theme Testing
     imgView.themeClass = @"secondaryStyle";
     //imgView.themeID = @"simpleStyle";
@@ -79,7 +69,7 @@
     [self runThemeTests];
    
     // Test transisions between themes
-    [self testTransision: NULL];
+    //[self testTransision: NULL];
     
     if (finished)
         finished(vc);

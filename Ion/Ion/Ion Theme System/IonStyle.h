@@ -11,22 +11,29 @@
 
 
 @class IonKVPAccessBasedGenerationMap;
+@class IonTheme;
 
 @interface IonStyle : NSObject
 #pragma mark proprieties
 
+
 /**
- * This is our method map of what to invoke for each style configuration propriety.
+ * This is our method map of what to invoke for each style configuration propriety; TODO: move to a singleton!
  */
 @property (strong, nonatomic) IonMethodMap* proprietyMethodMap;
 
-/** This is the config that states what we are.
+/** Our configuration parameters
  */
-@property (strong, nonatomic) NSMutableDictionary* config;
+@property (strong, nonatomic) NSMutableDictionary* configuration;
 
-/** This are the attributes we will resolve with.
+/** The theme attributes we will resolve with.
  */
-@property (strong, nonatomic) IonKVPAccessBasedGenerationMap* attributes;
+@property (strong, nonatomic) IonTheme* theme;
+
+/** Our parent theme, if any...
+ * Note: this only applies to themes which are derived from themes.
+ */
+@property (strong, nonatomic) IonStyle* parentStyle;
 
 #pragma mark External Interface
 
@@ -44,6 +51,14 @@
  * @returns {void}
  */
 - (void) applyToView:(UIView*)view;
+
+
+/**
+ * returnes a copy of our configuration overwriten by the inputted configuration.
+ * @param {NSDictionary*} the configuration which will overwrite.
+ * @returns {NSDictionary*} an overwriten ditcionary, or NULL if invalid.
+ */
+- (NSDictionary*) configurationOverwritenBy:(NSDictionary*) configuration;
 
 /**
  * This overrides the current styles proprieties  with the inputed style.

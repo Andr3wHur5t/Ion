@@ -7,8 +7,29 @@
 //
 
 #import "UIView+IonViewProperties.h"
+#import <objc/runtime.h>
+
+static const char* sThemeParameterkey = "IonThemeParameters";
 
 @implementation UIView (IonViewProperties)
+
+/**
+ * Gets the current theme parameter object.
+ * @returns {NSMutableDictionary*} the current parameters object.
+ */
+- (NSMutableDictionary*) themeParameters {
+    NSMutableDictionary*  currentThemeParameter = objc_getAssociatedObject(self, sThemeParameterkey);
+    if ( !currentThemeParameter ) {
+        currentThemeParameter = [[NSMutableDictionary alloc] init];
+        objc_setAssociatedObject(self, sThemeParameterkey, currentThemeParameter,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    
+    return currentThemeParameter;
+}
+
+
+
+#pragma mark Macro Controls
 
 /**
  * This sets the corner radius of the view note this can cause "off screen render calls"
@@ -63,10 +84,19 @@
 
 
 #pragma mark Parameter Object
+
 /**
- * Parameters
- * Animation Time, Innear Margin, outter margin, Font Color, Font Size,
+ * Sets the views theme parameters object.
+ * @param {NSDictionary*} the new parameters to set.
+ * @returns {void}
  */
+- (void) setThemeParameters:(NSDictionary*) newParameters {
+    if ( !newParameters )
+        return;
+    
+    NSMutableDictionary* currentThemeParameter = [[NSMutableDictionary alloc] initWithDictionary: newParameters];
+    objc_setAssociatedObject(self, sThemeParameterkey, currentThemeParameter,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
 
 

@@ -11,8 +11,15 @@
 @interface UIView (IonViewProperties)
 
 /**
+ * This is where we hold our arbitrary parameters.
+ */
+@property (strong, nonatomic, readonly) NSMutableDictionary* themeParameters;
+
+#pragma mark Macro Controls
+
+/**
  * This sets the corner radius of the view note this can cause "off screen render calls"
- * @param {CGFloat} the radius of the view to be masked out
+ * @param {CGFloat} the radius of the view to be masked out.
  * @returns {void}
  */
 - (void) setCornerRadius:(CGFloat) radius;
@@ -35,4 +42,11 @@
  * @returns {void}
  */
 - (void) setBorderColor:(UIColor*) color andWidth:(CGFloat) width;
+/**
+ * Sets the views theme parameters object.
+ * @param {NSDictionary*} the new parameters to set.
+ * @returns {void}
+ */
+- (void) setThemeParameters:(NSDictionary*) newParameters;
+
 @end

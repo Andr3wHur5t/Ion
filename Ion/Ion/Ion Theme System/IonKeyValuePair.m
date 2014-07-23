@@ -199,4 +199,88 @@
     return [[IonThemePointer alloc] initWithMap: map andAttrubutes: attributes];
 }
 
+/**
+ * Gets the 2 Vector Value as a point.
+ * @param {id} the key for x1
+ * @param {id} the key for y1
+ * @returns {CGPoint} representation, or CGPointUndefined if incorect type.
+ */
+- (CGPoint) toVec2UsingX1:(id) x1key andY1:(id) y1Key {
+    NSDictionary* config;
+    NSNumber *x1, *y1;
+    if ( !_value || !x1key || !y1Key )
+        return CGPointUndefined;
+    
+    config = [self toDictionary];
+    if ( !config )
+        return CGPointUndefined;
+    
+    x1 = [config objectForKey: x1key];
+    y1 = [config objectForKey: y1Key];
+    if ( !x1 || ![x1 isKindOfClass: [NSNumber class]] ||
+         !y1 || ![y1 isKindOfClass: [NSNumber class]])
+        return CGPointUndefined;
+    
+    return (CGPoint){ [x1 floatValue], [y1 floatValue] };
+}
+
+/**
+ * Gets the 2 Vector Value as a point.
+ * @param {id} the key for x1
+ * @param {id} the key for y1
+ * @param {id} the key for x2
+ * @param {id} the key for y2
+ * @returns {CGRect} representation, or CGRectUndefined if incorect type.
+ */
+- (CGRect) toVec4UsingX1:(id) x1key y1:(id) y1Key x2:(id) x2Key andY2:(id) y2Key {
+    NSDictionary* config;
+    NSNumber *x1, *y1, *x2, *y2;
+    if ( !_value || !x1key || !y1Key )
+        return CGRectUndefined;
+    
+    config = [self toDictionary];
+    if ( !config )
+        return CGRectUndefined;
+    
+    x1 = [config objectForKey: x1key];
+    y1 = [config objectForKey: y1Key];
+    x2 = [config objectForKey: x2Key];
+    y2 = [config objectForKey: y2Key];
+    if ( !x1 || ![x1 isKindOfClass: [NSNumber class]] ||
+         !y1 || ![y1 isKindOfClass: [NSNumber class]] ||
+         !y2 || ![y2 isKindOfClass: [NSNumber class]] ||
+         !x2 || ![x2 isKindOfClass: [NSNumber class]])
+        return CGRectUndefined;
+    
+    return (CGRect){ [x1 floatValue], [y1 floatValue], [x2 floatValue], [y2 floatValue] };
+}
+
+/**
+ * Gets the CGPoint of the value.
+ * @returns {CGPoint} representation, or CGPointUndefined if incorect type.
+ */
+- (CGPoint) toPoint {
+    return [self toVec2UsingX1: @"x" andY1: @"y"];
+}
+
+/**
+ * Gets the CGSize of the value.
+ * @returns {CGPoint} representation, or CGSizeUndefined if incorect type.
+ */
+- (CGSize) toSize {
+    CGPoint refrence = [self toVec2UsingX1: @"width" andY1: @"height"];
+    if ( CGPointEqualToPoint( refrence, CGPointUndefined ) )
+        return CGSizeUndefined;
+    
+    return (CGSize){ refrence.x, refrence.y };
+}
+
+/**
+ * Gets the CGRect of the value.
+ * @returns {CGPoint} representation, or CGPointUndefined if incorect type.
+ */
+- (CGRect) toRect {
+    return [self toVec4UsingX1: @"x" y1: @"y" x2: @"width" andY2: @"height"];
+}
+
 @end

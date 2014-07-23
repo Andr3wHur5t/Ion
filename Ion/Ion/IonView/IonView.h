@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIView+IonTheme.h"
 #import "UIView+IonAnimation.h"
+#import "UIView+IonViewProperties.h"
 
 @interface IonView : UIView
 /**

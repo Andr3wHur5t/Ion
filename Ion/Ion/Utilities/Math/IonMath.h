@@ -24,6 +24,15 @@
  __x > __high ? __high : (__x < __low ? __low : __x);\
  })
 
+
+/**
+ * Constants
+ */
+static const CGPoint CGPointUndefined = (CGPoint){ INFINITY, INFINITY };
+static const CGSize CGSizeUndefined = (CGSize){ INFINITY, INFINITY };
+static const CGRect CGRectUndefined = (CGRect){ INFINITY, INFINITY, INFINITY, INFINITY };
+
+
 @interface IonMath : NSObject
 
 /**

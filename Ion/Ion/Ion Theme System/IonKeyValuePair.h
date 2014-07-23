@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "IonKVPAccessBasedGenerationMap.h"
+#import "IonMath.h"
 
 @class IonStyle;
 @class IonGradientConfiguration;
@@ -109,5 +110,44 @@
  */
 - (IonThemePointer*) toThemePointerWithAttrbutes:(IonKVPAccessBasedGenerationMap*) attributes;
 
+
+/**
+ * ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== =====
+ *                              Vector Conversions
+ * ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== =====
+ */
+
+/**
+ * Gets the 2 Vector Value as a point.
+ * @param {id} the key for x1
+ * @param {id} the key for y1
+ * @returns {CGPoint} representation, or CGPointUndefined if incorrect type.
+ */
+- (CGPoint) toVec2UsingX1:(id) x1key andY1:(id) y1Key;
+/**
+ * Gets the 2 Vector Value as a point.
+ * @param {id} the key for x1
+ * @param {id} the key for y1
+ * @param {id} the key for x2
+ * @param {id} the key for y2
+ * @returns {CGRect} representation, or CGRectUndefined if incorrect type.
+ */
+- (CGRect) toVec4UsingX1:(id) x1key y1:(id) y1Key x2:(id) x2Key andY2:(id) y2Key;
+/**
+ * Gets the CGPoint of the value.
+ * @returns {CGPoint} representation, or CGPointUndefined if incorect type.
+ */
+- (CGPoint) toPoint;
+/**
+ * Gets the CGSize of the value.
+ * @returns {CGPoint} representation, or CGSizeUndefined if incorect type.
+ */
+- (CGSize) toSize;
+
+/**
+ * Gets the CGRect of the value.
+ * @returns {CGPoint} representation, or CGPointUndefined if incorect type.
+ */
+- (CGRect) toRect;
 
 @end

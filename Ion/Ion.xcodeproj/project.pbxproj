@@ -77,6 +77,9 @@
 		37FCF13C197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FCF13A197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.m */; };
 		37FCF141197DB9C3004C14C8 /* IonMethodMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF13F197DB9C3004C14C8 /* IonMethodMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37FCF142197DB9C3004C14C8 /* IonMethodMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FCF140197DB9C3004C14C8 /* IonMethodMap.m */; };
+		37FCF14B197F1C61004C14C8 /* NSDictionary+IonTypeExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF149197F1C61004C14C8 /* NSDictionary+IonTypeExtension.h */; };
+		37FCF14C197F1C61004C14C8 /* NSDictionary+IonTypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FCF14A197F1C61004C14C8 /* NSDictionary+IonTypeExtension.m */; };
+		37FCF14E197F2A49004C14C8 /* IonKVPvectorConversionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FCF14D197F2A49004C14C8 /* IonKVPvectorConversionTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,6 +204,9 @@
 		37FCF13A197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IonStyle+IonStdStyleApplyMethods.m"; path = "Ion Theme System/IonStyle+IonStdStyleApplyMethods.m"; sourceTree = "<group>"; };
 		37FCF13F197DB9C3004C14C8 /* IonMethodMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonMethodMap.h; path = "Data Structures/IonMethodMap.h"; sourceTree = "<group>"; };
 		37FCF140197DB9C3004C14C8 /* IonMethodMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonMethodMap.m; path = "Data Structures/IonMethodMap.m"; sourceTree = "<group>"; };
+		37FCF149197F1C61004C14C8 /* NSDictionary+IonTypeExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+IonTypeExtension.h"; path = "Data Structures/NSDictionary+IonTypeExtension.h"; sourceTree = "<group>"; };
+		37FCF14A197F1C61004C14C8 /* NSDictionary+IonTypeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+IonTypeExtension.m"; path = "Data Structures/NSDictionary+IonTypeExtension.m"; sourceTree = "<group>"; };
+		37FCF14D197F2A49004C14C8 /* IonKVPvectorConversionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonKVPvectorConversionTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +444,7 @@
 		376DA8B419774A90008D692E /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
+				37FCF148197F1C15004C14C8 /* Dictionary Type Extension */,
 				37FCF13E197DB9A6004C14C8 /* Method Map */,
 				37FCF13D197DB987004C14C8 /* Access Based Generation Map */,
 			);
@@ -623,6 +630,7 @@
 				37EBAC63195C9A93008D6BD6 /* Supporting Files */,
 				376DA8A619766DFA008D692E /* IonColorTests.m */,
 				376DA8A819767429008D692E /* IonRenderTests.m */,
+				37FCF14D197F2A49004C14C8 /* IonKVPvectorConversionTests.m */,
 			);
 			path = IonTests;
 			sourceTree = "<group>";
@@ -713,6 +721,15 @@
 			name = "Method Map";
 			sourceTree = "<group>";
 		};
+		37FCF148197F1C15004C14C8 /* Dictionary Type Extension */ = {
+			isa = PBXGroup;
+			children = (
+				37FCF149197F1C61004C14C8 /* NSDictionary+IonTypeExtension.h */,
+				37FCF14A197F1C61004C14C8 /* NSDictionary+IonTypeExtension.m */,
+			);
+			name = "Dictionary Type Extension";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -748,6 +765,7 @@
 				37FCF13B197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.h in Headers */,
 				37FCF135197CDD42004C14C8 /* UIView+IonViewProperties.h in Headers */,
 				377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */,
+				37FCF14B197F1C61004C14C8 /* NSDictionary+IonTypeExtension.h in Headers */,
 				377C3ECC196F52AE00EA6599 /* IonDemoUIWindow.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -926,6 +944,7 @@
 				37FCF136197CDD42004C14C8 /* UIView+IonViewProperties.m in Sources */,
 				372DD266197494E500CC0A58 /* UIColor+IonColor.m in Sources */,
 				37FCF13C197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.m in Sources */,
+				37FCF14C197F1C61004C14C8 /* NSDictionary+IonTypeExtension.m in Sources */,
 				377C3ECD196F52AE00EA6599 /* IonDemoUIWindow.m in Sources */,
 				376DA8AF1976FB37008D692E /* IonStyle.m in Sources */,
 				376DA8CB197919FA008D692E /* IonKeyValuePair.m in Sources */,
@@ -952,6 +971,7 @@
 				376DA8A719766DFA008D692E /* IonColorTests.m in Sources */,
 				376DA8A919767429008D692E /* IonRenderTests.m in Sources */,
 				37EBAC66195C9A93008D6BD6 /* IonTests.m in Sources */,
+				37FCF14E197F2A49004C14C8 /* IonKVPvectorConversionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

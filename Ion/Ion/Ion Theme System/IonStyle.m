@@ -10,12 +10,15 @@
 #import "IonStyle+IonStdStyleApplyMethods.h"
 
 #import "IonKVPAccessBasedGenerationMap.h"
+#import "IonTheme.h"
 #import "IonThemePointer.h"
 
 
 
 
-@interface IonStyle ()
+@interface IonStyle () {
+    BOOL styleHasBeenCompiled;
+}
 
 @end
 
@@ -26,7 +29,7 @@
  * @param {IonThemeAttributes*} the theme attributes set to do our searches on if needed.
  * @returns {UIColor*} representation, or NULL of invalid
  */
-+ (IonStyle*) resolveWithMap:(NSDictionary*) map andAttributes:(IonKVPAccessBasedGenerationMap*) attributes {
++ (IonStyle*) resolveWithMap:(NSDictionary*) map andAttributes:(IonTheme*) attributes {
     if ( !attributes || !map)
         return NULL;
     
@@ -49,6 +52,7 @@
     if ( self ) {
         _proprietyMethodMap = [[IonMethodMap alloc] initWithTarget: self];
         [self addIonStdStyleApplyProprieties];
+        styleHasBeenCompiled = false;
     }
     
     return self;
@@ -64,21 +68,18 @@
 - (void) setObjectConfig:(NSDictionary*) configMap {
     if ( !configMap )
         return;
-    
-    _config = [[NSMutableDictionary alloc] initWithDictionary:configMap];
+    _configuration = [[NSMutableDictionary alloc] initWithDictionary:configMap];
 }
 /**
  * This sets the attributes that we should resolve with.
  * @param {IonThemeAttributes*} the attributes we should resolve with.
  * @returns {void}
  */
-- (void) setResolutionAttributes:(IonKVPAccessBasedGenerationMap*) attributes {
+- (void) setResolutionAttributes:(IonTheme*) attributes {
     if ( !attributes )
         return;
-    
-    _attributes = attributes;
+    _theme = attributes;
 }
-
 
 /**
  * This applies the current style to the inputted view.
@@ -87,20 +88,72 @@
  */
 - (void) applyToView:(UIView*) view {
     NSArray* keys;
-    if ( !_attributes || !_config)
+    if ( !view )
         return;
     
-    keys =  _config.allKeys;
+    [self compileConfiguration];
+    if ( !_theme || !_configuration )
+        return;
     
-    // Call all setting to view here
-    //[self setBackgroundOnView: view];
+    keys =  _configuration.allKeys;
+    if ( !keys )
+        return;
+    
+    
+    // To Animate we will have to to a ca transaction for the CALayer, UI Animation Block for others.
     
     // Set each
-    [UIView animateWithDuration:1.5 animations:^{
-        for ( NSString* key in keys )
-            [_proprietyMethodMap invokeMethodOnTargetWithKey: key withObject: view];
-    }];
+    for ( NSString* key in keys )
+        if ( key )
+            [_proprietyMethodMap invokeMethodOnTargetWithKey: key
+                                                  withObject: view
+                                                   andObject: [_configuration objectForKey: key]];
     
+    
+}
+
+/**
+ * Compiles the style recursively using the composited styles of all ancestors
+ */
+- (void) compileConfiguration {
+    if ( !_parentStyle || styleHasBeenCompiled )
+        return;
+    if ( !_configuration )
+        _configuration = [[NSMutableDictionary alloc] init];
+    
+    [_parentStyle compileConfiguration];
+    _configuration = [[NSMutableDictionary alloc] initWithDictionary:
+                      [_parentStyle configurationOverwritenBy: _configuration]];
+}
+
+/**
+ * returnes a copy of our configuration overwriten by the inputted configuration.
+ * @param {NSDictionary*} the configuration which will overwrite.
+ * @returns {NSDictionary*} an overwriten ditcionary, or NULL if invalid.
+ */
+- (NSDictionary*) configurationOverwritenBy:(NSDictionary*) configuration {
+    NSMutableDictionary* resultConfiguration;
+    id newObject;
+    NSArray* keys;
+    if ( !configuration || !_configuration )
+        return NULL;
+    
+    // Set up
+    resultConfiguration = [[NSMutableDictionary alloc] initWithDictionary: _configuration];
+    keys = [configuration allKeys];
+    if ( !keys || !resultConfiguration )
+        return NULL;
+    
+    //override proprieties with the overriding configuration proprieties.
+    for ( id key in keys ) {
+        newObject = [configuration objectForKey:key];
+        if ( !newObject )
+            break;
+        
+        [resultConfiguration setValue: newObject forKey: key];
+    }
+    
+    return resultConfiguration;
 }
 
 
@@ -110,27 +163,16 @@
  * @returns {IonStyle*} the net style of the override
  */
 - (IonStyle*) overrideStyleWithStyle:(IonStyle*) overridingStyle {
-    id newObject;
-    NSArray* keys;
     IonStyle* result;
     if ( !overridingStyle )
         return self;
     
     // Construct Object
-    result = [IonStyle resolveWithMap: _config andAttributes: _attributes];
+    result = [IonStyle resolveWithMap: _configuration andAttributes: _theme];
     
-    // Get Keys
-    keys = [overridingStyle.config allKeys];
-    
-   
-    //override proprieties with the overriding styles proprieties.
-    for ( id key in keys ) {
-        newObject = [overridingStyle.config objectForKey:key];
-        if ( !newObject )
-            break;
-        
-        [result.config setValue: newObject forKey: key];
-    }
+    // Overide
+    result.configuration = [[NSMutableDictionary alloc] initWithDictionary:
+                       [self configurationOverwritenBy: overridingStyle.configuration]];
     
     return result;
 }
@@ -140,7 +182,7 @@
  * @return {NSString*}
  */
 - (NSString*) description {
-    return [_config description];
+    return [_configuration description];
 }
 
 @end
