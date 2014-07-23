@@ -101,7 +101,7 @@
             gradientStart, gradientEnd;
     // Test
     colorStart = [[NSDate date] timeIntervalSince1970];
-    resultColor = [self.window.systemTheme resolveColorAttrubute:@"yellow"];
+    resultColor = [self.window.systemTheme resolveColorAttribute:@"yellow"];
     colorEnd = [[NSDate date] timeIntervalSince1970];
     
     kvpStart = [[NSDate date] timeIntervalSince1970];
@@ -147,7 +147,7 @@
     UIColor *expectedColor, *resultColor;
     
     // Setup
-    expectedColor = [self.window.systemTheme resolveColorAttrubute: targetColorKey];
+    expectedColor = [self.window.systemTheme resolveColorAttribute: targetColorKey];
     acumulatedTime = 0.0f;
     failures = 0;
     count = 5000;
@@ -157,7 +157,7 @@
     for (NSInteger i = 0; i <= count; ++i) {
         startTime =  [[NSDate date] timeIntervalSince1970];
         
-        resultColor = [self.window.systemTheme resolveColorAttrubute: targetColorKey];
+        resultColor = [self.window.systemTheme resolveColorAttribute: targetColorKey];
         
         endTime =  [[NSDate date] timeIntervalSince1970];
         

@@ -115,7 +115,7 @@ static NSString* sPointerTargetTypeStyle = @"style";
     
     // Resolve Color
     if ( [_targetType isEqualToString: sPointerTargetTypeColor] )
-        result = [_attributes resolveColorAttrubute: _targetName];
+        result = [_attributes resolveColorAttribute: _targetName];
     
     // Resolve Gradient
     else if ( [_targetType isEqualToString: sPointerTargetTypeGradient] ) {

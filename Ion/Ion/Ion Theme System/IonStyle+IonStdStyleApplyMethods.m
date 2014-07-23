@@ -159,7 +159,7 @@
 - (id) setView:(UIView*) view parameterObjectToMatch:(NSDictionary*) newParameters {
     if ( !view || !newParameters )
         return NULL;
-    [view setThemeParameters: newParameters];
+    [view setThemeParameters: [[NSMutableDictionary alloc] initWithDictionary: newParameters]];
     
     return NULL;
 }

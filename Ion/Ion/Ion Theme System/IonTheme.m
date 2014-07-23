@@ -9,7 +9,6 @@
 #import "IonTheme.h"
 #import "IonStyle.h"
 #import "UIView+IonTheme.h"
-#import "IonAttrubutesStanderdResolution.h"
 
 /**
  * Search Keys

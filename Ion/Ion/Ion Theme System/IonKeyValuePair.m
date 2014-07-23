@@ -136,7 +136,7 @@
     if ( !colorString || !_attributes )
         return NULL;
         
-    return [UIColor resolveWithValue: colorString andAttrubutes: _attributes];
+    return [_attributes resolveColorAttribute: colorString];
 }
 
 /**

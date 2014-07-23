@@ -8,6 +8,7 @@
 
 #import "IonGradientConfiguration.h"
 #import "IonMath.h"
+#import "IonAttrubutesStanderdResolution.h"
 #import "UIColor+IonColor.h"
 
 
@@ -84,7 +85,7 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
     if ( !colorString || !weight )
         return NULL;
     
-    color = [UIColor resolveWithValue: colorString andAttrubutes: attributes];
+    color = [attributes resolveColorAttribute: colorString];
     if ( !color )
         return NULL;
     

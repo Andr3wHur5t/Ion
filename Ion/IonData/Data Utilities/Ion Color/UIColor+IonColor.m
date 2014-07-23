@@ -11,50 +11,9 @@
 #import "IonAttrubutesStanderdResolution.h"
 #import "IonKeyValuePair.h"
 
-// Limit our search depth incase of evil recusion loops!
-static const unsigned int sMaxColorResolveDepth = 2500;
-unsigned int currentColorResolveDepth = 0;
+
 
 @implementation UIColor (IonColor)
-
-#pragma mark Constructors
-
-/**
- * This will resolve a color using a map and an Attrbute Set.
- * @param {NSString*} the string to process
- * @param {IonThemeAttributes*} the theme attrubute set to do our searches on if needed.
- * @returns {UIColor*} representation, or NULL of invalid
- */
-+ (UIColor*) resolveWithValue:(NSString*) value andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes {
-    ++currentColorResolveDepth;
-    UIColor* result;
-    // Check if the value is a string.
-    if ( ![value isKindOfClass: [NSString class]] )
-        return NULL;
-    
-    
-    // Check if the string is a hex
-    if ( [UIColor stingIsValidHex:value] ) {
-        // We found it!
-        result = [UIColor colorFromHexString: value];
-        
-        --currentColorResolveDepth;
-        return result;
-    } else {
-        if ( false ) // do we contain illegal char?
-            return NULL;
-        
-        // Attempt to continue resolution
-        if ( currentColorResolveDepth <= sMaxColorResolveDepth ) {
-            // Go farther down the rabbit hole!
-            result = [attributes colorFromMapWithKey: value];
-        }
-        --currentColorResolveDepth;
-        return result;
-    }
-    
-    return NULL;
-}
 
 #pragma mark Utilities
 

@@ -90,12 +90,10 @@ static const char* sThemeParameterkey = "IonThemeParameters";
  * @param {NSDictionary*} the new parameters to set.
  * @returns {void}
  */
-- (void) setThemeParameters:(NSDictionary*) newParameters {
+- (void) setThemeParameters:(NSMutableDictionary*) newParameters {
     if ( !newParameters )
         return;
-    
-    NSMutableDictionary* currentThemeParameter = [[NSMutableDictionary alloc] initWithDictionary: newParameters];
-    objc_setAssociatedObject(self, sThemeParameterkey, currentThemeParameter,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, sThemeParameterkey, newParameters,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 

@@ -13,7 +13,7 @@
 /**
  * This is where we hold our arbitrary parameters.
  */
-@property (strong, nonatomic, readonly) NSMutableDictionary* themeParameters;
+@property (strong, nonatomic) NSMutableDictionary* themeParameters;
 
 #pragma mark Macro Controls
 
@@ -42,11 +42,5 @@
  * @returns {void}
  */
 - (void) setBorderColor:(UIColor*) color andWidth:(CGFloat) width;
-/**
- * Sets the views theme parameters object.
- * @param {NSDictionary*} the new parameters to set.
- * @returns {void}
- */
-- (void) setThemeParameters:(NSDictionary*) newParameters;
 
 @end

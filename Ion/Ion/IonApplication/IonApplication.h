@@ -18,7 +18,7 @@
  */
 @property (strong, nonatomic) IonWindow *window;
 
-#pragma mark controlls
+#pragma mark controls
 
 
 #pragma mark customization points
@@ -30,7 +30,7 @@
 - (bool) isInDemoMode;
 
 /**
- * This gets the default manifest of optionial managers.
+ * This gets the default manifest of optional managers.
  * *subclassed for customization*
  * @returns {applicationManifest} with the default configuration.
  */
@@ -61,13 +61,13 @@
 
 /**
  * This configures the first real view controller.
- * @peram {block} this is the block we will call when we are finished with prepareing the view.
+ * @peram {block} this is the block we will call when we are finished with preparing the view.
  * @returns {void}
  */
 - (void) configureFirstRealViewController:( void(^)( IonViewController* frvc ) ) finished;
 
 /**
- * This is a customiziation point for executing arbitrary code after the construction of the first real view controller.
+ * This is a customization point for executing arbitrary code after the construction of the first real view controller.
  * @returns {void}
  */
 - (void) setupApplication;

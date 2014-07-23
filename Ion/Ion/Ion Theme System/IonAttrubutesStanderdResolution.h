@@ -32,14 +32,14 @@ typedef id(^IonAttributeGenerationBlock)(IonKVPAccessBasedGenerationMap* context
 
 @interface IonKVPAccessBasedGenerationMap (StanderdResolution)
 
-@property (strong, nonatomic) IonKVPAccessBasedGenerationMap* parrentMap;
+@property (strong, nonatomic) IonKVPAccessBasedGenerationMap* parentMap;
 
 /**
  * This resolves a color key into a UIColor.
  * @param {NSString*} the key for us to look for.
  * @returns {IonGradientConfiguration*} representation of the input, or NULL if invalid.
  */
-- (UIColor*) resolveColorAttrubute:(NSString*) value;
+- (UIColor*) resolveColorAttribute:(NSString*) value;
 
 /**
  * This resolves a gradient key into a gradientConfiguration

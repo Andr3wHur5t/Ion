@@ -15,27 +15,31 @@
 #import "IonImageRef.h"
 #import <objc/runtime.h>
 
-static char* sParrentMap = "IonParrentMap";
+static char* sParentMap = "IonParentMap";
+
+// Limit our search depth incase of evil recusion loops!
+static const unsigned int sMaxColorResolveDepth = 2500;
+unsigned int currentColorResolveDepth = 0;
 
 @implementation IonKVPAccessBasedGenerationMap (StanderdResolution)
 
-#pragma mark parrent Map
+#pragma mark parent Map
 
 /**
- * This is the setter for the parrentMap
+ * This is the setter for the parentMap
  * @returns {void}
  */
-- (void) setParrentMap:(IonKVPAccessBasedGenerationMap *)parrentMap {
-    objc_setAssociatedObject(self, sParrentMap, parrentMap,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void) setParentMap:(IonKVPAccessBasedGenerationMap *)parentMap {
+    objc_setAssociatedObject(self, sParentMap, parentMap,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     // Note Need to re-compile the style here
 }
 
 /**
- * This is the getter for the parrentMap
+ * This is the getter for the parentMap
  * @returns {IonKVPAccessBasedGenerationMap*}
  */
-- (IonKVPAccessBasedGenerationMap *)parrentMap {
-    return objc_getAssociatedObject(self, sParrentMap);
+- (IonKVPAccessBasedGenerationMap *)parentMap {
+    return objc_getAssociatedObject(self, sParentMap);
 }
 
 
@@ -43,17 +47,39 @@ static char* sParrentMap = "IonParrentMap";
 
 
 /**
- * This will resolve a color with the inputed key;
+ * Resolves a color with the inputed key;
  * @param {NSString} the key to search for.
  * @return {UIColor} representation of the input, or NULL if invalid.
  */
-- (UIColor*) resolveColorAttrubute:(NSString*) value {
-    id result = [UIColor resolveWithValue: value andAttrubutes: self];
-    
-    if ( ![result isKindOfClass:[UIColor class]] )
+- (UIColor*) resolveColorAttribute:(NSString*) value {
+    ++currentColorResolveDepth;
+    UIColor* result;
+    // Check if the value is a string.
+    if ( ![value isKindOfClass: [NSString class]] )
         return NULL;
     
-    return result;
+    
+    // Check if the string is a hex
+    if ( [UIColor stingIsValidHex:value] ) {
+        // We found it!
+        result = [UIColor colorFromHexString: value];
+        
+        --currentColorResolveDepth;
+        return result;
+    } else {
+        if ( false ) // do we contain illegal char?
+            return NULL;
+        
+        // Attempt to continue resolution
+        if ( currentColorResolveDepth <= sMaxColorResolveDepth ) {
+            // Go farther down the rabbit hole!
+            result = [self colorFromMapWithKey: value];
+        }
+        --currentColorResolveDepth;
+        return result;
+    }
+    
+    return NULL;
 }
 
 /**
@@ -127,7 +153,7 @@ static char* sParrentMap = "IonParrentMap";
     __weak typeof(self) weakSelf = self;
     id result = [self objectForKey: key usingGenerationBlock:^id(id data) {
         IonKVPAccessBasedGenerationMap* map = [((IonKeyValuePair*)data) toKVPAccessBasedGenerationMap];
-        map.parrentMap = weakSelf;
+        map.parentMap = weakSelf;
         
         return map;
     }];
@@ -162,7 +188,7 @@ static char* sParrentMap = "IonParrentMap";
     
     // continue resolution if we need to.
     if ( [result isKindOfClass:[NSString class]] )
-        result = [self resolveColorAttrubute: result];
+        result = [self resolveColorAttribute: result];
 
     // Check Output
     if ( ![result isKindOfClass:[UIColor class]] )
@@ -180,18 +206,18 @@ static char* sParrentMap = "IonParrentMap";
 - (IonKVPAccessBasedGenerationMap*) rootMap {
     IonKVPAccessBasedGenerationMap* root = self;
     
-    while ( root.parrentMap )
-        root = root.parrentMap;
+    while ( root.parentMap )
+        root = root.parentMap;
     
     return root;
 }
 
 
 /**
- * This will resolve an attribute in the root map with a group key, a value key, and a optionial generation block.
+ * This will resolve an attribute in the root map with a group key, a value key, and a optional generation block.
  * @param {NSString*} the group key to look for.
  * @param {NSString*} the value key to look for.
- * @praam {IonGenerationBlock} the optionial generation block to use.
+ * @praam {IonGenerationBlock} the optional generation block to use.
  * @returns {id} the resulting object, or NULL if invalid
  */
 - (id) resolveAttributeInRootWithGroup:(NSString*) groupKey
@@ -213,11 +239,11 @@ static char* sParrentMap = "IonParrentMap";
 }
 
 /**
- * This will resolve an attribute in the root map with a group key, a value key, and a optionial generation block.
+ * This will resolve an attribute in the root map with a group key, a value key, and a optional generation block.
  * @param {IonKVPAccessBasedGenerationMap*} the context to provide the generation block.
  * @param {IonKVPAccessBasedGenerationMap*} the group key to look in.
  * @param {NSString*} the value key to look for.
- * @praam {IonGenerationBlock} the optionial generation block to use.
+ * @praam {IonGenerationBlock} the optional generation block to use.
  * @returns {id} the resulting object, or NULL if invalid
  */
 - (id) resolveAttributeInContext:(IonKVPAccessBasedGenerationMap*) context

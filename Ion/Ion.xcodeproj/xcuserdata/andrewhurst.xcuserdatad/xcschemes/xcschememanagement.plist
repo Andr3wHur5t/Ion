@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>IonData.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -33,6 +38,16 @@
 			<true/>
 		</dict>
 		<key>37EBAC81195C9B35008D6BD6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>37FCF153197F830C004C14C8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>37FCF15D197F830C004C14C8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

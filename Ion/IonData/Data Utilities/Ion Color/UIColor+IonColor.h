@@ -19,16 +19,6 @@
 
 @interface UIColor (IonColor)
 
-#pragma mark Constructors
-
-/**
- * This will resolve a color using a string and an Attrbute Set.
- * @param {NSString*} the string to process
- * @param {IonThemeAttributes*} the theme attrubute set to do our searches on if needed.
- * @returns {UIColor*} representation, or NULL of invalid
- */
-+ (UIColor*) resolveWithValue:(NSString*) value andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes;
-
 #pragma mark Utilities
 
 /**
@@ -49,8 +39,8 @@
  * This converts a NSString at an inputted range in to an RGBA Element.
  * Hex String to UIColor From Stack overflow: http://stackoverflow.com/a/7180905/3624745
  * @param {NSInteger} the starting index
- * @param {NSInteger} the ammount of char to use to get the element
- * @retuns {CGFloat} the net color componet
+ * @param {NSInteger} the amount of char to use to get the element
+ * @retuns {CGFloat} the net color component
  */
 + (CGFloat) colorComponentFrom:(NSString*) string start:(NSUInteger) start length:(NSUInteger) length;
 
