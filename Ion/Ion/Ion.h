@@ -36,6 +36,3 @@ FOUNDATION_EXPORT const unsigned char IonVersionString[];
 #import "IonStyle+IonStdStyleApplyMethods.h"
 #import "IonTheme.h"
 #import "IonAttrubutesStanderdResolution.h"
-
-/** Data Structures */
-#import "IonKeyValuePair.h"

@@ -9,10 +9,15 @@
 #import "IonAttrubutesStanderdResolution.h"
 
 #import "IonKeyValuePair.h"
-#import "UIColor+IonColor.h"
+#import "IonKVP+IonTheme.h"
+
+#import <IonData/UIColor+IonColor.h>
+#import <IonData/IonGradientConfiguration.h>
+#import <IonData/IonImageRef.h>
+
+
 #import "IonStyle.h"
-#import "IonGradientConfiguration.h"
-#import "IonImageRef.h"
+
 #import <objc/runtime.h>
 
 static char* sParentMap = "IonParentMap";

@@ -128,18 +128,6 @@
 }
 
 /**
- * This gets the UIColor form of our value.
- * @returns {UIColor*} representation, or NULL if incorect type.
- */
-- (UIColor*) toColor {
-    NSString* colorString = [self toString];
-    if ( !colorString || !_attributes )
-        return NULL;
-        
-    return [_attributes resolveColorAttribute: colorString];
-}
-
-/**
  * This gets the IonImageRef form of our value.
  * @returns {IonImageRef*} representation, or NULL if incorect type.
  */
@@ -163,41 +151,6 @@
     return [IonGradientConfiguration resolveWithMap: map andAttrubutes: _attributes];
 }
 
-/**
- * This gets the IonStyle form of our value.
- * @returns {IonStyle*} representation, or NULL if incorect type.
- */
-- (IonStyle*) toStyle {
-    NSDictionary* map = [self toDictionary];
-    if ( !map || !_attributes )
-        return NULL;
-    
-    return [IonStyle resolveWithMap: map andAttributes: _attributes];
-}
-
-/**
- * This gets the IonThemePointer form of our value.
- * @returns {IonThemePointer*} representation, or NULL if incorect type.
- */
-- (IonThemePointer*) toThemePointer {
-    NSDictionary* map = [self toDictionary];
-    if ( !map || !_attributes )
-        return NULL;
-    
-    return [[IonThemePointer alloc] initWithMap: map andAttrubutes: _attributes];
-}
-
-/**
- * This gets the IonThemePointer form of our value.
- * @returns {IonThemePointer*} representation, or NULL if incorect type.
- */
-- (IonThemePointer*) toThemePointerWithAttrbutes:(IonKVPAccessBasedGenerationMap*) attributes {
-    NSDictionary* map = [self toDictionary];
-    if ( !map || !_attributes )
-        return NULL;
-    
-    return [[IonThemePointer alloc] initWithMap: map andAttrubutes: attributes];
-}
 
 /**
  * Gets the 2 Vector Value as a point.

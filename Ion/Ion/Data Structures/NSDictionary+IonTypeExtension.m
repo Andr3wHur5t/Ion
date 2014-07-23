@@ -8,6 +8,7 @@
 
 #import "NSDictionary+IonTypeExtension.h"
 #import "IonKeyValuePair.h"
+#import "IonKVP+IonTheme.h"
 
 
 @implementation NSDictionary (IonTypeExtension)
