@@ -8,7 +8,7 @@
 
 #import "IonStyle.h"
 #import "IonStyle+IonStdStyleApplyMethods.h"
-
+#import "NSDictionary+IonTypeExtension.h"
 #import "IonKVPAccessBasedGenerationMap.h"
 #import "IonTheme.h"
 #import "IonThemePointer.h"
@@ -123,7 +123,7 @@
     
     [_parentStyle compileConfiguration];
     _configuration = [[NSMutableDictionary alloc] initWithDictionary:
-                      [_parentStyle configurationOverwritenBy: _configuration]];
+                      [_parentStyle.configuration overriddenByDictionaryRecursively: _configuration]];
 }
 
 /**

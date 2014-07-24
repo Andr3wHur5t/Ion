@@ -32,6 +32,9 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 #include "IonKVPAccessBasedGenerationMap.h"
 #include "IonAccessBasedGenerationMap.h"
 
+// Extensions
+#import "NSDictionary+IonTypeExtension.h"
+
 #pragma mark IO Managers
 // File IO Manager
 

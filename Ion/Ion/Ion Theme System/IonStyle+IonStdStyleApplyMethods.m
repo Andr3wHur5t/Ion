@@ -9,6 +9,7 @@
 #import "IonStyle+IonStdStyleApplyMethods.h"
 #import "UIView+IonViewProperties.h"
 #import "NSDictionary+IonTypeExtension.h"
+#import "NSDictionary+IonThemeResolution.h"
 #import "IonAttrubutesStanderdResolution.h"
 
 @implementation IonStyle (IonStdStyleApplyMethods)
