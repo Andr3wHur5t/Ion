@@ -30,7 +30,7 @@
  * @returns {void}
  */
 - (void)  updateRootViewControllersThemeToCurrent {
-    [self.rootViewController.view setIonInternialSystemTheme: self.systemTheme];
+    [self.rootViewController.view setIonInternalSystemTheme: self.systemTheme];
 }
 
 /**

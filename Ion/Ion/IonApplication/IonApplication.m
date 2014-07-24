@@ -67,7 +67,7 @@
 - (void) postDisplaySetup;
 
 /**
- * This constructs all optionial managers based off of the application manifest
+ * This constructs all optional managers based off of the application manifest
  * @returns {void}
  */
 - (void) constructOptionialManagersFromManagerManifest;
@@ -78,7 +78,7 @@
 /**
  * ============================================================
  * ============================================================
- *                    Implmentation Start
+ *                    Implementation Start
  * ============================================================
  * ============================================================
  */
@@ -122,7 +122,7 @@
 - (IonWindow*) applicationWindow {
     IonWindow* returnedWindow;
     
-    // Select the correct window acording to the mode.
+    // Select the correct window according to the mode.
     if ( ![self isInDemoMode] )
         returnedWindow = [[IonWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     else
@@ -162,7 +162,7 @@
 }
 
 /**
- * This gets the default manifest of optionial managers.
+ * This gets the default manifest of optional managers.
  * *subclassed for customization*
  * @returns {applicationManifest} with the default configuration.
  */
@@ -201,7 +201,7 @@
 
 /**
  * This configures the first real view controller.
- * @peram { ^(UIViewController* frvc) } frvc is the "First Real View Conroller" to be presented.
+ * @peram { ^(UIViewController* frvc) } frvc is the "First Real View Controller" to be presented.
  * @returns {void}
  */
 - (void) configureFirstRealViewController:( void(^)( IonViewController* frvc ) ) finished {
@@ -210,13 +210,13 @@
     
     vc.view.backgroundColor = [UIColor grayColor];
     
-    // Call compleation if it exsists.
+    // Call completion if it exists.
     if ( finished )
         finished(vc);
 }
 
 /**
- * This is a customiziation point for executing arbitrary code after the construction of the first real view controller.
+ * This is a customization point for executing arbitrary code after the construction of the first real view controller.
  * @returns {void}
  */
 - (void) setupApplication {
@@ -224,7 +224,7 @@
 }
 
 /**
- * This is a customization point where we add our theme proproties to the Ion style manifest.
+ * This is a customization point where we add our theme properties to the Ion style manifest.
  * *Should be subclassed, needs to call super*
  * @returns {void}
  */
@@ -263,14 +263,14 @@
 }
 
 /**
- * This constructs all optionial managers based off of the application manifest
+ * This constructs all optional managers based off of the application manifest
  * @returns {void}
  */
 - (void) constructOptionialManagersFromManagerManifest {
     // Check manifest and construct managers
 }
 
-#pragma mark Application Deligate
+#pragma mark Application Delegate
 /**
  * This is called when we should present our first view controller.
  */
@@ -314,7 +314,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark memory management utils
+#pragma mark Memory Management Utils
 
 /**
  * This is where we kill the rapid splash manager, it served us well but now it is useless.
@@ -324,8 +324,9 @@
     rapidStartManager = NULL;
 }
 
+
 /**
- * This will display startup metrics affter launch.
+ * Displays startup metrics after launch.
  * @returns {void}
  */
 - (void) logMetrics {
@@ -338,7 +339,7 @@
     logString = [logString stringByAppendingString:@"Time Generating Rapid Splash: %.2f ms\n"];
     logString = [logString stringByAppendingString:@"Time To First Rapid Splash Render: %.2f ms \n\n"];
     
-    // get relitive times
+    // get relative times
     initToLaunch = applicationLaunchBeginTime - startupInitTime;
     launching = applicationLaunchEndTime - applicationLaunchBeginTime;
     toFirstSplash = applicationLaunchEndTime -  startupInitTime;
@@ -352,6 +353,20 @@
     
     // Send to the console
     NSLog(@"%@",logString);
+}
+
+#pragma mark Singletons
+
+/**
+ * A singleton reference to the application.
+ * @returns {IonApplication*} reference to the application, or NULL if
+ *    your not using a IonApplication as your delegate.
+ */
++ (IonApplication*) sharedApplication {
+    id retrievedApplication = [UIApplication sharedApplication].delegate;
+    if ( !retrievedApplication || ! [retrievedApplication isKindOfClass: [IonApplication class]])
+        return NULL;
+    return retrievedApplication;
 }
 
 @end

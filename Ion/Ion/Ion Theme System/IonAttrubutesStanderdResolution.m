@@ -57,8 +57,13 @@ unsigned int currentColorResolveDepth = 0;
  * @return {UIColor} representation of the input, or NULL if invalid.
  */
 - (UIColor*) resolveColorAttribute:(NSString*) value {
-    ++currentColorResolveDepth;
     UIColor* result;
+    if ( !value || ![value isKindOfClass: [NSString class]] )
+        return NULL;
+    if ( value.length == 0 )
+        return NULL;
+    
+    ++currentColorResolveDepth;
     // Check if the value is a string.
     if ( ![value isKindOfClass: [NSString class]] )
         return NULL;
@@ -93,7 +98,13 @@ unsigned int currentColorResolveDepth = 0;
  * @returns {IonGradientConfiguration*} representation of the input, or NULL if invalid.
  */
 - (IonGradientConfiguration*) resolveGradientAttribute:(NSString*) value {
-    id result = [self resolveAttributeInRootWithGroup: sGradientsGroupKey value: value andGenerationBlock: ^id(IonKVPAccessBasedGenerationMap *context, IonKeyValuePair *data) {
+    id result;
+    if ( !value || ![value isKindOfClass: [NSString class]] )
+        return NULL;
+    if ( value.length == 0 )
+        return NULL;
+    
+    result = [self resolveAttributeInRootWithGroup: sGradientsGroupKey value: value andGenerationBlock: ^id(IonKVPAccessBasedGenerationMap *context, IonKeyValuePair *data) {
         return [data toGradientConfiguration];
     }];
     
@@ -109,7 +120,13 @@ unsigned int currentColorResolveDepth = 0;
  * @returns {IonStyle*} representation of the input, or NULL if invalid.
  */
 - (IonStyle*) resolveStyleAttribute:(NSString*) value {
-    id result = [self resolveAttributeInRootWithGroup: sStylesGroupKey value:value andGenerationBlock: ^id(IonKVPAccessBasedGenerationMap *context, IonKeyValuePair *data) {
+    id result;
+    if ( !value || ![value isKindOfClass: [NSString class]] )
+        return NULL;
+    if ( value.length == 0 )
+        return NULL;
+    
+    result = [self resolveAttributeInRootWithGroup: sStylesGroupKey value:value andGenerationBlock: ^id(IonKVPAccessBasedGenerationMap *context, IonKeyValuePair *data) {
         id style = [data toStyle];
         return style;
     }];
@@ -126,7 +143,13 @@ unsigned int currentColorResolveDepth = 0;
  * @returns {UIImage*} representation of the input, or NULL if invalid.
  */
 - (IonImageRef*) resolveImageAttribute:(NSString*) value {
-    id result = [self resolveAttributeInRootWithGroup: sImagesGroupKey value:value andGenerationBlock:^id(IonKVPAccessBasedGenerationMap *context, IonKeyValuePair *data) {
+    id result;
+    if ( !value || ![value isKindOfClass: [NSString class]] )
+        return NULL;
+    if ( value.length == 0 )
+        return NULL;
+    
+    result = [self resolveAttributeInRootWithGroup: sImagesGroupKey value:value andGenerationBlock:^id(IonKVPAccessBasedGenerationMap *context, IonKeyValuePair *data) {
         return [data toImageRef];
     }];
     
@@ -142,7 +165,13 @@ unsigned int currentColorResolveDepth = 0;
  * @returns {UIImage*} representation of the input, or NULL if invalid.
  */
 - (IonKeyValuePair*) resolveKVPAttribute:(NSString*) value {
-    id result = [self resolveAttributeInRootWithGroup: sKVPGroupKey value: value andGenerationBlock:NULL];
+    id result;
+    if ( !value || ![value isKindOfClass: [NSString class]] )
+        return NULL;
+    if ( value.length == 0 )
+        return NULL;
+    
+    result = [self resolveAttributeInRootWithGroup: sKVPGroupKey value: value andGenerationBlock:NULL];
     
     if ( ![result isKindOfClass:[IonKeyValuePair class]] )
         return NULL;
@@ -155,8 +184,14 @@ unsigned int currentColorResolveDepth = 0;
  * @returns {IonKVPAccessBasedGenerationMap*} representation of the map, or NULL if invalid.
  */
 - (IonKVPAccessBasedGenerationMap*) resolveMapAttribute:(NSString*) key {
+    id result;
+    if ( !key || ![key isKindOfClass: [NSString class]] )
+        return NULL;
+    if ( key.length == 0 )
+        return NULL;
+    
     __weak typeof(self) weakSelf = self;
-    id result = [self objectForKey: key usingGenerationBlock:^id(id data) {
+    result = [self objectForKey: key usingGenerationBlock:^id(id data) {
         IonKVPAccessBasedGenerationMap* map = [((IonKeyValuePair*)data) toKVPAccessBasedGenerationMap];
         map.parentMap = weakSelf;
         

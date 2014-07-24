@@ -72,6 +72,11 @@
  */
 - (void) setupApplication;
 
-#pragma mark singletons
+/**
+ * A singleton reference to the application.
+ * @returns {IonApplication*} reference to the application, or NULL if
+ *    your not using a IonApplication as your delegate.
+ */
++ (IonApplication*) sharedApplication;
 
 @end

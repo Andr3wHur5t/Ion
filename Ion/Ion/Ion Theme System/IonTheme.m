@@ -93,8 +93,9 @@ static NSString* sIonThemeIdFormat = @"id_%@";
     if ( !view )
         return NULL;
     
-    idAndClassStyle = [self styleForThemeClass: view.themeClass andThemeID: view.themeID];
-    elementStyle = [self styleForElementName: view.themeElementName];
+    idAndClassStyle = [self styleForThemeClass: view.themeConfiguration.themeClass
+                                    andThemeID: view.themeConfiguration.themeID];
+    elementStyle = [self styleForElementName: view.themeConfiguration.themeElement];
     
     if ( elementStyle ) {
         idAndClassStyle = [elementStyle overrideStyleWithStyle: idAndClassStyle ];
@@ -157,7 +158,9 @@ static NSString* sIonThemeIdFormat = @"id_%@";
  */
 - (IonStyle*) styleForClassName:(NSString*) className {
     IonStyle* result;
-    if ( !className )
+    if ( !className || ![className isKindOfClass: [NSString class]] )
+        return NULL;
+    if ( className.length == 0 )
         return NULL;
     
     NSString* fullClassName = [NSString stringWithFormat: sIonThemeClassFormat, className];
@@ -177,8 +180,11 @@ static NSString* sIonThemeIdFormat = @"id_%@";
  */
 - (IonStyle*) styleForIdName:(NSString*) idName {
     IonStyle* result;
-    if ( !idName )
+    if ( !idName || ![idName isKindOfClass: [NSString class]] )
         return NULL;
+    if ( idName.length == 0 )
+        return NULL;
+    
     NSString* fullIdName = [NSString stringWithFormat: sIonThemeIdFormat, idName];
     
     result = [self resolveStyleAttribute: fullIdName];

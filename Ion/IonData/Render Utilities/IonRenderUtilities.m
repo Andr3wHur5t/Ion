@@ -32,6 +32,10 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
                scale: (CGFloat) scale
         thatHasAlpha: (bool) isAlpha
       andReturnBlock: (void(^)( UIImage* image )) returnBlock {
+    if ( scale == 0.0f )
+        scale = 1.0f;
+    if ( CGSizeEqualToSize( contextSize, CGSizeZero ) )
+        contextSize = (CGSize){ 100.0f, 100.0f };
     
     // Check if we have work to do, and that we have a place to return the results of our labor.
     if ( block && returnBlock ) {
@@ -156,32 +160,30 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
  */
 + (CGGradientRef) refrenceGradientFromColorWeights:(NSArray*) colorWeights {
     @autoreleasepool {
+        CGGradientRef result;
+        CGColorSpaceRef space;
+        NSMutableArray* colors;
+        CGFloat* weights;
         if ( !colorWeights )
             return NULL;
     
-        CGGradientRef result;
-        CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-        NSMutableArray* colors = [[NSMutableArray alloc] init];
-        CGFloat* weights = (CGFloat*)malloc( sizeof(float) * [colorWeights count] );
+        
+        space = CGColorSpaceCreateDeviceRGB();
+        colors = [[NSMutableArray alloc] init];
+        weights = (CGFloat*)malloc( sizeof( float ) * [colorWeights count] );
         unsigned int index = 0;
-    
         for( IonColorWeight* colorWeight in colorWeights) {
             [colors addObject: (id)colorWeight.color.CGColor ];
             weights[index] = colorWeight.weight;
-        
             ++index;
         }
-    
         result = CGGradientCreateWithColors(space, (CFArrayRef)colors, weights );
         
-    
         // Clean Up
         CFBridgingRelease( space );
         free( weights );
         colors = NULL;
-        
         return result;
-        
     }
 }
 
@@ -195,10 +197,13 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
 + (void) linearGradientWithContextState:(IonContextState)state
                    gradientColorWeights:(NSArray*)colorWeights
                                   angle:(CGFloat)angle {
-    CGPoint startPoint = [IonMath pointAtEdgeOfFrame:state.contextSize angleOfRay:angle];
-    CGPoint endPoint = [IonMath pointAtEdgeOfFrame:state.contextSize angleOfRay: angle + M_PI];
+    CGPoint startPoint, endPoint;
+    CGGradientRef gradColorRef;
     
-    CGGradientRef gradColorRef = [IonRenderUtilities refrenceGradientFromColorWeights: colorWeights];
+    startPoint = [IonMath pointAtEdgeOfFrame: state.contextSize angleOfRay: angle];
+    endPoint = [IonMath pointAtEdgeOfFrame: state.contextSize angleOfRay: angle + M_PI];
+    
+    gradColorRef = [IonRenderUtilities refrenceGradientFromColorWeights: colorWeights];
     
     CGContextDrawLinearGradient( state.context, gradColorRef, startPoint, endPoint, kCGGradientDrawsAfterEndLocation + kCGGradientDrawsBeforeStartLocation);
     CFBridgingRelease( gradColorRef );
@@ -215,13 +220,15 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
                    resultSize:(CGSize)size
               withReturnBlock:(void(^)( UIImage* image )) returnBlock {
     [IonRenderUtilities renderBlock: ^{
+        IonContextState currentState;
+        
         //Get the current context state
-        IonContextState currentState = currentContextStateWithSize(size);
+        currentState = currentContextStateWithSize( size );
         
         //Render the gradent
-        [IonRenderUtilities linearGradientWithContextState:currentState
-                                      gradientColorWeights:gradientConfig.colorWeights
-                                                     angle:gradientConfig.angle];
+        [IonRenderUtilities linearGradientWithContextState: currentState
+                                      gradientColorWeights: gradientConfig.colorWeights
+                                                     angle: gradientConfig.angle];
     }
                   inContextWithSize: size
                      andReturnBlock: returnBlock];
@@ -237,16 +244,32 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
  * @param {void(^)( UIImage* image )} this is the block we will call with the resulting image once it is generated.
  * @returns {void}
  */
-+ (void) renderImage:(UIImage*)image
-      withSize:(CGSize)size
++ (void) renderImage:(UIImage*) image
+      withSize:(CGSize) size
       andReturnBlock:(void(^)( UIImage* image )) returnBlock {
     [IonRenderUtilities renderBlock: ^{
+        if ( !CGSizeEqualToSize( size, CGSizeZero) )
+            return;
+        
         // Draw the Image
         [image drawInRect: (CGRect){ CGPointZero, size } ];
         
     }
                   inContextWithSize: size
                      andReturnBlock: returnBlock];
+}
+
+#pragma mark Verification
+
+/**
+ * Verifys that the inputted context state is valid.
+ * @param {IonContextState} the context state to verify.
+ * @returns {BOOL} true if valid, false if invaid.
+ */
++ (BOOL) isValidContextState:(IonContextState) state {
+    if ( CGSizeEqualToSize( state.contextSize, CGSizeZero) )
+        return FALSE;
+    return TRUE;
 }
 
 #pragma mark Singletons

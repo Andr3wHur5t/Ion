@@ -10,71 +10,34 @@
 #import <objc/runtime.h>
 #import "IonStyle.h"
 
-static char* sThemeIDkey = "IonThemeID";
-static void* sThemeClassKey = "IonThemeClass";
-static void* sThemeElementNameKey = "IonThemeElementName";
-//static void* sThemeObjectKey;
-//static void* sStyleKey;
+/** Variable Keys
+ */
+static void* sThemeConfigurationKey = "IonThemeConfigurations";
 static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
 
 @implementation UIView (IonTheme)
 
-@dynamic themeClass;
-@dynamic themeID;
 
-
-#pragma mark Theme Element Name
+#pragma mark Theme Configuration Object
 /**
- * This is the setter for the themeElementName
+ * This is the setter for the themeConfiguration
  * @returns {void}
  */
-- (void) setThemeElementName:(NSString *)themeElementName {
-    objc_setAssociatedObject(self, sThemeElementNameKey, themeElementName,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    // Note Need to re-compile the style here
+- (void) setThemeConfiguration:(IonThemeConfiguration *) themeConfiguration{
+    objc_setAssociatedObject(self, sThemeConfigurationKey, themeConfiguration, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 /**
- * This is the getter for the themeElementName
- * @returns {NSString*}
+ * This is the getter for the themeConfiguration
+ * @returns {IonThemeConfiguration*}
  */
-- (NSString*) themeElementName {
-    return objc_getAssociatedObject(self, sThemeElementNameKey);
-}
-
-#pragma mark Theme ID
-/**
- * This is the setter for the ThemeID
- * @returns {void}
- */
-- (void) setThemeID:(NSString*) themeID {
-    objc_setAssociatedObject(self, sThemeIDkey, themeID,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    // Note Need to re-compile the style here
-}
-
-/**
- * This is the getter for the ThemeID
- * @returns {NSString*}
- */
-- (NSString*) themeID{
-    return objc_getAssociatedObject(self, sThemeIDkey);
-}
-
-#pragma mark Theme Class
-/**
- * This is the setter for the
- * @returns {void}
- */
-- (void) setThemeClass:(NSString *)themeClass {
-    objc_setAssociatedObject(self, sThemeClassKey, themeClass,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    // Note Need to re-compile the style here
-}
-
-/**
- * This is the getter for theme class;
- * @returns {NSString*}
- */
-- (NSString*) themeClass {
-    return objc_getAssociatedObject(self, sThemeClassKey);
+- (IonThemeConfiguration*) themeConfiguration {
+    IonThemeConfiguration* config = objc_getAssociatedObject(self, sThemeConfigurationKey);
+    if ( !config ) {
+        config = [[IonThemeConfiguration alloc] init];
+        self.themeConfiguration = config;
+    }
+    return config;
 }
 
 #pragma mark External Interface
@@ -94,13 +57,17 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
     return [(NSNumber*)objc_getAssociatedObject(self, sThemeWasSetByUserKey) boolValue];
 }
 
-
 /**
  * This sets the theme of the view, this should be called externally.
  * @praram {NSObject} the theme object to set.
  * @returns {void}
  */
 - (void) setIonTheme:(IonTheme*) themeObject {
+    IonThemeConfiguration* config;
+    IonStyle* currentStyle;
+    if ( !themeObject )
+        return;
+    
     // Flip the was set by user latch; note if done through system this should cancel out.
     self.themeWasSetByUser = YES;
     if ( !themeObject ) {
@@ -108,10 +75,12 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
         return;
     }
     
-    IonStyle* currentStyle = [themeObject styleForThemeClass: self.themeClass andThemeID: self.themeID];
+    currentStyle = [themeObject styleForThemeClass: self.themeConfiguration.themeClass andThemeID: self.themeConfiguration.themeID];
     if ( [currentStyle isKindOfClass:[IonStyle class]] && currentStyle ) {
         
         [currentStyle applyToView: self];
+        config.currentTheme = themeObject;
+        config.currentStyle = currentStyle;
     }
     
     [self setThemeToChildren: themeObject];
@@ -124,7 +93,9 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
  * @returns {NSString*}
  */
 - (NSString*) description {
-    return [NSString stringWithFormat:@"Theme-Config:{Class:%@,ID:%@}", self.themeClass, self.themeID];
+    return [NSString stringWithFormat:@"Theme-Config:{Class:%@,ID:%@}",
+            self.themeConfiguration.themeClass,
+            self.themeConfiguration.themeID];
 }
 
 #pragma mark Internal
@@ -134,7 +105,7 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
   * @praram {NSObject} the theme object to set
   * @returns {void}
   */
-- (void) setIonInternialSystemTheme:(IonTheme*) themeObject {
+- (void) setIonInternalSystemTheme:(IonTheme*) themeObject {
     if ( !self.themeWasSetByUser ) {
         [self setIonTheme:themeObject];
         
@@ -150,7 +121,7 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
  */
 - (void) setThemeToChildren:(IonTheme*) themeObject {
     for ( UIView* child in self.subviews )
-         [child setIonInternialSystemTheme: themeObject];
+         [child setIonInternalSystemTheme: themeObject];
 }
 
 

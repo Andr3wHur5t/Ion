@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import "IonVisualTestViewController.h"
+
 @interface AppDelegate ()
             
 
@@ -35,38 +37,12 @@
  */
 - (void) configureFirstRealViewController:(void(^)( IonViewController* frvc )) finished {
     // configure the default first root view controller here.
-    IonViewController* vc = [[IonViewController alloc] initWithNibName:NULL bundle:NULL];
-    
-    vc.view.backgroundColor = [UIColor greenColor];
-    
-    
-    
-    // Render Debug
-    UIImageView* imgView = [[UIImageView alloc] init];
-    [vc.view addSubview:imgView];
-    
-    CGSize s = vc.view.frame.size;
-    s.height = 20 + 70;
-    imgView.frame = (CGRect) {CGPointZero,s};
-    
-    // Theme Testing
-    imgView.themeClass = @"secondaryStyle";
-    //imgView.themeID = @"simpleStyle";
-    
-    vc.view.themeElementName = @"body";
-    vc.view.themeClass = @"simpleStyle";
-    //vc.view.themeID = @"background";
-    
-    /**
-     * Note do this in Ion View controller and document for propriatary view controllers.
-     */
-    [vc.view setIonInternialSystemTheme:self.window.systemTheme];
-    
+    IonVisualTestViewController* vc = [[IonVisualTestViewController alloc] init];
     
     /**
      * This is to debug the theme system.
      */
-    [self runThemeTests];
+    //[self runThemeTests];
    
     // Test transisions between themes
     //[self testTransision: NULL];

@@ -25,6 +25,10 @@
 		371D5D6F197FB15000485DC0 /* IonKVP+IonTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D6D197FB15000485DC0 /* IonKVP+IonTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		371D5D70197FB15000485DC0 /* IonKVP+IonTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D6E197FB15000485DC0 /* IonKVP+IonTheme.m */; };
 		371D5D71197FB3B500485DC0 /* IonData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37FCF154197F830C004C14C8 /* IonData.framework */; };
+		371D5D74197FB60900485DC0 /* IonVisualTestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D72197FB60900485DC0 /* IonVisualTestViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		371D5D75197FB60900485DC0 /* IonVisualTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D73197FB60900485DC0 /* IonVisualTestViewController.m */; };
+		371D5D781980784E00485DC0 /* IonThemeConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D761980784E00485DC0 /* IonThemeConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		371D5D791980784E00485DC0 /* IonThemeConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D771980784E00485DC0 /* IonThemeConfiguration.m */; };
 		372DD22C1972764D00CC0A58 /* IonView.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD22A1972764D00CC0A58 /* IonView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		372DD22D1972764D00CC0A58 /* IonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD22B1972764D00CC0A58 /* IonView.m */; };
 		372DD23D19727C9800CC0A58 /* UIView+IonTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD23B19727C9800CC0A58 /* UIView+IonTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -163,6 +167,10 @@
 		371D5D69197FB0FE00485DC0 /* IonKeyValuePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonKeyValuePair.m; sourceTree = "<group>"; };
 		371D5D6D197FB15000485DC0 /* IonKVP+IonTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IonKVP+IonTheme.h"; path = "Ion Theme System/IonKVP+IonTheme.h"; sourceTree = "<group>"; };
 		371D5D6E197FB15000485DC0 /* IonKVP+IonTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IonKVP+IonTheme.m"; path = "Ion Theme System/IonKVP+IonTheme.m"; sourceTree = "<group>"; };
+		371D5D72197FB60900485DC0 /* IonVisualTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonVisualTestViewController.h; path = Controllers/IonVisualTestViewController.h; sourceTree = "<group>"; };
+		371D5D73197FB60900485DC0 /* IonVisualTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonVisualTestViewController.m; path = Controllers/IonVisualTestViewController.m; sourceTree = "<group>"; };
+		371D5D761980784E00485DC0 /* IonThemeConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonThemeConfiguration.h; path = "Ion Theme System/IonThemeConfiguration.h"; sourceTree = "<group>"; };
+		371D5D771980784E00485DC0 /* IonThemeConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonThemeConfiguration.m; path = "Ion Theme System/IonThemeConfiguration.m"; sourceTree = "<group>"; };
 		372DD22A1972764D00CC0A58 /* IonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonView.h; path = IonView/IonView.h; sourceTree = "<group>"; };
 		372DD22B1972764D00CC0A58 /* IonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonView.m; path = IonView/IonView.m; sourceTree = "<group>"; };
 		372DD23B19727C9800CC0A58 /* UIView+IonTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+IonTheme.h"; path = "Ion Theme System/UIView+IonTheme.h"; sourceTree = "<group>"; };
@@ -323,11 +331,11 @@
 			name = UIControls;
 			sourceTree = "<group>";
 		};
-		372DD232197276F300CC0A58 /* Managers */ = {
+		372DD232197276F300CC0A58 /* Container Controlers */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = Managers;
+			name = "Container Controlers";
 			sourceTree = "<group>";
 		};
 		372DD233197277F000CC0A58 /* UIView */ = {
@@ -370,7 +378,7 @@
 		372DD238197278A800CC0A58 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
-				372DD232197276F300CC0A58 /* Managers */,
+				372DD232197276F300CC0A58 /* Container Controlers */,
 				372DD244197281F400CC0A58 /* IonViewController.h */,
 				372DD245197281F400CC0A58 /* IonViewController.m */,
 			);
@@ -380,7 +388,7 @@
 		372DD2391972790A00CC0A58 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				372DD24B197286C300CC0A58 /* Main Controllers */,
+				372DD24B197286C300CC0A58 /* Main Controller */,
 				372DD249197286AC00CC0A58 /* Startup */,
 			);
 			name = Views;
@@ -391,6 +399,8 @@
 			children = (
 				372DD23B19727C9800CC0A58 /* UIView+IonTheme.h */,
 				372DD23C19727C9800CC0A58 /* UIView+IonTheme.m */,
+				371D5D761980784E00485DC0 /* IonThemeConfiguration.h */,
+				371D5D771980784E00485DC0 /* IonThemeConfiguration.m */,
 			);
 			name = "View Extension";
 			sourceTree = "<group>";
@@ -418,11 +428,13 @@
 			name = "Rapid Splash";
 			sourceTree = "<group>";
 		};
-		372DD24B197286C300CC0A58 /* Main Controllers */ = {
+		372DD24B197286C300CC0A58 /* Main Controller */ = {
 			isa = PBXGroup;
 			children = (
+				371D5D72197FB60900485DC0 /* IonVisualTestViewController.h */,
+				371D5D73197FB60900485DC0 /* IonVisualTestViewController.m */,
 			);
-			name = "Main Controllers";
+			name = "Main Controller";
 			sourceTree = "<group>";
 		};
 		372DD24C19731ED000CC0A58 /* Background Utilis */ = {
@@ -890,6 +902,8 @@
 				376DA8E4197B4597008D692E /* IonAttrubutesStanderdResolution.h in Headers */,
 				376DA8E9197BAD83008D692E /* IonWindow.h in Headers */,
 				371D5D6F197FB15000485DC0 /* IonKVP+IonTheme.h in Headers */,
+				371D5D74197FB60900485DC0 /* IonVisualTestViewController.h in Headers */,
+				371D5D781980784E00485DC0 /* IonThemeConfiguration.h in Headers */,
 				37FCF13B197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.h in Headers */,
 				377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */,
 				377C3ECC196F52AE00EA6599 /* IonDemoUIWindow.h in Headers */,
@@ -1141,8 +1155,10 @@
 				377C3EC0196F316900EA6599 /* IonRapidStartManager.m in Sources */,
 				376DA8EA197BAD83008D692E /* IonWindow.m in Sources */,
 				377C3ED1196F58A900EA6599 /* UITouch + IonDemoTouch.m in Sources */,
+				371D5D791980784E00485DC0 /* IonThemeConfiguration.m in Sources */,
 				372DD25019731F0200CC0A58 /* UIView+IonBackgroundUtilities.m in Sources */,
 				37FCF136197CDD42004C14C8 /* UIView+IonViewProperties.m in Sources */,
+				371D5D75197FB60900485DC0 /* IonVisualTestViewController.m in Sources */,
 				37FCF13C197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.m in Sources */,
 				37FCF14C197F1C61004C14C8 /* NSDictionary+IonTypeExtension.m in Sources */,
 				377C3ECD196F52AE00EA6599 /* IonDemoUIWindow.m in Sources */,

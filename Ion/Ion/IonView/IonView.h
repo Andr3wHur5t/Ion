@@ -12,7 +12,12 @@
 #import "UIView+IonViewProperties.h"
 
 @interface IonView : UIView
+
 /**
- * DO NOT PUT ANY MEMBERS HERE, THIS CLASS IS INTENDED TO BE A EASY ACCESS UTILITIY.
+ * Performs the block with each IonView child as a parameter.
+ * @param { void(^)( IonView* child) }
+ * @returns {void}
  */
+- (void) forEachIonViewChildPerformBlock: (void(^)( IonView* child )) actionBlock;
+
 @end

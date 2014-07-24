@@ -125,6 +125,14 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
 + (void) renderImage:(UIImage*)image
             withSize:(CGSize)size
       andReturnBlock:(void(^)( UIImage* image )) returnBlock;
+#pragma mark Verification
+
+/**
+ * Verifys that the inputted context state is valid.
+ * @param {IonContextState} the context state to verify.
+ * @returns {BOOL} true if valid, false if invaid.
+ */
++ (BOOL) isValidContextState:(IonContextState) state;
 
 
 #pragma mark Singletons

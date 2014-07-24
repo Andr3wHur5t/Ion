@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IonThemeConfiguration.h"
 #import "IonTheme.h"
 
 /**
- * These are Standerd element names.
+ * These are Standard element names.
  */
 static const NSString* sIonThemeElementBody =                                   @"body";
 static const NSString* sIonThemeElementTitleBar =                               @"titleBar";
@@ -30,23 +31,12 @@ static const NSString* sIonThemeElementStateUnknown =                           
 
 @interface UIView (IonTheme)
 
-#pragma mark Externial Interface
+#pragma mark External Interface
 
 /**
- * This is the theme object element name, this is used to select the attributes to be used.
+ * Theme configuration Object.
  */
-@property (strong, nonatomic) NSString* themeElementName;
-
-/**
- * This is the theme object class name, this is used to select the attributes to be used.
- */
-@property (strong, nonatomic) NSString* themeClass;
-
-
-/**
- * This is the theme object id name, this is used to select the attributes to be used.
- */
-@property (strong, nonatomic) NSString* themeID;
+@property (strong, nonatomic) IonThemeConfiguration* themeConfiguration;
 
 /**
  * This is the current Ion theme
@@ -55,24 +45,24 @@ static const NSString* sIonThemeElementStateUnknown =                           
 
 
 /**
- * This sets the theme of the view, this should be called externialy.
+ * This sets the theme of the view, this should be called externally.
  * @praram {NSObject} the theme object to set.
  * @returns {void}
  */
 - (void) setIonTheme:(IonTheme*) themeObject;
 
 
-#pragma mark Internial
+#pragma mark Internal
 
 /**
  * This sets the theme of the view if the theme hasn't been set by the user
  * @praram {NSObject} the theme object to set
  * @returns {void}
  */
-- (void) setIonInternialSystemTheme:(IonTheme*) themeObject;
+- (void) setIonInternalSystemTheme:(IonTheme*) themeObject;
 
 /**
- * This sets theme to the childeren views.
+ * This sets theme to the children views.
  * @praram {NSObject} the theme object to set
  * @returns {void}
  */
