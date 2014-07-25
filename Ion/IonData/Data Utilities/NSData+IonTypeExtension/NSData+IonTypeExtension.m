@@ -42,8 +42,7 @@
  * @returns {NSDictionary*} a valid dictionary, or NULL if invalid.
  */
 - (NSDictionary*) toJsonDictionary {
-    id jsonObj;
-    
+    NSDictionary* jsonObj;
     jsonObj = [NSJSONSerialization JSONObjectWithData: self
                                               options: 0
                                                 error: NULL];

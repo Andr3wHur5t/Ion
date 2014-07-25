@@ -40,18 +40,22 @@
     __block IonDirectory* currentDirectory;
     __block IonFile* resultingFile;
     __block NSData* localData;
-    if ( !fileName || ! resultBlock )
+    if ( !resultBlock || !fileName || ![fileName isKindOfClass:[NSString class]] )
         return;
     
     // Construct
     path = [[IonPath alloc] initPath: _path appendedByElements: @[fileName]];
     currentDirectory = self;
     localData = NULL;
+    if ( !path || ![path isKindOfClass: [IonPath class]] )
+        return;
     
     // Get Data
     [IonFileIOmanager preformBlockOnManager: ^( NSFileManager *fileManager ) {
         if ( [fileManager fileExistsAtPath: [path toString]] )
-            localData =[fileManager contentsAtPath: [path toString]];
+            localData = [fileManager contentsAtPath: [path toString]];
+        else
+            return;
         
         resultingFile = [[IonFile alloc] initWithContent: localData
                                                 fileName: fileName
@@ -74,12 +78,15 @@
     __block IonFile* fileToSave;
     __block IonPath* filePath;
     __block NSError* error;
-    if ( !file || !completion )
+    if ( !completion || !file || ![file isKindOfClass:[IonFile class]] )
         return;
     
     //Construct
     fileToSave = [[IonFile alloc] initWithFile: file];
     filePath = [[IonPath alloc] initPath: _path appendedByElements:@[ fileToSave.name ]];
+    if ( !fileToSave || ![fileToSave isKindOfClass: [IonFile class]] ||
+         !filePath || ![filePath isKindOfClass: [IonPath class]] )
+        return;
     
     // Get
     [IonFileIOmanager preformBlockOnManager: ^( NSFileManager *fileManager ) {
@@ -110,11 +117,13 @@
        withResultBlock:(void(^)( IonDirectory* directory )) resultBlock {
     IonPath* path;
     IonDirectory* newDirectory;
-    if ( !resultBlock || !directoryName)
+    if ( !resultBlock || !directoryName || ![directoryName isKindOfClass: [NSString class]] )
         return;
     // Construct
     path = [[IonPath alloc] initPath: _path appendedByElements: @[directoryName]];
     newDirectory = [[IonDirectory alloc] initWithPath: path];
+    if ( !newDirectory || ![newDirectory isKindOfClass: [IonDirectory class]] )
+        return;
     
     // Return
     resultBlock ( newDirectory );
@@ -131,11 +140,13 @@
     __block IonPath* path;
     __block NSError* error;
     __block IonDirectory* newDirectory;
-    if ( !completion || !directoryName )
+    if ( !completion || !directoryName || ![directoryName isKindOfClass: [NSString class]] )
         return;
     
     // Construct
     path = [[IonPath alloc] initPath: _path appendedByElements: @[directoryName]];
+    if ( !path || ![path isKindOfClass: [IonPath class]] )
+        return;
     
     // Get
     [IonFileIOmanager preformBlockOnManager: ^( NSFileManager *fileManager ) {
@@ -163,7 +174,7 @@
 - (void) deleteItem:(NSString*) item withCompletion:(void(^)( NSError* error )) completion {
     __block NSString* path = [[_path toString] stringByAppendingString: item];
     __block NSError* error;
-    if ( !completion )
+    if ( !completion || !path || ![path isKindOfClass: [NSString class]] )
         return;
     
     // Commit
@@ -200,5 +211,15 @@
             resultBlock ( itemList );
         });
     }];
+}
+
+#pragma mark Debug Description
+
+/**
+ * The debug description.
+ * @retuns {NSString*}
+ */
+- (NSString*) description {
+    return [NSString stringWithFormat: @"Derectory Path: %@", [_path toString]];
 }
 @end

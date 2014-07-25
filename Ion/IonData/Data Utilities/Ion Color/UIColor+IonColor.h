@@ -36,6 +36,13 @@
 + (UIColor*) colorFromHexString:(NSString*) hexString;
 
 /**
+ * Cleans a dirty hex string.
+ * @param {NSString*} the dirty hex string.
+ * @returns {NSString*} the clean hex string.
+ */
++ (NSString*) cleanDirtyHex:(NSString*) dirtyHex;
+
+/**
  * This converts a NSString at an inputted range in to an RGBA Element.
  * Hex String to UIColor From Stack overflow: http://stackoverflow.com/a/7180905/3624745
  * @param {NSInteger} the starting index

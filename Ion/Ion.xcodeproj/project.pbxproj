@@ -25,8 +25,6 @@
 		371D5D6F197FB15000485DC0 /* IonKVP+IonTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D6D197FB15000485DC0 /* IonKVP+IonTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		371D5D70197FB15000485DC0 /* IonKVP+IonTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D6E197FB15000485DC0 /* IonKVP+IonTheme.m */; };
 		371D5D71197FB3B500485DC0 /* IonData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37FCF154197F830C004C14C8 /* IonData.framework */; };
-		371D5D74197FB60900485DC0 /* IonVisualTestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D72197FB60900485DC0 /* IonVisualTestViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		371D5D75197FB60900485DC0 /* IonVisualTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D73197FB60900485DC0 /* IonVisualTestViewController.m */; };
 		371D5D781980784E00485DC0 /* IonThemeConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D761980784E00485DC0 /* IonThemeConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		371D5D791980784E00485DC0 /* IonThemeConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D771980784E00485DC0 /* IonThemeConfiguration.m */; };
 		371D5D7C1980C73C00485DC0 /* NSDictionary+IonThemeResolution.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D7A1980C73C00485DC0 /* NSDictionary+IonThemeResolution.h */; };
@@ -43,6 +41,8 @@
 		371D5D961981C58000485DC0 /* IonPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D941981C58000485DC0 /* IonPath.m */; };
 		371D5D9C1981D7D000485DC0 /* NSData+IonTypeExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D981981D53A00485DC0 /* NSData+IonTypeExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		371D5D9D1981D7D600485DC0 /* NSData+IonTypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D991981D53A00485DC0 /* NSData+IonTypeExtension.m */; };
+		371D5D9E19825A7700485DC0 /* IonVisualTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D73197FB60900485DC0 /* IonVisualTestViewController.m */; };
+		371D5DA119825AE600485DC0 /* IonVisualTestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D72197FB60900485DC0 /* IonVisualTestViewController.h */; };
 		372DD22C1972764D00CC0A58 /* IonView.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD22A1972764D00CC0A58 /* IonView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		372DD22D1972764D00CC0A58 /* IonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD22B1972764D00CC0A58 /* IonView.m */; };
 		372DD23D19727C9800CC0A58 /* UIView+IonTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD23B19727C9800CC0A58 /* UIView+IonTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -971,6 +971,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				371D5DA119825AE600485DC0 /* IonVisualTestViewController.h in Headers */,
 				37EBAC59195C9A93008D6BD6 /* Ion.h in Headers */,
 				372DD246197281F400CC0A58 /* IonViewController.h in Headers */,
 				372DD22C1972764D00CC0A58 /* IonView.h in Headers */,
@@ -988,7 +989,6 @@
 				376DA8E4197B4597008D692E /* IonAttrubutesStanderdResolution.h in Headers */,
 				376DA8E9197BAD83008D692E /* IonWindow.h in Headers */,
 				371D5D6F197FB15000485DC0 /* IonKVP+IonTheme.h in Headers */,
-				371D5D74197FB60900485DC0 /* IonVisualTestViewController.h in Headers */,
 				371D5D781980784E00485DC0 /* IonThemeConfiguration.h in Headers */,
 				37FCF13B197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.h in Headers */,
 				377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */,
@@ -1250,7 +1250,6 @@
 				371D5D791980784E00485DC0 /* IonThemeConfiguration.m in Sources */,
 				372DD25019731F0200CC0A58 /* UIView+IonBackgroundUtilities.m in Sources */,
 				37FCF136197CDD42004C14C8 /* UIView+IonViewProperties.m in Sources */,
-				371D5D75197FB60900485DC0 /* IonVisualTestViewController.m in Sources */,
 				37FCF13C197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.m in Sources */,
 				377C3ECD196F52AE00EA6599 /* IonDemoUIWindow.m in Sources */,
 				376DA8AF1976FB37008D692E /* IonStyle.m in Sources */,
@@ -1279,6 +1278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				371D5D9E19825A7700485DC0 /* IonVisualTestViewController.m in Sources */,
 				37EBAC7B195C9B35008D6BD6 /* AppDelegate.m in Sources */,
 				37EBAC78195C9B35008D6BD6 /* main.m in Sources */,
 			);

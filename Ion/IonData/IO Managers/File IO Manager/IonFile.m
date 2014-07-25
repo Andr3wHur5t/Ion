@@ -72,4 +72,14 @@
     return [_content toString];
 }
 
+#pragma mark Debug Description
+
+/**
+ * The debug description.
+ * @retuns {NSString*}
+ */
+- (NSString*) description {
+    return [NSString stringWithFormat: @"File Name: %@ with length: %i", _name, _content.length];
+}
+
 @end

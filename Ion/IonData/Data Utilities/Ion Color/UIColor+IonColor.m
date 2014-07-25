@@ -48,7 +48,7 @@
     CGFloat alpha, red, blue, green;
     NSString *colorString = [[hexString stringByReplacingOccurrencesOfString: @"#"
                                                                   withString: @""] uppercaseString];
-    
+    colorString = [UIColor cleanDirtyHex: colorString];
     switch ( [colorString length] ) {
         case 3: // #RGB
             red   = [self colorComponentFrom: colorString start: 0 length: 1];
@@ -79,6 +79,32 @@
             break;
     }
     return [UIColor colorWithRed: red green: green blue: blue alpha: alpha];
+}
+
+/**
+ * Cleans a dirty hex string.
+ * @param {NSString*} the dirty hex string.
+ * @returns {NSString*} the clean hex string, or NULL if invalid.
+ */
++ (NSString*) cleanDirtyHex:(NSString*) dirtyHex {
+    NSRegularExpression* normalizationExpresion;
+    NSString* cleanString;
+    if ( !dirtyHex || ![dirtyHex isKindOfClass:[NSString class]] )
+        return NULL;
+    // Set
+    normalizationExpresion = [NSRegularExpression regularExpressionWithPattern: @"[^#0-9a-fA-F]+"
+                                                                       options: 0
+                                                                         error: nil];
+    
+    // Clean
+    cleanString = [normalizationExpresion stringByReplacingMatchesInString: dirtyHex
+                                                                   options: 0
+                                                                     range: NSMakeRange(0, dirtyHex.length)
+                                                              withTemplate: @"F"];
+    // Return
+    if ( ![cleanString isKindOfClass:[NSString class]] )
+        return NULL;
+    return cleanString;
 }
 
 /**

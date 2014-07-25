@@ -10,16 +10,56 @@
 
 @interface IonPath : NSObject
 #pragma mark Constructors
+/**
+ * Creates a path object from the inputted NSURL.
+ * @param {NSURL*} the url to base the path off of.
+ * @returns {instancetype}
+ */
+- (instancetype) initFromURL:(NSURL*) url;
 
 /**
- * Creates a path with the inputed path appended by the array of items
+ * Creates a copy path from the inputted path.
+ * @param {IonPath*} the path to be derived from.
+ * @returns {instancetype}
+ */
+- (instancetype) initFromPath:(IonPath*) path;
+
+/**
+ * Creates a path with the inputed path appended by the array of items;
+ * @param {IonPath*} the path to append from
+ * @param {NSArray*} the additional elements to append.
+ * @returns {instancetype}
  */
 - (instancetype) initPath:(IonPath*) rootPath appendedByElements:(NSArray*) pathElements;
+
+#pragma mark Properties
+
+/**
+ * Components of the path.
+ */
+@property (strong, nonatomic, readonly) NSArray* components;
+
+#pragma mark Management
+
+/**
+ * Appends current path with the additional hierarchy.
+ * @param {NSArray*} the additional hierarchy.
+ * @returns {void}
+ */
+- (void) appendHierarchy:(NSArray*) additional;
+
 
 #pragma mark conversions
 
 /**
- * Converts to a string representation.
+ * Gets path components from an NSURL
+ * @param {NSURL} the url to get the components from.
+ * @returns {NSArray*} and array of components
+ */
++ (NSArray*) pathComponentsFromURL:(NSURL*) url;
+
+/**
+ * Converts to a string representation of the path.
  * @returns {NSString*}
  */
 - (NSString*) toString;
