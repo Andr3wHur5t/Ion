@@ -23,6 +23,12 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 // Color Conversion 
 #import "UIColor+IonColor.h"
 
+// Data conversion
+#import "NSData+IonTypeExtension.h"
+
+// TMP
+#include "IonKeyValuePair.h"
+
 #pragma mark Data Structures
 // Method Map
 #include "IonMethodMap.h"
@@ -37,6 +43,10 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 
 #pragma mark IO Managers
 // File IO Manager
+#include "IonPath.h"
+#include "IonDirectory.h"
+#include "IonFile.h"
+#include "IonFileIOmanager.h"
 
 // URL Request Manager
 

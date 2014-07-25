@@ -33,6 +33,16 @@
 		371D5D7D1980C73C00485DC0 /* NSDictionary+IonThemeResolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D7B1980C73C00485DC0 /* NSDictionary+IonThemeResolution.m */; };
 		371D5D811980C99400485DC0 /* NSDictionary+IonTypeExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D7F1980C99400485DC0 /* NSDictionary+IonTypeExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		371D5D821980C99400485DC0 /* NSDictionary+IonTypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D801980C99400485DC0 /* NSDictionary+IonTypeExtension.m */; };
+		371D5D881980FD5300485DC0 /* IonDirectory.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D861980FD5300485DC0 /* IonDirectory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		371D5D891980FD5300485DC0 /* IonDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D871980FD5300485DC0 /* IonDirectory.m */; };
+		371D5D8C1980FD6300485DC0 /* IonFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D8A1980FD6300485DC0 /* IonFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		371D5D8D1980FD6300485DC0 /* IonFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D8B1980FD6300485DC0 /* IonFile.m */; };
+		371D5D901980FD7D00485DC0 /* IonFileIOmanager.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D8E1980FD7D00485DC0 /* IonFileIOmanager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		371D5D911980FD7D00485DC0 /* IonFileIOmanager.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D8F1980FD7D00485DC0 /* IonFileIOmanager.m */; };
+		371D5D951981C58000485DC0 /* IonPath.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D931981C58000485DC0 /* IonPath.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		371D5D961981C58000485DC0 /* IonPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D941981C58000485DC0 /* IonPath.m */; };
+		371D5D9C1981D7D000485DC0 /* NSData+IonTypeExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D981981D53A00485DC0 /* NSData+IonTypeExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		371D5D9D1981D7D600485DC0 /* NSData+IonTypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D991981D53A00485DC0 /* NSData+IonTypeExtension.m */; };
 		372DD22C1972764D00CC0A58 /* IonView.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD22A1972764D00CC0A58 /* IonView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		372DD22D1972764D00CC0A58 /* IonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD22B1972764D00CC0A58 /* IonView.m */; };
 		372DD23D19727C9800CC0A58 /* UIView+IonTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD23B19727C9800CC0A58 /* UIView+IonTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -178,6 +188,16 @@
 		371D5D7B1980C73C00485DC0 /* NSDictionary+IonThemeResolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+IonThemeResolution.m"; path = "Ion Theme System/NSDictionary+IonThemeResolution.m"; sourceTree = "<group>"; };
 		371D5D7F1980C99400485DC0 /* NSDictionary+IonTypeExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+IonTypeExtension.h"; sourceTree = "<group>"; };
 		371D5D801980C99400485DC0 /* NSDictionary+IonTypeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+IonTypeExtension.m"; sourceTree = "<group>"; };
+		371D5D861980FD5300485DC0 /* IonDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonDirectory.h; sourceTree = "<group>"; };
+		371D5D871980FD5300485DC0 /* IonDirectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonDirectory.m; sourceTree = "<group>"; };
+		371D5D8A1980FD6300485DC0 /* IonFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonFile.h; sourceTree = "<group>"; };
+		371D5D8B1980FD6300485DC0 /* IonFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonFile.m; sourceTree = "<group>"; };
+		371D5D8E1980FD7D00485DC0 /* IonFileIOmanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonFileIOmanager.h; sourceTree = "<group>"; };
+		371D5D8F1980FD7D00485DC0 /* IonFileIOmanager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonFileIOmanager.m; sourceTree = "<group>"; };
+		371D5D931981C58000485DC0 /* IonPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonPath.h; sourceTree = "<group>"; };
+		371D5D941981C58000485DC0 /* IonPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonPath.m; sourceTree = "<group>"; };
+		371D5D981981D53A00485DC0 /* NSData+IonTypeExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+IonTypeExtension.h"; path = "NSData+IonTypeExtension/NSData+IonTypeExtension.h"; sourceTree = "<group>"; };
+		371D5D991981D53A00485DC0 /* NSData+IonTypeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+IonTypeExtension.m"; path = "NSData+IonTypeExtension/NSData+IonTypeExtension.m"; sourceTree = "<group>"; };
 		372DD22A1972764D00CC0A58 /* IonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonView.h; path = IonView/IonView.h; sourceTree = "<group>"; };
 		372DD22B1972764D00CC0A58 /* IonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonView.m; path = IonView/IonView.m; sourceTree = "<group>"; };
 		372DD23B19727C9800CC0A58 /* UIView+IonTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+IonTheme.h"; path = "Ion Theme System/UIView+IonTheme.h"; sourceTree = "<group>"; };
@@ -323,6 +343,51 @@
 				371D5D801980C99400485DC0 /* NSDictionary+IonTypeExtension.m */,
 			);
 			path = "Map Extensions";
+			sourceTree = "<group>";
+		};
+		371D5D831980FD0C00485DC0 /* IO Manager */ = {
+			isa = PBXGroup;
+			children = (
+				371D5D8E1980FD7D00485DC0 /* IonFileIOmanager.h */,
+				371D5D8F1980FD7D00485DC0 /* IonFileIOmanager.m */,
+			);
+			name = "IO Manager";
+			sourceTree = "<group>";
+		};
+		371D5D841980FD1900485DC0 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				371D5D8A1980FD6300485DC0 /* IonFile.h */,
+				371D5D8B1980FD6300485DC0 /* IonFile.m */,
+			);
+			name = File;
+			sourceTree = "<group>";
+		};
+		371D5D851980FD1F00485DC0 /* Directory */ = {
+			isa = PBXGroup;
+			children = (
+				371D5D861980FD5300485DC0 /* IonDirectory.h */,
+				371D5D871980FD5300485DC0 /* IonDirectory.m */,
+			);
+			name = Directory;
+			sourceTree = "<group>";
+		};
+		371D5D921981C56A00485DC0 /* Path */ = {
+			isa = PBXGroup;
+			children = (
+				371D5D931981C58000485DC0 /* IonPath.h */,
+				371D5D941981C58000485DC0 /* IonPath.m */,
+			);
+			name = Path;
+			sourceTree = "<group>";
+		};
+		371D5D971981D4FC00485DC0 /* NSData+TypeExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				371D5D981981D53A00485DC0 /* NSData+IonTypeExtension.h */,
+				371D5D991981D53A00485DC0 /* NSData+IonTypeExtension.m */,
+			);
+			name = "NSData+TypeExtensions";
 			sourceTree = "<group>";
 		};
 		372DD22F1972766000CC0A58 /* Theme System */ = {
@@ -570,6 +635,7 @@
 		37B9CD1E197FA12800424EFC /* Data Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				371D5D971981D4FC00485DC0 /* NSData+TypeExtensions */,
 				371D5D67197FB0FE00485DC0 /* KVP */,
 				37B9CD1F197FA12800424EFC /* Ion Color */,
 			);
@@ -847,6 +913,10 @@
 		37FCF196197F8A1C004C14C8 /* File IO Manager */ = {
 			isa = PBXGroup;
 			children = (
+				371D5D921981C56A00485DC0 /* Path */,
+				371D5D851980FD1F00485DC0 /* Directory */,
+				371D5D841980FD1900485DC0 /* File */,
+				371D5D831980FD0C00485DC0 /* IO Manager */,
 			);
 			path = "File IO Manager";
 			sourceTree = "<group>";
@@ -931,8 +1001,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				371D5D811980C99400485DC0 /* NSDictionary+IonTypeExtension.h in Headers */,
+				371D5D901980FD7D00485DC0 /* IonFileIOmanager.h in Headers */,
+				371D5D9C1981D7D000485DC0 /* NSData+IonTypeExtension.h in Headers */,
+				371D5D881980FD5300485DC0 /* IonDirectory.h in Headers */,
 				37FCF159197F830C004C14C8 /* IonData.h in Headers */,
+				371D5D8C1980FD6300485DC0 /* IonFile.h in Headers */,
 				37B9CD1A197F8E6100424EFC /* IonMath.h in Headers */,
+				371D5D951981C58000485DC0 /* IonPath.h in Headers */,
 				37B9CD22197FA12800424EFC /* UIColor+IonColor.h in Headers */,
 				37B9CD14197F8E6100424EFC /* IonImage.h in Headers */,
 				37B9CD15197F8E6100424EFC /* IonImageRef.h in Headers */,
@@ -1221,14 +1296,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				371D5D8D1980FD6300485DC0 /* IonFile.m in Sources */,
 				371D5D6B197FB10800485DC0 /* IonKeyValuePair.m in Sources */,
 				371D5D821980C99400485DC0 /* NSDictionary+IonTypeExtension.m in Sources */,
+				371D5D9D1981D7D600485DC0 /* NSData+IonTypeExtension.m in Sources */,
+				371D5D911980FD7D00485DC0 /* IonFileIOmanager.m in Sources */,
 				371D5D58197FB02400485DC0 /* IonImage.m in Sources */,
 				371D5D59197FB02400485DC0 /* IonImageRef.m in Sources */,
 				371D5D5A197FB02400485DC0 /* IonAccessBasedGenerationMap.m in Sources */,
+				371D5D961981C58000485DC0 /* IonPath.m in Sources */,
 				371D5D5B197FB02400485DC0 /* IonBalancedAccessBasedGenerationMap.m in Sources */,
 				371D5D5C197FB02400485DC0 /* IonKVPAccessBasedGenerationMap.m in Sources */,
 				371D5D5D197FB02400485DC0 /* IonMethodMap.m in Sources */,
+				371D5D891980FD5300485DC0 /* IonDirectory.m in Sources */,
 				371D5D5E197FB02400485DC0 /* IonMath.m in Sources */,
 				371D5D5F197FB02400485DC0 /* IonGradientConfiguration.m in Sources */,
 				371D5D60197FB02400485DC0 /* IonRenderUtilities.m in Sources */,
