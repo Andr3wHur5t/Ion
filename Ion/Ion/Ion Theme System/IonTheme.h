@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "IonKVPAccessBasedGenerationMap.h"
+#import <IonData/IonKVPAccessBasedGenerationMap.h>
 #import "IonAttrubutesStanderdResolution.h"
 
 @class IonKeyValuePair;

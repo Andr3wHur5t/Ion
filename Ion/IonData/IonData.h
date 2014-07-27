@@ -58,7 +58,11 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 #include "IonRenderUtilities.h"
 
 #pragma mark Data Store Managers
+// Simple Cache
+#import "IonSimpleCache.h"
+
 // Image Manager
 #include "IonImageRef.h"
 #include "IonImage.h"
+#include "IonImageManager.h"
 

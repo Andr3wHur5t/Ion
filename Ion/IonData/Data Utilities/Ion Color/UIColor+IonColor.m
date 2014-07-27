@@ -32,10 +32,10 @@
         b = (int)(255.0 * blue);
         a = (int)(255.0 * alpha);
         
-        result = [NSString stringWithFormat:@"#%02x%02x%02x%02x",r,g,b,a];
+        result = [NSString stringWithFormat:@"#%02X%02X%02X%02X",r,g,b,a];
     }
     
-    return result.uppercaseString;
+    return result;
 }
 
 /**

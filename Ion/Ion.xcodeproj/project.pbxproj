@@ -27,7 +27,7 @@
 		371D5D71197FB3B500485DC0 /* IonData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37FCF154197F830C004C14C8 /* IonData.framework */; };
 		371D5D781980784E00485DC0 /* IonThemeConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D761980784E00485DC0 /* IonThemeConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		371D5D791980784E00485DC0 /* IonThemeConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D771980784E00485DC0 /* IonThemeConfiguration.m */; };
-		371D5D7C1980C73C00485DC0 /* NSDictionary+IonThemeResolution.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D7A1980C73C00485DC0 /* NSDictionary+IonThemeResolution.h */; };
+		371D5D7C1980C73C00485DC0 /* NSDictionary+IonThemeResolution.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D7A1980C73C00485DC0 /* NSDictionary+IonThemeResolution.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		371D5D7D1980C73C00485DC0 /* NSDictionary+IonThemeResolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D7B1980C73C00485DC0 /* NSDictionary+IonThemeResolution.m */; };
 		371D5D811980C99400485DC0 /* NSDictionary+IonTypeExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D7F1980C99400485DC0 /* NSDictionary+IonTypeExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		371D5D821980C99400485DC0 /* NSDictionary+IonTypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D801980C99400485DC0 /* NSDictionary+IonTypeExtension.m */; };
@@ -43,6 +43,8 @@
 		371D5D9D1981D7D600485DC0 /* NSData+IonTypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D991981D53A00485DC0 /* NSData+IonTypeExtension.m */; };
 		371D5D9E19825A7700485DC0 /* IonVisualTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D73197FB60900485DC0 /* IonVisualTestViewController.m */; };
 		371D5DA119825AE600485DC0 /* IonVisualTestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D72197FB60900485DC0 /* IonVisualTestViewController.h */; };
+		371D5DA71982FCA200485DC0 /* IonImageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5DA51982FCA200485DC0 /* IonImageManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		371D5DA81982FCA200485DC0 /* IonImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5DA61982FCA200485DC0 /* IonImageManager.m */; };
 		372DD22C1972764D00CC0A58 /* IonView.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD22A1972764D00CC0A58 /* IonView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		372DD22D1972764D00CC0A58 /* IonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD22B1972764D00CC0A58 /* IonView.m */; };
 		372DD23D19727C9800CC0A58 /* UIView+IonTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD23B19727C9800CC0A58 /* UIView+IonTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -53,6 +55,10 @@
 		372DD247197281F400CC0A58 /* IonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD245197281F400CC0A58 /* IonViewController.m */; };
 		372DD24F19731F0200CC0A58 /* UIView+IonBackgroundUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD24D19731F0200CC0A58 /* UIView+IonBackgroundUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		372DD25019731F0200CC0A58 /* UIView+IonBackgroundUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD24E19731F0200CC0A58 /* UIView+IonBackgroundUtilities.m */; };
+		373C998119846ADE002F46AD /* IonSimpleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 373C997E19846ADA002F46AD /* IonSimpleCache.m */; };
+		373C998219846AE3002F46AD /* IonSimpleCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 373C997D19846ADA002F46AD /* IonSimpleCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		373C99891984953C002F46AD /* IonCacheItemStats.h in Headers */ = {isa = PBXBuildFile; fileRef = 373C998519848764002F46AD /* IonCacheItemStats.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		373C998A19849541002F46AD /* IonCacheItemStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 373C998619848764002F46AD /* IonCacheItemStats.m */; };
 		376DA8AE1976FB37008D692E /* IonStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 376DA8AC1976FB37008D692E /* IonStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		376DA8AF1976FB37008D692E /* IonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DA8AD1976FB37008D692E /* IonStyle.m */; };
 		376DA8B21976FB47008D692E /* IonTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 376DA8B01976FB47008D692E /* IonTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -198,6 +204,8 @@
 		371D5D941981C58000485DC0 /* IonPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonPath.m; sourceTree = "<group>"; };
 		371D5D981981D53A00485DC0 /* NSData+IonTypeExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+IonTypeExtension.h"; path = "NSData+IonTypeExtension/NSData+IonTypeExtension.h"; sourceTree = "<group>"; };
 		371D5D991981D53A00485DC0 /* NSData+IonTypeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+IonTypeExtension.m"; path = "NSData+IonTypeExtension/NSData+IonTypeExtension.m"; sourceTree = "<group>"; };
+		371D5DA51982FCA200485DC0 /* IonImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonImageManager.h; sourceTree = "<group>"; };
+		371D5DA61982FCA200485DC0 /* IonImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonImageManager.m; sourceTree = "<group>"; };
 		372DD22A1972764D00CC0A58 /* IonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonView.h; path = IonView/IonView.h; sourceTree = "<group>"; };
 		372DD22B1972764D00CC0A58 /* IonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonView.m; path = IonView/IonView.m; sourceTree = "<group>"; };
 		372DD23B19727C9800CC0A58 /* UIView+IonTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+IonTheme.h"; path = "Ion Theme System/UIView+IonTheme.h"; sourceTree = "<group>"; };
@@ -208,6 +216,10 @@
 		372DD245197281F400CC0A58 /* IonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonViewController.m; path = "Ion View Controller/IonViewController.m"; sourceTree = "<group>"; };
 		372DD24D19731F0200CC0A58 /* UIView+IonBackgroundUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+IonBackgroundUtilities.h"; path = "IonView/UIView+IonBackgroundUtilities.h"; sourceTree = "<group>"; };
 		372DD24E19731F0200CC0A58 /* UIView+IonBackgroundUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+IonBackgroundUtilities.m"; path = "IonView/UIView+IonBackgroundUtilities.m"; sourceTree = "<group>"; };
+		373C997D19846ADA002F46AD /* IonSimpleCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonSimpleCache.h; path = "Simple Cache/IonSimpleCache.h"; sourceTree = "<group>"; };
+		373C997E19846ADA002F46AD /* IonSimpleCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonSimpleCache.m; path = "Simple Cache/IonSimpleCache.m"; sourceTree = "<group>"; };
+		373C998519848764002F46AD /* IonCacheItemStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonCacheItemStats.h; path = "Simple Cache/IonCacheItemStats.h"; sourceTree = "<group>"; };
+		373C998619848764002F46AD /* IonCacheItemStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonCacheItemStats.m; path = "Simple Cache/IonCacheItemStats.m"; sourceTree = "<group>"; };
 		376DA8AC1976FB37008D692E /* IonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonStyle.h; path = "Ion Theme System/IonStyle.h"; sourceTree = "<group>"; };
 		376DA8AD1976FB37008D692E /* IonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonStyle.m; path = "Ion Theme System/IonStyle.m"; sourceTree = "<group>"; };
 		376DA8B01976FB47008D692E /* IonTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonTheme.h; path = "Ion Theme System/IonTheme.h"; sourceTree = "<group>"; };
@@ -390,6 +402,33 @@
 			name = "NSData+TypeExtensions";
 			sourceTree = "<group>";
 		};
+		371D5DA21982715600485DC0 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				37FCF186197F8A1C004C14C8 /* IonImage.h */,
+				37FCF187197F8A1C004C14C8 /* IonImage.m */,
+			);
+			name = Image;
+			sourceTree = "<group>";
+		};
+		371D5DA31982716000485DC0 /* Image Ref */ = {
+			isa = PBXGroup;
+			children = (
+				37FCF188197F8A1C004C14C8 /* IonImageRef.h */,
+				37FCF189197F8A1C004C14C8 /* IonImageRef.m */,
+			);
+			name = "Image Ref";
+			sourceTree = "<group>";
+		};
+		371D5DA41982FC7800485DC0 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				371D5DA51982FCA200485DC0 /* IonImageManager.h */,
+				371D5DA61982FCA200485DC0 /* IonImageManager.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
 		372DD22F1972766000CC0A58 /* Theme System */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,6 +570,33 @@
 				376DA8B419774A90008D692E /* Data Structures */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		373C997C19846AAC002F46AD /* Caches */ = {
+			isa = PBXGroup;
+			children = (
+				373C998419848742002F46AD /* Item Stats */,
+				373C998319848737002F46AD /* Simple Cache */,
+			);
+			name = Caches;
+			sourceTree = "<group>";
+		};
+		373C998319848737002F46AD /* Simple Cache */ = {
+			isa = PBXGroup;
+			children = (
+				373C997D19846ADA002F46AD /* IonSimpleCache.h */,
+				373C997E19846ADA002F46AD /* IonSimpleCache.m */,
+			);
+			name = "Simple Cache";
+			sourceTree = "<group>";
+		};
+		373C998419848742002F46AD /* Item Stats */ = {
+			isa = PBXGroup;
+			children = (
+				373C998519848764002F46AD /* IonCacheItemStats.h */,
+				373C998619848764002F46AD /* IonCacheItemStats.m */,
+			);
+			name = "Item Stats";
 			sourceTree = "<group>";
 		};
 		376DA8AA1976FAD7008D692E /* Theme Object */ = {
@@ -853,6 +919,7 @@
 		37FCF184197F8A1C004C14C8 /* Data Store Manager */ = {
 			isa = PBXGroup;
 			children = (
+				373C997C19846AAC002F46AD /* Caches */,
 				37FCF185197F8A1C004C14C8 /* Image Manager */,
 			);
 			path = "Data Store Manager";
@@ -861,10 +928,9 @@
 		37FCF185197F8A1C004C14C8 /* Image Manager */ = {
 			isa = PBXGroup;
 			children = (
-				37FCF186197F8A1C004C14C8 /* IonImage.h */,
-				37FCF187197F8A1C004C14C8 /* IonImage.m */,
-				37FCF188197F8A1C004C14C8 /* IonImageRef.h */,
-				37FCF189197F8A1C004C14C8 /* IonImageRef.m */,
+				371D5DA41982FC7800485DC0 /* Manager */,
+				371D5DA31982716000485DC0 /* Image Ref */,
+				371D5DA21982715600485DC0 /* Image */,
 			);
 			path = "Image Manager";
 			sourceTree = "<group>";
@@ -976,7 +1042,6 @@
 				372DD246197281F400CC0A58 /* IonViewController.h in Headers */,
 				372DD22C1972764D00CC0A58 /* IonView.h in Headers */,
 				372DD24F19731F0200CC0A58 /* UIView+IonBackgroundUtilities.h in Headers */,
-				371D5D7C1980C73C00485DC0 /* NSDictionary+IonThemeResolution.h in Headers */,
 				372DD23D19727C9800CC0A58 /* UIView+IonTheme.h in Headers */,
 				372DD24119727D0C00CC0A58 /* UIView+IonAnimation.h in Headers */,
 				37FCF135197CDD42004C14C8 /* UIView+IonViewProperties.h in Headers */,
@@ -989,6 +1054,7 @@
 				376DA8E4197B4597008D692E /* IonAttrubutesStanderdResolution.h in Headers */,
 				376DA8E9197BAD83008D692E /* IonWindow.h in Headers */,
 				371D5D6F197FB15000485DC0 /* IonKVP+IonTheme.h in Headers */,
+				371D5D7C1980C73C00485DC0 /* NSDictionary+IonThemeResolution.h in Headers */,
 				371D5D781980784E00485DC0 /* IonThemeConfiguration.h in Headers */,
 				37FCF13B197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.h in Headers */,
 				377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */,
@@ -1002,9 +1068,11 @@
 			files = (
 				371D5D811980C99400485DC0 /* NSDictionary+IonTypeExtension.h in Headers */,
 				371D5D901980FD7D00485DC0 /* IonFileIOmanager.h in Headers */,
+				373C998219846AE3002F46AD /* IonSimpleCache.h in Headers */,
 				371D5D9C1981D7D000485DC0 /* NSData+IonTypeExtension.h in Headers */,
 				371D5D881980FD5300485DC0 /* IonDirectory.h in Headers */,
 				37FCF159197F830C004C14C8 /* IonData.h in Headers */,
+				371D5DA71982FCA200485DC0 /* IonImageManager.h in Headers */,
 				371D5D8C1980FD6300485DC0 /* IonFile.h in Headers */,
 				37B9CD1A197F8E6100424EFC /* IonMath.h in Headers */,
 				371D5D951981C58000485DC0 /* IonPath.h in Headers */,
@@ -1018,6 +1086,7 @@
 				37B9CD1B197F8E6100424EFC /* IonGradientConfiguration.h in Headers */,
 				37B9CD1C197F8E6100424EFC /* IonRenderUtilities.h in Headers */,
 				371D5D6C197FB11300485DC0 /* IonKeyValuePair.h in Headers */,
+				373C99891984953C002F46AD /* IonCacheItemStats.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1302,6 +1371,7 @@
 				371D5D9D1981D7D600485DC0 /* NSData+IonTypeExtension.m in Sources */,
 				371D5D911980FD7D00485DC0 /* IonFileIOmanager.m in Sources */,
 				371D5D58197FB02400485DC0 /* IonImage.m in Sources */,
+				371D5DA81982FCA200485DC0 /* IonImageManager.m in Sources */,
 				371D5D59197FB02400485DC0 /* IonImageRef.m in Sources */,
 				371D5D5A197FB02400485DC0 /* IonAccessBasedGenerationMap.m in Sources */,
 				371D5D961981C58000485DC0 /* IonPath.m in Sources */,
@@ -1309,6 +1379,8 @@
 				371D5D5C197FB02400485DC0 /* IonKVPAccessBasedGenerationMap.m in Sources */,
 				371D5D5D197FB02400485DC0 /* IonMethodMap.m in Sources */,
 				371D5D891980FD5300485DC0 /* IonDirectory.m in Sources */,
+				373C998A19849541002F46AD /* IonCacheItemStats.m in Sources */,
+				373C998119846ADE002F46AD /* IonSimpleCache.m in Sources */,
 				371D5D5E197FB02400485DC0 /* IonMath.m in Sources */,
 				371D5D5F197FB02400485DC0 /* IonGradientConfiguration.m in Sources */,
 				371D5D60197FB02400485DC0 /* IonRenderUtilities.m in Sources */,

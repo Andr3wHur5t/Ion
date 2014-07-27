@@ -39,6 +39,12 @@
     // configure the default first root view controller here.
     IonVisualTestViewController* vc = [[IonVisualTestViewController alloc] init];
     
+    NSURL* url = [[NSBundle mainBundle] bundleURL];
+    NSLog(@"bundle: %@", url.path );
+    IonPath* path = [[IonPath alloc] initPath: [[IonPath alloc] initFromURL: url] appendedByElements: @[@"test",@"bye",@".",@"..",@"here", @"There"]];
+    NSLog(@"path: %@ \n\n\n\n", [path toString] );
+    
+    
     /**
      * This is to debug the theme system.
      */

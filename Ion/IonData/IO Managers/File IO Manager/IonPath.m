@@ -132,44 +132,39 @@
     NSString* component;
     NSMutableArray* currentComponents;
     NSRegularExpression* normalizationExpresion;
+    NSMutableIndexSet* indexesToRemove;
     
     // Set
+    indexesToRemove =  [[NSMutableIndexSet alloc] init];
     normalizationExpresion = [NSRegularExpression regularExpressionWithPattern: @"[:/]+"
                                                                        options: 0
                                                                          error: nil];
     currentComponents = [[NSMutableArray alloc] initWithArray: self.components];
     
     // Search
-    for ( NSInteger i = 0; i < currentComponents.count; ++i ) {
+    for ( NSInteger i = [currentComponents count] - 1; i > 0; --i ) {
+        
         component = [currentComponents objectAtIndex: i];
         if ( !component || ![component isKindOfClass: [NSString class]] ) {
-            [currentComponents removeObjectAtIndex: i];
-            --i;
-            break;
+            [indexesToRemove addIndex: i];
         }
-        // Filter
-        if ( [component isEqualToString: @"."] || [component isEqualToString: @""] ||
-            ( [component isEqualToString: @".."]  && i == 0 ) ) {
-            [currentComponents removeObjectAtIndex: i];
-            --i;
-            break;
-        }
-        if ( [component isEqualToString: @".."] ) {
-            [currentComponents removeObjectAtIndex: i - 1 ];
-            [currentComponents removeObjectAtIndex: i - 1 ];
-            
-            i -= 2;
-            break;
-        }
+        else {
+            // Filter
+            if ( [component isEqualToString: @"."] || [component isEqualToString: @""] ) {
+                [indexesToRemove addIndex: i];
+            } else if ( [component isEqualToString: @".."] ) {
+                [indexesToRemove addIndex: i];
+                [indexesToRemove addIndex: i + 1];
+            }
+            component = [normalizationExpresion stringByReplacingMatchesInString: component
+                                                                         options: 0
+                                                                           range: NSMakeRange(0, component.length)
+                                                                    withTemplate: @"-"];
         
-        component = [normalizationExpresion stringByReplacingMatchesInString: component
-                                                                     options: 0
-                                                                       range: NSMakeRange(0, component.length)
-                                                                withTemplate: @"-"];
-        // Update
-        [currentComponents setObject: component atIndexedSubscript: i];
+                [currentComponents setObject: component atIndexedSubscript: i];
+            }
     }
-    
+    [currentComponents removeObjectsAtIndexes: indexesToRemove];
     // Update
     [self setComponentsArray: currentComponents];
 }
