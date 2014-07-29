@@ -10,9 +10,10 @@
 
 @implementation IonMath
 
+#pragma mark Positioning Utilities
 /**
- * This gets the point at the edge of the frame where the ray "emiting from the center of the view" will hit with the specified angle
- * @returns
+ * This gets the point at the edge of the frame where the ray "emitting from the center of the view" will hit with the specified angle
+ * @returns {CGPoint} the resulting point
  */
 + (CGPoint) pointAtEdgeOfFrame:(CGSize) frameSize angleOfRay:(CGFloat) angle {
     CGPoint result, center;
@@ -23,6 +24,103 @@
     // ray test
     result.x = ( cosf(angle) * center.x ) + center.x;
     result.y = ( sinf(angle) * center.y ) + center.y;
+    
+    return result;
+}
+
+/**
+ * Computes the resulting position of the rect centered using the inputted size of the centered rect,
+ *     and the size the rect to be centered in.
+ * @param {CGSize} the size of the centered view
+ * @param {CGSize} the size of the view to be centered in.
+ * @returns {CGPoint} the origin of the centered rect, to be centered the in a view with the inputted size.
+ */
++ (CGPoint) originForRectWithSize:(CGSize) centeredSize containedInRectWithSize:(CGSize) containingSize {
+    CGPoint result;
+    
+    result.x = ( containingSize.width - centeredSize.width ) / 2;
+    result.y = ( containingSize.height - centeredSize.height ) / 2;
+    
+    return result;
+}
+
+#pragma mark Sizing Utilities
+
+/**
+ * Computes the maximum size we can get inside of the containing size, while maintaining aspect ratio.
+ * @param {CGSize} the contained size which holds the aspect ratio.
+ * @param {CGSize} the limits of contained size.
+ * @retuns {CGSize} the resulting size of the ratio within the limits
+ */
++ (CGSize) sizeMaintaingSizeRatio:(CGSize) ratioSize withMaximumSize:(CGSize) maxSize {
+    return [IonMath sizeMaintaingSizeRatio: ratioSize usingSize: maxSize thatContains: TRUE];
+}
+
+/**
+ * Computes the size of a rect needed to fully occupy a size while maintaining aspect ratio
+ * @param {CGSize} the contained size which holds the aspect ratio.
+ * @param {CGSize} the minimum size of the view
+ * @retuns {CGSize} the resulting size of the ratio within filling the size
+ */
++ (CGSize) sizeMaintaingSizeRatio:(CGSize) ratioSize withMinimumSize:(CGSize) minSize {
+    return [IonMath sizeMaintaingSizeRatio: ratioSize usingSize: minSize thatContains: FALSE];
+}
+
+/**
+ * Computes the size of a rect needed to fully occupy, or to contain a size while maintaining aspect ratio.
+ * @param {CGSize} the contained size which holds the aspect ratio.
+ * @param {CGSize} the minimum size of the view
+ * @param {BOOL} if we are to be contained in the view.
+ * @retuns {CGSize} the resulting size of the ratio within filling the size
+ */
++ (CGSize) sizeMaintaingSizeRatio:(CGSize) ratioSize usingSize:(CGSize) size thatContains:(BOOL) contains {
+    CGSize result;
+    CGFloat aspectRatio;
+    BOOL widthLTheight;
+    
+    // Calculate
+    aspectRatio = ratioSize.height / ratioSize.width;
+    widthLTheight = aspectRatio >= 1.0f;
+    
+    // Change type accordingly
+    if ( !contains )
+        widthLTheight = !widthLTheight;
+    
+    // Calculate
+    result.width =  widthLTheight ?  size.height / aspectRatio   : size.width ;
+    result.height = widthLTheight ?  size.height                 : size.width * aspectRatio ;
+    
+    return result;
+}
+
+#pragma mark Rect Utilities
+
+/**
+ * Creates a rect that will maintain the set aspect ratio, and fill the provided size completely.
+ * @param {CGSize} the contained size which holds the aspect ratio.
+ * @param {CGSize} the minimum size of the view
+ * @retruns {CGRect} the resulting rect
+ */
++ (CGRect) rectWhichFillsSize:(CGSize) fillSize maintainingAspectRatio:(CGSize) aspectRatio {
+    CGRect result;
+    
+    result.size = [IonMath sizeMaintaingSizeRatio: aspectRatio withMinimumSize: fillSize];
+    result.origin = [IonMath originForRectWithSize: result.size containedInRectWithSize: fillSize];
+    
+    return result;
+}
+
+/**
+ * Creates a rect that will maintain the set aspect ratio, and be contained in provided size.
+ * @param {CGSize} the contained size which holds the aspect ratio.
+ * @param {CGSize} the maximum size of the rect
+ * @retruns {CGRect} the resulting rect
+ */
++ (CGRect) rectWhichContainsSize:(CGSize) fillSize maintainingAspectRatio:(CGSize) aspectRatio {
+    CGRect result;
+    
+    result.size = [IonMath sizeMaintaingSizeRatio: aspectRatio withMaximumSize: fillSize];
+    result.origin = [IonMath originForRectWithSize: result.size containedInRectWithSize: fillSize];
     
     return result;
 }

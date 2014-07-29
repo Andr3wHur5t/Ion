@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <IonData/IonRenderUtilities.h>
 
+typedef enum : NSUInteger {
+    IonBackgroundRenderFilled = 0,
+    IonBackgroundRenderContained =1
+} IonBackgroundRenderOptions;
+
 @interface UIView (IonBackgroundUtilities)
 
 #pragma mark Gradient Backgrounds
@@ -35,14 +40,22 @@
  * This sets the image to the specified CALayer and configures it.
  * @param {UIImage*} the image to be set
  * @param {CALayer*} the layer for the image to be set to
+ * @param {IonBackgroundRenderOptions} the mode which to render the image.
  */
-+ (void) setImage:(UIImage*)image toLayer:(CALayer*)layer;
++ (void) setImage:(UIImage*)image toLayer:(CALayer*)layer renderMode:(IonBackgroundRenderOptions) renderMode;
 
 /**
  * This sets the current background image.
  * @parma {UIImage*} the image to be set to the background
  */
 -(void) setBackgroundImage:(UIImage*)image;
+
+/**
+ * This sets the current background image.
+ * @parma {UIImage*} the image to be set to the background
+ * @param {IonBackgroundRenderOptions} the mode which to render the image.
+ */
+-(void) setBackgroundImage:(UIImage*)image renderMode:(IonBackgroundRenderOptions) renderMode;
 
 /**
  * This sets the mask Image of the view.

@@ -30,7 +30,7 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear: animated];
     // Set the overriden background.
-    [self.view setBackgroundImage: [UIImage imageNamed:@"andrews-test"]];
+    [self.view setBackgroundImage: [UIImage imageNamed:@"aspect-test"]];
     self.view.opaque = true;
 }
 

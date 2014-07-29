@@ -125,6 +125,18 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
 + (void) renderImage:(UIImage*)image
             withSize:(CGSize)size
       andReturnBlock:(void(^)( UIImage* image )) returnBlock;
+
+/**
+ * This will render an image within the inputted size while maintaining the aspect ratio.
+ * @param {UIImage*} the image to render
+ * @param {CGSize} the size to render the image within
+ * @param {void(^)( UIImage* image )} this is the block we will call with the resulting image once it is generated.
+ * @returns {void}
+ */
++ (void) renderImage:(UIImage*) image
+          withinSize:(CGSize) size
+      andReturnBlock:(void(^)( UIImage* image )) returnBlock;
+
 #pragma mark Verification
 
 /**

@@ -40,7 +40,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
     // Check if we have work to do, and that we have a place to return the results of our labor.
     if ( block && returnBlock ) {
         dispatch_async( [IonRenderUtilities renderDispatchQueue], ^{
-            UIImage* restultImage;
+            UIImage* resultImage;
             
             // Create the context for drawing
             UIGraphicsBeginImageContextWithOptions( contextSize, !isAlpha , scale );
@@ -49,14 +49,14 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
             block();
             
             // Record Result
-            restultImage = UIGraphicsGetImageFromCurrentImageContext();
+            resultImage = UIGraphicsGetImageFromCurrentImageContext();
             
             // Clean Up
             UIGraphicsEndImageContext();
             
             // Return result on the main thread
-            dispatch_async(dispatch_get_main_queue(), ^{
-                returnBlock(restultImage);
+            dispatch_async( dispatch_get_main_queue(), ^{
+                returnBlock( resultImage );
             });
             
         });
@@ -128,7 +128,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
     // Check if we have work to do, and that we have a place to return the results of our labor.
     if ( block && returnBlock ) {
         
-            UIImage* restultImage;
+            UIImage* resultImage;
             
             // Create the context for drawing
             UIGraphicsBeginImageContextWithOptions( contextSize, !isAlpha , scale );
@@ -137,13 +137,13 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
             block();
             
             // Record Result
-            restultImage = UIGraphicsGetImageFromCurrentImageContext();
+            resultImage = UIGraphicsGetImageFromCurrentImageContext();
             
             // Clean Up
             UIGraphicsEndImageContext();
             
             // Return result on the main thread
-            returnBlock(restultImage);
+            returnBlock(resultImage);
     } else {
         [NSException exceptionWithName:@"Missing Argument!"
                                 reason:@"IonRenderUtilities was told to do work with out any work Block or any Result block."
@@ -158,7 +158,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
  * @peram {NSArray} the array of color weights to be converted.
  * @returns {CGGradientRef}
  */
-+ (CGGradientRef) refrenceGradientFromColorWeights:(NSArray*) colorWeights {
++ (CGGradientRef) referenceGradientFromColorWeights:(NSArray*) colorWeights {
     @autoreleasepool {
         CGGradientRef result;
         CGColorSpaceRef space;
@@ -203,7 +203,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
     startPoint = [IonMath pointAtEdgeOfFrame: state.contextSize angleOfRay: angle];
     endPoint = [IonMath pointAtEdgeOfFrame: state.contextSize angleOfRay: angle + M_PI];
     
-    gradColorRef = [IonRenderUtilities refrenceGradientFromColorWeights: colorWeights];
+    gradColorRef = [IonRenderUtilities referenceGradientFromColorWeights: colorWeights];
     
     CGContextDrawLinearGradient( state.context, gradColorRef, startPoint, endPoint, kCGGradientDrawsAfterEndLocation + kCGGradientDrawsBeforeStartLocation);
     CFBridgingRelease( gradColorRef );
@@ -225,7 +225,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
         //Get the current context state
         currentState = currentContextStateWithSize( size );
         
-        //Render the gradent
+        //Render the gradient
         [IonRenderUtilities linearGradientWithContextState: currentState
                                       gradientColorWeights: gradientConfig.colorWeights
                                                      angle: gradientConfig.angle];
@@ -248,16 +248,37 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
       withSize:(CGSize) size
       andReturnBlock:(void(^)( UIImage* image )) returnBlock {
     [IonRenderUtilities renderBlock: ^{
-        if ( !CGSizeEqualToSize( size, CGSizeZero) )
+        if ( CGSizeEqualToSize( size, CGSizeZero) )
             return;
         
-        NSLog(@"CGSize: %@", NSStringFromCGSize(size));
         // Draw the Image
-        [image drawInRect: (CGRect){ CGPointZero, size } ];
+        [image drawInRect: [IonMath rectWhichFillsSize: size maintainingAspectRatio: image.size] ];
         
     }
                   inContextWithSize: size
                      andReturnBlock: returnBlock];
+}
+
+/**
+ * This will render an image within the inputted size while maintaining the aspect ratio.
+ * @param {UIImage*} the image to render
+ * @param {CGSize} the size to render the image within
+ * @param {void(^)( UIImage* image )} this is the block we will call with the resulting image once it is generated.
+ * @returns {void}
+ */
++ (void) renderImage:(UIImage*) image
+          withinSize:(CGSize) size
+      andReturnBlock:(void(^)( UIImage* image )) returnBlock {
+    [IonRenderUtilities renderBlock: ^{
+        if ( CGSizeEqualToSize( size, CGSizeZero) )
+            return;
+        
+        // Draw the Image
+        [image drawInRect: [IonMath rectWhichContainsSize: size maintainingAspectRatio: image.size]];
+    }
+                  inContextWithSize: size
+                     andReturnBlock: returnBlock];
+
 }
 
 #pragma mark Verification
@@ -265,7 +286,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
 /**
  * Verifies that the inputted context state is valid.
  * @param {IonContextState} the context state to verify.
- * @returns {BOOL} true if valid, false if invaid.
+ * @returns {BOOL} true if valid, false if invalid.
  */
 + (BOOL) isValidContextState:(IonContextState) state {
     if ( CGSizeEqualToSize( state.contextSize, CGSizeZero) )
