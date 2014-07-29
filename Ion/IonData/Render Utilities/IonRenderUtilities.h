@@ -30,8 +30,11 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
     return currentState;
 }
 
+/**
+ * The return block for images
+ */
 
-
+typedef void(^IonRenderReturnBlock)( UIImage* image );
 
 
 @interface IonRenderUtilities : NSObject
@@ -52,7 +55,7 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
    inContextWithSize: (CGSize) contextSize
                scale: (CGFloat) scale
         thatHasAlpha: (bool) isAlpha
-      andReturnBlock: (void(^)( UIImage* image )) returnBlock;
+      andReturnBlock: (IonRenderReturnBlock) returnBlock;
 
 /**
  * This renders the inputed render block in the render thread, and returns the result in the result block.
@@ -60,25 +63,25 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
  * @param {void^()} the work to be rendered
  * @param {CGSize} the size of the context
  * @param {bool} states if the context and the resulting imgae have an alpha channel
- * @param {void^(UIImage*)} the block to be called once the work is done
+ * @param {IonRenderReturnBlock} the block to be called once the work is done
  * @returns {void}
  */
 + (void) renderBlock: (void(^)( )) block
    inContextWithSize: (CGSize) contextSize
         thatHasAlpha: (bool) isAlpha
-      andReturnBlock: (void(^)( UIImage* image )) returnBlock;
+      andReturnBlock: (IonRenderReturnBlock) returnBlock;
 
 /**
  * This renders the inputed render block in the render thread, and returns the result in the result block.
  * Note: this uses CGContext based rendering.
  * @param {void^()} the work to be rendered
  * @param {CGSize} the size of the context
- * @param {void^(UIImage*)} the block to be called once the work is done
+ * @param {IonRenderReturnBlock} the block to be called once the work is done
  * @returns {void}
  */
 + (void) renderBlock: (void(^)( )) block
    inContextWithSize: (CGSize) contextSize
-      andReturnBlock: (void(^)( UIImage* image )) returnBlock;
+      andReturnBlock: (IonRenderReturnBlock) returnBlock;
 
 
 #pragma mark Gradient Utilities
@@ -94,12 +97,12 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
  * This will render a linear gradient using the inputed config, and result size.
  * @param {IonLinearGradientConfiguration} this is the config we will use to generate the gradient.
  * @param {CGSize} this is the size we will render the gradient at.
- * @param {(void(^)(UIImage* image))} this is the block we will call with the resulting image once it is generated.
+ * @param {IonRenderReturnBlock)} this is the block we will call with the resulting image once it is generated.
  * @returns {void}
  */
 + (void) renderLinearGradient:(IonLinearGradientConfiguration*) gradientConfig
                    resultSize:(CGSize) size
-              withReturnBlock:(void(^)( UIImage* image )) returnBlock;
+              withReturnBlock:(IonRenderReturnBlock) returnBlock;
 
 /**
  * This will create a linear gradient in a render block.
@@ -124,7 +127,7 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
  */
 + (void) renderImage:(UIImage*)image
             withSize:(CGSize)size
-      andReturnBlock:(void(^)( UIImage* image )) returnBlock;
+      andReturnBlock:(IonRenderReturnBlock) returnBlock;
 
 /**
  * This will render an image within the inputted size while maintaining the aspect ratio.
@@ -135,7 +138,7 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
  */
 + (void) renderImage:(UIImage*) image
           withinSize:(CGSize) size
-      andReturnBlock:(void(^)( UIImage* image )) returnBlock;
+      andReturnBlock:(IonRenderReturnBlock) returnBlock;
 
 #pragma mark Verification
 
@@ -163,6 +166,6 @@ inline static IonContextState currentContextStateWithSize (CGSize contextSize) {
                 inContextWithSize: (CGSize) contextSize
                             scale: (CGFloat) scale
                      thatHasAlpha: (bool) isAlpha
-                   andReturnBlock: (void(^)( UIImage* image )) returnBlock;
+                   andReturnBlock: (IonRenderReturnBlock) returnBlock;
 
 @end

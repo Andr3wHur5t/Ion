@@ -5,13 +5,11 @@
         "WHITE": "#FFFFFF",
         "BLACK": "#000000",
         "TROLOLO": "Purple",
-        "LEET": "#001337",
         "green": "TROLOLO",
         "Purple": "#921",
         "yellow": "green",
         "cleanWhite": "#F5F5F5",
-        "wow": "much",
-        "much": "wow",
+        "spottr": "#EC423D"
     },
     "images": {
         "Image1": "Path1.png",
@@ -236,27 +234,22 @@
     },
     "styles": {
         "default": {
-            "background": { "type": "color", "name": "WHITE" },
-            "fontColor":{ "type": "color", "name": "BLACK" },
-            "shadowColor": { "type": "color", "name": "BLACK" }
+            "background": { "type": "gradient", "name": "Inferno" }
         },
         "body": {
-            "background": { "type": "color", "name": "WHITE" },
-            "fontColor":{ "type": "color", "name": "BLACK" }
+            "background": { "type": "gradient", "name": "Inferno" }
         },
         "titleBar": {
-            "background": { "type": "gradient", "name": "Royal" },
-            "fontColor":{ "type": "color", "name": "BLACK" }
+            "background": { "type": "gradient", "name": "Inferno" },
         },
         "cls_simpleStyle": {
-            "background": { "type": "color", "name": "WHITE" },
-            "fontColor":{ "type": "color", "name": "BLACK" }
+            "background": { "type": "gradient", "name": "Inferno" }
         },
         "id_simpleStyle": {
-            "background": { "type": "color", "name": "WHITE" }
+            "background": { "type": "gradient", "name": "Inferno" }
         },
         "cls_secondaryStyle": {
-            "background": { "type": "color", "name": "#EC423D" },
+            "background": { "type": "gradient", "name": "Onyx" },
             "fontColor":{ "type": "color", "name": "BLACK" },
             "cornerRadius": 0.0,
             "parameters":{

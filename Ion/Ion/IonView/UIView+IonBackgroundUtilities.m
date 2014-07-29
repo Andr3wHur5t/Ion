@@ -19,14 +19,15 @@
  * @param {(void(^)())} the completion to be called when finished
  * @returns {void}
  */
-- (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig completion:( void(^)( ) )completion {
+- (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig
+                            completion:( void(^)( ) )completion {
     CGSize netSize = self.frame.size;
     
     // Generate and set the gradient
     [IonRenderUtilities renderLinearGradient:gradientConfig
                                   resultSize:netSize
                              withReturnBlock:^(UIImage *image) {
-                                 [self setBackgroundImage:image];
+                                 self.layer.contents = (__bridge id)(image.CGImage);
                                  
                                  if ( completion )
                                      completion();

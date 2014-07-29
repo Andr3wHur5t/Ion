@@ -31,7 +31,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
    inContextWithSize: (CGSize) contextSize
                scale: (CGFloat) scale
         thatHasAlpha: (bool) isAlpha
-      andReturnBlock: (void(^)( UIImage* image )) returnBlock {
+      andReturnBlock: (IonRenderReturnBlock) returnBlock {
     if ( scale == 0.0f )
         scale = 1.0f;
     if ( CGSizeEqualToSize( contextSize, CGSizeZero ) )
@@ -79,7 +79,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
 + (void) renderBlock: (void(^)()) block
    inContextWithSize: (CGSize) contextSize
         thatHasAlpha: (bool) isAlpha
-      andReturnBlock: (void(^)( UIImage* image )) returnBlock {
+      andReturnBlock: (IonRenderReturnBlock) returnBlock {
     
     [IonRenderUtilities renderBlock: block
                   inContextWithSize: contextSize
@@ -98,7 +98,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
  */
 + (void) renderBlock: (void(^)()) block
    inContextWithSize: (CGSize) contextSize
-      andReturnBlock: (void(^)( UIImage* image )) returnBlock {
+      andReturnBlock: (IonRenderReturnBlock) returnBlock {
     
     [IonRenderUtilities renderBlock: block
                   inContextWithSize: contextSize
@@ -123,7 +123,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
    inContextWithSize: (CGSize) contextSize
                scale: (CGFloat) scale
         thatHasAlpha: (bool) isAlpha
-      andReturnBlock: (void(^)( UIImage* image )) returnBlock {
+      andReturnBlock: (IonRenderReturnBlock) returnBlock {
     
     // Check if we have work to do, and that we have a place to return the results of our labor.
     if ( block && returnBlock ) {
@@ -218,7 +218,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
  */
 + (void) renderLinearGradient:(IonLinearGradientConfiguration*)gradientConfig
                    resultSize:(CGSize)size
-              withReturnBlock:(void(^)( UIImage* image )) returnBlock {
+              withReturnBlock:(IonRenderReturnBlock) returnBlock {
     [IonRenderUtilities renderBlock: ^{
         IonContextState currentState;
         
@@ -246,7 +246,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
  */
 + (void) renderImage:(UIImage*) image
       withSize:(CGSize) size
-      andReturnBlock:(void(^)( UIImage* image )) returnBlock {
+      andReturnBlock:(IonRenderReturnBlock) returnBlock {
     [IonRenderUtilities renderBlock: ^{
         if ( CGSizeEqualToSize( size, CGSizeZero) )
             return;
@@ -268,7 +268,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
  */
 + (void) renderImage:(UIImage*) image
           withinSize:(CGSize) size
-      andReturnBlock:(void(^)( UIImage* image )) returnBlock {
+      andReturnBlock:(IonRenderReturnBlock) returnBlock {
     [IonRenderUtilities renderBlock: ^{
         if ( CGSizeEqualToSize( size, CGSizeZero) )
             return;
