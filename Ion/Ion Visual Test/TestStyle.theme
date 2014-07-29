@@ -253,9 +253,22 @@
             "background": { "type": "gradient", "name": "Inferno" }
         },
         "cls_secondaryStyle": {
-            "background": { "type": "gradient", "name": "Spottr" },
+            "background": { "type": "color", "name": "#ffffff" },
             "fontColor":{ "type": "color", "name": "BLACK" },
-            "cornerRadius": 50
+            "cornerRadius": 10.0,
+            "shadow": {
+                "color":"BLACK",
+                "radius":10,
+                "offset":{"x":20,"y":20}
+            },
+            "border":{
+                "color":"#1CA59B",
+                "width":10
+            },
+            "parameters":{
+                "data":"things, and stuff"
+            }
+            
         }
     }
 

@@ -39,4 +39,9 @@
  */
 @property (strong, nonatomic) IonStyle* currentStyle;
 
+/**
+ * States weither we should apply the theme to ourself.
+ */
+@property (assign, nonatomic) BOOL themeShouldBeApplyedToSelf;
+
 @end

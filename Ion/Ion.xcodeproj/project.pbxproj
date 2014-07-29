@@ -506,6 +506,7 @@
 		372DD2391972790A00CC0A58 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				373C99B819870E4F002F46AD /* Tests */,
 				372DD24B197286C300CC0A58 /* Main Controller */,
 				372DD249197286AC00CC0A58 /* Startup */,
 			);
@@ -597,6 +598,13 @@
 				373C998619848764002F46AD /* IonCacheItemStats.m */,
 			);
 			name = "Item Stats";
+			sourceTree = "<group>";
+		};
+		373C99B819870E4F002F46AD /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Tests;
 			sourceTree = "<group>";
 		};
 		376DA8AA1976FAD7008D692E /* Theme Object */ = {

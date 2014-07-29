@@ -238,7 +238,7 @@ static const char* sCacheDispatchQueueLabel = "ION_CACHE_DISPATCH_LABEL";
  * @returns {void}
  */
 - (void) removeFileFromMemoryCacheWithKey:(NSString*) key {
-    NSString* convertedKey;
+    __block NSString* convertedKey;
     if ( !key || ![key isKindOfClass: [NSString class]] )
         return;
     dispatch_async( [IonSimpleCache cacheDispatchQueue], ^{

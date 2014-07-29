@@ -9,25 +9,24 @@
 #import <UIKit/UIKit.h>
 #import <IonData/IonRenderUtilities.h>
 
-
 @interface UIView (IonBackgroundUtilities)
 
 #pragma mark Gradient Backgrounds
 
 /**
- * This sets the background to a linear gradient with the specified confiuration.
- * @param {IonLinearGradientConfiguration*} the gradient configuration to use in generation of the gradent
+ * This sets the background to a linear gradient with the specified configuration.
+ * @param {IonLinearGradientConfiguration*} the gradient configuration to use in generation of the gradient
  * @returns {void}
  */
 - (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig;
 
 /**
- * This sets the background to a linear gradient with the specified confiuration.
+ * This sets the background to a linear gradient with the specified configuration.
  * @param {IonLinearGradientConfiguration*} the gradient configuration to use in generation of the gradient
- * @param {(void(^)())} the compleation to be called when finished
+ * @param {(void(^)())} the completion to be called when finished
  * @returns {void}
  */
-- (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig compleation:( void(^)( ) )compleation;
+- (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig completion:( void(^)( ) )completion;
 
 
 #pragma mark Image Backgrounds

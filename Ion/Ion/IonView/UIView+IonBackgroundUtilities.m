@@ -7,18 +7,19 @@
 //
 
 #import "UIView+IonBackgroundUtilities.h"
+#import "IonMath.h"
 
 
 @implementation UIView (IonBackgroundUtilities)
 
 #pragma mark Gradient Backgrounds
 /**
- * This sets the background to a linear gradient with the specified confiuration.
+ * This sets the background to a linear gradient with the specified configuration.
  * @param {IonLinearGradientConfiguration*} the gradient configuration to use in generation of the gradient
- * @param {(void(^)())} the compleation to be called when finished
+ * @param {(void(^)())} the completion to be called when finished
  * @returns {void}
  */
-- (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig compleation:( void(^)( ) )compleation {
+- (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig completion:( void(^)( ) )completion {
     CGSize netSize = self.frame.size;
     
     // Generate and set the gradient
@@ -27,18 +28,18 @@
                              withReturnBlock:^(UIImage *image) {
                                  [self setBackgroundImage:image];
                                  
-                                 if ( compleation )
-                                     compleation();
+                                 if ( completion )
+                                     completion();
                              }];
 }
 
 /**
- * This sets the background to a linear gradient with the specified confiuration.
- * @param {IonLinearGradientConfiguration*} the gradient configuration to use in generation of the gradent
+ * This sets the background to a linear gradient with the specified configuration.
+ * @param {IonLinearGradientConfiguration*} the gradient configuration to use in generation of the gradient
  * @returns {void}
  */
 - (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig {
-    [self setBackgroundToLinearGradient:gradientConfig compleation:NULL];
+    [self setBackgroundToLinearGradient:gradientConfig completion:NULL];
 }
 
 
@@ -52,15 +53,14 @@
  */
 + (void) setImage:(UIImage*)image toLayer:(CALayer*)layer {
     
-    // Scale the view to match the image
-    CGFloat nativeWidth = CGImageGetWidth(image.CGImage);
-    CGFloat nativeHeight = CGImageGetHeight(image.CGImage);
-    CGRect startFrame = CGRectMake(0.0, 0.0, nativeWidth, nativeHeight);
-    
-    // TODO: Center Image, Resize image, Store in data store.
-    
-    layer.contents = (__bridge id)(image.CGImage);
-    layer.bounds = startFrame;
+    // Resize image to fit
+    [IonRenderUtilities renderImage: image
+                           withSize: layer.frame.size
+                     andReturnBlock: ^( UIImage *resImage ) {
+                         NSLog(@"Img: %@", resImage );
+                         
+                         layer.contents = (__bridge id)(resImage.CGImage);
+                     }];
 }
 
 /**
@@ -83,7 +83,7 @@
     if ( !image )
         return;
     
-    // Create the mask if it dosn't already exsist
+    // Create the mask if it doesn't already exist
     if ( !self.layer.mask )
         self.layer.mask = [[CALayer alloc] init];
     

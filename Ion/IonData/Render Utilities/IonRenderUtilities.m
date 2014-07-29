@@ -23,7 +23,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
  * @param {void^()} the work to be rendered
  * @param {CGSize} the size of the context
  * @param {CGFloat} this is the scale of the context
- * @param {bool} states if the context and the resulting imgae have an alpha channel
+ * @param {bool} states if the context and the resulting image have an alpha channel
  * @param {void^(UIImage*)} the block to be called once the work is done
  * @returns {void}
  */
@@ -72,7 +72,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
  * Note: this uses CGContext based rendering.
  * @param {void^()} the work to be rendered
  * @param {CGSize} the size of the context
- * @param {bool} states if the context and the resulting imgae have an alpha channel
+ * @param {bool} states if the context and the resulting image have an alpha channel
  * @param {void^(UIImage*)} the block to be called once the work is done
  * @returns {void}
  */
@@ -115,7 +115,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
  * @param {void^()} the work to be rendered
  * @param {CGSize} the size of the context
  * @param {CGFloat} this is the scale of the context
- * @param {bool} states if the context and the resulting imgae have an alpha channel
+ * @param {bool} states if the context and the resulting image have an alpha channel
  * @param {void^(UIImage*)} the block to be called once the work is done
  * @returns {void}
  */
@@ -251,6 +251,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
         if ( !CGSizeEqualToSize( size, CGSizeZero) )
             return;
         
+        NSLog(@"CGSize: %@", NSStringFromCGSize(size));
         // Draw the Image
         [image drawInRect: (CGRect){ CGPointZero, size } ];
         
@@ -262,7 +263,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
 #pragma mark Verification
 
 /**
- * Verifys that the inputted context state is valid.
+ * Verifies that the inputted context state is valid.
  * @param {IonContextState} the context state to verify.
  * @returns {BOOL} true if valid, false if invaid.
  */
@@ -275,7 +276,7 @@ static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
 #pragma mark Singletons
 
 /**
- * This is the render dispatch queue singleton.
+ * This is the render dispatch queue singleton.invalid
  * @returns {dispatch_queue_t}
  */
 + (dispatch_queue_t) renderDispatchQueue {

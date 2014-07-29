@@ -11,6 +11,16 @@
 
 @implementation IonThemeConfiguration
 
+/**
+ * The Standard Constructor.
+ */
+- (instancetype) init {
+    self = [super init];
+    if ( self ) {
+        _themeShouldBeApplyedToSelf = true;
+    }
+    return self;
+}
 
 
 @end

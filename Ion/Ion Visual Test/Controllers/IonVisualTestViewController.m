@@ -27,6 +27,12 @@
     //imgView.themeID = @"simpleStyle";
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear: animated];
+    // Set the overriden background.
+    [self.view setBackgroundImage: [UIImage imageNamed:@"andrews-test"]];
+    self.view.opaque = true;
+}
 
 - (void) shouldLayoutSubviews {
     [super shouldLayoutSubviews];
