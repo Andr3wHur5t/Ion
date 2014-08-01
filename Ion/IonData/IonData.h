@@ -30,6 +30,8 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 #include "IonKeyValuePair.h"
 
 #pragma mark Data Structures
+// Data Sources
+#include "IonMutableDictionary.h"
 // Method Map
 #include "IonMethodMap.h"
 
@@ -37,6 +39,7 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 #include "IonBalancedAccessBasedGenerationMap.h"
 #include "IonKVPAccessBasedGenerationMap.h"
 #include "IonAccessBasedGenerationMap.h"
+#include "IonAsyncAccessBasedGenerationMap.h"
 
 // Extensions
 #import "NSDictionary+IonTypeExtension.h"
@@ -66,3 +69,6 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 #include "IonImage.h"
 #include "IonImageManager.h"
 
+
+#pragma mark Callbacks
+#import "IonDataTypes.h"

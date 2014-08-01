@@ -17,7 +17,7 @@
 - (instancetype) init {
     self = [super init];
     if ( self ) {
-        _themeShouldBeApplyedToSelf = true;
+        _themeShouldBeAppliedToSelf = true;
     }
     return self;
 }

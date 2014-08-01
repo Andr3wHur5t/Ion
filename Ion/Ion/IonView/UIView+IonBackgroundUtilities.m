@@ -8,7 +8,7 @@
 
 #import "UIView+IonBackgroundUtilities.h"
 #import "IonMath.h"
-
+#import "UIView+IonTheme.h"
 
 @implementation UIView (IonBackgroundUtilities)
 
@@ -78,6 +78,7 @@
         [IonRenderUtilities renderImage: image
                              withSize: layer.frame.size
                          andReturnBlock: returnBlock];
+    NSLog(@"IMG");
 }
 
 /**
@@ -95,9 +96,12 @@
  * @returns {void}
  */
 - (void) setBackgroundImage:(UIImage*)image renderMode:(IonBackgroundRenderOptions) renderMode {
-    if ( !image )
+    if ( !image ) {
+        self.themeConfiguration.themeShouldBeAppliedToSelf = TRUE;
         return;
+    }
     
+    self.themeConfiguration.themeShouldBeAppliedToSelf = FALSE;
     [UIView setImage:image toLayer:self.layer renderMode: renderMode];
 }
 

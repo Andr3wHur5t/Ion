@@ -42,6 +42,6 @@
 /**
  * States weither we should apply the theme to ourself.
  */
-@property (assign, nonatomic) BOOL themeShouldBeApplyedToSelf;
+@property (assign, nonatomic) BOOL themeShouldBeAppliedToSelf;
 
 @end

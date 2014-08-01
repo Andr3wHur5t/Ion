@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import <IonData/IonKVPAccessBasedGenerationMap.h>
+#import "IonKVPAccessBasedGenerationMap.h"
 #import "IonAttrubutesStanderdResolution.h"
 
 @class IonKeyValuePair;
@@ -33,7 +33,7 @@
 - (instancetype) initWithFileName:(NSString*) fileName;
 
 /**
- * This constructs and cofigures a theme using the file at the provided path.
+ * This constructs and configures a theme using the file at the provided path.
  * @param {NSString*} the literal path of the theme file.
  * @returns {instancetype}
  */
@@ -58,7 +58,7 @@
 - (IonStyle*) styleForView: (UIView*)view;
 
 /**
- * This compiles the theme into a style class for the sepecified view.
+ * This compiles the theme into a style class for the specified view.
  * @param {NSString*} the theme class to look for; Can Be NULL if other provided
  * @param {NSString*} the theme id to look for; Can Be NULL if other provided
  * @returns {IonStyle*} will returned the style
@@ -98,7 +98,7 @@
 - (IonStyle*) styleFromCompositedClassStyle:(IonStyle*) classStyle andIdStyle:(IonStyle*) idStyle;
 
 /**
- * This gets the current defualt style.
+ * This gets the current default style.
  * @returns {IonStyle*} the current default style.
  */
 - (IonStyle*) currentDefaultStyle;

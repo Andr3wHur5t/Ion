@@ -77,7 +77,7 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
     
     currentStyle = [themeObject styleForThemeClass: self.themeConfiguration.themeClass andThemeID: self.themeConfiguration.themeID];
     if ( [currentStyle isKindOfClass:[IonStyle class]] && currentStyle &&
-        self.themeConfiguration.themeShouldBeApplyedToSelf ) {
+          self.themeConfiguration.themeShouldBeAppliedToSelf ) {
         
         [currentStyle applyToView: self];
         config.currentTheme = themeObject;

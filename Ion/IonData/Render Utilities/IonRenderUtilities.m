@@ -9,7 +9,7 @@
 #import "IonRenderUtilities.h"
 #import "IonMath.h"
 
-static const char* IonRenderQueueLabel = "ION_RENDER_QUEUE";
+static const char* IonRenderQueueLabel = "com.ion.render";
 
 
 

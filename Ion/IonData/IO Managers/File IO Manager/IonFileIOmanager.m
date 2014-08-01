@@ -8,7 +8,7 @@
 
 #import "IonFileIOmanager.h"
 
-static const char* IonFileIOqueueLabel = "ION_FILE_IO_QUEUE";
+static const char* IonFileIOqueueLabel = "com.ion.fileManager";
 
 @interface IonFileIOmanager ()
 

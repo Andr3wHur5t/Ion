@@ -149,8 +149,8 @@
     UIColor* color;
     NSNumber* weight;
     
-    color = [self colorFromKey: @"color"];
-    weight = [self numberForKey: @"weight"];
+    color = [self colorFromKey: sIonColorKey];
+    weight = [self numberForKey: sIonWeightKey];
     if ( !color || !weight )
         return NULL;
     
@@ -175,7 +175,7 @@
     if ( !dict )
         return NULL;
     
-    rawColorWeights = [self arrayForKey: @"colorWeights"];
+    rawColorWeights = [self arrayForKey: sIonWeightKey];
     if ( !rawColorWeights )
         return NULL;
     
@@ -211,11 +211,11 @@
     IonGradientConfiguration* gradConfig;
     NSString* type;
     
-    type = [self stringForKey: @"type"];
+    type = [self stringForKey: sIonGradientTypeKey];
     if ( !type )
         return NULL;
     
-    if ( [type isEqualToString: @"linear"] )
+    if ( [type isEqualToString: sIonGradientTypeLinear] )
         gradConfig = [self toLinearGradientConfiguration];
     else
         gradConfig = [self toLinearGradientConfiguration];
@@ -248,11 +248,11 @@
     NSNumber* angle;
     NSArray* colorWeights;
     
-    colorWeights = [self colorWeightsForKey: @"colorWeights"];
+    colorWeights = [self colorWeightsForKey: sIonColorWeightsKey];
     if ( !colorWeights )
         return NULL;
     
-    angle = [self numberForKey: @"angle"];
+    angle = [self numberForKey: sIonGradientAngleKey];
     if ( !angle )
         angle = @90.0f;
     
@@ -304,7 +304,7 @@
  * @returns {CGPoint} a valid CGPoint, or a CGPointUndefined.
  */
 - (CGPoint) toPoint {
-    return [self toVec2UsingX1: @"x" andY1: @"y"];
+    return [self toVec2UsingX1: sIonXKey andY1: sIonYKey];
 }
 
 /**
@@ -329,7 +329,7 @@
  * @returns {CGPoint} a valid CGSize, or a CGPointUndefined.
  */
 - (CGSize) toSize {
-    CGPoint reference = [self toVec2UsingX1: @"width" andY1: @"height"];
+    CGPoint reference = [self toVec2UsingX1: sIonWeightKey andY1: sIonHeightKey];
     if ( CGPointEqualToPoint( reference, CGPointUndefined ) )
         return CGSizeUndefined;
     
@@ -358,7 +358,10 @@
  * @returns {CGPoint} a valid CGSize, or a CGPointUndefined.
  */
 - (CGRect) toRect {
-    return [self toVec4UsingX1: @"x" y1: @"y" x2: @"width" andY2: @"height"];
+    return [self toVec4UsingX1: sIonXKey
+                            y1: sIonYKey
+                            x2: sIonWeightKey
+                         andY2: sIonHeightKey];
 }
 
 

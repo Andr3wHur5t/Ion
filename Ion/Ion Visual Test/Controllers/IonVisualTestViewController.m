@@ -24,14 +24,15 @@
     
     // Theme Testing
     imgView.themeConfiguration.themeClass = @"secondaryStyle";
+    self.view.themeConfiguration.themeShouldBeAppliedToSelf = FALSE;
     //imgView.themeID = @"simpleStyle";
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear: animated];
     // Set the overriden background.
-    //[self.view setBackgroundImage: [UIImage imageNamed:@"aspect-test"]];
-   // self.view.opaque = true;
+    
+    [self.view setBackgroundImage: [UIImage imageNamed:@"aspect-test"] renderMode: IonBackgroundRenderContained];
 }
 
 - (void) shouldLayoutSubviews {

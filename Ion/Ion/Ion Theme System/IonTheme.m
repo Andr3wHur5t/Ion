@@ -55,7 +55,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
 }
 
 /**
- * This constructs and cofigures a theme using the file at the provided path.
+ * This constructs and configures a theme using the file at the provided path.
  * @param {NSString*} the literal path of the theme file.
  * @returns {instancetype}
  */
@@ -125,7 +125,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
 }
 
 /**
- * This compiles the theme into a style class for the sepecified view.
+ * This compiles the theme into a style class for the specified view.
  * @param {NSString*} the theme class to look for; Can Be NULL if other provided
  * @param {NSString*} the theme id to look for; Can Be NULL if other provided
  * @returns {IonStyle*} will return the net style
@@ -134,11 +134,11 @@ static NSString* sIonThemeIdFormat = @"id_%@";
     id result;
     IonStyle *classStyle, *idStyle;
     
-    // Search if we have generated one with the same parameters; Optomization;
+    // Search if we have generated one with the same parameters; Optimization;
     
     if ( themeClass )
             classStyle = [self styleForClassName: themeClass];
-        
+    
     
     if ( themeID )
             idStyle = [self styleForIdName: themeID];
@@ -221,7 +221,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
 
 
 /**
- * This gets the current defualt style.
+ * This gets the current default style.
  * @returns {IonStyle*} the current default style.
  */
 - (IonStyle*) currentDefaultStyle {

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IonAsyncAccessBasedGenerationMap.h"
 
 @class IonPath;
 @class IonDirectory;
@@ -33,6 +34,10 @@ typedef void(^IonSubCacheResultCallback)( IonSimpleCache* result );
  */
 typedef void(^IonCompletionCallback)( );
 
+
+/**
+ * The Fundmental Request Cache Mechnisim.
+ */
 @interface IonSimpleCache : NSObject
 #pragma mark Constructors
 
@@ -118,37 +123,6 @@ typedef void(^IonCompletionCallback)( );
  * @returns {void}
  */
 - (void) clearStorageCache;
-
-#pragma mark Sub Caches
-
-/**
- * The sub-caches in the cache.
- */
-@property (strong, nonatomic, readonly) NSMutableDictionary* subcaches;
-
-/**
- * Gets a sub-cache with the specified key.
- * @param {NSString*} the key of the sub-cache to get.
- * @param {IonSubCacheResultCallback} the return callback to call with the result.
- * @return {void}
- */
-- (void) getSubCacheWithKey:(NSString*) key andResultCallback:(IonSubCacheResultCallback*) resultCallback;
-
-/**
- * Adds a sub cache with the specified key as the directory name.
- * @param {NSString*} the key to have the sub-cache linked to.
- * @param {IonSubCacheResultCallback} the rerun callback to call with the result.
- * @returns {void}
- */
-- (void) addSubCacheWithKey:(NSString*) key andResultCallback:(IonSubCacheResultCallback*) resultCallback;;
-
-/**
- * Removes the cache with the specified key.
- * @param {NSString*} the key of the cache to remove.
- * @param {IonCompletionCallback} the completion call back to call.
- * @retrurns {void}
- */
-- (void) removeSubCacheWithKey:(NSString*) key withCompletion:(IonCompletionCallback) completion;
 
 #pragma mark Conversions
 
