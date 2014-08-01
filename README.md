@@ -11,3 +11,4 @@ Features:
  - Theme Based Views
  - Simple Theme System
  - Easy JSON Parser
+ - Method Maps
