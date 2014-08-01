@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3719144C198BADD7002D7355 /* IonDataConversions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3719144B198BADD7002D7355 /* IonDataConversions.m */; };
 		3719144E198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3719144D198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m */; };
+		37191450198BC281002D7355 /* IonDataCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3719144F198BC281002D7355 /* IonDataCacheTests.m */; };
+		37191452198BC30E002D7355 /* IonThemeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37191451198BC30E002D7355 /* IonThemeTests.m */; };
 		371D5D58197FB02400485DC0 /* IonImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FCF187197F8A1C004C14C8 /* IonImage.m */; };
 		371D5D59197FB02400485DC0 /* IonImageRef.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FCF189197F8A1C004C14C8 /* IonImageRef.m */; };
 		371D5D5A197FB02400485DC0 /* IonAccessBasedGenerationMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FCF18D197F8A1C004C14C8 /* IonAccessBasedGenerationMap.m */; };
@@ -191,6 +193,8 @@
 /* Begin PBXFileReference section */
 		3719144B198BADD7002D7355 /* IonDataConversions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonDataConversions.m; sourceTree = "<group>"; };
 		3719144D198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonAdaptedMutableDictionaryTests.m; sourceTree = "<group>"; };
+		3719144F198BC281002D7355 /* IonDataCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonDataCacheTests.m; sourceTree = "<group>"; };
+		37191451198BC30E002D7355 /* IonThemeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonThemeTests.m; sourceTree = "<group>"; };
 		371D5D61197FB0EF00485DC0 /* IonColorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonColorTests.m; sourceTree = "<group>"; };
 		371D5D62197FB0EF00485DC0 /* IonKVPvectorConversionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonKVPvectorConversionTests.m; sourceTree = "<group>"; };
 		371D5D63197FB0EF00485DC0 /* IonRenderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonRenderTests.m; sourceTree = "<group>"; };
@@ -861,6 +865,7 @@
 			isa = PBXGroup;
 			children = (
 				37EBAC63195C9A93008D6BD6 /* Supporting Files */,
+				37191451198BC30E002D7355 /* IonThemeTests.m */,
 			);
 			path = IonTests;
 			sourceTree = "<group>";
@@ -975,6 +980,7 @@
 				3719144B198BADD7002D7355 /* IonDataConversions.m */,
 				3719144D198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m */,
 				37FCF163197F830C004C14C8 /* Supporting Files */,
+				3719144F198BC281002D7355 /* IonDataCacheTests.m */,
 			);
 			path = IonDataTests;
 			sourceTree = "<group>";
@@ -1443,6 +1449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37191452198BC30E002D7355 /* IonThemeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1502,6 +1509,7 @@
 				371D5D66197FB0EF00485DC0 /* IonRenderTests.m in Sources */,
 				3719144E198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m in Sources */,
 				373C99E7198B9D54002F46AD /* IonPathTests.m in Sources */,
+				37191450198BC281002D7355 /* IonDataCacheTests.m in Sources */,
 				371D5D65197FB0EF00485DC0 /* IonKVPvectorConversionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

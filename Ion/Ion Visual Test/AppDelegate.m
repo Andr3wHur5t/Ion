@@ -65,35 +65,6 @@
 }
 
 /**
- * Tests if the async ABGMap works
- */
--(void) asyncABGMapTest {
-    NSString* path;
-    IonMutableDictionary* dict;
-    IonAsyncAccessBasedGenerationMap* aabgm;
-    
-    path = [[NSBundle mainBundle] pathForResource:@"TestConfig" ofType:@"json"];
-    NSData* file = [[NSData alloc] initWithContentsOfFile:path];
-    dict = [[IonMutableDictionary alloc] initWithDictionary: [file toJsonDictionary]];
-    
-    NSLog(@"Async ABG Map Test:");
-    [dict objectForKey:@"TestConfig" withResultBlock:^(id object) {
-        NSLog(@"From Root:%@", object);
-    }];
-    
-    
-    // Create Map
-    aabgm = [[IonAsyncAccessBasedGenerationMap alloc] initWithDataSource: dict];
-    NSLog(@"start Dict:%@", aabgm);
-   [aabgm objectForKey:@"TestConfig" usingGenerationBlock:^(id data, IonResultBlock resultBlock) {
-       resultBlock(data);
-   } withResultBlock:^(id object) {
-       NSLog(@"Object: %@", object);
-   }];
-    
-}
-
-/**
  * This runs all of our theme tests, Note Should move these to unit tests.
  */
 - (void) runThemeTests {
