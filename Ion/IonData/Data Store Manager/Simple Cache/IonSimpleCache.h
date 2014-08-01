@@ -21,12 +21,6 @@
  */
 typedef void(^IonResultCallback)( id result );
 
-/**
- * The sub-cache result callback.
- * @param {IonSimpleCache*} the resulting sub-cache
- * @returns {void}
- */
-typedef void(^IonSubCacheResultCallback)( IonSimpleCache* result );
 
 /**
  * The completion callback.
@@ -34,6 +28,10 @@ typedef void(^IonSubCacheResultCallback)( IonSimpleCache* result );
  */
 typedef void(^IonCompletionCallback)( );
 
+
+/** = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+ *                                         Simple Cache
+ *  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 
 /**
  * The Fundmental Request Cache Mechnisim.

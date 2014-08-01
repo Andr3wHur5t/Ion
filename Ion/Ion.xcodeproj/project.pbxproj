@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3719144C198BADD7002D7355 /* IonDataConversions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3719144B198BADD7002D7355 /* IonDataConversions.m */; };
+		3719144E198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3719144D198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m */; };
 		371D5D58197FB02400485DC0 /* IonImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FCF187197F8A1C004C14C8 /* IonImage.m */; };
 		371D5D59197FB02400485DC0 /* IonImageRef.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FCF189197F8A1C004C14C8 /* IonImageRef.m */; };
 		371D5D5A197FB02400485DC0 /* IonAccessBasedGenerationMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FCF18D197F8A1C004C14C8 /* IonAccessBasedGenerationMap.m */; };
@@ -19,7 +21,6 @@
 		371D5D64197FB0EF00485DC0 /* IonColorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D61197FB0EF00485DC0 /* IonColorTests.m */; };
 		371D5D65197FB0EF00485DC0 /* IonKVPvectorConversionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D62197FB0EF00485DC0 /* IonKVPvectorConversionTests.m */; };
 		371D5D66197FB0EF00485DC0 /* IonRenderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D63197FB0EF00485DC0 /* IonRenderTests.m */; };
-		371D5D6A197FB0FE00485DC0 /* IonKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D69197FB0FE00485DC0 /* IonKeyValuePair.m */; };
 		371D5D6B197FB10800485DC0 /* IonKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D5D69197FB0FE00485DC0 /* IonKeyValuePair.m */; };
 		371D5D6C197FB11300485DC0 /* IonKeyValuePair.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D68197FB0FE00485DC0 /* IonKeyValuePair.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		371D5D6F197FB15000485DC0 /* IonKVP+IonTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 371D5D6D197FB15000485DC0 /* IonKVP+IonTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -67,6 +68,7 @@
 		373C99E2198A4CDB002F46AD /* IonAsyncAccessBasedGenerationMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 373C99E0198A4CDB002F46AD /* IonAsyncAccessBasedGenerationMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		373C99E3198A4CDB002F46AD /* IonAsyncAccessBasedGenerationMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 373C99E1198A4CDB002F46AD /* IonAsyncAccessBasedGenerationMap.m */; };
 		373C99E5198A52FD002F46AD /* TestConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 373C99E4198A52FD002F46AD /* TestConfig.json */; };
+		373C99E7198B9D54002F46AD /* IonPathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373C99E6198B9D54002F46AD /* IonPathTests.m */; };
 		376DA8AE1976FB37008D692E /* IonStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 376DA8AC1976FB37008D692E /* IonStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		376DA8AF1976FB37008D692E /* IonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DA8AD1976FB37008D692E /* IonStyle.m */; };
 		376DA8B21976FB47008D692E /* IonTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 376DA8B01976FB47008D692E /* IonTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -187,6 +189,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3719144B198BADD7002D7355 /* IonDataConversions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonDataConversions.m; sourceTree = "<group>"; };
+		3719144D198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonAdaptedMutableDictionaryTests.m; sourceTree = "<group>"; };
 		371D5D61197FB0EF00485DC0 /* IonColorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonColorTests.m; sourceTree = "<group>"; };
 		371D5D62197FB0EF00485DC0 /* IonKVPvectorConversionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonKVPvectorConversionTests.m; sourceTree = "<group>"; };
 		371D5D63197FB0EF00485DC0 /* IonRenderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonRenderTests.m; sourceTree = "<group>"; };
@@ -236,6 +240,7 @@
 		373C99E0198A4CDB002F46AD /* IonAsyncAccessBasedGenerationMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonAsyncAccessBasedGenerationMap.h; sourceTree = "<group>"; };
 		373C99E1198A4CDB002F46AD /* IonAsyncAccessBasedGenerationMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonAsyncAccessBasedGenerationMap.m; sourceTree = "<group>"; };
 		373C99E4198A52FD002F46AD /* TestConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestConfig.json; sourceTree = "<group>"; };
+		373C99E6198B9D54002F46AD /* IonPathTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonPathTests.m; sourceTree = "<group>"; };
 		376DA8AC1976FB37008D692E /* IonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonStyle.h; path = "Ion Theme System/IonStyle.h"; sourceTree = "<group>"; };
 		376DA8AD1976FB37008D692E /* IonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonStyle.m; path = "Ion Theme System/IonStyle.m"; sourceTree = "<group>"; };
 		376DA8B01976FB47008D692E /* IonTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonTheme.h; path = "Ion Theme System/IonTheme.h"; sourceTree = "<group>"; };
@@ -966,6 +971,9 @@
 				371D5D61197FB0EF00485DC0 /* IonColorTests.m */,
 				371D5D62197FB0EF00485DC0 /* IonKVPvectorConversionTests.m */,
 				371D5D63197FB0EF00485DC0 /* IonRenderTests.m */,
+				373C99E6198B9D54002F46AD /* IonPathTests.m */,
+				3719144B198BADD7002D7355 /* IonDataConversions.m */,
+				3719144D198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m */,
 				37FCF163197F830C004C14C8 /* Supporting Files */,
 			);
 			path = IonDataTests;
@@ -1489,9 +1497,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				371D5D6A197FB0FE00485DC0 /* IonKeyValuePair.m in Sources */,
 				371D5D64197FB0EF00485DC0 /* IonColorTests.m in Sources */,
+				3719144C198BADD7002D7355 /* IonDataConversions.m in Sources */,
 				371D5D66197FB0EF00485DC0 /* IonRenderTests.m in Sources */,
+				3719144E198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m in Sources */,
+				373C99E7198B9D54002F46AD /* IonPathTests.m in Sources */,
 				371D5D65197FB0EF00485DC0 /* IonKVPvectorConversionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

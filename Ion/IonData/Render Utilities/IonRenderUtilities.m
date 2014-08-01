@@ -61,9 +61,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
             
         });
     } else {
-        [NSException exceptionWithName:@"Missing Argument!"
-                                reason:@"IonRenderUtilities was told to do work with out any work Block or any Result block."
-                              userInfo:NULL];
+        returnBlock( NULL );
     }
 }
 

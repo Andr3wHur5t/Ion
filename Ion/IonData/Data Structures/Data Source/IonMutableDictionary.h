@@ -27,4 +27,10 @@
  * @returns {void}
  */
 - (void) setDictionary:(NSDictionary*) dict;
+
+/**
+ * Gets the key count.
+ * @returns {NSInteger} the count of keys.
+ */
+- (NSInteger) keyCount;
 @end

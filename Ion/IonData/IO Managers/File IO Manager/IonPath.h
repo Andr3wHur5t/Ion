@@ -11,6 +11,13 @@
 @interface IonPath : NSObject
 #pragma mark Constructors
 /**
+ * Creates a path object from the inputted components.
+ * @param {NSArray*} the Base Components.
+ * @returns {instancetype}
+ */
+- (instancetype) initFromComponents:(NSArray*) components;
+
+/**
  * Creates a path object from the inputted NSURL.
  * @param {NSURL*} the url to base the path off of.
  * @returns {instancetype}

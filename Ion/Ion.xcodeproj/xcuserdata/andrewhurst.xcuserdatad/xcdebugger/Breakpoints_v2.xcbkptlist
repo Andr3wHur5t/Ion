@@ -205,11 +205,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/IO Managers/File IO Manager/IonPath.m"
-            timestampString = "427974244.188714"
+            timestampString = "428584214.500836"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "+pathComponentsFromURL:"
             landmarkType = "5">
          </BreakpointContent>
@@ -221,11 +221,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/IO Managers/File IO Manager/IonPath.m"
-            timestampString = "427974244.188714"
+            timestampString = "428584214.500836"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "+pathComponentsFromURL:"
             landmarkType = "5">
          </BreakpointContent>
@@ -237,11 +237,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/IO Managers/File IO Manager/IonPath.m"
-            timestampString = "427974244.188714"
+            timestampString = "428582653.839398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "+pathComponentsFromURL:"
             landmarkType = "5">
          </BreakpointContent>
@@ -253,11 +253,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/IO Managers/File IO Manager/IonPath.m"
-            timestampString = "427973590.896795"
+            timestampString = "428582653.839398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "-initFromURL:"
             landmarkType = "5">
          </BreakpointContent>
@@ -269,11 +269,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/IO Managers/File IO Manager/IonPath.m"
-            timestampString = "427974244.188714"
+            timestampString = "428582653.839398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "-initFromPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -285,11 +285,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/IO Managers/File IO Manager/IonPath.m"
-            timestampString = "427974244.188714"
+            timestampString = "428582653.839398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "-initPath:appendedByElements:"
             landmarkType = "5">
          </BreakpointContent>
@@ -301,11 +301,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/IO Managers/File IO Manager/IonPath.m"
-            timestampString = "427974244.188714"
+            timestampString = "428582653.839398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "-appendHierarchy:"
             landmarkType = "5">
          </BreakpointContent>
@@ -499,6 +499,86 @@
             startingLineNumber = "71"
             endingLineNumber = "71"
             landmarkName = "-normalizedColorWeightsForKey:usingTheme:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/Data Structures/Data Source/IonMutableDictionary.m"
+            timestampString = "428586682.605875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "-removeObjectForKey:withCompletion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/Data Structures/Data Source/IonMutableDictionary.m"
+            timestampString = "428586682.605875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "-removeAllObjects:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/Data Structures/Data Source/IonMutableDictionary.m"
+            timestampString = "428586682.605875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "-setObject:forKey:withCompletion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/Data Structures/Data Source/IonMutableDictionary.m"
+            timestampString = "428586682.605875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "-objectForKey:withResultBlock:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/Render Utilities/IonRenderUtilities.m"
+            timestampString = "428588960.571477"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "+renderBlock:inContextWithSize:scale:thatHasAlpha:andReturnBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

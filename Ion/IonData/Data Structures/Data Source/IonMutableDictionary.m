@@ -59,6 +59,14 @@
 - (NSString*) description {
     return [_map description];
 }
+
+/**
+ * Gets the key count.
+ * @returns {NSInteger} the count of keys.
+ */
+- (NSInteger) keyCount {
+    return [[_map allKeys] count];
+}
 #pragma mark Data Source Interface
 
 /**
@@ -69,8 +77,11 @@
  */
 - (void) objectForKey:(NSString*) key withResultBlock:(IonRawDataSourceResultBlock) result {
     __block NSString* str;
-    if ( !key || ![key isKindOfClass: [NSString class]] || !result || !_map )
+    if ( !key || ![key isKindOfClass: [NSString class]] || !result || !_map ) {
+        if ( result )
+            result ( NULL );
         return;
+    }
     
     str = key;
     dispatch_async( ionStandardDispatchQueue(), ^{
@@ -79,7 +90,8 @@
         
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            result ( obj );
+            if ( result )
+                result ( obj );
         });
     });
 }
@@ -92,8 +104,11 @@
  * @returns {void} returns false if the operation isn't valid.
  */
 - (void) setObject:(id) object forKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
-    if ( !key || ![key isKindOfClass: [NSString class]] || !object || !_map )
+    if ( !key || ![key isKindOfClass: [NSString class]] || !object || !_map ) {
+        if ( completion )
+            completion ( NULL );
         return;
+    }
     
     dispatch_async( ionStandardDispatchQueue(), ^{
         [_map setObject: object forKey: key];
@@ -113,8 +128,11 @@
  * @returns {void}
  */
 - (void) removeObjectForKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion  {
-    if ( !key || ![key isKindOfClass: [NSString class]] || !_map )
+    if ( !key || ![key isKindOfClass: [NSString class]] || !_map ) {
+        if ( completion )
+            completion ( NULL );
         return;
+    }
     dispatch_async( ionStandardDispatchQueue(), ^{
         [_map removeObjectForKey: key];
         
@@ -132,8 +150,11 @@
  * @returns {void}
  */
 - (void) removeAllObjects:(IonRawDataSourceCompletion) completion {
-    if ( !_map )
+    if ( !_map ) {
+        if ( completion )
+            completion ( NULL );
         return;
+    }
     dispatch_async( ionStandardDispatchQueue(), ^{
         [_map removeAllObjects];
         

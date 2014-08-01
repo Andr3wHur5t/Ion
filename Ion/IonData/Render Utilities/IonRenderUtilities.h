@@ -47,7 +47,7 @@ typedef void(^IonRenderReturnBlock)( UIImage* image );
  * @param {void^()} the work to be rendered
  * @param {CGSize} the size of the context
  * @param {CGFloat} this is the scale of the context
- * @param {bool} states if the context and the resulting imgae have an alpha channel
+ * @param {bool} states if the context and the resulting image have an alpha channel
  * @param {void^(UIImage*)} the block to be called once the work is done
  * @returns {void}
  */
@@ -62,7 +62,7 @@ typedef void(^IonRenderReturnBlock)( UIImage* image );
  * Note: this uses CGContext based rendering.
  * @param {void^()} the work to be rendered
  * @param {CGSize} the size of the context
- * @param {bool} states if the context and the resulting imgae have an alpha channel
+ * @param {bool} states if the context and the resulting image have an alpha channel
  * @param {IonRenderReturnBlock} the block to be called once the work is done
  * @returns {void}
  */
@@ -91,7 +91,7 @@ typedef void(^IonRenderReturnBlock)( UIImage* image );
  * @peram {NSArray} the array of color weights to be converted.
  * @returns {CGGradientRef}
  */
-+ (CGGradientRef) refrenceGradientFromColorWeights:(NSArray*) colorWeights;
++ (CGGradientRef) referenceGradientFromColorWeights:(NSArray*) colorWeights;
 
 /**
  * This will render a linear gradient using the inputed config, and result size.
@@ -143,9 +143,9 @@ typedef void(^IonRenderReturnBlock)( UIImage* image );
 #pragma mark Verification
 
 /**
- * Verifys that the inputted context state is valid.
+ * Verifies that the inputted context state is valid.
  * @param {IonContextState} the context state to verify.
- * @returns {BOOL} true if valid, false if invaid.
+ * @returns {BOOL} true if valid, false if invalid.
  */
 + (BOOL) isValidContextState:(IonContextState) state;
 

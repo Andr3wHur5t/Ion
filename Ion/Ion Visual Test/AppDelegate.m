@@ -40,6 +40,9 @@
     IonVisualTestViewController* vc = [[IonVisualTestViewController alloc] init];
     
     
+    
+    [self testPathSystem];
+    
     //[self asyncABGMapTest];
     
     /**
@@ -52,6 +55,13 @@
     
     if (finished)
         finished(vc);
+}
+
+/**
+ * Tests file IO.
+ */
+- (void) testFileIO {
+    
 }
 
 /**

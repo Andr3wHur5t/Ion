@@ -14,6 +14,7 @@
 #import "IonGradientConfiguration.h"
 #import "UIColor+IonColor.h"
 #import "IonThemePointer.h"
+#import "IonKVPAccessBasedGenerationMap.h"
 
 @implementation IonKeyValuePair
 

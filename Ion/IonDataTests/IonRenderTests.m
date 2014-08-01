@@ -19,6 +19,7 @@
 // Consistant Color Weights
 @property (strong, nonatomic) NSArray* colorWeights;
 
++ (UIImage *)imageWithColor:(UIColor *)color;
 @end
 
 @implementation IonRenderTests
@@ -44,37 +45,91 @@
 #pragma mark gradients
 
 /**
- * This checks if the gradient refrence generation function generates a valid object
+ * Checks if the gradient refrence generation function generates a valid object
  */
-- (void)testLinearGradientConfigurationToRefrence {
-    CGGradientRef testRefrence = [IonRenderUtilities refrenceGradientFromColorWeights:_colorWeights];
+- (void) testLinearGradientConfigurationToRefrence {
+    CGGradientRef testRefrence = [IonRenderUtilities referenceGradientFromColorWeights: _colorWeights];
     
     XCTAssert( testRefrence , @"Generated Gradient Refrence is NULL");
 }
 
 
 /**
- * This tests for the speed of rendering a gradient.
+ * Tests for the speed of rendering a gradient.
  */
-- (void)testGradientRenderInBlockPerformance {
-    [IonRenderUtilities renderTestingInMainBlock:^{
-        IonContextState currentState = currentContextStateWithSize(_contextSize);
-        
-         [self measureBlock:^{
-            [IonRenderUtilities linearGradientWithContextState: currentState
-                                          gradientColorWeights: _colorWeights
-                                                         angle: M_PI/2 ];
-         }];
-        
-    }
-                               inContextWithSize:_contextSize
-                                           scale:1.0f
-                                    thatHasAlpha:true
-                                  andReturnBlock:^(UIImage *image) {
-                                      XCTAssert(image.size.width == _contextSize.width &&
-                                                image.size.height == _contextSize.height,
-                                                @"Net Image Size Is Correct");
+- (void) testGradientRenderPerformance {
+    __block UIImage *result;
+    __block CGSize targetSize;
+    __block IonLinearGradientConfiguration* linGrad;
+    
+    linGrad = [[IonLinearGradientConfiguration alloc] init];
+    targetSize = CGSizeMake(500, 500);
+    
+    [self measureBlock:^{
+        __block XCTestExpectation *renderCompleteExpectation = [self expectationWithDescription:@"Render Complete"];
+        [IonRenderUtilities renderLinearGradient: linGrad
+                                      resultSize: targetSize
+                                 withReturnBlock: ^(UIImage *image) {
+                                     result = image;
+                                     [renderCompleteExpectation fulfill];
                                   }];
+        
+        [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
+            XCTAssert( !CGSizeEqualToSize(result.size, _contextSize),
+                      @"Net image size is incorrect.");
+        }];
+    }];
+}
+
+/**
+ * Test Image resizing.
+ * Note: we rerender the gradient here for an image, then resize it.
+ */
+- (void) testImageResizeing {
+    __block UIImage *result, *input;
+    __block CGSize targetSize;
+    __block IonLinearGradientConfiguration* linGrad;
+    linGrad = [[IonLinearGradientConfiguration alloc] init];
+    
+    targetSize = CGSizeMake(500, 500);
+    input = [IonRenderTests imageWithColor: [UIColor redColor]];
+    
+    
+    [self measureBlock:^{
+        
+        __block XCTestExpectation *renderCompleteExpectation = [self expectationWithDescription:@"Render Complete"];
+        [IonRenderUtilities renderImage: NULL
+                           withSize: targetSize
+                     andReturnBlock:^(UIImage *image) {
+                         result = image;
+                         [renderCompleteExpectation fulfill];
+                     }];
+    
+        [self waitForExpectationsWithTimeout:1 handler: ^(NSError *error) {
+            XCTAssert( !CGSizeEqualToSize(result.size, _contextSize),
+                  @"Net image size is incorrect.");
+        }];
+        
+    }];
+}
+
+
+/**
+ * Image generation Utility
+ */
++ (UIImage *)imageWithColor:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 @end

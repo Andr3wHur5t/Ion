@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IonKVPAccessBasedGenerationMap.h"
 #import "IonMath.h"
 
 @class IonStyle;
@@ -15,6 +14,7 @@
 @class IonImageRef;
 @class IonThemePointer;
 @class IonThemeAttributes;
+@class IonKVPAccessBasedGenerationMap;
 
 @interface IonKeyValuePair : NSObject
 

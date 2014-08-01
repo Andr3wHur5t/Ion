@@ -24,6 +24,23 @@
 }
 
 /**
+ * Creates a path object from the inputted components.
+ * @param {NSArray*} the Base Components.
+ * @returns {instancetype}
+ */
+- (instancetype) initFromComponents:(NSArray*) components {
+    if ( !components )
+        return NULL;
+    self = [self init];
+    if ( self ) {
+        [self setComponentsArray: components];
+        [self normalizeComponents];
+    }
+    
+    return self;
+}
+
+/**
  * Creates a path object from the inputted NSURL.
  * @param {NSURL*} the url to base the path off of.
  * @returns {instancetype} or NULL if invalid
@@ -109,12 +126,13 @@
  * @returns {NSArray*} and array of components, or NULL if invalid
  */
 + (NSArray*) pathComponentsFromURL:(NSURL*) url {
-    NSString* intermediate;
-    NSArray* components;
+    NSString* intermediate, * path;
+    NSArray *components ;
     if ( !url )
         return NULL;
     // TODO: Process
-    intermediate = url.path;
+    path = url.path;
+    intermediate = [path substringWithRange: NSMakeRange ( 1, path.length - 1 )];
     if ( !intermediate || ![intermediate isKindOfClass: [NSString class]] )
         return NULL;
     
