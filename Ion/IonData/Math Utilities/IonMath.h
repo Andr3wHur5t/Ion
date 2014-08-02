@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-/** Radian & Degree Utilitys */
+/** Radian & Degree Utilities */
 #define DegToRad (M_PI/180)
 #define RadToDeg (180/M_PI)
 
@@ -35,9 +35,12 @@ static const CGRect CGRectUndefined = (CGRect){ INFINITY, INFINITY, INFINITY, IN
 
 @interface IonMath : NSObject
 
+#pragma mark Positioning Utilities
 /**
- * This gets the point at the edge of the frame where the ray "emiting from the center of the view" will hit with the specified angle
- * @returns
+ * This gets the point at the edge of the frame where the ray "emitting from the center of the view" will hit with the specified angle
+ * @param {CGSize} the size of the frame.
+ * @param {CGFloat} the angle for us to use in degrees
+ * @returns {CGPoint} point that was hit.
  */
 + (CGPoint) pointAtEdgeOfFrame:(CGSize) frameSize angleOfRay:(CGFloat) angle;
 
@@ -98,4 +101,53 @@ static const CGRect CGRectUndefined = (CGRect){ INFINITY, INFINITY, INFINITY, IN
  */
 + (CGRect) rectWhichContainsSize:(CGSize) fillSize maintainingAspectRatio:(CGSize) aspectRatio;
 
+#pragma Rounding Utilities
+
+/**
+ * Rounds a point to the specified accuracy.
+ * @param {CGPoint} the point to round.
+ * @param {NSNumber} accuracy.
+ * @retuns {CGPoint} the rounded point
+ */
++ (CGPoint) roundPoint:(CGPoint) a usingAccuracy:(NSInteger) accuracy;
+
+
+#pragma mark Point Comparison Utilities
+
+/**
+ * Compares point a with point be with the specified accuracy.
+ * @param {CGPoint} point a
+ * @param {CGPoint} point b
+ * @param {NSNumber} accuracy
+ * @returns {BOOL} if they are equal
+ */
++ (BOOL) comparePoint:(CGPoint) a withPoint:(CGPoint) b;
+
+/**
+ * Compares point a with point be with the specified accuracy.
+ * @param {CGPoint} point a
+ * @param {CGPoint} point b
+ * @param {NSNumber} accuracy
+ * @returns {BOOL} if they are equal
+ */
++ (BOOL) comparePoint:(CGPoint) a withPoint:(CGPoint) b usingAccuracy:(NSInteger) accuracy;
+
+
+#pragma mark Floating Point Utilities
+
+/**
+ * Rounds a value with an accuracy.
+ * @param {CGFloat} the number.
+ * @param {NSNumber} accuracy.
+ * @returns {CGFloat} the rounded number
+ */
++ (CGFloat) roundNumber:(CGFloat) a usingAccuracy:(NSInteger) accuracy;
+
+/**
+ * Compares two float values
+ * @param {CGFloat} a
+ * @param {CGFloat} b
+ * @retult {BOOL}
+ */
++ (BOOL) compareFloat:(CGFloat) a andFloat:(CGFloat) b;
 @end

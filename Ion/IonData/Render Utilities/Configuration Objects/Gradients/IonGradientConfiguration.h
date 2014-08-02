@@ -8,6 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "IonKVPAccessBasedGenerationMap.h"
+
+
+
+/**
+ * ==================== Ion Gradient Keys ====================
+ */
+static const NSString* sGradientTypeKey = @"type";
+
+static const NSString* sGradientColorWeightsKey = @"colorWeights";
+static const NSString* sGradientColorKey = @"color";
+static const NSString* sGradientWeightKey = @"weight";
+
+static const NSString* sGradientLinearKey = @"linear";
+static const NSString* sGradientLinearAngleKey = @"angle";
+static const CGFloat   sGradientLinearAngleDefault = 90.0f;
+
+
+
 /**
  * ==================== Ion Color Weight ====================
  */
@@ -19,7 +37,7 @@
  * @param {NSDictionary*} the gradient map.
  * @returns {NSArray} the resulting color weight array, or NULL if invalid.
  */
-+ (NSArray*) colorWeightArrayFromMap:(NSDictionary*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes;
++ (NSArray*) colorWeightArrayFromMap:(NSArray*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes;
 
 /**
  * This generates the color weight array from the inputted gradient map.

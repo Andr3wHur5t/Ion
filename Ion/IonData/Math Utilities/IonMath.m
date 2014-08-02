@@ -17,13 +17,17 @@
  */
 + (CGPoint) pointAtEdgeOfFrame:(CGSize) frameSize angleOfRay:(CGFloat) angle {
     CGPoint result, center;
+    CGFloat normalizedAngle;
+    
+    // Normalize input
+    normalizedAngle = DegreesToRadians( angle );
     
     // Get the center
     center.x = frameSize.width/2;
     center.y = frameSize.height/2;
     // ray test
-    result.x = ( cosf(angle) * center.x ) + center.x;
-    result.y = ( sinf(angle) * center.y ) + center.y;
+    result.x = ( cosf(normalizedAngle) * center.x ) + center.x;
+    result.y = ( sinf(normalizedAngle) * center.y ) + center.y;
     
     return result;
 }
@@ -124,6 +128,86 @@
     
     return result;
 }
+
+#pragma Rounded Utilities
+
+
+/**
+ * Rounds a point to the specified accuracy.
+ * @param {CGPoint} the poin to round.
+ * @param {NSNumber} accuracy.
+ * @retuns {CGPoint} the rounded point
+ */
++ (CGPoint) roundPoint:(CGPoint) a usingAccuracy:(NSInteger) accuracy {
+    CGPoint result;
+    
+    result.x = [IonMath roundNumber: a.x usingAccuracy: accuracy];
+    result.y = [IonMath roundNumber: a.y usingAccuracy: accuracy];
+    
+    return result;
+}
+
+#pragma mark Point Comparison Utilities
+
+/**
+ * Compares point a with point be with the specified accuracy.
+ * @param {CGPoint} point a
+ * @param {CGPoint} point b
+ * @param {NSNumber} accuracy
+ * @returns {BOOL} if they are equal
+ */
++ (BOOL) comparePoint:(CGPoint) a withPoint:(CGPoint) b {
+    return [IonMath compareFloat: a.x andFloat: b.x] &&
+    [IonMath compareFloat: a.y andFloat: b.y];
+}
+
+/**
+ * Compares point a with point be with the specified accuracy.
+ * @param {CGPoint} point a
+ * @param {CGPoint} point b
+ * @param {NSNumber} accuracy
+ * @returns {BOOL} if they are equal
+ */
++ (BOOL) comparePoint:(CGPoint) a withPoint:(CGPoint) b usingAccuracy:(NSInteger) accuracy {
+    return [IonMath compareFloat: a.x andFloat: b.x usingAccuracy: accuracy] &&
+    [IonMath compareFloat: a.y andFloat: b.y usingAccuracy: accuracy];
+}
+
+#pragma mark Floating Point Utilities
+
+/**
+ * Rounds a value with an accuracy.
+ * @param {CGFloat} the number.
+ * @param {NSNumber} accuracy.
+ * @returns {CGFloat} the rounded number
+ */
++ (CGFloat) roundNumber:(CGFloat) a usingAccuracy:(NSInteger) accuracy {
+    NSInteger accuracyVal;
+    accuracyVal = pow( 10, accuracy );
+    return floorf( a * accuracyVal + 0.5) / accuracyVal;
+}
+
+/**
+ * Compares two float values
+ * @param {CGFloat} a
+ * @param {CGFloat} b
+ * @retult {BOOL}
+ */
++ (BOOL) compareFloat:(CGFloat) a andFloat:(CGFloat) b {
+    return [IonMath compareFloat: a andFloat: b usingAccuracy: 2];
+}
+
+/**
+ * Compares two float values
+ * @param {CGFloat} a
+ * @param {CGFloat} b
+ * @param {NSNumber} accuracy.
+ * @retult {BOOL}
+ */
++ (BOOL) compareFloat:(CGFloat) a andFloat:(CGFloat) b usingAccuracy:(NSInteger) accuracy {
+    return fabs( a - b ) < accuracy * FLT_EPSILON * fabs( a + b );
+}
+
 
 
 @end

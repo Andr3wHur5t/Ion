@@ -127,46 +127,6 @@
 }
 
 /**
- * This test if we can resolve larger than allowed depth level.
- */
-- (void) bulkColorTest {
-    NSString* targetColorKey = @"yellow";
-    double startTime, endTime, acumulatedTime;
-    NSInteger count, failures;
-    UIColor *expectedColor, *resultColor;
-    
-    // Setup
-    expectedColor = [self.window.systemTheme resolveColorAttribute: targetColorKey];
-    acumulatedTime = 0.0f;
-    failures = 0;
-    count = 5000;
-    
-    
-    // Test
-    for (NSInteger i = 0; i <= count; ++i) {
-        startTime =  [[NSDate date] timeIntervalSince1970];
-        
-        resultColor = [self.window.systemTheme resolveColorAttribute: targetColorKey];
-        
-        endTime =  [[NSDate date] timeIntervalSince1970];
-        
-        if( ![resultColor isEqual: expectedColor] )
-            ++failures;
-        
-        
-        
-        acumulatedTime += endTime - startTime;
-        
-        endTime = 0;
-        startTime = 0;
-        resultColor = NULL;
-    }
-    
-    // Report
-     NSLog(@"\nBullk Color Search Test: (key:\"%@\", end value:\"%@\")\nAvarage Time %.4f ms, Failures %i out of %i invocations\n\n",targetColorKey, [expectedColor toHex], (acumulatedTime / count) * 1000, failures, count );
-}
-
-/**
  * This is the transision Test
  */
 - (void) testTransision:(IonTheme*) theme {

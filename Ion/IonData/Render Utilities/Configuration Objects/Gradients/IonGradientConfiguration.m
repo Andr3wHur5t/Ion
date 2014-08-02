@@ -13,17 +13,7 @@
 
 
 
-/** Gradient Sub Keys
- */
-static const NSString* sGradientTypeKey = @"type";
 
-static const NSString* sGradientColorWeightsKey = @"colorWeights";
-static const NSString* sGradientColorKey = @"color";
-static const NSString* sGradientWeightKey = @"weight";
-
-static const NSString* sGradientLinearKey = @"linear";
-static const NSString* sGradientLinearAngleKey = @"angle";
-static const CGFloat   sGradientLinearAngleDefault = 90.0f;
 
 
 /**
@@ -33,28 +23,21 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
 @implementation IonColorWeight
 
 /**
- * This generates the color weight array from the inputted gradient map.
+ * Generates the color weight array from the inputted gradient map.
  * @param {NSDictionary*} the gradient map.
  * @returns {NSArray} the resulting color weight array, or NULL if invalid.
  */
-+ (NSArray*) colorWeightArrayFromMap:(NSDictionary*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes {
++ (NSArray*) colorWeightArrayFromMap:(NSArray*) map andAttrubutes:(IonKVPAccessBasedGenerationMap*) attributes {
     NSMutableArray* resultArray;
     IonColorWeight* colorWeight;
-    NSArray* kvpColorWeightsUnverified;
-    if ( !map )
+    if ( !map || ![map isKindOfClass: [NSArray class]] )
         return NULL;
     // Get Values
     resultArray = [[NSMutableArray alloc] init];
-    kvpColorWeightsUnverified = [map objectForKey:sGradientColorWeightsKey];
-    
-    // Verify status of kvpColorWeightsUnverified
-    if ( !kvpColorWeightsUnverified )
-        return NULL;
-    
     
     // Go through each map item to verify them, and add them.
-    for ( NSDictionary* map in kvpColorWeightsUnverified ) {
-        colorWeight = [IonColorWeight colorWeightFromMap: map andAttrubutes: attributes];
+    for ( NSDictionary* item in map ) {
+        colorWeight = [IonColorWeight colorWeightFromMap: item andAttrubutes: attributes];
         if ( !colorWeight )
             break;
         
@@ -66,7 +49,7 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
 
 
 /**
- * This generates the color weight array from the inputted gradient map.
+ * Generates the color weight array from the inputted gradient map.
  * @param {NSDictionary*} the gradient map.
  * @returns {NSArray} the resulting color weight array, or NULL if invalid.
  */
@@ -80,8 +63,8 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
         return NULL;
     
     // Get values
-    colorString = [map objectForKey:sGradientColorKey];
-    weight = [map objectForKey:sGradientWeightKey];
+    colorString = [map objectForKey: sGradientColorKey];
+    weight = [map objectForKey: sGradientWeightKey];
     if ( !colorString || !weight )
         return NULL;
     
@@ -95,7 +78,7 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
 }
 
 /**
- * This is the standerd constructor.
+ * The standerd constructor.
  * @returns {instancetype}
  */
 - (instancetype) init {
@@ -108,7 +91,7 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
 }
 
 /**
- * This is a convience constructor.
+ * A convience constructor.
  * @param {UIColor*} the color to assign to the inputted weight
  * @param {CGFloat*} the weight to assign to the inputted color
  * @returns {instancetype}
@@ -123,7 +106,7 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
 }
 
 /**
- * This creates a color weight set using a NSDictionary configuration.
+ * Creates a color weight set using a NSDictionary configuration.
  * if any data is invalid it will return NULL.
  * @param {NSDictionary*} the configuration of the color weight
  @ @returns {instancetype}
@@ -152,7 +135,7 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
 }
 
 /**
- * This is the setter for weight, this claps the value between 0.0f and 1.0f
+ * The setter for weight, this claps the value between 0.0f and 1.0f
  * @param {CGFloat} the new weight
  * @returns {void}
  */
@@ -162,13 +145,33 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
 
 
 /**
- * This is the debug description.
+ * The debug description.
  # @returns {NSString*}
  */
 - (NSString*) description {
     return [NSString stringWithFormat:@"{Color: %@, Weight:%f}",[_color toHex],_weight];
 }
 
+
+/**
+ * The Comparison Check.
+ * @param {id} the object to check.
+ * @returns {BOOL}
+ */
+- (BOOL)isEqual:(id) object {
+    IonColorWeight* obj;
+    if ( !object || ![object isKindOfClass: [IonColorWeight class]] )
+        return FALSE;
+    
+    obj = object;
+    if ( ![self.color isEqual: obj.color] )
+        return FALSE;
+    
+    if ( self.weight != obj.weight )
+        return FALSE;
+    
+    return TRUE;
+}
 
 @end
 
@@ -254,6 +257,28 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
     return [NSString stringWithFormat:@"ColorWeights: %@",_colorWeights];
 }
 
+/**
+ * The Comparison Check.
+ * @param {id} the object to check.
+ * @returns {BOOL}
+ */
+- (BOOL) isEqual:(id) object {
+    NSArray *selfColorWeights, *objColorWeights;
+    if ( !object || ![object isKindOfClass: [IonGradientConfiguration class]] )
+        return FALSE;
+    
+    objColorWeights = ((IonGradientConfiguration*)object).colorWeights;
+    selfColorWeights = self.colorWeights;
+    if ( objColorWeights.count != selfColorWeights.count )
+        return FALSE;
+
+    for ( IonColorWeight* colorWeight in objColorWeights )
+        if ( ![selfColorWeights containsObject: colorWeight] )
+            return FALSE;
+    
+    return TRUE;
+}
+
 @end
 
 /**
@@ -283,12 +308,14 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
     
     // Get the angle
     intermedeateAngle = [map objectForKey: sGradientLinearAngleKey];
+    
     if ( !intermedeateAngle )
         result.angle = DegreesToRadians( sGradientLinearAngleDefault );
     else
         result.angle = DegreesToRadians( [intermedeateAngle floatValue] );
-    
-    colorWeights = [IonColorWeight colorWeightArrayFromMap: map andAttrubutes: attributes];
+    NSLog(@"<fhgvehiuhj> int:%@ r:%f", intermedeateAngle, result.angle );
+
+    colorWeights = [IonColorWeight colorWeightArrayFromMap: [map objectForKey:sGradientColorWeightsKey] andAttrubutes: attributes];
     if ( !colorWeights )
         return NULL;
     
@@ -322,7 +349,7 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
     self = [super initWithColorWeights:colorWeights];
     
     if (self)
-        self.angle = angle;
+        self.angle = DegreesToRadians( angle );
     
     return self;
 }
@@ -332,7 +359,23 @@ static const CGFloat   sGradientLinearAngleDefault = 90.0f;
  * @returns {NSString*}
  */
 - (NSString*) description {
-    return [NSString stringWithFormat:@"\n{Angle:%f, %@}\n",RadiansToDegrees( _angle ), [super description]];
+    return [NSString stringWithFormat:@"\n{Angle:%f, %@}\n", RadiansToDegrees( _angle ), [super description]];
+}
+
+/**
+ * The Comparison Check.
+ * @param {id} the object to check.
+ * @returns {BOOL}
+ */
+- (BOOL) isEqual:(id) object {
+    if ( !object || ![object isKindOfClass: [IonLinearGradientConfiguration class]] )
+        return FALSE;
+    
+    NSLog(@"Ang:%f , %f", ((IonLinearGradientConfiguration*)object).angle, self.angle );
+    if ( ((IonLinearGradientConfiguration*)object).angle != self.angle )
+        return FALSE;
+    
+    return [super isEqual: object];
 }
 
 @end

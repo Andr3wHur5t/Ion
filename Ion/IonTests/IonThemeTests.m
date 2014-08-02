@@ -8,17 +8,64 @@
 
 #import <XCTest/XCTest.h>
 #import "IonTheme.h"
-#import <IonData/NSData+IonTypeExtension.h>
+#import <IonData/UIColor+IonColor.h>
+#import <IonData/IonGradientConfiguration.h>
+
+
+/**
+ * Hex Stash: some valid hex colors
+ */
+#define sColorCleanWhite @"#F5F5F5"
+#define sColorNicePurple @"#23F275"
+#define sColorGoodBrown  @"#748A23"
+#define sColorCoolGreen  @"#F423E7"
+
+/**
+ * values to check for.
+ */
+#define sColorKey @"white"
+#define sColorHex sColorCleanWhite
+
+/**
+ * Color resolve reference test
+ */
+#define sColorReferenceOneKey @"stuff"
+#define sColorReferenceTwoKey @"things"
+
+/**
+ * Color cyclic reference test
+ */
+#define sColorCyclicReferenceOneKey @"wow"
+#define  sColorCyclicReferenceTwoKey @"much"
+
+/**
+ * Gradient configurations test
+ */
+#define sGradientPreresolvedKey @"preresolvedGradient"
+#define sGradientUnresolvedKey @"unresolvedGradient"
+#define sGradientLinearPreresolvedKey @"preresolvedLinearGradient"
+#define sGradientLinearAngleTest @45.5
+
+
 
 @interface IonThemeObjectTests : XCTestCase {
     IonTheme* target;
 }
 
 /**
- * Gets the raw JSON for the theme.
- * @returns {NSString*} the raw theme
+ * Gets The Minimized Theme
  */
-+ (NSString*) rawTheme;
++ (NSDictionary*) minimizedThemeConfiguration;
+
+#pragma mark Color Weight Arrays
+/**
+ * Gets a static resolved color weight array
+ */
++ (NSArray*) resolvedColorWeightMap;
+/**
+ * Gets a static unresolved color weight array
+ */
++ (NSArray*) unresolvedColorWeightMap;
 
 @end
 
@@ -26,12 +73,10 @@
 
 - (void)setUp {
     [super setUp];
-    target = [[IonTheme alloc] initWithConfiguration:[NSJSONSerialization JSONObjectWithData:[NSData dataFromString: [IonThemeObjectTests rawTheme]] options:0 error:NULL]];
-    
+    target = [[IonTheme alloc] initWithConfiguration: [IonThemeObjectTests minimizedThemeConfiguration]];;
 }
 
 - (void)tearDown {
-    
     target = NULL;
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
@@ -41,17 +86,165 @@
     // This is an example of a functional test case.
     
     
+    
     XCTAssert( TRUE, @"Pass");
 }
 
 
+#pragma mark Gradient Resolution
+// NOTE: gradients are dependent on color resolution
+
 /**
- * Gets the raw JSON for the theme.
- * @returns {NSString*} the raw theme
+ * Check For General Gradient Resolution.
  */
-+ (NSString*) rawTheme {
-    return @"{\"name\":\"testTheme\",\"type\":\"theme\",\"colors\":{\"WHITE\":\"#FFFFFF\",\"BLACK\":\"#000000\",\"TROLOLO\":\"Purple\",\"LEET\":\"#001337\",\"green\":\"TROLOLO\",\"Purple\":\"#921\",\"yellow\":\"green\",\"wow\":\"much\",\"much\":\"wow\",\"cleanWhite\":\"#F5F5F5\"},\"images\":{\"Image1\":\"Path1.png\",\"Image2\":\"Path2.png\"},\"kvp\":{\"PointlessProperty\":\"PointlessValue\",\"UsefulProperty\":\"UsefulValue\"},\"gradients\":{\"Spottr\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#f1592a\",\"weight\":1.0},{\"color\":\"#ef4036\",\"weight\":0.0}]},\"Meadow\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#AFD044\",\"weight\":1.0},{\"color\":\"#43B34E\",\"weight\":0.0}]},\"Abyss\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#1A75B8\",\"weight\":1.0},{\"color\":\"#272662\",\"weight\":0.0}]},\"Sky\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#9FDCF7\",\"weight\":1.0},{\"color\":\"#1EB2EE\",\"weight\":0.0}]},\"Inferno\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#ED413E\",\"weight\":1.0},{\"color\":\"#BF2232\",\"weight\":0.0}]},\"Mocha\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#B17C52\",\"weight\":1.0},{\"color\":\"#5F4023\",\"weight\":0.0}]},\"Tranquil\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#35A6AF\",\"weight\":1.0},{\"color\":\"#71B496\",\"weight\":0.0}]},\"Nebula\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#D65068\",\"weight\":1.0},{\"color\":\"#323B8D\",\"weight\":0.0}]},\"Ash\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#808284\",\"weight\":1.0},{\"color\":\"#58585A\",\"weight\":0.0}]},\"Citrus\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#FAAF4D\",\"weight\":1.0},{\"color\":\"#F59432\",\"weight\":0.0}]},\"Cedar\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#149348\",\"weight\":1.0},{\"color\":\"#0B693B\",\"weight\":0.0}]},\"Nightfall\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#272461\",\"weight\":1.0},{\"color\":\"#293A8D\",\"weight\":0.0}]},\"Oceanview\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#1CA59B\",\"weight\":1.0},{\"color\":\"#EA463E\",\"weight\":0.0}]},\"Scorch\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#FAAE4C\",\"weight\":1.0},{\"color\":\"#EE453E\",\"weight\":0.0}]},\"Mint\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#29B68D\",\"weight\":1.0},{\"color\":\"#32B478\",\"weight\":0.0}]},\"Cream\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#E0A488\",\"weight\":1.0},{\"color\":\"#C3996F\",\"weight\":0.0}]},\"Princess\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#E02977\",\"weight\":1.0},{\"color\":\"#D8215E\",\"weight\":0.0}]},\"Sanguine\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#912835\",\"weight\":1.0},{\"color\":\"#6E2B37\",\"weight\":0.0}]},\"Royal\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#8F2C8E\",\"weight\":1.0},{\"color\":\"#2A2462\",\"weight\":0.0}]},\"Arctic\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#8FBDE3\",\"weight\":1.0},{\"color\":\"#D0D2D4\",\"weight\":0.0}]},\"Pebble\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#C2B49C\",\"weight\":1.0},{\"color\":\"#9A867B\",\"weight\":0.0}]},\"Hive\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#F5EC48\",\"weight\":1.0},{\"color\":\"#FAB14C\",\"weight\":0.0}]},\"Onyx\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#383839\",\"weight\":1.0},{\"color\":\"#020202\",\"weight\":0.0}]},\"Clean\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"cleanWhite\",\"weight\":1.0},{\"color\":\"cleanWhite\",\"weight\":0.25},{\"color\":\"#9C9C9C\",\"weight\":0.0}]},\"Ion\":{\"type\":\"linear\",\"angle\":90,\"colorWeights\":[{\"color\":\"#33ACE0\",\"weight\":1.0},{\"color\":\"#1274B9\",\"weight\":0.0}]},\"OceanviewTest\":{\"type\":\"linear\",\"angle\":75,\"colorWeights\":[{\"color\":\"#1CA59B\",\"weight\":1.0},{\"color\":\"#FFFFFF\",\"weight\":0.25},{\"color\":\"#EA463E\",\"weight\":0.0}]}},\"styles\":{\"default\":{\"background\":{\"type\":\"color\",\"name\":\"#0000\"},\"fontColor\":{\"type\":\"color\",\"name\":\"BLACK\"}},\"body\":{\"background\":{\"type\":\"gradient\",\"name\":\"Onyx\"},\"fontColor\":{\"type\":\"color\",\"name\":\"BLACK\"}},\"titleBar\":{\"background\":{\"type\":\"gradient\",\"name\":\"Royal\"},\"fontColor\":{\"type\":\"color\",\"name\":\"BLACK\"}},\"cls_simpleStyle\":{\"background\":{\"type\":\"color\",\"name\":\"BLACK\"},\"fontColor\":{\"type\":\"color\",\"name\":\"BLACK\"}},\"id_simpleStyle\":{\"background\":{\"type\":\"gradient\",\"name\":\"Inferno\"}},\"cls_secondaryStyle\":{\"background\":{\"type\":\"color\",\"name\":\"#ffffff\"},\"fontColor\":{\"type\":\"color\",\"name\":\"BLACK\"},\"cornerRadius\":10.0,\"shadow\":{\"color\":\"BLACK\",\"radius\":10,\"offset\":{\"x\":20,\"y\":20}},\"border\":{\"color\":\"#1CA59B\",\"width\":10},\"parameters\":{\"data\":\"things,andstuff\"}}}}";
+- (void) testGeneralGradientReslution {
+    IonGradientConfiguration *result, *expected;
+    NSArray* colorWeights;
+    
+    colorWeights = [IonColorWeight colorWeightArrayFromMap: [IonThemeObjectTests resolvedColorWeightMap] andAttrubutes: target];
+    expected = [[IonGradientConfiguration alloc] initWithColorWeights:colorWeights ];
+    result = [target resolveGradientAttribute: sGradientLinearPreresolvedKey];
+    
+    XCTAssert( [expected isEqual: result], @"Configuration Mismatch.");
 }
 
+/**
+ * Checks For Linear Geradient Resolution.
+ */
+- (void) testLinearGradientResolution {
+    IonGradientConfiguration *result, *expected;
+    NSArray* colorWeights;
+    NSNumber* angle;
+    
+    
+    colorWeights = [IonColorWeight colorWeightArrayFromMap: [IonThemeObjectTests resolvedColorWeightMap] andAttrubutes: target];
+    angle = sGradientLinearAngleTest;
+    expected = [[IonLinearGradientConfiguration alloc] initWithColor:colorWeights andAngel: [angle floatValue] ];
+    
+    result = [target resolveGradientAttribute: sGradientLinearPreresolvedKey];
+    NSLog(@"<asfid> Grad res:%@, exp:%@", result, expected);
+    XCTAssert( [expected isEqual: result], @"Configuration Mismatch.");
+}
+
+#pragma mark Color Resolution
+
+/**
+ * Checks for color hex resolution
+ * NOTE: dependent on Color from hex string.
+ */
+- (void) testColorHexResolution {
+    UIColor *result, *expected;
+    
+    // Get Items
+    expected = [UIColor colorFromHexString: sColorHex ];
+    result = [target colorFromMapWithKey: sColorKey ];
+    
+    // Test
+    XCTAssert( [expected isEqual: result], @"Color is not the expected color. exp: %@ got: %@", [expected toHex], [result toHex]);
+}
+
+/**
+ * Checks for color reference resolution
+ * NOTE: dependent on hex resolution
+ */
+- (void) testColorReferenceResolution {
+    UIColor *result, *expected;
+    
+    // Get Items
+    expected = [UIColor colorFromHexString: sColorHex];
+    result = [target colorFromMapWithKey: sColorReferenceTwoKey]; // get from the top key
+    
+    // Test
+    XCTAssert( [expected isEqual: result], @"Color is not the expected color. exp:%@ got:%@", [expected toHex], [result toHex]);
+}
+
+/**
+ * Checks for cyclic color reference resolution
+ */
+- (void) testColorCyclicColorReferenceResolution {
+    UIColor* result;
+    
+    // Get Items
+    result = [target colorFromMapWithKey: sColorCyclicReferenceOneKey];
+    
+    // Test
+    XCTAssert( !result , @"Color is not NULL. got:%@", [result toHex]);
+}
+
+
+#pragma Mark Generation Utilities
+
+/**
+ * Gets a static resolved color weight array
+ */
++ (NSArray*) resolvedColorWeightMap {
+    return  @[
+                @{ sGradientColorKey: sColorNicePurple, sGradientWeightKey: @1.0 },
+                @{ sGradientColorKey: sColorGoodBrown, sGradientWeightKey: @0.8 },
+                @{ sGradientColorKey: sColorCoolGreen, sGradientWeightKey: @0.2 },
+                @{ sGradientColorKey: sColorCleanWhite, sGradientWeightKey: @0.0 }
+            ];
+}
+
+/**
+ * Gets a static unresolved color weight array
+ */
++ (NSArray*) unresolvedColorWeightMap {
+    return  @[
+                @{ sGradientColorKey: sColorNicePurple, sGradientWeightKey: @0.9 },
+                @{ sGradientColorKey: sColorGoodBrown, sGradientWeightKey: @0.75 },
+                @{ sGradientColorKey: sColorCoolGreen, sGradientWeightKey: @0.255 },
+                @{ sGradientColorKey: sColorCleanWhite, sGradientWeightKey: @0.1 }
+              ];
+}
+
+/**
+ * Gets The Minimized Theme
+ */
++ (NSDictionary*) minimizedThemeConfiguration {
+    return @{
+             // Color Tests
+             sColorsGroupKey: @{
+                     // Hex Resolution Test
+                     sColorKey: sColorHex,
+                     
+                     // Refrence Test
+                     sColorReferenceOneKey: sColorKey,
+                     sColorReferenceTwoKey: sColorReferenceOneKey,
+                     
+                     // Cicilic Refrence Test
+                     sColorCyclicReferenceOneKey: sColorCyclicReferenceTwoKey,
+                     sColorCyclicReferenceTwoKey: sColorCyclicReferenceOneKey
+                     
+                     // Unresolved Gradient Colors
+                     },
+             sGradientsGroupKey: @{
+                     // Preresolved Gradient test
+                     sGradientPreresolvedKey: @{
+                             sGradientColorWeightsKey: [IonThemeObjectTests resolvedColorWeightMap]
+                             },
+                     // Unresolved Gradient test
+                     sGradientUnresolvedKey: @{
+                             
+                             },
+                     // Preresolved Linear Gradient Test
+                     sGradientLinearPreresolvedKey: @{
+                        sGradientTypeKey: sGradientLinearKey,
+                        sGradientLinearAngleKey: sGradientLinearAngleTest,
+                        sGradientColorWeightsKey: [IonThemeObjectTests resolvedColorWeightMap]
+                        }
+                    },
+             sImagesGroupKey: @{
+                     
+                     },
+             sKVPGroupKey: @{
+                     
+                     },
+             sStylesGroupKey: @{
+                     
+                     
+                     }
+             };
+}
 
 @end
