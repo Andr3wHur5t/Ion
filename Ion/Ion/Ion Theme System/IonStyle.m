@@ -32,20 +32,14 @@
 + (IonStyle*) resolveWithMap:(NSDictionary*) map andAttributes:(IonTheme*) attributes {
     if ( !attributes || !map)
         return NULL;
-    
-    IonStyle* result = [[IonStyle alloc] init];
-    
-    [result setResolutionAttributes: attributes];
-    [result setObjectConfig: map];
-    
-    return result;
+    return [[IonStyle alloc] initWithDictionary: map andResolutionAttributes: attributes];;
 }
 
 #pragma mark Constructors
 
 /**
  * This is the default constructor
- * @returns {instancetpe}
+ * @returns {instancetype}
  */
 - (instancetype) init {
     self = [super init];
@@ -57,6 +51,33 @@
     
     return self;
 }
+
+/**
+ * Constructs a style using a dictionary configuatation.
+ * @param {NSDictionary*} configuration
+ * @returns {instancetype}
+ */
+- (instancetype) initWithDictionary:(NSDictionary*) dict {
+    return [self initWithDictionary: dict andResolutionAttributes: NULL];
+}
+
+
+/**
+ * Constructs a style using a dictionary configuatation.
+ * @param {NSDictionary*} configuration
+ * @param {IonThemeAttributes*} the attributes we should resolve with.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithDictionary:(NSDictionary*) dict andResolutionAttributes:(IonTheme*) attributes {
+    self = [self init];
+    if ( self ) {
+        [self setResolutionAttributes: attributes];
+        [self setObjectConfig: dict];
+    }
+    
+    return self;
+}
+
 
 #pragma mark External Interface
 
@@ -127,37 +148,6 @@
 }
 
 /**
- * returnes a copy of our configuration overwriten by the inputted configuration.
- * @param {NSDictionary*} the configuration which will overwrite.
- * @returns {NSDictionary*} an overwriten ditcionary, or NULL if invalid.
- */
-- (NSDictionary*) configurationOverwritenBy:(NSDictionary*) configuration {
-    NSMutableDictionary* resultConfiguration;
-    id newObject;
-    NSArray* keys;
-    if ( !configuration || !_configuration )
-        return NULL;
-    
-    // Set up
-    resultConfiguration = [[NSMutableDictionary alloc] initWithDictionary: _configuration];
-    keys = [configuration allKeys];
-    if ( !keys || !resultConfiguration )
-        return NULL;
-    
-    //override proprieties with the overriding configuration proprieties.
-    for ( id key in keys ) {
-        newObject = [configuration objectForKey:key];
-        if ( !newObject )
-            break;
-        
-        [resultConfiguration setValue: newObject forKey: key];
-    }
-    
-    return resultConfiguration;
-}
-
-
-/**
  * This overrides the current styles proprieties with the inputed style.
  * @param {IonStyle*} the style to override the current style
  * @returns {IonStyle*} the net style of the override
@@ -168,11 +158,11 @@
         return self;
     
     // Construct Object
-    result = [IonStyle resolveWithMap: _configuration andAttributes: _theme];
+    result = [[IonStyle alloc] initWithDictionary: _configuration andResolutionAttributes: _theme];
     
-    // Overide
+    // Override
     result.configuration = [[NSMutableDictionary alloc] initWithDictionary:
-                       [self configurationOverwritenBy: overridingStyle.configuration]];
+                       [self.configuration overriddenByDictionaryRecursively: overridingStyle.configuration]];
     
     return result;
 }
@@ -183,6 +173,21 @@
  */
 - (NSString*) description {
     return [_configuration description];
+}
+
+/**
+ * Comparison of styles.
+ * @param {IonStyle*} the style to be compared.
+ * @returns {BOOL}
+ */
+- (BOOL) isEqualToStyle:(IonStyle*) style {
+    if ( !style || ![style isKindOfClass: [IonStyle class]] )
+        return FALSE;
+    
+    if ( ![self.configuration isEqualToDictionary: style.configuration] )
+        return FALSE;
+    
+    return TRUE;
 }
 
 @end

@@ -32,7 +32,7 @@
     [super viewWillAppear: animated];
     // Set the overriden background.
     
-    [self.view setBackgroundImage: [UIImage imageNamed:@"aspect-test"] renderMode: IonBackgroundRenderContained];
+    [self.view setBackgroundImage: [UIImage imageNamed:@"aspect-test.png"] renderMode: IonBackgroundRenderFilled];
 }
 
 - (void) shouldLayoutSubviews {

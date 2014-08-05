@@ -77,7 +77,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ion/Ion Theme System/IonStyle+IonStdStyleApplyMethods.m"
-            timestampString = "427870508.072023"
+            timestampString = "428896078.573096"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "89"
@@ -93,7 +93,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ion/Ion Theme System/IonStyle+IonStdStyleApplyMethods.m"
-            timestampString = "427870508.072023"
+            timestampString = "428896078.573096"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "107"
@@ -109,7 +109,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ion/Ion Theme System/IonStyle+IonStdStyleApplyMethods.m"
-            timestampString = "427870508.072023"
+            timestampString = "428896078.573096"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "116"
@@ -125,7 +125,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ion/Ion Theme System/IonStyle+IonStdStyleApplyMethods.m"
-            timestampString = "427870508.072023"
+            timestampString = "428896078.573096"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "147"
@@ -141,7 +141,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ion/Ion Theme System/IonStyle+IonStdStyleApplyMethods.m"
-            timestampString = "427870508.072023"
+            timestampString = "428896078.573096"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "136"
@@ -157,7 +157,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ion/Ion Theme System/IonStyle+IonStdStyleApplyMethods.m"
-            timestampString = "427870508.072023"
+            timestampString = "428896078.573096"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "162"
@@ -172,44 +172,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Ion/Ion Theme System/IonStyle.m"
-            timestampString = "427786475.798384"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "-configurationOverwritenBy:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Ion/Ion Theme System/IonStyle.m"
-            timestampString = "427786477.608913"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "-configurationOverwritenBy:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "IonData/IO Managers/File IO Manager/IonPath.m"
-            timestampString = "428584214.500836"
+            timestampString = "428836425.208206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "+pathComponentsFromURL:"
             landmarkType = "5">
          </BreakpointContent>
@@ -221,11 +189,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/IO Managers/File IO Manager/IonPath.m"
-            timestampString = "428584214.500836"
+            timestampString = "428836425.208206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
             landmarkName = "+pathComponentsFromURL:"
             landmarkType = "5">
          </BreakpointContent>
@@ -237,11 +205,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/IO Managers/File IO Manager/IonPath.m"
-            timestampString = "428582653.839398"
+            timestampString = "428836425.208206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "+pathComponentsFromURL:"
             landmarkType = "5">
          </BreakpointContent>
@@ -253,11 +221,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/IO Managers/File IO Manager/IonPath.m"
-            timestampString = "428582653.839398"
+            timestampString = "428822963.742832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "-initFromURL:"
             landmarkType = "5">
          </BreakpointContent>
@@ -269,11 +237,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/IO Managers/File IO Manager/IonPath.m"
-            timestampString = "428582653.839398"
+            timestampString = "428822963.742832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "-initFromPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -285,11 +253,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/IO Managers/File IO Manager/IonPath.m"
-            timestampString = "428582653.839398"
+            timestampString = "428822963.742832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "-initPath:appendedByElements:"
             landmarkType = "5">
          </BreakpointContent>
@@ -301,11 +269,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/IO Managers/File IO Manager/IonPath.m"
-            timestampString = "428582653.839398"
+            timestampString = "428836425.208206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "-appendHierarchy:"
             landmarkType = "5">
          </BreakpointContent>
@@ -355,22 +323,6 @@
             startingLineNumber = "65"
             endingLineNumber = "65"
             landmarkName = "+dataFromJsonEncodedDictionary:makePretty:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IonData/IO Managers/File IO Manager/IonDirectory.m"
-            timestampString = "427977839.005354"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-openFile:withResultBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -589,11 +541,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623785.81017"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "-toString"
             landmarkType = "5">
          </BreakpointContent>
@@ -605,11 +557,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623786.773835"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "-toString"
             landmarkType = "5">
          </BreakpointContent>
@@ -621,11 +573,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623789.617598"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "+resolveWithValue:andAttrubutes:"
             landmarkType = "5">
          </BreakpointContent>
@@ -637,11 +589,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623793.041742"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "-toNumber"
             landmarkType = "5">
          </BreakpointContent>
@@ -653,11 +605,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623793.581737"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-toNumber"
             landmarkType = "5">
          </BreakpointContent>
@@ -669,11 +621,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623794.933723"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "-toDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -685,11 +637,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623795.435687"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "-toDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -701,11 +653,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623797.021801"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "-toBOOL"
             landmarkType = "5">
          </BreakpointContent>
@@ -717,11 +669,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623798.803405"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "-toBOOL"
             landmarkType = "5">
          </BreakpointContent>
@@ -733,11 +685,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623801.251333"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "-toKVPAccessBasedGenerationMap"
             landmarkType = "5">
          </BreakpointContent>
@@ -749,11 +701,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623802.764691"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "-toBalancedKVPAccessBasedGenerationMap"
             landmarkType = "5">
          </BreakpointContent>
@@ -765,11 +717,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623804.593351"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "-toImageRef"
             landmarkType = "5">
          </BreakpointContent>
@@ -781,11 +733,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623806.391268"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "-toGradientConfiguration"
             landmarkType = "5">
          </BreakpointContent>
@@ -797,11 +749,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623809.786919"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "-toVec2UsingX1:andY1:"
             landmarkType = "5">
          </BreakpointContent>
@@ -813,11 +765,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623812.526381"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "-toVec2UsingX1:andY1:"
             landmarkType = "5">
          </BreakpointContent>
@@ -829,11 +781,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623817.2713"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "-toVec2UsingX1:andY1:"
             landmarkType = "5">
          </BreakpointContent>
@@ -845,11 +797,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623819.982556"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "-toVec4UsingX1:y1:x2:andY2:"
             landmarkType = "5">
          </BreakpointContent>
@@ -861,11 +813,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623821.158911"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "-toVec4UsingX1:y1:x2:andY2:"
             landmarkType = "5">
          </BreakpointContent>
@@ -877,11 +829,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623825.151419"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "-toVec4UsingX1:y1:x2:andY2:"
             landmarkType = "5">
          </BreakpointContent>
@@ -893,11 +845,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IonData/Data Utilities/KVP/IonKeyValuePair.m"
-            timestampString = "428623827.030894"
+            timestampString = "428897743.234176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "-toSize"
             landmarkType = "5">
          </BreakpointContent>
@@ -915,6 +867,198 @@
             startingLineNumber = "34"
             endingLineNumber = "34"
             landmarkName = "+colorWeightArrayFromMap:andAttrubutes:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/Data Structures/Map Extensions/NSDictionary+IonTypeExtension.m"
+            timestampString = "428768730.97544"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "442"
+            endingLineNumber = "442"
+            landmarkName = "-overriddenByDictionary:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonDataTests/IonRenderTests.m"
+            timestampString = "428884362.121418"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-testGradientRenderPerformance"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonDataTests/IonRenderTests.m"
+            timestampString = "428884384.757323"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-testGradientRenderPerformance"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/IO Managers/File IO Manager/IonDirectory.m"
+            timestampString = "428928879.175448"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "-objectForKey:withResultBlock:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/IO Managers/File IO Manager/IonDirectory.m"
+            timestampString = "428928879.175448"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "-objectForKey:withResultBlock:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/IO Managers/File IO Manager/IonDirectory.m"
+            timestampString = "428928879.175448"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "-objectForKey:withResultBlock:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/IO Managers/File IO Manager/IonDirectory.m"
+            timestampString = "428928851.158995"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "-removeAllObjects:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/IO Managers/File IO Manager/IonDirectory.m"
+            timestampString = "428928855.501005"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "-removeObjectForKey:withCompletion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/IO Managers/File IO Manager/IonDirectory.m"
+            timestampString = "428928857.329225"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "-removeObjectForKey:withCompletion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/IO Managers/File IO Manager/IonDirectory.m"
+            timestampString = "428928859.222625"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "-setObject:forKey:withCompletion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/IO Managers/File IO Manager/IonDirectory.m"
+            timestampString = "428928861.235327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "-setObject:forKey:withCompletion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IonData/IO Managers/File IO Manager/IonDirectory.m"
+            timestampString = "428928862.515168"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "-setObject:forKey:withCompletion:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

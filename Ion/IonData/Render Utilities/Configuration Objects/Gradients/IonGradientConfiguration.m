@@ -310,10 +310,9 @@
     intermedeateAngle = [map objectForKey: sGradientLinearAngleKey];
     
     if ( !intermedeateAngle )
-        result.angle = DegreesToRadians( sGradientLinearAngleDefault );
+        result.angle =  sGradientLinearAngleDefault ;
     else
-        result.angle = DegreesToRadians( [intermedeateAngle floatValue] );
-    NSLog(@"<fhgvehiuhj> int:%@ r:%f", intermedeateAngle, result.angle );
+        result.angle =  [intermedeateAngle floatValue] ;
 
     colorWeights = [IonColorWeight colorWeightArrayFromMap: [map objectForKey:sGradientColorWeightsKey] andAttrubutes: attributes];
     if ( !colorWeights )
@@ -349,7 +348,7 @@
     self = [super initWithColorWeights:colorWeights];
     
     if (self)
-        self.angle = DegreesToRadians( angle );
+        self.angle =  angle ;
     
     return self;
 }
@@ -359,7 +358,7 @@
  * @returns {NSString*}
  */
 - (NSString*) description {
-    return [NSString stringWithFormat:@"\n{Angle:%f, %@}\n", RadiansToDegrees( _angle ), [super description]];
+    return [NSString stringWithFormat:@"\n{Angle:%f, %@}\n",  _angle , [super description]];
 }
 
 /**
@@ -371,7 +370,6 @@
     if ( !object || ![object isKindOfClass: [IonLinearGradientConfiguration class]] )
         return FALSE;
     
-    NSLog(@"Ang:%f , %f", ((IonLinearGradientConfiguration*)object).angle, self.angle );
     if ( ((IonLinearGradientConfiguration*)object).angle != self.angle )
         return FALSE;
     

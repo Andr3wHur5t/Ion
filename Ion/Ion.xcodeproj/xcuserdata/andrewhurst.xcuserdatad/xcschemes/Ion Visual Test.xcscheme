@@ -37,6 +37,11 @@
                BlueprintName = "Ion Visual TestTests"
                ReferencedContainer = "container:Ion.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "IonFileIOManagerTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

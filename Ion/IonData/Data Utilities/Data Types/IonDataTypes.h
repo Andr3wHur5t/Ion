@@ -13,11 +13,25 @@
 
 #pragma mark Callbacks
 
+@class IonFile;
+
 /**
  * General purpose result block.
  * @param {id} the returned object.
  */
 typedef void(^IonResultBlock)( id returnedObject );
+
+/**
+ * General purpose completion block.
+ * @param {NSError*} the returned error if any.
+ */
+typedef void(^IonCompletionBlock)(  NSError* error  );
+
+/**
+ * General purpose completion block.
+ * @param {NSError*} the returned error if any.
+ */
+typedef void(^IonFileResultBlock)(  IonFile* error  );
 
 
 

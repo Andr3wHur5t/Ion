@@ -73,4 +73,47 @@
     return data;
 }
 
+
+#pragma mark Object Conversion
+
+/**
+ * Converts the inputted id into NSData using the prefered format.
+ * @param {id} the object to convert
+ * @returns {NSData*} the resulting data, or NULL if invalid.
+ */
++ (NSData*) dataFromObject:(id) object {
+    NSData* resultData;
+    if ( !object )
+        return NULL;
+    
+    // Are we already in the correct format?
+    if ( [object isKindOfClass: [NSData class]] )
+        resultData = object;
+    
+    // Try Converting it Using NSCoder...
+    if ( !resultData )
+        resultData = [NSKeyedArchiver archivedDataWithRootObject: object];
+    
+    return resultData;
+}
+
+/**
+ * Converts data to an object using the specified format.
+ * @returns {id} the resulting object from decoding, or self if invalid.
+ */
+- (id) toObject {
+    id resultObject;
+    
+    // Try Converting it Using NSCoder...
+    if ( !resultObject )
+        resultObject = [NSKeyedUnarchiver unarchiveObjectWithData: self];
+       
+ 
+    // Return the raw data, no conversion could be found
+    if ( !resultObject )
+        resultObject = self;
+    
+    return resultObject;
+}
+
 @end

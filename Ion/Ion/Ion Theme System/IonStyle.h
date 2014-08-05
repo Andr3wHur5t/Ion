@@ -16,6 +16,12 @@
 @interface IonStyle : NSObject
 #pragma mark proprieties
 
+/**
+ * Constructs a style using a dictionary configuatation.
+ * @param {NSDictionary*} configuration
+ * @returns {instancetype}
+ */
+- (instancetype) initWithDictionary:(NSDictionary*) dict;
 
 /**
  * This is our method map of what to invoke for each style configuration propriety; TODO: move to a singleton!
@@ -38,6 +44,14 @@
 #pragma mark External Interface
 
 /**
+ * Constructs a style using a dictionary configuatation.
+ * @param {NSDictionary*} configuration
+ * @param {IonThemeAttributes*} the attributes we should resolve with.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithDictionary:(NSDictionary*) dict andResolutionAttributes:(IonTheme*) attributes;
+
+/**
  * This will resolve a style using a map and an Attribute Set.
  * @param {NSDictionary*} the map to process
  * @param {IonThemeAttributes*} the theme attributes set to do our searches on if needed.
@@ -52,14 +66,6 @@
  */
 - (void) applyToView:(UIView*)view;
 
-
-/**
- * returnes a copy of our configuration overwriten by the inputted configuration.
- * @param {NSDictionary*} the configuration which will overwrite.
- * @returns {NSDictionary*} an overwriten ditcionary, or NULL if invalid.
- */
-- (NSDictionary*) configurationOverwritenBy:(NSDictionary*) configuration;
-
 /**
  * This overrides the current styles proprieties  with the inputed style.
  * @param {IonStyle*} the style to override the current style
@@ -73,4 +79,11 @@
  * @returns {void}
  */
 - (void) setResolutionAttributes:(IonKVPAccessBasedGenerationMap*) attributes;
+
+/**
+ * Comparison of styles.
+ * @param {IonStyle*} the style to be compared.
+ * @returns {BOOL}
+ */
+- (BOOL) isEqualToStyle:(IonStyle*) style;
 @end

@@ -21,11 +21,11 @@
     [super setUp];
     
     target = [[IonMutableDictionary alloc] initWithDictionary: @{
-                                                                 @"test":@"Hello",
-                                                                 @"me":@{
-                                                                         @"there":@"here"
+                                                                 @"test": @"Hello",
+                                                                 @"me": @{
+                                                                         @"there": @"here"
                                                                          },
-                                                                 @"you":@3.0
+                                                                 @"you": @3.0
                                                                  }];
 }
 

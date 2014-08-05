@@ -199,7 +199,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
     CGGradientRef gradColorRef;
     
     startPoint = [IonMath pointAtEdgeOfFrame: state.contextSize angleOfRay: angle];
-    endPoint = [IonMath pointAtEdgeOfFrame: state.contextSize angleOfRay: angle + M_PI];
+    endPoint = [IonMath pointAtEdgeOfFrame: state.contextSize angleOfRay: angle + 180.0f];
     
     gradColorRef = [IonRenderUtilities referenceGradientFromColorWeights: colorWeights];
     

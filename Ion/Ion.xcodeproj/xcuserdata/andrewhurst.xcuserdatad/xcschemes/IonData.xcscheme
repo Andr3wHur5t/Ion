@@ -37,6 +37,17 @@
                BlueprintName = "IonDataTests"
                ReferencedContainer = "container:Ion.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "IonFileIOManagerTests">
+               </Test>
+               <Test
+                  Identifier = "IonRenderTests/testGradientRenderPerformance">
+               </Test>
+               <Test
+                  Identifier = "IonRenderTests/testImageResizeing">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

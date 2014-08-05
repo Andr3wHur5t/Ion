@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IonKeyedDataSource.h"
 #import "IonPath.h"
 
 @class IonFile;
 
-@interface IonDirectory : NSObject
+@interface IonDirectory : NSObject <IonKeyedDataSource>
 #pragma mark Constructors
 
 /**
@@ -57,15 +58,6 @@
  */
 - (void) openDirectory:(NSString*) directoryName
        withResultBlock:(void(^)( IonDirectory* directory )) resultBlock;
-
-/**
- * Creates a directory in the current directory with the specified name.
- * @param {NSString*} the directory name for the new directory.
- * @param {void(^)( IonDirectory* directory, NSError* error )} the completion callback.
- * @returns {void}
- */
-- (void) createDirectory:(NSString*) directoryName
-          withCompletion:(void(^)( IonDirectory* directory )) completion;
 
 #pragma mark Directory Utilities
 

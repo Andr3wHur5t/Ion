@@ -39,10 +39,6 @@
     // configure the default first root view controller here.
     IonVisualTestViewController* vc = [[IonVisualTestViewController alloc] init];
     
-    
-    
-    [self testPathSystem];
-    
     //[self asyncABGMapTest];
     
     /**
@@ -69,7 +65,6 @@
  */
 - (void) runThemeTests {
     [self overviewThemeTest];
-    [self bulkColorTest];
 }
 
 /**

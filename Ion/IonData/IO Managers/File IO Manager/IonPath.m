@@ -9,6 +9,8 @@
 #import "IonPath.h"
 
 @implementation IonPath
+
+
 #pragma mark Constructors
 
 /**
@@ -85,6 +87,91 @@
     return self;
 }
 
+/**
+ * Constructs a path matching the inputted path.
+ * @param {IonPath*} the construct from.
+ * @returns {IonPath*} the resulting path
+ */
++ (IonPath*) pathFromPath:(IonPath*) path  {
+    IonPath* newPath;
+    if ( !path || ![path isKindOfClass: [IonPath class]] )
+        return NULL;
+    
+    newPath = [[IonPath alloc] initFromPath: path];
+    
+    return newPath;
+}
+
+/**
+ * Constructs a path from the specified url.
+ * @param {NSURL*} the url to construct from.
+ * @returns {instancetype}
+ */
++ (IonPath*) pathFromURL:(NSURL*) url {
+    return [[IonPath alloc] initFromURL: url];
+}
+
+/**
+ * Constructs a path in the temporary directory.
+ */
++ (IonPath*) documentsDirectory {
+    return [IonPath pathFromURL: [IonPath urlForDirectory: NSDocumentDirectory]];
+}
+
+/**
+ * Constructs a path in the temporary directory.
+ */
++ (IonPath*) cacheDirectory {
+    return [IonPath pathFromURL: [IonPath urlForDirectory: NSCachesDirectory]];
+}
+
+#pragma mark Utilities
+
+/**
+ * Gets the current items name.
+ * @returns {NSString*} the string of the current item, or NULL if invalid.
+ */
+- (NSString*) itemName {
+    NSString* item;
+    item = [_components lastObject];
+    if ( ![item isKindOfClass: [NSString class]] )
+        return NULL;
+    
+    return item;
+}
+
+/**
+ * Gets the current path with the additionial path component.
+ * @param {NSString*} the additionial path component.
+ * @returns {IonPath*}
+ */
+- (IonPath*) pathFromPathAppendedByComponent: (NSString*) component {
+    return [self pathFromPathAppendedByComponents: @[ component ]];
+}
+
+/**
+ * Gets the current path with the additionial path components.
+ * @param {NSArray*} the additionial path component.
+ * @returns {IonPath*}
+ */
+- (IonPath*) pathFromPathAppendedByComponents: (NSArray*) components {
+    IonPath* newPath;
+    if ( !components || ![components isKindOfClass: [NSArray class]] )
+        return NULL;
+    
+    newPath = [IonPath pathFromPath: self];
+    [newPath appendHierarchy: components];
+    
+    return newPath;
+}
+
+/**
+ * Gets the parent path.
+ * @retruns {IonPath*} a copy instance of the parent path.
+ */
+- (IonPath*) parentPath {
+    return [self pathFromPathAppendedByComponent: @".."];
+}
 #pragma mark Management
 
 /**
@@ -202,6 +289,45 @@
     return composite;
 }
 
+#pragma mark Utilties
+
+/**
+ * Gets path components from an NSURL
+ * @param {NSURL} the url to get the components from.
+ * @returns {NSArray*} array of components, or NULL if invalid.
+ */
++ (NSArray*) componentsFromURL:(NSURL*) url {
+    if ( !url || ![url isKindOfClass: [NSURL class]] )
+        return NULL;
+    
+    return [IonPath componentsFromString: url.path];
+}
+
+/**
+ * Gets path components from an delimited string
+ * @param {NSString} the string to get the components from.
+ * @returns {NSArray*} array of components, or NULL if invalid.
+ */
++ (NSArray*) componentsFromString:(NSString*) string {
+    NSString* intermediate;
+    NSArray *components;
+    if ( !string || ![string isKindOfClass: [NSString class]] )
+        return NULL;
+    
+    if ( [string characterAtIndex: 0] == '/' )
+        intermediate = [string stringByReplacingCharactersInRange: NSMakeRange( 0, 1 ) withString: @""];
+    
+    intermediate = [intermediate substringWithRange: NSMakeRange( 0, string.length - 1 )];
+    if ( !intermediate )
+        return NULL;
+    
+    components = [intermediate componentsSeparatedByString: @"/"];
+    if ( ![components isKindOfClass: [NSArray class]] )
+        return NULL;
+    
+    return components;
+}
+
 #pragma mark Debug Description
 
 /**
@@ -210,6 +336,20 @@
  */
 - (NSString*) description {
     return [self toString];
+}
+
+
+/**
+ * Gets a URL for the specified base direcory, and creates it if it dosn't already exsist.
+ * @param {NSSearchPathDirectory} the base directory identifier.
+ * @returns {NSURL the resulting url}
+ */
++ (NSURL*) urlForDirectory:(NSSearchPathDirectory) directorySearchPath  {
+    return [[NSFileManager defaultManager] URLForDirectory: directorySearchPath
+                                                  inDomain: NSUserDomainMask
+                                         appropriateForURL: nil
+                                                    create: YES
+                                                     error: nil];
 }
 
 @end

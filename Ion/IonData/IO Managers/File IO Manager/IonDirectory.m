@@ -9,7 +9,7 @@
 #import "IonDirectory.h"
 #import "IonFileIOmanager.h"
 #import "IonFile.h"
-
+#import "NSData+IonTypeExtension.h"
 
 @implementation IonDirectory
 
@@ -36,36 +36,8 @@
  * @returns {void}
  */
 - (void) openFile:(NSString*) fileName withResultBlock:(void(^)( IonFile* file )) resultBlock {
-    __block IonPath* path;
-    __block IonDirectory* currentDirectory;
-    __block IonFile* resultingFile;
-    __block NSData* localData;
-    if ( !resultBlock || !fileName || ![fileName isKindOfClass:[NSString class]] )
-        return;
-    
-    // Construct
-    path = [[IonPath alloc] initPath: _path appendedByElements: @[fileName]];
-    currentDirectory = self;
-    localData = NULL;
-    if ( !path || ![path isKindOfClass: [IonPath class]] )
-        return;
-    
-    // Get Data
-    [IonFileIOmanager preformBlockOnManager: ^( NSFileManager *fileManager ) {
-        if ( [fileManager fileExistsAtPath: [path toString]] )
-            localData = [fileManager contentsAtPath: [path toString]];
-        else
-            return;
-        
-        resultingFile = [[IonFile alloc] initWithContent: localData
-                                                fileName: fileName
-                                      andParentDirectory: currentDirectory];
-        
-        // Return on main thread
-        dispatch_async( dispatch_get_main_queue(), ^{
-            resultBlock( resultingFile );
-        });
-    }];
+    [IonFileIOmanager openFileAtPath: [_path pathFromPathAppendedByComponent: fileName]
+                     withResultBlock: resultBlock];
 }
 
 /**
@@ -75,40 +47,16 @@
  * @returns {void}
  */
 - (void) saveFile:(IonFile*) file withCompletion:(void(^)( NSError* error )) completion {
-    __block IonFile* fileToSave;
-    __block IonPath* filePath;
-    __block NSError* error;
-    if ( !completion || !file || ![file isKindOfClass:[IonFile class]] )
-        return;
-    
-    //Construct
-    fileToSave = [[IonFile alloc] initWithFile: file];
-    filePath = [[IonPath alloc] initPath: _path appendedByElements:@[ fileToSave.name ]];
-    if ( !fileToSave || ![fileToSave isKindOfClass: [IonFile class]] ||
-         !filePath || ![filePath isKindOfClass: [IonPath class]] )
-        return;
-    
-    // Get
-    [IonFileIOmanager preformBlockOnManager: ^( NSFileManager *fileManager ) {
-        if ( ![fileManager createFileAtPath: [_path toString]
-                             contents: fileToSave.content
-                           attributes: NULL] )
-            error = [NSError errorWithDomain:@"Failed To save!." code:0 userInfo:NULL];
-        
-        // Return
-        dispatch_async( dispatch_get_main_queue(), ^{
-            completion ( error );
-        });
-    }];
-    
-    
+    [IonFileIOmanager saveFile: file
+                        atPath: _path
+                withCompletion: completion];
 }
 
 
 #pragma mark Directory Manipulation
 
 /**
- * Opens a directory by name, which already exists in the current directory.
+ * Opens / Creates a directory by name.
  * @param {NSString*} the directory name.
  * @param { void(^)( IonDirectory* directory ) } the return block.
  * @returns {void}
@@ -117,50 +65,16 @@
        withResultBlock:(void(^)( IonDirectory* directory )) resultBlock {
     IonPath* path;
     IonDirectory* newDirectory;
-    if ( !resultBlock || !directoryName || ![directoryName isKindOfClass: [NSString class]] )
+    if ( !resultBlock || !directoryName || ![directoryName isKindOfClass: [NSString class]] ) {
+        resultBlock( NULL );
         return;
+    }
     // Construct
-    path = [[IonPath alloc] initPath: _path appendedByElements: @[directoryName]];
+    path = [_path pathFromPathAppendedByComponent: directoryName];
     newDirectory = [[IonDirectory alloc] initWithPath: path];
-    if ( !newDirectory || ![newDirectory isKindOfClass: [IonDirectory class]] )
-        return;
     
     // Return
     resultBlock ( newDirectory );
-}
-
-/**
- * Creates a directory in the current directory with the specified name.
- * @param {NSString*} the directory name for the new directory.
- * @param {void(^)( IonDirectory* directory, NSError* error )} the completion callback.
- * @returns {void}
- */
-- (void) createDirectory:(NSString*) directoryName
-          withCompletion:(void(^)( IonDirectory* directory )) completion; {
-    __block IonPath* path;
-    __block NSError* error;
-    __block IonDirectory* newDirectory;
-    if ( !completion || !directoryName || ![directoryName isKindOfClass: [NSString class]] )
-        return;
-    
-    // Construct
-    path = [[IonPath alloc] initPath: _path appendedByElements: @[directoryName]];
-    if ( !path || ![path isKindOfClass: [IonPath class]] )
-        return;
-    
-    // Get
-    [IonFileIOmanager preformBlockOnManager: ^( NSFileManager *fileManager ) {
-        [fileManager createDirectoryAtPath: [path toString]
-               withIntermediateDirectories: TRUE
-                                attributes: NULL
-                                     error: &error];
-        
-        // Return results on main thread
-        newDirectory = [[IonDirectory alloc] initWithPath: path];
-        dispatch_async( dispatch_get_main_queue() , ^{
-            completion ( newDirectory );
-        });
-    }];
 }
 
 #pragma mark Directory Utilities
@@ -171,21 +85,8 @@
  * @param {void(^)( NSError* error )} the completion callback.
  * @returns {void}
  */
-- (void) deleteItem:(NSString*) item withCompletion:(void(^)( NSError* error )) completion {
-    __block NSString* path = [[_path toString] stringByAppendingString: item];
-    __block NSError* error;
-    if ( !completion || !path || ![path isKindOfClass: [NSString class]] )
-        return;
-    
-    // Commit
-    [IonFileIOmanager preformBlockOnManager: ^( NSFileManager *fileManager ) {
-        [fileManager removeItemAtPath: path error: &error];
-        
-        // Return results on main thread
-        dispatch_async( dispatch_get_main_queue() , ^{
-            completion ( error );
-        });
-    }];
+- (void) deleteItem:(NSString*) item withCompletion:(IonCompletionBlock) completion {
+    [IonFileIOmanager deleteItem: [_path pathFromPathAppendedByComponent: item] withCompletion: completion];
 }
 
 /**
@@ -211,6 +112,138 @@
             resultBlock ( itemList );
         });
     }];
+}
+
+#pragma mark Data Source Implmentation
+
+/**
+ * Gets the object with the specified key, or returns NULL.
+ * @param {NSString*} the key to get the object for.
+ * @param {IonRawDataSourceResultBlock} the block where the result will be returned.
+ * @returns {void}
+ */
+- (void) objectForKey:(NSString*) key withResultBlock:(IonRawDataSourceResultBlock) result {
+    __block id resultObject;
+    IonPath *resultingPath;
+    if ( !key || ![key isKindOfClass: [NSString class]] || !result )
+        return;
+    
+    resultingPath = [_path pathFromPathAppendedByComponents: [IonPath componentsFromString: key]];
+    if ( !resultingPath ) {
+        result( NULL );
+        return;
+    }
+    
+    [IonFileIOmanager openDataAtPath: resultingPath withResultBlock: ^(id returnedObject) {
+        if ( !returnedObject || ![returnedObject isKindOfClass: [NSData class]] ) {
+            result( NULL );
+            return;
+        }
+        
+        // Return it!
+        result( [(NSData*)resultObject toObject] );
+    }];
+}
+
+/**
+ * Sets the object for the specified key.
+ * @param {NSString*} the key for the object to set.
+ * @param {id} the object to put in the data system.
+ * @param {IonRawDataSourceCompletion} the completion.
+ * @returns {void} returns false if the operation isn't valid.
+ */
+- (void) setObject:(id) object forKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
+    IonPath* resultingPath;
+    NSData* dataToSave;
+    if ( !key || ![key isKindOfClass: [NSString class]] || !object )
+        return;
+    
+    // Get a path for the key...
+    resultingPath = [_path pathFromPathAppendedByComponents: [IonPath componentsFromString: key]];
+    if ( !resultingPath ) {
+        if ( completion )
+            completion( [NSError errorWithDomain: @"Failed to create path." code: 0 userInfo: NULL] );
+        return;
+    }
+    
+    
+    dataToSave = [NSData dataFromObject: object];
+    if ( !dataToSave )  {
+        // Well shit, looks like someone forgot to implment any known converion methods...
+        if ( completion )
+            completion( [NSError errorWithDomain: @"Failed to convert format!" code: 0 userInfo: NULL] );
+        return;
+    }
+    
+    // Save the data!
+    [IonFileIOmanager saveData: dataToSave atPath:resultingPath withCompletion: ^( NSError *error ) {
+        if ( completion )
+            completion ( error );
+    }];
+}
+
+/**
+ * Removes an object for the specified key.
+ * @param {NSString*} the key to remove the object for.
+ * @param {IonRawDataSourceCompletion} the completion.
+ * @returns {void}
+ */
+- (void) removeObjectForKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
+    IonPath* resultingPath;
+    if ( !key || ![key isKindOfClass: [NSString class]] )
+        return;
+    
+    // Get a path for the key...
+    resultingPath = [_path pathFromPathAppendedByComponents: [IonPath componentsFromString: key]];
+    if ( !resultingPath ) {
+        if ( completion )
+            completion( [NSError errorWithDomain: @"Failed to create path." code: 0 userInfo: NULL] );
+        return;
+    }
+    
+    [IonFileIOmanager deleteItem: resultingPath withCompletion: ^( NSError *error ) {
+       if ( completion )
+           completion( error );
+    }];
+}
+
+/**
+ * Removes all objects for data source.
+ * @param {IonRawDataSourceCompletion} the completion.
+ * @returns {void}
+ */
+- (void) removeAllObjects:(IonRawDataSourceCompletion) completion {
+    __block NSString* item;
+    __block IonRawDataSourceCompletion blockCompletion;
+    
+    blockCompletion = completion;
+    // Get a list of items at our current path...
+    [IonFileIOmanager listItemsAtPath: _path  withResultBlock: ^(id returnedObject) {
+        if ( !returnedObject || ![returnedObject isKindOfClass: [NSArray class]] ) {
+            if ( blockCompletion )
+                blockCompletion( [NSError errorWithDomain: @"Could not get the directory contents manifest."
+                                                code: 0
+                                            userInfo: NULL]);
+            return;
+        }
+        
+        // Go through the items and delete all of them
+        for ( NSInteger i = [(NSArray*)returnedObject count] - 1; i >= 0; --i ) {
+            item = [(NSArray*)returnedObject objectAtIndex: i];
+            if ( item && [item isKindOfClass: [NSString class]] )
+                [IonFileIOmanager deleteItem: [_path pathFromPathAppendedByComponent: item]
+                              withCompletion: i == 0 && blockCompletion ? // only call completion on last
+                                ^(NSError *error) {  blockCompletion( NULL ); } : NULL];
+        }
+    }];
+}
+
+/**
+ * The data sources options.
+ * @returns {IonDataSourceLocation} the location of the data source.
+ */
+- (IonDataSourceLocation) location {
+    return IonDataSourceLocationStorage;
 }
 
 #pragma mark Debug Description

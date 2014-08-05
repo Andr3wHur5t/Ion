@@ -103,7 +103,7 @@
     // Run
     target = [[NSURL alloc] initWithScheme:@"" host:@"" path:@"/me/you/him"];
     expected = @[@"me",@"you",@"him"];
-    result = [IonPath pathComponentsFromURL: target];
+    result = [IonPath componentsFromURL: target];
     
     
     // Check

@@ -234,19 +234,19 @@
     },
     "styles": {
         "default": {
-            "background": { "type": "gradient", "name": "Inferno" }
+            "background": { "type": "gradient", "name": "Royal" }
         },
         "body": {
-            "background": { "type": "gradient", "name": "Inferno" }
+            "background": { "type": "gradient", "name": "Royal" }
         },
         "titleBar": {
-            "background": { "type": "gradient", "name": "Inferno" },
+            "background": { "type": "gradient", "name": "Royal" },
         },
         "cls_simpleStyle": {
-            "background": { "type": "gradient", "name": "Inferno" }
+            "background": { "type": "gradient", "name": "Royal" }
         },
         "id_simpleStyle": {
-            "background": { "type": "gradient", "name": "Inferno" }
+            "background": { "type": "gradient", "name": "Royal" }
         },
         "cls_secondaryStyle": {
             "background": { "type": "gradient", "name": "Onyx" },

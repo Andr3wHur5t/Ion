@@ -102,7 +102,7 @@
     colorWeights = [IonGradientConfigurationTests colorWeights];
     target = [[IonLinearGradientConfiguration alloc] initWithColor:[IonGradientConfigurationTests colorWeights] andAngel:angle ];
   
-    XCTAssertEqualWithAccuracy( RadiansToDegrees(target.angle), angle, 0.1f, @"Failed to generate from valid data; Result:%f expected:%f", RadiansToDegrees(target.angle), angle);
+    XCTAssertEqualWithAccuracy( target.angle, angle, 0.1f, @"Failed to generate from valid data; Result:%f expected:%f", target.angle, angle);
 }
 
 /**

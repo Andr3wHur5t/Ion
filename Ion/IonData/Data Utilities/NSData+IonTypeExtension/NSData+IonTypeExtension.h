@@ -42,4 +42,19 @@
  */
 + (NSData*) dataFromJsonEncodedDictionary:(NSDictionary*) dictionary makePretty:(BOOL) isPretty;
 
+#pragma mark Object Conversion 
+
+/**
+ * Converts the inputted id into NSData using the prefered format.
+ * @param {id} the object to convert
+ * @returns {NSData*} the resulting data, or NULL if invalid.
+ */
++ (NSData*) dataFromObject:(id) object;
+
+/**
+ * Converts data to an object using the specified format.
+ * @returns {id} the resulting object from decoding, or self if invalid.
+ */
+- (id) toObject;
+
 @end

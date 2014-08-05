@@ -11,7 +11,7 @@
 
 typedef enum : NSUInteger {
     IonBackgroundRenderFilled = 0,
-    IonBackgroundRenderContained =1
+    IonBackgroundRenderContained = 1
 } IonBackgroundRenderOptions;
 
 @interface UIView (IonBackgroundUtilities)

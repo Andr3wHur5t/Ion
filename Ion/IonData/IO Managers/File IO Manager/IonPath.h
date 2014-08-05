@@ -39,6 +39,58 @@
  */
 - (instancetype) initPath:(IonPath*) rootPath appendedByElements:(NSArray*) pathElements;
 
+/**
+ * Constructs a path matching the inputted path.
+ * @param {IonPath*} the construct from.
+ * @returns {IonPath*} the resulting path
+ */
++ (IonPath*) pathFromPath:(IonPath*) path;
+
+/**
+ * Constructs a path from the specified url.
+ * @param {NSURL*} the url to construct from.
+ * @returns {instancetype}
+ */
++ (IonPath*) pathFromURL:(NSURL*) url;
+
+/**
+ * Constructs a path in the temporary directory.
+ */
++ (IonPath*) documentsDirectory ;
+/**
+ * Constructs a path in the temporary directory.
+ */
++ (IonPath*) cacheDirectory;
+
+
+#pragma mark Utilities
+
+/**
+ * Gets the current items name.
+ * @returns {NSString*} the string of the current item, or NULL if invalid.
+ */
+- (NSString*) itemName;
+
+/**
+ * Gets the current path with the additional path component.
+ * @param {NSString*} the additional path component.
+ * @returns {IonPath*}
+ */
+- (IonPath*) pathFromPathAppendedByComponent: (NSString*) component;
+
+/**
+ * Gets the current path with the additional path components.
+ * @param {NSArray*} the additional path component.
+ * @returns {IonPath*}
+ */
+- (IonPath*) pathFromPathAppendedByComponents: (NSArray*) components;
+
+/**
+ * Gets the parent path.
+ * @retruns {IonPath*} a copy instance of the parent path.
+ */
+- (IonPath*) parentPath;
+
 #pragma mark Properties
 
 /**
@@ -61,9 +113,16 @@
 /**
  * Gets path components from an NSURL
  * @param {NSURL} the url to get the components from.
- * @returns {NSArray*} and array of components
+ * @returns {NSArray*} array of components, or NULL if invalid.
  */
-+ (NSArray*) pathComponentsFromURL:(NSURL*) url;
++ (NSArray*) componentsFromURL:(NSURL*) url;
+
+/**
+ * Gets path components from an delimited string
+ * @param {NSString} the string to get the components from.
+ * @returns {NSArray*} array of components, or NULL if invalid.
+ */
++ (NSArray*) componentsFromString:(NSString*) string ;
 
 /**
  * Converts to a string representation of the path.

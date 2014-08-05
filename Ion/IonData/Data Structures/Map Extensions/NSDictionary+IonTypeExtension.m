@@ -7,8 +7,8 @@
 //
 
 #import "NSDictionary+IonTypeExtension.h"
+#import "NSArray+IonExtension.h"
 #import "IonKeyValuePair.h"
-
 #import "IonImageRef.h"
 #import "IonGradientConfiguration.h"
 #import "UIColor+IonColor.h"
@@ -443,7 +443,7 @@
     
     opDict = [[NSMutableDictionary alloc] initWithDictionary: self];
     
-    [self enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
+    [overridingDictionary enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
         [opDict setObject: obj forKey: key];
     }];
     
@@ -462,11 +462,17 @@
         return [[NSDictionary alloc] initWithDictionary: self];
     
     opDict = [[NSMutableDictionary alloc] initWithDictionary: self];
-    [opDict enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
+    
+    [overridingDictionary enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
         currentItem = [opDict objectForKey: key];
-        if ( [obj isKindOfClass: [NSDictionary class]] && [currentItem isKindOfClass: [NSDictionary class]] )
-            [(NSDictionary*)obj overriddenByDictionaryRecursively: currentItem]; // Recursion is FUN!
-            
+        
+        if ( [currentItem isKindOfClass: [NSDictionary class]] && [obj isKindOfClass: [NSDictionary class]] )
+            obj = [(NSDictionary*)currentItem overriddenByDictionaryRecursively: obj];
+        
+        if ( [currentItem isKindOfClass: [NSArray class]] && [obj isKindOfClass: [NSArray class]] )
+            obj = [(NSArray*)currentItem overwriteRecursivelyWithArray: obj];
+        
+        
         [opDict setObject: obj forKey: key];
     }];
     

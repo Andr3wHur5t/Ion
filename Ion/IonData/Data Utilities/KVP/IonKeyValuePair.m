@@ -15,6 +15,7 @@
 #import "UIColor+IonColor.h"
 #import "IonThemePointer.h"
 #import "IonKVPAccessBasedGenerationMap.h"
+#import "IonImageRef.h"
 
 @implementation IonKeyValuePair
 

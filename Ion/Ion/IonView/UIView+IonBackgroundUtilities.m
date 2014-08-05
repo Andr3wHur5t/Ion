@@ -21,8 +21,8 @@
  */
 - (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig
                             completion:( void(^)( ) )completion {
-    CGSize netSize = self.frame.size;
-    
+    CGSize netSize = CGSizeEqualToSize( self.frame.size, CGSizeZero)? (CGSize){ 300, 300 } : self.frame.size;
+    NSLog(@"Applying Background to view with size: %@", NSStringFromCGSize(netSize) );
     // Generate and set the gradient
     [IonRenderUtilities renderLinearGradient:gradientConfig
                                   resultSize:netSize
