@@ -75,6 +75,10 @@
 		373C99E7198B9D54002F46AD /* IonPathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373C99E6198B9D54002F46AD /* IonPathTests.m */; };
 		3750A379198C4CDC00037BEE /* IonGradientConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3750A378198C4CDC00037BEE /* IonGradientConfigurationTests.m */; };
 		3764848E19907CF000B65EAF /* IONgraphics.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 377C3EDA1970C2C300EA6599 /* IONgraphics.xcassets */; };
+		376484911991389700B65EAF /* IonSimpleCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 376484901991389700B65EAF /* IonSimpleCacheTests.m */; };
+		376484921991389700B65EAF /* IonSimpleCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 376484901991389700B65EAF /* IonSimpleCacheTests.m */; };
+		3764849719924B7A00B65EAF /* NSData+IonCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 3764849519924B7A00B65EAF /* NSData+IonCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3764849819924B7A00B65EAF /* NSData+IonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 3764849619924B7A00B65EAF /* NSData+IonCrypto.m */; };
 		376DA8AE1976FB37008D692E /* IonStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 376DA8AC1976FB37008D692E /* IonStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		376DA8AF1976FB37008D692E /* IonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DA8AD1976FB37008D692E /* IonStyle.m */; };
 		376DA8B21976FB47008D692E /* IonTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 376DA8B01976FB47008D692E /* IonTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -258,6 +262,9 @@
 		373C99E4198A52FD002F46AD /* TestConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestConfig.json; sourceTree = "<group>"; };
 		373C99E6198B9D54002F46AD /* IonPathTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonPathTests.m; sourceTree = "<group>"; };
 		3750A378198C4CDC00037BEE /* IonGradientConfigurationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonGradientConfigurationTests.m; sourceTree = "<group>"; };
+		376484901991389700B65EAF /* IonSimpleCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonSimpleCacheTests.m; sourceTree = "<group>"; };
+		3764849519924B7A00B65EAF /* NSData+IonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+IonCrypto.h"; path = "NSData+IonCrypto/NSData+IonCrypto.h"; sourceTree = "<group>"; };
+		3764849619924B7A00B65EAF /* NSData+IonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+IonCrypto.m"; path = "NSData+IonCrypto/NSData+IonCrypto.m"; sourceTree = "<group>"; };
 		376DA8AC1976FB37008D692E /* IonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonStyle.h; path = "Ion Theme System/IonStyle.h"; sourceTree = "<group>"; };
 		376DA8AD1976FB37008D692E /* IonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonStyle.m; path = "Ion Theme System/IonStyle.m"; sourceTree = "<group>"; };
 		376DA8B01976FB47008D692E /* IonTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonTheme.h; path = "Ion Theme System/IonTheme.h"; sourceTree = "<group>"; };
@@ -392,14 +399,15 @@
 			path = KVP;
 			sourceTree = "<group>";
 		};
-		371D5D7E1980C99400485DC0 /* Map Extensions */ = {
+		371D5D7E1980C99400485DC0 /* Dictionary Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				371D5D7F1980C99400485DC0 /* NSDictionary+IonTypeExtension.h */,
 				371D5D801980C99400485DC0 /* NSDictionary+IonTypeExtension.m */,
 				373C99DA1989E7D3002F46AD /* IonItemKeys.h */,
 			);
-			path = "Map Extensions";
+			name = "Dictionary Extensions";
+			path = "../Data Structures/Map Extensions";
 			sourceTree = "<group>";
 		};
 		371D5D831980FD0C00485DC0 /* IO Manager */ = {
@@ -700,6 +708,24 @@
 			name = Async;
 			sourceTree = "<group>";
 		};
+		376484931992486A00B65EAF /* NSData */ = {
+			isa = PBXGroup;
+			children = (
+				376484941992487200B65EAF /* NSData+IonCrypto */,
+				371D5D971981D4FC00485DC0 /* NSData+TypeExtensions */,
+			);
+			name = NSData;
+			sourceTree = "<group>";
+		};
+		376484941992487200B65EAF /* NSData+IonCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				3764849519924B7A00B65EAF /* NSData+IonCrypto.h */,
+				3764849619924B7A00B65EAF /* NSData+IonCrypto.m */,
+			);
+			name = "NSData+IonCrypto";
+			sourceTree = "<group>";
+		};
 		376DA8AA1976FAD7008D692E /* Theme Object */ = {
 			isa = PBXGroup;
 			children = (
@@ -811,9 +837,10 @@
 		37B9CD1E197FA12800424EFC /* Data Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				376484931992486A00B65EAF /* NSData */,
+				371D5D7E1980C99400485DC0 /* Dictionary Extensions */,
 				3771F3C0198E7FD0001DBBB9 /* NSArrayExtension */,
 				373C99DC198A3734002F46AD /* Types */,
-				371D5D971981D4FC00485DC0 /* NSData+TypeExtensions */,
 				371D5D67197FB0FE00485DC0 /* KVP */,
 				37B9CD1F197FA12800424EFC /* Ion Color */,
 			);
@@ -1001,6 +1028,7 @@
 				3771F3BE198E7BCE001DBBB9 /* IonIdExtensionTests.m */,
 				3771F3C1198E8004001DBBB9 /* IonNSArrayExtensionTests.m */,
 				3771F3C7198F1238001DBBB9 /* IonFileIOManagerTests.m */,
+				376484901991389700B65EAF /* IonSimpleCacheTests.m */,
 			);
 			path = IonDataTests;
 			sourceTree = "<group>";
@@ -1063,7 +1091,6 @@
 			isa = PBXGroup;
 			children = (
 				373C99D019882DDA002F46AD /* Data Sources */,
-				371D5D7E1980C99400485DC0 /* Map Extensions */,
 				37FCF18B197F8A1C004C14C8 /* ABG Map */,
 				37FCF192197F8A1C004C14C8 /* Method Map */,
 			);
@@ -1199,6 +1226,7 @@
 				37FCF159197F830C004C14C8 /* IonData.h in Headers */,
 				371D5DA71982FCA200485DC0 /* IonImageManager.h in Headers */,
 				371D5D8C1980FD6300485DC0 /* IonFile.h in Headers */,
+				3764849719924B7A00B65EAF /* NSData+IonCrypto.h in Headers */,
 				373C99E2198A4CDB002F46AD /* IonAsyncAccessBasedGenerationMap.h in Headers */,
 				37B9CD1A197F8E6100424EFC /* IonMath.h in Headers */,
 				371D5D951981C58000485DC0 /* IonPath.h in Headers */,
@@ -1490,6 +1518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376484911991389700B65EAF /* IonSimpleCacheTests.m in Sources */,
 				3771F3C9198F3B54001DBBB9 /* IonFileIOManagerTests.m in Sources */,
 				37EBAC89195C9B35008D6BD6 /* Ion_Visual_TestTests.m in Sources */,
 			);
@@ -1501,6 +1530,7 @@
 			files = (
 				371D5D8D1980FD6300485DC0 /* IonFile.m in Sources */,
 				371D5D6B197FB10800485DC0 /* IonKeyValuePair.m in Sources */,
+				3764849819924B7A00B65EAF /* NSData+IonCrypto.m in Sources */,
 				371D5D821980C99400485DC0 /* NSDictionary+IonTypeExtension.m in Sources */,
 				371D5D9D1981D7D600485DC0 /* NSData+IonTypeExtension.m in Sources */,
 				371D5D911980FD7D00485DC0 /* IonFileIOmanager.m in Sources */,
@@ -1536,6 +1566,7 @@
 				371D5D66197FB0EF00485DC0 /* IonRenderTests.m in Sources */,
 				3719144E198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m in Sources */,
 				373C99E7198B9D54002F46AD /* IonPathTests.m in Sources */,
+				376484921991389700B65EAF /* IonSimpleCacheTests.m in Sources */,
 				3771F3C2198E8004001DBBB9 /* IonNSArrayExtensionTests.m in Sources */,
 				37191450198BC281002D7355 /* IonDataCacheTests.m in Sources */,
 				3771F3BF198E7BCE001DBBB9 /* IonIdExtensionTests.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "IonAsyncAccessBasedGenerationMap.h"
+#import "NSDictionary+IonTypeExtension.h"
 #import "IonMutableDictionary.h"
 
 @interface IonAsyncAccessBasedGenerationMap () {
@@ -122,8 +123,7 @@
 - (void) objectForKey:(id) key
  usingGenerationBlock:(IonAsyncGenerationBlock) specialGenerationBlock
       withResultBlock:(IonRawDataSourceResultBlock) result  {
-    
-    __block NSString* strKey;
+    __block NSString *strKey, *cleanKey;
     __block IonAsyncGenerationBlock genBlock;
     if ( !key || ![key isKindOfClass: [NSString class]] || !result ) {
         result( NULL );
@@ -132,24 +132,40 @@
     
     // Set Validated Data in block safe variables
     strKey = key;
+    cleanKey = [NSDictionary sanitizeKey: key];
     genBlock = specialGenerationBlock;
     
     dispatch_async( ionStandardDispatchQueue(), ^{
         id returnedItem;
-        returnedItem = [_cachedData objectForKey: strKey];
+        returnedItem = [_cachedData objectForKey: cleanKey];
         
         if ( !returnedItem ) {
             // Generate using generation block
-           [self generateItemForKey: key
+           [self generateItemForKey: strKey
                usingGenerationBlock: specialGenerationBlock
                     withResultBlock:^(id returnedObject) {
-                        // Cache generated data
-                        [_cachedData setValue: returnedObject forKey: strKey];
+                        id resultObject, cacheObject;
                         
-                        result( returnedObject );
+                        resultObject = returnedObject;
+                        cacheObject = [_cachedData objectForKey: cleanKey];
+                        
+                        // if we don't have a result object, try our cached object.
+                        if ( !resultObject )
+                            resultObject = cacheObject;
+                        
+                        // Report our findings, if any.
+                        result( resultObject );
+                        
+                        // if we don't have a result don't continue
+                        if ( !resultObject )
+                            return;
+                        
+                        if ( !cacheObject ) // make sure it's not in the cache
+                            if ( [self shouldCacheDataWithKey: cleanKey] ) // should it be cached?
+                                [_cachedData setValue: resultObject forKey: cleanKey]; // cache it
                         
                         // Remove raw data if applicable
-                        if ( [self shouldRemoveRawDataWithKey: strKey] && returnedObject )
+                        if ( [self shouldRemoveRawDataWithKey: cleanKey] )
                             ;// [_localRawData removeObjectForKey: strKey];
             }];
             return;
@@ -189,7 +205,7 @@
  * @returns {void} returns false if the operation isn't valid.
  */
 - (void) setObject:(id) object forKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
-    __block NSString* strKey;
+    __block NSString *strKey, *cleanString;
     __block id obj;
     __block IonRawDataSourceCompletion comp;
     if ( !key || ![key isKindOfClass:[NSString class]] || !object )
@@ -197,12 +213,14 @@
     
     // Set block safe vars
     strKey = key;
+    cleanString = [NSDictionary sanitizeKey: key];;
     obj = object;
     comp = completion;
     
     // Call async
     dispatch_async( ionStandardDispatchQueue(), ^{
-        [_cachedData setObject: obj forKey: strKey];
+        if ( [self shouldCacheDataWithKey: cleanString] )
+            [_cachedData setObject: obj forKey: cleanString];
         [_rawData setObject: obj forKey: strKey withCompletion: ^(NSError *error) {
             if ( comp )
                 comp( error );
@@ -228,7 +246,7 @@
     
     // Call async
     dispatch_async( ionStandardDispatchQueue(), ^{
-        [_cachedData removeObjectForKey: strKey];
+        [_cachedData removeObjectForKey: [NSDictionary sanitizeKey: strKey]];
         [_rawData removeObjectForKey: strKey withCompletion: ^(NSError *error) {
             if ( comp )
                 comp( error );
@@ -272,9 +290,8 @@
  */
 - (IonAsyncInternalGenerationBlock) defaultGenerationBlock {
     return ^( id data, IonAsyncGenerationBlock genBlock, IonResultBlock result ) {
-        if ( !genBlock || !result || !data )
-            return;
-        genBlock( data, result );
+        if ( genBlock )
+            genBlock( data, result );
     };
 }
 
@@ -290,6 +307,7 @@
     if ( !key || !resultBlock )
         return;
     
+    // Save block safe ite,s
     resBlock = resultBlock;
     strKey = key;
     
@@ -297,26 +315,34 @@
     if ( !generationBlock )
         generationBlock = [self defaultGenerationBlock];
     
-    // Create the default "specialGenerationBlock" generation
+    // Create the default "specialGenerationBlock" generation block, so we always can return data.
     if ( !specialGenerationBlock )
         specialGenerationBlock = ^( id data, IonResultBlock resultBlock){
             resultBlock ( data );
         };
     
-    // Check if it exsists in raw
-    [_rawData objectForKey:key withResultBlock:^(id rawItem) {
-        if ( rawItem  && generationBlock && ![_currentlyGenerating objectForKey: key] ) {
+    
+    // Get the item from our raw data source
+    [_rawData objectForKey: strKey withResultBlock:^(id rawItem) {
+        // Only run if we are not currently generating the item
+        if ( [_currentlyGenerating objectForKey: strKey] )
+            return;
             
-            //Generate
-            [_currentlyGenerating setObject:@1 forKey: key];
+        // Put us on the currently generating list
+        [_currentlyGenerating setObject:@1 forKey:  strKey];
+        
+        // Run the generation block if we have one.
+        if ( generationBlock )
             generationBlock( rawItem, specialGenerationBlock , ^( id result ) {
-                if ( !resultBlock || !result )
-                    return;
-                resultBlock ( result );
                 
+                // Return the result
+                if ( resultBlock )
+                    resultBlock ( result );
+        
+                // Take our self off of the currently generating list
                 [_currentlyGenerating removeObjectForKey: key];
             });
-        }
+        
     }];
     
 }
@@ -330,5 +356,13 @@
     return false;
 }
 
+/**
+ * This will report if we should cache the data generated with the specified key.
+ * @param {NSString*} the key to check.
+ * @returns {BOOL} false if we should not add it, true if we should or Invalid.
+ */
+- (BOOL) shouldCacheDataWithKey:(NSString*) key {
+    return TRUE;
+}
 
 @end

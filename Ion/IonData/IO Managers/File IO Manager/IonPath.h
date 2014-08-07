@@ -37,7 +37,7 @@
  * @param {NSArray*} the additional elements to append.
  * @returns {instancetype}
  */
-- (instancetype) initPath:(IonPath*) rootPath appendedByElements:(NSArray*) pathElements;
+- (instancetype) initWithPath:(IonPath*) rootPath appendedByElements:(NSArray*) pathElements;
 
 /**
  * Constructs a path matching the inputted path.
@@ -72,18 +72,18 @@
 - (NSString*) itemName;
 
 /**
- * Gets the current path with the additional path component.
+ * Gets the current path with the additional path element.
  * @param {NSString*} the additional path component.
  * @returns {IonPath*}
  */
-- (IonPath*) pathFromPathAppendedByComponent: (NSString*) component;
+- (IonPath*) pathAppendedByElement: (NSString*) component;
 
 /**
- * Gets the current path with the additional path components.
+ * Gets the current path with the additional path elements.
  * @param {NSArray*} the additional path component.
  * @returns {IonPath*}
  */
-- (IonPath*) pathFromPathAppendedByComponents: (NSArray*) components;
+- (IonPath*) pathAppendedByElements: (NSArray*) components;
 
 /**
  * Gets the parent path.
@@ -110,6 +110,7 @@
 
 #pragma mark conversions
 
+
 /**
  * Gets path components from an NSURL
  * @param {NSURL} the url to get the components from.
@@ -122,7 +123,22 @@
  * @param {NSString} the string to get the components from.
  * @returns {NSArray*} array of components, or NULL if invalid.
  */
-+ (NSArray*) componentsFromString:(NSString*) string ;
++ (NSArray*) componentsFromString:(NSString*) string;
+
+/**
+ * Normalize component strings to work with the file system.
+ * @param {NSArray*} the components to normilize.
+ * @returns {NSArray*} the normilizes array.
+ */
++ (NSArray*) normalizeComponents:(NSArray*) components;
+
+/**
+ * Converts an array of components into a string.
+ * @param {NSArray*} the components to generate from.
+ * @param {BOOL} states if the path is relative or not.
+ * @returns {NSString} the path.
+ */
++ (NSString*) stringFromComponents:(NSArray*) components isRelative:(BOOL) isRelative;
 
 /**
  * Converts to a string representation of the path.

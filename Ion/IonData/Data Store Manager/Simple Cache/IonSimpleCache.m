@@ -7,31 +7,29 @@
 //
 
 #import "IonSimpleCache.h"
+#import "NSData+IonTypeExtension.h"
+#import "NSDictionary+IonTypeExtension.h"
 #import "IonCacheItemStats.h"
+#import "IonFileIOmanager.h"
 #import "IonDirectory.h"
-#import "IonFile.h"
 
 
-/**
- * The Cache Dispatch Queue label.
- */
-static const char* sCacheDispatchQueueLabel = "ION_CACHE_DISPATCH_LABEL";
+
+#define IonCacheManifestFileName @"cache.manifest"
 
 
 /** ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== =====
  *                                      Private Interface
  *  ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== */
-@interface IonSimpleCache ()
+@interface IonSimpleCache () {
+    IonPath* _path;
+    BOOL mainfestHasBeenLoaded;
+}
 
 /**
- * The Dictionary of access statistics, and file system paths.
+ * The session persistent manifest of all data related to the cache.
  */
-@property (strong) NSMutableDictionary* keyStats;
-
-/**
- * The memory (RAM) cache, where we store our in memory cache data.
- */
-@property (strong) NSMutableDictionary* memoryCache;
+@property (strong) NSMutableDictionary* manifest;
 
 @end
 
@@ -45,14 +43,17 @@ static const char* sCacheDispatchQueueLabel = "ION_CACHE_DISPATCH_LABEL";
 #pragma mark Constructors
 
 /**
- * The standard constructor.
+ * Constructs the cache at the inputted path.
+ * @param {IonCompletionBlock} the completion thats called once the manifest is loaded.
+ * @param {IonPath} the path to construct at.
  * @returns {instancetype}
  */
-- (instancetype) init {
-    self = [super init];
+- (instancetype) initAtPath:(IonPath*) path withLoadCompletion:(IonCompletionBlock) manifestLoadCompletion {
+    _path = [IonPath pathFromPath: path];
+    self = [super initWithDataSource: [IonDirectory directoryWithPath: _path]];
     if ( self ) {
-        _keyStats = [[NSMutableDictionary alloc] init];
-        _memoryCache = [[NSMutableDictionary alloc] init];
+        [self configureObjects];
+        [self loadManifest: manifestLoadCompletion];
     }
     return self;
 }
@@ -60,258 +61,284 @@ static const char* sCacheDispatchQueueLabel = "ION_CACHE_DISPATCH_LABEL";
 /**
  * Constructs the cache at the inputted path.
  * @param {IonPath} the path to construct at.
- * @returns {instancetype}
+ * @param {IonCompletionBlock} the completion thats called once the manifest is loaded.
+ * @returns {IonSimpleCache*}
  */
-- (instancetype) initAtPath:(IonPath*) path {
-    self = [self init];
-    if ( self )
-        _directory = [[IonDirectory alloc] initWithPath: path];
-    
-    return self;
-}
-
-
-#pragma mark Data Retrieval Management
-
-/**
- * Gets the file for the specified key.
- * @param {NSString*} the key to get the data from.
- * @param {IonResultCallback} the callback to get the results from.
- * @returns {void}
- */
-- (void) getDataForKey:(NSString*) key withResultCallback:(IonResultCallback) resultCallback {
-    __block NSString *convertedKey, *filePath;
-    __block id memCacheData, keyStatsData, fileData;
-    
-    if ( !key || ![key isKindOfClass: [NSString class]] || !resultCallback || !self.directory )
-        return;
-    
-    // Convert the key
-    convertedKey = [IonSimpleCache convertKey: key];
-    if ( !convertedKey )
-        return;
-    
-    dispatch_async( [IonSimpleCache cacheDispatchQueue] , ^{
-        // Check memory cache for the data
-        memCacheData = [self.memoryCache objectForKey: convertedKey];
-        if ( memCacheData ) {
-            dispatch_async( dispatch_get_main_queue(), ^{
-                resultCallback( memCacheData );
-            });
-            return;
-        }
-        
-        // Check For the keys data in key stats
-        keyStatsData = [self.keyStats objectForKey: convertedKey];
-        if ( keyStatsData && [keyStatsData isKindOfClass: [IonCacheItemStats class]] ) {
-            // We found the key update stats, and get the file name so we can open the file.
-            filePath = keyStatsData;
-            if ( !filePath || ![filePath isKindOfClass: [NSString class]] )
-                return;
-            
-            // Open the file path in the current directory
-            [self.directory openFile: filePath withResultBlock:^(IonFile *file) {
-                fileData = file.content;
-                if ( !fileData )
-                    return;
-                
-                // We are already in main, report data.
-                resultCallback ( fileData );
-                [(IonCacheItemStats*)keyStatsData incrementsRequestCount];
-                
-                //Cache the data if we need to
-                if ( ![(IonCacheItemStats*)keyStatsData dataShouldBeCached] )
-                    return;
-                
-                // Cache data async
-                dispatch_async( [IonSimpleCache cacheDispatchQueue] , ^{
-                    [self.memoryCache setObject: fileData forKey: convertedKey];
-                });
-            }];
-        }
-    });
++ (IonSimpleCache*) cacheAtPath:(IonPath*) path withLoadCompletion:(IonCompletionBlock) manifestLoadCompletion {
+    return [[IonSimpleCache alloc] initAtPath: path withLoadCompletion: manifestLoadCompletion];
 }
 
 /**
- * Sets a file in the cache, with the file name as the key.
- * @param {IonFile*} the file to add to the cache.
- * @param {IonCompletionCallback}
- * @returns {void}
+ * Constructs a cache in the caches directory with the specified name.
+ * @param {NSString*} the cache directory name.
+ * @param {IonCompletionBlock} the completion thats called once the manifest is loaded.
+ * @returns {IonSimpleCache}
  */
-- (void) setFileInCache:(IonFile*) file withCompletion:(IonCompletionCallback) completion {
-    NSString* key;
-    IonCacheItemStats* stats;
-    if ( !file || ![file isKindOfClass: [IonFile class]] )
-        return;
-    
-    // Construct
-    stats = [[IonCacheItemStats alloc] initWithFile: file];
-    key = [IonSimpleCache convertKey: file.name];
-    
-    // Add
-    [self.keyStats setObject: stats forKey: key];
-    [self.memoryCache removeObjectForKey: key];
-    [self.directory saveFile: file withCompletion: ^(NSError *error) {
-        if ( !error && completion )
-            completion();
-    }];
++ (IonSimpleCache*) cacheWithName:(NSString*) cacheName withLoadCompletion:(IonCompletionBlock) manifestLoadCompletion {
+    IonPath* cachePath = [[IonPath cacheDirectory] pathAppendedByElement: cacheName];
+    return [[IonSimpleCache alloc] initAtPath: cachePath withLoadCompletion: manifestLoadCompletion];
 }
 
 /**
- * Removes the file for the specified key.
- * @param {NSString*} the key to remove the file for.
- * @param {IonCompletionCallback} the completion.
+ * Constructs a cache in the cache directory with the specified name.
+ * @param {NSString*} the cache directory name.
  * @returns {void}
  */
-- (void) removeFileForKey:(NSString*) key withCompletion:(IonCompletionCallback) completion {
-    NSString* convertedKey;
-    if ( !key || ![key isKindOfClass: [NSString class]] )
-        return;
-    
-    // Convert
-    convertedKey = [IonSimpleCache convertKey: key];
-    
-    // Remove
-    [self.keyStats removeObjectForKey: key];
-    [self.memoryCache removeObjectForKey: key];
-    [self.directory deleteItem:key withCompletion: ^(NSError *error) {
-        if ( !error && completion )
-            completion();
-    }];
++ (IonSimpleCache*) cacheWithName:(NSString*) cacheName {
+    return [IonSimpleCache cacheWithName: cacheName withLoadCompletion: NULL];
 }
 
-/**
- * Sets the expiration of a cached file using the key as the identifier.
- * @param {NSDate*} the expiration of the cache file, NULL meaning the file wont expire.
- * @param {NSString*} the key of the file to set the expiration of.
- * @returns {void}
- */
-- (void) setFileExpiration:(NSDate*) expiration withKey:(NSString*) key {
-    __block NSString* convertedKey;
-    __block IonCacheItemStats* item;
-    if ( !expiration || ![expiration isKindOfClass: [NSDate class]] ||
-         !key || ![key isKindOfClass: [NSString class]] )
-        return;
-    
-    convertedKey = [IonSimpleCache convertKey: key];
-    dispatch_async( [IonSimpleCache cacheDispatchQueue], ^{
-        item = [self.keyStats objectForKey: convertedKey];
-        if ( !item || ![item isKindOfClass: [IonCacheItemStats class]] )
-            return;
-        if ( [expiration timeIntervalSince1970] <= [[NSDate date] timeIntervalSince1970] )
-            [self removeFileForKey: key withCompletion: NULL];
-        else {
-            item.experationDate = expiration;
-            [self.keyStats setObject: item forKey: convertedKey];
-        }
-    });
-}
+#pragma mark Constructor Utilities
 
 /**
- * This force checks the files for expiration.
+ * The base post construction method.
  * @returns {void}
  */
-- (void) checkFilesForExpiration {
-    dispatch_async( [IonSimpleCache cacheDispatchQueue], ^{
-        __block NSDate* currentDate = [NSDate date];
-        __block IonCacheItemStats* currentStats;
-        
-        [self.keyStats enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
-            if ( !obj || ![obj isKindOfClass: [IonCacheItemStats class]] )
-                return;
-            currentStats = obj;
-            
-            // Remove it if its old...
-            if ( [currentStats.experationDate timeIntervalSince1970] >= [currentDate timeIntervalSince1970] )
-                [self removeFileForKey: key withCompletion: NULL];
-            
-            // Clean Up
-            currentStats = NULL;
+- (void) configureObjects {
+    mainfestHasBeenLoaded = FALSE;
+    _manifestWillPersist = sIonCacheManifestWillPersist;
+    [self constructManifest];
+}
+
+#pragma mark Deconstructs
+
+/**
+ * The deconstruction function.
+ * @returns {void}
+ */
+- (void)dealloc {
+    __block IonPath* manifestPath = [self manifestPath];
+    if ( _manifestWillPersist )
+        [self saveManifest: ^(NSError *error) {
+            if ( !error )
+                NSLog( @"Saved Cache Manifest At '%@' ", manifestPath );
         }];
-    });
+    else
+        [self deleteManifest: ^(NSError *error) {
+           if ( !error )
+               NSLog( @"Deleted Cache Manifest At '%@' ", manifestPath );
+        }];
 }
 
 #pragma mark Cache Management
 
 /**
- * Removes the file with the specified key from the memory (RAM) cache.
- * @param {NSString*} the key to be removed from the memory cache.
- * @param {IonCompletionCallback} the completion to call.
+ * Deletes the entire cache directory.
+ * @param {IonCompletionBlock} the completion block to call.
  * @returns {void}
  */
-- (void) removeFileFromMemoryCacheWithKey:(NSString*) key {
-    __block NSString* convertedKey;
-    if ( !key || ![key isKindOfClass: [NSString class]] )
-        return;
-    dispatch_async( [IonSimpleCache cacheDispatchQueue], ^{
-        // Convert
-        convertedKey = [IonSimpleCache convertKey: key];
-    
-        // Remove
-        [self.memoryCache removeObjectForKey: convertedKey];
-    });
+- (void) deleteWithCompletion:(IonCompletionBlock) completion {
+    [IonFileIOmanager deleteItem: _path withCompletion: completion];
 }
 
+#pragma mark Manifest Management
+
 /**
- * Clears the memory (RAM) cache.
+ * The Manifest Construction Function.
  * @returns {void}
  */
-- (void) clearMemoryCache {
-    dispatch_async( [IonSimpleCache cacheDispatchQueue], ^{
-        [self. memoryCache removeAllObjects];
-    });
+- (void) constructManifest {
+    _manifest = [[NSMutableDictionary alloc] init];
 }
 
 /**
- * Clears the storage (HDD) cache.
+ * Gets the manifest path.
+ * @returns {IonPath} the manifests full path.
+ */
+- (IonPath*) manifestPath {
+    return [_path pathAppendedByElement: IonCacheManifestFileName];
+}
+
+/**
+ * Loads the cache manifest from the file system.
+ * @param {IonCompletionBlock} the completion block to call.
  * @returns {void}
  */
-- (void) clearStorageCache {
-    // Delete the current durrectory... this is already a async operation...
+- (void) loadManifest:(IonCompletionBlock) completion {
+    __block NSDictionary* unconfirmedObject;
+    [IonFileIOmanager openDataAtPath: [self manifestPath]
+                     withResultBlock:^(id returnedObject) {
+                         if ( !returnedObject && completion)
+                            completion( NULL );
+                         
+                         unconfirmedObject = [(NSData*)returnedObject toJsonDictionary];
+                         if ( !unconfirmedObject && completion ) {
+                             completion( NULL );
+                             return;
+                         }
+                         
+                         [_manifest setDictionary: [unconfirmedObject overriddenByDictionaryRecursively: _manifest ]];
+                         mainfestHasBeenLoaded = TRUE;
+                         
+                         if ( completion )
+                             completion( NULL );
+                     }];
 }
-
-#pragma mark Conversions
 
 /**
- * Converts the inputted key to the correct format.
- * @param {NSString*} the key to be converted.
- * @returns {NSString*} the string in the correct format, or NULL if invalid.
+ * Saves the cache manifest to the file system.
+ * @param {IonCompletionBlock} the completion block to call.
+ * @returns {void}
  */
-+ (NSString*) convertKey:(NSString*) key {
-    NSRegularExpression* expression;
-    NSString* resultString;
-    if ( !key || ![key isKindOfClass: [NSString class]] )
-        return NULL;
-    
-    resultString = @"";
-    // Create Expression
-    expression = [[NSRegularExpression alloc] initWithPattern: @"[^a-zA-Z0-9 ]+"
-                                                      options: 0
-                                                        error: NULL];
-    
-    // Evaluate
-    resultString = [expression stringByReplacingMatchesInString: key
-                                         options: 0
-                                           range: NSMakeRange(0, key.length)
-                                    withTemplate: @"-"];
-    
-    return resultString;
+- (void) saveManifest:(IonCompletionBlock) completion {
+    [IonFileIOmanager saveData: [NSData dataFromJsonEncodedDictionary: _manifest makePretty: TRUE]
+                        atPath: [self manifestPath]
+                withCompletion: ^(NSError *error) {
+                    if ( completion )
+                        completion( error );
+                }];
 }
 
-
-#pragma mark Singletons
 /**
- * The cache dispatch queue.
- * @returns {dispatch_queue_t}
+ * Deletes the cache manifest from the file system.
+ * @param {IonCompletionBlock} the completion block to call.
+ * @returns {void}
  */
-+ (dispatch_queue_t) cacheDispatchQueue {
-    static dispatch_queue_t cacheDispatchQueue;
-    static dispatch_once_t cacheDispatchQueue_OnceToken;
-    
-    dispatch_once( &cacheDispatchQueue_OnceToken, ^{
-        cacheDispatchQueue = dispatch_queue_create( sCacheDispatchQueueLabel, NULL );
-    });
-    
-    return cacheDispatchQueue;
+- (void) deleteManifest:(IonCompletionBlock) completion {
+    [IonFileIOmanager deleteItem: [self manifestPath] withCompletion: ^(NSError *error) {
+       if ( completion )
+           completion( error );
+    }];
 }
+
+#pragma mark Manifest Manipulation
+
+/**
+ * Gets the extra info for the specified item key.
+ * @param {NSString*} the key to get the object for.
+ * @returns {NSDictionary*} the current extra info object.
+ */
+- (NSDictionary*) extraInfoForItemWithKey:(NSString*) key {
+    return [_manifest extraInfoForItemWithKey: [NSDictionary sanitizeKey: key]];
+}
+
+/**
+ * Sets the extra info for the specified item key.
+ * @param {NSString*} the key to get the object for.
+ * @param {NSDictionary*} the extra info object to set.
+ * @returns {void}
+ */
+- (void) setExtraInfo:(NSDictionary*) extraInfo ForItemWithKey:(NSString*) key {
+    [_manifest setExtraInfo: extraInfo forItemWithKey: [NSDictionary sanitizeKey: key]];
+}
+
+#pragma mark Data Validation
+
+/**
+ * Checks if the inputed data matches the signature thats stored in the the manifest.
+ * @param {NSData*} the data to check agents the key.
+ * @param {NSString*} the key to check the manifest with.
+ * @returns {BOOL}
+ */
+- (BOOL) dataObject:(NSData*) data matchesManifestItemWithKey:(NSString*) key {
+    NSString *dataSignature, *itemManifestSignature;
+    if ( !data || ![data isKindOfClass: [NSData class]] ||
+         !key || ![key isKindOfClass: [NSString class] ] )
+        return FALSE;
+    
+    dataSignature = [[data SHA512Hash] toBase64];
+    itemManifestSignature = [_manifest fileSignatureForItemWithKey: key];
+    if ( !itemManifestSignature )
+        return FALSE;
+    
+    return [dataSignature isEqualToString: itemManifestSignature];
+}
+
+
+/**
+ * This is the special generation block which will look for security exceptions, and inconsistencies.
+ * @param {NSString*} the key for the item to check.
+ * @returns {IonAsyncGenerationBlock} the special generation block.
+ */
+- (IonAsyncGenerationBlock) scanerBlockForKey:(NSString*) key {
+    __block NSString* blockKey;
+    
+    // Set data
+    blockKey = key;
+    
+    return ^( id data, IonResultBlock resultBlock ){
+        // Validate that the data has not been minipulated by checking the signiture.
+        if ( ![self dataObject: data matchesManifestItemWithKey: blockKey] ) {
+            resultBlock( NULL ); // return null because the data appears to minipulated by an outside source.
+            
+            // Respond acording to our security policy
+            NSLog(@"WARN: cache data changed between sessions!");
+        }
+        else
+            resultBlock( data ); // the data is good, proceed
+    };
+}
+
+#pragma mark Data Source Protocol Implementation
+
+/**
+ * Gets the object with the specified key, or returns NULL.
+ * @param {NSString*} the key to get the object for.
+ * @param {IonRawDataSourceResultBlock} the block where the result will be returned.
+ * @returns {void}
+ */
+
+- (void) objectForKey:(NSString*) key withResultBlock:(IonRawDataSourceResultBlock) result {
+    NSString* cleanString;
+    
+    
+    cleanString = [NSDictionary sanitizeKey: key];
+    // Update the manifest stats.
+    [_manifest incrementSessionAccessCountForItemWithKey: cleanString];
+
+    // Get the object
+    [super objectForKey: key usingGenerationBlock: [self scanerBlockForKey: cleanString] withResultBlock: result];
+}
+
+/**
+ * Sets the object for the specified key.
+ * @param {NSString*} the key for the object to set.
+ * @param {id} the object to put in the data system.
+ * @param {IonRawDataSourceCompletion} the completion.
+ * @returns {void} returns false if the operation isn't valid.
+ */
+- (void) setObject:(id) object forKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
+    NSData* objectData = [NSData dataFromObject:object];
+    // Set a new state object for the key.
+    [_manifest createNewItemUsingPath: key
+                         andSignature: [[objectData SHA512Hash] toBase64]
+                               ForKey:[NSDictionary sanitizeKey: key]];
+    
+    // Do the action.
+    [super setObject: objectData
+              forKey: key
+      withCompletion: completion];
+}
+
+/**
+ * Removes an object for the specified key.
+ * @param {NSString*} the key to remove the object for.
+ * @param {IonRawDataSourceCompletion} the completion.
+ * @returns {void}
+ */
+- (void) removeObjectForKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
+    [_manifest removeObjectForKey: [NSDictionary sanitizeKey: key]];
+    [super removeObjectForKey: key
+               withCompletion: completion];
+}
+
+
+/**
+ * The data sources options.
+ * @returns {IonDataSourceLocation} the location of the data source.
+ */
+- (IonDataSourceLocation) location {
+    return IonDataSourceLocationStorage;
+}
+
+/**
+ * This will report if we should cache the data generated with the specified key.
+ * @param {NSString*} the key to check.
+ * @returns {BOOL} false if we should not add it, true if we should or Invalid.
+ */
+- (BOOL) shouldCacheDataWithKey:(NSString*) key {
+    return [_manifest shouldCacheItemForKey: [NSDictionary sanitizeKey: key]];
+}
+
+
 @end

@@ -71,6 +71,28 @@
  */
 + (void) listItemsAtPath:(IonPath*) path withResultBlock:(IonResultBlock) resultBlock;
 
+/**
+ * Creates a directory at the specified path.
+ * @param {IonPath*} the path to create the directory at.
+ * @param {IonCompletionCallback} the completion to call.
+ * @returns {void}
+ */
++ (void) creaateDirectoryAtPath:(IonPath*) path withCompletion:(IonCompletionBlock) completion;
+
+/**
+ * Checks if a file exsists the the specified path on the current thread.
+ * @param {IonPath*} the target path.
+ * @returns {BOOL}
+ */
++ (BOOL) fileExsistsAtPath:(IonPath*) path;
+
+/**
+ * Checks if a directory exsists the the specified path on the current thread.
+ * @param {IonPath*} the target path.
+ * @returns {BOOL}
+ */
++ (BOOL) directoryExsistsAtPath:(IonPath*) path;
+
 #pragma mark Singletons
 
 /**

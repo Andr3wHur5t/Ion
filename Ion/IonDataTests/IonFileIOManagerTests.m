@@ -47,7 +47,7 @@
    
     // Construct
     called = false;
-    targetPath = [[IonPath documentsDirectory] pathFromPathAppendedByComponent: TargetFileName];
+    targetPath = [[IonPath documentsDirectory] pathAppendedByElement: TargetFileName];
     expected = [NSData dataFromString:@"Hello There!"];
     
     // Do the test
@@ -90,7 +90,7 @@
     
     // Construct
     called = false;
-    targetPath = [[IonPath documentsDirectory] pathFromPathAppendedByComponent: TargetFileName];
+    targetPath = [[IonPath documentsDirectory] pathAppendedByElement: TargetFileName];
     expected = [NSData dataFromString:@"Hello There!"];
     
    // [self measureBlock: ^{
@@ -129,7 +129,7 @@
     __block BOOL called;
     
     // Construct
-    targetPath = [[IonPath documentsDirectory] pathFromPathAppendedByComponent: TargetFileName];
+    targetPath = [[IonPath documentsDirectory] pathAppendedByElement: TargetFileName];
     called = false;
     
     [self measureBlock: ^{
@@ -168,7 +168,7 @@
     
     // Construct
     called = false;
-    targetPath = [[IonPath documentsDirectory] pathFromPathAppendedByComponent: @"thisIsNotAFile.wtf"];
+    targetPath = [[IonPath documentsDirectory] pathAppendedByElement: @"thisIsNotAFile.wtf"];
     
     // Make sure its not there before testing...
     [IonFileIOmanager deleteItem: targetPath
@@ -211,7 +211,7 @@
     
     for ( NSString* item in targetItems)
         [IonFileIOmanager saveData: [NSData dataFromString: item]
-                            atPath: [targetPath pathFromPathAppendedByComponent: item]
+                            atPath: [targetPath pathAppendedByElement: item]
                     withCompletion: ^(NSError* err) {
                         completionException = [self expectationWithDescription:@"Delete Complete"];
                         

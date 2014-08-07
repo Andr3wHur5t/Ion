@@ -66,7 +66,7 @@ static const char* IonFileIOqueueLabel = "com.ion.fileManager";
     if ( !completion || !file || ![file isKindOfClass:[IonFile class]] )
         return;
     [IonFileIOmanager saveData: file.content
-                        atPath: [path pathFromPathAppendedByComponent: file.name]
+                        atPath: [path pathAppendedByElement: file.name]
                 withCompletion: completion];
 }
 
@@ -204,18 +204,68 @@ static const char* IonFileIOqueueLabel = "com.ion.fileManager";
  */
 + (void) listItemsAtPath:(IonPath*) path withResultBlock:(IonResultBlock) resultBlock {
     __block IonPath* targetPath;
+    __block NSArray* items;
     if ( !resultBlock )
         return;
     
+    // Set constants
+    targetPath = path;
+    
     // Get
     [IonFileIOmanager preformBlockOnManager: ^( NSFileManager *fileManager ) {
+        items = [fileManager contentsOfDirectoryAtPath: [targetPath toString] error: NULL];
+        
         // Record results on main thread
         dispatch_async( dispatch_get_main_queue() , ^{
-            resultBlock ( [fileManager contentsOfDirectoryAtPath: [targetPath toString] error: NULL] );
+            resultBlock ( items );
         });
     }];
 }
 
+/**
+ * Creates a directory at the specified path.
+ * @param {IonPath*} the path to create the directory at.
+ * @param {IonCompletionCallback} the completion to call.
+ * @returns {void}
+ */
++ (void) creaateDirectoryAtPath:(IonPath*) path withCompletion:(IonCompletionBlock) completion {
+    __block NSError* error;
+    
+    // Get
+    [IonFileIOmanager preformBlockOnManager: ^( NSFileManager *fileManager ) {
+        [fileManager createDirectoryAtPath: [path toString]
+                withIntermediateDirectories: TRUE
+                                 attributes: NULL
+                                      error: &error];
+        // Record results on main thread
+        dispatch_async( dispatch_get_main_queue() , ^{
+            if ( completion )
+                completion ( error );
+        });
+    }];
+}
+
+/**
+ * Checks if a file exsists the the specified path on the current thread.
+ * @param {IonPath*} the target path.
+ * @returns {BOOL}
+ */
++ (BOOL) fileExsistsAtPath:(IonPath*) path {
+    BOOL isDirectory, result;
+    result = [[NSFileManager defaultManager] fileExistsAtPath: [path toString] isDirectory: &isDirectory];
+    return result && !isDirectory;
+}
+
+/**
+ * Checks if a directory exsists the the specified path on the current thread.
+ * @param {IonPath*} the target path.
+ * @returns {BOOL}
+ */
++ (BOOL) directoryExsistsAtPath:(IonPath*) path {
+    BOOL isDirectory, result;
+    result = [[NSFileManager defaultManager] fileExistsAtPath: [path toString] isDirectory: &isDirectory];
+    return result && isDirectory;
+}
 
 
 #pragma mark Singletons

@@ -57,7 +57,7 @@
     // Setup
     fail = FALSE;
     bundlePath = [[NSBundle mainBundle] bundleURL];
-    path = [[IonPath alloc] initPath:[[IonPath alloc] initFromURL:bundlePath]
+    path = [[IonPath alloc] initWithPath:[[IonPath alloc] initFromURL:bundlePath]
                   appendedByElements:@[@"Hello",@"Me"]];
     expected = [[bundlePath path] stringByAppendingString:@"/Hello/Me"];
     result = path.toString;

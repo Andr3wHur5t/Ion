@@ -8,6 +8,11 @@
 
 #import "IonPath.h"
 
+#define BackDirectoryKey @".."
+#define DirectoryDelemiter @"/"
+#define CurrentDirectoryKey @"."
+#define InvalidCharReplacementString @"-"
+
 @implementation IonPath
 
 
@@ -20,8 +25,7 @@
 - (instancetype) init {
     self = [super init];
     if ( self )
-        [self setComponentsFromURL: [[NSBundle mainBundle] bundleURL]];
-    
+        _components = [NSArray array];
     return self;
 }
 
@@ -35,8 +39,7 @@
         return NULL;
     self = [self init];
     if ( self ) {
-        [self setComponentsArray: components];
-        [self normalizeComponents];
+        [self setComponentsArray: [IonPath normalizeComponents: components]];
     }
     
     return self;
@@ -48,12 +51,7 @@
  * @returns {instancetype} or NULL if invalid
  */
 - (instancetype) initFromURL:(NSURL*) url {
-    if ( !url )
-        return NULL;
-    self = [self init];
-    if ( self )
-        [self setComponentsFromURL: url];
-    return self;
+    return [self initFromComponents: [IonPath componentsFromURL: url]];
 }
 
 /**
@@ -62,14 +60,7 @@
  * @returns {instancetype} or NULL if invalid
  */
 - (instancetype) initFromPath:(IonPath*) path {
-    if ( !path )
-        return NULL;
-    self = [self init];
-    if ( self ) {
-        [self setComponentsArray: path.components];
-        [self normalizeComponents];
-    }
-    return self;
+    return [self initFromComponents: path.components];
 }
 
 /**
@@ -78,7 +69,7 @@
  * @param {NSArray*} the additional elements to append.
  * @returns {instancetype} or NULL if invalid
  */
-- (instancetype) initPath:(IonPath*) rootPath appendedByElements:(NSArray*) pathElements {
+- (instancetype) initWithPath:(IonPath*) rootPath appendedByElements:(NSArray*) pathElements {
     if ( !pathElements )
         return NULL;
     self = [self initFromPath: rootPath];
@@ -141,20 +132,20 @@
 }
 
 /**
- * Gets the current path with the additionial path component.
- * @param {NSString*} the additionial path component.
+ * Gets the current path with the additional path component.
+ * @param {NSString*} the additional path component.
  * @returns {IonPath*}
  */
-- (IonPath*) pathFromPathAppendedByComponent: (NSString*) component {
-    return [self pathFromPathAppendedByComponents: @[ component ]];
+- (IonPath*) pathAppendedByElement:(NSString*) component {
+    return [self pathAppendedByElements: @[ component ]];
 }
 
 /**
- * Gets the current path with the additionial path components.
- * @param {NSArray*} the additionial path component.
+ * Gets the current path with the additional path components.
+ * @param {NSArray*} the additional path component.
  * @returns {IonPath*}
  */
-- (IonPath*) pathFromPathAppendedByComponents: (NSArray*) components {
+- (IonPath*) pathAppendedByElements:(NSArray*) components {
     IonPath* newPath;
     if ( !components || ![components isKindOfClass: [NSArray class]] )
         return NULL;
@@ -170,7 +161,7 @@
  * @retruns {IonPath*} a copy instance of the parent path.
  */
 - (IonPath*) parentPath {
-    return [self pathFromPathAppendedByComponent: @".."];
+    return [self pathAppendedByElement: BackDirectoryKey];
 }
 #pragma mark Management
 
@@ -182,8 +173,8 @@
 - (void) appendHierarchy:(NSArray*) additional {
     if ( !additional )
         return;
-    [self setComponentsArray: [self.components arrayByAddingObjectsFromArray: additional]];
-    [self normalizeComponents];
+    [self setComponentsArray: [IonPath normalizeComponents:
+                               [self.components arrayByAddingObjectsFromArray: additional]]];
 }
 
 /**
@@ -199,12 +190,11 @@
 #pragma mark conversions
 
 /**
- * Sets our componets to match a URL.
+ * Sets our components to match a URL.
  * @returns {void}
  */
 - (void) setComponentsFromURL:(NSURL*) url {
-    [self setComponentsArray: [IonPath pathComponentsFromURL: url]];
-    [self normalizeComponents];
+    [self setComponentsArray: [IonPath normalizeComponents: [IonPath pathComponentsFromURL: url]]];
 }
 
 /**
@@ -213,17 +203,16 @@
  * @returns {NSArray*} and array of components, or NULL if invalid
  */
 + (NSArray*) pathComponentsFromURL:(NSURL*) url {
-    NSString* intermediate, * path;
+    NSString* intermediate;
     NSArray *components ;
     if ( !url )
         return NULL;
-    // TODO: Process
-    path = url.path;
-    intermediate = [path substringWithRange: NSMakeRange ( 1, path.length - 1 )];
+    
+    intermediate = [url.path substringWithRange: NSMakeRange ( 1, url.path.length - 1 )];
     if ( !intermediate || ![intermediate isKindOfClass: [NSString class]] )
         return NULL;
     
-    components = [intermediate componentsSeparatedByString: @"/"];
+    components = [intermediate componentsSeparatedByString: DirectoryDelemiter];
     if ( ![components isKindOfClass: [NSArray class]] )
         return NULL;
     return components;
@@ -231,9 +220,10 @@
 
 /**
  * Normalize component strings to work with the file system.
- * @returns {void}
+ * @param {NSArray*} the components to normalize.
+ * @returns {NSArray*} the normalizes array.
  */
-- (void) normalizeComponents {
++ (NSArray*) normalizeComponents:(NSArray*) components {
     NSString* component;
     NSMutableArray* currentComponents;
     NSRegularExpression* normalizationExpresion;
@@ -244,34 +234,39 @@
     normalizationExpresion = [NSRegularExpression regularExpressionWithPattern: @"[:/]+"
                                                                        options: 0
                                                                          error: nil];
-    currentComponents = [[NSMutableArray alloc] initWithArray: self.components];
+    currentComponents = [[NSMutableArray alloc] initWithArray: components];
     
-    // Search
+    // Go through all items
     for ( NSInteger i = [currentComponents count] - 1; i > 0; --i ) {
-        
         component = [currentComponents objectAtIndex: i];
+        
+        // Check if it is a valid type
         if ( !component || ![component isKindOfClass: [NSString class]] ) {
             [indexesToRemove addIndex: i];
         }
         else {
-            // Filter
-            if ( [component isEqualToString: @"."] || [component isEqualToString: @""] ) {
+            // Tag symbols and empty items so we can remove them
+            if ( [component isEqualToString: CurrentDirectoryKey] || [component isEqualToString: @""] ) {
                 [indexesToRemove addIndex: i];
-            } else if ( [component isEqualToString: @".."] ) {
+            } else if ( [component isEqualToString: BackDirectoryKey] ) {
                 [indexesToRemove addIndex: i];
-                [indexesToRemove addIndex: i + 1];
+                [indexesToRemove addIndex: i - 1];
             }
+            // Filter out any control characters
             component = [normalizationExpresion stringByReplacingMatchesInString: component
                                                                          options: 0
                                                                            range: NSMakeRange(0, component.length)
-                                                                    withTemplate: @"-"];
-        
-                [currentComponents setObject: component atIndexedSubscript: i];
-            }
+                                                                    withTemplate: InvalidCharReplacementString];
+            // Set the filtered object
+            [currentComponents setObject: component atIndexedSubscript: i];
+        }
     }
+    
+    // Remove Taged components
     [currentComponents removeObjectsAtIndexes: indexesToRemove];
-    // Update
-    [self setComponentsArray: currentComponents];
+    
+    // Return Results
+    return [NSArray arrayWithArray:currentComponents] ;
 }
 
 /**
@@ -279,17 +274,42 @@
  * @returns {NSString*}
  */
 - (NSString*) toString {
-    NSString* composite = @"";
-    if ( self.components.count == 0 )
-        return @"/";
-    
-    for ( NSString* component in self.components )
-        composite = [composite stringByAppendingFormat:@"/%@", component];
-    
-    return composite;
+    return [IonPath stringFromComponents: self.components isRelative: FALSE];
 }
 
-#pragma mark Utilties
+#pragma mark Utilities
+
+/**
+ * Converts an array of components into a string.
+ * @param {NSArray*} the components to generate from.
+ * @param {BOOL} states if the path is relative or not.
+ * @returns {NSString} the path.
+ */
++ (NSString*) stringFromComponents:(NSArray*) components isRelative:(BOOL) isRelative {
+    NSString *resultingPath;
+    NSArray *normalizedComponents;
+    BOOL isFirstItem;
+    
+    resultingPath = isRelative ? @"" : DirectoryDelemiter;
+    // Check if we have valid components
+    if ( !components || ![components isKindOfClass: [NSArray class]])
+        return resultingPath;
+    else if ( components.count == 0)
+        return resultingPath;
+    
+    // Normalize Components
+    normalizedComponents = [IonPath normalizeComponents: components];
+    
+    
+    // Compile Components
+    isFirstItem = TRUE;
+    for ( NSString* component in normalizedComponents ) {
+        resultingPath = [resultingPath stringByAppendingFormat:@"%@%@", isFirstItem ? @"" : DirectoryDelemiter, component];
+        isFirstItem = FALSE;
+    }
+    
+    return resultingPath;
+}
 
 /**
  * Gets path components from an NSURL
@@ -299,7 +319,6 @@
 + (NSArray*) componentsFromURL:(NSURL*) url {
     if ( !url || ![url isKindOfClass: [NSURL class]] )
         return NULL;
-    
     return [IonPath componentsFromString: url.path];
 }
 
@@ -314,14 +333,15 @@
     if ( !string || ![string isKindOfClass: [NSString class]] )
         return NULL;
     
+    intermediate = string;
     if ( [string characterAtIndex: 0] == '/' )
-        intermediate = [string stringByReplacingCharactersInRange: NSMakeRange( 0, 1 ) withString: @""];
+        intermediate = [intermediate stringByReplacingCharactersInRange: NSMakeRange( 0, 1 ) withString: @""];
     
-    intermediate = [intermediate substringWithRange: NSMakeRange( 0, string.length - 1 )];
+    intermediate = [intermediate substringWithRange: NSMakeRange( 0, intermediate.length  )];
     if ( !intermediate )
         return NULL;
     
-    components = [intermediate componentsSeparatedByString: @"/"];
+    components = [intermediate componentsSeparatedByString: DirectoryDelemiter];
     if ( ![components isKindOfClass: [NSArray class]] )
         return NULL;
     
@@ -340,7 +360,7 @@
 
 
 /**
- * Gets a URL for the specified base direcory, and creates it if it dosn't already exsist.
+ * Gets a URL for the specified base directory, and creates it if it doesn't already exists.
  * @param {NSSearchPathDirectory} the base directory identifier.
  * @returns {NSURL the resulting url}
  */

@@ -22,6 +22,12 @@
  */
 - (instancetype) initWithPath:(IonPath*) path;
 
+/**
+ * Constructs a IonDirectory using the inputted URL.
+ * @param {IonPath*} the path of the directory.
+ * @returns {IonDirectory*}
+ */
++ (IonDirectory*) directoryWithPath:(IonPath*) path;
 
 #pragma mark Proprieties 
 

@@ -14,128 +14,109 @@
 @class IonFile;
 @class IonSimpleCache;
 
-/**
- * The data result callback.
- * @param {id} the resulting object
- * @returns {void}
- */
-typedef void(^IonResultCallback)( id result );
 
-
-/**
- * The completion callback.
- * @returns {void}
- */
-typedef void(^IonCompletionCallback)( );
-
+static BOOL sIonCacheManifestWillPersist = TRUE;
 
 /** = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  *                                         Simple Cache
  *  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 
 /**
- * The Fundmental Request Cache Mechnisim.
+ * The Fundmental Request Cache Mechanism.
  */
-@interface IonSimpleCache : NSObject
+@interface IonSimpleCache : IonAsyncAccessBasedGenerationMap
 #pragma mark Constructors
 
 /**
  * Constructs the cache at the inputted path.
+ * @param {IonCompletionBlock} the completion thats called once the manifest is loaded.
  * @param {IonPath} the path to construct at.
  * @returns {instancetype}
  */
-- (instancetype) initAtPath:(IonPath*) path;
-
-#pragma mark Proprieties
+- (instancetype) initAtPath:(IonPath*) path withLoadCompletion:(IonCompletionBlock) manifestLoadCompletion;
 
 /**
- * The directory which the cache resides.
+ * Constructs the cache at the inputted path.
+ * @param {IonPath} the path to construct at.
+ * @param {IonCompletionBlock} the completion thats called once the manifest is loaded.
+ * @returns {IonSimpleCache*}
  */
-@property (strong, readonly) IonDirectory* directory;
++ (IonSimpleCache*) cacheAtPath:(IonPath*) path withLoadCompletion:(IonCompletionBlock) manifestLoadCompletion;
 
+/**
+ * Constructs a cache in the caches directory with the specified name.
+ * @param {NSString*} the cache directory name.
+ * @param {IonCompletionBlock} the completion thats called once the manifest is loaded.
+ * @returns {IonSimpleCache}
+ */
++ (IonSimpleCache*) cacheWithName:(NSString*) cacheName
+               withLoadCompletion:(IonCompletionBlock) manifestLoadCompletion;
+
+/**
+ * Constructs a cache in the cache directory with the specified name.
+ * @param {NSString*} the cache directory name.
+ * @returns {void}
+ */
++ (IonSimpleCache*) cacheWithName:(NSString*) cacheName;
+
+#pragma mark Proprieties
 /**
  * The update rate of the expiration check timer.
  * Note: this should be a Infrequent check, once every hour would be good.
  */
 @property (assign, nonatomic) double expirationCheckFrequency;
 
-
-#pragma mark Data Retrieval Management
-
 /**
- * Gets the file for the specified key.
- * @param {NSString*} the key to get the data from.
- * @param {IonResultCallback} the callback to get the results from.
+ * States if the cache will persist to the next session.
+ * Note: You Can clear all created caches by constructing a session with
+ */
+@property (assign, nonatomic) BOOL manifestWillPersist;
+
+#pragma mark Manaifest Management
+/**
+ * Loads the cache manifest from the file system.
+ * @param {IonCompletionBlock} the completion block to call.
  * @returns {void}
  */
-- (void) getDataForKey:(NSString*) key withResultCallback:(IonResultCallback) resultCallback;
+- (void) loadManifest:(IonCompletionBlock) completion;
 
 /**
- * Sets the file in the cache, with the file name as the key.
- * @param {IonFile*} the file to add to the cache.
- * @param {IonCompletionCallback}
+ * Saves the cache manifest to the file system.
+ * @param {IonCompletionBlock} the completion block to call.
  * @returns {void}
  */
-- (void) setFileInCache:(IonFile*) file withCompletion:(IonCompletionCallback) completion;
+- (void) saveManifest:(IonCompletionBlock) completion;
+/**
+ * Deletes the cache manifest from the file system.
+ * @param {IonCompletionBlock} the completion block to call.
+ * @returns {void}
+ */
+- (void) deleteManifest:(IonCompletionBlock) completion;
+
+#pragma mark Manifest Minipulation
 
 /**
- * Removes the file for the specified key.
- * @param {NSString*} the key to remove the file for.
- * @param {IonCompletionCallback} the completion.
- * @returns {void}
+ * Gets the extra info for the specified item key.
+ * @param {NSString*} the key to get the object for.
+ * @returns {NSDictionary*} the current extra info object.
  */
-- (void) removeFileForKey:(NSString*) key withCompletion:(IonCompletionCallback) completion;
-
+- (NSDictionary*) extraInfoForItemWithKey:(NSString*) key;
 /**
- * Sets the expiration of a cached file using the key as the identifier.
- * @param {NSDate*} the expiration of the cache file, NULL meaning the file wont expire.
- * @param {NSString*} the key of the file to set the expiration of.
+ * Sets the extra info for the specified item key.
+ * @param {NSString*} the key to get the object for.
+ * @param {NSDictionary*} the extra info object to set.
  * @returns {void}
  */
-- (void) setFileExpiration:(NSDate*) expiration withKey:(NSString*) key;
+- (void) setExtraInfo:(NSDictionary*) extraInfo ForItemWithKey:(NSString*) key;
 
-/**
- * This force checks the files for expiration.
- * @returns {void}
- */
-- (void) checkFilesForExpiration;
 
 #pragma mark Cache Management
 
 /**
- * Removes the file with the specified key from the memory (RAM) cache.
- * @param {NSString*} the key to be removed from the memory cache.
- * @param {IonCompletionCallback} the completion to call.
+ * Deletes the entire cache directory.
+ * @param {IonCompletionBlock} the completion block to call.
  * @returns {void}
  */
-- (void) removeFileFromMemoryCacheWithKey:(NSString*) key;
-
-/**
- * Clears the memory (RAM) cache.
- * @returns {void}
- */
-- (void) clearMemoryCache;
-
-/**
- * Clears the storage (HDD) cache.
- * @returns {void}
- */
-- (void) clearStorageCache;
-
-#pragma mark Conversions
-
-/**
- * Converts the inputted key to the correct format.
- * @param {NSString*} the key to be converted.
- * @returns {NSString*} the string in the correct format, or NULL if invalid.
- */
-+ (NSString*) convertKey:(NSString*) key;
-
-#pragma mark Singletons
-/**
- * The cache dispatch queue.
- * @returns {dispatch_queue_attr_t}
- */
-+ (dispatch_queue_t) cacheDispatchQueue;
+- (void) deleteWithCompletion:(IonCompletionBlock) completion;
 
 @end

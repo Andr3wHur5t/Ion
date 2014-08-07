@@ -20,12 +20,26 @@
  */
 - (instancetype) initWithPath:(IonPath*) path {
     self = [self init];
-    if ( self )
+    if ( self ) {
         _path = path;
+        if ( ![IonFileIOmanager directoryExsistsAtPath: _path] )
+            [[NSFileManager defaultManager] createDirectoryAtPath: [_path toString]
+                                      withIntermediateDirectories: TRUE
+                                                       attributes: NULL
+                                                            error: NULL];
+    }
     
     return self;
 }
 
+/**
+ * Constructs a IonDirectory using the inputted URL.
+ * @param {IonPath*} the path of the directory.
+ * @returns {IonDirectory*}
+ */
++ (IonDirectory*) directoryWithPath:(IonPath*) path {
+    return [[IonDirectory alloc] initWithPath: path];
+}
 
 #pragma mark File Manipulation
 
@@ -36,7 +50,7 @@
  * @returns {void}
  */
 - (void) openFile:(NSString*) fileName withResultBlock:(void(^)( IonFile* file )) resultBlock {
-    [IonFileIOmanager openFileAtPath: [_path pathFromPathAppendedByComponent: fileName]
+    [IonFileIOmanager openFileAtPath: [_path pathAppendedByElement: fileName]
                      withResultBlock: resultBlock];
 }
 
@@ -70,7 +84,7 @@
         return;
     }
     // Construct
-    path = [_path pathFromPathAppendedByComponent: directoryName];
+    path = [_path pathAppendedByElement: directoryName];
     newDirectory = [[IonDirectory alloc] initWithPath: path];
     
     // Return
@@ -86,7 +100,7 @@
  * @returns {void}
  */
 - (void) deleteItem:(NSString*) item withCompletion:(IonCompletionBlock) completion {
-    [IonFileIOmanager deleteItem: [_path pathFromPathAppendedByComponent: item] withCompletion: completion];
+    [IonFileIOmanager deleteItem: [_path pathAppendedByElement: item] withCompletion: completion];
 }
 
 /**
@@ -123,12 +137,11 @@
  * @returns {void}
  */
 - (void) objectForKey:(NSString*) key withResultBlock:(IonRawDataSourceResultBlock) result {
-    __block id resultObject;
     IonPath *resultingPath;
     if ( !key || ![key isKindOfClass: [NSString class]] || !result )
         return;
     
-    resultingPath = [_path pathFromPathAppendedByComponents: [IonPath componentsFromString: key]];
+    resultingPath = [_path pathAppendedByElements: [IonPath componentsFromString: key]];
     if ( !resultingPath ) {
         result( NULL );
         return;
@@ -139,9 +152,8 @@
             result( NULL );
             return;
         }
-        
         // Return it!
-        result( [(NSData*)resultObject toObject] );
+        result( [(NSData*)returnedObject toObject] );
     }];
 }
 
@@ -159,12 +171,17 @@
         return;
     
     // Get a path for the key...
-    resultingPath = [_path pathFromPathAppendedByComponents: [IonPath componentsFromString: key]];
+    resultingPath = [_path pathAppendedByElements: [IonPath componentsFromString: key]];
     if ( !resultingPath ) {
         if ( completion )
             completion( [NSError errorWithDomain: @"Failed to create path." code: 0 userInfo: NULL] );
         return;
-    }
+    } else if ( ![IonFileIOmanager directoryExsistsAtPath: [resultingPath parentPath]] )
+        [[NSFileManager defaultManager] createDirectoryAtPath: [[resultingPath parentPath] toString]
+                                  withIntermediateDirectories: TRUE
+                                                   attributes: NULL
+                                                        error: NULL];
+    
     
     
     dataToSave = [NSData dataFromObject: object];
@@ -176,7 +193,10 @@
     }
     
     // Save the data!
-    [IonFileIOmanager saveData: dataToSave atPath:resultingPath withCompletion: ^( NSError *error ) {
+    [IonFileIOmanager saveData: dataToSave atPath: resultingPath withCompletion: ^( NSError *error ) {
+        NSLog(@"Atmpted to make File at '%@'", resultingPath);
+        if ( !error )
+            NSLog(@"Wrote File at '%@'", resultingPath);
         if ( completion )
             completion ( error );
     }];
@@ -194,7 +214,7 @@
         return;
     
     // Get a path for the key...
-    resultingPath = [_path pathFromPathAppendedByComponents: [IonPath componentsFromString: key]];
+    resultingPath = [_path pathAppendedByElements: [IonPath componentsFromString: key]];
     if ( !resultingPath ) {
         if ( completion )
             completion( [NSError errorWithDomain: @"Failed to create path." code: 0 userInfo: NULL] );
@@ -231,7 +251,7 @@
         for ( NSInteger i = [(NSArray*)returnedObject count] - 1; i >= 0; --i ) {
             item = [(NSArray*)returnedObject objectAtIndex: i];
             if ( item && [item isKindOfClass: [NSString class]] )
-                [IonFileIOmanager deleteItem: [_path pathFromPathAppendedByComponent: item]
+                [IonFileIOmanager deleteItem: [_path pathAppendedByElement: item]
                               withCompletion: i == 0 && blockCompletion ? // only call completion on last
                                 ^(NSError *error) {  blockCompletion( NULL ); } : NULL];
         }

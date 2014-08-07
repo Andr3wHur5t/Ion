@@ -39,6 +39,13 @@
     // configure the default first root view controller here.
     IonVisualTestViewController* vc = [[IonVisualTestViewController alloc] init];
     
+
+    
+    //sc.manifestWillPersist = FALSE;
+    //[sc deleteWithCompletion:^(NSError *error) {
+    //    NSLog(@"Deleted Cache!");
+    //}];
+    
     //[self asyncABGMapTest];
     
     /**

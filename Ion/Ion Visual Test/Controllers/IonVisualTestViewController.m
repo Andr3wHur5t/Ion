@@ -10,6 +10,7 @@
 
 @interface IonVisualTestViewController () {
     UIView* imgView;
+    IonSimpleCache* sc;
 }
 
 @end
@@ -33,8 +34,46 @@
     // Set the overriden background.
     
     [self.view setBackgroundImage: [UIImage imageNamed:@"aspect-test.png"] renderMode: IonBackgroundRenderFilled];
+    
+    sc = [IonSimpleCache cacheWithName:@"Test Cache" withLoadCompletion:^(NSError *error) {
+        [self test];
+    }];
 }
 
+
+-(void) appendItems:(NSInteger) count inGroup:(NSString*) group arr:(NSMutableArray*) arr {
+    NSNumber* randomContent;
+    randomContent = [NSNumber numberWithInt: arc4random()];
+    
+    for ( NSInteger i = count; i >= 0; --i )
+        [arr addObject: [NSString stringWithFormat:@"%@/%i", group,  arc4random()]];
+    
+}
+
+- (void) test {
+    NSMutableArray* paths = [@[] mutableCopy];
+    NSNumber* randomContent;
+    
+    [self appendItems:200 inGroup:@"here" arr: paths];
+    [self appendItems:20 inGroup:@"lie" arr: paths];
+    [self appendItems:100 inGroup:@"space" arr: paths];
+    
+    for ( NSString* path in paths ) {
+        randomContent = [NSNumber numberWithInt: arc4random()];
+        [sc setObject: [[NSData dataFromNumber: randomContent] toBase64] forKey:path withCompletion: NULL];
+        for ( NSInteger i = 10 + arc4random() % 50; i >= 0; --i )
+            [sc objectForKey:path withResultBlock: ^(id object) {} ];
+    }
+    
+    
+    //[sc setExtraInfo:@{@"hi there": @"Some data for you sir?"} ForItemWithKey: path];
+   // NSLog(@"ext: %@", [sc extraInfoForItemWithKey:path]);
+    [self performSelector:@selector(remove) withObject:NULL afterDelay:20];
+}
+
+- (void) remove {
+    sc = NULL;
+}
 - (void) shouldLayoutSubviews {
     [super shouldLayoutSubviews];
     CGSize s = self.view.frame.size;

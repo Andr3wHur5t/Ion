@@ -26,6 +26,9 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 // Data conversion
 #import "NSData+IonTypeExtension.h"
 
+// Crypto
+#import "NSData+IonCrypto.h"
+
 // TMP
 #include "IonKeyValuePair.h"
 

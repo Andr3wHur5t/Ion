@@ -206,4 +206,13 @@
  * @returns {NSDictionary*}
  */
 - (NSDictionary*) overriddenByDictionaryRecursively:(NSDictionary*) overridingDictionary;
+
+#pragma mark Input Sanitization
+
+/**
+ * Sanitizes the inputted key to the correct format for usage inside a NSDictionary.
+ * @param {NSString*} the key to be sanitized.
+ * @returns {NSString*} the sanitized string, or NULL if invalid.
+ */
++ (NSString*) sanitizeKey:(NSString*) key;
 @end

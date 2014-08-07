@@ -16,74 +16,94 @@
 static const NSInteger sIonMinAverageNeededForCaching = 2;
 
 
-
-@interface IonCacheItemStats : NSObject
+/**
+ * The Interface that holds all of the cache data.
+ */
+@interface NSMutableDictionary (IonCacheItemStats)
 #pragma mark Construct
 
 /**
- * Constructs using an encoded dictionary.
- * @param {NSDictionary*} the encoded dictionary to use.
- * @returns {instancetype}
+ * Creates a new item with the specified key, and using the raw path.
+ * @param {NSString*} the relative path of the item.
+ * @param {NSString*} the signature of the items' file.
+ * @param {NSString*} the key of the item.
+ * @retrns {void}
  */
-- (instancetype) initWithEncodedDictionary:(NSDictionary*) dict;
+- (void) createNewItemUsingPath:(NSString*)rawPath andSignature:(NSString*) fileSignature ForKey:(NSString*) key;
+
+
+#pragma mark Item Management
 
 /**
- * Constructs using the file as The Basis
- * @param {IonFile*} the file to use in creation.
- * @returns {instancetype}
+ * gets an item for the specified key.
+ * @param {NSString*} the key of the item to get.
+ * @returns {NSDictionary*} the item
  */
-- (instancetype) initWithFile:(IonFile*) file;
+- (NSDictionary*) itemForKey:(NSString*) key;
 
-#pragma mark Proprieties
+#pragma mark Stats Management
+/**
+ * Gets the stats object for the item with the specified key.
+ * @param {NSString*} the items' key
+ * @returns {NSMutableDictionary*}
+ */
+- (NSMutableDictionary*)statsForItemWithKey:(NSString *)key;
 
 /**
- * The name of the Item in the file system.
+ * Sets the stats object for the item with the specified key.
+ * @param {NSString*} the items' key
+ * @returns {NSMutableDictionary*}
  */
-@property (strong, nonatomic, readonly) NSString* name;
+- (void)setStats:(NSDictionary*) stats toItemWithKey:(NSString*) key;
 
 /**
- * The number of requests for the data in our current session.
- */
-@property (strong, nonatomic, readonly) NSNumber* sessionRequestCount;
-
-/**
- * The average number of requests for the data in prior sessions.
- */
-@property (strong, nonatomic, readonly) NSNumber* priorSessionRequestCountAverage;
-
-/**
- * The experation date of said file.
- */
-@property (strong, nonatomic) NSDate* experationDate;
-
-#pragma mark Queries
-
-/**
- * Increments the request count
- * @retuns {void}
- */
-- (void) incrementsRequestCount;
-
-/**
- * Reports if the data should be cached.
- * @returns {BOOL}
- */
-- (BOOL) dataShouldBeCached;
-
-
-#pragma mark Encoding & Decoding
-
-/**
- * Encodes our current state into a dictionary.
- * @returns {NSDictionary*} the encoded dictionary.
- */
-- (NSDictionary*) encode;
-
-/**
- * Decodes a state dictionary, and updates our state to match.
- * @param {NSDictionary*} the encoded dictionary.
+ * Increment Session Access Count for the state object with the specified Key.
+ * @param {NSString*} the relative path of the item, and Key.
  * @returns {void}
  */
-- (void) decode:(NSDictionary*) dict;
+- (void) incrementSessionAccessCountForItemWithKey:(NSString*) key;
+
+#pragma mark Signature Retrieval
+
+/**
+ * Gets an Items File Signature.
+ * @param {NSString*} the items key to get the file signature from.
+ * @returns {NSSting*} the file signature string.
+ */
+- (NSString*) fileSignatureForItemWithKey:(NSString*) key;
+
+#pragma mark Expiration Management
+
+/**
+ * Sets the expiration on the item with the inputted key.
+ * 
+ */
+
+
+
+#pragma mark Extra Info
+/**
+ * Gets the extra info for the specified item key.
+ * @param {NSString*} the key to get the object for.
+ * @returns {NSDictionary*} the current extra info object.
+ */
+- (NSDictionary*) extraInfoForItemWithKey:(NSString*) key;
+
+/**
+ * Sets the extra info for the specified item key.
+ * @param {NSString*} the key to get the object for.
+ * @param {NSDictionary*} the extra info object to set.
+ * @returns {void}
+ */
+- (void) setExtraInfo:(NSDictionary*) extraInfo forItemWithKey:(NSString*) key;
+
+#pragma mark Reporting
+
+/**
+ * Reports if we should cache the item for the specified key.
+ * @param {NSString*} the relative path of the item, and Key.
+ * @returns {BOOL} true if we should cache it, otherwise false.
+ */
+- (BOOL) shouldCacheItemForKey:(NSString*) key;
 
 @end

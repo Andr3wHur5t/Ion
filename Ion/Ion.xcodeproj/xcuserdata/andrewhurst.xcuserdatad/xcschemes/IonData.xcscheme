@@ -47,6 +47,9 @@
                <Test
                   Identifier = "IonRenderTests/testImageResizeing">
                </Test>
+               <Test
+                  Identifier = "IonSimpleCacheTests">
+               </Test>
             </SkippedTests>
          </TestableReference>
       </Testables>

@@ -8,6 +8,7 @@
 
 #import "NSData+IonTypeExtension.h"
 
+
 @implementation NSData (IonTypeExtension)
 
 #pragma mark String Conversions
@@ -33,6 +34,14 @@
     data = [string dataUsingEncoding:NSUTF8StringEncoding];
     
     return data;
+}
+
+/**
+ * Quick convert to a standard base 64 encoding.
+ * @returns {NSSting*} the base 64 encoding.
+ */
+- (NSString*) toBase64 {
+    return [self base64EncodedStringWithOptions: 0];
 }
 
 #pragma mark JSON Dictionary Conversions
@@ -74,6 +83,29 @@
 }
 
 
+
+#pragma mark NSNumber Conversion
+
+/**
+ * Constructs NSData from the NSNumber.
+ * @param {NSNumber*} the number to construct from.
+ * @returns {NSData*}
+ */
++ (NSData*) dataFromNumber:(NSNumber*) number {
+    return [NSData dataWithBytes:&number length:sizeof(number)];
+}
+
+/**
+ * Gets the number representation of the data object
+ * @returns {NSNumber*} the number representation.
+ */
+- (NSNumber*) toNumber {
+    NSNumber* num;
+    [self getBytes:&num length:sizeof(num)];
+    return num;
+}
+
+
 #pragma mark Object Conversion
 
 /**
@@ -90,6 +122,17 @@
     if ( [object isKindOfClass: [NSData class]] )
         resultData = object;
     
+    // TODO: make a customizable encoding system...
+    // This is polyfill!
+    
+    // String
+    if ( !resultData && [object isKindOfClass:[NSString class]] )
+        resultData = [NSData dataFromString: object];
+    
+    // Dictionary to JSON... Duh
+    if ( !resultData && [object isKindOfClass:[NSDictionary class]] )
+        resultData = [NSData dataFromJsonEncodedDictionary: object makePretty:TRUE];
+    
     // Try Converting it Using NSCoder...
     if ( !resultData )
         resultData = [NSKeyedArchiver archivedDataWithRootObject: object];
@@ -105,8 +148,8 @@
     id resultObject;
     
     // Try Converting it Using NSCoder...
-    if ( !resultObject )
-        resultObject = [NSKeyedUnarchiver unarchiveObjectWithData: self];
+    //if ( !resultObject )
+      //  resultObject = [NSKeyedUnarchiver unarchiveObjectWithData: self];
        
  
     // Return the raw data, no conversion could be found

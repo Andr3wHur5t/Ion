@@ -79,12 +79,13 @@
  */
 + (CGSize) sizeMaintaingSizeRatio:(CGSize) ratioSize usingSize:(CGSize) size thatContains:(BOOL) contains {
     CGSize result;
-    CGFloat aspectRatio;
+    CGFloat aspectRatio, containingSizeRatio;
     BOOL widthLTheight;
     
     // Calculate
+    containingSizeRatio = size.height / size.width;
     aspectRatio = ratioSize.height / ratioSize.width;
-    widthLTheight = aspectRatio >= 1.0f;
+    widthLTheight = aspectRatio >= containingSizeRatio ? containingSizeRatio >= 1.0 : aspectRatio <= 1.0;
     
     // Change type accordingly
     if ( !contains )

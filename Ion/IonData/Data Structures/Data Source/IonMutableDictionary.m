@@ -7,6 +7,7 @@
 //
 
 #import "IonMutableDictionary.h"
+#import "NSDictionary+IonTypeExtension.h"
 
 @interface IonMutableDictionary () {
     NSMutableDictionary* _map;
@@ -83,7 +84,7 @@
         return;
     }
     
-    str = key;
+    str = [NSDictionary sanitizeKey:key];
     dispatch_async( ionStandardDispatchQueue(), ^{
         __block id obj;
         obj = [_map objectForKey: str ];
@@ -111,7 +112,7 @@
     }
     
     dispatch_async( ionStandardDispatchQueue(), ^{
-        [_map setObject: object forKey: key];
+        [_map setObject: object forKey: [NSDictionary sanitizeKey:key]];
         
         if ( completion )
             dispatch_async( dispatch_get_main_queue(), ^{
@@ -134,7 +135,7 @@
         return;
     }
     dispatch_async( ionStandardDispatchQueue(), ^{
-        [_map removeObjectForKey: key];
+        [_map removeObjectForKey: [NSDictionary sanitizeKey:key]];
         
         if ( completion )
             dispatch_async( dispatch_get_main_queue(), ^{

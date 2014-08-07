@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSData+IonCrypto.h"
 
 @interface NSData (IonTypeExtension)
 
@@ -25,6 +26,12 @@
  */
 + (NSData*) dataFromString:(NSString*) string;
 
+/**
+ * Quick convert to a standard base 64 encoding.
+ * @returns {NSSting*} the base 64 encoding.
+ */
+- (NSString*) toBase64;
+
 #pragma mark JSON Dictionary Conversions
 
 
@@ -41,6 +48,21 @@
  * @returns {NSDictionary*}
  */
 + (NSData*) dataFromJsonEncodedDictionary:(NSDictionary*) dictionary makePretty:(BOOL) isPretty;
+
+#pragma mark NSNumber Conversion
+
+/**
+ * Constructs NSData from the NSNumber.
+ * @param {NSNumber*} the number to construct from.
+ * @returns {NSData*}
+ */
++ (NSData*) dataFromNumber:(NSNumber*) number;
+
+/**
+ * Gets the number representation of the data object
+ * @returns {NSNumber*} the number representation.
+ */
+- (NSNumber*) toNumber;
 
 #pragma mark Object Conversion 
 
