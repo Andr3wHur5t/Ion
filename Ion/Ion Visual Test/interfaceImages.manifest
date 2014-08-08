@@ -1,0 +1,12 @@
+{
+    "itemKey": { "fileName": "File.png",
+                    "info": {
+                        "IsMask": true
+                    }
+                },
+    "itemKey": { "fileName": "File.png",
+                     "info": {
+                         "IsMask": true
+                     }
+    }
+}

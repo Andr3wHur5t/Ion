@@ -79,6 +79,12 @@ typedef void(^IonAsyncInternalGenerationBlock)( id data,
  */
 - (BOOL) generationBlockIsSet;
 
+/**
+ * Clears the internial memory cache.
+ * @returns {void}
+ */
+- (void) clearMemoryCache;
+
 #pragma mark Data Management
 
 /**

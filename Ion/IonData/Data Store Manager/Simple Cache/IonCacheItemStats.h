@@ -14,6 +14,7 @@
  * Constants
  */
 static const NSInteger sIonMinAverageNeededForCaching = 2;
+static const NSInteger sIonMinSessionForAverageCalc = 5;
 
 
 /**
@@ -41,6 +42,15 @@ static const NSInteger sIonMinAverageNeededForCaching = 2;
  */
 - (NSDictionary*) itemForKey:(NSString*) key;
 
+#pragma mark Path Retrevial
+
+/**
+ * Get the path of the file that the item with the inputted key represents.
+ * @param {NSString*} the items' key
+ * @param {NSString*} the path
+ */
+- (NSString*) pathForItemWithKey:(NSString*) key;
+
 #pragma mark Stats Management
 /**
  * Gets the stats object for the item with the specified key.
@@ -62,6 +72,20 @@ static const NSInteger sIonMinAverageNeededForCaching = 2;
  * @returns {void}
  */
 - (void) incrementSessionAccessCountForItemWithKey:(NSString*) key;
+
+/**
+ * Increment Session Count for the state object with the specified Key.
+ * @param {NSString*} the relative path of the item, and Key.
+ * @returns {void}
+ */
+- (void) incrementSessionCountForItemWithKey:(NSString*) key;
+
+/**
+ * Updates the session stats.
+ * @param {NSString*} the key to update the stats for.
+ * @returns {void}
+ */
+- (void) updateSessionStatsForItemWithKey:(NSString*) key;
 
 #pragma mark Signature Retrieval
 

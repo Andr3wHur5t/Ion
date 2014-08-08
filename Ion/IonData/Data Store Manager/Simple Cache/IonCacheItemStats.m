@@ -17,6 +17,7 @@ static NSString* sIonStats_RawPathKey = @"relativePath";
 static NSString* sIonStats_FileSignatureKey = @"file Signature";
 static NSString* sIonStats_ExtraInfoKey = @"extraInfo";
 static NSString* sIonStats_ExpirationKey = @"expiration";
+static NSString* sIonStats_Avarage = @"avarage";
 static NSString* sIonStats_StatsKey = @"stats";
 static NSString* sIonStats_Stats_RequestCountKey = @"requestCount";
 static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
@@ -40,8 +41,8 @@ static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
                        sIonStats_RawPathKey: rawPath,
                        sIonStats_FileSignatureKey: fileSignature,
                        sIonStats_StatsKey: @{
-                               sIonStats_Stats_RequestCountKey: @1,
-                               sIonStats_Stats_SessionCountKey: @1
+                               sIonStats_Stats_RequestCountKey: @0,
+                               sIonStats_Stats_SessionCountKey: @0
                                }
                        
                        } forKey: key];
@@ -85,6 +86,25 @@ static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
         return NULL;
     
     return [item stringForKey: sIonStats_FileSignatureKey];
+}
+
+#pragma mark Path Retrevial
+
+/**
+ * Get the path of the file that the item with the inputted key represents.
+ * @param {NSString*} the items' key
+ * @param {NSString*} the path
+ */
+- (NSString*) pathForItemWithKey:(NSString*) key {
+    NSDictionary *item;
+    if ( !key || ![key isKindOfClass: [NSString class]] )
+        return NULL;
+    
+    item = [self itemForKey: key];
+    if ( !item )
+        return NULL;
+    
+    return [item stringForKey: sIonStats_RawPathKey];
 }
 
 #pragma mark Stats Management
@@ -136,21 +156,39 @@ static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
  * @returns {void}
  */
 - (void)incrementSessionAccessCountForItemWithKey:(NSString *)key {
-    NSNumber *requestCount;
+    [self incrementValueForKey: sIonStats_Stats_RequestCountKey ItemWithKey: key];
+}
+
+
+/**
+ * Increment Session Count for the state object with the specified Key.
+ * @param {NSString*} the relative path of the item, and Key.
+ * @returns {void}
+ */
+- (void) incrementSessionCountForItemWithKey:(NSString*) key {
+     [self incrementValueForKey: sIonStats_Stats_SessionCountKey ItemWithKey: key];
+}
+
+/**
+ * Increment value for the state object with the specified Key.
+ * @param {NSString*} the values' key to increment.
+ * @param {NSString*} the relative path of the item, and Key.
+ * @returns {void}
+ */
+- (void) incrementValueForKey:(NSString*) valKey ItemWithKey:(NSString*) key {
+    NSNumber *itemCount;
     NSMutableDictionary *stats;
     stats = [self statsForItemWithKey: key];
     if ( !stats )
         return;
     
-    requestCount = [stats numberForKey: sIonStats_Stats_RequestCountKey];
-    if ( !requestCount )
+    itemCount = [stats numberForKey: valKey];
+    if ( !itemCount )
         return;
     
-    
-    
     // Update
-    requestCount = [NSNumber numberWithInt: [requestCount integerValue] + 1 ];
-    [stats setObject: requestCount forKey: sIonStats_Stats_RequestCountKey];
+    itemCount = [NSNumber numberWithInt: [itemCount integerValue] + 1 ];
+    [stats setObject: itemCount forKey: valKey];
     [self setStats: stats toItemWithKey: key];
 }
 
@@ -201,6 +239,39 @@ static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
     [self setItem: item forKey: key];
 }
 
+/**
+ * Updates the session stats.
+ * @param {NSString*} the key to update the stats for.
+ * @returns {void}
+ */
+- (void) updateSessionStatsForItemWithKey:(NSString*) key {
+    NSNumber *sesionCount, *accessCount;
+    NSMutableDictionary* stats;
+    if ( !key || ![key isKindOfClass: [NSString class]] )
+        return;
+   
+    stats = [self statsForItemWithKey: key];
+    if ( !stats )
+        return;
+    
+    accessCount =  [stats numberForKey: sIonStats_Stats_RequestCountKey];
+    sesionCount = [stats numberForKey: sIonStats_Stats_SessionCountKey];
+    if ( !accessCount || !sesionCount )
+        return;
+    
+    if ( [sesionCount integerValue] >= sIonMinSessionForAverageCalc ) {
+        [stats setObject: [NSNumber numberWithFloat: [accessCount floatValue] / [sesionCount floatValue]]
+                  forKey: sIonStats_Avarage];
+        [stats setObject: @0
+                  forKey: sIonStats_Stats_RequestCountKey];
+        [stats setObject: @0
+                  forKey: sIonStats_Stats_SessionCountKey];
+        
+        [self setStats: stats toItemWithKey: key];
+    }
+        
+    
+}
 #pragma mark Reporting
 
 /**
@@ -210,21 +281,38 @@ static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
  */
 - (BOOL) shouldCacheItemForKey:(NSString*) key {
     BOOL shouldBeCached;
-    NSNumber *totalLoads, *totalSessions;
+    NSNumber *totalLoads, *totalSessions, *currentAvarage;
+    CGFloat sessionCount, accessCount;
     NSDictionary* stats;
     
+    // Gets Stats Object
     shouldBeCached = false;
     stats = [self statsForItemWithKey: key];
     if ( !stats )
         return false;
     
+    // Get Data
     totalLoads =    [stats numberForKey: sIonStats_Stats_RequestCountKey];
     totalSessions = [stats numberForKey: sIonStats_Stats_SessionCountKey];
+    currentAvarage = [stats numberForKey: sIonStats_Avarage];
     if ( !totalLoads || !totalSessions )
         return false;
     
-    shouldBeCached = ([totalLoads integerValue] / [totalSessions integerValue]) > sIonMinAverageNeededForCaching;
+    // Convert Data
+    accessCount = [totalLoads floatValue];
+    sessionCount = [totalSessions floatValue];
     
+    // Normilize Normilize Data so we dont devide by zero!
+    accessCount = accessCount != 0 ? accessCount : 0.1;
+    sessionCount = sessionCount != 0 ? sessionCount : 1;
+    
+    // check if we pass requirements
+    if ( !currentAvarage )
+        shouldBeCached = (accessCount / sessionCount) > sIonMinAverageNeededForCaching;
+    else
+        shouldBeCached = [currentAvarage floatValue] > sIonMinAverageNeededForCaching;
+    
+    // Debug reporting
     if ( shouldBeCached )
         NSLog(@"Cache File");
     else

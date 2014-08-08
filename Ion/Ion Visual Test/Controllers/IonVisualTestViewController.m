@@ -11,6 +11,7 @@
 @interface IonVisualTestViewController () {
     UIView* imgView;
     IonSimpleCache* sc;
+    IonImageManager* imageManager;
 }
 
 @end
@@ -35,7 +36,7 @@
     
     [self.view setBackgroundImage: [UIImage imageNamed:@"aspect-test.png"] renderMode: IonBackgroundRenderFilled];
     
-    sc = [IonSimpleCache cacheWithName:@"Test Cache" withLoadCompletion:^(NSError *error) {
+    sc = [imageManager cacheWithName:@"Test Cache" withLoadCompletion:^(NSError *error) {
         [self test];
     }];
 }
@@ -61,14 +62,14 @@
     for ( NSString* path in paths ) {
         randomContent = [NSNumber numberWithInt: arc4random()];
         [sc setObject: [[NSData dataFromNumber: randomContent] toBase64] forKey:path withCompletion: NULL];
-        for ( NSInteger i = 10 + arc4random() % 50; i >= 0; --i )
-            [sc objectForKey:path withResultBlock: ^(id object) {} ];
+        //for ( NSInteger i = 10 + arc4random() % 50; i >= 0; --i )
+         //   [sc objectForKey:path withResultBlock: ^(id object) {} ];
     }
+   //[sc removeAllObjects:^(NSError *error) {
+   //   NSLog(@"Removed all the things!");
+   //}];
     
-    
-    //[sc setExtraInfo:@{@"hi there": @"Some data for you sir?"} ForItemWithKey: path];
-   // NSLog(@"ext: %@", [sc extraInfoForItemWithKey:path]);
-    [self performSelector:@selector(remove) withObject:NULL afterDelay:20];
+    [self performSelector:@selector(remove) withObject:NULL afterDelay:2];
 }
 
 - (void) remove {

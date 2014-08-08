@@ -184,6 +184,14 @@
     return [_rawData description];
 }
 
+/**
+ * Clears the internial memory cache.
+ * @returns {void}
+ */
+- (void) clearMemoryCache {
+    [_cachedData removeAllObjects];
+}
+
 #pragma mark Keyed Data Source Implmentation
 
 /**
@@ -235,7 +243,7 @@
  * @returns {void}
  */
 - (void) removeObjectForKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
-    __block NSString* strKey;
+    __block NSString *strKey;
     __block IonRawDataSourceCompletion comp;
     if ( !key || ![key isKindOfClass:[NSString class]] )
         return;
@@ -246,7 +254,9 @@
     
     // Call async
     dispatch_async( ionStandardDispatchQueue(), ^{
-        [_cachedData removeObjectForKey: [NSDictionary sanitizeKey: strKey]];
+        if ( [self shouldCacheSetDataWithKey: strKey] )
+            [_cachedData removeObjectForKey: [NSDictionary sanitizeKey: strKey]];
+        
         [_rawData removeObjectForKey: strKey withCompletion: ^(NSError *error) {
             if ( comp )
                 comp( error );
@@ -265,7 +275,7 @@
     
     // Call async
     dispatch_async( ionStandardDispatchQueue(), ^{
-        [_cachedData removeAllObjects];
+        [self clearMemoryCache];
         [_rawData removeAllObjects: ^(NSError *error) {
             if ( comp )
                 comp( error );
@@ -359,9 +369,18 @@
 /**
  * This will report if we should cache the data generated with the specified key.
  * @param {NSString*} the key to check.
- * @returns {BOOL} false if we should not add it, true if we should or Invalid.
+ * @returns {BOOL} false if we should not cache it, true if we should or Invalid.
  */
 - (BOOL) shouldCacheDataWithKey:(NSString*) key {
+    return TRUE;
+}
+
+/**
+ * This will report if we should cache the data set with the specified key.
+ * @param {NSString*} the key to check.
+ * @returns {BOOL} false if we should not cache it, true if we should or Invalid.
+ */
+- (BOOL) shouldCacheSetDataWithKey:(NSString*) key {
     return TRUE;
 }
 

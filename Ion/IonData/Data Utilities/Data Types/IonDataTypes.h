@@ -33,6 +33,13 @@ typedef void(^IonCompletionBlock)(  NSError* error  );
  */
 typedef void(^IonFileResultBlock)(  IonFile* error  );
 
+/**
+ * The image return callback
+ * @param {UIImage*} the resulting image.
+ * @returns {void}
+ */
+typedef void(^IonImageReturn)( UIImage* image );
+
 
 
 #endif

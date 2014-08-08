@@ -31,6 +31,11 @@
  */
 @property (strong) NSMutableDictionary* manifest;
 
+/**
+ * The session list of items to be stored in the memory cache.
+ */
+@property (strong) NSMutableDictionary* forceInMemoryCache;
+
 @end
 
 
@@ -59,6 +64,29 @@
 }
 
 /**
+ * Constructs a cache in the caches directory with the specified name.
+ * @param {NSString*} the cache directory name.
+ * @param {IonCompletionBlock} the completion thats called once the manifest is loaded.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithName:(NSString*) name withLoadCompletion:(IonCompletionBlock) manifestLoadCompletion {
+    self = [[IonSimpleCache alloc] initAtPath: [[IonPath cacheDirectory] pathAppendedByElement: name]
+                           withLoadCompletion: manifestLoadCompletion];
+    return self;
+}
+
+
+/**
+ * Constructs a cache in the caches directory with the specified name.
+ * @param {NSString*} the cache directory name.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithName:(NSString*) name {
+    self = [[IonSimpleCache alloc] initWithName: name withLoadCompletion: NULL];
+    return self;
+}
+
+/**
  * Constructs the cache at the inputted path.
  * @param {IonPath} the path to construct at.
  * @param {IonCompletionBlock} the completion thats called once the manifest is loaded.
@@ -75,8 +103,7 @@
  * @returns {IonSimpleCache}
  */
 + (IonSimpleCache*) cacheWithName:(NSString*) cacheName withLoadCompletion:(IonCompletionBlock) manifestLoadCompletion {
-    IonPath* cachePath = [[IonPath cacheDirectory] pathAppendedByElement: cacheName];
-    return [[IonSimpleCache alloc] initAtPath: cachePath withLoadCompletion: manifestLoadCompletion];
+    return [[IonSimpleCache alloc] initWithName: cacheName withLoadCompletion: manifestLoadCompletion];
 }
 
 /**
@@ -97,10 +124,11 @@
 - (void) configureObjects {
     mainfestHasBeenLoaded = FALSE;
     _manifestWillPersist = sIonCacheManifestWillPersist;
+    _forceInMemoryCache = [[NSMutableDictionary alloc] init];
     [self constructManifest];
 }
 
-#pragma mark Deconstructs
+#pragma mark Deallocation
 
 /**
  * The deconstruction function.
@@ -123,12 +151,30 @@
 #pragma mark Cache Management
 
 /**
- * Deletes the entire cache directory.
- * @param {IonCompletionBlock} the completion block to call.
+ * Sets an item to the specified key and forces it in the memory cache.
+ * @param {NSString*} the key for the object to set.
+ * @param {id} the object to put in the data system.
+ * @param {IonRawDataSourceCompletion} the completion.
  * @returns {void}
  */
-- (void) deleteWithCompletion:(IonCompletionBlock) completion {
-    [IonFileIOmanager deleteItem: _path withCompletion: completion];
+- (void) setObject:(id) object forKeyInMemory:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
+    // Add it to the force to cache list
+    [_forceInMemoryCache setObject: @1 forKey: key];
+    
+    // Add it to self
+    [self setObject: object forKeyInMemory: key withCompletion: completion];
+}
+
+/**
+ * Clears the internial memory cache.
+ * @returns {void}
+ */
+- (void) clearMemoryCache {
+    // Remove The items in the forced cache list.
+    [_forceInMemoryCache removeAllObjects];
+    
+    // Clear the supers cache
+    [super clearMemoryCache];
 }
 
 #pragma mark Manifest Management
@@ -156,22 +202,34 @@
  */
 - (void) loadManifest:(IonCompletionBlock) completion {
     __block NSDictionary* unconfirmedObject;
+    __block IonCompletionBlock blockCompletion;
+    blockCompletion = completion;
     [IonFileIOmanager openDataAtPath: [self manifestPath]
-                     withResultBlock:^(id returnedObject) {
-                         if ( !returnedObject && completion)
-                            completion( NULL );
+                     withResultBlock: ^(id returnedObject) {
+                         if ( !returnedObject && blockCompletion) {
+                            blockCompletion( NULL );
+                            return;
+                         }
                          
                          unconfirmedObject = [(NSData*)returnedObject toJsonDictionary];
-                         if ( !unconfirmedObject && completion ) {
-                             completion( NULL );
+                         if ( !unconfirmedObject && blockCompletion ) {
+                             blockCompletion( NULL );
+                             return;
+                         }
+                         
+                         // Verify Data Has not been modified.
+                         if ( ![self manifestIsValid: unconfirmedObject] ) {
+                             if ( blockCompletion )
+                                 blockCompletion( NULL );
+                             [self reportTamperedManifest];
                              return;
                          }
                          
                          [_manifest setDictionary: [unconfirmedObject overriddenByDictionaryRecursively: _manifest ]];
                          mainfestHasBeenLoaded = TRUE;
                          
-                         if ( completion )
-                             completion( NULL );
+                         if ( blockCompletion )
+                             blockCompletion( NULL );
                      }];
 }
 
@@ -181,12 +239,18 @@
  * @returns {void}
  */
 - (void) saveManifest:(IonCompletionBlock) completion {
-    [IonFileIOmanager saveData: [NSData dataFromJsonEncodedDictionary: _manifest makePretty: TRUE]
-                        atPath: [self manifestPath]
-                withCompletion: ^(NSError *error) {
+    [_manifest enumerateKeysUsingBlock:^(id key, BOOL *stop) {
+        [_manifest incrementSessionCountForItemWithKey: key];
+        [_manifest updateSessionStatsForItemWithKey: key];
+    }];
+    if ( _manifest.allKeys.count > 0 )
+        [IonFileIOmanager saveData: [NSData dataFromJsonEncodedDictionary: _manifest makePretty: TRUE]
+                            atPath: [self manifestPath]
+                    withCompletion: ^(NSError *error) {
                     if ( completion )
                         completion( error );
                 }];
+  
 }
 
 /**
@@ -222,7 +286,27 @@
     [_manifest setExtraInfo: extraInfo forItemWithKey: [NSDictionary sanitizeKey: key]];
 }
 
+
+#pragma mark Security Policy implementation.
+
+/**
+ * Reports a tampered manifest
+ */
+- (void) reportTamperedManifest {
+    // do stuff
+    NSLog(@"WARN: Tampered Manifest!");
+}
+
 #pragma mark Data Validation
+
+/**
+ * Check if the inputted manifest is valid, and not been tampered with based off of our security delegate.
+ * @param {NSDictionary*} the unverified manifest.
+ * @returns {BOOL}
+ */
+- (BOOL) manifestIsValid:(NSDictionary*) unverifiedManifest {
+    return (BOOL) unverifiedManifest; // TODO: run a check
+}
 
 /**
  * Checks if the inputed data matches the signature thats stored in the the manifest.
@@ -250,18 +334,18 @@
  * @param {NSString*} the key for the item to check.
  * @returns {IonAsyncGenerationBlock} the special generation block.
  */
-- (IonAsyncGenerationBlock) scanerBlockForKey:(NSString*) key {
+- (IonAsyncGenerationBlock) scannerBlockForKey:(NSString*) key {
     __block NSString* blockKey;
     
     // Set data
     blockKey = key;
     
     return ^( id data, IonResultBlock resultBlock ){
-        // Validate that the data has not been minipulated by checking the signiture.
+        // Validate that the data has not been manipulated by checking the signature.
         if ( ![self dataObject: data matchesManifestItemWithKey: blockKey] ) {
-            resultBlock( NULL ); // return null because the data appears to minipulated by an outside source.
+            resultBlock( NULL ); // return null because the data appears to manipulated by an outside source.
             
-            // Respond acording to our security policy
+            // Respond according to our security policy
             NSLog(@"WARN: cache data changed between sessions!");
         }
         else
@@ -287,7 +371,7 @@
     [_manifest incrementSessionAccessCountForItemWithKey: cleanString];
 
     // Get the object
-    [super objectForKey: key usingGenerationBlock: [self scanerBlockForKey: cleanString] withResultBlock: result];
+    [super objectForKey: key usingGenerationBlock: [self scannerBlockForKey: cleanString] withResultBlock: result];
 }
 
 /**
@@ -295,7 +379,7 @@
  * @param {NSString*} the key for the object to set.
  * @param {id} the object to put in the data system.
  * @param {IonRawDataSourceCompletion} the completion.
- * @returns {void} returns false if the operation isn't valid.
+ * @returns {void}
  */
 - (void) setObject:(id) object forKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
     NSData* objectData = [NSData dataFromObject:object];
@@ -322,6 +406,28 @@
                withCompletion: completion];
 }
 
+/**
+ * Removes all objects for data source.
+ * @param {IonRawDataSourceCompletion} the completion.
+ * @returns {void}
+ */
+- (void) removeAllObjects:(IonRawDataSourceCompletion) completion {
+    // Delete the manifest file.
+    [self deleteManifest:^(NSError *error) {
+        // Remove all registed Files.
+        [_manifest enumerateKeysUsingBlock: ^(id key, BOOL *stop) {
+            [self removeObjectForKey: [_manifest pathForItemWithKey: key] withCompletion: NULL];
+        }];
+        
+        // Remove The items in the forced cache list.
+        [_forceInMemoryCache removeAllObjects];
+        
+        // TODO Remove Empty Directorys
+
+        // Clear the manifest Unregistering all files.
+        [_manifest removeAllObjects];
+    }];
+}
 
 /**
  * The data sources options.
@@ -339,6 +445,19 @@
 - (BOOL) shouldCacheDataWithKey:(NSString*) key {
     return [_manifest shouldCacheItemForKey: [NSDictionary sanitizeKey: key]];
 }
+
+/**
+ * This will report if we should cache the data set with the specified key.
+ * @param {NSString*} the key to check.
+ * @returns {BOOL} false if we should not cache it, true if we should or Invalid.
+ */
+- (BOOL) shouldCacheSetDataWithKey:(NSString*) key {
+    return  (BOOL)[_forceInMemoryCache objectForKey: key];
+}
+
+
+#pragma mark Global Cache management
+
 
 
 @end

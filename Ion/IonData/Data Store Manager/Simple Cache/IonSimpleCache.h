@@ -36,6 +36,21 @@ static BOOL sIonCacheManifestWillPersist = TRUE;
 - (instancetype) initAtPath:(IonPath*) path withLoadCompletion:(IonCompletionBlock) manifestLoadCompletion;
 
 /**
+ * Constructs a cache in the caches directory with the specified name.
+ * @param {NSString*} the cache directory name.
+ * @param {IonCompletionBlock} the completion thats called once the manifest is loaded.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithName:(NSString*) name withLoadCompletion:(IonCompletionBlock) manifestLoadCompletion;
+
+/**
+ * Constructs a cache in the caches directory with the specified name.
+ * @param {NSString*} the cache directory name.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithName:(NSString*) name;
+
+/**
  * Constructs the cache at the inputted path.
  * @param {IonPath} the path to construct at.
  * @param {IonCompletionBlock} the completion thats called once the manifest is loaded.
@@ -60,12 +75,6 @@ static BOOL sIonCacheManifestWillPersist = TRUE;
 + (IonSimpleCache*) cacheWithName:(NSString*) cacheName;
 
 #pragma mark Proprieties
-/**
- * The update rate of the expiration check timer.
- * Note: this should be a Infrequent check, once every hour would be good.
- */
-@property (assign, nonatomic) double expirationCheckFrequency;
-
 /**
  * States if the cache will persist to the next session.
  * Note: You Can clear all created caches by constructing a session with
@@ -113,10 +122,12 @@ static BOOL sIonCacheManifestWillPersist = TRUE;
 #pragma mark Cache Management
 
 /**
- * Deletes the entire cache directory.
- * @param {IonCompletionBlock} the completion block to call.
+ * Sets an item to the specified key and forces it in the memory cache.
+ * @param {NSString*} the key for the object to set.
+ * @param {id} the object to put in the data system.
+ * @param {IonRawDataSourceCompletion} the completion.
  * @returns {void}
  */
-- (void) deleteWithCompletion:(IonCompletionBlock) completion;
+- (void) setObject:(id) object forKeyInMemory:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion;
 
 @end
