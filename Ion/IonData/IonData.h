@@ -69,7 +69,7 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 
 // Image Manager
 #include "IonImageRef.h"
-#include "IonImage.h"
+#include "UIImage+IonImage.h"
 #include "IonImageManager.h"
 
 

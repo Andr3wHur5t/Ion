@@ -10,6 +10,7 @@
 #import "IonWindow.h"
 #import "IonRapidStartManager.h"
 #import "IonViewController.h"
+#import <IonData/IonData.h>
 
 
 @interface IonApplication : UIResponder <UIApplicationDelegate, IonRapidStartManagerDeligate>
@@ -71,6 +72,17 @@
  * @returns {void}
  */
 - (void) setupApplication;
+
+#pragma mark Utilties
+
+/**
+ * Performs a block after the set delay.
+ * @param {void(^)( )} the block to call.
+ * @returns {void}
+ */
+- (void) performBlock:(void(^)( )) block afterDelay:(double) delay;
+
+#pragma mark Singletons
 
 /**
  * A singleton reference to the application.

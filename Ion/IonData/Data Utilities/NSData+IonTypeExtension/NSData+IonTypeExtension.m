@@ -105,6 +105,24 @@
     return num;
 }
 
+#pragma mark Image Conversion
+
+/**
+ * Converts gets an images equivilant of the data.
+ * @returns {UIImage*}
+ */
+- (UIImage*) toImage {
+    return [UIImage imageWithData: self];
+}
+
+/**
+ * Converts an image into a data object representing its PNG.
+ * @param {UIImage*} the image to convert
+ * @returns {void}
+ */
++ (NSData*) dataFromImage:(UIImage*) image {
+    return UIImagePNGRepresentation( image );
+}
 
 #pragma mark Object Conversion
 
@@ -133,6 +151,10 @@
     if ( !resultData && [object isKindOfClass:[NSDictionary class]] )
         resultData = [NSData dataFromJsonEncodedDictionary: object makePretty:TRUE];
     
+    // Image
+    if ( !resultData && [object isKindOfClass: [UIImage class]] )
+        resultData = [NSData dataFromImage: object];
+    
     // Try Converting it Using NSCoder...
     if ( !resultData )
         resultData = [NSKeyedArchiver archivedDataWithRootObject: object];
@@ -140,23 +162,5 @@
     return resultData;
 }
 
-/**
- * Converts data to an object using the specified format.
- * @returns {id} the resulting object from decoding, or self if invalid.
- */
-- (id) toObject {
-    id resultObject;
-    
-    // Try Converting it Using NSCoder...
-    //if ( !resultObject )
-      //  resultObject = [NSKeyedUnarchiver unarchiveObjectWithData: self];
-       
- 
-    // Return the raw data, no conversion could be found
-    if ( !resultObject )
-        resultObject = self;
-    
-    return resultObject;
-}
 
 @end

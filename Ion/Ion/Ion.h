@@ -25,6 +25,10 @@ FOUNDATION_EXPORT const unsigned char IonVersionString[];
 #import "IonView.h"
 #import "IonViewController.h"
 
+/** Buttons */
+#import "IonButton.h"
+#import "IonInterfaceButton.h"
+
 /** UI Extensions */
 #import "UIView+IonAnimation.h"
 #import "UIView+IonBackgroundUtilities.h"

@@ -88,23 +88,26 @@ static NSString* sIonThemeIdFormat = @"id_%@";
  * @param {UIView*} the view to get the style for the view.
  * @param {IonStyle*] will return the net style
  */
-- (IonStyle*) styleForView: (UIView*)view {
-    IonStyle *idAndClassStyle, *elementStyle;
-    if ( !view )
-        return NULL;
+- (IonStyle*) styleForView:(UIView*) view {
+    id result;
+    IonStyle *classStyle, *idStyle, *elementStyle;
     
-    idAndClassStyle = [self styleForThemeClass: view.themeConfiguration.themeClass
-                                    andThemeID: view.themeConfiguration.themeID];
-    elementStyle = [self styleForElementName: view.themeConfiguration.themeElement];
+    // Search if we have generated one with the same parameters; Optimization;
+    if ( view.themeConfiguration.themeElement )
+        elementStyle = [self styleForElementName: view.themeConfiguration.themeElement];
     
-    if ( elementStyle ) {
-        idAndClassStyle = [elementStyle overrideStyleWithStyle: idAndClassStyle ];
-    }
+    if ( view.themeConfiguration.themeClass )
+        classStyle = [self styleForClassName: view.themeConfiguration.themeClass];
     
-    if ( ![idAndClassStyle isKindOfClass:[IonStyle class]] )
-        return NULL;
+    if ( view.themeConfiguration.themeID )
+        idStyle = [self styleForIdName: view.themeConfiguration.themeID];
     
-    return idAndClassStyle;
+    result = [self styleFromCompositedClassStyle: elementStyle andIdStyle: [self styleFromCompositedClassStyle: classStyle andIdStyle: idStyle]];
+    
+    if ( !result || ![result isKindOfClass:[IonStyle class]] )
+        return [self currentDefaultStyle];
+    
+    return result;
 }
 
 /**
@@ -124,31 +127,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
     return result;
 }
 
-/**
- * This compiles the theme into a style class for the specified view.
- * @param {NSString*} the theme class to look for; Can Be NULL if other provided
- * @param {NSString*} the theme id to look for; Can Be NULL if other provided
- * @returns {IonStyle*} will return the net style
- */
-- (IonStyle*) styleForThemeClass:(NSString*) themeClass andThemeID:(NSString*) themeID {
-    id result;
-    IonStyle *classStyle, *idStyle;
-    
-    // Search if we have generated one with the same parameters; Optimization;
-    
-    if ( themeClass )
-            classStyle = [self styleForClassName: themeClass];
-    
-    
-    if ( themeID )
-            idStyle = [self styleForIdName: themeID];
-    
-    result = [self styleFromCompositedClassStyle: classStyle andIdStyle: idStyle];
-    if ( ![result isKindOfClass:[IonStyle class]] )
-        return NULL;
-    
-    return result;
-}
+
 
 #pragma mark Internal Interface
 /**
@@ -202,7 +181,7 @@ static NSString* sIonThemeIdFormat = @"id_%@";
  * @returns {IonStyle*} the resulting style
  */
 - (IonStyle*) styleFromCompositedClassStyle:(IonStyle*) classStyle andIdStyle:(IonStyle*) idStyle {
-    IonStyle* result = [self currentDefaultStyle];
+    IonStyle* result = NULL;
 
     if ( classStyle && idStyle ) {
         result = [classStyle overrideStyleWithStyle: idStyle];

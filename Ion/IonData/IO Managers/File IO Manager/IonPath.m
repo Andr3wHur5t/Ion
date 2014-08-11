@@ -116,6 +116,14 @@
     return [IonPath pathFromURL: [IonPath urlForDirectory: NSCachesDirectory]];
 }
 
+/**
+ * Constructs a path in the bundle directory.
+ */
++ (IonPath*) bundleDirectory {
+    return [IonPath pathFromURL: [[NSBundle mainBundle] bundleURL]];
+}
+
+
 #pragma mark Utilities
 
 /**

@@ -62,6 +62,10 @@
  */
 + (IonPath*) cacheDirectory;
 
+/**
+ * Constructs a path in the bundle directory.
+ */
++ (IonPath*) bundleDirectory;
 
 #pragma mark Utilities
 

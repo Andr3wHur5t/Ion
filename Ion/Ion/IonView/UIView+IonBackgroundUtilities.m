@@ -9,6 +9,8 @@
 #import "UIView+IonBackgroundUtilities.h"
 #import "IonMath.h"
 #import "UIView+IonTheme.h"
+#import <IonData/IonData.h>
+
 
 @implementation UIView (IonBackgroundUtilities)
 
@@ -61,7 +63,7 @@
     
     // Our Return Block
     returnBlock = ^( UIImage *resImage ) {
-        layer.contents = (__bridge id)(resImage.CGImage);
+        layer.contents = (id)(resImage.CGImage);
     };
     
     // Check if the image is already the corrent size
@@ -72,14 +74,17 @@
     
     if ( renderMode == IonBackgroundRenderContained )
         [IonRenderUtilities renderImage: image
-                           withinSize: layer.frame.size
-                     andReturnBlock: returnBlock];
+                             withinSize: layer.frame.size
+                         andReturnBlock: returnBlock];
     else
         [IonRenderUtilities renderImage: image
-                             withSize: layer.frame.size
+                               withSize: layer.frame.size
                          andReturnBlock: returnBlock];
-    NSLog(@"IMG");
 }
+
+
+#pragma mark Background
+
 
 /**
  * This sets the current background image.
@@ -106,21 +111,79 @@
 }
 
 /**
+ * Sets the current background image from the key in fill mode.
+ * @param {NSString*} the key of the image you want to set.
+ * @returns {void*}
+ */
+- (void) setBackgroundImageUsingKey:(NSString*) key {
+    [self setBackgroundImageUsingKey: key inRenderMode: IonBackgroundRenderFilled];
+}
+
+/**
+ * Sets the current background image from the key in fill mode.
+ * @param {NSString*} the key of the image you want to set.
+ * @param {IonBackgroundRenderOptions} the mode which to render the image.
+ * @returns {void*}
+ */
+- (void) setBackgroundImageUsingKey:(NSString*) key inRenderMode:(IonBackgroundRenderOptions) renderMode {
+    [[IonImageManager interfaceManager] imageForKey: key
+                                           withSize: self.frame.size
+                                           contined: renderMode == IonBackgroundRenderContained
+                                  andReturnCallback: ^(UIImage *image) {
+                                      [self setBackgroundImage: image renderMode: renderMode];
+                                  }];
+}
+
+#pragma mark Mask
+
+/**
  * This sets the mask Image of the view.
  * @param {UIImage*} The image to be set as the mask
  * @return {void}
  */
 - (void) setMaskImage:(UIImage*)image {
+    [self setMaskImage: image renderMode: IonBackgroundRenderContained];
+}
+
+/**
+ * This sets the mask Image of the view in the specified rneder mode.
+ * @param {UIImage*} The image to be set as the mask
+ * @param {IonBackgroundRenderOptions} the mode which to render the image.
+ * @return {void}
+ */
+- (void) setMaskImage:(UIImage*)image renderMode:(IonBackgroundRenderOptions) renderMode {
     if ( !image )
         return;
     
-    // Create the mask if it doesn't already exist
     if ( !self.layer.mask )
-        self.layer.mask = [[CALayer alloc] init];
+        self.layer.mask = [CALayer layer];
     
-    // Set the image of the mask
-    [UIView setImage:image toLayer:self.layer.mask renderMode: IonBackgroundRenderContained];
+    self.layer.mask.frame = self.bounds;
+    [UIView setImage: image toLayer: self.layer.mask renderMode: renderMode];
 }
 
+/**
+ * Sets the current mask image from the key in contained mode.
+ * @param {NSString*} the key of the image you want to set.
+ * @returns {void*}
+ */
+- (void) setMaskImageUsingKey:(NSString*) key {
+     [self setMaskImageUsingKey: key inRenderMode: IonBackgroundRenderContained];
+}
+
+/**
+ * Sets the current mask image from the key in fill mode.
+ * @param {NSString*} the key of the image you want to set.
+ * @param {IonBackgroundRenderOptions} the mode which to render the image.
+ * @returns {void*}
+ */
+- (void) setMaskImageUsingKey:(NSString*) key inRenderMode:(IonBackgroundRenderOptions) renderMode {
+    [[IonImageManager interfaceManager] imageForKey: key
+                                           withSize: self.frame.size
+                                           contined: renderMode == IonBackgroundRenderContained
+                                  andReturnCallback: ^(UIImage *image) {
+                                      [self setMaskImage: image renderMode: renderMode];
+                                  }];
+}
 
 @end

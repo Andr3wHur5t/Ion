@@ -12,6 +12,8 @@
 #import "NSDictionary+IonThemeResolution.h"
 #import "IonAttrubutesStanderdResolution.h"
 
+#import "UIView+IonTheme.h"
+
 @implementation IonStyle (IonStdStyleApplyMethods)
 
 /**
@@ -60,16 +62,13 @@
     
     // Set
     if ( [pointedObject isKindOfClass:[UIColor class]] ) {
+        view.layer.contents = NULL;
         view.backgroundColor = (UIColor*)pointedObject;
         return NULL;
         
     } else if ( [pointedObject isKindOfClass:[IonGradientConfiguration class]] ) {
         if ( [pointedObject isKindOfClass:[IonLinearGradientConfiguration class]] )
             [view setBackgroundToLinearGradient: (IonLinearGradientConfiguration*)pointedObject];
-        return NULL;
-        
-    } else if ( [pointedObject isKindOfClass:[UIImage class]] ) {
-        [view setBackgroundImage: (UIImage *)pointedObject];
         return NULL;
     }
     

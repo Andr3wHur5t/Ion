@@ -23,7 +23,14 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
  * This is the setter for the themeConfiguration
  * @returns {void}
  */
-- (void) setThemeConfiguration:(IonThemeConfiguration *) themeConfiguration{
+- (void) setThemeConfiguration:(IonThemeConfiguration *) themeConfiguration {
+    // Set the change callback
+    __block typeof (self) weakSelf = self;
+    [themeConfiguration setChangeCallback: ^( NSError* err ) {
+        [weakSelf setIonInternalSystemTheme: weakSelf.themeConfiguration.currentTheme];
+    }];
+    
+    // Set it
     objc_setAssociatedObject(self, sThemeConfigurationKey, themeConfiguration, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
@@ -75,9 +82,10 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
         return;
     }
     
-    currentStyle = [themeObject styleForThemeClass: self.themeConfiguration.themeClass andThemeID: self.themeConfiguration.themeID];
+    config = self.themeConfiguration;
+    currentStyle = [themeObject styleForView: self];
     if ( [currentStyle isKindOfClass:[IonStyle class]] && currentStyle &&
-          self.themeConfiguration.themeShouldBeAppliedToSelf ) {
+          config.themeShouldBeAppliedToSelf ) {
         
         [currentStyle applyToView: self];
         config.currentTheme = themeObject;

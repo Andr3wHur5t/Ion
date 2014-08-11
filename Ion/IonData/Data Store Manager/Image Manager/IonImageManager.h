@@ -14,18 +14,20 @@
 @interface IonImageManager : IonSimpleCache
 #pragma mark Construction
 
-/**
- * Constructs the default Interface Images Manifest.
- */
-+ (IonImageManager*) interfaceManager;
 
 #pragma mark Data Management
 
-// Add Image and key to Store
+/**
+ * Adds an image to the data store.
+ * @param {UIImage*} the image to add.
+ * @param {NSString*} the key to add the image with.
+ * @param {IonCompletionBlock} the completion block to call once we are finised
+ */
+- (void) addImage:(UIImage*) image forKey:(NSString*) key usingCompletionBlock:(IonCompletionBlock) completion;
 
-// Remove Image with key from store
-
-// Key pair list.
+/**
+ * Removes an image from the cache using the specified key.
+ */
 
 // Expression date
 
@@ -38,7 +40,7 @@
  * @param {IonImageReturn} the callback we will call with the resulting Image.
  * @returns {void}
  */
-- (void) getImageForKey:(NSString*) key withReturnCallback:(IonImageReturn) returnCallback;
+- (void) imageForKey:(NSString*) key withReturnCallback:(IonImageReturn) returnCallback;
 
 /**
  * Gets a resized image using the key to retrieve it from the file system, or the cache.
@@ -47,9 +49,22 @@
  * @param {IonImageReturn} the callback we will call with the resulting Image.
  * @returns {void}
  */
-- (void) getImageForKey:(NSString*) key
-               withSize:(CGSize) size
-      andReturnCallback:(IonImageReturn) returnCallback;
+- (void) imageForKey:(NSString*) key
+            withSize:(CGSize) size
+   andReturnCallback:(IonImageReturn) returnCallback;
+
+/**
+ * Gets a resized image using the key to retrieve it from the file system, or the cache.
+ * @param {NSString*} the key for the raw image.
+ * @param {CGSize} the size to resize the image to.
+ * @param {BOOL} stateing weither the image is contained.
+ * @param {IonImageReturn} the callback we will call with the resulting Image.
+ * @returns {void}
+ */
+- (void) imageForKey:(NSString*) key
+            withSize:(CGSize) size
+            contined:(BOOL) isContained
+   andReturnCallback:(IonImageReturn) returnCallback;
 
 /**
  * Resizes an image, and stores it in the cache.
@@ -62,6 +77,6 @@
  * The image manager singleton.
  * @returns {IonImageManager}
  */
-+ (IonImageManager*) sharedInterfaceManager;
++ (IonImageManager*) interfaceManager;
 
 @end

@@ -41,7 +41,7 @@ static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
                        sIonStats_RawPathKey: rawPath,
                        sIonStats_FileSignatureKey: fileSignature,
                        sIonStats_StatsKey: @{
-                               sIonStats_Stats_RequestCountKey: @0,
+                               sIonStats_Stats_RequestCountKey: @1,
                                sIonStats_Stats_SessionCountKey: @0
                                }
                        
@@ -280,7 +280,7 @@ static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
  * @returns {BOOL} true if we should cache it, otherwise false.
  */
 - (BOOL) shouldCacheItemForKey:(NSString*) key {
-    BOOL shouldBeCached;
+    BOOL shouldBeCached; //  the return value, static analizer is giving a false alarm
     NSNumber *totalLoads, *totalSessions, *currentAvarage;
     CGFloat sessionCount, accessCount;
     NSDictionary* stats;
@@ -313,10 +313,10 @@ static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
         shouldBeCached = [currentAvarage floatValue] > sIonMinAverageNeededForCaching;
     
     // Debug reporting
-    if ( shouldBeCached )
+    /*if ( shouldBeCached )
         NSLog(@"Cache File");
     else
-        NSLog(@"Dont cache!");
+        NSLog(@"Dont cache!");*/
     
     return  shouldBeCached;
 }

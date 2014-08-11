@@ -33,7 +33,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
         thatHasAlpha: (bool) isAlpha
       andReturnBlock: (IonRenderReturnBlock) returnBlock {
     if ( scale == 0.0f )
-        scale = 1.0f;
+        scale = [UIScreen mainScreen].scale;
     if ( CGSizeEqualToSize( contextSize, CGSizeZero ) )
         contextSize = (CGSize){ 100.0f, 100.0f };
     
@@ -81,7 +81,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
     
     [IonRenderUtilities renderBlock: block
                   inContextWithSize: contextSize
-                              scale: 1.0f
+                              scale: [UIScreen mainScreen].scale
                        thatHasAlpha: isAlpha
                      andReturnBlock: returnBlock];
 }
@@ -100,7 +100,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
     
     [IonRenderUtilities renderBlock: block
                   inContextWithSize: contextSize
-                              scale: 1.0f
+                              scale: [UIScreen mainScreen].scale
                        thatHasAlpha: true
                      andReturnBlock: returnBlock];
 }
@@ -243,8 +243,8 @@ static const char* IonRenderQueueLabel = "com.ion.render";
  * @returns {void}
  */
 + (void) renderImage:(UIImage*) image
-      withSize:(CGSize) size
-      andReturnBlock:(IonRenderReturnBlock) returnBlock {
+            withSize:(CGSize) size
+        andReturnBlock:(IonRenderReturnBlock) returnBlock {
     [IonRenderUtilities renderBlock: ^{
         if ( CGSizeEqualToSize( size, CGSizeZero) )
             return;

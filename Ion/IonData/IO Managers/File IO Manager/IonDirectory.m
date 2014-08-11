@@ -153,7 +153,7 @@
             return;
         }
         // Return it!
-        result( [(NSData*)returnedObject toObject] );
+        result( returnedObject );
     }];
 }
 
@@ -194,9 +194,9 @@
     
     // Save the data!
     [IonFileIOmanager saveData: dataToSave atPath: resultingPath withCompletion: ^( NSError *error ) {
-        NSLog(@"Atmpted to make File at '%@'", resultingPath);
+        //NSLog(@"Atmpted to make File at '%@'", resultingPath);
         if ( !error )
-            NSLog(@"Wrote File at '%@'", resultingPath);
+            ;//NSLog(@"Wrote File at '%@'", resultingPath);
         if ( completion )
             completion ( error );
     }];

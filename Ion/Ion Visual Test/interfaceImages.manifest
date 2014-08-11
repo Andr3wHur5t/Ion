@@ -1,12 +1,44 @@
 {
-    "itemKey": { "fileName": "File.png",
-                    "info": {
-                        "IsMask": true
-                    }
-                },
-    "itemKey": { "fileName": "File.png",
-                     "info": {
-                         "IsMask": true
-                     }
+    "aspect": {
+        "fileName": "aspect-test.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_Cancel": {
+        "fileName": "General_Cancel.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_Add": {
+        "fileName": "General_Add.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_Arrow": {
+        "fileName": "General_Arrow.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_Settings": {
+        "fileName": "General_Settings.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_Hamburger": {
+        "fileName": "General_Hamburger.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_Edit": {
+        "fileName": "General_Edit.png",
+        "info": {
+            "IsMask": true
+        }
     }
 }

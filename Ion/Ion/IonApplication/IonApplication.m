@@ -208,7 +208,7 @@
     // configure the default first root view controller here.
     IonViewController* vc = [[IonViewController alloc] initWithNibName:NULL bundle:NULL];
     
-    vc.view.backgroundColor = [UIColor grayColor];
+    vc.view.backgroundColor = [UIColor whiteColor];
     
     // Call completion if it exists.
     if ( finished )
@@ -279,7 +279,7 @@
     applicationLaunchBeginTime = [[NSDate date] timeIntervalSince1970];
     
     self.window = [self applicationWindow];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor blackColor];
     
     //set the root view controller to the the rapid start view controller
     self.window.rootViewController = rapidStartManager.viewController;
@@ -295,11 +295,13 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [self saveCacheData];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [self saveCacheData];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -312,9 +314,18 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self saveCacheData];
 }
 
 #pragma mark Memory Management Utils
+
+/**
+ * This saves all cache data.
+ */
+- (void) saveCacheData {
+    // Save Interface Data
+    [[IonImageManager interfaceManager] saveManifest: NULL];
+}
 
 /**
  * This is where we kill the rapid splash manager, it served us well but now it is useless.
@@ -353,6 +364,23 @@
     
     // Send to the console
     NSLog(@"%@",logString);
+}
+
+#pragma mark Utilties
+
+/**
+ * Performs a block after the set delay.
+ * @param {void(^)( )} the block to call.
+ * @returns {void}
+ */
+- (void) performBlock:(void(^)( )) block afterDelay:(double) delay {
+    if ( !block )
+        return;
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
+    dispatch_after( popTime, dispatch_get_main_queue(), ^(void){
+        block( );
+    });
 }
 
 #pragma mark Singletons

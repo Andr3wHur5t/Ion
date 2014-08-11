@@ -9,6 +9,7 @@
 #import "IonSimpleCache.h"
 #import "NSData+IonTypeExtension.h"
 #import "NSDictionary+IonTypeExtension.h"
+#import "NSDictionary+IonFile.h"
 #import "IonCacheItemStats.h"
 #import "IonFileIOmanager.h"
 #import "IonDirectory.h"
@@ -70,7 +71,7 @@
  * @returns {instancetype}
  */
 - (instancetype) initWithName:(NSString*) name withLoadCompletion:(IonCompletionBlock) manifestLoadCompletion {
-    self = [[IonSimpleCache alloc] initAtPath: [[IonPath cacheDirectory] pathAppendedByElement: name]
+    self = [self initAtPath: [[IonPath cacheDirectory] pathAppendedByElement: name]
                            withLoadCompletion: manifestLoadCompletion];
     return self;
 }
@@ -201,36 +202,27 @@
  * @returns {void}
  */
 - (void) loadManifest:(IonCompletionBlock) completion {
-    __block NSDictionary* unconfirmedObject;
     __block IonCompletionBlock blockCompletion;
+    
     blockCompletion = completion;
-    [IonFileIOmanager openDataAtPath: [self manifestPath]
-                     withResultBlock: ^(id returnedObject) {
-                         if ( !returnedObject && blockCompletion) {
-                            blockCompletion( NULL );
-                            return;
-                         }
-                         
-                         unconfirmedObject = [(NSData*)returnedObject toJsonDictionary];
-                         if ( !unconfirmedObject && blockCompletion ) {
-                             blockCompletion( NULL );
-                             return;
-                         }
-                         
-                         // Verify Data Has not been modified.
-                         if ( ![self manifestIsValid: unconfirmedObject] ) {
-                             if ( blockCompletion )
-                                 blockCompletion( NULL );
-                             [self reportTamperedManifest];
-                             return;
-                         }
-                         
-                         [_manifest setDictionary: [unconfirmedObject overriddenByDictionaryRecursively: _manifest ]];
-                         mainfestHasBeenLoaded = TRUE;
-                         
-                         if ( blockCompletion )
-                             blockCompletion( NULL );
-                     }];
+    [NSDictionary dictionaryAtPath: [self manifestPath] usingResultBlock: ^(id returnedObject) {
+        
+        // Verify Data Has not been modified.
+        if ( ![self manifestIsValid: returnedObject] ) {
+            if ( blockCompletion )
+                blockCompletion( NULL );
+            [self reportTamperedManifest];
+            return;
+        }
+        
+        // Set the data
+        [_manifest setDictionary: [returnedObject overriddenByDictionaryRecursively: _manifest ]];
+        mainfestHasBeenLoaded = TRUE;
+        
+        // Call completion
+        if ( blockCompletion )
+            blockCompletion( NULL );
+    }];
 }
 
 /**
@@ -244,12 +236,7 @@
         [_manifest updateSessionStatsForItemWithKey: key];
     }];
     if ( _manifest.allKeys.count > 0 )
-        [IonFileIOmanager saveData: [NSData dataFromJsonEncodedDictionary: _manifest makePretty: TRUE]
-                            atPath: [self manifestPath]
-                    withCompletion: ^(NSError *error) {
-                    if ( completion )
-                        completion( error );
-                }];
+        [_manifest saveAsJSONAtPath: [self manifestPath] withCompletion: completion];
   
 }
 
@@ -305,7 +292,7 @@
  * @returns {BOOL}
  */
 - (BOOL) manifestIsValid:(NSDictionary*) unverifiedManifest {
-    return (BOOL) unverifiedManifest; // TODO: run a check
+    return !(BOOL) unverifiedManifest; // TODO: run a check
 }
 
 /**
@@ -334,44 +321,46 @@
  * @param {NSString*} the key for the item to check.
  * @returns {IonAsyncGenerationBlock} the special generation block.
  */
-- (IonAsyncGenerationBlock) scannerBlockForKey:(NSString*) key {
+- (IonAsyncGenerationBlock) scannerBlockForKey:(NSString*) key andGenerationBlock:(IonAsyncGenerationBlock) genBlock {
     __block NSString* blockKey;
+    __block IonAsyncGenerationBlock generationBlock;
     
     // Set data
     blockKey = key;
+    generationBlock = genBlock;
     
     return ^( id data, IonResultBlock resultBlock ){
+        
         // Validate that the data has not been manipulated by checking the signature.
         if ( ![self dataObject: data matchesManifestItemWithKey: blockKey] ) {
             resultBlock( NULL ); // return null because the data appears to manipulated by an outside source.
             
             // Respond according to our security policy
-            NSLog(@"WARN: cache data changed between sessions!");
+            //NSLog(@"WARN: cache data changed between sessions!");
         }
-        else
-            resultBlock( data ); // the data is good, proceed
+        else { // the data is good, proceed
+            if ( !generationBlock )
+                resultBlock( data );
+            else
+                generationBlock( data, resultBlock );
+        }
     };
 }
 
 #pragma mark Data Source Protocol Implementation
 
-/**
- * Gets the object with the specified key, or returns NULL.
- * @param {NSString*} the key to get the object for.
- * @param {IonRawDataSourceResultBlock} the block where the result will be returned.
- * @returns {void}
- */
-
-- (void) objectForKey:(NSString*) key withResultBlock:(IonRawDataSourceResultBlock) result {
+- (void) objectForKey:(id)key usingGenerationBlock:(IonAsyncGenerationBlock)specialGenerationBlock withResultBlock:(IonRawDataSourceResultBlock)result {
     NSString* cleanString;
-    
     
     cleanString = [NSDictionary sanitizeKey: key];
     // Update the manifest stats.
     [_manifest incrementSessionAccessCountForItemWithKey: cleanString];
-
+    
     // Get the object
-    [super objectForKey: key usingGenerationBlock: [self scannerBlockForKey: cleanString] withResultBlock: result];
+    [super objectForKey: key
+   usingGenerationBlock: [self scannerBlockForKey: cleanString
+                               andGenerationBlock: specialGenerationBlock]
+        withResultBlock: result];
 }
 
 /**
@@ -455,6 +444,15 @@
     return  (BOOL)[_forceInMemoryCache objectForKey: key];
 }
 
+
+/**
+ * Finished Current Tasks Callback.
+ * @peram {void(^)( )} the callback.
+ * @returns {void}
+ */
+- (void) tasksDidComplete:(void(^)( )) completion {
+    dispatch_async( [IonFileIOmanager fileIOdispatchQueue], completion );
+}
 
 #pragma mark Global Cache management
 

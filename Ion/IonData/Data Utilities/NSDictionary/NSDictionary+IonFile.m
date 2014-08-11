@@ -13,19 +13,18 @@
 
 
 @implementation NSDictionary (IonFile)
-#pragma mark Construction
-
+#pragma mark Opening As JSON
 
 /**
  * This returns the JSON dictionary loaded at the specified path.
  * @param {IonPath*} the path.
- * @param {IonCompletionBlock} the completion where the dictionary will be returned.
+ * @param {IonResultBlock} the result block where the dictionary will be returned.
  * @returns {void}
  */
-+ (void) dictionaryAtPath:(IonPath*) path usingCompletionBlock:(IonResultBlock) result {
++ (void) dictionaryAtPath:(IonPath*) path usingResultBlock:(IonResultBlock) result {
     __block NSDictionary* unconfirmedObject;
     __block IonResultBlock blockCompletion;
-    if ( ! blockCompletion )
+    if ( ! result )
         return;
     
     blockCompletion = result;
@@ -48,10 +47,61 @@
                      }];
 }
 
-#pragma mark Proprieties
 
-#pragma mark Managment
+#pragma mark Saving As JSON
+/**
+ * Saves the dictionary as JSON to the specified path.
+ * @param {IonPath*} the path
+ * @param {IonCompletionBloc} the completion block
+ * @param {BOOL} states if the json is minified.
+ * @returns {void}
+ */
+- (void) saveAtPath:(IonPath*) path minified:(BOOL) isMinified withCompletion:(IonCompletionBlock) completion {
+    [IonFileIOmanager saveData: [NSData dataFromJsonEncodedDictionary: self makePretty: !isMinified]
+                        atPath: path
+                withCompletion: ^(NSError *error) {
+                    if ( completion )
+                        completion( error );
+                }];
+}
 
+/**
+ * Saves the dictionary as json at the specified path.
+ * @param {IonPath*} path
+ * @return {void}
+ */
+- (void) saveAsJSONAtPath:(IonPath*) path {
+    [self saveAtPath: path minified: FALSE withCompletion: NULL];
+}
+
+/**
+ * Saves the dictionary as json at the specified path.
+ * @param {IonPath*} path
+ * @param {IonCompletionBloc} the completion block
+ * @return {void}
+ */
+- (void) saveAsJSONAtPath:(IonPath*) path withCompletion:(IonCompletionBlock) completion {
+    [self saveAtPath: path minified: FALSE withCompletion: completion];
+}
+
+/**
+ * Saves the dictionary as minified json at the specified path.
+ * @param {IonPath*} path
+ * @return {void}
+ */
+- (void) saveAsMinifiedJSONAtPath:(IonPath*) path {
+    [self saveAtPath: path minified: TRUE withCompletion: NULL];
+}
+
+/**
+ * Saves the dictionary as json at the specified path.
+ * @param {IonPath*} path
+ * @param {IonCompletionBloc} the completion block
+ * @return {void}
+ */
+- (void) saveAsMinifiedJSONAtPath:(IonPath*) path withCompletion:(IonCompletionBlock) completion {
+    [self saveAtPath: path minified: TRUE withCompletion: completion];
+}
 
 
 @end

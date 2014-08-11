@@ -7,9 +7,13 @@
 //
 
 #import "IonViewController.h"
+#import <IOnData/IonData.h>
 #import "IonApplication.h"
 
-@interface IonViewController () 
+@interface IonViewController () {
+    CGRect oldFrame;
+}
+
 @end
 
 @implementation IonViewController
@@ -17,6 +21,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        oldFrame = CGRectUndefined;
         [self setDefaultThemeSystemNames];
     }
     return self;
@@ -93,8 +98,6 @@
  */
 - (void) setDefaultThemeSystemNames {
     self.view.themeConfiguration.themeElement = @"body";
-    self.view.themeConfiguration.themeClass = @"";
-    self.view.themeConfiguration.themeID = @"";
 }
 
 
@@ -121,6 +124,8 @@
  */
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear: animated];
+    
+    // Call to prepare the view controller for presentation.
     [self setViewThemeToSystem];
 }
 
@@ -129,7 +134,13 @@
  * @return {void}
  */
 - (void) loadView {
+    CGRect frame;
     self.view =  [[IonView alloc] init];
+    
+    if ( [IonApplication sharedApplication].window )
+        frame = [IonApplication sharedApplication].window.frame;
+    
+    self.view.frame = frame;
     [self constructViews];
 }
 
@@ -138,8 +149,13 @@
  * This is called whenever the bounds of the view change.
  */
 - (void) viewWillLayoutSubviews {
-    [self shouldLayoutSubviews];
+    [super viewWillLayoutSubviews];
     
+    // Call if there has been a frame change
+    if ( !CGRectEqualToRect(oldFrame, self.view.frame ) )
+        [self shouldLayoutSubviews];
+    
+    oldFrame = self.view.frame;
 }
 
 /**

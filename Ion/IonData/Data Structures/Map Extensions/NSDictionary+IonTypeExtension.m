@@ -492,7 +492,7 @@
         return NULL;
     
     // Create Expression
-    sanitizationExpression = [[NSRegularExpression alloc] initWithPattern: @"[^a-zA-Z0-9\\@\\$\\&\\?/]+"
+    sanitizationExpression = [[NSRegularExpression alloc] initWithPattern: @"[^a-zA-Z0-9\\@\\$\\&\\?\\[\\]\\~\\(\\)\\*\\+\\&/_]+"
                                                       options: 0
                                                         error: NULL];
     

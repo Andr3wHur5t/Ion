@@ -64,6 +64,21 @@
  */
 - (NSNumber*) toNumber;
 
+#pragma mark Image Conversion
+
+/**
+ * Converts gets an images equivilant of the data.
+ * @returns {UIImage*}
+ */
+- (UIImage*) toImage;
+
+/**
+ * Converts an image into a data object representing its PNG.
+ * @param {UIImage*} the image to convert
+ * @returns {void}
+ */
++ (NSData*) dataFromImage:(UIImage*) image;
+
 #pragma mark Object Conversion 
 
 /**
@@ -72,11 +87,5 @@
  * @returns {NSData*} the resulting data, or NULL if invalid.
  */
 + (NSData*) dataFromObject:(id) object;
-
-/**
- * Converts data to an object using the specified format.
- * @returns {id} the resulting object from decoding, or self if invalid.
- */
-- (id) toObject;
 
 @end

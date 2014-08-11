@@ -1,0 +1,18 @@
+{
+    "states": {
+        "norm": "General_Button_Add",
+        "down": "test_down",
+        "selected": "test_selected",
+        "disabled": "test_disabled"
+    },
+    "behavior": {
+        "key": "simpleFade",
+        "info": {
+            "A Thing":"with Some Stuff"
+        }
+    },
+    "text": {
+        "key": "Button_Hamburger",
+        "display": false
+    }
+}

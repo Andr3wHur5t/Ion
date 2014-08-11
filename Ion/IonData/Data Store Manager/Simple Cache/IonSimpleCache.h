@@ -82,6 +82,13 @@ static BOOL sIonCacheManifestWillPersist = TRUE;
 @property (assign, nonatomic) BOOL manifestWillPersist;
 
 #pragma mark Manaifest Management
+
+/**
+ * Gets the manifest path.
+ * @returns {IonPath} the manifests full path.
+ */
+- (IonPath*) manifestPath;
+
 /**
  * Loads the cache manifest from the file system.
  * @param {IonCompletionBlock} the completion block to call.
@@ -129,5 +136,13 @@ static BOOL sIonCacheManifestWillPersist = TRUE;
  * @returns {void}
  */
 - (void) setObject:(id) object forKeyInMemory:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion;
+
+
+/**
+ * Finished Current Tasks Callback.
+ * @peram {void(^)( )} the callback.
+ * @returns {void}
+ */
+- (void) tasksDidComplete:(void(^)( )) completion;
 
 @end

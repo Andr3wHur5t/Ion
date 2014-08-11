@@ -39,7 +39,9 @@
     // configure the default first root view controller here.
     IonVisualTestViewController* vc = [[IonVisualTestViewController alloc] init];
     
-
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
+    
     
     //sc.manifestWillPersist = FALSE;
     //[sc deleteWithCompletion:^(NSError *error) {
@@ -56,8 +58,11 @@
     // Test transisions between themes
     //[self testTransision: NULL];
     
-    if (finished)
-        finished(vc);
+    // Call Based off of finishing Image loading
+    [self performBlock:^{
+        if (finished)
+            finished(vc);
+    } afterDelay: 0.5];
 }
 
 /**
@@ -199,7 +204,6 @@
 - (bool) isInDemoMode {
     return false;
 }
-
 
 
 @end
