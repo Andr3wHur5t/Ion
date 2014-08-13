@@ -174,6 +174,42 @@
     [IonMath compareFloat: a.y andFloat: b.y usingAccuracy: accuracy];
 }
 
+#pragma mark Size Comparison Utilities
+
+/**
+ * Compares size a with size be with the specified accuracy.
+ * @param {CGSize} size a
+ * @param {CGSize} size b
+ * @param {NSNumber} accuracy
+ * @returns {BOOL} if they are equal
+ */
++ (BOOL) compareSize:(CGSize) a withSize:(CGSize) b {
+    return [IonMath compareFloat: a.width andFloat: b.width] &&
+    [IonMath compareFloat: a.height andFloat: b.height];
+    
+}
+
+/**
+ * Compares size a with size be with the specified accuracy.
+ * @param {CGSize} size a
+ * @param {CGSize} size b
+ * @param {NSNumber} accuracy
+ * @returns {BOOL} if they are equal
+ */
+
++ (BOOL) compareSize:(CGSize) a withSize:(CGSize) b usingAccuracy:(NSInteger) accuracy {
+    return [IonMath compareFloat: a.width andFloat: b.width usingAccuracy: accuracy] &&
+    [IonMath compareFloat: a.height andFloat: b.height usingAccuracy: accuracy];
+}
+
+/**
+ * Normilizes to the scale of the screen.
+ * @param {CGSize} the size to be normilized.
+ * @returns {CGSize}
+ */
++ (CGSize) normilizeSizeToScreen:(CGSize) size {
+    return (CGSize){ size.width * [[UIScreen mainScreen] scale], size.height * [[UIScreen mainScreen] scale]};
+}
 #pragma mark Floating Point Utilities
 
 /**
@@ -209,6 +245,27 @@
     return fabs( a - b ) < accuracy * FLT_EPSILON * fabs( a + b );
 }
 
+#pragma mark Normilization Utilties
 
+/**
+ * Normailzes a radian, for use in a rotational mathmatics.
+ * @param {CGFloat} the radian value to normilize.
+ * @returns {CGFloat} the normilized value between 0 and 2pi
+ */
++ (CGFloat) normalizeRadialFloat:(CGFloat)value {
+    return value;
+}
+
+#pragma mark Tranform Utilties
+
+/**
+ * Adds Perspective to the transform.
+ * @param {CATransform3D} the transform to add perspective to.
+ * @returns {CATransform3D} the inputted transform with perspective.
+ */
++ (CATransform3D) setTransformPerspective:(CATransform3D) transform {
+    transform.m34 = 1.0 / -500;
+    return transform;
+}
 
 @end

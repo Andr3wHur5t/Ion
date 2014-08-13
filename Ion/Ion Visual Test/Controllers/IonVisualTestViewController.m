@@ -12,6 +12,7 @@
     UIView* imgView;
     IonSimpleCache* sc;
     IonInterfaceButton* button;
+    UILabel* testLabel;
 }
 
 @end
@@ -30,11 +31,13 @@
     //imgView.themeID = @"simpleStyle";
     
     // Set the image using the image manager
-    button = [[IonInterfaceButton alloc] initWithFileName:@"Hamburger"];
-    button.frame = (CGRect){ (CGPoint){ 18, 60 + 2 }, (CGSize){35,35}};
+    button = [[IonInterfaceButton alloc] initWithFileName:@"Cancel"];
+    button.frame = (CGRect){ (CGPoint){ 18, 50 + 2 }, (CGSize){30,30}};
     [self.view addSubview: button];
     
     [self.view setBackgroundImageUsingKey: @"aspect"];
+    
+    [self makeTestLabel];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -45,6 +48,17 @@
     [super viewWillAppear: animated];
 }
 
+- (void) makeTestLabel {
+    testLabel = [[UILabel alloc] initWithFrame: (CGRect){ (CGPoint){ 18, 10}, (CGSize){ self.view.frame.size.width - 18*2, 40}}];
+    testLabel.center = (CGPoint){ self.view.frame.size.width / 2 , 25 };
+    testLabel.themeConfiguration.themeShouldBeAppliedToSelf = FALSE;
+    testLabel.textColor = [UIColor whiteColor];
+    testLabel.text = @"People";
+    testLabel.font = [UIFont fontWithName:@"Helvetica Neue" size: 18];
+    testLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [self.view addSubview: testLabel];
+}
 
 /** = = = = = = = = = = = = Tests = = = = = = = = = = = = = = =  */
 
@@ -90,7 +104,7 @@
 - (void) shouldLayoutSubviews {
     [super shouldLayoutSubviews];
     CGSize s = self.view.frame.size;
-    s.height = 60;
+    s.height = 50;
     imgView.frame = (CGRect) {CGPointZero,s};
 }
 

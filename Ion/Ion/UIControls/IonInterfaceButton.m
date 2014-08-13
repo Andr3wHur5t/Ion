@@ -9,27 +9,16 @@
 #import "IonInterfaceButton.h"
 #import "UIView+IonAnimation.h"
 #import "UIView+IonBackgroundUtilities.h"
+#import "IonButtonBehaviorSimpleFade.h"
 #import <IonData/IonData.h>
 
 static NSString* sIonButtonConfigurationFileExtension = @".button";
 
 @interface IonInterfaceButton () {
-    
-    /**
-     * State Colors (NOTE: Change to effect objects)
-     */
-    NSMutableArray* colorStates;
-    
-    /**
-     * State Mask Images.
-     */
-    NSMutableArray* maskStates;
-    
     /**
      * The behavior info Dictionary
      */
     NSDictionary* behaviorInfo;
-    
 }
 
 @end
@@ -47,14 +36,11 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
 -(instancetype) init {
     self = [super init];
     if ( self ) {
-        colorStates = [[NSMutableArray alloc] init];
-        maskStates = [[NSMutableArray alloc] init];
+        self.behavior = [[IonButtonBehaviorSimpleFade alloc] init];
+        self.baseImageKey = NULL;
         
-        // Test Colors
-        [colorStates setObject:UIColorFromRGB( 0xf5f5f5 ) atIndexedSubscript: IonButtonState_Norm];
-        [colorStates setObject:UIColorFromRGB( 0x8C8C8C ) atIndexedSubscript: IonButtonState_Down];
-        [colorStates setObject:UIColorFromRGB( 0xE8E8E8 ) atIndexedSubscript: IonButtonState_Selected];
-        [colorStates setObject:UIColorFromRGB( 0x525252 ) atIndexedSubscript: IonButtonState_Disabled];
+        // Hook in for the behavior deligate
+        [self addTarget: self action:@selector(tapComplete) forControlEvents: UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -160,49 +146,36 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
  */
 - (void) updateToMatchConfiguration {
     // Get Behavior Delegate
+    [self setBehaviorUsingBehaviorConfigObject: [_configuration dictionaryForKey: sIonButtonConfigurationBehaviorKey]];
     
     // Get State Image Keys
-    [self stateImagesFromStateConfiguration: [_configuration dictionaryForKey: sIonButtonConfigurationStatsKey]];
-    
+    self.baseImageKey = [_configuration stringForKey: sIonButtonConfigurationBaseImageKey];
     
     // Update our self
-    [self updateToMatchCurrentState];
+    if ( _behavior )
+        [_behavior updateButtonToMatchState: self.currentState animated: FALSE];
 }
 
 /**
- * Gets the State Images from the state configuration map.
- * @param {NSDictionary*} the configuration.
+ * Sets the bbehavior using the behavior configuration object.
+ * @param {NSDictionary*} the behavior configuration object.
  * @returns {void}
  */
-- (void) stateImagesFromStateConfiguration:(NSDictionary*) stateDictionary {
-    if ( !stateDictionary || ![stateDictionary isKindOfClass: [NSDictionary class]] ) {
-        // Set our norm image to a placeholder
+- (void) setBehaviorUsingBehaviorConfigObject:(NSDictionary*) config {
+    id<IonButtonBehaviorDelegate> behaviorDeligate;
+    if ( !config || ![config isKindOfClass: [NSDictionary class]] )
         return;
-    }
     
-    // Norm
-    [maskStates setObject: [stateDictionary stringForKey: sIonButtonConfigurationStats_NormKey]
-       atIndexedSubscript: IonButtonState_Norm];
+    // Get the behavior object
+    behaviorDeligate = [IonInterfaceButton behaviorForKey: [config stringForKey:sIonButtonConfigurationItemKey]];
+    if ( !behaviorDeligate )
+        return;
     
-    // Down
-    [maskStates setObject: [stateDictionary stringForKey: sIonButtonConfigurationStats_DownKey]
-       atIndexedSubscript: IonButtonState_Down];
+    // Set the behavoir info.
+    behaviorInfo = [config dictionaryForKey: sIonButtonConfigurationBehavior_InfoKey];
     
-    // Selected
-    [maskStates setObject: [stateDictionary stringForKey: sIonButtonConfigurationStats_SelectedKey]
-       atIndexedSubscript: IonButtonState_Selected];
-    
-    // Disabled
-    [maskStates setObject: [stateDictionary stringForKey: sIonButtonConfigurationStats_DisabledKey]
-       atIndexedSubscript: IonButtonState_Disabled];
-    
-    // Verify Norm is set
-    if ( ![maskStates objectAtIndex: IonButtonState_Norm] ) {
-        [maskStates setObject: @"placeholder"   // Replace with a place holder image
-           atIndexedSubscript: IonButtonState_Norm];
-        NSLog(@"WARN: Button Missing Norm State Mask!");
-    }
-    
+    // set the behavior object
+    self.behavior = behaviorDeligate;
 }
 
 
@@ -220,31 +193,41 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
     [_behavior setUpWithButton: self andInfoObject: behaviorInfo];
 }
 
+/**
+ * Responds to changes of the base image key.
+ * @param {NSString*} the new base image key
+ * @returns {void}
+ */
+- (void) setBaseImageKey:(NSString *)baseImageKey {
+    if ( baseImageKey || [baseImageKey isKindOfClass: [NSString class]])
+        _baseImageKey = baseImageKey;
+    
+    // Post check
+    if ( !_baseImageKey || ![_baseImageKey isKindOfClass: [NSString class]] )
+        _baseImageKey = @"placeholder";
+    
+    // Update ourself
+    [self updateBaseMaskImage];
+}
+
 #pragma mark Utilities
 
 /**
  * Update ourself to match the current state.
  * @returns {void}
  */
-- (void) updateToMatchCurrentState {
-    NSString* stateMaskKey;
-    // Background Color
-    self.backgroundColor = [colorStates objectAtIndex: self.currentState];
-    
-    // Mask
+- (void) updateBaseMaskImage {
+    // Don't waste our time if we dont hace a valid size.
     if ( CGSizeEqualToSize( self.frame.size, CGSizeZero) || CGSizeEqualToSize( self.frame.size, CGSizeUndefined ) )
         return;
     
-    stateMaskKey = [maskStates objectAtIndex: self.currentState];
-    if ( !stateMaskKey || ![stateMaskKey isKindOfClass: [NSString class]] )
-        stateMaskKey = [maskStates objectAtIndex: IonButtonState_Norm];
-    [self setMaskImageUsingKey: stateMaskKey];
+    // Set to the ciew
+    [self setMaskImageUsingKey: self.baseImageKey];
     
-    
+    // Inform the behavior that we should update, in case it is manageing the content image
     if ( _behavior )
-        [_behavior updateButtonToMatchState: self.currentState animated: TRUE];
+        [_behavior updateButtonToMatchState: self.currentState animated: [self isVisible]];
 }
-
 
 
 #pragma mark Button Event Response
@@ -256,11 +239,17 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
     // Update super
     [super setCurrentState: currentState];
     
-    // Respond
-    [UIView animateWithDuration: 0.3 animations: ^{
-        [self updateToMatchCurrentState];
-        
-    }];
+    // Inform the behavior to respond to the state change
+    if ( _behavior )
+        [_behavior updateButtonToMatchState: self.currentState animated: TRUE];
+}
+
+/**
+ * Respond to a complete tap on the button.
+ */
+- (void) tapComplete {
+    if ( _behavior )
+        [_behavior buttonDidCompleteTap];
 }
 
 /**
@@ -268,11 +257,17 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
  */
 - (void) setFrame:(CGRect)frame {
     [super setFrame: frame];
-    [self updateToMatchCurrentState];
+    
+    // Update mask
+    [self updateBaseMaskImage];
+    
+    // Update via behavior
+    if ( _behavior )
+        [_behavior updateButtonToMatchState: self.currentState animated: FALSE];
 }
 
 
-#pragma mark Behavior Singletons
+#pragma mark Behavior Retrevial
 
 /**
  * This gets an IonButtonBehavior Delegate object for the specified key.
@@ -280,8 +275,22 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
  * @param {NSString*} the key of the behavior delegate to get.
  * @returns {id<IonButtonBehaviorDelegate>}
  */
-- (id<IonButtonBehaviorDelegate>) behaviorForKey:(NSString*) key {
-    return NULL;
++ (id<IonButtonBehaviorDelegate>) behaviorForKey:(NSString*) key {
+    id resultingObject;
+    NSString* fullClassName;
+    if ( !key || ![key isKindOfClass: [NSString class]] )
+        return NULL;
+    
+    // Get the full Class name
+    fullClassName = [sIonButtonBehaviorRootClassKey stringByAppendingString: key];
+    
+    //Get the Object from the set.
+    resultingObject = [[NSClassFromString(fullClassName) alloc] init];
+    if ( !resultingObject || ![resultingObject conformsToProtocol: @protocol(IonButtonBehaviorDelegate)] )
+        return NULL;
+
+    // Return the verified object
+    return resultingObject;
 }
 
 @end

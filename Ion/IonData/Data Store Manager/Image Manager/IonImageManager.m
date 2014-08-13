@@ -147,12 +147,29 @@ static NSString *sIonImageManagerStandardFileExtension = @".png";
 - (void) loadBundleManifest:(IonCompletionBlock)completion {
     [NSDictionary dictionaryAtPath: [self bundleManifestPath]
                   usingResultBlock: ^(id returnedObject) {
-                      _bundleManifest = returnedObject;
+                      NSMutableDictionary* dict = [(NSDictionary*)returnedObject mutableCopy];
+                      
+                      // Add the placeholder
+                      [dict setObject: [IonImageManager placeholderItem] forKey:sIonImageMaagerPlaceholderImageKey];
+                      
+                      // Set the dictionary
+                      _bundleManifest = dict;
                       self.bundleManifestHasLoaded = TRUE;
                       
                       if( completion )
                           completion( NULL );
                   }];
+}
+
+/**
+ * Creates the placeholder element dictionary.
+ * @returns {NSDictionary*}
+ */
++ (NSDictionary*) placeholderItem {
+    return @{
+             sIonImageManifestItem_FileName: @"placeholder.png",
+             sIonImageManifestItem_InfoObject: @{ @"IsMask": @1}
+             };
 }
 
 #pragma mark Data Management
@@ -211,11 +228,6 @@ static NSString *sIonImageManagerStandardFileExtension = @".png";
             resultingImage = image;
             [resultingImage setInfo: imageInfo];
             resultBlock( resultingImage );
-                
-            // Set the image to the cache
-            [self addImage: resultingImage
-                    forKey: cleanKey
-      usingCompletionBlock: NULL];
         }];
     }];
 }
@@ -270,6 +282,7 @@ static NSString *sIonImageManagerStandardFileExtension = @".png";
             contined:(BOOL) isContained
    andReturnCallback:(IonImageReturn) returnCallback {
     __block NSString *cleanKey ,*sizedKeyString, *typeString;
+    __block CGSize normilizedSize;
     
     // Validate
     if ( CGSizeEqualToSize( size, CGSizeUndefined) || CGSizeEqualToSize( size, CGSizeZero) || !returnCallback)
@@ -282,13 +295,14 @@ static NSString *sIonImageManagerStandardFileExtension = @".png";
     
     // Get the string
     cleanKey = [NSDictionary sanitizeKey: key];
-    sizedKeyString = [cleanKey stringByAppendingFormat:@"[%ix%i]-%@", (int)size.width, (int)size.height, typeString];
+    normilizedSize = [IonMath normilizeSizeToScreen: size];
+    sizedKeyString = [cleanKey stringByAppendingFormat:@"[%ix%i]-%@", (int)normilizedSize.width, (int)normilizedSize.height, typeString];
     
     // Get the Image
     [self imageForKey: [sizedKeyString stringByAppendingString:  sIonImageManagerStandardFileExtension]
       withReturnCallback: ^(UIImage *image) {
           // See if we got our result.
-            if ( CGSizeEqualToSize( size, image.size) ) {
+            if ( CGSizeEqualToSize( normilizedSize, image.size) ) {
                 returnCallback ( image );
                 return;
             }

@@ -18,6 +18,7 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 #pragma mark Math
 // Standerd math Utilities
 #include "IonMath.h"
+#include "IonVec3.h"
 
 #pragma mark Data Utilities
 // Color Conversion 

@@ -292,7 +292,7 @@
  * @returns {BOOL}
  */
 - (BOOL) manifestIsValid:(NSDictionary*) unverifiedManifest {
-    return !(BOOL) unverifiedManifest; // TODO: run a check
+    return TRUE; // TODO: run a check
 }
 
 /**
@@ -349,7 +349,7 @@
 
 #pragma mark Data Source Protocol Implementation
 
-- (void) objectForKey:(id)key usingGenerationBlock:(IonAsyncGenerationBlock)specialGenerationBlock withResultBlock:(IonRawDataSourceResultBlock)result {
+- (void) objectForKey:(id) key usingGenerationBlock:(IonAsyncGenerationBlock)specialGenerationBlock withResultBlock:(IonRawDataSourceResultBlock)result {
     NSString* cleanString;
     
     cleanString = [NSDictionary sanitizeKey: key];

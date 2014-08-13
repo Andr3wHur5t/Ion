@@ -1,26 +1,28 @@
 {
-    "baseImage": "General_Button_Hamburger",
+    "baseImage": "General_Button_Arrow",
     "behavior": {
         "key": "SimpleFade",
         "info": {
             "childBehavior": "TouchRotate",
             "childInfo": {
                 "startCycle": "trunRight",
+                
                 "cycles": {
                     "trunRight": {
                         "targetCycle": "turnLeft",
-                        "targetTransision":  { "animation":"YawFlip","entryPoint":"rotatePhaseOne"}
+                        "targetTransision": { "animation":"LeftRightRotate","entryPoint":"rotateLeft"}
                     },
                     "turnLeft": {
                         "targetCycle": "trunRight",
-                        "targetTransision":  { "animation":"YawFlip","entryPoint":"RotatePhaseTwo"}
+                        "targetTransision": { "animation":"LeftRightRotate","entryPoint":"rotateRight"}
                     }
                 }
+                
             }
         }
     },
     "text": {
-        "key": "Button_Hamburger",
+        "key": "Button_Back",
         "display": false
     }
 }

@@ -1,0 +1,43 @@
+{
+    "tranformations": {
+        "start": {
+            "position": {
+                "x": 0.05,
+                "y": 0,
+                "z": 0
+            },
+            "duration": 0.05,
+            "targetTransform": "left1"
+        },
+        "left1": {
+            "position": {
+                "x": -0.05,
+                "y": 0,
+                "z": 0
+            },
+            "duration": 0.05,
+            "targetTransform": "Right1"
+        },
+        "Right1": {
+            "position": {
+                "x": 0.05,
+                "y": 0,
+                "z": 0
+            },
+            "duration": 0.05,
+            "targetTransform": "left2"
+        },
+        "left2": {
+            "position": {
+                "x": -0.05,
+                "y": 0,
+                "z": 0
+            },
+            "duration": 0.05,
+            "targetTransform": "end"
+        },
+        "end": {
+            "duration": 0.02
+        }
+    }
+}

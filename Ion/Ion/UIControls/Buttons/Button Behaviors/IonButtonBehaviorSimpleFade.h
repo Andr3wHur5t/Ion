@@ -7,8 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IonInterfaceButton.h"
+#import "IonButtonBehavior.h"
 
-@interface IonButtonBehaviorSimpleFade : NSObject <IonButtonBehaviorDelegate>
+// KEY == "SimpleFade"
+@interface IonButtonBehaviorSimpleFade : IonButtonBehavior
+
+/**
+ * The current effects accociated with states.
+ */
+@property (strong, nonatomic, readonly) NSMutableDictionary* stateEffects;
+
+/**
+ * The current masks accociated with stated.
+ */
+@property (strong, nonatomic, readonly) NSDictionary* stateMasks;
+
 
 @end

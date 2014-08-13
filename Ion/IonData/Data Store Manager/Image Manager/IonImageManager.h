@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "IonSimpleCache.h"
 
+
+static NSString* sIonImageMaagerPlaceholderImageKey = @"placeholder";
 @class IonImageRef;
 
 @interface IonImageManager : IonSimpleCache

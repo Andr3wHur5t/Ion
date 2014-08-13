@@ -117,6 +117,21 @@
     return (BOOL) generationBlock;
 }
 
+/**
+ * Gets the generation block
+ */
+- (IonInternialGenerationBlock) getGenerationBlock {
+    IonInternialGenerationBlock genBlock;
+    
+    if ( !generationBlock )
+        genBlock = ^id( id data, IonGenerationBlock specialBlock ){
+            return specialBlock( data );
+        };
+    else
+        genBlock = generationBlock;
+    return genBlock;
+}
+
 #pragma mark Data Management
 /**
  * This gets the object for the specified key using the specified Generation callback.
@@ -166,9 +181,9 @@
     
    
     rawItem = [_localRawData objectForKey:key];
-    if ( rawItem  && generationBlock && ![_currentlyGenerating objectForKey: key] ) {
+    if ( rawItem && ![_currentlyGenerating objectForKey: key] ) {
         [_currentlyGenerating setObject:@1 forKey: key];
-        result = generationBlock( rawItem, specialGenerationBlock );
+        result = [self getGenerationBlock]( rawItem, specialGenerationBlock );
         [_currentlyGenerating removeObjectForKey: key];
         return result;
     }

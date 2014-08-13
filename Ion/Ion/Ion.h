@@ -33,6 +33,7 @@ FOUNDATION_EXPORT const unsigned char IonVersionString[];
 #import "UIView+IonAnimation.h"
 #import "UIView+IonBackgroundUtilities.h"
 #import "UIView+IonViewProperties.h"
+#import "UIView+IonPositionAndOrientation.h"
 
 /** Theme Stytem */
 #import "IonThemePointer.h"

@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString* sIonImageManifestItem_FileName = @"fileName";
+static NSString* sIonImageManifestItem_InfoObject = @"info";
+
 @interface NSDictionary (ImageManifest)
 #pragma mark Item Management
 

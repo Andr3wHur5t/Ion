@@ -132,6 +132,32 @@ static const CGRect CGRectUndefined = (CGRect){ INFINITY, INFINITY, INFINITY, IN
  */
 + (BOOL) comparePoint:(CGPoint) a withPoint:(CGPoint) b usingAccuracy:(NSInteger) accuracy;
 
+#pragma mark Size Comparison Utilities
+
+/**
+ * Compares size a with size be with the specified accuracy.
+ * @param {CGSize} size a
+ * @param {CGSize} size b
+ * @param {NSNumber} accuracy
+ * @returns {BOOL} if they are equal
+ */
++ (BOOL) compareSize:(CGSize) a withSize:(CGSize) b;
+
+/**
+ * Compares size a with size be with the specified accuracy.
+ * @param {CGSize} size a
+ * @param {CGSize} size b
+ * @param {NSNumber} accuracy
+ * @returns {BOOL} if they are equal
+ */
++ (BOOL) compareSize:(CGSize) a withSize:(CGSize) b usingAccuracy:(NSInteger) accuracy;
+
+/**
+ * Normilizes to the scale of the screen.
+ * @param {CGSize} the size to be normilized.
+ * @returns {CGSize}
+ */
++ (CGSize) normilizeSizeToScreen:(CGSize) size;
 
 #pragma mark Floating Point Utilities
 
@@ -150,4 +176,22 @@ static const CGRect CGRectUndefined = (CGRect){ INFINITY, INFINITY, INFINITY, IN
  * @retult {BOOL}
  */
 + (BOOL) compareFloat:(CGFloat) a andFloat:(CGFloat) b;
+
+#pragma mark Normilization Utilties
+
+/**
+ * Normailzes a radian, for use in a rotational mathmatics.
+ * @param {CGFloat} the radian value to normilize.
+ * @returns {CGFloat} the normilized value between 0 and 2pi
+ */
++ (CGFloat) normalizeRadialFloat:(CGFloat)value;
+
+#pragma mark Tranform Utilties
+
+/**
+ * Adds Perspective to the transform.
+ * @param {CATransform3D} the transform to add perspective to.
+ * @returns {CATransform3D} the inputted transform with perspective.
+ */
++ (CATransform3D) setTransformPerspective:(CATransform3D) transform;
 @end

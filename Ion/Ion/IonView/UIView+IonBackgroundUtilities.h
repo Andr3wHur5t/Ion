@@ -82,7 +82,7 @@ typedef enum : NSUInteger {
 - (void) setMaskImage:(UIImage*)image;
 
 /**
- * This sets the mask Image of the view in the specified rneder mode.
+ * This sets the mask Image of the view in the specified render mode.
  * @param {UIImage*} The image to be set as the mask
  * @param {IonBackgroundRenderOptions} the mode which to render the image.
  * @return {void}
@@ -106,5 +106,12 @@ typedef enum : NSUInteger {
 
 
 
+#pragma mark Utilities
+
+/**
+ * Reports if the view is visible.
+ * @returns {BOOL}
+ */
+- (BOOL) isVisible;
 
 @end

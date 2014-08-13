@@ -215,4 +215,12 @@
  * @returns {NSString*} the sanitized string, or NULL if invalid.
  */
 + (NSString*) sanitizeKey:(NSString*) key;
+
+
+#pragma mark Conversions
+/**
+ * Gets the dictionaries JSON Representation
+ * @returns {NSString*} the JSON representation
+ */
+- (NSString*) toJSON;
 @end

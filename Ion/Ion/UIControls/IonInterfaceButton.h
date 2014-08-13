@@ -10,9 +10,15 @@
 #import "UIView+IonTheme.h"
 
 /**
+ * Root behavior class key
+ */
+static NSString* sIonButtonBehaviorRootClassKey = @"IonButtonBehavior";
+
+/**
  * Button Keys
  */
 static NSString* sIonButtonConfigurationItemKey = @"key";
+static NSString* sIonButtonConfigurationBaseImageKey = @"baseImage";
 
 static NSString* sIonButtonConfigurationStatsKey = @"states";
 static NSString* sIonButtonConfigurationStats_NormKey = @"norm";
@@ -124,11 +130,22 @@ static NSString* sIonButtonConfigurationText_WillDisplayKey = @"display";
 @property (strong, nonatomic) NSDictionary* configuration;
 
 /**
+ * The base images key.
+ */
+@property (strong, nonatomic) NSString* baseImageKey;
+
+/**
  * Our behavior delegate
  */
 @property (strong, nonatomic) id<IonButtonBehaviorDelegate> behavior;
 
 #pragma mark Behavior Singletons
 
-// TODO: Add a map of behavior delegate to support different animations and effects
+/**
+ * This gets an IonButtonBehavior Delegate object for the specified key.
+ * Note: this gets objects from their literal class name, if you class name follows the standard format it will auto implement.
+ * @param {NSString*} the key of the behavior delegate to get.
+ * @returns {id<IonButtonBehaviorDelegate>}
+ */
++ (id<IonButtonBehaviorDelegate>) behaviorForKey:(NSString*) key;
 @end

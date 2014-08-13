@@ -1,0 +1,30 @@
+{
+    "tranformations": {
+        "rotateLeft": {
+            "rotation": {
+                "pitch": 0,
+                "roll": 180,
+                "yaw": 0
+            },
+            "duration": 0.3
+        },
+        "rotateRight": {
+            "rotation": {
+                "pitch": 0,
+                "roll": 359,
+                "yaw": 0
+            },
+            "duration": 0.3,
+            "targetTransform":"completeRotateRight"
+        },
+        "completeRotateRight": {
+            "rotation": {
+                "pitch": 0,
+                "roll": 0,
+                "yaw": 0
+            },
+            "duration": 0.0
+        }
+    }
+
+}

@@ -1,0 +1,26 @@
+{
+    "baseImage": "General_Button_Arrow",
+    "behavior": {
+        "key": "SimpleFade",
+        "info": {
+            "childBehavior": "TouchRotate",
+            "childInfo": {
+                "startCycle": "expose",
+                "cycles": {
+                    "expose": {
+                        "targetCycle": "hide",
+                        "targetTransision": { "animation":"UpDownRotate","entryPoint":"rotateDown"}
+                    },
+                    "hide": {
+                        "targetCycle": "expose",
+                        "targetTransision": { "animation":"UpDownRotate","entryPoint":"rotateUp"}
+                    }
+                }
+            }
+        }
+    },
+    "text": {
+        "key": "Button_Expose,
+        "display": false
+    }
+}

@@ -8,6 +8,7 @@
 
 #import "NSDictionary+IonTypeExtension.h"
 #import "NSArray+IonExtension.h"
+#import "NSData+IonTypeExtension.h"
 #import "IonKeyValuePair.h"
 #import "IonImageRef.h"
 #import "IonGradientConfiguration.h"
@@ -501,4 +502,16 @@
                                                               range: NSMakeRange(0, key.length)
                                                        withTemplate: @"-"];;
 }
+
+
+#pragma mark Conversion
+
+/**
+ * Gets the dictionaries JSON Representation
+ * @returns {NSString*} the JSON representation
+ */
+- (NSString*) toJSON {
+    return [[NSJSONSerialization dataWithJSONObject: self options:NSJSONWritingPrettyPrinted error:NULL] toString];
+}
+
 @end

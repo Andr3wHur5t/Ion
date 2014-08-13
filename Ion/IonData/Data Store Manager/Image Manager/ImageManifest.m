@@ -9,8 +9,7 @@
 #import "ImageManifest.h"
 #import "NSDictionary+IonTypeExtension.h"
 
-static NSString* sIonImageManifestItem_FileName = @"fileName";
-static NSString* sIonImageManifestItem_InfoObject = @"info";
+
 
 @implementation NSDictionary (ImageManifest)
 #pragma mark Item Management

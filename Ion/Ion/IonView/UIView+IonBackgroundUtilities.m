@@ -186,4 +186,15 @@
                                   }];
 }
 
+
+#pragma mark Utilities
+
+/**
+ * Reports if the view is visible.
+ * @returns {BOOL}
+ */
+- (BOOL) isVisible {
+    return self.isHidden && self.alpha != 0.0f;
+}
+
 @end
