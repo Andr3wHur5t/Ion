@@ -15,7 +15,7 @@
 // Meta
 static NSString* sIonTransformAnimation_DelayKey = @"delay";
 static NSString* sIonTransformAnimation_DurationKey = @"duration";
-static NSString* sIonTransformAnimation_TargetTransformKey = @"targetTransform";
+static NSString* sIonTransformAnimation_TargetTransformKey = @"next";
 
 // Vectors
 static NSString* sIonTransformAnimation_RotationKey = @"rotation";

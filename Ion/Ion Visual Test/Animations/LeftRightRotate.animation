@@ -15,7 +15,7 @@
                 "yaw": 0
             },
             "duration": 0.3,
-            "targetTransform":"completeRotateRight"
+            "next":"completeRotateRight"
         },
         "completeRotateRight": {
             "rotation": {

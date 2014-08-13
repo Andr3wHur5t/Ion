@@ -36,14 +36,22 @@
 }
 
 /**
- * Informs the delegate that the button did complete a tap, and that it should respond accordingly.
+ * Gets called when there is a valid complete tap.
  * @returns {void}
  */
-- (void) buttonDidCompleteTap {
+- (void) validTapCompleted {
     if ( _childBehavior )
-        [_childBehavior buttonDidCompleteTap];
+        [_childBehavior validTapCompleted];
 }
 
+/**
+ * Gets called when there has been an invalid tap.
+ * @return {void}
+ */
+- (void) invalidTapCompleted {
+    if ( _childBehavior )
+        [_childBehavior invalidTapCompleted];
+}
 
 
 /**

@@ -3,19 +3,19 @@
     "behavior": {
         "key": "SimpleFade",
         "info": {
-            "childBehavior": "TouchRotate",
+            "childBehavior": "TapTransform",
             "childInfo": {
-                "startCycle": "trunRight",
+                "startCycle": "GrowBounce",
+                "events": {
+                    "error": { "animation":"ShakeLeftRight","entryPoint":"start" }
+                },
                 "cycles": {
-                    "trunRight": {
-                        "targetCycle": "turnLeft",
-                        "targetTransision":  { "animation":"YawFlip","entryPoint":"rotatePhaseOne"}
-                    },
-                    "turnLeft": {
-                        "targetCycle": "trunRight",
-                        "targetTransision":  { "animation":"YawFlip","entryPoint":"RotatePhaseTwo"}
+                    "GrowBounce": {
+                        "targetCycle": "GrowBounce",
+                        "targetTransision": { "animation":"GrowBounce","entryPoint":"start"}
                     }
                 }
+
             }
         }
     },

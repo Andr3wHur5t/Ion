@@ -1,0 +1,13 @@
+{
+    "tranformations": {
+        "startIn": {
+            "alpha":0.1,
+            "duration": 0.3,
+            "next":"end"
+        },
+        "end": {
+            "alpha":1.0,
+            "duration": 0.3
+        }
+    }
+}

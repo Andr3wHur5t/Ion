@@ -3,17 +3,15 @@
     "behavior": {
         "key": "SimpleFade",
         "info": {
-            "childBehavior": "TouchRotate",
+            "childBehavior": "TapTransform",
             "childInfo": {
-                "startCycle": "GrowBounce",
-                
+                "startCycle": "tap",
                 "cycles": {
-                    "GrowBounce": {
-                        "targetCycle": "GrowBounce",
+                    "tap": {
+                        "targetCycle": "tap",
                         "targetTransision": { "animation":"GrowBounce","entryPoint":"start"}
                     }
                 }
-                
             }
         }
     },

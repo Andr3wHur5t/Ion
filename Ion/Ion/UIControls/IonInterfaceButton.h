@@ -51,10 +51,16 @@ static NSString* sIonButtonConfigurationText_WillDisplayKey = @"display";
 - (void) setUpWithButton:(IonInterfaceButton*) button andInfoObject:(NSDictionary*) infoObject;
 
 /**
- * Informs the delegate that the button did complete a tap, and that it should respond accordingly.
+ * Gets called when there is a valid complete tap.
  * @returns {void}
  */
-- (void) buttonDidCompleteTap;
+- (void) validTapCompleted;
+
+/**
+ * Gets called when there has been an invalid tap.
+ * @return {void}
+ */
+- (void) invalidTapCompleted;
 
 /**
  * Informs the delegate to update the button to match the inputted state.

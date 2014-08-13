@@ -39,13 +39,28 @@
                      forKey: [IonButtonBehavior keyForButtonState: IonButtonState_Norm]];
     [_stateEffects setObject: UIColorFromRGB( 0x8C8C8C )
                      forKey: [IonButtonBehavior keyForButtonState: IonButtonState_Down]];
-    [_stateEffects setObject: UIColorFromRGB( 0xE8E8E8 )
-                     forKey: [IonButtonBehavior keyForButtonState: IonButtonState_Selected]];
     [_stateEffects setObject: UIColorFromRGB( 0x525252 )
+                     forKey: [IonButtonBehavior keyForButtonState: IonButtonState_Selected]];
+    [_stateEffects setObject: UIColorFromRGB( 0x8C8C8C )
                      forKey: [IonButtonBehavior keyForButtonState: IonButtonState_Disabled]];
 }
 
 #pragma mark Behavior Protocol Implementation
+
+/**
+ * Sets up the behavior with the button, and the info object.
+ * @param {IonInterfaceButton*} the button that the delegate will administrate.
+ * @param {NSDictionary*} the info object associated with the behavior
+ * @returns {void}
+ */
+- (void) setUpWithButton:(IonInterfaceButton*) button andInfoObject:(NSDictionary*) infoObject {
+    [super setUpWithButton: button andInfoObject: infoObject];
+    if ( !button || ![button isKindOfClass:[IonInterfaceButton class]] )
+        return;
+    
+    button.themeConfiguration.themeShouldBeAppliedToSelf = false;
+}
+
 
 /**
  * Informs the delegate to update the button to match the inputted state.

@@ -38,9 +38,6 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
     if ( self ) {
         self.behavior = [[IonButtonBehaviorSimpleFade alloc] init];
         self.baseImageKey = NULL;
-        
-        // Hook in for the behavior deligate
-        [self addTarget: self action:@selector(tapComplete) forControlEvents: UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -245,11 +242,21 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
 }
 
 /**
- * Respond to a complete tap on the button.
+ * Gets called when there is a valid complete tap.
+ * @returns {void}
  */
-- (void) tapComplete {
+- (void) validTapCompleted {
     if ( _behavior )
-        [_behavior buttonDidCompleteTap];
+        [_behavior validTapCompleted];
+}
+
+/**
+ * Gets called when there has been an invalid tap.
+ * @return {void}
+ */
+- (void) invalidTapCompleted {
+    if ( _behavior )
+        [_behavior invalidTapCompleted];
 }
 
 /**

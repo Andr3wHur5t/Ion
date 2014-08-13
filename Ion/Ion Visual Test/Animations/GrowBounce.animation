@@ -7,7 +7,7 @@
                 "z": 1
             },
             "duration": 0.2,
-            "targetTransform":"down1"
+            "next":"down1"
         },
         "down1": {
             "scale": {
@@ -16,7 +16,7 @@
                 "z": 1
             },
             "duration": 0.1,
-            "targetTransform":"down2"
+            "next":"down2"
         },
         "down2": {
             "scale": {
@@ -25,7 +25,7 @@
                 "z": 1
             },
             "duration": 0.1,
-            "targetTransform":"down3"
+            "next":"down3"
         },
         "down3": {
             "scale": {
@@ -34,7 +34,7 @@
                 "z": 1
             },
             "duration": 0.1,
-            "targetTransform":"end"
+            "next":"end"
         },
         "end": {
             "duration": 0.1,

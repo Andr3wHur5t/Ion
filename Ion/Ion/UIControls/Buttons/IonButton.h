@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
+static const UIControlEvents IonCompletedButtonAction = 1 << 29;
+
 /**
  * This defines all states of the button.
  */

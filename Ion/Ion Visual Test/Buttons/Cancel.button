@@ -3,7 +3,8 @@
     "behavior": {
         "key": "SimpleFade",
         "info": {
-            "childBehavior": "TouchRotate",
+            
+            "childBehavior": "TapTransform",
             "childInfo": {
                 "startCycle": "shake",
                 "cycles": {

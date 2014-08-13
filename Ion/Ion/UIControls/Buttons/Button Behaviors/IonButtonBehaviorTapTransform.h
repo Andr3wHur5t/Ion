@@ -12,6 +12,7 @@
  * Keys
  */
 static NSString* sIonButtonBehavior_TapTransform_TransformationsKey = @"tranformations";
+static NSString* sIonButtonBehavior_TapTransform_EventsKey = @"events";
 static NSString* sIonButtonBehavior_TapTransform_StartCycle = @"startCycle";
 static NSString* sIonButtonBehavior_TapTransform_CyclesKey = @"cycles";
 static NSString* sIonButtonBehavior_TapTransform_Cycles_TargetCycle = @"targetCycle";
@@ -23,9 +24,19 @@ static NSString* sIonButtonBehavior_TapTransform_Cycles_TargetTransform = @"targ
 static NSString* sIonButtonBehavior_TapTransform_AnimationPointer_AnimationKey = @"animation";
 static NSString* sIonButtonBehavior_TapTransform_AnimationPointer_EntryPointKey = @"entryPoint";
 
+/**
+ * Event Name Keys
+ */
+static NSString* sIonButtonBehavior_TapTransform_Event_ErrorKey = @"error";
+static NSString* sIonButtonBehavior_TapTransform_Event_DownKey =  @"toDown";
+static NSString* sIonButtonBehavior_TapTransform_Event_UpKey =  @"toUp";
+static NSString* sIonButtonBehavior_TapTransform_Event_SelectedKey =  @"toSelected";
+static NSString* sIonButtonBehavior_TapTransform_Event_DisabledKey =  @"toDisabled";
 
-// KEY == "TouchRotate"
-@interface IonButtonBehaviorTouchRotate : IonButtonBehavior
+
+
+// KEY == "TapTransform"
+@interface IonButtonBehaviorTapTransform : IonButtonBehavior
 
 /**
  * Our current cycles name.

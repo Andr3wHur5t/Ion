@@ -3,7 +3,7 @@
     "behavior": {
         "key": "SimpleFade",
         "info": {
-            "childBehavior": "TouchRotate",
+            "childBehavior": "TapTransform",
             "childInfo": {
                 "startCycle": "expose",
                 "cycles": {
@@ -20,7 +20,7 @@
         }
     },
     "text": {
-        "key": "Button_Expose,
+        "key": "Button_Expose",
         "display": false
     }
 }
