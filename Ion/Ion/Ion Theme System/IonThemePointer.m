@@ -131,8 +131,8 @@ static NSString* sPointerTargetTypeStyle = @"style";
         result = [_attributes resolveKVPAttribute: _targetName];
     
     // Resolve Style
-    else if ( [_targetType isEqualToString: sPointerTargetTypeStyle] )
-        result = [_attributes resolveStyleAttribute: _targetName];
+   // else if ( [_targetType isEqualToString: sPointerTargetTypeStyle] )
+     //   result = [_attributes resolveStyleAttribute: _targetName];
     
     return result;
 

@@ -9,6 +9,7 @@
 #import "NSDictionary+IonTypeExtension.h"
 #import "NSArray+IonExtension.h"
 #import "NSData+IonTypeExtension.h"
+#import "NSString+TypeExtension.h"
 #import "IonKeyValuePair.h"
 #import "IonImageRef.h"
 #import "IonGradientConfiguration.h"
@@ -281,6 +282,57 @@
     return result;
 }
 
+#pragma mark Fonts
+
+/**
+ * Converts the dictionary to a font.
+ * @returns {UIFont*} the resulting font, or NULL if invalid.
+ */
+- (UIFont*) toFont {
+    NSString* fontName;
+    NSNumber* fontSize;
+    
+    fontName = [self stringForKey: sIonFontName];
+    if ( !fontName )
+        return NULL;
+    
+    fontSize = [self numberForKey: sIonFontSize];
+    if ( !fontSize )
+        return NULL;
+    
+    return [UIFont fontWithName: fontName size: [fontSize floatValue]];
+}
+
+/**
+ * Gets the font for the specified key.
+ * @param {id} the key for the font.
+ * @returns {UIFont} the resulting font, or NULL if invalid.
+ */
+- (UIFont*) fontForKey:(id) key {
+    NSDictionary* dict;
+    dict = [self dictionaryForKey: key];
+    if ( !dict )
+        return NULL;
+    
+    return [dict toFont];
+}
+
+/**
+ * Gets the text alignment representation at the specified key.
+ * @param {id} the key for the text alignment.
+ * @returns {NSTextAlignment}
+ */
+- (NSTextAlignment) textAlignmentForKey:(id) key {
+    NSString* val;
+    if ( !key )
+        return NSTextAlignmentNatural;
+    
+    val = [self stringForKey: key];
+    if ( !val )
+        return NSTextAlignmentNatural;
+    
+    return [val toTextAlignment];
+}
 
 #pragma mark Multidimensional Vectors
 /**

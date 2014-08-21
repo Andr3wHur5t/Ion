@@ -7,13 +7,15 @@
             "childBehavior": "TapTransform",
             "childInfo": {
                 "startCycle": "shake",
+                "events": {
+                    "error": { "animation":"ShakeLeftRight","entryPoint":"start"}
+                },
                 "cycles": {
                     "shake": {
                         "targetCycle": "shake",
-                        "targetTransision": { "animation":"ShakeLeftRight","entryPoint":"start"}
+                        "targetTransision": { "animation":"Cancel","entryPoint":"start"}
                     }
                 }
-                
             }
         }
     },

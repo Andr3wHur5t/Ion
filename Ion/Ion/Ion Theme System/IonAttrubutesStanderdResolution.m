@@ -138,6 +138,25 @@ unsigned int currentColorResolveDepth = 0;
 }
 
 /**
+ * Gets the Root Style.
+ * @returns {IonStyle*}
+ */
+- (IonStyle*) rootStyle {
+    IonStyle* result;
+    __weak typeof( self ) weakSelf = self;
+    result = [self objectForKey: sStylesGroupKey usingGenerationBlock: ^id( id data ) {
+        IonKeyValuePair* kvp = data;
+        kvp.attributes = [weakSelf rootMap];
+        IonStyle* style = [kvp toStyle];
+        return style;
+    }];
+    
+    if ( ![result isKindOfClass:[IonStyle class]] )
+        return NULL;
+    return result;
+}
+
+/**
  * This resolves a Image key into a UIImage object.
  * @param {NSString*} the key for us to look for.
  * @returns {UIImage*} representation of the input, or NULL if invalid.

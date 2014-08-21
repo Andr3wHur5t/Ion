@@ -12,8 +12,7 @@
 
 /** Variable Keys
  */
-static void* sThemeConfigurationKey = "IonThemeConfigurations";
-static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
+static void* sThemeConfigurationKey = "IonThemeConfiguration";
 
 @implementation UIView (IonTheme)
 
@@ -27,7 +26,7 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
     // Set the change callback
     __block typeof (self) weakSelf = self;
     [themeConfiguration setChangeCallback: ^( NSError* err ) {
-        [weakSelf setIonInternalSystemTheme: weakSelf.themeConfiguration.currentTheme];
+        [weakSelf setParentStyle: weakSelf.themeConfiguration.currentStyle.parentStyle];
     }];
     
     // Set it
@@ -47,22 +46,8 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
     return config;
 }
 
-#pragma mark External Interface
-/**
- * This is the setter for theme was set by user
- * @returns {void}
- */
-- (void) setThemeWasSetByUser:(BOOL)themeWasSetByUser {
-    objc_setAssociatedObject(self, sThemeWasSetByUserKey, [NSNumber numberWithBool:themeWasSetByUser], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
 
-/**
- * This is the getter for theme was set by user
- * @returns {BOOL}
- */
-- (BOOL) themeWasSetByUser {
-    return [(NSNumber*)objc_getAssociatedObject(self, sThemeWasSetByUserKey) boolValue];
-}
+#pragma mark Application
 
 /**
  * This sets the theme of the view, this should be called externally.
@@ -70,32 +55,47 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
  * @returns {void}
  */
 - (void) setIonTheme:(IonTheme*) themeObject {
-    IonThemeConfiguration* config;
-    IonStyle* currentStyle;
-    if ( !themeObject )
+    if ( !themeObject || ![themeObject isKindOfClass:[IonTheme class]] )
         return;
     
-    // Flip the was set by user latch; note if done through system this should cancel out.
-    self.themeWasSetByUser = YES;
-    if ( !themeObject ) {
-        [NSException exceptionWithName:@"Missing Argument" reason:@"No theme object provided!" userInfo:NULL];
-        return;
-    }
-    
-    config = self.themeConfiguration;
-    currentStyle = [themeObject styleForView: self];
-    if ( [currentStyle isKindOfClass:[IonStyle class]] && currentStyle &&
-          config.themeShouldBeAppliedToSelf ) {
-        
-        [currentStyle applyToView: self];
-        config.currentTheme = themeObject;
-        config.currentStyle = currentStyle;
-    }
-    
-    [self setThemeToChildren: themeObject];
+    // Set the root style as the parent style
+    [self setParentStyle: [themeObject rootStyle]];
 }
 
-#pragma mark Debug
+/**
+ * Sets the parent style for the view, and subviews.
+ * @param {IonStyle*} the style to be applied
+ * @returns {void}
+ */
+- (void) setParentStyle:(IonStyle*) style {
+    if ( !style || ![style isKindOfClass: [IonStyle class]] )
+        return;
+    
+    [self setStyle: [style styleForView: self]];
+}
+
+/**
+ * Sets the current style for the view, and the parent style for subviews.
+ * @param {IonStyle*} the current style to apply.
+ * @returns {void}
+ */
+- (void) setStyle:(IonStyle*) style {
+    if ( !style || ![style isKindOfClass:[IonStyle class]] )
+        return;
+    // Update ourself
+    self.themeConfiguration.currentStyle = style;
+    
+    // Apply to self
+    if ( self.themeConfiguration.themeShouldBeAppliedToSelf )
+        [style applyToView: self];
+    
+    // Set Children styles
+    for ( UIView* child in self.subviews )
+        [child setParentStyle: style];
+}
+
+
+#pragma mark Utilities
 
 /**
  * This will return the object theme settings formatted as a combined string.
@@ -106,33 +106,5 @@ static void* sThemeWasSetByUserKey = "IonThemeWasSetByUser";
             self.themeConfiguration.themeClass,
             self.themeConfiguration.themeID];
 }
-
-#pragma mark Internal
-
-/**
-  * This sets the theme of the view if the theme hasn't been set by the user
-  * @praram {NSObject} the theme object to set
-  * @returns {void}
-  */
-- (void) setIonInternalSystemTheme:(IonTheme*) themeObject {
-    if ( !self.themeWasSetByUser ) {
-        [self setIonTheme:themeObject];
-        
-        // Cancel out the latch flip so we remain in the correct state
-        self.themeWasSetByUser = NO;
-    }
-}
-
-/**
- * This sets theme to the children views.
- * @praram {NSObject} the theme object to set
- * @returns {void}
- */
-- (void) setThemeToChildren:(IonTheme*) themeObject {
-    for ( UIView* child in self.subviews )
-         [child setIonInternalSystemTheme: themeObject];
-}
-
-
 
 @end

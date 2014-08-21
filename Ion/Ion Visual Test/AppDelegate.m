@@ -25,6 +25,8 @@
  */
 - (void) setupApplication {
     NSLog(@"externial application startup called");
+    
+    self.window.systemTheme = [[IonTheme alloc] initWithFileName: @"TestStyle"];
 }
 
 
@@ -109,7 +111,7 @@
     imageEnd = [[NSDate date] timeIntervalSince1970];
     
     styleStart = [[NSDate date] timeIntervalSince1970];
-    resultStyle = [self.window.systemTheme resolveStyleAttribute:@"cls_simpleStyle"];
+    //resultStyle = [self.window.systemTheme resolveStyleAttribute:@"cls_simpleStyle"];
     styleEnd = [[NSDate date] timeIntervalSince1970];
     
     gradientStart = [[NSDate date] timeIntervalSince1970];

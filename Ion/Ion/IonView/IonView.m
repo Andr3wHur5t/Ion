@@ -32,7 +32,7 @@
     [super addSubview: view];
     if ( !view )
         return;
-    [view setIonInternalSystemTheme: self.themeConfiguration.currentTheme ];
+    [view setParentStyle: self.themeConfiguration.currentStyle ];
 }
 
 

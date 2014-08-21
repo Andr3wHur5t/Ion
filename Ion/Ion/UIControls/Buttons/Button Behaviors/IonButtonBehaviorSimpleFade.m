@@ -7,6 +7,7 @@
 //
 
 #import "IonButtonBehaviorSimpleFade.h"
+#import "NSDictionary+IonThemeResolution.h"
 #import <IonData/IonData.h>
 
 @interface IonButtonBehaviorSimpleFade () {
@@ -57,8 +58,6 @@
     [super setUpWithButton: button andInfoObject: infoObject];
     if ( !button || ![button isKindOfClass:[IonInterfaceButton class]] )
         return;
-    
-    button.themeConfiguration.themeShouldBeAppliedToSelf = false;
 }
 
 
@@ -72,6 +71,7 @@
     [super updateButtonToMatchState: currentState animated: animated];
     __block NSString *stateKey;
     void(^ContentChangeBlock)( );
+
     
     // Set
     stateKey = [IonButtonBehavior keyForButtonState: currentState];
@@ -90,4 +90,39 @@
     
 }
 
+/**
+ * Informs the behavior that the view was applyed with a style.
+ * @param {IonStyle*} the new style.
+ * @returns {void}
+ */
+- (void) styleWasApplyed:(IonStyle*) style {
+    NSDictionary* dict;
+    UIColor *norm, *down, *selected, *disabled;
+    if ( !style || ![style isKindOfClass: [IonStyle class]] )
+        return;
+    
+    dict = [style.configuration dictionaryForKey: sIonButtonSimpleFade_States];
+    if ( !dict )
+        return;
+    
+    norm = [dict colorForKey: sIonButtonSimpleFade_States_Norm usingTheme: style.theme ];
+    if ( norm )
+        [_stateEffects setObject: norm
+                          forKey: [IonButtonBehavior keyForButtonState: IonButtonState_Norm]];
+    
+    down = [dict colorForKey: sIonButtonSimpleFade_States_Down usingTheme: style.theme ];
+    if ( down )
+        [_stateEffects setObject: down
+                          forKey: [IonButtonBehavior keyForButtonState: IonButtonState_Down]];
+    
+    selected = [dict colorForKey: sIonButtonSimpleFade_States_Selected usingTheme: style.theme ];
+    if ( selected )
+        [_stateEffects setObject: selected
+                          forKey: [IonButtonBehavior keyForButtonState: IonButtonState_Selected]];
+    
+    disabled = [dict colorForKey: sIonButtonSimpleFade_States_Disabled usingTheme: style.theme ];
+    if ( disabled )
+        [_stateEffects setObject: disabled
+                          forKey: [IonButtonBehavior keyForButtonState: IonButtonState_Disabled]];
+}
 @end

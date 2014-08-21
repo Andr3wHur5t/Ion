@@ -24,6 +24,11 @@ static NSString* sIonTransformAnimation_ScaleKey = @"scale";
 
 // Appearance
 static NSString* sIonTransformAnimation_AlphaKey = @"alpha";
+static NSString* sIonTransformAnimation_ColorKey = @"color";
+
+// Debuging
+static NSString* sIonTransformAnimation_LogKey = @"log";
+
 
 
 @interface IonTransformAnimation : NSObject

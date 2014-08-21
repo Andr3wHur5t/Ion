@@ -9,9 +9,30 @@
 #import <UIKit/UIKit.h>
 #import "IonMethodMap.h"
 
+/**
+ * Keys
+ */
+static NSString* sIonTheme_StyleChildren = @"children";
+static NSString* sIonTheme_StyleElement = @"";
+static NSString* sIonTheme_StyleClass = @"cls_";
+static NSString* sIonTheme_StyleId = @"id_";
 
 @class IonKVPAccessBasedGenerationMap;
 @class IonTheme;
+@class IonStyle;
+
+
+@protocol IonThemeSpecialUIView <NSObject>
+
+/**
+ * Applys The Style to self.
+ * @param {IonStyle*} the style to apply to the view.
+ * @returns {void}
+ */
+- (void) applyStyle:(IonStyle*) style;
+
+@end
+
 
 @interface IonStyle : NSObject
 #pragma mark proprieties
@@ -60,25 +81,44 @@
 + (IonStyle*) resolveWithMap:(NSDictionary*) map andAttributes:(IonKVPAccessBasedGenerationMap*) attributes;
 
 /**
+ * Sets the attributes that we should resolve with.
+ * @param {IonThemeAttributes*} the attribute we should resolve with.
+ * @returns {void}
+ */
+- (void) setResolutionAttributes:(IonKVPAccessBasedGenerationMap*) attributes;
+
+/**
  * This applies the current style to the inputted view.
  * @param {UIView*} the view to apply the style to.
  * @returns {void}
  */
 - (void) applyToView:(UIView*)view;
 
+
+#pragma mark Children Retrieval
+
 /**
- * This overrides the current styles proprieties  with the inputed style.
+ * Gets the style that corisponds to the inputted View.
+ * @param {UIView*} the view to get the style for.
+ * @returns {IonStyle*} the resulting style
+ */
+- (IonStyle*) styleForView:(UIView*) view;
+
+/**
+ * Gets the substyle for the specified key.
+ * @param {NSString*} the key for the style to retrive
+ * @returns {IonStyle*} the style, or NULL.
+ */
+- (IonStyle*) childStyleForKey:(NSString*) key;
+
+#pragma mark Utilities
+
+/**
+ * Overrides the current styles proprieties  with the inputed style.
  * @param {IonStyle*} the style to override the current style
  * @returns {IonStyle*} the net style of the override
  */
 - (IonStyle*) overrideStyleWithStyle:(IonStyle*)overridingStyle;
-
-/**
- * This sets the attributes that we should resolve with.
- * @param {IonThemeAttributes*} the attribute we should resolve with.
- * @returns {void}
- */
-- (void) setResolutionAttributes:(IonKVPAccessBasedGenerationMap*) attributes;
 
 /**
  * Comparison of styles.

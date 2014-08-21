@@ -25,6 +25,10 @@ static NSString* sIonGradientTypeRadial = @"radial";
 
 static NSString* sIonGradientAngleKey = @"angle";
 
+#pragma mark Fonts
+static NSString* sIonFontName = @"name";
+static NSString* sIonFontSize = @"size";
+
 #pragma mark UIKit Conversions
 static NSString* sIonXKey = @"x";
 static NSString* sIonYKey = @"y";

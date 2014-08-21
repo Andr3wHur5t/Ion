@@ -20,13 +20,6 @@ static NSString* sIonButtonBehaviorRootClassKey = @"IonButtonBehavior";
 static NSString* sIonButtonConfigurationItemKey = @"key";
 static NSString* sIonButtonConfigurationBaseImageKey = @"baseImage";
 
-static NSString* sIonButtonConfigurationStatsKey = @"states";
-static NSString* sIonButtonConfigurationStats_NormKey = @"norm";
-static NSString* sIonButtonConfigurationStats_DownKey = @"down";
-static NSString* sIonButtonConfigurationStats_SelectedKey = @"selected";
-static NSString* sIonButtonConfigurationStats_DisabledKey = @"disabled";
-
-
 static NSString* sIonButtonConfigurationBehaviorKey = @"behavior";
 static NSString* sIonButtonConfigurationBehavior_InfoKey = @"info";
 
@@ -34,6 +27,7 @@ static NSString* sIonButtonConfigurationTextKey = @"text";
 static NSString* sIonButtonConfigurationText_WillDisplayKey = @"display";
 
 @class IonPath;
+@class IonStyle;
 @class IonInterfaceButton;
 
 
@@ -70,12 +64,19 @@ static NSString* sIonButtonConfigurationText_WillDisplayKey = @"display";
  */
 - (void) updateButtonToMatchState:(IonButtonStates) currentState animated:(BOOL) animated;
 
+/**
+ * Informs the behavior that the view was applyed with a style.
+ * @param {IonStyle*} the new style.
+ * @returns {void}
+ */
+- (void) styleWasApplyed:(IonStyle*) style;
+
 @end
 
 /** = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  *                              IonInterfaceButton
  * = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =  */
-@interface IonInterfaceButton : IonButton
+@interface IonInterfaceButton : IonButton <IonThemeSpecialUIView>
 #pragma mark Construction
 
 /**

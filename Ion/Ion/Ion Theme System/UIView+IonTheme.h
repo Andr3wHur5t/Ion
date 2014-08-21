@@ -26,9 +26,6 @@ static const NSString* sIonThemeElementStateBad =                               
 static const NSString* sIonThemeElementStateWorking =                           @"state_working";
 static const NSString* sIonThemeElementStateUnknown =                           @"state_unknown";
 
-
-
-
 @interface UIView (IonTheme)
 
 #pragma mark External Interface
@@ -38,11 +35,8 @@ static const NSString* sIonThemeElementStateUnknown =                           
  */
 @property (strong, nonatomic) IonThemeConfiguration* themeConfiguration;
 
-/**
- * This is the current Ion theme
- */
-@property (assign, nonatomic) BOOL themeWasSetByUser;
 
+#pragma mark Application
 
 /**
  * This sets the theme of the view, this should be called externally.
@@ -51,21 +45,19 @@ static const NSString* sIonThemeElementStateUnknown =                           
  */
 - (void) setIonTheme:(IonTheme*) themeObject;
 
-
-#pragma mark Internal
-
 /**
- * This sets the theme of the view if the theme hasn't been set by the user
- * @praram {NSObject} the theme object to set
+ * Sets the parrent style for the view, and subviews.
+ * @param {IonStyle*} the style to be applied
  * @returns {void}
  */
-- (void) setIonInternalSystemTheme:(IonTheme*) themeObject;
+- (void) setParentStyle:(IonStyle*) style;
 
 /**
- * This sets theme to the children views.
- * @praram {NSObject} the theme object to set
+ * Sets the current style for the view, and the parrent style for subviews.
+ * @param {IonStyle*} the current style to apply.
  * @returns {void}
  */
-- (void) setThemeToChildren:(IonTheme*) themeObject;
+- (void) setStyle:(IonStyle*) style;
+
 
 @end

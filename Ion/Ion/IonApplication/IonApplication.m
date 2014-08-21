@@ -377,7 +377,7 @@
     if ( !block )
         return;
     
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC);
     dispatch_after( popTime, dispatch_get_main_queue(), ^(void){
         block( );
     });

@@ -53,7 +53,13 @@ typedef id(^IonAttributeGenerationBlock)(IonKVPAccessBasedGenerationMap* context
  * @param {NSString*} the key for us to look for.
  * @returns {IonStyle*} representation of the input, or NULL if invalid.
  */
-- (IonStyle*) resolveStyleAttribute:(NSString*) value;
+//- (IonStyle*) resolveStyleAttribute:(NSString*) value;
+
+/**
+ * Gets the Root Style.
+ * @returns {IonStyle*}
+ */
+- (IonStyle*) rootStyle;
 
 /**
  * This resolves a Image key into a UIImage object.

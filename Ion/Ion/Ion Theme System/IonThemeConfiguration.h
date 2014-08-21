@@ -30,10 +30,6 @@
 @property (strong, nonatomic) NSString* themeID;
 
 #pragma mark State Object
-/**
- * The current theme.
- */
-@property (strong, nonatomic) IonTheme* currentTheme;
 
 /**
  * The current style.

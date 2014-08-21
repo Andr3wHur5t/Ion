@@ -31,6 +31,18 @@
 		370588CB199ADA1700597822 /* ShakeLeftRight.animation in Resources */ = {isa = PBXBuildFile; fileRef = 370588CA199ADA1700597822 /* ShakeLeftRight.animation */; };
 		370588CD199ADB9000597822 /* Cancel.button in Resources */ = {isa = PBXBuildFile; fileRef = 370588CC199ADB9000597822 /* Cancel.button */; };
 		370588CF199AF5EF00597822 /* Shrink.animation in Resources */ = {isa = PBXBuildFile; fileRef = 370588CE199AF5EF00597822 /* Shrink.animation */; };
+		370A2289199BEB9A006FCD75 /* XFlip.animation in Resources */ = {isa = PBXBuildFile; fileRef = 370A2288199BEB9A006FCD75 /* XFlip.animation */; };
+		370A228B19A29422006FCD75 /* Hamburger.button in Resources */ = {isa = PBXBuildFile; fileRef = 370A228A19A29422006FCD75 /* Hamburger.button */; };
+		370A228E19A2947C006FCD75 /* Confirm.button in Resources */ = {isa = PBXBuildFile; fileRef = 370A228D19A2947C006FCD75 /* Confirm.button */; };
+		370A229019A295CC006FCD75 /* Confirm.animation in Resources */ = {isa = PBXBuildFile; fileRef = 370A228F19A295CC006FCD75 /* Confirm.animation */; };
+		370A229219A2A03C006FCD75 /* General_ExposeArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 370A229119A2A03C006FCD75 /* General_ExposeArrow.png */; };
+		370A229419A2B59C006FCD75 /* Cancel.animation in Resources */ = {isa = PBXBuildFile; fileRef = 370A229319A2B59C006FCD75 /* Cancel.animation */; };
+		370A229919A2C420006FCD75 /* IonLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 370A229619A2C094006FCD75 /* IonLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370A229A19A2C420006FCD75 /* IonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 370A229719A2C094006FCD75 /* IonLabel.m */; };
+		370A229E19A497C0006FCD75 /* IonLabelOverflowBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 370A229C19A497C0006FCD75 /* IonLabelOverflowBehavior.h */; };
+		370A229F19A497C0006FCD75 /* IonLabelOverflowBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 370A229D19A497C0006FCD75 /* IonLabelOverflowBehavior.m */; };
+		370A22A319A58C32006FCD75 /* NSString+TypeExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 370A22A119A58C32006FCD75 /* NSString+TypeExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370A22A419A58C32006FCD75 /* NSString+TypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 370A22A219A58C32006FCD75 /* NSString+TypeExtension.m */; };
 		3719144C198BADD7002D7355 /* IonDataConversions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3719144B198BADD7002D7355 /* IonDataConversions.m */; };
 		3719144E198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3719144D198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m */; };
 		37191450198BC281002D7355 /* IonDataCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3719144F198BC281002D7355 /* IonDataCacheTests.m */; };
@@ -162,7 +174,6 @@
 		37E6816519975709005096AC /* IonInterfaceButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E6816319975709005096AC /* IonInterfaceButton.m */; };
 		37E68168199767C6005096AC /* IonButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 37E68166199767C6005096AC /* IonButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37E68169199767C6005096AC /* IonButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E68167199767C6005096AC /* IonButton.m */; };
-		37E6816B19979BC1005096AC /* Hamburger.button in Resources */ = {isa = PBXBuildFile; fileRef = 37E6816A19979BC1005096AC /* Hamburger.button */; };
 		37E6817019994418005096AC /* IonButtonBehaviorSimpleFade.h in Headers */ = {isa = PBXBuildFile; fileRef = 37E6816E19994418005096AC /* IonButtonBehaviorSimpleFade.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37E6817119994418005096AC /* IonButtonBehaviorSimpleFade.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E6816F19994418005096AC /* IonButtonBehaviorSimpleFade.m */; };
 		37EBAC59195C9A93008D6BD6 /* Ion.h in Headers */ = {isa = PBXBuildFile; fileRef = 37EBAC58195C9A93008D6BD6 /* Ion.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -272,6 +283,18 @@
 		370588CA199ADA1700597822 /* ShakeLeftRight.animation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ShakeLeftRight.animation; path = "Ion Visual Test/Animations/ShakeLeftRight.animation"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		370588CC199ADB9000597822 /* Cancel.button */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cancel.button; path = "Ion Visual Test/Buttons/Cancel.button"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		370588CE199AF5EF00597822 /* Shrink.animation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Shrink.animation; path = "Ion Visual Test/Animations/Shrink.animation"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		370A2288199BEB9A006FCD75 /* XFlip.animation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = XFlip.animation; path = "Ion Visual Test/Animations/XFlip.animation"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		370A228A19A29422006FCD75 /* Hamburger.button */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Hamburger.button; path = "Ion Visual Test/Buttons/Hamburger.button"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		370A228D19A2947C006FCD75 /* Confirm.button */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Confirm.button; path = "Ion Visual Test/Buttons/Confirm.button"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		370A228F19A295CC006FCD75 /* Confirm.animation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Confirm.animation; path = "Ion Visual Test/Animations/Confirm.animation"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		370A229119A2A03C006FCD75 /* General_ExposeArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = General_ExposeArrow.png; sourceTree = "<group>"; };
+		370A229319A2B59C006FCD75 /* Cancel.animation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cancel.animation; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		370A229619A2C094006FCD75 /* IonLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonLabel.h; path = "UIControls/Text View/IonLabel.h"; sourceTree = "<group>"; };
+		370A229719A2C094006FCD75 /* IonLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonLabel.m; path = "UIControls/Text View/IonLabel.m"; sourceTree = "<group>"; };
+		370A229C19A497C0006FCD75 /* IonLabelOverflowBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonLabelOverflowBehavior.h; path = "UIControls/Text View/IonLabelOverflowBehavior.h"; sourceTree = "<group>"; };
+		370A229D19A497C0006FCD75 /* IonLabelOverflowBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonLabelOverflowBehavior.m; path = "UIControls/Text View/IonLabelOverflowBehavior.m"; sourceTree = "<group>"; };
+		370A22A119A58C32006FCD75 /* NSString+TypeExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TypeExtension.h"; path = "NSString/NSString+TypeExtension.h"; sourceTree = "<group>"; };
+		370A22A219A58C32006FCD75 /* NSString+TypeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TypeExtension.m"; path = "NSString/NSString+TypeExtension.m"; sourceTree = "<group>"; };
 		3719144B198BADD7002D7355 /* IonDataConversions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonDataConversions.m; sourceTree = "<group>"; };
 		3719144D198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonAdaptedMutableDictionaryTests.m; sourceTree = "<group>"; };
 		3719144F198BC281002D7355 /* IonDataCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonDataCacheTests.m; sourceTree = "<group>"; };
@@ -381,7 +404,6 @@
 		37E6816319975709005096AC /* IonInterfaceButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonInterfaceButton.m; path = UIControls/IonInterfaceButton.m; sourceTree = "<group>"; };
 		37E68166199767C6005096AC /* IonButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonButton.h; path = UIControls/Buttons/IonButton.h; sourceTree = "<group>"; };
 		37E68167199767C6005096AC /* IonButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonButton.m; path = UIControls/Buttons/IonButton.m; sourceTree = "<group>"; };
-		37E6816A19979BC1005096AC /* Hamburger.button */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Hamburger.button; path = "Ion Visual Test/Hamburger.button"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		37E6816E19994418005096AC /* IonButtonBehaviorSimpleFade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonButtonBehaviorSimpleFade.h; path = "UIControls/Buttons/Button Behaviors/IonButtonBehaviorSimpleFade.h"; sourceTree = "<group>"; };
 		37E6816F19994418005096AC /* IonButtonBehaviorSimpleFade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonButtonBehaviorSimpleFade.m; path = "UIControls/Buttons/Button Behaviors/IonButtonBehaviorSimpleFade.m"; sourceTree = "<group>"; };
 		37EBAC53195C9A93008D6BD6 /* Ion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -534,14 +556,16 @@
 		370588B8199AB50500597822 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				37E6816A19979BC1005096AC /* Hamburger.button */,
+				370A228A19A29422006FCD75 /* Hamburger.button */,
 				370588B9199AB53100597822 /* Back.button */,
 				370588BB199AB7FA00597822 /* Settings.button */,
 				370588BD199AB9D200597822 /* Expose.button */,
 				370588C6199AD6D500597822 /* Add.button */,
 				370588CC199ADB9000597822 /* Cancel.button */,
+				370A228D19A2947C006FCD75 /* Confirm.button */,
 			);
 			name = Buttons;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		370588BF199ABF6200597822 /* Animations */ = {
@@ -553,8 +577,53 @@
 				370588C8199AD73A00597822 /* GrowBounce.animation */,
 				370588CA199ADA1700597822 /* ShakeLeftRight.animation */,
 				370588CE199AF5EF00597822 /* Shrink.animation */,
+				370A2288199BEB9A006FCD75 /* XFlip.animation */,
+				370A228F19A295CC006FCD75 /* Confirm.animation */,
+				370A229319A2B59C006FCD75 /* Cancel.animation */,
 			);
 			name = Animations;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		370A228C19A29431006FCD75 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				376484CB1995FAF100B65EAF /* Image Assets */,
+				376DA8B919777B7F008D692E /* TestStyle.theme */,
+				376DA8EB197BB496008D692E /* appDefault.theme */,
+				376484AF1994535D00B65EAF /* interfaceImages.manifest */,
+				370588BF199ABF6200597822 /* Animations */,
+				370588B8199AB50500597822 /* Buttons */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		370A229519A2C059006FCD75 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				370A229B19A496B6006FCD75 /* Overflow Deligates */,
+				370A229619A2C094006FCD75 /* IonLabel.h */,
+				370A229719A2C094006FCD75 /* IonLabel.m */,
+			);
+			name = Label;
+			sourceTree = "<group>";
+		};
+		370A229B19A496B6006FCD75 /* Overflow Deligates */ = {
+			isa = PBXGroup;
+			children = (
+				370A229C19A497C0006FCD75 /* IonLabelOverflowBehavior.h */,
+				370A229D19A497C0006FCD75 /* IonLabelOverflowBehavior.m */,
+			);
+			name = "Overflow Deligates";
+			sourceTree = "<group>";
+		};
+		370A22A019A58C01006FCD75 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				370A22A119A58C32006FCD75 /* NSString+TypeExtension.h */,
+				370A22A219A58C32006FCD75 /* NSString+TypeExtension.m */,
+			);
+			name = NSString;
 			sourceTree = "<group>";
 		};
 		371D5D67197FB0FE00485DC0 /* KVP */ = {
@@ -955,6 +1024,7 @@
 		376484D01995FAF100B65EAF /* Arrow */ = {
 			isa = PBXGroup;
 			children = (
+				370A229119A2A03C006FCD75 /* General_ExposeArrow.png */,
 				376484D21995FAF100B65EAF /* General_Arrow.png */,
 			);
 			path = Arrow;
@@ -1111,6 +1181,7 @@
 		37B9CD1E197FA12800424EFC /* Data Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				370A22A019A58C01006FCD75 /* NSString */,
 				376484931992486A00B65EAF /* NSData */,
 				371D5D7E1980C99400485DC0 /* Dictionary Extensions */,
 				3771F3C0198E7FD0001DBBB9 /* NSArrayExtension */,
@@ -1133,6 +1204,7 @@
 		37E6816019975680005096AC /* UIControls */ = {
 			isa = PBXGroup;
 			children = (
+				370A229519A2C059006FCD75 /* Label */,
 				37E6816119975694005096AC /* Button */,
 			);
 			name = UIControls;
@@ -1238,17 +1310,14 @@
 		37EBAC74195C9B35008D6BD6 /* Ion Visual Test */ = {
 			isa = PBXGroup;
 			children = (
-				376484CB1995FAF100B65EAF /* Image Assets */,
+				370A228C19A29431006FCD75 /* Assets */,
 				372DD2391972790A00CC0A58 /* Views */,
 				37EBAC79195C9B35008D6BD6 /* AppDelegate.h */,
 				37EBAC7A195C9B35008D6BD6 /* AppDelegate.m */,
 				37EBAC7C195C9B35008D6BD6 /* Images.xcassets */,
 				37EBAC75195C9B35008D6BD6 /* Supporting Files */,
 				377C3EDA1970C2C300EA6599 /* IONgraphics.xcassets */,
-				376DA8B919777B7F008D692E /* TestStyle.theme */,
-				376DA8EB197BB496008D692E /* appDefault.theme */,
 				373C99E4198A52FD002F46AD /* TestConfig.json */,
-				376484AF1994535D00B65EAF /* interfaceImages.manifest */,
 			);
 			path = "Ion Visual Test";
 			sourceTree = "<group>";
@@ -1380,8 +1449,6 @@
 		37FCF175197F8337004C14C8 /* Ion Test Application */ = {
 			isa = PBXGroup;
 			children = (
-				370588BF199ABF6200597822 /* Animations */,
-				370588B8199AB50500597822 /* Buttons */,
 				37EBAC74195C9B35008D6BD6 /* Ion Visual Test */,
 				37EBAC85195C9B35008D6BD6 /* Ion Visual TestTests */,
 			);
@@ -1525,6 +1592,7 @@
 				376DA8B21976FB47008D692E /* IonTheme.h in Headers */,
 				370588A71999E60400597822 /* UIView+IonPositionAndOrientation.h in Headers */,
 				37E6816419975709005096AC /* IonInterfaceButton.h in Headers */,
+				370A229919A2C420006FCD75 /* IonLabel.h in Headers */,
 				376DA8C519791299008D692E /* IonThemePointer.h in Headers */,
 				377C3EBD196F316900EA6599 /* IonApplication.h in Headers */,
 				377C3EC2196F316900EA6599 /* IonRapidStartViewController.h in Headers */,
@@ -1534,6 +1602,7 @@
 				370588AC1999E89000597822 /* IonButtonBehaviorTapTransform.h in Headers */,
 				371D5D6F197FB15000485DC0 /* IonKVP+IonTheme.h in Headers */,
 				371D5D7C1980C73C00485DC0 /* NSDictionary+IonThemeResolution.h in Headers */,
+				370A229E19A497C0006FCD75 /* IonLabelOverflowBehavior.h in Headers */,
 				371D5D781980784E00485DC0 /* IonThemeConfiguration.h in Headers */,
 				37FCF13B197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.h in Headers */,
 				377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */,
@@ -1562,6 +1631,7 @@
 				37B9CD1A197F8E6100424EFC /* IonMath.h in Headers */,
 				371D5D951981C58000485DC0 /* IonPath.h in Headers */,
 				37B9CD22197FA12800424EFC /* UIColor+IonColor.h in Headers */,
+				370A22A319A58C32006FCD75 /* NSString+TypeExtension.h in Headers */,
 				37B9CD15197F8E6100424EFC /* IonImageRef.h in Headers */,
 				37B9CD19197F8E6100424EFC /* IonMethodMap.h in Headers */,
 				376484C0199491FB00B65EAF /* NSDictionary+IonFile.h in Headers */,
@@ -1774,6 +1844,7 @@
 				3764848E19907CF000B65EAF /* IONgraphics.xcassets in Resources */,
 				370588C9199AD73A00597822 /* GrowBounce.animation in Resources */,
 				370588C3199AC00E00597822 /* UpDownRotate.animation in Resources */,
+				370A2289199BEB9A006FCD75 /* XFlip.animation in Resources */,
 				370588CF199AF5EF00597822 /* Shrink.animation in Resources */,
 				37EBAC7D195C9B35008D6BD6 /* Images.xcassets in Resources */,
 				370588C5199AD40F00597822 /* YawFlip.animation in Resources */,
@@ -1786,14 +1857,18 @@
 				376484E51995FAF100B65EAF /* General_Arrow.png in Resources */,
 				370588CD199ADB9000597822 /* Cancel.button in Resources */,
 				376484B01994535D00B65EAF /* interfaceImages.manifest in Resources */,
+				370A229219A2A03C006FCD75 /* General_ExposeArrow.png in Resources */,
 				376DA8EC197BB496008D692E /* appDefault.theme in Resources */,
 				376484EF1995FAF100B65EAF /* General_Settings.png in Resources */,
+				370A228B19A29422006FCD75 /* Hamburger.button in Resources */,
+				370A228E19A2947C006FCD75 /* Confirm.button in Resources */,
+				370A229019A295CC006FCD75 /* Confirm.animation in Resources */,
 				376484E71995FAF100B65EAF /* General_Cancel.png in Resources */,
 				370588BC199AB7FA00597822 /* Settings.button in Resources */,
+				370A229419A2B59C006FCD75 /* Cancel.animation in Resources */,
 				373C99E5198A52FD002F46AD /* TestConfig.json in Resources */,
 				376DA8BA19777B7F008D692E /* TestStyle.theme in Resources */,
 				370588991999C8BB00597822 /* placeholder.png in Resources */,
-				37E6816B19979BC1005096AC /* Hamburger.button in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1842,9 +1917,11 @@
 				372DD23E19727C9800CC0A58 /* UIView+IonTheme.m in Sources */,
 				376DA8E5197B4597008D692E /* IonAttrubutesStanderdResolution.m in Sources */,
 				372DD22D1972764D00CC0A58 /* IonView.m in Sources */,
+				370A229F19A497C0006FCD75 /* IonLabelOverflowBehavior.m in Sources */,
 				370588A81999E60400597822 /* UIView+IonPositionAndOrientation.m in Sources */,
 				376DA8C619791299008D692E /* IonThemePointer.m in Sources */,
 				371D5D70197FB15000485DC0 /* IonKVP+IonTheme.m in Sources */,
+				370A229A19A2C420006FCD75 /* IonLabel.m in Sources */,
 				377C3EBE196F316900EA6599 /* IonApplication.m in Sources */,
 				377C3EC3196F316900EA6599 /* IonRapidStartViewController.m in Sources */,
 				372DD24219727D0C00CC0A58 /* UIView+IonAnimation.m in Sources */,
@@ -1891,6 +1968,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				371D5D8D1980FD6300485DC0 /* IonFile.m in Sources */,
+				370A22A419A58C32006FCD75 /* NSString+TypeExtension.m in Sources */,
 				371D5D6B197FB10800485DC0 /* IonKeyValuePair.m in Sources */,
 				3764849819924B7A00B65EAF /* NSData+IonCrypto.m in Sources */,
 				371D5D821980C99400485DC0 /* NSDictionary+IonTypeExtension.m in Sources */,

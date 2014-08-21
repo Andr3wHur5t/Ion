@@ -10,6 +10,7 @@
 #import "IonStyle+IonStdStyleApplyMethods.h"
 #import "NSDictionary+IonTypeExtension.h"
 #import "IonKVPAccessBasedGenerationMap.h"
+#import "UIView+IonTheme.h"
 #import "IonTheme.h"
 #import "IonThemePointer.h"
 
@@ -17,14 +18,16 @@
 
 
 @interface IonStyle () {
+    // Used to reduce recompilation
     BOOL styleHasBeenCompiled;
 }
 
 @end
 
 @implementation IonStyle
+
 /**
- * This will resolve a style using a map and an Attribute Set.
+ * Resolves a style using a map and an attribute Set.
  * @param {NSDictionary*} the map to process
  * @param {IonThemeAttributes*} the theme attributes set to do our searches on if needed.
  * @returns {UIColor*} representation, or NULL of invalid
@@ -38,7 +41,7 @@
 #pragma mark Constructors
 
 /**
- * This is the default constructor
+ * The default constructor
  * @returns {instancetype}
  */
 - (instancetype) init {
@@ -48,12 +51,11 @@
         [self addIonStdStyleApplyProprieties];
         styleHasBeenCompiled = false;
     }
-    
     return self;
 }
 
 /**
- * Constructs a style using a dictionary configuatation.
+ * Constructs a style using a dictionary configuration.
  * @param {NSDictionary*} configuration
  * @returns {instancetype}
  */
@@ -63,7 +65,7 @@
 
 
 /**
- * Constructs a style using a dictionary configuatation.
+ * Constructs a style using a dictionary configuration.
  * @param {NSDictionary*} configuration
  * @param {IonThemeAttributes*} the attributes we should resolve with.
  * @returns {instancetype}
@@ -74,15 +76,14 @@
         [self setResolutionAttributes: attributes];
         [self setObjectConfig: dict];
     }
-    
     return self;
 }
 
 
-#pragma mark External Interface
+#pragma mark Setters
 
 /**
- * This sets the object config.
+ * Sets the object config.
  * @param {NSDictionary*} the configuration to set.
  * @returns {void}
  */
@@ -91,8 +92,9 @@
         return;
     _configuration = [[NSMutableDictionary alloc] initWithDictionary:configMap];
 }
+
 /**
- * This sets the attributes that we should resolve with.
+ * Sets the attributes that we should resolve with.
  * @param {IonThemeAttributes*} the attributes we should resolve with.
  * @returns {void}
  */
@@ -102,8 +104,10 @@
     _theme = attributes;
 }
 
+#pragma mark Application
+
 /**
- * This applies the current style to the inputted view.
+ * Applies the current style to the inputted view.
  * @param {UIView*} the view to apply the style to.
  * @returns {void}
  */
@@ -123,18 +127,86 @@
     
     // To Animate we will have to to a ca transaction for the CALayer, UI Animation Block for others.
     
-    // Set each
+    // Set General
     for ( NSString* key in keys )
         if ( key )
             [_proprietyMethodMap invokeMethodOnTargetWithKey: key
                                                   withObject: view
                                                    andObject: [_configuration objectForKey: key]];
     
+    // Set the view using the special properties
+    if ( [view conformsToProtocol:@protocol(IonThemeSpecialUIView)] )
+        [view performSelector: @selector(applyStyle:) withObject: self];
+}
+
+#pragma mark Children Retrieval
+
+/**
+ * Gets the style that corisponds to the inputted View.
+ * @param {UIView*} the view to get the style for.
+ * @returns {IonStyle*} the resulting style
+ */
+- (IonStyle*) styleForView:(UIView*) view {
+    IonStyle *res, *ele, *cls, *Id;
+    NSString *eleStr, *clsStr, *idStr;
+    if ( !view || ![view isKindOfClass:[UIView class]] )
+        return self; // return the default style which is self
     
+    // Get Substyles for keys
+    eleStr = view.themeConfiguration.themeElement;
+    if ( eleStr )
+        ele = [self childStyleForKey: [sIonTheme_StyleElement   stringByAppendingString: eleStr]];
+    
+    clsStr = view.themeConfiguration.themeClass;
+    if ( clsStr )
+        cls = [self childStyleForKey: [sIonTheme_StyleClass     stringByAppendingString: clsStr]];
+    
+    idStr = view.themeConfiguration.themeID;
+    if ( idStr )
+        Id =  [self childStyleForKey: [sIonTheme_StyleId        stringByAppendingString: idStr]];
+    
+    // Combine
+    res = self;
+    if ( ele )
+        res = [res overrideStyleWithStyle: ele];
+    if ( cls )
+        res = [res overrideStyleWithStyle: cls];
+    if ( Id )
+        res = [res overrideStyleWithStyle: Id];
+    
+    return res;
 }
 
 /**
- * Compiles the style recursively using the composited styles of all ancestors
+ * Gets the substyle for the specified key.
+ * @param {NSString*} the key for the style to retrive
+ * @returns {IonStyle*} the style, or NULL.
+ */
+- (IonStyle*) childStyleForKey:(NSString*) key {
+    NSDictionary *children, *target;
+    IonStyle* child;
+    if ( !key || ![key isKindOfClass: [NSString class]] )
+        return NULL;
+    
+    children = [_configuration dictionaryForKey: @"children"];
+    if ( !children )
+        return NULL;
+    
+    target = [children dictionaryForKey: key];
+    if ( !target )
+        return NULL;
+    
+    child = [[IonStyle alloc] initWithDictionary: target andResolutionAttributes: self.theme];
+    child.parentStyle = self;
+    
+    return child;
+}
+
+#pragma mark Utilities
+
+/**
+ * Compiles the style recursively using the composited styles of all ancestors.
+ * @returns {void}
  */
 - (void) compileConfiguration {
     if ( !_parentStyle || styleHasBeenCompiled )
@@ -148,7 +220,7 @@
 }
 
 /**
- * This overrides the current styles proprieties with the inputed style.
+ * Overrides the current styles proprieties with the inputed style.
  * @param {IonStyle*} the style to override the current style
  * @returns {IonStyle*} the net style of the override
  */
@@ -168,7 +240,7 @@
 }
 
 /**
- * This returns the description of our config manifest.
+ * Returns the description of our config manifest.
  * @return {NSString*}
  */
 - (NSString*) description {
@@ -176,7 +248,7 @@
 }
 
 /**
- * Comparison of styles.
+ * Compares styles.
  * @param {IonStyle*} the style to be compared.
  * @returns {BOOL}
  */

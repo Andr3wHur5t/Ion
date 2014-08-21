@@ -1,5 +1,5 @@
 {
-    "baseImage": "General_Button_Add",
+    "baseImage": "General_Confirm",
     "behavior": {
         "key": "SimpleFade",
         "info": {
@@ -12,14 +12,14 @@
                 "cycles": {
                     "tap": {
                         "targetCycle": "tap",
-                        "targetTransision": { "animation":"GrowBounce","entryPoint":"start"}
+                        "targetTransision": { "animation":"Confirm","entryPoint":"start"}
                     }
                 }
             }
         }
     },
     "text": {
-        "key": "Button_Add",
+        "key": "Button_Confirm",
         "display": false
     }
 }

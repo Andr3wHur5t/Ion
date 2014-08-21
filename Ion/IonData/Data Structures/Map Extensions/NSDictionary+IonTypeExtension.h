@@ -121,7 +121,29 @@
  * @retruns {IonImageRef*} a valid IonImageRef, or NULL if invalid.
  */
 - (IonImageRef*) imageRefFromKey:(id) key;
- 
+
+
+#pragma mark Fonts
+
+/**
+ * Converts the dictionary to a font.
+ * @returns {UIFont*} the resulting font, or NULL if invalid.
+ */
+- (UIFont*) toFont;
+
+/**
+ * Gets the font for the specified key.
+ * @param {id} the key for the font.
+ * @returns {UIFont} the resulting font, or NULL if invalid.
+ */
+- (UIFont*) fontForKey:(id) key;
+
+/**
+ * Gets the text alignment representation at the specified key.
+ * @param {id} the key for the text alignment.
+ * @returns {NSTextAlignment}
+ */
+- (NSTextAlignment) textAlignmentForKey:(id) key;
 
 #pragma mark Multidimensional Vectors
 

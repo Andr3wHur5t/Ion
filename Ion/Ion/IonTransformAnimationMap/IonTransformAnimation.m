@@ -21,6 +21,7 @@
     
     
     CGFloat alpha;
+    UIColor* color;
     
     /**
      * Meta
@@ -29,6 +30,8 @@
     CGFloat durration;
     
     UIViewKeyframeAnimationOptions options;
+    
+    NSString* logString;
     
     /**
      * Targeting
@@ -97,6 +100,10 @@
     if ( !scaleVector )
         scaleVector = [IonVec3 vectorOne];
     
+    logString = [configuration stringForKey: sIonTransformAnimation_LogKey];
+    
+    color = [configuration colorFromKey: sIonTransformAnimation_ColorKey];
+    
     alpha = [[configuration numberForKey: sIonTransformAnimation_AlphaKey] floatValue];
     return;
 }
@@ -147,6 +154,12 @@
     // Set the transform
     view.layer.transform = [self endTransformOnView: view];
     view.layer.opacity = alpha;
+    
+    if ( logString )
+        NSLog(@"%@", logString);
+    
+    if ( color )
+        view.layer.backgroundColor = color.CGColor;
 }
 
 

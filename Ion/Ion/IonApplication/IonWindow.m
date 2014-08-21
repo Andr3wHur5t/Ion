@@ -29,15 +29,15 @@
  * This updates the current root view controllers theme to the currently set theme.
  * @returns {void}
  */
-- (void)  updateRootViewControllersThemeToCurrent {
-    [self.rootViewController.view setIonInternalSystemTheme: self.systemTheme];
+- (void) updateRootViewControllersThemeToCurrent {
+    [self.rootViewController.view setIonTheme: self.systemTheme];
 }
 
 /**
  * This will set the system theme, and update the current root controller to it if not set by user.
  * @returns {void}
  */
-- (void)setSystemTheme:(IonTheme *)systemTheme {
+- (void) setSystemTheme:(IonTheme *)systemTheme {
     if ( !systemTheme )
         return;
     

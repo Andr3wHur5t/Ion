@@ -207,6 +207,13 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
     [self updateBaseMaskImage];
 }
 
+#pragma mark Style Application
+
+- (void) applyStyle:(IonStyle*) style {
+    if ( _behavior )
+        [_behavior styleWasApplyed: style];
+}
+
 #pragma mark Utilities
 
 /**

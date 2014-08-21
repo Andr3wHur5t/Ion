@@ -97,6 +97,17 @@
     // Should be sub classed
 }
 
+/**
+ * Informs the behavior that the view was applyed with a style.
+ * @param {IonStyle*} the new style.
+ * @returns {void}
+ */
+- (void) styleWasApplyed:(IonStyle*) style {
+    // Should be sub classed
+    if ( _childBehavior )
+        [_childBehavior styleWasApplyed: style];
+    return;
+}
 
 #pragma mark Utilities
 

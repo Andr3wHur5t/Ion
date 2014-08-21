@@ -6,7 +6,8 @@
         "BLACK": "#000000",
         "Purple": "#921",
         "cleanWhite": "#F5F5F5",
-        "spottr": "#F04C44"
+        "spottr": "#F04C44",
+        "Clear": "#0000",
     },
     "images": {
         "Image1": "Path1.png",
@@ -230,39 +231,34 @@
 
     },
     "styles": {
-        "default": {
-            "background": { "type": "color", "name": "BLACK" }
+        "background": { "type": "color", "name": "#F5F5F5" },
+        "buttonStats": {
+            "norm": "#F5F5F5",
+            "down": "#8C8C8C" ,
+            "selected": "#E8E8E8" ,
+            "disabled": "#525252"
         },
-        "button": {
-            "background": { "type": "color", "name": "#F5F5F5" },
-            "interactiveStates": {
-                "Norm":     { "type": "color", "name": "#F5F5F5" },
-                "Down":     { "type": "color", "name": "#8C8C8C" },
-                "Selected": { "type": "color", "name": "#E8E8E8" },
-                "Disabled": { "type": "color", "name": "#525252" }
+        "textColor": "#F5F5F5",
+        "font": { "name": "Helvetica Neue", "size": 12 },
+        "textAlignment": "center",
+        "cornerRadius": 0.0,
+        
+        "children":{
+            "label": {
+                "background": { "type": "color", "name": "#000000FF" }
+            },
+            "titleBar": {
+                "font": { "size": 18 }
+            },
+            "cls_secondaryStyle": {
+                "background": { "type": "color", "name": "#F04C44" }
+            },
+            "button":{
+                "background": { "type": "color", "name": "#F5F5F5" }
+            },
+            "body":{
+                "background": { "type": "color", "name": "#000" }
             }
-        },
-        "body": {
-            "background": { "type": "color", "name": "BLACK" }
-        },
-        "titleBar": {
-            "background": { "type": "gradient", "name": "Oceanview" },
-        },
-        "cls_simpleStyle": {
-            "background": { "type": "gradient", "name": "Oceanview" }
-        },
-        "id_simpleStyle": {
-            "background": { "type": "gradient", "name": "Oceanview" }
-        },
-        "cls_secondaryStyle": {
-            "background": { "type": "color", "name": "spottr" },
-            "fontColor":{ "type": "color", "name": "BLACK" },
-            "cornerRadius": 0.0,
-            "parameters":{
-                "data":"things, and stuff"
-            }
-            
         }
     }
-
 }

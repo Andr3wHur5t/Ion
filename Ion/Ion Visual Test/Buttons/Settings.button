@@ -6,6 +6,9 @@
             "childBehavior": "TapTransform",
             "childInfo": {
                 "startCycle": "trunRight",
+                "events": {
+                    "error": { "animation":"ShakeLeftRight","entryPoint":"start"}
+                },
                 "cycles": {
                     "trunRight": {
                         "targetCycle": "turnLeft",

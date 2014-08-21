@@ -1,13 +1,15 @@
 {
     "tranformations": {
-        "startIn": {
-            "alpha":0.1,
-            "duration": 0.3,
-            "next":"end"
+        "in": {
+            "scale": {
+                "x": 0.98,
+                "y": 0.98,
+                "z": 1
+            },
+            "duration": 0.15
         },
-        "end": {
-            "alpha":1.0,
-            "duration": 0.3
-        }
+        "out": {
+            "duration": 0.15
+        },
     }
 }

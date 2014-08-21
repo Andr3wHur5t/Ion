@@ -110,7 +110,7 @@
     if ( !appReference )
         return;
     
-    [self.view setIonInternalSystemTheme: appReference.window.systemTheme];
+    [self.view setIonTheme: appReference.window.systemTheme];
 }
 
 

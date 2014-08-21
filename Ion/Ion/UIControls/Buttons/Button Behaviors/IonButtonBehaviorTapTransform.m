@@ -290,7 +290,7 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
     
     
     // Lock Mutex
-    inTransision = TRUE;
+   // inTransision = TRUE;
     // Perform Transform for the current key
     [transformationsMap executeChainForKey: entryPoint
                                     onView: self.button
@@ -300,7 +300,7 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
                                completion( );
                            
                            // Unlock Mutex
-                           inTransision = FALSE;
+                           //inTransision = FALSE;
                        }];
 }
 

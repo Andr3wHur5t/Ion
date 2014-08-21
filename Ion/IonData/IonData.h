@@ -21,6 +21,9 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 #include "IonVec3.h"
 
 #pragma mark Data Utilities
+// String Conversions
+#import "NSString+TypeExtension.h"
+
 // Color Conversion 
 #import "UIColor+IonColor.h"
 

@@ -23,6 +23,12 @@
             "IsMask": true
         }
     },
+    "General_Button_ExposeArrow": {
+        "fileName": "General_ExposeArrow.png",
+        "info": {
+            "IsMask": true
+        }
+    },
     "General_Button_Settings": {
         "fileName": "General_Settings.png",
         "info": {
@@ -37,6 +43,12 @@
     },
     "General_Button_Edit": {
         "fileName": "General_Edit.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Confirm": {
+        "fileName": "General_Confirm.png",
         "info": {
             "IsMask": true
         }

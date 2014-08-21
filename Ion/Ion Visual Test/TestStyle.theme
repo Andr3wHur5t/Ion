@@ -235,42 +235,34 @@
 
     },
     "styles": {
-        "default": {
-            "background": { "type": "color", "name": "#0000" },
-            "fontColor":{ "type": "color", "name": "BLACK" }
+        "background": { "type": "color", "name": "#F5F5F5" },
+        "buttonStats": {
+            "norm": "#F5F5F5",
+            "down": "#8C8C8C" ,
+            "selected": "#E8E8E8" ,
+            "disabled": "#525252"
         },
-        "body": {
-            "background": { "type": "gradient", "name": "Onyx" },
-            "fontColor":{ "type": "color", "name": "BLACK" }
-        },
-        "titleBar": {
-            "background": { "type": "gradient", "name": "Royal" },
-            "fontColor":{ "type": "color", "name": "BLACK" }
-        },
-        "cls_simpleStyle": {
-            "background": { "type": "color", "name": "BLACK" },
-            "fontColor":{ "type": "color", "name": "BLACK" }
-        },
-        "id_simpleStyle": {
-            "background": { "type": "gradient", "name": "Inferno" }
-        },
-        "cls_secondaryStyle": {
-            "background": { "type": "color", "name": "#ffffff" },
-            "fontColor":{ "type": "color", "name": "BLACK" },
-            "cornerRadius": 10.0,
-            "shadow": {
-                "color":"BLACK",
-                "radius":10,
-                "offset":{"x":20,"y":20}
+        "textColor": "#F5F5F5",
+        "font": { "name": "Helvetica Neue", "size": 12 },
+        "textAlignment": "center",
+        "cornerRadius": 0.0,
+        
+        "children":{
+            "label": {
+                "background": { "type": "color", "name": "#000000FF" }
             },
-            "border":{
-                "color":"#1CA59B",
-                "width":10
+            "titleBar": {
+                "font": { "size": 18 }
             },
-            "parameters":{
-                "data":"things, and stuff"
+            "cls_secondaryStyle": {
+                "background": { "type": "color", "name": "#F04C44" }
+            },
+            "button":{
+                "background": { "type": "color", "name": "#F5F5F5" }
+            },
+            "body":{
+                "background": { "type": "color", "name": "#000" }
             }
-            
         }
     }
 

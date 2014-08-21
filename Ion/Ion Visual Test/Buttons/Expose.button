@@ -1,19 +1,22 @@
 {
-    "baseImage": "General_Button_Arrow",
+    "baseImage": "General_Button_ExposeArrow",
     "behavior": {
         "key": "SimpleFade",
         "info": {
             "childBehavior": "TapTransform",
             "childInfo": {
                 "startCycle": "expose",
+                "events": {
+                    "error": { "animation":"ShakeLeftRight","entryPoint":"start"}
+                },
                 "cycles": {
                     "expose": {
                         "targetCycle": "hide",
-                        "targetTransision": { "animation":"UpDownRotate","entryPoint":"rotateDown"}
+                        "targetTransision": { "animation":"XFlip","entryPoint":"rotateDown"}
                     },
                     "hide": {
                         "targetCycle": "expose",
-                        "targetTransision": { "animation":"UpDownRotate","entryPoint":"rotateUp"}
+                        "targetTransision": { "animation":"XFlip","entryPoint":"rotateUp"}
                     }
                 }
             }

@@ -12,7 +12,7 @@
     UIView* imgView;
     IonSimpleCache* sc;
     IonInterfaceButton* button;
-    UILabel* testLabel;
+    IonLabel* testLabel;
 }
 
 @end
@@ -31,7 +31,8 @@
     //imgView.themeID = @"simpleStyle";
     
     // Set the image using the image manager
-    button = [[IonInterfaceButton alloc] initWithFileName:@"Cancel"];
+    button = [[IonInterfaceButton alloc] initWithFileName: @"Hamburger"];
+   //[button setEnabled: false];
     button.frame = (CGRect){ (CGPoint){ 18, 50 + 2 }, (CGSize){30,30}};
     [self.view addSubview: button];
     
@@ -49,14 +50,10 @@
 }
 
 - (void) makeTestLabel {
-    testLabel = [[UILabel alloc] initWithFrame: (CGRect){ (CGPoint){ 18, 10}, (CGSize){ self.view.frame.size.width - 18*2, 40}}];
+    testLabel = [[IonLabel alloc] initWithFrame: (CGRect){ CGPointZero, (CGSize){ self.view.frame.size.width - 18*6, 40}}];
     testLabel.center = (CGPoint){ self.view.frame.size.width / 2 , 25 };
-    testLabel.themeConfiguration.themeShouldBeAppliedToSelf = FALSE;
-    testLabel.textColor = [UIColor whiteColor];
+    //testLabel.text = @"Lorem ipsum dolor sit amet consectetur adipiscing elit";
     testLabel.text = @"People";
-    testLabel.font = [UIFont fontWithName:@"Helvetica Neue" size: 18];
-    testLabel.textAlignment = NSTextAlignmentCenter;
-    
     [self.view addSubview: testLabel];
 }
 
