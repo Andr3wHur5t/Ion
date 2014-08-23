@@ -21,6 +21,9 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 #include "IonVec3.h"
 
 #pragma mark Data Utilities
+// Key Value Observation
+#import "IonKeyValueObserver.h"
+
 // String Conversions
 #import "NSString+TypeExtension.h"
 
@@ -29,6 +32,9 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 
 // Data conversion
 #import "NSData+IonTypeExtension.h"
+
+// Value Conversion
+#import "NSValue+TypeExtension.h"
 
 // Crypto
 #import "NSData+IonCrypto.h"

@@ -60,8 +60,12 @@ static NSString* sIonThemeIdFormat = @"id_%@";
  * @returns {instancetype}
  */
 - (instancetype) initWithFileAtPath:(NSString*) path {
+    if ( !path || ![path isKindOfClass:[NSString class]] )
+        return NULL;
     // Do in Ion File manager
     NSData* file = [[NSData alloc] initWithContentsOfFile:path];
+    if ( !file || ![file isKindOfClass:[NSData class]] )
+        return NULL;
     NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:file options:0 error:NULL];
     return [self initWithConfiguration:dict];
 }

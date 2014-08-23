@@ -43,6 +43,20 @@
 		370A229F19A497C0006FCD75 /* IonLabelOverflowBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 370A229D19A497C0006FCD75 /* IonLabelOverflowBehavior.m */; };
 		370A22A319A58C32006FCD75 /* NSString+TypeExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 370A22A119A58C32006FCD75 /* NSString+TypeExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		370A22A419A58C32006FCD75 /* NSString+TypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 370A22A219A58C32006FCD75 /* NSString+TypeExtension.m */; };
+		370A22A819A67F33006FCD75 /* IonGuideLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 370A22A619A67F33006FCD75 /* IonGuideLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370A22A919A67F33006FCD75 /* IonGuideLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 370A22A719A67F33006FCD75 /* IonGuideLine.m */; };
+		370A22AD19A6DA87006FCD75 /* IonKeyValueObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 370A22AB19A6DA87006FCD75 /* IonKeyValueObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370A22AE19A6DA87006FCD75 /* IonKeyValueObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 370A22AC19A6DA87006FCD75 /* IonKeyValueObserver.m */; };
+		370A22B019A70686006FCD75 /* IonGuideLineTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 370A22AF19A70686006FCD75 /* IonGuideLineTest.m */; };
+		370A22B419A71717006FCD75 /* NSValue+TypeExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 370A22B219A71717006FCD75 /* NSValue+TypeExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370A22B519A71717006FCD75 /* NSValue+TypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 370A22B319A71717006FCD75 /* NSValue+TypeExtension.m */; };
+		370A22B719A718AF006FCD75 /* NSValue+IonTypeExtensionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 370A22B619A718AF006FCD75 /* NSValue+IonTypeExtensionTests.m */; };
+		370A22BA19A82D07006FCD75 /* IonViewGuideSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 370A22B819A82D07006FCD75 /* IonViewGuideSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370A22BB19A82D07006FCD75 /* IonViewGuideSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 370A22B919A82D07006FCD75 /* IonViewGuideSet.m */; };
+		370A22BE19A83409006FCD75 /* UIView+IonGuideLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 370A22BC19A83409006FCD75 /* UIView+IonGuideLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370A22BF19A83409006FCD75 /* UIView+IonGuideLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 370A22BD19A83409006FCD75 /* UIView+IonGuideLine.m */; };
+		370A22C219A87F8C006FCD75 /* UIView+IonDefaultGuides.h in Headers */ = {isa = PBXBuildFile; fileRef = 370A22C019A87F8C006FCD75 /* UIView+IonDefaultGuides.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370A22C319A87F8C006FCD75 /* UIView+IonDefaultGuides.m in Sources */ = {isa = PBXBuildFile; fileRef = 370A22C119A87F8C006FCD75 /* UIView+IonDefaultGuides.m */; };
 		3719144C198BADD7002D7355 /* IonDataConversions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3719144B198BADD7002D7355 /* IonDataConversions.m */; };
 		3719144E198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3719144D198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m */; };
 		37191450198BC281002D7355 /* IonDataCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3719144F198BC281002D7355 /* IonDataCacheTests.m */; };
@@ -295,6 +309,20 @@
 		370A229D19A497C0006FCD75 /* IonLabelOverflowBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonLabelOverflowBehavior.m; path = "UIControls/Text View/IonLabelOverflowBehavior.m"; sourceTree = "<group>"; };
 		370A22A119A58C32006FCD75 /* NSString+TypeExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TypeExtension.h"; path = "NSString/NSString+TypeExtension.h"; sourceTree = "<group>"; };
 		370A22A219A58C32006FCD75 /* NSString+TypeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TypeExtension.m"; path = "NSString/NSString+TypeExtension.m"; sourceTree = "<group>"; };
+		370A22A619A67F33006FCD75 /* IonGuideLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonGuideLine.h; path = "Guide Line/IonGuideLine.h"; sourceTree = "<group>"; };
+		370A22A719A67F33006FCD75 /* IonGuideLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonGuideLine.m; path = "Guide Line/IonGuideLine.m"; sourceTree = "<group>"; };
+		370A22AB19A6DA87006FCD75 /* IonKeyValueObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonKeyValueObserver.h; path = "Key Value Observer/IonKeyValueObserver.h"; sourceTree = "<group>"; };
+		370A22AC19A6DA87006FCD75 /* IonKeyValueObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonKeyValueObserver.m; path = "Key Value Observer/IonKeyValueObserver.m"; sourceTree = "<group>"; };
+		370A22AF19A70686006FCD75 /* IonGuideLineTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonGuideLineTest.m; sourceTree = "<group>"; };
+		370A22B219A71717006FCD75 /* NSValue+TypeExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSValue+TypeExtension.h"; path = "NSValue/NSValue+TypeExtension.h"; sourceTree = "<group>"; };
+		370A22B319A71717006FCD75 /* NSValue+TypeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSValue+TypeExtension.m"; path = "NSValue/NSValue+TypeExtension.m"; sourceTree = "<group>"; };
+		370A22B619A718AF006FCD75 /* NSValue+IonTypeExtensionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+IonTypeExtensionTests.m"; sourceTree = "<group>"; };
+		370A22B819A82D07006FCD75 /* IonViewGuideSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonViewGuideSet.h; path = "Guide Line/IonViewGuideSet.h"; sourceTree = "<group>"; };
+		370A22B919A82D07006FCD75 /* IonViewGuideSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonViewGuideSet.m; path = "Guide Line/IonViewGuideSet.m"; sourceTree = "<group>"; };
+		370A22BC19A83409006FCD75 /* UIView+IonGuideLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+IonGuideLine.h"; path = "Guide Line/UIView+IonGuideLine.h"; sourceTree = "<group>"; };
+		370A22BD19A83409006FCD75 /* UIView+IonGuideLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+IonGuideLine.m"; path = "Guide Line/UIView+IonGuideLine.m"; sourceTree = "<group>"; };
+		370A22C019A87F8C006FCD75 /* UIView+IonDefaultGuides.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+IonDefaultGuides.h"; path = "Guide Line/UIView+IonDefaultGuides.h"; sourceTree = "<group>"; };
+		370A22C119A87F8C006FCD75 /* UIView+IonDefaultGuides.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+IonDefaultGuides.m"; path = "Guide Line/UIView+IonDefaultGuides.m"; sourceTree = "<group>"; };
 		3719144B198BADD7002D7355 /* IonDataConversions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonDataConversions.m; sourceTree = "<group>"; };
 		3719144D198BB06F002D7355 /* IonAdaptedMutableDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonAdaptedMutableDictionaryTests.m; sourceTree = "<group>"; };
 		3719144F198BC281002D7355 /* IonDataCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonDataCacheTests.m; sourceTree = "<group>"; };
@@ -521,6 +549,10 @@
 			children = (
 				370588A51999E60400597822 /* UIView+IonPositionAndOrientation.h */,
 				370588A61999E60400597822 /* UIView+IonPositionAndOrientation.m */,
+				370A22BC19A83409006FCD75 /* UIView+IonGuideLine.h */,
+				370A22BD19A83409006FCD75 /* UIView+IonGuideLine.m */,
+				370A22C019A87F8C006FCD75 /* UIView+IonDefaultGuides.h */,
+				370A22C119A87F8C006FCD75 /* UIView+IonDefaultGuides.m */,
 			);
 			name = "Positioning And Orentation";
 			sourceTree = "<group>";
@@ -624,6 +656,35 @@
 				370A22A219A58C32006FCD75 /* NSString+TypeExtension.m */,
 			);
 			name = NSString;
+			sourceTree = "<group>";
+		};
+		370A22A519A67F11006FCD75 /* Guide Line */ = {
+			isa = PBXGroup;
+			children = (
+				370A22A619A67F33006FCD75 /* IonGuideLine.h */,
+				370A22A719A67F33006FCD75 /* IonGuideLine.m */,
+				370A22B819A82D07006FCD75 /* IonViewGuideSet.h */,
+				370A22B919A82D07006FCD75 /* IonViewGuideSet.m */,
+			);
+			name = "Guide Line";
+			sourceTree = "<group>";
+		};
+		370A22AA19A6DA5D006FCD75 /* Key Value Observation */ = {
+			isa = PBXGroup;
+			children = (
+				370A22AB19A6DA87006FCD75 /* IonKeyValueObserver.h */,
+				370A22AC19A6DA87006FCD75 /* IonKeyValueObserver.m */,
+			);
+			name = "Key Value Observation";
+			sourceTree = "<group>";
+		};
+		370A22B119A716F8006FCD75 /* NSValue */ = {
+			isa = PBXGroup;
+			children = (
+				370A22B219A71717006FCD75 /* NSValue+TypeExtension.h */,
+				370A22B319A71717006FCD75 /* NSValue+TypeExtension.m */,
+			);
+			name = NSValue;
 			sourceTree = "<group>";
 		};
 		371D5D67197FB0FE00485DC0 /* KVP */ = {
@@ -1181,6 +1242,8 @@
 		37B9CD1E197FA12800424EFC /* Data Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				370A22B119A716F8006FCD75 /* NSValue */,
+				370A22AA19A6DA5D006FCD75 /* Key Value Observation */,
 				370A22A019A58C01006FCD75 /* NSString */,
 				376484931992486A00B65EAF /* NSData */,
 				371D5D7E1980C99400485DC0 /* Dictionary Extensions */,
@@ -1268,6 +1331,7 @@
 		37EBAC55195C9A93008D6BD6 /* Ion */ = {
 			isa = PBXGroup;
 			children = (
+				370A22A519A67F11006FCD75 /* Guide Line */,
 				370588AE199A0BE100597822 /* TransformAnimationMap */,
 				37EBAC58195C9A93008D6BD6 /* Ion.h */,
 				372DD25119737F5C00CC0A58 /* Utilities */,
@@ -1295,6 +1359,7 @@
 				37EBAC63195C9A93008D6BD6 /* Supporting Files */,
 				37191451198BC30E002D7355 /* IonThemeTests.m */,
 				373C102A198CAFF000315F44 /* IonStyleTests.m */,
+				370A22AF19A70686006FCD75 /* IonGuideLineTest.m */,
 			);
 			path = IonTests;
 			sourceTree = "<group>";
@@ -1416,6 +1481,7 @@
 				3771F3C1198E8004001DBBB9 /* IonNSArrayExtensionTests.m */,
 				3771F3C7198F1238001DBBB9 /* IonFileIOManagerTests.m */,
 				376484AC199403BD00B65EAF /* IonSimpleCacheTests.m */,
+				370A22B619A718AF006FCD75 /* NSValue+IonTypeExtensionTests.m */,
 			);
 			path = IonDataTests;
 			sourceTree = "<group>";
@@ -1577,6 +1643,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				371D5DA119825AE600485DC0 /* IonVisualTestViewController.h in Headers */,
+				370A22BE19A83409006FCD75 /* UIView+IonGuideLine.h in Headers */,
 				37EBAC59195C9A93008D6BD6 /* Ion.h in Headers */,
 				372DD246197281F400CC0A58 /* IonViewController.h in Headers */,
 				370588B5199A151E00597822 /* IonTransformAnimation.h in Headers */,
@@ -1592,8 +1659,10 @@
 				376DA8B21976FB47008D692E /* IonTheme.h in Headers */,
 				370588A71999E60400597822 /* UIView+IonPositionAndOrientation.h in Headers */,
 				37E6816419975709005096AC /* IonInterfaceButton.h in Headers */,
+				370A22BA19A82D07006FCD75 /* IonViewGuideSet.h in Headers */,
 				370A229919A2C420006FCD75 /* IonLabel.h in Headers */,
 				376DA8C519791299008D692E /* IonThemePointer.h in Headers */,
+				370A22A819A67F33006FCD75 /* IonGuideLine.h in Headers */,
 				377C3EBD196F316900EA6599 /* IonApplication.h in Headers */,
 				377C3EC2196F316900EA6599 /* IonRapidStartViewController.h in Headers */,
 				377C3EBF196F316900EA6599 /* IonRapidStartManager.h in Headers */,
@@ -1608,6 +1677,7 @@
 				377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */,
 				377C3ECC196F52AE00EA6599 /* IonDemoUIWindow.h in Headers */,
 				3705889C1999C9A500597822 /* IonButtonBehavior.h in Headers */,
+				370A22C219A87F8C006FCD75 /* UIView+IonDefaultGuides.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1626,11 +1696,13 @@
 				371D5D8C1980FD6300485DC0 /* IonFile.h in Headers */,
 				376484C91995385500B65EAF /* UIImage+IonImage.h in Headers */,
 				3764849719924B7A00B65EAF /* NSData+IonCrypto.h in Headers */,
+				370A22AD19A6DA87006FCD75 /* IonKeyValueObserver.h in Headers */,
 				370588A21999D4A300597822 /* IonVec3.h in Headers */,
 				373C99E2198A4CDB002F46AD /* IonAsyncAccessBasedGenerationMap.h in Headers */,
 				37B9CD1A197F8E6100424EFC /* IonMath.h in Headers */,
 				371D5D951981C58000485DC0 /* IonPath.h in Headers */,
 				37B9CD22197FA12800424EFC /* UIColor+IonColor.h in Headers */,
+				370A22B419A71717006FCD75 /* NSValue+TypeExtension.h in Headers */,
 				370A22A319A58C32006FCD75 /* NSString+TypeExtension.h in Headers */,
 				37B9CD15197F8E6100424EFC /* IonImageRef.h in Headers */,
 				37B9CD19197F8E6100424EFC /* IonMethodMap.h in Headers */,
@@ -1900,6 +1972,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				370A22C319A87F8C006FCD75 /* UIView+IonDefaultGuides.m in Sources */,
 				377C3EC0196F316900EA6599 /* IonRapidStartManager.m in Sources */,
 				376DA8EA197BAD83008D692E /* IonWindow.m in Sources */,
 				377C3ED1196F58A900EA6599 /* UITouch + IonDemoTouch.m in Sources */,
@@ -1907,7 +1980,9 @@
 				372DD25019731F0200CC0A58 /* UIView+IonBackgroundUtilities.m in Sources */,
 				37FCF136197CDD42004C14C8 /* UIView+IonViewProperties.m in Sources */,
 				37FCF13C197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.m in Sources */,
+				370A22BB19A82D07006FCD75 /* IonViewGuideSet.m in Sources */,
 				377C3ECD196F52AE00EA6599 /* IonDemoUIWindow.m in Sources */,
+				370A22BF19A83409006FCD75 /* UIView+IonGuideLine.m in Sources */,
 				370588B2199A0C5900597822 /* IonTransformAnimationMap.m in Sources */,
 				3705889D1999C9A500597822 /* IonButtonBehavior.m in Sources */,
 				37E6817119994418005096AC /* IonButtonBehaviorSimpleFade.m in Sources */,
@@ -1925,6 +2000,7 @@
 				377C3EBE196F316900EA6599 /* IonApplication.m in Sources */,
 				377C3EC3196F316900EA6599 /* IonRapidStartViewController.m in Sources */,
 				372DD24219727D0C00CC0A58 /* UIView+IonAnimation.m in Sources */,
+				370A22A919A67F33006FCD75 /* IonGuideLine.m in Sources */,
 				371D5D7D1980C73C00485DC0 /* NSDictionary+IonThemeResolution.m in Sources */,
 				37E6816519975709005096AC /* IonInterfaceButton.m in Sources */,
 				376DA8B31976FB47008D692E /* IonTheme.m in Sources */,
@@ -1939,6 +2015,7 @@
 			files = (
 				373C102B198CAFF000315F44 /* IonStyleTests.m in Sources */,
 				37191452198BC30E002D7355 /* IonThemeTests.m in Sources */,
+				370A22B019A70686006FCD75 /* IonGuideLineTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1960,6 +2037,7 @@
 				376484AD199403BD00B65EAF /* IonSimpleCacheTests.m in Sources */,
 				3771F3C9198F3B54001DBBB9 /* IonFileIOManagerTests.m in Sources */,
 				37EBAC89195C9B35008D6BD6 /* Ion_Visual_TestTests.m in Sources */,
+				370A22B719A718AF006FCD75 /* NSValue+IonTypeExtensionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1967,9 +2045,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				370A22AE19A6DA87006FCD75 /* IonKeyValueObserver.m in Sources */,
 				371D5D8D1980FD6300485DC0 /* IonFile.m in Sources */,
 				370A22A419A58C32006FCD75 /* NSString+TypeExtension.m in Sources */,
 				371D5D6B197FB10800485DC0 /* IonKeyValuePair.m in Sources */,
+				370A22B519A71717006FCD75 /* NSValue+TypeExtension.m in Sources */,
 				3764849819924B7A00B65EAF /* NSData+IonCrypto.m in Sources */,
 				371D5D821980C99400485DC0 /* NSDictionary+IonTypeExtension.m in Sources */,
 				371D5D9D1981D7D600485DC0 /* NSData+IonTypeExtension.m in Sources */,

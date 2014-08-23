@@ -34,6 +34,6 @@ static NSString* sIonXKey = @"x";
 static NSString* sIonYKey = @"y";
 
 static NSString* sIonWidthKey = @"width";
-static NSString* sIonHeightKey = @"x";
+static NSString* sIonHeightKey = @"height";
 
 #endif // IonItemKeys

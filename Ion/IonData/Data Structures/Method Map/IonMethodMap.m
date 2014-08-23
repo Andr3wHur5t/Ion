@@ -120,8 +120,10 @@
 - (id) invokeMethodOnTarget:(SEL) method withObject:(id) object {
     if ( ![self methodIsValidForTarget: method] )
         return NULL;
-    
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     return [_target performSelector: method withObject: object];
+    #pragma clang diagnostic pop
 }
 
 
@@ -135,8 +137,10 @@
 - (id) invokeMethodOnTarget:(SEL) method withObject:(id) object andObject:(id) otherObject {
     if ( ![self methodIsValidForTarget: method] )
         return NULL;
-    
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     return [_target performSelector: method withObject: object withObject: otherObject];
+    #pragma clang diagnostic pop
 }
 
 

@@ -9,7 +9,7 @@
 #import "IonVisualTestViewController.h"
 
 @interface IonVisualTestViewController () {
-    UIView* imgView;
+    IonView* imgView;
     IonSimpleCache* sc;
     IonInterfaceButton* button;
     IonLabel* testLabel;
@@ -22,17 +22,15 @@
 - (void) constructViews {
     [super constructViews];
     // Render Debug
-    imgView = [[UIView alloc] init];
+    imgView = [[IonView alloc] init];
     [self.view addSubview:imgView];
     
     // Theme Testing
     imgView.themeConfiguration.themeClass = @"secondaryStyle";
-    //self.view.themeConfiguration.themeShouldBeAppliedToSelf = FALSE;
-    //imgView.themeID = @"simpleStyle";
     
     // Set the image using the image manager
     button = [[IonInterfaceButton alloc] initWithFileName: @"Hamburger"];
-   //[button setEnabled: false];
+    //[button setEnabled: false];
     button.frame = (CGRect){ (CGPoint){ 18, 50 + 2 }, (CGSize){30,30}};
     [self.view addSubview: button];
     
@@ -47,6 +45,10 @@
     
     // Call this last
     [super viewWillAppear: animated];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear: animated];
 }
 
 - (void) makeTestLabel {
@@ -103,7 +105,15 @@
     CGSize s = self.view.frame.size;
     s.height = 50;
     imgView.frame = (CGRect) {CGPointZero,s};
+    
+    // Position
+    imgView.localHorizGuide = imgView.centerGuideHoriz;
+    imgView.localVertGuide = imgView.centerGuideVert;
+    
+    imgView.superHorizGuide = self.view.centerGuideHoriz;
+    imgView.superVertGuide = self.view.oneThirdGuideVert;
 }
+
 
 /** = = = = = = = = = = = = End Tests = = = = = = = = = = = = = = =  */
 

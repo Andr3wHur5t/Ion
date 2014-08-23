@@ -240,18 +240,21 @@
         },
         "textColor": "#F5F5F5",
         "font": { "name": "Helvetica Neue", "size": 12 },
-        "textAlignment": "center",
+        "textAlignment": "left",
         "cornerRadius": 0.0,
+        "styleMargin": {"width": 10.0, "height": 10.0},
         
         "children":{
             "label": {
-                "background": { "type": "color", "name": "#000000FF" }
+                "background": { "type": "color", "name": "#000000FF" },
+                "textAlignment": "left"
             },
             "titleBar": {
                 "font": { "size": 18 }
             },
             "cls_secondaryStyle": {
-                "background": { "type": "color", "name": "#F04C44" }
+                "background": { "type": "color", "name": "#F04C44" },
+                "styleMargin": {"height": 7.0}
             },
             "button":{
                 "background": { "type": "color", "name": "#F5F5F5" }

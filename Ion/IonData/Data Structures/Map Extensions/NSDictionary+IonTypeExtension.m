@@ -367,6 +367,7 @@
  */
 - (CGSize) sizeForKey:(id) key {
     NSDictionary* dict;
+    NSParameterAssert( key );
     if ( !key )
         return CGSizeUndefined;
     
@@ -382,7 +383,7 @@
  * @returns {CGPoint} a valid CGSize, or a CGPointUndefined.
  */
 - (CGSize) toSize {
-    CGPoint reference = [self toVec2UsingX1: sIonWeightKey andY1: sIonHeightKey];
+    CGPoint reference = [self toVec2UsingX1: sIonWidthKey andY1: sIonHeightKey];
     if ( CGPointEqualToPoint( reference, CGPointUndefined ) )
         return CGSizeUndefined;
     

@@ -25,8 +25,6 @@
  */
 - (void) setupApplication {
     NSLog(@"externial application startup called");
-    
-    self.window.systemTheme = [[IonTheme alloc] initWithFileName: @"TestStyle"];
 }
 
 

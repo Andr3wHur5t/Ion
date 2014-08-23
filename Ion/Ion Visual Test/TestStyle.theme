@@ -251,7 +251,7 @@
             "label": {
                 "background": { "type": "color", "name": "#000000FF" }
             },
-            "titleBar": {
+            "title": {
                 "font": { "size": 18 }
             },
             "cls_secondaryStyle": {
@@ -261,7 +261,7 @@
                 "background": { "type": "color", "name": "#F5F5F5" }
             },
             "body":{
-                "background": { "type": "color", "name": "#000" }
+                "background": { "type": "gradient", "name": "Royal" }
             }
         }
     }
