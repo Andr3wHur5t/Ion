@@ -102,9 +102,11 @@ static void* sThemeConfigurationKey = "IonThemeConfiguration";
  * @returns {NSString*}
  */
 - (NSString*) description {
-    return [NSString stringWithFormat:@"Theme-Config:{Class:%@,ID:%@}",
+    return [NSString stringWithFormat:@"{Class:\"%@\",ID:\"%@\",Element:\"%@\",\nframe:%@}",
             self.themeConfiguration.themeClass,
-            self.themeConfiguration.themeID];
+            self.themeConfiguration.themeID,
+            self.themeConfiguration.themeElement,
+            NSStringFromCGRect( self.frame )];
 }
 
 @end

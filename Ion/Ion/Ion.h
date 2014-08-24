@@ -31,10 +31,12 @@ FOUNDATION_EXPORT const unsigned char IonVersionString[];
 
 /** UI Items*/
 #import "IonLabel.h"
+#import "IonTitleBar.h"
 
 /** Guide Lines */
 #import "IonGuideLine.h"
 #import "IonViewGuideSet.h"
+#import "IonGuideGroup.h"
 
 /** UI Extensions */
 #import "UIView+IonGuideLine.h"

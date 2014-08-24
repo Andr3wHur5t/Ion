@@ -284,8 +284,11 @@ static NSString *sIonImageManagerStandardFileExtension = @".png";
     __block NSString *cleanKey ,*sizedKeyString, *typeString;
     __block CGSize normilizedSize;
     
+    NSParameterAssert( key && [key isKindOfClass:[NSString class]] );
+    NSParameterAssert( returnCallback );
     // Validate
-    if ( CGSizeEqualToSize( size, CGSizeUndefined) || CGSizeEqualToSize( size, CGSizeZero) || !returnCallback)
+    if ( CGSizeEqualToSize( size, CGSizeUndefined) || CGSizeEqualToSize( size, CGSizeZero) || !returnCallback ||
+         !key || ![key isKindOfClass:[NSString class]] )
         return;
     
     // Get the type

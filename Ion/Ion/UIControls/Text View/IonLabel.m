@@ -198,7 +198,7 @@
     self.textAlignment = [style.configuration textAlignmentForKey: sIonThemeLabel_TextAlignment];
 }
 
-#pragma mark Defaults 
+#pragma mark Defaults
 
 /**
  * The Ion default font.

@@ -1,13 +1,12 @@
 //
-//  UIView+IonDefaultGuides.m
+//  IonGuideGroup.m
 //  Ion
 //
 //  Created by Andrew Hurst on 8/23/14.
 //  Copyright (c) 2014 Ion. All rights reserved.
 //
 
-#import "UIView+IonDefaultGuides.h"
-#import "UIView+IonGuideLine.h"
+#import "IonGuideGroup.h"
 
 /**
  * Keys
@@ -30,35 +29,46 @@ static NSString* sIonGuideLine_Size_Horiz =             @"IonGuideLine_Size_Hori
 static NSString* sIonGuideLine_CornerRadius_Vert =      @"IonGuideLine_CornerRadius_Vert";
 static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRadius_Horiz";
 
-@implementation UIView (IonDefaultGuides)
 
+@interface IonGuideGroup () {
+    NSMutableDictionary* _cachedGuideLines;
+}
 
-#pragma mark Corrner Radius
+@end
+
+@implementation IonGuideGroup
+#pragma mark Constructors
 
 /**
- * Vertical Corner Radius Margin Guide Line
+ * Default constructor.
  */
-- (IonGuideLine*) cornerRadiusMarginGuideVert {
-    IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_CornerRadius_Vert];
-    if ( !obj ) {
-        obj = [IonGuideLine guideFromViewCornerRadius: self
-                                            usingMode: IonGuideLineFrameMode_Vertical];
-        [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_CornerRadius_Vert];
-    }
-    return obj;
+- (instancetype) init {
+    self = [super init];
+    if ( self )
+        self.frame = CGRectZero;
+    return self;
 }
 
 /**
- * Horizontal Corner Radius Margin Guide Line
+ * Constructs using the inputted frame.
+ * @param {CGRect} the frame to construct with.
+ * @returns {instancetype}
  */
-- (IonGuideLine*) cornerRadiusMarginGuideHoriz {
-    IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_CornerRadius_Horiz];
-    if ( !obj ) {
-        obj = [IonGuideLine guideFromViewCornerRadius: self
-                                            usingMode: IonGuideLineFrameMode_Horizontal];
-        [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_CornerRadius_Horiz];
-    }
-    return obj;
+- (instancetype) initWithFrame:(CGRect) frame {
+    self = [super init];
+    if ( self )
+        self.frame = frame;
+    return self;
+}
+
+
+/**
+ * The Guide Cache
+ */
+- (NSMutableDictionary*) cachedGuideLines {
+    if ( !_cachedGuideLines )
+        _cachedGuideLines = [[NSMutableDictionary alloc] init];
+    return _cachedGuideLines;
 }
 
 #pragma mark Internal Origin
@@ -69,9 +79,10 @@ static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRad
 - (IonGuideLine*) internalOriginGuideVert {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_InternialOrigin_Vert];
     if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 0.0f
-                                           andMode: IonGuideLineFrameMode_Vertical];
+        obj = [IonGuideLine guideWithTargetRectPosition: self
+                                       usingRectKeyPath: @"frame"
+                                                 amount: 0.0f
+                                                andMode: IonGuideLineFrameMode_Vertical];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_InternialOrigin_Vert];
     }
     return obj;
@@ -83,9 +94,10 @@ static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRad
 - (IonGuideLine*) internalOriginGuideHoriz {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_InternialOrigin_Horiz];
     if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 0.0f
-                                           andMode: IonGuideLineFrameMode_Horizontal];
+        obj = [IonGuideLine guideWithTargetRectPosition: self
+                                       usingRectKeyPath: @"frame"
+                                                 amount: 0.0f
+                                                andMode: IonGuideLineFrameMode_Horizontal];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_InternialOrigin_Horiz];
     }
     return obj;
@@ -99,10 +111,11 @@ static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRad
 - (IonGuideLine*) oneThirdGuideVert {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_OneThird_Vert];
     if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 1.0f/3.0f
-                                           andMode: IonGuideLineFrameMode_Vertical];
-    [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_OneThird_Vert];
+        obj = [IonGuideLine guideWithTargetRectPosition: self
+                                       usingRectKeyPath: @"frame"
+                                                 amount: 1.0f/3.0f
+                                                andMode: IonGuideLineFrameMode_Vertical];
+        [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_OneThird_Vert];
     }
     return obj;
 }
@@ -113,9 +126,10 @@ static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRad
 - (IonGuideLine*) oneThirdGuideHoriz {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_OneThird_Horiz];
     if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 1.0f/3.0f
-                                           andMode: IonGuideLineFrameMode_Horizontal];
+        obj = [IonGuideLine guideWithTargetRectPosition: self
+                                       usingRectKeyPath: @"frame"
+                                                 amount: 1.0f/3.0f
+                                                andMode: IonGuideLineFrameMode_Horizontal];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_OneThird_Horiz];
     }
     return obj;
@@ -129,9 +143,10 @@ static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRad
 - (IonGuideLine*) centerGuideVert {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_Center_Vert];
     if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 1.0f/2.0f
-                                           andMode: IonGuideLineFrameMode_Vertical];
+        obj = [IonGuideLine guideWithTargetRectPosition: self
+                                       usingRectKeyPath: @"frame"
+                                                 amount: 1.0f/2.0f
+                                                andMode: IonGuideLineFrameMode_Vertical];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_Center_Vert];
     }
     return obj;
@@ -143,9 +158,10 @@ static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRad
 - (IonGuideLine*) centerGuideHoriz {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_Center_Horiz];
     if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 1.0f/2.0f
-                                           andMode: IonGuideLineFrameMode_Horizontal];
+        obj = [IonGuideLine guideWithTargetRectPosition: self
+                                       usingRectKeyPath: @"frame"
+                                                 amount: 1.0f/2.0f
+                                                andMode: IonGuideLineFrameMode_Horizontal];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_Center_Horiz];
     }
     return obj;
@@ -159,9 +175,10 @@ static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRad
 - (IonGuideLine*) twoThirdsGuideVert {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_TwoThirds_Vert];
     if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: (1.0f/3.0f) * 2.0f
-                                           andMode: IonGuideLineFrameMode_Vertical];
+        obj = [IonGuideLine guideWithTargetRectPosition: self
+                                       usingRectKeyPath: @"frame"
+                                                 amount: (1.0f/3.0f) * 2.0f
+                                                andMode: IonGuideLineFrameMode_Vertical];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_TwoThirds_Vert];
     }
     return obj;
@@ -173,9 +190,10 @@ static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRad
 - (IonGuideLine*) twoThirdsGuideHoriz {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_TwoThirds_Horiz];
     if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: (1.0f/3.0f) * 2.0f
-                                           andMode: IonGuideLineFrameMode_Horizontal];
+        obj = [IonGuideLine guideWithTargetRectPosition: self
+                                       usingRectKeyPath: @"frame"
+                                                 amount: (1.0f/3.0f) * 2.0f
+                                                andMode: IonGuideLineFrameMode_Horizontal];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_TwoThirds_Horiz];
     }
     return obj;
@@ -189,9 +207,10 @@ static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRad
 - (IonGuideLine*) sizeGuideVert {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_Size_Vert];
     if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 1.0f
-                                           andMode: IonGuideLineFrameMode_Vertical];
+        obj = [IonGuideLine guideWithTargetRectPosition: self
+                                       usingRectKeyPath: @"frame"
+                                                 amount: 1.0f
+                                                andMode: IonGuideLineFrameMode_Vertical];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_Size_Vert];
     }
     return obj;
@@ -203,11 +222,21 @@ static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRad
 - (IonGuideLine*) sizeGuideHoriz {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_Size_Horiz];
     if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 1.0f
-                                           andMode: IonGuideLineFrameMode_Horizontal];
+        obj = [IonGuideLine guideWithTargetRectPosition: self
+                                       usingRectKeyPath: @"frame"
+                                                 amount: 1.0f
+                                                andMode: IonGuideLineFrameMode_Horizontal];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_Size_Horiz];
     }
     return obj;
 }
+
+
+/**
+ * Debug description
+ */
+- (NSString*) description {
+    return NSStringFromCGRect( _frame );
+}
+
 @end

@@ -246,15 +246,12 @@
         
         "children":{
             "label": {
-                "background": { "type": "color", "name": "#000000FF" },
-                "textAlignment": "left"
+                "background": { "type": "color", "name": "#000000FF" }
             },
             "titleBar": {
-                "font": { "size": 18 }
-            },
-            "cls_secondaryStyle": {
                 "background": { "type": "color", "name": "#F04C44" },
-                "styleMargin": {"height": 7.0}
+                "font": { "size": 18 },
+                "textAlignment": "center"
             },
             "button":{
                 "background": { "type": "color", "name": "#F5F5F5" }

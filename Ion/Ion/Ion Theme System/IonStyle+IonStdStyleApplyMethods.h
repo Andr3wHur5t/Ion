@@ -78,12 +78,4 @@ static NSString* sShadowRadiusKey = @"radius";
  */
 - (id) setShadow:(UIView*) view withConfig:(NSDictionary*) config;
 
-/**
- * Sets the inputted view theme parameters object to match the inptted parameters object.
- * @param {UIView*} the view to set the parameters object of.
- * @param {NSDictionary*} the parameters object to set.
- * @retruns {id} null when finshed.
- */
-- (id) setView:(UIView*) view parameterObjectToMatch:(NSDictionary*) newParameters;
-
 @end

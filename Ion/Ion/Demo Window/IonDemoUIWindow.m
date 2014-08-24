@@ -71,10 +71,8 @@
 + (id)imageForTouchRepresentation {
     static UIImage* imageForTouch = nil;
     @synchronized(self) {
-        if (imageForTouch == nil) {
+        if (imageForTouch == nil)
             imageForTouch = [UIImage imageNamed:@"IonTouchRepresentation.png"];
-            NSLog(@"Called");
-        }
     }
     return imageForTouch;
 }

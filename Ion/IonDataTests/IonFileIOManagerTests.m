@@ -206,7 +206,7 @@
     
     called = false;
     targetPath = [IonPath documentsDirectory];
-    targetItems = @[ @"yourmom.txt", @"fakujoston.pedo", @"xcode.fuckyou" ];
+    targetItems = @[ @"hello.t", @"here.there", @"xcode.test" ];
 
     
     for ( NSString* item in targetItems)
@@ -218,7 +218,6 @@
                         // List Items
                         [IonFileIOmanager listItemsAtPath:targetPath withResultBlock:^(id returnedObject) {
                             resultArray = returnedObject;
-                            NSLog(@"<fdsgsg>: %@", resultArray);
                             [completionException fulfill];
                         }];
                         // Report

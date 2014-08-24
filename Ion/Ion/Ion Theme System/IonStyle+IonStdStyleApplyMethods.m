@@ -36,11 +36,6 @@
     // Add Drop Shadow
     [self.proprietyMethodMap setMethod: @selector(setShadow:withConfig:)
                                 forKey: sStyleSTDShadowKey];
-    
-    // Add Parameters
-    [self.proprietyMethodMap setMethod: @selector(setView:parameterObjectToMatch:)
-                                forKey: sStyleSTDParametersKey];
-    
 }
 
 
@@ -52,6 +47,8 @@
  */
 - (id) setBackgroundOnView:(UIView*) view withPointer:(NSDictionary*) pointer {
     id pointedObject;
+    NSParameterAssert( view && [view isKindOfClass:[UIView class]] );
+    NSParameterAssert( pointer && [pointer isKindOfClass: [NSDictionary class]] );
     if ( !self.theme )
         return NULL;
 
@@ -83,12 +80,14 @@
  * @returns {id} null when finshed.
  */
 - (id) setCornerRadius:(UIView*) view withRaidus:(NSNumber*) radius {
+    NSParameterAssert( view && [view isKindOfClass:[UIView class]] );
+    NSParameterAssert( radius && [radius isKindOfClass: [NSNumber class]] );
     if ( !view ||
          ![radius isKindOfClass:[NSNumber class]] || !radius )
         return NULL;
     
     // Apply
-    [view setCornerRadius: [radius floatValue]];
+    view.cornerRadius = [radius floatValue];
     return NULL;
 }
 
@@ -101,6 +100,8 @@
 - (id) setBorder:(UIView*) view withConfig:(NSDictionary*) config {
     NSNumber* width;
     UIColor* color;
+    NSParameterAssert( view && [view isKindOfClass:[UIView class]] );
+    NSParameterAssert( config && [config isKindOfClass: [NSDictionary class]] );
     if ( !view ||
          !config  || ![config isKindOfClass: [NSDictionary class]])
         return NULL;
@@ -115,7 +116,8 @@
         return NULL;
     
     // Set
-    [view setBorderColor: color andWidth: [width floatValue]];
+    view.borderWidth = [width floatValue];
+    view.borderColor = color;
     return NULL;
 }
 
@@ -130,6 +132,8 @@
     NSNumber* radius;
     CGPoint offset;
     UIColor* color;
+    NSParameterAssert( view && [view isKindOfClass:[UIView class]] );
+    NSParameterAssert( config && [config isKindOfClass: [NSDictionary class]] );
     if ( !view ||
          !config  || ![config isKindOfClass: [NSDictionary class]] )
         return NULL;
@@ -140,30 +144,18 @@
     offset = [config pointForKey: sShadowOffsetKey];
     
     // Check
+    NSParameterAssert( radius && [radius isKindOfClass:[NSNumber class]] );
+    NSParameterAssert( color && [color isKindOfClass:[UIColor class]] );
     if ( !radius || ![radius isKindOfClass: [NSNumber class]] ||
          !color || ![color isKindOfClass: [UIColor class]] ||
          CGPointEqualToPoint(offset, CGPointUndefined) )
         return NULL;
     
     // Set
-    [view setDropShadowWithColor: color radius: [radius floatValue] andOffsetPosition: (CGSize){ offset.x, offset.y } ];
+    view.shadowColor = color;
+    view.shadowRadius = [radius floatValue];
+    view.shadowOffset = (CGSize){ offset.x, offset.y };
     return NULL;
 }
-
-/**
- * Sets the inputted view theme parameters object to match the inptted parameters object.
- * @param {UIView*} the view to set the parameters object of.
- * @param {NSDictionary*} the parameters object to set.
- * @retruns {id} null when finshed.
- */
-- (id) setView:(UIView*) view parameterObjectToMatch:(NSDictionary*) newParameters {
-    if ( !view || !newParameters )
-        return NULL;
-    [view setThemeParameters: [[NSMutableDictionary alloc] initWithDictionary: newParameters]];
-    
-    return NULL;
-}
-
-
 
 @end

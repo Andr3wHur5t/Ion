@@ -7,7 +7,17 @@
 //
 
 #import "IonViewGuideSet.h"
+#import <IonData/IonData.h>
 
+@interface IonViewGuideSet () {
+    IonKeyValueObserver *sxObserver, *syObserver, *lxObserver, *lyObserver;
+    
+    // Target action pair
+    id _target;
+    SEL _action;
+}
+
+@end
 
 @implementation IonViewGuideSet
 
@@ -42,6 +52,11 @@
     [self willChangeValueForKey: @"superVertGuide"];
     _superVertGuide = guide;
     [self didChangeValueForKey: @"superVertGuide"];
+    
+    syObserver = [IonKeyValueObserver observeObject: _superVertGuide
+                                            keyPath: @"position"
+                                             target: self
+                                           selector: @selector(didChangeGuidePosition)];
 }
 
 /**
@@ -57,6 +72,11 @@
     [self willChangeValueForKey: @"superHorizGuide"];
     _superHorizGuide = guide;
     [self didChangeValueForKey: @"superHorizGuide"];
+    
+    sxObserver = [IonKeyValueObserver observeObject: _superHorizGuide
+                                            keyPath: @"position"
+                                             target: self
+                                           selector: @selector(didChangeGuidePosition)];
 }
 
 
@@ -90,6 +110,11 @@
     [self willChangeValueForKey: @"localVertGuide"];
     _localVertGuide = guide;
     [self didChangeValueForKey: @"localVertGuide"];
+    
+    lyObserver = [IonKeyValueObserver observeObject: _localVertGuide
+                                            keyPath: @"position"
+                                             target: self
+                                           selector: @selector(didChangeGuidePosition)];
 }
 
 /**
@@ -106,6 +131,44 @@
     _localHorizGuide = guide;
     [self didChangeValueForKey: @"localHorizGuide"];
     
+    lxObserver = [IonKeyValueObserver observeObject: _localHorizGuide
+                                            keyPath: @"position"
+                                             target: self
+                                           selector: @selector(didChangeGuidePosition)];
+    
+}
+
+#pragma mark Change Callback
+
+/**
+ * Sets the target and action for guides position change.
+ * @param {id} the target to call the action on.
+ * @param {SEL} the action to call on the target.
+ * @returns {void}
+ */
+- (void) setTarget:(id) target andAction:(SEL) action {
+    NSParameterAssert([target respondsToSelector: action]);
+    if ( ![target respondsToSelector: action] )
+        return;
+    
+    _target = target;
+    _action = action;
+}
+
+/**
+ * Respond to changes in guides' position
+ * @returns {void}
+ */
+- (void) didChangeGuidePosition {
+    // Call the target pair if it exsists
+    if ( !_target || !_action )
+        return;
+    
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    if ( [_target respondsToSelector: _action] )
+        [_target performSelector: _action];
+    #pragma clang diagnostic pop
 }
 
 #pragma mark Retrieval
@@ -144,4 +207,14 @@
     return (CGRect){ [self toPoint], view.frame.size };
 }
 
+/**
+ * Debug description.
+ */
+- (NSString*) description {
+    CGPoint point = [self toPoint];
+    return [NSString stringWithFormat: @"\nSup {X: %@, Y: %@}\nloc {X: %@, Y: %@}\nCalc {X: %f, Y: %f}\n",
+                                    self.superHorizGuide, self.superVertGuide,
+                                    self.localHorizGuide, self.localVertGuide,
+                                    point.x, point.y];
+}
 @end

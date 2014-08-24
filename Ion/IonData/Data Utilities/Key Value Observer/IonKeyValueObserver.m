@@ -69,7 +69,7 @@
                     keyPath:(NSString*) keyPath
                      target:(id) target
                    selector:(SEL) selector __attribute__((warn_unused_result)) {
-    return [[self alloc] observeObject:object keyPath:keyPath target:target selector:selector options:0];
+    return [[self alloc] initWithObject:object keyPath:keyPath target:target selector:selector options: 0];
 }
 
 /**

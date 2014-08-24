@@ -9,38 +9,50 @@
 #import <UIKit/UIKit.h>
 
 @interface UIView (IonViewProperties)
+#pragma mark Theme Attributes
+/**
+ * Holds our arbritary theme parameters.
+ */
+@property (strong, nonatomic, readonly) NSMutableDictionary* themeAttributes;
+
+#pragma mark Corner Radius
 
 /**
- * This is where we hold our arbitrary parameters.
+ * The corner radius of the view.
+ * @warning Can cause "off screen render calls", will turn on is masking, and will remove drop shadow.
  */
-@property (strong, nonatomic) NSMutableDictionary* themeParameters;
+@property (assign, nonatomic) CGFloat cornerRadius;
 
-#pragma mark Macro Controls
-
-/**
- * This sets the corner radius of the view note this can cause "off screen render calls"
- * @param {CGFloat} the radius of the view to be masked out.
- * @returns {void}
- */
-- (void) setCornerRadius:(CGFloat) radius;
+#pragma mark Drop Shadow
 
 /**
- * This sets the drop shadow of the view.
- * @param {UIColor} the color of the drop shadow.
- * @param {CGFloat} the radius of the drop shadow.
- * @param {CGSize} the offset position of the drop shadow.
- * @return {void}
+ * The drop shadow color.
+ * @warning won't work with corer radius, or masking.
  */
-- (void) setDropShadowWithColor:(UIColor*) color
-                         radius:(CGFloat) radius
-              andOffsetPosition:(CGSize) offset;
+@property (weak, nonatomic) UIColor* shadowColor;
 
 /**
- * This sets the border color, and width inline.
- * @param {UIColor*} the color to set the border
- * @param {CGFloat} the width to set the border
- * @returns {void}
+ * The drop shadow offset.
+ * @warning won't work with corer radius, or masking.
  */
-- (void) setBorderColor:(UIColor*) color andWidth:(CGFloat) width;
+@property (assign, nonatomic) CGSize shadowOffset;
+
+/**
+ * The drop shadow radius.
+ * @warning won't work with corer radius, or masking.
+ */
+@property (assign, nonatomic) CGFloat shadowRadius;
+
+#pragma mark Border Property
+
+/**
+ * The color of the border.
+ */
+@property (weak, nonatomic) UIColor* borderColor;
+
+/**
+ * The width of the border.
+ */
+@property (assign, nonatomic) CGFloat borderWidth;
 
 @end

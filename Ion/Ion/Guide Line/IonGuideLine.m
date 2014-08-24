@@ -186,36 +186,6 @@
 #pragma mark Default UIView Based Guides
 
 /**
- * Constructs a guide line based off the inputted view frames' origin, using the mode to specify axis.
- * @param {UIView*} the view to base the guide off of.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
- */
-+ (instancetype) guideFromViewInternalOrigin:(UIView*) view usingMode:(IonGuideLineFrameMode) mode {
-    NSParameterAssert( view && [view isKindOfClass: [UIView class]]);
-    if ( !view || ![view isKindOfClass:[UIView class]] )
-        return NULL;
-    
-    return [[self class] guideWithTarget: NULL keyPath: NULL andProcessingBlock: ^CGFloat(id data) {
-        return 0.0f;
-    }];
-}
-
-/**
- * Constructs a guide line based off the inputted view frames' size, using the mode to specify axis.
- * @param {UIView*} the view to base the guide off of.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
- */
-+ (instancetype) guideFromViewFrameSize:(UIView*) view usingMode:(IonGuideLineFrameMode) mode {
-    NSParameterAssert( view && [view isKindOfClass: [UIView class]]);
-    if ( !view || ![view isKindOfClass:[UIView class]] )
-        return NULL;
-    
-    return [[self class] guideFromViewFrameSize: view usingAmount: 1.0f andMode: mode];
-}
-
-/**
  * Constructs a guide line based off the inputted view frames' size, using the mode to specify axis, and amount specifying how much.
  * @param {UIView*} the view to base the guide off of.
  * @param {CGFloat} the percentage to use.
@@ -229,27 +199,12 @@
     if ( !view || ![view isKindOfClass:[UIView class]] )
         return NULL;
     
-    return [[self class] guideWithTarget: view
-                                 keyPath: @"frame"
-                         processingBlock: [[self class] rectSizeProcessingBlockUsingMode: mode]
-                            andCalcBlock: ^CGFloat(CGFloat target) {
-                                return target * amount;
-                            }];
+    return [[self class] guideWithTargetRectSize: view
+                                usingRectKeyPath: @"frame"
+                                          amount: amount
+                                         andMode: mode];
 }
 
-/**
- * Constructs a guide line based off the inputted views' center, using the mode to specify axis.
- * @param {UIView*} the view to base the guide off of.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
- */
-+ (instancetype) guideFromViewCenter:(UIView*) view usingMode:(IonGuideLineFrameMode) mode {
-    NSParameterAssert( view && [view isKindOfClass: [UIView class]]);
-    if ( !view || ![view isKindOfClass:[UIView class]] )
-        return NULL;
-    
-    return [[self class] guideFromViewFrameSize: view usingAmount: 0.5f andMode: mode];
-}
 
 /**
  * Constructs a guide line based off the inputted views' corner radius, using the mode to specify axis.
@@ -297,6 +252,56 @@
                                  keyPath: @"autoMargin"
                          processingBlock: [[self class] sizeProcessingBlockUsingMode: mode]
                             andCalcBlock: [[self class] defaultCalculationBlock]];
+}
+
+#pragma mark Frame Based Guides
+
+/**
+ * Constructs a guide line based off the inputted object frames' size, using the mode to specify axis, and amount specifying how much.
+ * @param {id} the target object to base off of.
+ * @param {NSString*} the key path of the rect to use.
+ * @param {CGFloat} the amount to use.
+ * @param {IonGuideLineFrameMode} the mode specifying axis to use
+ * @returns {instancetype}
+ */
++ (instancetype) guideWithTargetRectSize:(id) target
+                        usingRectKeyPath:(NSString*) keyPath
+                                  amount:(CGFloat) amount
+                                 andMode:(IonGuideLineFrameMode) mode {
+    NSParameterAssert( target );
+    NSParameterAssert( keyPath && [keyPath isKindOfClass: [NSString class]]);
+    if ( !target || !keyPath || ![keyPath isKindOfClass:[NSString class]] )
+        return NULL;
+    
+    return [[self class] guideWithTarget: target
+                                 keyPath: keyPath
+                         processingBlock: [[self class] rectSizeProcessingBlockUsingMode: mode]
+                            andCalcBlock: ^CGFloat(CGFloat target) {
+                                return target * amount;
+                            }];
+}
+
+/**
+ * Constructs a guide line based off the inputted object frames' size combined with origin to get the external position, using the mode to specify axis, and amount specifying how much of the size to use.
+ * @param {id} the target object to base off of.
+ * @param {NSString*} the key path of the rect to use.
+ * @param {CGFloat} the amount to use.
+ * @param {IonGuideLineFrameMode} the mode specifying axis to use
+ * @returns {instancetype}
+ */
++ (instancetype) guideWithTargetRectPosition:(id) target
+                            usingRectKeyPath:(NSString*) keyPath
+                                      amount:(CGFloat) amount
+                                     andMode:(IonGuideLineFrameMode) mode {
+    NSParameterAssert( target );
+    NSParameterAssert( keyPath && [keyPath isKindOfClass: [NSString class]]);
+    if ( !target || !keyPath || ![keyPath isKindOfClass:[NSString class]] )
+        return NULL;
+    
+    return [[self class] guideWithTarget: target
+                                 keyPath: keyPath
+                      andProcessingBlock: [[self class] externalPositioningProcessingBlockUsingMode: mode
+                                                                                          andAmount: amount]];
 }
 
 #pragma mark Change Subscription
@@ -403,18 +408,21 @@
  * @returns {void}
  */
 - (void) updatePosition:(CGFloat) newPosition {
+    CGFloat newVal;
     NSParameterAssert( self.calcBlock );
     if ( !self.calcBlock || newPosition == self.position)
         return;
-
-    self.position = self.calcBlock( newPosition );
+    
+    newVal = self.calcBlock( newPosition );
+    if ( self.position != newVal )
+        self.position = newVal;
 }
 
 /**
- * Debug Discryption
+ * Debug Description
  */
 - (NSString*) description {
-    return [NSString stringWithFormat:@"value: %f", _position];
+    return [NSString stringWithFormat:@"%f", _position];
 }
 #pragma mark Calculation Blocks
 
@@ -489,6 +497,35 @@
         
         point = [(NSValue*)data CGPointValue];
         return mode == IonGuideLineFrameMode_Vertical ? point.y : point.x;
+    };
+}
+
+/**
+ * External position processing block.
+ * @param {IonGuideLineFrameMode} the axis to extract
+ * @returns {IonGuideLineProcessingBlock}
+ */
++ (IonGuideLineProcessingBlock) externalPositioningProcessingBlockUsingMode:(IonGuideLineFrameMode) mode {
+    return [[self class] externalPositioningProcessingBlockUsingMode: mode
+                                                          andAmount: 1.0f];
+}
+
+/**
+ * External position processing block.
+ * @param {IonGuideLineFrameMode} the axis to extract
+ * @param {CGFloat} the amount of the size to use
+ * @returns {IonGuideLineProcessingBlock}
+ */
++ (IonGuideLineProcessingBlock) externalPositioningProcessingBlockUsingMode:(IonGuideLineFrameMode) mode
+                                                                 andAmount:(CGFloat) amount {
+    return ^CGFloat( id data ) {
+        CGRect frame;
+        if ( !data || ![data isKindOfClass: [NSValue class]] )
+            return 0.0f;
+        
+        frame = [(NSValue*)data CGRectValue];
+        return  ((mode == IonGuideLineFrameMode_Vertical ? frame.size.height : frame.size.width)  * amount )+
+                (mode == IonGuideLineFrameMode_Vertical ? frame.origin.y : frame.origin.x);
     };
 }
 

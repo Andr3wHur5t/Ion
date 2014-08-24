@@ -53,12 +53,12 @@ static char* sIonCachedGuideLineKey = "IonCachedGuideLines";
     IonViewGuideSet* set = objc_getAssociatedObject(self, sIonGuideSetKey);
     if ( !set ) {
         set = [[IonViewGuideSet alloc] init];
+        [set setTarget: self andAction: @selector(updateFrameToMatchGuideSet)];
         self.guideSet = set;
     }
     
     return set;
 }
-
 
 #pragma mark Local Vert Guide
 
@@ -136,7 +136,6 @@ static char* sIonCachedGuideLineKey = "IonCachedGuideLines";
     return self.guideSet.localVertGuide;
 }
 
-
 #pragma mark Setters
 
 /**
@@ -174,7 +173,6 @@ static char* sIonCachedGuideLineKey = "IonCachedGuideLines";
     self.guideSet.superHorizGuide = horiz;
     [self updateFrameToMatchGuideSet];
 }
-
 
 /**
  * Sets all guides.

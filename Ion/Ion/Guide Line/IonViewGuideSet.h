@@ -56,4 +56,14 @@
  */
 - (CGRect) rectForView:(UIView*) view;
 
+#pragma mark Change Callback
+
+/**
+ * Sets the target and action for guides position change.
+ * @param {id} the target to call the action on.
+ * @param {SEL} the action to call on the target.
+ * @returns {void}
+ */
+- (void) setTarget:(id) target andAction:(SEL) action;
+
 @end

@@ -9,10 +9,11 @@
 #import "IonVisualTestViewController.h"
 
 @interface IonVisualTestViewController () {
-    IonView* imgView;
+    IonTitleBar* titleBar;
     IonSimpleCache* sc;
     IonInterfaceButton* button;
     IonLabel* testLabel;
+    IonGuideGroup* guideGroup;
 }
 
 @end
@@ -22,21 +23,28 @@
 - (void) constructViews {
     [super constructViews];
     // Render Debug
-    imgView = [[IonView alloc] init];
-    [self.view addSubview:imgView];
+    titleBar = [[IonTitleBar alloc] init];
+    [self.view addSubview: titleBar];
     
-    // Theme Testing
-    imgView.themeConfiguration.themeClass = @"secondaryStyle";
     
+    IonButton *leftButton, *rightButton;
     // Set the image using the image manager
     button = [[IonInterfaceButton alloc] initWithFileName: @"Hamburger"];
+    leftButton = [[IonInterfaceButton alloc] initWithFileName: @"Add"];
+    rightButton = [[IonInterfaceButton alloc] initWithFileName: @"Settings"];
     //[button setEnabled: false];
-    button.frame = (CGRect){ (CGPoint){ 18, 50 + 2 }, (CGSize){30,30}};
-    [self.view addSubview: button];
+    rightButton.frame = leftButton.frame = button.frame = (CGRect){ (CGPoint){ 18, 50 + 2 }, (CGSize){30,30}};
+    
     
     [self.view setBackgroundImageUsingKey: @"aspect"];
     
+
+    
     [self makeTestLabel];
+    
+    titleBar.leftView = leftButton;
+    titleBar.rightView = rightButton;
+    titleBar.centerView = testLabel;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -52,10 +60,10 @@
 }
 
 - (void) makeTestLabel {
-    testLabel = [[IonLabel alloc] initWithFrame: (CGRect){ CGPointZero, (CGSize){ self.view.frame.size.width - 18*6, 40}}];
+    testLabel = [[IonLabel alloc] initWithFrame: (CGRect){ CGPointZero, (CGSize){ self.view.frame.size.width - 100, 40}}];
     testLabel.center = (CGPoint){ self.view.frame.size.width / 2 , 25 };
-    //testLabel.text = @"Lorem ipsum dolor sit amet consectetur adipiscing elit";
-    testLabel.text = @"People";
+    testLabel.text = @"Lorem ipsum dolor sit amet consectetur adipiscing elit";
+    //testLabel.text = @"People";
     [self.view addSubview: testLabel];
 }
 
@@ -104,14 +112,16 @@
     [super shouldLayoutSubviews];
     CGSize s = self.view.frame.size;
     s.height = 50;
-    imgView.frame = (CGRect) {CGPointZero,s};
+    titleBar.frame = (CGRect) {CGPointZero,s};
     
     // Position
-    imgView.localHorizGuide = imgView.centerGuideHoriz;
-    imgView.localVertGuide = imgView.centerGuideVert;
+    titleBar.localHorizGuide = titleBar.centerGuideHoriz;
+    titleBar.localVertGuide = titleBar.internalOriginGuideVert;
     
-    imgView.superHorizGuide = self.view.centerGuideHoriz;
-    imgView.superVertGuide = self.view.oneThirdGuideVert;
+    titleBar.superHorizGuide = self.view.centerGuideHoriz;
+    titleBar.superVertGuide = self.view.internalOriginGuideVert;
+    
+    
 }
 
 
