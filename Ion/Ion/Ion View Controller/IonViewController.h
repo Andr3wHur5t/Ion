@@ -53,4 +53,20 @@
  * @returns {void}
  */
 - (void) decodeTemporaryState:(NSCoder*) decoder;
+
+#pragma mark Delegation
+
+/**
+ * Adds the delegate to the correct manager
+ * @param {id} the delegate to add.
+ * @returns {void}
+ */
+- (void) addDelegateToManager:(id) delegate;
+
+/**
+ * Removes the delegate from its manager.
+ * @param {id} the delegate to add.
+ * @returns {void}
+ */
+- (void) removeDelegateFromManager:(id) delegate;
 @end

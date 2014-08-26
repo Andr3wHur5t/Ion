@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIView+IonTheme.h"
 
 
 static const UIControlEvents IonCompletedButtonAction = 1 << 29;
@@ -27,5 +28,13 @@ typedef enum : NSUInteger {
  * This is the buttons current state.
  */
 @property (assign, nonatomic) IonButtonStates currentState;
+
+
+/**
+ * Applies a theme style to the button.
+ * @param {IonStyle*} the style to apply.
+ * @returns {void}
+ */
+- (void) applyStyle:(IonStyle*) style;
 
 @end

@@ -122,6 +122,7 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
     return [self initWithOrigin: CGPointZero andFileName: name];
 }
 
+
 #pragma mark Configuration
 
 /**
@@ -210,6 +211,7 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
 #pragma mark Style Application
 
 - (void) applyStyle:(IonStyle*) style {
+    [super applyStyle: style];
     if ( _behavior )
         [_behavior styleWasApplyed: style];
 }
@@ -265,6 +267,8 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
     if ( _behavior )
         [_behavior invalidTapCompleted];
 }
+
+#pragma mark Frame
 
 /**
  * Respond to changes to the frame by resizing the image.

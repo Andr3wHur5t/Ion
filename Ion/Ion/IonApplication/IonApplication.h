@@ -82,6 +82,14 @@
  */
 - (void) performBlock:(void(^)( )) block afterDelay:(double) delay;
 
+
+#pragma mark Catagories Variables Map
+
+/**
+ * A map to put catagory variables.
+ */
+@property (strong, nonatomic, readonly) NSMutableDictionary* catagoriesMap;
+
 #pragma mark Singletons
 
 /**

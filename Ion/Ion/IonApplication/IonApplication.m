@@ -9,6 +9,7 @@
 #import "IonApplication.h"
 #import "IonRapidStartManager.h"
 #import "IonWindow.h"
+#import "IonApplication+StatusBar.h"
 
 // Demo Mode Only
 #import "IonDemoUIWindow.h"
@@ -30,6 +31,9 @@
     /* This manages the rapid start of the application.
      */
     IonRapidStartManager* rapidStartManager;
+    
+#pragma mark Extensions
+    NSMutableDictionary* _catagoriesMap;
 }
 
 
@@ -366,21 +370,15 @@
     NSLog(@"%@",logString);
 }
 
-#pragma mark Utilties
+#pragma mark Catagories Variables Map
 
 /**
- * Performs a block after the set delay.
- * @param {void(^)( )} the block to call.
- * @returns {void}
+ * Retrives or creates the catagory extension map.
  */
-- (void) performBlock:(void(^)( )) block afterDelay:(double) delay {
-    if ( !block )
-        return;
-    
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC);
-    dispatch_after( popTime, dispatch_get_main_queue(), ^(void){
-        block( );
-    });
+- (NSMutableDictionary*) catagoriesMap {
+    if ( !_catagoriesMap )
+        _catagoriesMap = [[NSMutableDictionary alloc] init];
+    return _catagoriesMap;
 }
 
 #pragma mark Singletons

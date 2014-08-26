@@ -7,17 +7,31 @@
 //
 
 #import "IonViewController.h"
-#import <IOnData/IonData.h>
+#import <IonData/IonData.h>
 #import "IonApplication.h"
+#import "IonViewMotionGestureManager.h"
 
 @interface IonViewController () {
     CGRect oldFrame;
+    
+    /** Gesture Manager */
+    IonViewMotionGestureManager* _viewMotionGestureManager;
 }
+
+/**
+ * The gesture manager.
+ */
+@property (strong, nonatomic) IonViewMotionGestureManager* viewMotionGestureManager;
 
 @end
 
 @implementation IonViewController
+#pragma mark Constructors
 
+/**
+ * The default constructor.
+ * @returns {instancetype}
+ */
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -27,13 +41,70 @@
     return self;
 }
 
+#pragma mark View
+/**
+ * Overrides the view setter to only allow IonViews.
+ * @param {IonView*} the new view.
+ * @returns {void}
+ */
 - (void) setView:(IonView *)view {
+    NSParameterAssert( view && [view isKindOfClass: [IonView class]] );
+    if ( !view || ![view isKindOfClass: [IonView class]])
+        return;
+    
     super.view = view;
 }
 
+/**
+ * Gets the current view, and forces it as a IonView.
+ * @returns {IonView} the view
+ */
 - (IonView*) view {
     return (IonView*)super.view;
 }
+
+#pragma mark Motion Delegation
+
+/**
+ * Gets the current view motion manager, or constructs if if it doesn't exist.
+ * @returns {IonViewMotionManager}
+ */
+- (IonViewMotionGestureManager*) viewMotionGestureManager {
+    if ( !_viewMotionGestureManager )
+        _viewMotionGestureManager = [[IonViewMotionGestureManager alloc] init];
+    return _viewMotionGestureManager;
+}
+
+#pragma mark Delegation
+
+/**
+ * Adds the delegate to the correct manager
+ * @param {id} the delegate to add.
+ * @returns {void}
+ */
+- (void) addDelegateToManager:(id) delegate {
+    NSParameterAssert( delegate );
+    if ( !delegate )
+        return;
+    
+    if ( [delegate conformsToProtocol: @protocol(IonViewMotionGestureDelegate)] )
+        [self.viewMotionGestureManager addGestureDelegate: delegate];
+}
+
+/**
+ * Removes the delegate from its manager.
+ * @param {id} the delegate to add.
+ * @returns {void}
+ */
+- (void) removeDelegateFromManager:(id) delegate {
+    NSParameterAssert( delegate );
+    if ( !delegate )
+        return;
+    
+    if ( [delegate conformsToProtocol: @protocol(IonViewMotionGestureDelegate)] )
+        [self.viewMotionGestureManager removeGestureDelegate: delegate];
+}
+
 #pragma mark Ion Controller Interface
 
 /**
@@ -97,9 +168,8 @@
  * @returns {void}
  */
 - (void) setDefaultThemeSystemNames {
-    self.view.themeConfiguration.themeElement = @"body";
+    self.view.themeElement = sIonThemeElementBody;
 }
-
 
 /**
  * Sets our view to the current system theme invoking internal system theme set.
@@ -112,9 +182,6 @@
     
     [self.view setIonTheme: appReference.window.systemTheme];
 }
-
-
-
 
 #pragma mark Standard Interface
 
@@ -171,6 +238,36 @@
     }
 }
 
+#pragma mark Motion Delegate Interface
+
+/**
+ * Enable the reciveing of motion events.
+ */
+- (BOOL) canBecomeFirstResponder {
+    return TRUE;
+}
+
+/**
+ * Reports motion began to the motion manager
+ */
+- (void) motionBegan:(UIEventSubtype) motion withEvent:(UIEvent *) event {
+    [self.viewMotionGestureManager motionBegan: motion withEvent: event];
+}
+
+/**
+ * Reports motion canceled to the motion manager
+ */
+- (void) motionCancelled:(UIEventSubtype) motion withEvent:(UIEvent *) event {
+    [self.viewMotionGestureManager motionCancelled: motion withEvent: event];
+}
+
+/**
+ * Reports motion ended to the motion manager
+ */
+- (void) motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    [self.viewMotionGestureManager motionEnded: motion withEvent: event];
+}
+
 #pragma mark State Restoration
 
 /** TODO: provide a state restoration ID.*/
@@ -186,7 +283,7 @@
 }
 
 /**
- * Encodes a state restoration coder, and invokes further incoding methods.
+ * Encodes a state restoration coder, and invokes further encoding methods.
  * @param {NSCoder*} the coder to encode to.
  * @retutns {void}
  */
@@ -194,6 +291,4 @@
     // To-Do our encoding.
     [self encodeTemporaryState: aCoder];
 }
-
-
 @end

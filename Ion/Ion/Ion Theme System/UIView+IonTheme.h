@@ -13,18 +13,33 @@
 /**
  * These are Standard element names.
  */
-static const NSString* sIonThemeElementBody =                                   @"body";
-static const NSString* sIonThemeElementTitleBar =                               @"titleBar";
+static NSString* sIonThemeElementBody =                                     @"body";
 
-static const NSString* sIonThemeElementInteractiveUpState =                     @"interactive_up";
-static const NSString* sIonThemeElementInteractiveDownState =                   @"interactive_down";
-static const NSString* sIonThemeElementInteractiveActiveState =                 @"interactive_active";
-static const NSString* sIonThemeElementInteractiveInActiveState =               @"interactive_inactive";
+/** Button */
+static NSString* sIonThemeElementButton =                                   @"button";
+static NSString* sIonThemeElementButton_SizeKey =                           @"size";
 
-static const NSString* sIonThemeElementStateGood =                              @"state_good";
-static const NSString* sIonThemeElementStateBad =                               @"state_bad";
-static const NSString* sIonThemeElementStateWorking =                           @"state_working";
-static const NSString* sIonThemeElementStateUnknown =                           @"state_unknown";
+/** Label */
+static NSString* sIonThemeElementLabel =                                    @"label";
+static NSString* sIonThemeLabel_TextColor =                                 @"textColor";
+static NSString* sIonThemeLabel_Font =                                      @"font";
+static NSString* sIonThemeLabel_TextAlignment =                             @"textAlignment";
+
+/** Title Bar */
+static NSString* sIonThemeElementTitleBar =                                 @"titleBar";
+static NSString* sIonThemeElementTitleBar_LeftView =                        @"leftView";
+static NSString* sIonThemeElementTitleBar_CenterView =                      @"centerView";
+static NSString* sIonThemeElementTitleBar_RightView =                       @"rightView";
+static NSString* sIonThemeElementTitleBar_StatusBarOffset =                 @"contentStatusBarOffset";
+static NSString* sIonThemeElementTitleBar_ContentHeight =                   @"contentHeight";
+
+/**
+ * State Colors
+ */
+static NSString* sIonThemeElementStateGood =                                @"state_good";
+static NSString* sIonThemeElementStateBad =                                 @"state_bad";
+static NSString* sIonThemeElementStateWorking =                             @"state_working";
+static NSString* sIonThemeElementStateUnknown =                             @"state_unknown";
 
 @interface UIView (IonTheme)
 
@@ -34,6 +49,21 @@ static const NSString* sIonThemeElementStateUnknown =                           
  * Theme configuration Object.
  */
 @property (strong, nonatomic) IonThemeConfiguration* themeConfiguration;
+
+/**
+ * The theme element Name.
+ */
+@property (weak, nonatomic) NSString* themeElement;
+
+/**
+ * The theme class Name.
+ */
+@property (weak, nonatomic) NSString* themeClass;
+
+/**
+ * The theme id Name.
+ */
+@property (weak, nonatomic) NSString* themeID;
 
 
 #pragma mark Application

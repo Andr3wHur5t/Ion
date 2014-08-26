@@ -21,6 +21,12 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 #include "IonVec3.h"
 
 #pragma mark Data Utilities
+// Object Extension
+#import "NSObject+IonUtilties.h"
+
+// Timed Actions
+#import "IonTimedAction.h"
+
 // Key Value Observation
 #import "IonKeyValueObserver.h"
 

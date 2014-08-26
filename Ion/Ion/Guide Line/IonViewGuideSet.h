@@ -23,6 +23,12 @@
 @property (strong, nonatomic) IonGuideLine* localVertGuide;
 @property (strong, nonatomic) IonGuideLine* localHorizGuide;
 
+/**
+ * The size views' guide pair.
+ */
+@property (strong, nonatomic) IonGuideLine* sizeVertGuide;
+@property (strong, nonatomic) IonGuideLine* sizeHorizGuide;
+
 #pragma mark Setter Utilities.
 /**
  * Sets the super pair to match the inputted guides.

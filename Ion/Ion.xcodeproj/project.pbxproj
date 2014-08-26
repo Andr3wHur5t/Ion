@@ -109,6 +109,8 @@
 		372DD25019731F0200CC0A58 /* UIView+IonBackgroundUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD24E19731F0200CC0A58 /* UIView+IonBackgroundUtilities.m */; };
 		373B390319A97977000FE567 /* IonTitleBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 373B390119A97977000FE567 /* IonTitleBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		373B390419A97977000FE567 /* IonTitleBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 373B390219A97977000FE567 /* IonTitleBar.m */; };
+		373B390819AAC9D2000FE567 /* IonApplication+StatusBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 373B390619AAC9D2000FE567 /* IonApplication+StatusBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		373B390919AAC9D2000FE567 /* IonApplication+StatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 373B390719AAC9D2000FE567 /* IonApplication+StatusBar.m */; };
 		373C1029198C894300315F44 /* IonMathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373C1027198C87F700315F44 /* IonMathTests.m */; };
 		373C102B198CAFF000315F44 /* IonStyleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373C102A198CAFF000315F44 /* IonStyleTests.m */; };
 		373C998119846ADE002F46AD /* IonSimpleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 373C997E19846ADA002F46AD /* IonSimpleCache.m */; };
@@ -163,6 +165,16 @@
 		3771F3C6198E803D001DBBB9 /* NSArray+IonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771F3C4198E803D001DBBB9 /* NSArray+IonExtension.m */; };
 		3771F3C8198F1238001DBBB9 /* IonFileIOManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771F3C7198F1238001DBBB9 /* IonFileIOManagerTests.m */; };
 		3771F3C9198F3B54001DBBB9 /* IonFileIOManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771F3C7198F1238001DBBB9 /* IonFileIOManagerTests.m */; };
+		37721A0619AB1E44005149BD /* IonViewMotionGestureManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 37721A0419AB1E44005149BD /* IonViewMotionGestureManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37721A0719AB1E44005149BD /* IonViewMotionGestureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37721A0519AB1E44005149BD /* IonViewMotionGestureManager.m */; };
+		37721A0B19AB2A80005149BD /* IonStatusBarBehaviorMotionGestureDisplay.h in Headers */ = {isa = PBXBuildFile; fileRef = 37721A0919AB2A80005149BD /* IonStatusBarBehaviorMotionGestureDisplay.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37721A0C19AB2A80005149BD /* IonStatusBarBehaviorMotionGestureDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 37721A0A19AB2A80005149BD /* IonStatusBarBehaviorMotionGestureDisplay.m */; };
+		37721A1519AB3BF5005149BD /* NSObject+IonUtilties.h in Headers */ = {isa = PBXBuildFile; fileRef = 37721A1319AB3BF5005149BD /* NSObject+IonUtilties.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37721A1619AB3BF5005149BD /* NSObject+IonUtilties.m in Sources */ = {isa = PBXBuildFile; fileRef = 37721A1419AB3BF5005149BD /* NSObject+IonUtilties.m */; };
+		37721A1719AB3BFA005149BD /* IonTimedAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 37721A0E19AB3812005149BD /* IonTimedAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37721A1819AB3C00005149BD /* IonTimedAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37721A0F19AB3812005149BD /* IonTimedAction.m */; };
+		37721A1B19AB4C2C005149BD /* UIView+IonExternalGuides.h in Headers */ = {isa = PBXBuildFile; fileRef = 37721A1919AB4C2C005149BD /* UIView+IonExternalGuides.h */; };
+		37721A1C19AB4C2C005149BD /* UIView+IonExternalGuides.m in Sources */ = {isa = PBXBuildFile; fileRef = 37721A1A19AB4C2C005149BD /* UIView+IonExternalGuides.m */; };
 		377C3EBD196F316900EA6599 /* IonApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3EB5196F316900EA6599 /* IonApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		377C3EBE196F316900EA6599 /* IonApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 377C3EB6196F316900EA6599 /* IonApplication.m */; };
 		377C3EBF196F316900EA6599 /* IonRapidStartManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3EB8196F316900EA6599 /* IonRapidStartManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -370,6 +382,8 @@
 		372DD24E19731F0200CC0A58 /* UIView+IonBackgroundUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+IonBackgroundUtilities.m"; path = "IonView/UIView+IonBackgroundUtilities.m"; sourceTree = "<group>"; };
 		373B390119A97977000FE567 /* IonTitleBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonTitleBar.h; path = "UIControls/Title Bar/IonTitleBar.h"; sourceTree = "<group>"; };
 		373B390219A97977000FE567 /* IonTitleBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonTitleBar.m; path = "UIControls/Title Bar/IonTitleBar.m"; sourceTree = "<group>"; };
+		373B390619AAC9D2000FE567 /* IonApplication+StatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IonApplication+StatusBar.h"; sourceTree = "<group>"; };
+		373B390719AAC9D2000FE567 /* IonApplication+StatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IonApplication+StatusBar.m"; sourceTree = "<group>"; };
 		373C1027198C87F700315F44 /* IonMathTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonMathTests.m; sourceTree = "<group>"; };
 		373C102A198CAFF000315F44 /* IonStyleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonStyleTests.m; sourceTree = "<group>"; };
 		373C997D19846ADA002F46AD /* IonSimpleCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonSimpleCache.h; path = "Simple Cache/IonSimpleCache.h"; sourceTree = "<group>"; };
@@ -421,6 +435,16 @@
 		3771F3C3198E803D001DBBB9 /* NSArray+IonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+IonExtension.h"; path = "NSArray+IonExtension/NSArray+IonExtension.h"; sourceTree = "<group>"; };
 		3771F3C4198E803D001DBBB9 /* NSArray+IonExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+IonExtension.m"; path = "NSArray+IonExtension/NSArray+IonExtension.m"; sourceTree = "<group>"; };
 		3771F3C7198F1238001DBBB9 /* IonFileIOManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonFileIOManagerTests.m; sourceTree = "<group>"; };
+		37721A0419AB1E44005149BD /* IonViewMotionGestureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonViewMotionGestureManager.h; path = "Ion View Controller/IonViewMotionGestureManager.h"; sourceTree = "<group>"; };
+		37721A0519AB1E44005149BD /* IonViewMotionGestureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonViewMotionGestureManager.m; path = "Ion View Controller/IonViewMotionGestureManager.m"; sourceTree = "<group>"; };
+		37721A0919AB2A80005149BD /* IonStatusBarBehaviorMotionGestureDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonStatusBarBehaviorMotionGestureDisplay.h; path = IonStatusBarBehavior/IonStatusBarBehaviorMotionGestureDisplay.h; sourceTree = "<group>"; };
+		37721A0A19AB2A80005149BD /* IonStatusBarBehaviorMotionGestureDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonStatusBarBehaviorMotionGestureDisplay.m; path = IonStatusBarBehavior/IonStatusBarBehaviorMotionGestureDisplay.m; sourceTree = "<group>"; };
+		37721A0E19AB3812005149BD /* IonTimedAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonTimedAction.h; path = IonTimedAction/IonTimedAction.h; sourceTree = "<group>"; };
+		37721A0F19AB3812005149BD /* IonTimedAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonTimedAction.m; path = IonTimedAction/IonTimedAction.m; sourceTree = "<group>"; };
+		37721A1319AB3BF5005149BD /* NSObject+IonUtilties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+IonUtilties.h"; path = "NSObject/NSObject+IonUtilties.h"; sourceTree = "<group>"; };
+		37721A1419AB3BF5005149BD /* NSObject+IonUtilties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+IonUtilties.m"; path = "NSObject/NSObject+IonUtilties.m"; sourceTree = "<group>"; };
+		37721A1919AB4C2C005149BD /* UIView+IonExternalGuides.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+IonExternalGuides.h"; path = "IonView/UIView+IonExternalGuides.h"; sourceTree = "<group>"; };
+		37721A1A19AB4C2C005149BD /* UIView+IonExternalGuides.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+IonExternalGuides.m"; path = "IonView/UIView+IonExternalGuides.m"; sourceTree = "<group>"; };
 		377C3EB5196F316900EA6599 /* IonApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonApplication.h; sourceTree = "<group>"; };
 		377C3EB6196F316900EA6599 /* IonApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonApplication.m; sourceTree = "<group>"; };
 		377C3EB8196F316900EA6599 /* IonRapidStartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonRapidStartManager.h; sourceTree = "<group>"; };
@@ -561,6 +585,8 @@
 				370588A61999E60400597822 /* UIView+IonPositionAndOrientation.m */,
 				370A22BC19A83409006FCD75 /* UIView+IonGuideLine.h */,
 				370A22BD19A83409006FCD75 /* UIView+IonGuideLine.m */,
+				37721A1919AB4C2C005149BD /* UIView+IonExternalGuides.h */,
+				37721A1A19AB4C2C005149BD /* UIView+IonExternalGuides.m */,
 			);
 			name = "Positioning And Orentation";
 			sourceTree = "<group>";
@@ -845,6 +871,8 @@
 				372DD232197276F300CC0A58 /* Container Controlers */,
 				372DD244197281F400CC0A58 /* IonViewController.h */,
 				372DD245197281F400CC0A58 /* IonViewController.m */,
+				37721A0419AB1E44005149BD /* IonViewMotionGestureManager.h */,
+				37721A0519AB1E44005149BD /* IonViewMotionGestureManager.m */,
 			);
 			name = UIViewController;
 			sourceTree = "<group>";
@@ -922,10 +950,18 @@
 		373B390019A97924000FE567 /* Title Bar */ = {
 			isa = PBXGroup;
 			children = (
+				373B390519AAA737000FE567 /* Default Title */,
 				373B390119A97977000FE567 /* IonTitleBar.h */,
 				373B390219A97977000FE567 /* IonTitleBar.m */,
 			);
 			name = "Title Bar";
+			sourceTree = "<group>";
+		};
+		373B390519AAA737000FE567 /* Default Title */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Default Title";
 			sourceTree = "<group>";
 		};
 		373C997C19846AAC002F46AD /* Caches */ = {
@@ -1222,6 +1258,33 @@
 			name = NSArrayExtension;
 			sourceTree = "<group>";
 		};
+		37721A0819AB2A44005149BD /* Status Bar Behaviors */ = {
+			isa = PBXGroup;
+			children = (
+				37721A0919AB2A80005149BD /* IonStatusBarBehaviorMotionGestureDisplay.h */,
+				37721A0A19AB2A80005149BD /* IonStatusBarBehaviorMotionGestureDisplay.m */,
+			);
+			name = "Status Bar Behaviors";
+			sourceTree = "<group>";
+		};
+		37721A0D19AB37E9005149BD /* IonTimedAction */ = {
+			isa = PBXGroup;
+			children = (
+				37721A0E19AB3812005149BD /* IonTimedAction.h */,
+				37721A0F19AB3812005149BD /* IonTimedAction.m */,
+			);
+			name = IonTimedAction;
+			sourceTree = "<group>";
+		};
+		37721A1219AB3BD1005149BD /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				37721A1319AB3BF5005149BD /* NSObject+IonUtilties.h */,
+				37721A1419AB3BF5005149BD /* NSObject+IonUtilties.m */,
+			);
+			name = NSObject;
+			sourceTree = "<group>";
+		};
 		377C3EB4196F316900EA6599 /* IonApplication */ = {
 			isa = PBXGroup;
 			children = (
@@ -1230,6 +1293,8 @@
 				377C3EC9196F520900EA6599 /* Demo Window */,
 				377C3EB5196F316900EA6599 /* IonApplication.h */,
 				377C3EB6196F316900EA6599 /* IonApplication.m */,
+				373B390619AAC9D2000FE567 /* IonApplication+StatusBar.h */,
+				373B390719AAC9D2000FE567 /* IonApplication+StatusBar.m */,
 			);
 			path = IonApplication;
 			sourceTree = "<group>";
@@ -1261,6 +1326,8 @@
 		37B9CD1E197FA12800424EFC /* Data Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				37721A1219AB3BD1005149BD /* NSObject */,
+				37721A0D19AB37E9005149BD /* IonTimedAction */,
 				370A22B119A716F8006FCD75 /* NSValue */,
 				370A22AA19A6DA5D006FCD75 /* Key Value Observation */,
 				370A22A019A58C01006FCD75 /* NSString */,
@@ -1351,6 +1418,7 @@
 		37EBAC55195C9A93008D6BD6 /* Ion */ = {
 			isa = PBXGroup;
 			children = (
+				37721A0819AB2A44005149BD /* Status Bar Behaviors */,
 				37EBAC58195C9A93008D6BD6 /* Ion.h */,
 				370A22A519A67F11006FCD75 /* Guide Line */,
 				370588AE199A0BE100597822 /* TransformAnimationMap */,
@@ -1666,6 +1734,7 @@
 				370A22BE19A83409006FCD75 /* UIView+IonGuideLine.h in Headers */,
 				37EBAC59195C9A93008D6BD6 /* Ion.h in Headers */,
 				372DD246197281F400CC0A58 /* IonViewController.h in Headers */,
+				373B390819AAC9D2000FE567 /* IonApplication+StatusBar.h in Headers */,
 				370588B5199A151E00597822 /* IonTransformAnimation.h in Headers */,
 				37E68168199767C6005096AC /* IonButton.h in Headers */,
 				37E6817019994418005096AC /* IonButtonBehaviorSimpleFade.h in Headers */,
@@ -1677,6 +1746,7 @@
 				376DA8AE1976FB37008D692E /* IonStyle.h in Headers */,
 				370588B1199A0C5900597822 /* IonTransformAnimationMap.h in Headers */,
 				376DA8B21976FB47008D692E /* IonTheme.h in Headers */,
+				37721A0619AB1E44005149BD /* IonViewMotionGestureManager.h in Headers */,
 				370588A71999E60400597822 /* UIView+IonPositionAndOrientation.h in Headers */,
 				37E6816419975709005096AC /* IonInterfaceButton.h in Headers */,
 				370A22BA19A82D07006FCD75 /* IonViewGuideSet.h in Headers */,
@@ -1694,7 +1764,9 @@
 				371D5D6F197FB15000485DC0 /* IonKVP+IonTheme.h in Headers */,
 				371D5D7C1980C73C00485DC0 /* NSDictionary+IonThemeResolution.h in Headers */,
 				370A229E19A497C0006FCD75 /* IonLabelOverflowBehavior.h in Headers */,
+				37721A0B19AB2A80005149BD /* IonStatusBarBehaviorMotionGestureDisplay.h in Headers */,
 				371D5D781980784E00485DC0 /* IonThemeConfiguration.h in Headers */,
+				37721A1B19AB4C2C005149BD /* UIView+IonExternalGuides.h in Headers */,
 				37FCF13B197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.h in Headers */,
 				377C3ED0196F58A900EA6599 /* UITouch + IonDemoTouch.h in Headers */,
 				377C3ECC196F52AE00EA6599 /* IonDemoUIWindow.h in Headers */,
@@ -1736,11 +1808,13 @@
 				37B9CD1C197F8E6100424EFC /* IonRenderUtilities.h in Headers */,
 				373C99D91989C6DA002F46AD /* IonMutableDictionary.h in Headers */,
 				376484C71994CA9300B65EAF /* ImageManifest.h in Headers */,
+				37721A1719AB3BFA005149BD /* IonTimedAction.h in Headers */,
 				373C99DE198A3751002F46AD /* IonDataTypes.h in Headers */,
 				371D5D6C197FB11300485DC0 /* IonKeyValuePair.h in Headers */,
 				3771F3C5198E803D001DBBB9 /* NSArray+IonExtension.h in Headers */,
 				373C99891984953C002F46AD /* IonCacheItemStats.h in Headers */,
 				373C99D219882E2A002F46AD /* IonKeyedDataSource.h in Headers */,
+				37721A1519AB3BF5005149BD /* NSObject+IonUtilties.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2005,18 +2079,21 @@
 				37FCF13C197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.m in Sources */,
 				370A22BB19A82D07006FCD75 /* IonViewGuideSet.m in Sources */,
 				377C3ECD196F52AE00EA6599 /* IonDemoUIWindow.m in Sources */,
+				37721A1C19AB4C2C005149BD /* UIView+IonExternalGuides.m in Sources */,
 				370A22BF19A83409006FCD75 /* UIView+IonGuideLine.m in Sources */,
 				370588B2199A0C5900597822 /* IonTransformAnimationMap.m in Sources */,
 				3705889D1999C9A500597822 /* IonButtonBehavior.m in Sources */,
 				37E6817119994418005096AC /* IonButtonBehaviorSimpleFade.m in Sources */,
 				376DA8AF1976FB37008D692E /* IonStyle.m in Sources */,
 				370588B6199A151E00597822 /* IonTransformAnimation.m in Sources */,
+				373B390919AAC9D2000FE567 /* IonApplication+StatusBar.m in Sources */,
 				370588AD1999E89000597822 /* IonButtonBehaviorTapTransform.m in Sources */,
 				372DD23E19727C9800CC0A58 /* UIView+IonTheme.m in Sources */,
 				376DA8E5197B4597008D692E /* IonAttrubutesStanderdResolution.m in Sources */,
 				372DD22D1972764D00CC0A58 /* IonView.m in Sources */,
 				373B390419A97977000FE567 /* IonTitleBar.m in Sources */,
 				370A229F19A497C0006FCD75 /* IonLabelOverflowBehavior.m in Sources */,
+				37721A0C19AB2A80005149BD /* IonStatusBarBehaviorMotionGestureDisplay.m in Sources */,
 				370588A81999E60400597822 /* UIView+IonPositionAndOrientation.m in Sources */,
 				376DA8C619791299008D692E /* IonThemePointer.m in Sources */,
 				371D5D70197FB15000485DC0 /* IonKVP+IonTheme.m in Sources */,
@@ -2030,6 +2107,7 @@
 				376DA8B31976FB47008D692E /* IonTheme.m in Sources */,
 				37E68169199767C6005096AC /* IonButton.m in Sources */,
 				372DD247197281F400CC0A58 /* IonViewController.m in Sources */,
+				37721A0719AB1E44005149BD /* IonViewMotionGestureManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2087,7 +2165,9 @@
 				371D5D961981C58000485DC0 /* IonPath.m in Sources */,
 				371D5D5B197FB02400485DC0 /* IonBalancedAccessBasedGenerationMap.m in Sources */,
 				371D5D5C197FB02400485DC0 /* IonKVPAccessBasedGenerationMap.m in Sources */,
+				37721A1819AB3C00005149BD /* IonTimedAction.m in Sources */,
 				3771F3C6198E803D001DBBB9 /* NSArray+IonExtension.m in Sources */,
+				37721A1619AB3BF5005149BD /* NSObject+IonUtilties.m in Sources */,
 				371D5D5D197FB02400485DC0 /* IonMethodMap.m in Sources */,
 				371D5D891980FD5300485DC0 /* IonDirectory.m in Sources */,
 				373C998A19849541002F46AD /* IonCacheItemStats.m in Sources */,

@@ -304,6 +304,15 @@
                                                                                           andAmount: amount]];
 }
 
+/**
+ * Constructs a guide line based off the inputted value.
+ * @param {CGFloat} the value to return.
+ * @returns {instancetype}
+ */
++ (instancetype) guideWithStaticValue:(CGFloat) value {
+    return NULL;
+}
+
 #pragma mark Change Subscription
 
 /**
@@ -507,7 +516,7 @@
  */
 + (IonGuideLineProcessingBlock) externalPositioningProcessingBlockUsingMode:(IonGuideLineFrameMode) mode {
     return [[self class] externalPositioningProcessingBlockUsingMode: mode
-                                                          andAmount: 1.0f];
+                                                           andAmount: 1.0f];
 }
 
 /**
@@ -517,7 +526,7 @@
  * @returns {IonGuideLineProcessingBlock}
  */
 + (IonGuideLineProcessingBlock) externalPositioningProcessingBlockUsingMode:(IonGuideLineFrameMode) mode
-                                                                 andAmount:(CGFloat) amount {
+                                                                  andAmount:(CGFloat) amount {
     return ^CGFloat( id data ) {
         CGRect frame;
         if ( !data || ![data isKindOfClass: [NSValue class]] )

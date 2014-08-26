@@ -52,7 +52,7 @@
  */
 - (void) construct {
     self.clipsToBounds = TRUE;
-    self.themeConfiguration.themeElement = sIonThemeElement_Label;
+    self.themeElement = sIonThemeElementLabel;
     [self createlabelView];
     self.overflowBehavior = [[IonLabelOverflowBehavior alloc] init];
 }

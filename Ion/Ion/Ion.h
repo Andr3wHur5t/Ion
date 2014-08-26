@@ -16,6 +16,8 @@ FOUNDATION_EXPORT double IonVersionNumber;
 FOUNDATION_EXPORT const unsigned char IonVersionString[];
 
 #import "IonApplication.h"
+#import "IonApplication+StatusBar.h"
+#import "IonStatusBarBehaviorMotionGestureDisplay.h"
 
 /** Ion Rapid Start System */
 #import "IonRapidStartViewController.h"

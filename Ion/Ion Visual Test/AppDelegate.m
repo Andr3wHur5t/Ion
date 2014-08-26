@@ -42,7 +42,9 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
     
-    
+    IonStatusBarBehaviorMotionGestureDisplay* statusBarBehavior;
+    statusBarBehavior = [[IonStatusBarBehaviorMotionGestureDisplay alloc] init];
+    [vc addDelegateToManager: statusBarBehavior];
     //sc.manifestWillPersist = FALSE;
     //[sc deleteWithCompletion:^(NSError *error) {
     //    NSLog(@"Deleted Cache!");

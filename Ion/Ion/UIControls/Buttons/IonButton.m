@@ -7,7 +7,7 @@
 //
 
 #import "IonButton.h"
-#import "UIView+IonTheme.h"
+#import <IonData/IonData.h>
 
 @interface IonButton ( ) {
     BOOL visiblyDisabled;
@@ -27,7 +27,7 @@
 - (instancetype) init {
     self = [super init];
     if ( self ) {
-        self.themeConfiguration.themeElement = @"button";
+        self.themeElement = sIonThemeElementButton;
         _currentState = currentPersistantState = IonButtonState_Norm;
         visiblyDisabled = FALSE;
         [self addTarget: self action: @selector(checkTapUp) forControlEvents: UIControlEventTouchUpInside];
@@ -58,6 +58,33 @@
 - (void) setEnabled:(BOOL)enabled {
     visiblyDisabled = !enabled;
     self.currentState = currentPersistantState = visiblyDisabled ? IonButtonState_Disabled : IonButtonState_Norm;
+}
+
+#pragma mark Style application
+
+/**
+ * Applies a theme style to the button.
+ * @param {IonStyle*} the style to apply.
+ * @returns {void}
+ */
+- (void) applyStyle:(IonStyle*) style {
+    NSDictionary* config;
+    CGSize newSize;
+    
+    // Validate
+    NSParameterAssert( style && [style isKindOfClass:[IonStyle class]] );
+    if ( !style || ![style isKindOfClass:[IonStyle class]] )
+        return;
+    
+    // Get Element config
+    config = [style.configuration dictionaryForKey: self.themeElement];
+    if ( !config )
+        return;
+    
+    // Update Size
+    newSize = [config sizeForKey: sIonThemeElementButton_SizeKey];
+    if ( !CGSizeEqualToSize( newSize, CGSizeUndefined) && !CGSizeEqualToSize( newSize, CGSizeZero) )
+        self.frame = (CGRect){ self.frame.origin, newSize };
 }
 
 #pragma mark Custom Responses

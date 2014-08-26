@@ -12,6 +12,9 @@
 @interface IonViewGuideSet () {
     IonKeyValueObserver *sxObserver, *syObserver, *lxObserver, *lyObserver;
     
+    IonGuideLine* _localVertGuide;
+    IonGuideLine* _localHorizGuide;
+    
     // Target action pair
     id _target;
     SEL _action;
@@ -22,7 +25,8 @@
 @implementation IonViewGuideSet
 
 
-#pragma mark Setter Utilities.
+#pragma mark Super
+
 /**
  * Sets the super pair to match the inputted guides.
  * @param {IonGuideLine*} the vertical guide line.
@@ -38,6 +42,13 @@
     self.superVertGuide = vert;
     self.superHorizGuide = horiz;
 }
+
+#pragma mark Super Vert
+
+/**
+ * Switch guide to maual KVO observation mode
+ */
++ (BOOL) automaticallyNotifiesObserversOfSuperVertGuide{ return FALSE; }
 
 /**
  * Sets the vertical guide in the super pair.
@@ -59,6 +70,13 @@
                                            selector: @selector(didChangeGuidePosition)];
 }
 
+#pragma mark Super Horiz
+
+/**
+ * Switch guide to maual KVO observation mode
+ */
++ (BOOL) automaticallyNotifiesObserversOfSuperHorizGuide { return FALSE; }
+
 /**
  * Sets the horizontal guide in the super pair.
  * @param {IonGuideLine*} the new guide.
@@ -79,6 +97,7 @@
                                            selector: @selector(didChangeGuidePosition)];
 }
 
+#pragma mark Local
 
 /**
  * Sets the local pair to match the inputted guides.
@@ -96,6 +115,13 @@
     self.localVertGuide = vert;
     self.localHorizGuide = horiz;
 }
+
+#pragma mark Local Vert
+
+/**
+ * Switch guide to maual KVO observation mode
+ */
++ (BOOL) automaticallyNotifiesObserversOfLocalVertGuide { return FALSE; }
 
 /**
  * Sets the vertical guide in the local pair.
@@ -118,6 +144,22 @@
 }
 
 /**
+ * The getter for local vert guide, if null it will retrun a static guide.
+ */
+- (IonGuideLine*) localVertGuide {
+    if ( !_localVertGuide )
+        self.localVertGuide = [IonGuideLine guideWithStaticValue:0.0];
+    return _localVertGuide;
+}
+
+#pragma mark Local Horiz
+
+/**
+ * Switch guide to maual KVO observation mode
+ */
++ (BOOL) automaticallyNotifiesObserversOfLocalHorizGuide { return FALSE; }
+
+/**
  * Sets the horizontal guide in the local pair.
  * @param {IonGuideLine*} the new guide.
  * @returne {void}
@@ -136,6 +178,15 @@
                                              target: self
                                            selector: @selector(didChangeGuidePosition)];
     
+}
+
+/**
+ * The getter for local horiz guide, if null it will retrun a static guide.
+ */
+- (IonGuideLine*) localHorizGuide {
+    if ( !_localHorizGuide )
+        self.localHorizGuide = [IonGuideLine guideWithStaticValue:0.0];
+    return _localHorizGuide;
 }
 
 #pragma mark Change Callback
@@ -217,4 +268,5 @@
                                     self.localHorizGuide, self.localVertGuide,
                                     point.x, point.y];
 }
+
 @end

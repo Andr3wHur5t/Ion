@@ -12,6 +12,8 @@
 
 @interface IonTitleBar (){
     IonGuideGroup* contentGroup;
+    IonGuideLine* statusBarGuide;
+    IonKeyValueObserver* statusFrameObserver;
 }
 
 @end
@@ -37,8 +39,10 @@
  */
 - (instancetype) initWithFrame:(CGRect) frame {
     self = [super initWithFrame: frame];
-    if ( self )
+    if ( self ) {
        [self construct];
+        self.contentHeight = frame.size.height;
+    }
     return self;
 }
 
@@ -47,36 +51,197 @@
  * @returns {void}
  */
 - (void) construct {
-    self.themeConfiguration.themeElement = @"titleBar";
-    [self constructContentGuideGroup];
-}
-
-#pragma mark Coniguration
-
-/**
- * Configures the guide group.
- * @returns {void}
- */
-- (void) constructContentGuideGroup {
-    contentGroup = [[IonGuideGroup alloc] init];
-    
+    self.respondsToStatusBar = FALSE;
+    self.themeElement = sIonThemeElementTitleBar;
+    self.contentHeight = 50.0f;
+    [self constructContentGroup];
 }
 
 #pragma mark Frame
+
 /**
  * Responds to frame changes.
  * @param {CGRect} the new frame
  * @returns {void}
  */
 - (void) setFrame:(CGRect) frame {
-    [super setFrame: frame];
     
-    // Update the Content Group Frame
+    [super setFrame: [self currentFrame]];
+    [self updateContentGroupFrame];
+}
+
+/**
+ * Gets a frame to match the current configuration.
+ */
+- (CGRect) currentFrame {
+    return( CGRect){ [self.guideSet toPoint],
+        (CGSize){ self.superview.frame.size.width, [self statusOffsetHeight] + self.contentHeight } } ;
+}
+
+/**
+ * Updates the frame to match the current configuration.
+ * @returns {void}
+ */
+- (void) updateFrame {
+    [self setFrame: [self  currentFrame]];
+}
+
+#pragma mark Style application
+
+/**
+ * Applies the style to self.
+ */
+- (void) applyStyle:(IonStyle*) style {
+    NSDictionary* config;
+    NSNumber *contentOffset, *contentHeight;
+    
+    // Validate
+    NSParameterAssert( style && [style isKindOfClass:[IonStyle class]] );
+    if ( !style || ![style isKindOfClass:[IonStyle class]] )
+        return;
+    
+    // Update Super
+    [super applyStyle: style];
+    
+    // Get Element config
+    config = [style.configuration dictionaryForKey: self.themeElement];
+    if ( !config )
+        return;
+    
+    // Content offset
+    contentOffset = [config numberForKey: sIonThemeElementTitleBar_StatusBarOffset];
+    self.statusBarContentOffset = contentOffset ? [contentOffset floatValue] : 0.0f;
+    
+    // Content Height
+    contentHeight = [config numberForKey: sIonThemeElementTitleBar_ContentHeight];
+    self.contentHeight = contentHeight ? [contentHeight floatValue] : self.contentHeight;
+}
+
+#pragma mark Content Guide Group
+
+/**
+ * Constructs the guide group.
+ */
+- (void) constructContentGroup {
+    contentGroup = [[IonGuideGroup alloc] init];
+    statusBarGuide = [IonGuideLine guideWithTargetRectPosition: [IonApplication sharedApplication]
+                                              usingRectKeyPath: @"statusBarFrame"
+                                                        amount: 1.0f
+                                                       andMode: IonGuideLineFrameMode_Vertical];
+}
+
+/**
+ * Updates the Guide groups frame.
+ */
+- (void) updateContentGroupFrame {
     contentGroup.frame = (CGRect){
-        (CGPoint){ self.autoMarginGuideHoriz.position, [UIApplication sharedApplication].statusBarFrame.size.height },
-        (CGSize){ self.sizeGuideHoriz.position - (self.autoMarginGuideHoriz.position * 2), 50 }
+        (CGPoint){ self.autoMarginGuideHoriz.position, [self statusOffsetHeight] },
+        (CGSize){ self.sizeGuideHoriz.position - (self.autoMarginGuideHoriz.position * 2), self.contentHeight }
     };
     
+}
+
+#pragma mark Responds to Status Bar
+
+/**
+ * Switched KVO to manual mode
+ */
++ (BOOL) automaticallyNotifiesObserversOfRespondsToStatusBar { return FALSE; }
+
+/**
+ * The setter for responding to changes in the status bar.
+ * @param {BOOL} the new state.
+ * @returns {void}
+ */
+- (void) setRespondsToStatusBar:(BOOL) respondsToStatusBar {
+    [self willChangeValueForKey: @"respondsToStatusBar"];
+    _respondsToStatusBar = respondsToStatusBar;
+    [self didChangeValueForKey: @"respondsToStatusBar"];
+    
+    if ( _respondsToStatusBar ) {
+        // observe the status frame and update content according to changes
+        statusFrameObserver = [IonKeyValueObserver observeObject: [IonApplication sharedApplication]
+                                                         keyPath: @"statusBarFrame"
+                                                          target: self
+                                                        selector: @selector(updateToMatchStatusBar)];
+    }
+    else
+        statusFrameObserver = NULL;
+}
+
+#pragma mark Status Bar Response
+
+/**
+ * Updates the title bar to respond to the status bar.
+ * @warning Will automatically adjust the size of the title bar.
+ * @returns {void}
+ */
+- (void) updateToMatchStatusBar {
+    [self animateMatchingStatusBarTransition: ^{
+        [self updateFrame];
+    }
+    usingCompletion: NULL];
+}
+
+/**
+ * Runs the correct animation for the current status bar transition.
+ * @param {void^( )} the animation block.
+ * @param (void^( )) the completion block.
+ * @returns {void}
+ */
+- (void) animateMatchingStatusBarTransition:(void(^)( )) animation usingCompletion:(void(^)( )) completion {
+    NSParameterAssert( animation );
+    if ( !animation )
+        return;
+
+    // Animate
+    [UIView animateWithDuration: [IonApplication sharedApplication].statusBarAnimationDuration
+                          delay: 0.0f
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations: animation
+                     completion: ^(BOOL finished) {
+                         if ( completion )
+                             completion( );
+                     }];
+}
+
+/**
+ * Gets the offset height for the title from the title bar frame.
+ * @returns {CGFloat}
+ */
+- (CGFloat) statusOffsetHeight {
+    CGFloat offset;
+    if ( !self.respondsToStatusBar )
+        return 0.0f;
+    
+    
+    offset = [IonApplication sharedApplication].statusBarFrame.size.height;
+    
+    if ( ![IonApplication sharedApplication].statusBarHidden ) {
+        if ( [IonApplication sharedApplication].inCallBarActive )
+            offset -= sIonNormalStatusBarHeight;
+        else
+            offset += self.statusBarContentOffset;
+    }
+    return offset;
+}
+
+#pragma mark Content Height 
+/**
+ * Switch content height KVO to manual.
+ */
++ (BOOL) automaticallyNotifiesObserversOfContentHeight { return FALSE; }
+
+/**
+ * Content Height Setter
+ * @param {CGFloat} the new content height
+ * @returns {void}
+ */
+- (void) setContentHeight:(CGFloat)contentHeight {
+    [self willChangeValueForKey: @"contentHeight"];
+    _contentHeight = contentHeight;
+    [self didChangeValueForKey: @"contentHeight"];
+    [self updateFrame];
 }
 
 #pragma mark Left View
@@ -92,7 +257,7 @@
  * @returns {void}
  */
 - (void) setLeftView:(UIView*) leftView {
-    // Remove if it exsists
+    // Remove if it exists
     if ( _leftView )
         [_leftView removeFromSuperview];
     
@@ -105,13 +270,25 @@
     // Configure the left view
     if ( !_leftView )
         return;
-    _leftView.themeConfiguration.themeClass = @"leftView";
+    _leftView.themeClass = sIonThemeElementTitleBar_LeftView;
     [self addSubview: _leftView];
     [_leftView setGuidesWithLocalVert: _leftView.centerGuideVert
                            localHoriz: _leftView.internalOriginGuideHoriz
                             superVert: contentGroup.centerGuideVert
                         andSuperHoriz: contentGroup.internalOriginGuideHoriz];
     return;
+}
+
+
+/**
+ * Sets the left view using an animation.
+ * @param {UIView*} the new view.
+ * @param {BOOL} the animation to use.
+ * @returns {void}
+ */
+- (void) setLeftView:(UIView *)leftView animated:(BOOL) animated {
+    // Run the set left animation an animation
+    self.leftView = leftView;
 }
 
 #pragma mark Center View
@@ -127,7 +304,7 @@
  * @returns {void}
  */
 - (void) setCenterView:(UIView*) centerView {
-    // Remove if it exsists
+    // Remove if it exists
     if ( _centerView )
         [_centerView removeFromSuperview];
     
@@ -140,7 +317,7 @@
     // Configure the left view
     if ( !_centerView || ![_centerView isKindOfClass: [UIView class]] )
         return;
-    _centerView.themeConfiguration.themeClass = @"centerView";
+    _centerView.themeClass = sIonThemeElementTitleBar_CenterView;
     [self addSubview: _centerView];
     [_centerView setGuidesWithLocalVert: _centerView.centerGuideVert
                              localHoriz: _centerView.centerGuideHoriz
@@ -161,7 +338,7 @@
  * @returns {void}
  */
 - (void) setRightView:(UIView *)rightView {
-    // Remove if it exsists
+    // Remove if it exists
     if ( _rightView )
         [_rightView removeFromSuperview];
     
@@ -174,7 +351,7 @@
     // Configure the left view
     if ( !_rightView )
         return;
-    _rightView.themeConfiguration.themeClass = @"rightView";
+    _rightView.themeClass = sIonThemeElementTitleBar_RightView;
     [self addSubview: _rightView];
     [_rightView setGuidesWithLocalVert: _rightView.centerGuideVert
                             localHoriz: _rightView.sizeGuideHoriz

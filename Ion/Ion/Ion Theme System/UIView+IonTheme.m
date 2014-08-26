@@ -94,6 +94,83 @@ static void* sThemeConfigurationKey = "IonThemeConfiguration";
         [child setParentStyle: style];
 }
 
+#pragma mark Theme Element
+
+/**
+ * Sets KVO notifications to manual mode.
+ */
++ (BOOL) automaticallyNotifiesObserversOfThemeElement { return FALSE; }
+
+/**
+ * Sets the theme element key.
+ * @param {NSString*} the new key
+ * @returns {void}
+ */
+- (void) setThemeElement:(NSString*) themeElement {
+    [self willChangeValueForKey: @"themeElement"];
+    self.themeConfiguration.themeElement = themeElement;
+    [self didChangeValueForKey: @"themeElement"];
+}
+
+/**
+ * Gets the current theme element value.
+ * @returns {NSString*}
+ */
+- (NSString*) themeElement {
+    return self.themeConfiguration.themeElement;
+}
+
+#pragma mark Theme Element
+
+/**
+ * Sets KVO notifications to manual mode.
+ */
++ (BOOL) automaticallyNotifiesObserversOfThemeClass { return FALSE; }
+
+/**
+ * Sets the theme class key.
+ * @param {NSString*} the new key
+ * @returns {void}
+ */
+- (void) setThemeClass:(NSString *)themeClass {
+    [self willChangeValueForKey: @"themeClass"];
+    self.themeConfiguration.themeClass = themeClass;
+    [self didChangeValueForKey: @"themeClass"];
+}
+
+/**
+ * Gets the current theme class value.
+ * @returns {NSString*}
+ */
+- (NSString*) themeClass {
+    return self.themeConfiguration.themeClass;
+}
+
+#pragma mark Theme Element
+
+/**
+ * Sets KVO notifications to manual mode.
+ */
++ (BOOL) automaticallyNotifiesObserversOfThemeID { return FALSE; }
+
+/**
+ * Sets the theme id key.
+ * @param {NSString*} the new key
+ * @returns {void}
+ */
+- (void) setThemeID:(NSString *)themeID {
+    [self willChangeValueForKey: @"themeId"];
+    self.themeConfiguration.themeID = themeID;
+    [self didChangeValueForKey: @"themeId"];
+}
+
+/**
+ * Gets the current theme id value.
+ * @returns {NSString*}
+ */
+- (NSString*) themeID {
+    return self.themeConfiguration.themeID;
+}
 
 #pragma mark Utilities
 

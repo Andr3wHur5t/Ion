@@ -10,10 +10,7 @@
 #import "IonStyle.h"
 
 // Theme Proproties
-static NSString* sIonThemeElement_Label = @"label";
-static NSString* sIonThemeLabel_TextColor = @"textColor";
-static NSString* sIonThemeLabel_Font = @"font";
-static NSString* sIonThemeLabel_TextAlignment = @"textAlignment";
+
 
 // Default Font Configuration
 static CGFloat sDefaultFontSize = 12.0f;

@@ -200,6 +200,14 @@ typedef enum : NSUInteger {
                                       amount:(CGFloat) amount
                                      andMode:(IonGuideLineFrameMode) mode;
 
+
+/**
+ * Constructs a guide line based off the inputted value.
+ * @param {CGFloat} the value to return.
+ * @returns {instancetype}
+ */
++ (instancetype) guideWithStaticValue:(CGFloat) value;
+
 #pragma mark Calculation
 
 /**

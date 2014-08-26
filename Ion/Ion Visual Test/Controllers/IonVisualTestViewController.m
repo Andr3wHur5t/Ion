@@ -31,20 +31,20 @@
     // Set the image using the image manager
     button = [[IonInterfaceButton alloc] initWithFileName: @"Hamburger"];
     leftButton = [[IonInterfaceButton alloc] initWithFileName: @"Add"];
-    rightButton = [[IonInterfaceButton alloc] initWithFileName: @"Settings"];
+    rightButton = [[IonInterfaceButton alloc] initWithFileName: @"Confirm"];
     //[button setEnabled: false];
-    rightButton.frame = leftButton.frame = button.frame = (CGRect){ (CGPoint){ 18, 50 + 2 }, (CGSize){30,30}};
+    button.frame = (CGRect){ (CGPoint){ 18, 50 + 2 }, (CGSize){30,30}};
     
-    
+    //[self.view addSubview: button];
     [self.view setBackgroundImageUsingKey: @"aspect"];
-    
 
-    
     [self makeTestLabel];
     
     titleBar.leftView = leftButton;
     titleBar.rightView = rightButton;
     titleBar.centerView = testLabel;
+    titleBar.respondsToStatusBar = TRUE;
+    [titleBar updateFrame];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -62,9 +62,8 @@
 - (void) makeTestLabel {
     testLabel = [[IonLabel alloc] initWithFrame: (CGRect){ CGPointZero, (CGSize){ self.view.frame.size.width - 100, 40}}];
     testLabel.center = (CGPoint){ self.view.frame.size.width / 2 , 25 };
-    testLabel.text = @"Lorem ipsum dolor sit amet consectetur adipiscing elit";
-    //testLabel.text = @"People";
-    [self.view addSubview: testLabel];
+    //testLabel.text = @"Lorem ipsum dolor sit amet consectetur adipiscing elit";
+    testLabel.text = @"People";
 }
 
 /** = = = = = = = = = = = = Tests = = = = = = = = = = = = = = =  */
@@ -110,9 +109,6 @@
 
 - (void) shouldLayoutSubviews {
     [super shouldLayoutSubviews];
-    CGSize s = self.view.frame.size;
-    s.height = 50;
-    titleBar.frame = (CGRect) {CGPointZero,s};
     
     // Position
     titleBar.localHorizGuide = titleBar.centerGuideHoriz;
@@ -120,10 +116,7 @@
     
     titleBar.superHorizGuide = self.view.centerGuideHoriz;
     titleBar.superVertGuide = self.view.internalOriginGuideVert;
-    
-    
 }
-
 
 /** = = = = = = = = = = = = End Tests = = = = = = = = = = = = = = =  */
 
