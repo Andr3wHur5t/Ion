@@ -41,7 +41,13 @@ static NSString* sIonThemeElementStateBad =                                 @"st
 static NSString* sIonThemeElementStateWorking =                             @"state_working";
 static NSString* sIonThemeElementStateUnknown =                             @"state_unknown";
 
-@interface UIView (IonTheme)
+/**
+ * View Positioning
+ */
+static NSString* sIonThemeView_StylePadding =                               @"stylePadding";
+static NSString* sIonThemeView_StyleMargin =                                @"styleMargin";
+
+@interface UIView (IonTheme) <IonThemeSpecialUIView>
 
 #pragma mark External Interface
 
@@ -65,7 +71,6 @@ static NSString* sIonThemeElementStateUnknown =                             @"st
  */
 @property (weak, nonatomic) NSString* themeID;
 
-
 #pragma mark Application
 
 /**
@@ -76,18 +81,34 @@ static NSString* sIonThemeElementStateUnknown =                             @"st
 - (void) setIonTheme:(IonTheme*) themeObject;
 
 /**
- * Sets the parrent style for the view, and subviews.
+ * Sets the parent style for the view, and subviews.
  * @param {IonStyle*} the style to be applied
  * @returns {void}
  */
 - (void) setParentStyle:(IonStyle*) style;
 
 /**
- * Sets the current style for the view, and the parrent style for subviews.
+ * Sets the current style for the view, and the parent style for subviews.
  * @param {IonStyle*} the current style to apply.
  * @returns {void}
  */
 - (void) setStyle:(IonStyle*) style;
 
+#pragma mark View Positioning Properties
+
+/**
+ * The style margin of the view.
+ */
+@property (assign, nonatomic) CGSize styleMargin;
+
+/**
+ * The style padding of the view.
+ */
+@property (assign, nonatomic) CGSize stylePadding;
+
+/**
+ * The auto margin which is decided via the the corner radius, and the style margin.
+ */
+@property (assign, nonatomic, readonly) CGSize autoMargin;
 
 @end

@@ -132,4 +132,21 @@
     [self.observedObject removeObserver: self forKeyPath: self.keyPath];
 }
 
+
+#pragma mark Comparason
+
+/**
+ * Checks if the target and key path match
+ * @param {id} the target object to check
+ * @param {NSString*} the key path to check
+ * @returns {BOOL}
+ */
+- (BOOL) matchesTarget:(id) target andKeyPath:(NSString*) keyPath {
+    NSParameterAssert( target );
+    NSParameterAssert( keyPath && [keyPath isKindOfClass: [NSString class]] );
+    if ( !target || !keyPath || ![keyPath isKindOfClass: [NSString class]] )
+        return FALSE;
+    
+    return [_observedObject isEqual: target] && [_keyPath isEqualToString: keyPath];
+}
 @end

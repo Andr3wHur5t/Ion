@@ -7,6 +7,7 @@
 //
 
 #import "IonViewGuideSet.h"
+#import "IonGuideLine+DefaultConstructors.h"
 #import <IonData/IonData.h>
 
 @interface IonViewGuideSet () {

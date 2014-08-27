@@ -7,9 +7,25 @@
 //
 
 #import "NSObject+IonUtilties.h"
+#import <objc/runtime.h>
+
+static void* sIonCatagoryVariablesKey = "CatagoryVariablesKey";
 
 @implementation NSObject (IonUtilties)
 
+#pragma mark Catagory variables
+
+/**
+ * The catagory extension map whe we should store all catagory extension variables.
+ */
+- (NSMutableDictionary*) catagoryVariables {
+    NSMutableDictionary* obj = objc_getAssociatedObject( self, sIonCatagoryVariablesKey);
+    if ( !obj || ![obj isKindOfClass:[NSMutableDictionary class]] ) {
+        obj = [[NSMutableDictionary alloc] init];
+        objc_setAssociatedObject(self, sIonCatagoryVariablesKey, obj, OBJC_ASSOCIATION_RETAIN_NONATOMIC );
+    }
+    return obj;
+}
 
 
 #pragma mark Delayed Blocks

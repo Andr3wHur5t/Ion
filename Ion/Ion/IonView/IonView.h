@@ -14,7 +14,7 @@
 
 static NSString* sIonStyle_IonView_StyleMargin = @"styleMargin";
 
-@interface IonView : UIView <IonThemeSpecialUIView>
+@interface IonView : UIView
 #pragma mark Subview Management
 
 /**
@@ -23,42 +23,5 @@ static NSString* sIonStyle_IonView_StyleMargin = @"styleMargin";
  * @returns {void}
  */
 - (void) forEachIonViewChildPerformBlock: (void(^)( IonView* child )) actionBlock;
-
-#pragma mark View Positioning Properties
-
-/**
- * The style margin of the view.
- */
-@property (assign, nonatomic) CGSize styleMargin;
-
-/**
- * The auto margin which is decided via the the corner radius, and the style margin.
- */
-@property (assign, nonatomic, readonly) CGSize autoMargin;
-
-
-#pragma mark Auto Margin Guide Lines
-
-/**
- * Vertical Auto Margin Guide Line
- */
-@property (strong, nonatomic, readonly) IonGuideLine* autoMarginGuideVert;
-
-/**
- * Horizontal Auto Margin Guide Line
- */
-@property (strong, nonatomic, readonly) IonGuideLine* autoMarginGuideHoriz;
-
-#pragma mark Style Margin Guide Lines
-
-/**
- * Vertical Style Margin Guide Line
- */
-@property (strong, nonatomic, readonly) IonGuideLine* styleMarginGuideVert;
-
-/**
- * Horizontal Style Margin Guide Line
- */
-@property (strong, nonatomic, readonly) IonGuideLine* styleMarginGuideHoriz;
 
 @end

@@ -19,6 +19,13 @@
 - (instancetype) initWithFrame:(CGRect) frame;
 
 /**
+ * Constructs using the inputted view.
+ * @param {UIVIew*} the view to construct with.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithView:(UIView*) view;
+
+/**
  * The frame of the group
  */
 @property (assign, nonatomic) CGRect frame;

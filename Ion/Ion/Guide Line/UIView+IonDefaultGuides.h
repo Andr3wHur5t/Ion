@@ -78,4 +78,49 @@
  */
 @property (strong, nonatomic, readonly) IonGuideLine* sizeGuideHoriz;
 
+
+#pragma mark Padding
+
+/**
+ * Left padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* leftPadding;
+
+/**
+ * Right padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* rightPadding;
+
+/**
+ * Top padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* topPadding;
+
+/**
+ * Bottom padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* bottomPadding;
+
+#pragma mark Margins
+
+/**
+ * Left Margin Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* leftMargin;
+
+/**
+ * Right Margin Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* rightMargin;
+
+/**
+ * Top Margin Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* topMargin;
+
+/**
+ * Top Margin Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* bottomMargin;
+
 @end

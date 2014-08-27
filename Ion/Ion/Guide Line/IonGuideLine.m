@@ -7,7 +7,6 @@
 //
 
 #import "IonGuideLine.h"
-#import "IonView.h"
 #import <IonData/IonData.h>
 
 @interface IonGuideLine () {
@@ -19,12 +18,32 @@
     // The calc block
     IonGuildLineCalcBlock _calcBlock;
     IonGuideLineProcessingBlock _processingBlock;
+    
+    // Dependents
+    NSMutableArray* _dependentVariables;
 }
 
+/**
+ * The dependent variables
+ */
+@property (strong, nonatomic, readonly) NSMutableArray* dependentVariables;
 @end
 
 @implementation IonGuideLine
 #pragma mark Constructors
+
+/**
+ * Constructs a guide line based off the inputted value.
+ * @param {CGFloat} the value to return.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithStaticValue:(CGFloat) value {
+    self = [super init];
+    if ( self ) {
+        self.position = value;
+    }
+    return self;
+}
 
 /**
  * Constructs a guide line with the inputted blocks, and target information.
@@ -183,135 +202,6 @@
                            andCalcBlock: NULL];
 }
 
-#pragma mark Default UIView Based Guides
-
-/**
- * Constructs a guide line based off the inputted view frames' size, using the mode to specify axis, and amount specifying how much.
- * @param {UIView*} the view to base the guide off of.
- * @param {CGFloat} the percentage to use.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
- */
-+ (instancetype) guideFromViewFrameSize:(UIView*) view
-                           usingAmount:(CGFloat) amount
-                                andMode:(IonGuideLineFrameMode) mode {
-    NSParameterAssert( view && [view isKindOfClass: [UIView class]]);
-    if ( !view || ![view isKindOfClass:[UIView class]] )
-        return NULL;
-    
-    return [[self class] guideWithTargetRectSize: view
-                                usingRectKeyPath: @"frame"
-                                          amount: amount
-                                         andMode: mode];
-}
-
-
-/**
- * Constructs a guide line based off the inputted views' corner radius, using the mode to specify axis.
- * @param {UIView*} the view to base the guide off of.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
- */
-+ (instancetype) guideFromViewCornerRadius:(UIView*) view usingMode:(IonGuideLineFrameMode) mode {
-    NSParameterAssert( view && [view isKindOfClass: [UIView class]]);
-    if ( !view || ![view isKindOfClass:[UIView class]] )
-        return NULL;
-    
-    return [[self class] guideWithTarget: view andKeyPath: @"layer.cornerRadius"];
-}
-
-/**
- * Constructs a guide line based off the inputted views' style margin, using the mode to specify axis.
- * @param {IonView*} the view to base the guide off of.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
- */
-+ (instancetype) guideFromViewStyleMargin:(IonView*) view usingMode:(IonGuideLineFrameMode) mode {
-    NSParameterAssert( view && [view isKindOfClass: [UIView class]]);
-    if ( !view || ![view isKindOfClass:[UIView class]] )
-        return NULL;
-    
-    return [[self class] guideWithTarget: view
-                                 keyPath: @"styleMargin"
-                         processingBlock: [[self class] sizeProcessingBlockUsingMode: mode]
-                            andCalcBlock: [[self class] defaultCalculationBlock]];
-}
-
-/**
- * Constructs a guide line based off the inputted views' corner radius, and style margin, using the mode to specify axis.
- * @param {IonView*} the view to base the guide off of.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
- */
-+ (instancetype) guideFromViewAutoMargin:(IonView*) view usingMode:(IonGuideLineFrameMode) mode  {
-    NSParameterAssert( view && [view isKindOfClass: [UIView class]]);
-    if ( !view || ![view isKindOfClass:[UIView class]] )
-        return NULL;
-    
-    return [[self class] guideWithTarget: view
-                                 keyPath: @"autoMargin"
-                         processingBlock: [[self class] sizeProcessingBlockUsingMode: mode]
-                            andCalcBlock: [[self class] defaultCalculationBlock]];
-}
-
-#pragma mark Frame Based Guides
-
-/**
- * Constructs a guide line based off the inputted object frames' size, using the mode to specify axis, and amount specifying how much.
- * @param {id} the target object to base off of.
- * @param {NSString*} the key path of the rect to use.
- * @param {CGFloat} the amount to use.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
- */
-+ (instancetype) guideWithTargetRectSize:(id) target
-                        usingRectKeyPath:(NSString*) keyPath
-                                  amount:(CGFloat) amount
-                                 andMode:(IonGuideLineFrameMode) mode {
-    NSParameterAssert( target );
-    NSParameterAssert( keyPath && [keyPath isKindOfClass: [NSString class]]);
-    if ( !target || !keyPath || ![keyPath isKindOfClass:[NSString class]] )
-        return NULL;
-    
-    return [[self class] guideWithTarget: target
-                                 keyPath: keyPath
-                         processingBlock: [[self class] rectSizeProcessingBlockUsingMode: mode]
-                            andCalcBlock: ^CGFloat(CGFloat target) {
-                                return target * amount;
-                            }];
-}
-
-/**
- * Constructs a guide line based off the inputted object frames' size combined with origin to get the external position, using the mode to specify axis, and amount specifying how much of the size to use.
- * @param {id} the target object to base off of.
- * @param {NSString*} the key path of the rect to use.
- * @param {CGFloat} the amount to use.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
- */
-+ (instancetype) guideWithTargetRectPosition:(id) target
-                            usingRectKeyPath:(NSString*) keyPath
-                                      amount:(CGFloat) amount
-                                     andMode:(IonGuideLineFrameMode) mode {
-    NSParameterAssert( target );
-    NSParameterAssert( keyPath && [keyPath isKindOfClass: [NSString class]]);
-    if ( !target || !keyPath || ![keyPath isKindOfClass:[NSString class]] )
-        return NULL;
-    
-    return [[self class] guideWithTarget: target
-                                 keyPath: keyPath
-                      andProcessingBlock: [[self class] externalPositioningProcessingBlockUsingMode: mode
-                                                                                          andAmount: amount]];
-}
-
-/**
- * Constructs a guide line based off the inputted value.
- * @param {CGFloat} the value to return.
- * @returns {instancetype}
- */
-+ (instancetype) guideWithStaticValue:(CGFloat) value {
-    return NULL;
-}
 
 #pragma mark Change Subscription
 
@@ -389,6 +279,61 @@
     _calcBlock = calcBlock;
 }
 
+#pragma mark Dependents
+
+/**
+ * Gets, or creates the dependent variables list.
+ * @returns {NSMutableDictionary*}
+ */
+- (NSMutableArray*) dependentVariables {
+    if ( !_dependentVariables )
+        _dependentVariables = [[NSMutableArray alloc] init];
+    return _dependentVariables;
+}
+
+/**
+ * Adds a dependent variable for us to subcribe to changes to.
+ * @param {id} the target of the dependent variable.
+ * @param {NSString*} the key path of the dependent variable.
+ * @rerurns {void}
+ */
+- (void) addDependentTarget:(id) target andKeyPath:(NSString*) keyPath {
+    [self.dependentVariables addObject: [IonKeyValueObserver observeObject: target
+                                                                   keyPath: keyPath
+                                                                    target: self
+                                                                  selector: @selector(updatePosition)
+                                                                   options: NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew]];
+    return;
+}
+
+/**
+ * Removes a dependent variable, and unsubscribes to the changes.
+ * @param {id} the target of the dependent variable.
+ * @param {NSString*} the key path of the dependent variable.
+ * @rerurns {void}
+ */
+- (void) removeDependentTarget:(id) target andKeyPath:(NSString*) keyPath {
+    NSParameterAssert( target );
+    NSParameterAssert( keyPath && [keyPath isKindOfClass: [NSString class]] );
+    if ( !target || !keyPath || ![keyPath isKindOfClass: [NSString class]] )
+        return;
+    
+    for ( IonKeyValueObserver* obv in self.dependentVariables )
+        if ( [obv matchesTarget: target andKeyPath: keyPath] )
+            [self.dependentVariables removeObject: obv];
+}
+
+/**
+ * Updates the position based off of dependents.
+ * @returns {void}
+ */
+- (void) updatePosition {
+    CGFloat newVal;
+    
+    newVal = self.calcBlock( self.position );
+    if ( self.position != newVal )
+        self.position = newVal;
+}
 
 #pragma mark Calculation
 
@@ -433,6 +378,7 @@
 - (NSString*) description {
     return [NSString stringWithFormat:@"%f", _position];
 }
+
 #pragma mark Calculation Blocks
 
 /**

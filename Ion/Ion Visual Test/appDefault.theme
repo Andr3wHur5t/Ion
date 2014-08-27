@@ -2,10 +2,10 @@
     "name":"testTheme",
     "type":"theme",
     "colors": {
-        "BaseColor": "SpottrDark",
+        "BaseColor": "SpottrNorm",
         "DefaultBody": "#000",
         
-        "PlaceHolderColor": "#BCBDBF",
+        "PlaceHolderColor": "Gray",
         "SearchIconColor": "GrayExtraDark",
         
         "Clear": "#000000FF",
@@ -13,8 +13,9 @@
         
         "SpottrNorm": "#F2393B",
         "SpottrDark": "#210F27",
-        "GrayDark": "#818285",
         "GrayExtraDark": "#929497",
+        "GrayDark": "#818285",
+        "Gray": "#BCBDBF",
         "GrayLight": "#939598",
         "GrayExtraLight": "#ECEDEE",
         "WhiteClear": "#F7F9F9",
@@ -267,30 +268,29 @@
     },
     "styles": {
         "background": { "type": "color", "name": "CleanWhite" },
+        
         "buttonStats": {
             "norm": "SystemButtonNorm",
             "down": "SystemButtonDown",
             "selected": "SystemButtonSelected",
             "disabled": "SystemButtonDisabled"
         },
+        
         "textColor": "SystemTextColor",
         "font": { "name": "Helvetica Neue", "size": 12 },
         "textAlignment": "left",
+        
         "cornerRadius": 0.0,
         "styleMargin": {"width": 18.0, "height": 10.0},
+        "stylePadding": {"width": 18.0, "height": 10.0},
         
         "button":{
-            "size":{"width": 30, "height": 30}
+            "size":{"width": 25, "height": 25}
         },
+        
         "titleBar":{
             "contentStatusBarOffset": -6.0,
             "contentHeight": 45.0,
-            "buttonStats": {
-                "norm": "TitleButtonStateNorm",
-                "down": "TitleButtonStateDown",
-                "selected": "TitleButtonStateSelected",
-                "disabled": "TitleButtonStateDisabled"
-            },
         },
         
         "children":{
@@ -300,7 +300,13 @@
             "titleBar": {
                 "background": { "type": "color", "name": "TitleBarColor" },
                 "font": { "size": 18 },
-                "textAlignment": "center"
+                "textAlignment": "center",
+                "buttonStats": {
+                    "norm": "TitleButtonStateNorm",
+                    "down": "TitleButtonStateDown",
+                    "selected": "TitleButtonStateSelected",
+                    "disabled": "TitleButtonStateDisabled"
+                },
             },
             "button":{
                 "background": { "type": "color", "name": "CleanWhite" }

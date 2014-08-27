@@ -33,9 +33,14 @@
     leftButton = [[IonInterfaceButton alloc] initWithFileName: @"Add"];
     rightButton = [[IonInterfaceButton alloc] initWithFileName: @"Confirm"];
     //[button setEnabled: false];
-    button.frame = (CGRect){ (CGPoint){ 18, 50 + 2 }, (CGSize){30,30}};
+    button.frame = (CGRect){ (CGPoint){ 0,0}, (CGSize){30,30}};
     
-    //[self.view addSubview: button];
+    
+    [button setSuperGuidesWithVert: titleBar.sizeGuideVertExternal andHoriz: self.view.leftPadding];
+    
+    
+    
+    [self.view addSubview: button];
     [self.view setBackgroundImageUsingKey: @"aspect"];
 
     [self makeTestLabel];

@@ -7,6 +7,8 @@
 //
 
 #import "IonGuideGroup.h"
+#import "IonGuideLine+DefaultConstructors.h"
+#import <IonData/IonData.h>
 
 /**
  * Keys
@@ -29,9 +31,9 @@ static NSString* sIonGuideLine_Size_Horiz =             @"IonGuideLine_Size_Hori
 static NSString* sIonGuideLine_CornerRadius_Vert =      @"IonGuideLine_CornerRadius_Vert";
 static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRadius_Horiz";
 
-
 @interface IonGuideGroup () {
     NSMutableDictionary* _cachedGuideLines;
+    IonKeyValueObserver* _viewObserver;
 }
 
 @end
@@ -61,6 +63,43 @@ static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRad
     return self;
 }
 
+
+/**
+ * Constructs using the inputted frame.
+ * @param {CGRect} the frame to construct with.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithView:(UIView *)view {
+    self = [super init];
+    if ( self ) {
+        _viewObserver = [IonKeyValueObserver observeObject: view
+                                                   keyPath: @"frame"
+                                                    target: self
+                                                  selector: @selector(updateFrameToMatchChange:)
+                                                   options: NSKeyValueObservingOptionInitial |
+                                                                NSKeyValueObservingOptionNew];
+    }
+    return self;
+}
+
+/**
+ * Updates the frame to match the inputted change object.
+ * Note: Ment for KVO
+ * @param {NSDictionary*} the change dictionary
+ * @returns {void}
+ */
+-(void) updateFrameToMatchChange:(NSDictionary*) change {
+    NSValue* rect;
+    NSParameterAssert( change && [change isKindOfClass:[NSDictionary class]] );
+    if ( !change || ![change isKindOfClass:[NSDictionary class]] )
+        return;
+    
+    rect = [change objectForKey: NSKeyValueChangeNewKey];
+    if ( !rect || ![rect isKindOfClass:[NSValue class]] )
+        return;
+    
+    self.frame = [rect CGRectValue];
+}
 
 /**
  * The Guide Cache
@@ -230,7 +269,6 @@ static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRad
     }
     return obj;
 }
-
 
 /**
  * Debug description

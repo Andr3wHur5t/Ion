@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "IonGuideLine.h"
+#import "IonGuideLine+DependentGuides.h"
+#import "IonGuideLine+DefaultConstructors.h"
 #import "IonView.h"
 
 @interface IonGuideLineTest : XCTestCase
@@ -43,18 +45,7 @@
     XCTAssert( line.position == self.testFloat , @"Values do not match.");
 }
 
-/**
- * Tests Size Response
- */
-- (void)testGuideLineFrameSize {
-    IonGuideLine* line;
-    _testRect = [[IonView alloc] initWithFrame: (CGRect){ CGPointZero , (CGSize){ 10,10 } }];
-    
-    line = [IonGuideLine guideFromViewFrameSize: _testRect usingMode: IonGuideLineFrameMode_Horizontal];
-    self.testRect.frame = (CGRect){ CGPointZero, (CGSize){100, 100}};
-    
-    XCTAssert( line.position == self.testRect.frame.size.height , @"Values do not match.");
-}
+
 
 /**
  * Tests Size Amount Response
@@ -71,20 +62,6 @@
     XCTAssert( line.position == self.testRect.frame.size.height * amount , @"Values do not match.");
 }
 
-
-/**
- * Tests Center Response
- */
-- (void)testGuideLineCenter {
-    IonGuideLine* line;
-    _testRect = [[IonView alloc] initWithFrame: (CGRect){ CGPointZero , (CGSize){ 10,10 } }];
-    _testRect.frame = (CGRect){ CGPointZero , (CGSize){ 10,10 } };
-    
-    line = [IonGuideLine guideFromViewCenter: _testRect usingMode: IonGuideLineFrameMode_Horizontal];
-    _testRect.frame = (CGRect){ CGPointZero , (CGSize){ 100,100 } };
-    
-    XCTAssert( line.position == self.testRect.frame.size.width / 2  , @"Values do not match.");
-}
 
 /**
  * Tests Corner Radius Response
@@ -158,6 +135,45 @@
     _testFloat = 50.0f;
     
     XCTAssert( line.position + amount == childLine.position   , @"Values do not match.");
+}
+
+/**
+ * Test Guide Dependence.
+ */
+- (void)testGuideLineDependence {
+    IonGuideLine *lineOne;
+    CGFloat val = 5;
+    _testFloat = 15.0;
+    
+    lineOne = [IonGuideLine guideWithStaticValue: val];
+    [lineOne addDependentTarget: self andKeyPath: @"testFloat"];
+    [lineOne setCalcBlock: ^CGFloat( CGFloat target ){
+        return target * 2;
+    }];
+    
+    // Try to force a recalc
+    self.testFloat = 50;
+    
+    XCTAssert( lineOne.position == val * 2 , @"Values do not match.");
+}
+
+/**
+ * Test Guide Dependence.
+ */
+- (void)testGuideLineModifications {
+    IonGuideLine *lineOne, *lineTwo, *resultLine;
+    _testFloat = 15.0;
+    
+    lineOne = [IonGuideLine guideWithStaticValue: 5];
+    lineTwo = [IonGuideLine guideWithTarget: self andKeyPath:@"testFloat"];
+    
+    resultLine = [IonGuideLine guideWithGuide: lineOne
+                                      modType: IonValueModType_Add
+                               andSecondGuide: lineTwo];
+    
+    self.testFloat = 50;
+
+    XCTAssert( resultLine.position == lineOne.position + lineTwo.position   , @"Values do not match.");
 }
 
 @end

@@ -135,8 +135,8 @@
  */
 - (void) updateContentGroupFrame {
     contentGroup.frame = (CGRect){
-        (CGPoint){ self.autoMarginGuideHoriz.position, [self statusOffsetHeight] },
-        (CGSize){ self.sizeGuideHoriz.position - (self.autoMarginGuideHoriz.position * 2), self.contentHeight }
+        (CGPoint){ self.leftPadding.position, [self statusOffsetHeight] },
+        (CGSize){ self.rightPadding.position - self.leftPadding.position , self.contentHeight }
     };
     
 }

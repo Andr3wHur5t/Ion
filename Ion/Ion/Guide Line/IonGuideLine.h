@@ -28,12 +28,18 @@ typedef enum : NSUInteger {
     IonGuideLineFrameMode_Horizontal = 1
 } IonGuideLineFrameMode;
 
-
 /**
  * A value which will adjust according to a set of calculations based off of a target value.
  */
 @interface IonGuideLine : NSObject
 #pragma mark Constructors
+
+/**
+ * Constructs a guide line based off the inputted value.
+ * @param {CGFloat} the value to return.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithStaticValue:(CGFloat) value;
 
 /**
  * Constructs a guide line with the inputted blocks, and target information.
@@ -47,6 +53,7 @@ typedef enum : NSUInteger {
                         keyPath:(NSString*) keyPath
                 processingBlock:(IonGuideLineProcessingBlock) processingBlock
                    andCalcBlock:(IonGuildLineCalcBlock) calcBlock;
+
 
 /**
  * Constructs a guide line with the inputted block, and target information.
@@ -136,77 +143,25 @@ typedef enum : NSUInteger {
 + (instancetype) guideWithTarget:(id) target
                       andKeyPath:(NSString*) keyPath;
 
-#pragma mark Default UIView Based Guides
+#pragma mark Dependents
 
 /**
- * Constructs a guide line based off the inputted view frames' size, using the mode to specify axis, and amount specifying how much.
- * @param {UIView*} the view to base the guide off of.
- * @param {CGFloat} the amount to use.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
+ * Adds a dependent variable for us to subcribe to changes to.
+ * @param {id} the target of the dependent variable.
+ * @param {NSString*} the key path of the dependent variable.
+ * @rerurns {void}
  */
-+ (instancetype) guideFromViewFrameSize:(UIView*) view usingAmount:(CGFloat) amount andMode:(IonGuideLineFrameMode) mode;
+- (void) addDependentTarget:(id) target andKeyPath:(NSString*) keyPath;
 
 /**
- * Constructs a guide line based off the inputted views' corner radius, using the mode to specify axis.
- * @param {UIView*} the view to base the guide off of.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
+ * Removes a dependent variable, and unsubscribes to the changes.
+ * @param {id} the target of the dependent variable.
+ * @param {NSString*} the key path of the dependent variable.
+ * @rerurns {void}
  */
-+ (instancetype) guideFromViewCornerRadius:(UIView*) view usingMode:(IonGuideLineFrameMode) mode;
-
-/**
- * Constructs a guide line based off the inputted views' style margin, using the mode to specify axis.
- * @param {IonView*} the view to base the guide off of.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
- */
-+ (instancetype) guideFromViewStyleMargin:(IonView*) view usingMode:(IonGuideLineFrameMode) mode;
-
-/**
- * Constructs a guide line based off the inputted views' corner radius, and style margin, using the mode to specify axis.
- * @param {IonView*} the view to base the guide off of.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
- */
-+ (instancetype) guideFromViewAutoMargin:(IonView*) view usingMode:(IonGuideLineFrameMode) mode;
-
-#pragma mark Frame Based Guides
-
-/**
- * Constructs a guide line based off the inputted object frames' size, using the mode to specify axis, and amount specifying how much.
- * @param {id} the target object to base off of.
- * @param {NSString*} the key path of the rect to use.
- * @param {CGFloat} the amount to use.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
- */
-+ (instancetype) guideWithTargetRectSize:(id) target
-                        usingRectKeyPath:(NSString*) keyPath
-                                  amount:(CGFloat) amount
-                                 andMode:(IonGuideLineFrameMode) mode;
+- (void) removeDependentTarget:(id) target andKeyPath:(NSString*) keyPath;
 
 
-/**
- * Constructs a guide line based off the inputted object frames' size combined with origin to get the external position, using the mode to specify axis, and amount specifying how much of the size to use.
- * @param {id} the target object to base off of.
- * @param {NSString*} the key path of the rect to use.
- * @param {CGFloat} the amount to use.
- * @param {IonGuideLineFrameMode} the mode specifying axis to use
- * @returns {instancetype}
- */
-+ (instancetype) guideWithTargetRectPosition:(id) target
-                            usingRectKeyPath:(NSString*) keyPath
-                                      amount:(CGFloat) amount
-                                     andMode:(IonGuideLineFrameMode) mode;
-
-
-/**
- * Constructs a guide line based off the inputted value.
- * @param {CGFloat} the value to return.
- * @returns {instancetype}
- */
-+ (instancetype) guideWithStaticValue:(CGFloat) value;
 
 #pragma mark Calculation
 
@@ -225,6 +180,7 @@ typedef enum : NSUInteger {
  */
 @property (assign, nonatomic) CGFloat position;
 
+
 #pragma mark Change Subscription
 
 /**
@@ -241,6 +197,11 @@ typedef enum : NSUInteger {
  * @returns {void}
  */
 - (void) setTarget:(id) target usingKeyPath:(NSString*) keyPath;
+
+/**
+ * Adds a modifier to ajust our position by.
+ * @param 
+ */
 
 #pragma mark Default Calculation Blocks
 

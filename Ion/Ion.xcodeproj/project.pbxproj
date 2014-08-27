@@ -173,8 +173,12 @@
 		37721A1619AB3BF5005149BD /* NSObject+IonUtilties.m in Sources */ = {isa = PBXBuildFile; fileRef = 37721A1419AB3BF5005149BD /* NSObject+IonUtilties.m */; };
 		37721A1719AB3BFA005149BD /* IonTimedAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 37721A0E19AB3812005149BD /* IonTimedAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37721A1819AB3C00005149BD /* IonTimedAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37721A0F19AB3812005149BD /* IonTimedAction.m */; };
-		37721A1B19AB4C2C005149BD /* UIView+IonExternalGuides.h in Headers */ = {isa = PBXBuildFile; fileRef = 37721A1919AB4C2C005149BD /* UIView+IonExternalGuides.h */; };
+		37721A1B19AB4C2C005149BD /* UIView+IonExternalGuides.h in Headers */ = {isa = PBXBuildFile; fileRef = 37721A1919AB4C2C005149BD /* UIView+IonExternalGuides.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37721A1C19AB4C2C005149BD /* UIView+IonExternalGuides.m in Sources */ = {isa = PBXBuildFile; fileRef = 37721A1A19AB4C2C005149BD /* UIView+IonExternalGuides.m */; };
+		37721A1F19AD21FF005149BD /* IonGuideLine+DefaultConstructors.h in Headers */ = {isa = PBXBuildFile; fileRef = 37721A1D19AD21FF005149BD /* IonGuideLine+DefaultConstructors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37721A2019AD21FF005149BD /* IonGuideLine+DefaultConstructors.m in Sources */ = {isa = PBXBuildFile; fileRef = 37721A1E19AD21FF005149BD /* IonGuideLine+DefaultConstructors.m */; };
+		37721A2319AD3444005149BD /* IonGuideLine+DependentGuides.h in Headers */ = {isa = PBXBuildFile; fileRef = 37721A2119AD3443005149BD /* IonGuideLine+DependentGuides.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37721A2419AD3444005149BD /* IonGuideLine+DependentGuides.m in Sources */ = {isa = PBXBuildFile; fileRef = 37721A2219AD3444005149BD /* IonGuideLine+DependentGuides.m */; };
 		377C3EBD196F316900EA6599 /* IonApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3EB5196F316900EA6599 /* IonApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		377C3EBE196F316900EA6599 /* IonApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 377C3EB6196F316900EA6599 /* IonApplication.m */; };
 		377C3EBF196F316900EA6599 /* IonRapidStartManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 377C3EB8196F316900EA6599 /* IonRapidStartManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -445,6 +449,10 @@
 		37721A1419AB3BF5005149BD /* NSObject+IonUtilties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+IonUtilties.m"; path = "NSObject/NSObject+IonUtilties.m"; sourceTree = "<group>"; };
 		37721A1919AB4C2C005149BD /* UIView+IonExternalGuides.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+IonExternalGuides.h"; path = "IonView/UIView+IonExternalGuides.h"; sourceTree = "<group>"; };
 		37721A1A19AB4C2C005149BD /* UIView+IonExternalGuides.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+IonExternalGuides.m"; path = "IonView/UIView+IonExternalGuides.m"; sourceTree = "<group>"; };
+		37721A1D19AD21FF005149BD /* IonGuideLine+DefaultConstructors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IonGuideLine+DefaultConstructors.h"; path = "Guide Line/IonGuideLine+DefaultConstructors.h"; sourceTree = "<group>"; };
+		37721A1E19AD21FF005149BD /* IonGuideLine+DefaultConstructors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IonGuideLine+DefaultConstructors.m"; path = "Guide Line/IonGuideLine+DefaultConstructors.m"; sourceTree = "<group>"; };
+		37721A2119AD3443005149BD /* IonGuideLine+DependentGuides.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IonGuideLine+DependentGuides.h"; path = "Guide Line/IonGuideLine+DependentGuides.h"; sourceTree = "<group>"; };
+		37721A2219AD3444005149BD /* IonGuideLine+DependentGuides.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IonGuideLine+DependentGuides.m"; path = "Guide Line/IonGuideLine+DependentGuides.m"; sourceTree = "<group>"; };
 		377C3EB5196F316900EA6599 /* IonApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonApplication.h; sourceTree = "<group>"; };
 		377C3EB6196F316900EA6599 /* IonApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonApplication.m; sourceTree = "<group>"; };
 		377C3EB8196F316900EA6599 /* IonRapidStartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonRapidStartManager.h; sourceTree = "<group>"; };
@@ -695,6 +703,7 @@
 		370A22A519A67F11006FCD75 /* Guide Line */ = {
 			isa = PBXGroup;
 			children = (
+				37721A2519AD3775005149BD /* Constuctor Catagories */,
 				370A22A619A67F33006FCD75 /* IonGuideLine.h */,
 				370A22A719A67F33006FCD75 /* IonGuideLine.m */,
 				370A22B819A82D07006FCD75 /* IonViewGuideSet.h */,
@@ -1285,6 +1294,17 @@
 			name = NSObject;
 			sourceTree = "<group>";
 		};
+		37721A2519AD3775005149BD /* Constuctor Catagories */ = {
+			isa = PBXGroup;
+			children = (
+				37721A1D19AD21FF005149BD /* IonGuideLine+DefaultConstructors.h */,
+				37721A1E19AD21FF005149BD /* IonGuideLine+DefaultConstructors.m */,
+				37721A2119AD3443005149BD /* IonGuideLine+DependentGuides.h */,
+				37721A2219AD3444005149BD /* IonGuideLine+DependentGuides.m */,
+			);
+			name = "Constuctor Catagories";
+			sourceTree = "<group>";
+		};
 		377C3EB4196F316900EA6599 /* IonApplication */ = {
 			isa = PBXGroup;
 			children = (
@@ -1753,6 +1773,7 @@
 				370A229919A2C420006FCD75 /* IonLabel.h in Headers */,
 				376DA8C519791299008D692E /* IonThemePointer.h in Headers */,
 				37F4E05919A9598B004A1734 /* IonGuideGroup.h in Headers */,
+				37721A1F19AD21FF005149BD /* IonGuideLine+DefaultConstructors.h in Headers */,
 				370A22A819A67F33006FCD75 /* IonGuideLine.h in Headers */,
 				377C3EBD196F316900EA6599 /* IonApplication.h in Headers */,
 				377C3EC2196F316900EA6599 /* IonRapidStartViewController.h in Headers */,
@@ -1760,6 +1781,7 @@
 				376DA8E4197B4597008D692E /* IonAttrubutesStanderdResolution.h in Headers */,
 				373B390319A97977000FE567 /* IonTitleBar.h in Headers */,
 				376DA8E9197BAD83008D692E /* IonWindow.h in Headers */,
+				37721A2319AD3444005149BD /* IonGuideLine+DependentGuides.h in Headers */,
 				370588AC1999E89000597822 /* IonButtonBehaviorTapTransform.h in Headers */,
 				371D5D6F197FB15000485DC0 /* IonKVP+IonTheme.h in Headers */,
 				371D5D7C1980C73C00485DC0 /* NSDictionary+IonThemeResolution.h in Headers */,
@@ -2070,6 +2092,7 @@
 			files = (
 				370A22C319A87F8C006FCD75 /* UIView+IonDefaultGuides.m in Sources */,
 				37F4E05A19A9598B004A1734 /* IonGuideGroup.m in Sources */,
+				37721A2419AD3444005149BD /* IonGuideLine+DependentGuides.m in Sources */,
 				377C3EC0196F316900EA6599 /* IonRapidStartManager.m in Sources */,
 				376DA8EA197BAD83008D692E /* IonWindow.m in Sources */,
 				377C3ED1196F58A900EA6599 /* UITouch + IonDemoTouch.m in Sources */,
@@ -2077,6 +2100,7 @@
 				372DD25019731F0200CC0A58 /* UIView+IonBackgroundUtilities.m in Sources */,
 				37FCF136197CDD42004C14C8 /* UIView+IonViewProperties.m in Sources */,
 				37FCF13C197DB23A004C14C8 /* IonStyle+IonStdStyleApplyMethods.m in Sources */,
+				37721A2019AD21FF005149BD /* IonGuideLine+DefaultConstructors.m in Sources */,
 				370A22BB19A82D07006FCD75 /* IonViewGuideSet.m in Sources */,
 				377C3ECD196F52AE00EA6599 /* IonDemoUIWindow.m in Sources */,
 				37721A1C19AB4C2C005149BD /* UIView+IonExternalGuides.m in Sources */,

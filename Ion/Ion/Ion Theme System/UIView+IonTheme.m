@@ -8,11 +8,14 @@
 
 #import "UIView+IonTheme.h"
 #import <objc/runtime.h>
+#import <IonData/IonData.h>
 #import "IonStyle.h"
 
 /** Variable Keys
  */
 static void* sThemeConfigurationKey = "IonThemeConfiguration";
+static NSString* sIonStyleMarginKey = @"StyleMargin";
+static NSString* sIonStylePaddingKey = @"StylePadding";
 
 @implementation UIView (IonTheme)
 
@@ -171,6 +174,106 @@ static void* sThemeConfigurationKey = "IonThemeConfiguration";
 - (NSString*) themeID {
     return self.themeConfiguration.themeID;
 }
+
+#pragma mark Data Retrevial
+
+/**
+ * Applies the style to the view.
+ * @param {IonStyle} the style to be applied.
+ * @returns {void}
+ */
+- (void) applyStyle:(IonStyle*) style {
+    CGSize styleMargin, stylePadding;
+    NSParameterAssert( style && [style isKindOfClass: [IonStyle class]] );
+    if ( !style || ![style isKindOfClass: [IonStyle class]] )
+        return;
+    
+    // Get the style margin
+    styleMargin = [style.configuration sizeForKey: sIonThemeView_StyleMargin];
+    if ( CGSizeEqualToSize( styleMargin, CGSizeUndefined) )
+        styleMargin = CGSizeZero;
+    self.styleMargin = styleMargin;
+    
+    // Get the style Padding
+    stylePadding = [style.configuration sizeForKey: sIonThemeView_StylePadding];
+    if ( CGSizeEqualToSize( stylePadding, CGSizeUndefined) )
+        stylePadding = CGSizeZero;
+    self.stylePadding = stylePadding;
+}
+
+#pragma mark Style Margin
+
+/**
+ * Switches KVO to manual modes
+ */
++ (BOOL)automaticallyNotifiesObserversOfStyleMargin { return FALSE; }
+
+/**
+ * Sets the style margin of the view.
+ * @param {CGSize} the new size
+ * @returns {void}
+ */
+- (void) setStyleMargin:(CGSize) styleMargin {
+    [self willChangeValueForKey: @"styleMargin"];
+    [self.catagoryVariables setObject: [NSValue valueWithCGSize: styleMargin] forKey: sIonStyleMarginKey];
+    [self didChangeValueForKey: @"styleMargin"];
+}
+
+/**
+ * Gets the style margin size.
+ * @returns {CGSize}
+ */
+-(CGSize) styleMargin {
+    return [(NSValue*)[self.catagoryVariables objectForKey: sIonStyleMarginKey] CGSizeValue];
+}
+
+#pragma mark Style Padding
+/**
+ * Switches KVO to manual modes
+ */
++ (BOOL)automaticallyNotifiesObserversOfStylePadding { return FALSE; }
+
+/**
+ * Sets the style margin of the view.
+ * @param {CGSize} the new size
+ * @returns {void}
+ */
+- (void) setStylePadding:(CGSize)stylePadding {
+    [self willChangeValueForKey: @"stylePadding"];
+    [self.catagoryVariables setObject: [NSValue valueWithCGSize: stylePadding] forKey: sIonStylePaddingKey];
+    [self didChangeValueForKey: @"stylePadding"];
+}
+
+/**
+ * Gets the style margin size.
+ * @returns {CGSize}
+ */
+-(CGSize) stylePadding {
+    return [(NSValue*)[self.catagoryVariables objectForKey: sIonStylePaddingKey] CGSizeValue];
+}
+
+
+#pragma mark Auto Margin
+
+/**
+ * Sets the KVO dependents of the auto margin.
+ * @returns {NSSet*} the set
+ */
++ (NSSet*) keyPathsForValuesAffectingAutoMargin {
+    return [NSSet setWithObjects: @"styleMargin", @"layer.cornerRadius", nil];
+}
+
+/**
+ * Gets the auto margin value.
+ * @returns {CGFloat}
+ */
+- (CGSize) autoMargin {
+    CGSize autoMargin;
+    autoMargin.width = MAX( self.styleMargin.width, self.layer.cornerRadius );
+    autoMargin.height = MAX( self.styleMargin.height, self.layer.cornerRadius );
+    return autoMargin;
+}
+
 
 #pragma mark Utilities
 

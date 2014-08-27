@@ -68,4 +68,14 @@
  */
 @property (assign) SEL selector;
 
+#pragma mark Comparason
+
+/**
+ * Checks if the target and key path match
+ * @param {id} the target object to check
+ * @param {NSString*} the key path to check
+ * @returns {BOOL}
+ */
+- (BOOL) matchesTarget:(id) target andKeyPath:(NSString*) keyPath;
+
 @end

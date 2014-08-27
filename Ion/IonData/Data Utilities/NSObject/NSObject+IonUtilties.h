@@ -11,6 +11,11 @@
 @interface NSObject (IonUtilties)
 #pragma mark Extension Map
 
+/**
+ * The catagory extension map whe we should store all catagory extension variables.
+ */
+@property (strong, nonatomic, readonly) NSMutableDictionary* catagoryVariables;
+
 #pragma mark Delayed Blocks
 
 /**
