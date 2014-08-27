@@ -11,7 +11,8 @@
 #import <IonData/IonData.h>
 
 @interface IonViewGuideSet () {
-    IonKeyValueObserver *sxObserver, *syObserver, *lxObserver, *lyObserver;
+    IonKeyValueObserver *sxObserver, *syObserver, *lxObserver, *lyObserver, // Mount Point
+                        *lSObserver, *rSObserver, *tSObserver, *bSObserver; // Size
     
     IonGuideLine* _localVertGuide;
     IonGuideLine* _localHorizGuide;
@@ -68,7 +69,7 @@
     syObserver = [IonKeyValueObserver observeObject: _superVertGuide
                                             keyPath: @"position"
                                              target: self
-                                           selector: @selector(didChangeGuidePosition)];
+                                           selector: @selector(guideDidChange)];
 }
 
 #pragma mark Super Horiz
@@ -95,7 +96,7 @@
     sxObserver = [IonKeyValueObserver observeObject: _superHorizGuide
                                             keyPath: @"position"
                                              target: self
-                                           selector: @selector(didChangeGuidePosition)];
+                                           selector: @selector(guideDidChange)];
 }
 
 #pragma mark Local
@@ -141,7 +142,7 @@
     lyObserver = [IonKeyValueObserver observeObject: _localVertGuide
                                             keyPath: @"position"
                                              target: self
-                                           selector: @selector(didChangeGuidePosition)];
+                                           selector: @selector(guideDidChange)];
 }
 
 /**
@@ -177,7 +178,7 @@
     lxObserver = [IonKeyValueObserver observeObject: _localHorizGuide
                                             keyPath: @"position"
                                              target: self
-                                           selector: @selector(didChangeGuidePosition)];
+                                           selector: @selector(guideDidChange)];
     
 }
 
@@ -189,6 +190,113 @@
         self.localHorizGuide = [IonGuideLine guideWithStaticValue:0.0];
     return _localHorizGuide;
 }
+
+#pragma mark Size
+
+/**
+ * Switch guide to maual KVO observation mode
+ */
++ (BOOL) automaticallyNotifiesObserversOfLeftSizeGuide { return FALSE; }
+
+/**
+ * Sets the left size guide.
+ * @param {IonGuideLine*} the new guide.
+ * @returne {void}
+ */
+- (void) setLeftSizeGuide:(IonGuideLine*) guide {
+    NSParameterAssert( guide && [guide isKindOfClass: [IonGuideLine class]] );
+    if ( !guide || ! [guide isKindOfClass: [IonGuideLine class]])
+        return;
+    
+    [self willChangeValueForKey: @"leftSizeGuide"];
+    _leftSizeGuide = guide;
+    [self didChangeValueForKey: @"leftSizeGuide"];
+    
+    lxObserver = [IonKeyValueObserver observeObject: _leftSizeGuide
+                                            keyPath: @"position"
+                                             target: self
+                                           selector: @selector(guideDidChange)];
+    
+}
+
+/**
+ * Switch guide to maual KVO observation mode
+ */
++ (BOOL) automaticallyNotifiesObserversOfRightSizeGuide{ return FALSE; }
+
+/**
+ * Sets the right size guide.
+ * @param {IonGuideLine*} the new guide.
+ * @returne {void}
+ */
+- (void) setRightSizeGuide:(IonGuideLine*) guide {
+    NSParameterAssert( guide && [guide isKindOfClass: [IonGuideLine class]] );
+    if ( !guide || ! [guide isKindOfClass: [IonGuideLine class]])
+        return;
+    
+    [self willChangeValueForKey: @"rightSizeGuide"];
+    _rightSizeGuide = guide;
+    [self didChangeValueForKey: @"rightSizeGuide"];
+    
+    lxObserver = [IonKeyValueObserver observeObject: _rightSizeGuide
+                                            keyPath: @"position"
+                                             target: self
+                                           selector: @selector(guideDidChange)];
+    
+}
+
+/**
+ * Switch guide to maual KVO observation mode
+ */
++ (BOOL) automaticallyNotifiesObserversOfTopSizeGuide{ return FALSE; }
+
+/**
+ * Sets the top size guide.
+ * @param {IonGuideLine*} the new guide.
+ * @returne {void}
+ */
+- (void) setTopSizeGuide:(IonGuideLine*) guide {
+    NSParameterAssert( guide && [guide isKindOfClass: [IonGuideLine class]] );
+    if ( !guide || ! [guide isKindOfClass: [IonGuideLine class]])
+        return;
+    
+    [self willChangeValueForKey: @"topSizeGuide"];
+    _topSizeGuide = guide;
+    [self didChangeValueForKey: @"topSizeGuide"];
+    
+    lxObserver = [IonKeyValueObserver observeObject: _topSizeGuide
+                                            keyPath: @"position"
+                                             target: self
+                                           selector: @selector(guideDidChange)];
+    
+}
+
+/**
+ * Switch guide to maual KVO observation mode
+ */
++ (BOOL) automaticallyNotifiesObserversOfBottomSizeGuide { return FALSE; }
+
+/**
+ * Sets the bottom size guide.
+ * @param {IonGuideLine*} the new guide.
+ * @returne {void}
+ */
+- (void) setBottomSizeGuide:(IonGuideLine*) guide {
+    NSParameterAssert( guide && [guide isKindOfClass: [IonGuideLine class]] );
+    if ( !guide || ! [guide isKindOfClass: [IonGuideLine class]])
+        return;
+    
+    [self willChangeValueForKey: @"bottomSizeGuide"];
+    _bottomSizeGuide = guide;
+    [self didChangeValueForKey: @"bottomSizeGuide"];
+    
+    lxObserver = [IonKeyValueObserver observeObject: _bottomSizeGuide
+                                            keyPath: @"position"
+                                             target: self
+                                           selector: @selector(guideDidChange)];
+    
+}
+
 
 #pragma mark Change Callback
 
@@ -211,7 +319,7 @@
  * Respond to changes in guides' position
  * @returns {void}
  */
-- (void) didChangeGuidePosition {
+- (void) guideDidChange{
     // Call the target pair if it exsists
     if ( !_target || !_action )
         return;
@@ -248,15 +356,33 @@
 }
 
 /**
+ * Gets the size position using size current guides.
+ * @returns {CGSize}
+ */
+- (CGSize) toSize {
+    CGFloat width, height;
+    width = height = 0.0f;
+    
+    // Get Width
+    if ( self.leftSizeGuide && [self.leftSizeGuide isKindOfClass:[IonGuideLine class]] &&
+        self.rightSizeGuide && [self.rightSizeGuide isKindOfClass:[IonGuideLine class]] )
+        width = self.rightSizeGuide.position - self.leftSizeGuide.position;
+    
+    // Get Y
+    if ( self.topSizeGuide && [self.topSizeGuide isKindOfClass:[IonGuideLine class]] &&
+        self.bottomSizeGuide && [self.bottomSizeGuide isKindOfClass:[IonGuideLine class]] )
+        height = self.bottomSizeGuide.position - self.topSizeGuide.position;
+    
+    // Calc and return
+    return (CGSize){ ABS(width), ABS(height) };
+}
+
+/**
  * Gets the resulting rect for the inputted view, and current guides.
- * @param {UIView*} the view to get the rect for.
  * @returns {CGRect} the resulting rect
  */
-- (CGRect) rectForView:(UIView*) view {
-    NSParameterAssert( view && [view isKindOfClass:[UIView class]] );
-    if ( !view || ![view isKindOfClass:[UIView class]] )
-        return CGRectZero;
-    return (CGRect){ [self toPoint], view.frame.size };
+- (CGRect) toRect {
+    return (CGRect){ [self toPoint], [self toSize] };
 }
 
 /**
@@ -264,10 +390,20 @@
  */
 - (NSString*) description {
     CGPoint point = [self toPoint];
-    return [NSString stringWithFormat: @"\nSup {X: %@, Y: %@}\nloc {X: %@, Y: %@}\nCalc {X: %f, Y: %f}\n",
+    CGSize  size = [self toSize];
+    return [NSString stringWithFormat: @"\nSuperMount {X: %@, Y: %@}\nlocalMount {X: %@, Y: %@}\nMountPoint {X: %f, Y: %f}\nSizePoints{L: %@, R: %@, T: %@, B: %@ }\nResultSize {W: %f, H: %f}",
                                     self.superHorizGuide, self.superVertGuide,
                                     self.localHorizGuide, self.localVertGuide,
-                                    point.x, point.y];
+                                    point.x, point.y,
+                                    self.leftSizeGuide, self.rightSizeGuide, self.topSizeGuide, self.bottomSizeGuide,
+                                    size.width, size.height ];
+}
+
+#pragma mark Cleanup
+
+- (void) dealloc {
+    sxObserver = syObserver = lxObserver = lyObserver = NULL;
+    lSObserver = rSObserver = tSObserver = bSObserver = NULL;
 }
 
 @end

@@ -10,7 +10,6 @@
 #import "IonGuideLine.h"
 
 @interface UIView (IonDefaultGuides)
-
 #pragma mark Corrner Radius
 
 /**
@@ -100,6 +99,28 @@
  * Bottom padding Guide Line
  */
 @property (strong, nonatomic, readonly) IonGuideLine* bottomPadding;
+
+#pragma mark Auto Padding
+
+/**
+ * Left auto padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* leftAutoPadding;
+
+/**
+ * Right auto padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* rightAutoPadding;
+
+/**
+ * Top auto padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* topAutoPadding;
+
+/**
+ * Bottom auto padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* bottomAutoPadding;
 
 #pragma mark Margins
 

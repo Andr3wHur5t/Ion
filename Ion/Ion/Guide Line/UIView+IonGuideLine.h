@@ -33,6 +33,14 @@
 @property (weak, nonatomic) IonGuideLine* superVertGuide;
 @property (weak, nonatomic) IonGuideLine* superHorizGuide;
 
+/**
+ * The size guides
+ */
+@property (weak, nonatomic) IonGuideLine* topSizeGuide;
+@property (weak, nonatomic) IonGuideLine* bottomSizeGuide;
+@property (weak, nonatomic) IonGuideLine* leftSizeGuide;
+@property (weak, nonatomic) IonGuideLine* rightSizeGuide;
+
 #pragma mark Setters
 
 /**

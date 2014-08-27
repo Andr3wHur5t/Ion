@@ -136,6 +136,82 @@ static char* sIonCachedGuideLineKey = "IonCachedGuideLines";
     return self.guideSet.localVertGuide;
 }
 
+#pragma mark Left Size Guide
+
+/**
+ * Sets the local horiz guide, and updates the frame.
+ * @returns {void}
+ */
+- (void) setLeftSizeGuide:(IonGuideLine*) leftSizeGuide{
+    self.guideSet.leftSizeGuide = leftSizeGuide;
+    [self updateFrameToMatchGuideSet];
+}
+
+/**
+ * Gets the local horiz guide.
+ * @returns {IonGuideLine}
+ */
+- (IonGuideLine*) leftSizeGuide {
+    return self.guideSet.leftSizeGuide;
+}
+
+#pragma mark Right Size Guide
+
+/**
+ * Sets the local horiz guide, and updates the frame.
+ * @returns {void}
+ */
+- (void) setRightSizeGuide:(IonGuideLine*) rightSizeGuide{
+    self.guideSet.rightSizeGuide = rightSizeGuide;
+    [self updateFrameToMatchGuideSet];
+}
+
+/**
+ * Gets the local horiz guide.
+ * @returns {IonGuideLine}
+ */
+- (IonGuideLine*) rightSizeGuide {
+    return self.guideSet.rightSizeGuide;
+}
+
+#pragma mark Top Size Guide
+
+/**
+ * Sets the local horiz guide, and updates the frame.
+ * @returns {void}
+ */
+- (void) setTopSizeGuide:(IonGuideLine*) topSizeGuide{
+    self.guideSet.topSizeGuide = topSizeGuide;
+    [self updateFrameToMatchGuideSet];
+}
+
+/**
+ * Gets the local horiz guide.
+ * @returns {IonGuideLine}
+ */
+- (IonGuideLine*) topSizeGuide {
+    return self.guideSet.topSizeGuide;
+}
+
+#pragma mark Bottom Size Guide
+
+/**
+ * Sets the local horiz guide, and updates the frame.
+ * @returns {void}
+ */
+- (void) setBottomSizeGuide:(IonGuideLine*) bottomSizeGuide{
+    self.guideSet.bottomSizeGuide = bottomSizeGuide;
+    [self updateFrameToMatchGuideSet];
+}
+
+/**
+ * Gets the local horiz guide.
+ * @returns {IonGuideLine}
+ */
+- (IonGuideLine*) bottomSizeGuide {
+    return self.guideSet.bottomSizeGuide;
+}
+
 #pragma mark Setters
 
 /**
@@ -203,6 +279,9 @@ static char* sIonCachedGuideLineKey = "IonCachedGuideLines";
     [self updateFrameToMatchGuideSet];
 }
 
+#pragma mark Size Functions
+
+
 #pragma mark Update Functions
 
 /**
@@ -210,6 +289,13 @@ static char* sIonCachedGuideLineKey = "IonCachedGuideLines";
  * @returns {void}
  */
 - (void) updateFrameToMatchGuideSet {
-    self.frame = [self.guideSet rectForView: self];
+    CGRect frame = [self.guideSet toRect];
+    
+    // Check sizing rules
+    if ( CGSizeEqualToSize( frame.size , CGSizeZero ) )
+        frame.size = self.frame.size;
+    
+    // Update frame
+    self.frame = frame;
 }
 @end

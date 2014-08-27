@@ -11,7 +11,7 @@
 @interface IonKeyValueObserver ()
 // The path of the observed value
 @property (nonatomic, copy) NSString* keyPath;
-@property (nonatomic, weak) id observedObject;
+@property (nonatomic, strong) id observedObject;
 
 /**
  * Calls the change change selector on the target object.
@@ -129,7 +129,8 @@
  * @returns {void}
  */
 - (void) dealloc {
-    [self.observedObject removeObserver: self forKeyPath: self.keyPath];
+    if ( self.observedObject && self.keyPath && [self.keyPath isKindOfClass: [NSString class]] )
+        [self.observedObject removeObserver: self forKeyPath: self.keyPath];
 }
 
 

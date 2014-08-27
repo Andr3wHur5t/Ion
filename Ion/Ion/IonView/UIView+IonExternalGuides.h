@@ -72,27 +72,4 @@
  */
 @property (weak, nonatomic, readonly) IonGuideLine* sizeGuideHorizExternal;
 
-
-#pragma mark Margins
-
-/**
- * Left Margin Guide Line
- */
-@property (strong, nonatomic, readonly) IonGuideLine* leftMarginExternal;
-
-/**
- * Right Margin Guide Line
- */
-@property (strong, nonatomic, readonly) IonGuideLine* rightMarginExternal;
-
-/**
- * Top Margin Guide Line
- */
-@property (strong, nonatomic, readonly) IonGuideLine* topMarginExternal;
-
-/**
- * Top Margin Guide Line
- */
-@property (strong, nonatomic, readonly) IonGuideLine* bottomMarginExternal;
-
 @end

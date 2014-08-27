@@ -134,11 +134,12 @@
  * Updates the Guide groups frame.
  */
 - (void) updateContentGroupFrame {
+    
     contentGroup.frame = (CGRect){
         (CGPoint){ self.leftPadding.position, [self statusOffsetHeight] },
         (CGSize){ self.rightPadding.position - self.leftPadding.position , self.contentHeight }
     };
-    
+    NSLog(@"Val: %f", contentGroup.frame.size.width);
 }
 
 #pragma mark Responds to Status Bar
@@ -258,8 +259,11 @@
  */
 - (void) setLeftView:(UIView*) leftView {
     // Remove if it exists
-    if ( _leftView )
+    if ( _leftView ) {
+    //    [self updateCenterViewSizeGuides];
         [_leftView removeFromSuperview];
+        
+    }
     
     // Set
     [self willChangeValueForKey: @"leftView"];
@@ -276,7 +280,8 @@
                            localHoriz: _leftView.internalOriginGuideHoriz
                             superVert: contentGroup.centerGuideVert
                         andSuperHoriz: contentGroup.internalOriginGuideHoriz];
-    return;
+    
+ //  [self updateCenterViewSizeGuides];
 }
 
 
@@ -323,6 +328,30 @@
                              localHoriz: _centerView.centerGuideHoriz
                               superVert: contentGroup.centerGuideVert
                           andSuperHoriz: contentGroup.centerGuideHoriz];
+    
+  //  [self updateCenterViewSizeGuides];
+}
+
+/**
+ * updates the center view size guides.
+ * @returns {void}
+ */
+- (void) updateCenterViewSizeGuides {
+    if ( !_centerView )
+        return;
+    
+    _centerView.topSizeGuide = contentGroup.internalOriginGuideVert;
+    _centerView.bottomSizeGuide = contentGroup.sizeGuideVert;
+    
+    if ( _rightView )
+        _centerView.rightSizeGuide = _rightView.leftMargin;
+    else
+        _centerView.rightSizeGuide = contentGroup.internalOriginGuideHoriz;
+    
+    if ( _leftView )
+        _centerView.leftSizeGuide = _leftView.rightMargin;
+    else
+        _centerView.leftSizeGuide = contentGroup.sizeGuideHoriz;
 }
 
 #pragma mark Right View
@@ -339,8 +368,10 @@
  */
 - (void) setRightView:(UIView *)rightView {
     // Remove if it exists
-    if ( _rightView )
+    if ( _rightView ) {
+       // [self updateCenterViewSizeGuides];
         [_rightView removeFromSuperview];
+    }
     
     // Set
     [self willChangeValueForKey: @"rightView"];
@@ -357,6 +388,7 @@
                             localHoriz: _rightView.sizeGuideHoriz
                              superVert: contentGroup.centerGuideVert
                          andSuperHoriz: contentGroup.sizeGuideHoriz];
+   // [self updateCenterViewSizeGuides];
 }
 
 @end

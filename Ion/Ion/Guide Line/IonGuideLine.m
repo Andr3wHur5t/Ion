@@ -13,7 +13,7 @@
     /**
      * The target observation token which maintains observation.
      */
-    id targetObservationToken;
+    IonKeyValueObserver* targetObservationToken;
     
     // The calc block
     IonGuildLineCalcBlock _calcBlock;
@@ -493,6 +493,17 @@
     return ^CGFloat( id data ) {
         return val;
     };
+}
+
+
+#pragma mark Cleanup
+
+/**
+ * Atempts to automaticly de register 
+ */
+- (void) dealloc {
+    targetObservationToken = NULL;
+    [[self dependentVariables] removeAllObjects];
 }
 
 @end

@@ -107,6 +107,7 @@
 		372DD247197281F400CC0A58 /* IonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD245197281F400CC0A58 /* IonViewController.m */; };
 		372DD24F19731F0200CC0A58 /* UIView+IonBackgroundUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 372DD24D19731F0200CC0A58 /* UIView+IonBackgroundUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		372DD25019731F0200CC0A58 /* UIView+IonBackgroundUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 372DD24E19731F0200CC0A58 /* UIView+IonBackgroundUtilities.m */; };
+		373A437419AE7D46008D1832 /* IonGuideSetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373A437319AE7D46008D1832 /* IonGuideSetTests.m */; };
 		373B390319A97977000FE567 /* IonTitleBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 373B390119A97977000FE567 /* IonTitleBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		373B390419A97977000FE567 /* IonTitleBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 373B390219A97977000FE567 /* IonTitleBar.m */; };
 		373B390819AAC9D2000FE567 /* IonApplication+StatusBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 373B390619AAC9D2000FE567 /* IonApplication+StatusBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -384,6 +385,7 @@
 		372DD245197281F400CC0A58 /* IonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonViewController.m; path = "Ion View Controller/IonViewController.m"; sourceTree = "<group>"; };
 		372DD24D19731F0200CC0A58 /* UIView+IonBackgroundUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+IonBackgroundUtilities.h"; path = "IonView/UIView+IonBackgroundUtilities.h"; sourceTree = "<group>"; };
 		372DD24E19731F0200CC0A58 /* UIView+IonBackgroundUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+IonBackgroundUtilities.m"; path = "IonView/UIView+IonBackgroundUtilities.m"; sourceTree = "<group>"; };
+		373A437319AE7D46008D1832 /* IonGuideSetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonGuideSetTests.m; sourceTree = "<group>"; };
 		373B390119A97977000FE567 /* IonTitleBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonTitleBar.h; path = "UIControls/Title Bar/IonTitleBar.h"; sourceTree = "<group>"; };
 		373B390219A97977000FE567 /* IonTitleBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonTitleBar.m; path = "UIControls/Title Bar/IonTitleBar.m"; sourceTree = "<group>"; };
 		373B390619AAC9D2000FE567 /* IonApplication+StatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IonApplication+StatusBar.h"; sourceTree = "<group>"; };
@@ -1468,6 +1470,7 @@
 				37191451198BC30E002D7355 /* IonThemeTests.m */,
 				373C102A198CAFF000315F44 /* IonStyleTests.m */,
 				370A22AF19A70686006FCD75 /* IonGuideLineTest.m */,
+				373A437319AE7D46008D1832 /* IonGuideSetTests.m */,
 			);
 			path = IonTests;
 			sourceTree = "<group>";
@@ -2139,6 +2142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				373A437419AE7D46008D1832 /* IonGuideSetTests.m in Sources */,
 				373C102B198CAFF000315F44 /* IonStyleTests.m in Sources */,
 				37191452198BC30E002D7355 /* IonThemeTests.m in Sources */,
 				370A22B019A70686006FCD75 /* IonGuideLineTest.m in Sources */,

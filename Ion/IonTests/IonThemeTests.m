@@ -218,38 +218,6 @@
     }];
 }
 
-
-#pragma mark KVP Resolution
-
-/**
- * Tests if kvps resolve.
- */
-- (void) testKVPResolution {
-    __block IonKeyValuePair* kvp;
-    [self measureBlock:^{
-        kvp = [target resolveKVPAttribute: sKVPItemKey];
-        
-        XCTAssert( [kvp.value isEqual: sKVPItemObject] , @"KVP is not Item Object. got:%@", kvp.value );
-    }];
-}
-
-
-#pragma mark Style Resolution
-
-/**
- * Checks style resolution
- */
-- (void) stestResolveStyleForKey {
-    __block IonStyle *expected, *result;
-    [self measureBlock:^{
-        expected = [[IonStyle alloc] initWithDictionary: [IonThemeObjectTests staticTestStyle]];
-       // result = [target resolveStyleAttribute: sStyleItemKey];
-        
-        XCTAssert( [expected isEqualToStyle: result] , @"Invalid result.");
-    }];
-}
-
-
 #pragma Mark Generation Utilities
 
 /**
