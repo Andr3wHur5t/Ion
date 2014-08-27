@@ -11,9 +11,8 @@
 @interface IonVisualTestViewController () {
     IonTitleBar* titleBar;
     IonSimpleCache* sc;
-    IonInterfaceButton* button;
     IonLabel* testLabel;
-    IonGuideGroup* guideGroup;
+    IonView* containerView;
 }
 
 @end
@@ -22,27 +21,25 @@
 
 - (void) constructViews {
     [super constructViews];
-    // Render Debug
+    
+    [self.view setBackgroundImageUsingKey: @"aspect"];
+
+    [self constructTitleBar];
+    [self constructContentBar];
+}
+
+/**
+ * Constructs the title bar.
+ */
+- (void) constructTitleBar {
+    IonButton *leftButton, *rightButton;
+    
     titleBar = [[IonTitleBar alloc] init];
     [self.view addSubview: titleBar];
     
-    
-    IonButton *leftButton, *rightButton;
-    // Set the image using the image manager
-    button = [[IonInterfaceButton alloc] initWithFileName: @"Hamburger"];
     leftButton = [[IonInterfaceButton alloc] initWithFileName: @"Add"];
     rightButton = [[IonInterfaceButton alloc] initWithFileName: @"Confirm"];
-    //[button setEnabled: false];
-    button.frame = (CGRect){ (CGPoint){ 0,0}, (CGSize){30,30}};
     
-    
-    [button setSuperGuidesWithVert: titleBar.sizeGuideVertExternal andHoriz: self.view.leftPadding];
-    
-    
-    
-    [self.view addSubview: button];
-    [self.view setBackgroundImageUsingKey: @"aspect"];
-
     [self makeTestLabel];
     
     titleBar.leftView = leftButton;
@@ -50,6 +47,30 @@
     titleBar.centerView = testLabel;
     titleBar.respondsToStatusBar = TRUE;
     [titleBar updateFrame];
+}
+
+/**
+ * Constructs the content bar.
+ */
+- (void) constructContentBar {
+    IonInterfaceButton* button;
+    
+    containerView = [[IonView alloc] init];
+    
+    button = [[IonInterfaceButton alloc] initWithFileName: @"Hamburger"];
+    [button setGuidesWithLocalVert: button.centerGuideVert
+                        localHoriz: button.internalOriginGuideHoriz
+                         superVert: containerView.centerGuideVert
+                     andSuperHoriz: containerView.leftPadding];
+    
+    [containerView setSuperGuidesWithVert: titleBar.sizeGuideVertExternal
+                                 andHoriz: self.view.internalOriginGuideHoriz];
+    containerView.themeElement = @"sub-bar";
+    
+    containerView.frame = (CGRect){CGPointZero, (CGSize){ self.view.frame.size.width, 30 } };
+    
+    [containerView addSubview: button];
+    [self.view addSubview: containerView];
 }
 
 - (void) viewWillAppear:(BOOL)animated {

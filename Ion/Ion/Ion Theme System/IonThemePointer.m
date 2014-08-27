@@ -122,17 +122,12 @@ static NSString* sPointerTargetTypeStyle = @"style";
         result = [_attributes resolveGradientAttribute: _targetName];
     }
     
-    // Resolve  Image
-    else if ( [_targetType isEqualToString: sPointerTargetTypeImage] )
-        result = [_attributes resolveImageAttribute: _targetName];
-    
-    // Resolve KVP
-    else if ( [_targetType isEqualToString: sPointerTargetTypeKVP] )
-        result = [_attributes resolveKVPAttribute: _targetName];
-    
     // Resolve Style
    // else if ( [_targetType isEqualToString: sPointerTargetTypeStyle] )
      //   result = [_attributes resolveStyleAttribute: _targetName];
+    
+    if ( !result )
+        ThemeLog( [NSString stringWithFormat: @"Unable to resolve %@ with %@", _targetType, _targetName] );
     
     return result;
 

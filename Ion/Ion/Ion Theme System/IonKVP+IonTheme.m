@@ -19,8 +19,9 @@
  */
 - (UIColor*) toColor {
     NSString* colorString = [self toString];
-    if ( !colorString || !self.attributes )
+    if ( !colorString || !self.attributes ) {
         return NULL;
+    }
     
     return [self.attributes resolveColorAttribute: colorString];
 }

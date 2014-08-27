@@ -49,31 +49,10 @@ typedef id(^IonAttributeGenerationBlock)(IonKVPAccessBasedGenerationMap* context
 - (IonGradientConfiguration*) resolveGradientAttribute:(NSString*) value;
 
 /**
- * This resolves a style key into a IonStyle object.
- * @param {NSString*} the key for us to look for.
- * @returns {IonStyle*} representation of the input, or NULL if invalid.
- */
-//- (IonStyle*) resolveStyleAttribute:(NSString*) value;
-
-/**
  * Gets the Root Style.
  * @returns {IonStyle*}
  */
 - (IonStyle*) rootStyle;
-
-/**
- * This resolves a Image key into a UIImage object.
- * @param {NSString*} the key for us to look for.
- * @returns {UIImage*} representation of the input, or NULL if invalid.
- */
-- (IonImageRef*) resolveImageAttribute:(NSString*) value;
-
-/**
- * This resolves a KVP key into a KVP object.
- * @param {NSString*} the key for us to look for.
- * @returns {UIImage*} representation of the input, or NULL if invalid.
- */
-- (IonKeyValuePair*) resolveKVPAttribute:(NSString*) value;
 
 /**
  * This will resolve the map for the specified key.
