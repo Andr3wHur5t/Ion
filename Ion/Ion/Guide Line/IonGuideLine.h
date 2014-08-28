@@ -198,10 +198,14 @@ typedef enum : NSUInteger {
  */
 - (void) setTarget:(id) target usingKeyPath:(NSString*) keyPath;
 
+
+#pragma mark Debuging Tools
+
 /**
- * Adds a modifier to ajust our position by.
- * @param 
+ * Sets the block to be called on changes.
+ * @warning For debuging only.
  */
+- (void) setDebugBlock:(void(^)( )) debugBlock;
 
 #pragma mark Default Calculation Blocks
 

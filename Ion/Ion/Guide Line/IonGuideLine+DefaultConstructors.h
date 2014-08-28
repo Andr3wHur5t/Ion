@@ -13,7 +13,8 @@
 #pragma mark Default UIView Based Guides
 
 /**
- * Constructs a guide line based off the inputted view frames' size, using the mode to specify axis, and amount specifying how much.
+ * Constructs a guide line based off the views frame size, using the mode to specify axis, and amount specifying
+ * the percentage of the size to use.
  * @param {UIView*} the view to base the guide off of.
  * @param {CGFloat} the amount to use.
  * @param {IonGuideLineFrameMode} the mode specifying axis to use
@@ -21,6 +22,7 @@
  */
 + (instancetype) guideFromViewFrameSize:(UIView*) view usingAmount:(CGFloat) amount andMode:(IonGuideLineFrameMode) mode;
 
+#pragma mark UIView Dependent
 /**
  * Constructs a guide line based off the inputted views' corner radius, using the mode to specify axis.
  * @param {UIView*} the view to base the guide off of.
@@ -36,6 +38,14 @@
  * @returns {instancetype}
  */
 + (instancetype) guideFromViewStyleMargin:(UIView*) view usingMode:(IonGuideLineFrameMode) mode;
+
+/**
+ * Constructs a guide line based off the inputted views' style padding, using the mode to specify axis.
+ * @param {UIView*} the view to base the guide off of.
+ * @param {IonGuideLineFrameMode} the mode specifying axis to use
+ * @returns {instancetype}
+ */
++ (instancetype) guideFromViewStylePadding:(UIView*) view usingMode:(IonGuideLineFrameMode) mode;
 
 /**
  * Constructs a guide line based off the inputted views' corner radius, and style margin, using the mode to specify axis.

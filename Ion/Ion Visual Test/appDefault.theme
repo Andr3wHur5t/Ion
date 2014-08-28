@@ -8,7 +8,7 @@
         "PlaceHolderColor": "Gray",
         "SearchIconColor": "GrayExtraDark",
         
-        "Clear": "#0000",
+        "Clear": "#0001",
         "CleanWhite": "#F5F5F5",
         
         "SpottrNorm": "#F2393B",
@@ -284,7 +284,7 @@
         
         "cornerRadius": 0.0,
         "styleMargin": {"width": 18.0, "height": 10.0},
-        "stylePadding": {"width": 18.0, "height": 10.0},
+        "stylePadding": {"width": 18.0, "height": 5.0},
         
         "button":{
             "size":{"width": 25, "height": 25}
@@ -308,6 +308,9 @@
                     "down": "TitleButtonStateDown",
                     "selected": "TitleButtonStateSelected",
                     "disabled": "TitleButtonStateDisabled"
+                },
+                "button":{
+                    "size":{"width": 30, "height": 30}
                 },
             },
             "sub-bar": {

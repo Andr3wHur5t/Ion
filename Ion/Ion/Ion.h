@@ -19,6 +19,18 @@ FOUNDATION_EXPORT const unsigned char IonVersionString[];
 #import "IonApplication+StatusBar.h"
 #import "IonStatusBarBehaviorMotionGestureDisplay.h"
 
+// TODO CLEAN
+#import "IonCompleteGuideGroup.h"
+#import "IonGuideGroup+GuidePositioning.h"
+#import "IonKVP+IonTheme.h"
+#import "IonTransformAnimation.h"
+#import "IonTransformAnimationMap.h"
+#import "NSDictionary+IonThemeResolution.h"
+#import "IonButtonBehavior.h"
+#import "IonButtonBehaviorSimpleFade.h"
+#import "IonButtonBehaviorTapTransform.h"
+#import "UIView+IonGuideGroup.h"
+
 /** Ion Rapid Start System */
 #import "IonRapidStartViewController.h"
 #import "IonRapidStartManager.h"

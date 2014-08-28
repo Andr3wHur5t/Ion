@@ -21,6 +21,9 @@
     
     // Dependents
     NSMutableArray* _dependentVariables;
+    
+    // Debug Block
+    void(^_debugBlock) ( );
 }
 
 /**
@@ -236,7 +239,8 @@
                                                          target: self
                                                        selector: @selector(processChange:)
                                                         options: NSKeyValueObservingOptionInitial |
-                                                                 NSKeyValueObservingOptionNew ];
+                                                                 NSKeyValueObservingOptionNew |
+                                                                 NSKeyValueObservingOptionOld];
 }
 
 #pragma mark Block Getters
@@ -368,15 +372,29 @@
         return;
     
     newVal = self.calcBlock( newPosition );
+    
+    if ( _debugBlock )
+        _debugBlock( );
+    
     if ( self.position != newVal )
         self.position = newVal;
 }
+
+#pragma mark Debuging Tools
 
 /**
  * Debug Description
  */
 - (NSString*) description {
-    return [NSString stringWithFormat:@"%f", _position];
+    return [NSString stringWithFormat:@"%.2f", _position];
+}
+
+/**
+ * Sets the block to be called on changes.
+ * @warning For debuging only.
+ */
+- (void) setDebugBlock:(void(^)( )) debugBlock {
+    _debugBlock = debugBlock;
 }
 
 #pragma mark Calculation Blocks
@@ -477,10 +495,8 @@
         CGRect frame;
         if ( !data || ![data isKindOfClass: [NSValue class]] )
             return 0.0f;
-        
         frame = [(NSValue*)data CGRectValue];
-        return  ((mode == IonGuideLineFrameMode_Vertical ? frame.size.height : frame.size.width)  * amount )+
-                (mode == IonGuideLineFrameMode_Vertical ? frame.origin.y : frame.origin.x);
+        return ((mode == IonGuideLineFrameMode_Vertical ? frame.size.height : frame.size.width) * amount ) + (mode == IonGuideLineFrameMode_Vertical ? frame.origin.y : frame.origin.x);
     };
 }
 

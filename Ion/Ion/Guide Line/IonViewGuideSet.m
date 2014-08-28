@@ -69,7 +69,7 @@
     syObserver = [IonKeyValueObserver observeObject: _superVertGuide
                                             keyPath: @"position"
                                              target: self
-                                           selector: @selector(guideDidChange)];
+                                           selector: @selector(positionGuideDidChange)];
 }
 
 #pragma mark Super Horiz
@@ -96,7 +96,7 @@
     sxObserver = [IonKeyValueObserver observeObject: _superHorizGuide
                                             keyPath: @"position"
                                              target: self
-                                           selector: @selector(guideDidChange)];
+                                           selector: @selector(positionGuideDidChange)];
 }
 
 #pragma mark Local
@@ -142,7 +142,7 @@
     lyObserver = [IonKeyValueObserver observeObject: _localVertGuide
                                             keyPath: @"position"
                                              target: self
-                                           selector: @selector(guideDidChange)];
+                                           selector: @selector(positionGuideDidChange)];
 }
 
 /**
@@ -178,7 +178,7 @@
     lxObserver = [IonKeyValueObserver observeObject: _localHorizGuide
                                             keyPath: @"position"
                                              target: self
-                                           selector: @selector(guideDidChange)];
+                                           selector: @selector(positionGuideDidChange)];
     
 }
 
@@ -215,7 +215,7 @@
     lxObserver = [IonKeyValueObserver observeObject: _leftSizeGuide
                                             keyPath: @"position"
                                              target: self
-                                           selector: @selector(guideDidChange)];
+                                           selector: @selector(sizeGuideDidChange)];
     
 }
 
@@ -241,7 +241,7 @@
     lxObserver = [IonKeyValueObserver observeObject: _rightSizeGuide
                                             keyPath: @"position"
                                              target: self
-                                           selector: @selector(guideDidChange)];
+                                           selector: @selector(sizeGuideDidChange)];
     
 }
 
@@ -267,7 +267,7 @@
     lxObserver = [IonKeyValueObserver observeObject: _topSizeGuide
                                             keyPath: @"position"
                                              target: self
-                                           selector: @selector(guideDidChange)];
+                                           selector: @selector(sizeGuideDidChange)];
     
 }
 
@@ -293,7 +293,7 @@
     lxObserver = [IonKeyValueObserver observeObject: _bottomSizeGuide
                                             keyPath: @"position"
                                              target: self
-                                           selector: @selector(guideDidChange)];
+                                           selector: @selector(sizeGuideDidChange)];
     
 }
 
@@ -319,7 +319,21 @@
  * Respond to changes in guides' position
  * @returns {void}
  */
-- (void) guideDidChange{
+- (void) positionGuideDidChange {
+    [self invokeTargetAction];
+}
+
+/**
+ * Respond to changes in guides' size
+ * @returns {void}
+ */
+- (void) sizeGuideDidChange {
+    [self invokeTargetAction];
+}
+/**
+ * Invokes Target Action Set
+ */
+- (void) invokeTargetAction {
     // Call the target pair if it exsists
     if ( !_target || !_action )
         return;
@@ -330,6 +344,7 @@
         [_target performSelector: _action];
     #pragma clang diagnostic pop
 }
+
 
 #pragma mark Retrieval
 
@@ -391,7 +406,7 @@
 - (NSString*) description {
     CGPoint point = [self toPoint];
     CGSize  size = [self toSize];
-    return [NSString stringWithFormat: @"\nSuperMount {X: %@, Y: %@}\nlocalMount {X: %@, Y: %@}\nMountPoint {X: %f, Y: %f}\nSizePoints{L: %@, R: %@, T: %@, B: %@ }\nResultSize {W: %f, H: %f}",
+    return [NSString stringWithFormat: @"\nSuperMount  {X: %@, Y: %@}\nlocalMount  {X: %@, Y: %@}\nResultPoint {X: %.2f, Y: %.2f}\nSizePoints  {L: %@, R: %@, T: %@, B: %@ }\nResultSize  {W: %.2f, H: %.2f}\n\n",
                                     self.superHorizGuide, self.superVertGuide,
                                     self.localHorizGuide, self.localVertGuide,
                                     point.x, point.y,

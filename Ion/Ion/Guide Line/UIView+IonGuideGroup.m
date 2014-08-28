@@ -6,28 +6,16 @@
 //  Copyright (c) 2014 Ion. All rights reserved.
 //
 
-#import "UIView+IonDefaultGuides.h"
+#import "UIView+IonGuideGroup.h"
 #import "UIView+IonGuideLine.h"
 #import "IonGuideLine+DefaultConstructors.h"
-#import "UIView+IonExternalGuides.h"
+
+#import <IonData/IonData.h>
 
 /**
  * Keys
  */
-static NSString* sIonGuideLine_InternialOrigin_Vert =   @"IonGuideLine_InternialOrigin_Vert";
-static NSString* sIonGuideLine_InternialOrigin_Horiz =  @"IonGuideLine_InternialOrigin_Horiz";
-
-static NSString* sIonGuideLine_TwoThirds_Vert =         @"IonGuideLine_TwoThirds_Vert";
-static NSString* sIonGuideLine_TwoThirds_Horiz =        @"IonGuideLine_TwoThirds_Horiz";
-
-static NSString* sIonGuideLine_Center_Vert =            @"IonGuideLine_Center_Vert";
-static NSString* sIonGuideLine_Center_Horiz =           @"IonGuideLine_Center_Horiz";
-
-static NSString* sIonGuideLine_OneThird_Vert =          @"IonGuideLine_OneThird_Vert";
-static NSString* sIonGuideLine_OneThird_Horiz =         @"IonGuideLine_OneThird_Horiz";
-
-static NSString* sIonGuideLine_Size_Vert =              @"IonGuideLine_Size_Vert";
-static NSString* sIonGuideLine_Size_Horiz =             @"IonGuideLine_Size_Horiz";
+static NSString* sIonGuideLine_GuideGroupKey =          @"GuideGroup";
 
 static NSString* sIonGuideLine_CornerRadius_Vert =      @"IonGuideLine_CornerRadius_Vert";
 static NSString* sIonGuideLine_CornerRadius_Horiz =     @"IonGuideLine_CornerRadius_Horiz";
@@ -50,7 +38,200 @@ static NSString* sIonGuideLine_RightMargin =            @"IonGuideLine_RightMarg
 static NSString* sIonGuideLine_TopMargin =              @"IonGuideLine_TopMargin";
 static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMargin";
 
-@implementation UIView (IonDefaultGuides)
+@implementation UIView (IonGuideGroup)
+/** = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = == = =
+ *                                                  Guide Group
+ *  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
+
+/**
+ * Gets or creates the guide group object.
+ * @returns {IonGuideGroup*} the group object.
+ */
+- (IonGuideGroup*) guideGroup {
+    IonGuideGroup* group = [self.catagoryVariables objectForKey: sIonGuideLine_GuideGroupKey];
+    if ( !group ) {
+        group = [[IonGuideGroup alloc] initWithView: self];
+        [self.catagoryVariables setObject: group forKey: sIonGuideLine_GuideGroupKey];
+    }
+    return group;
+}
+
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+ *                              Internal Guides
+ * = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
+
+#pragma mark Origin
+/**
+ * Horizontal Origin Guide Line
+ */
+- (IonGuideLine*) originGuideHoriz {
+    return self.guideGroup.originGuideHoriz;
+}
+
+/**
+ * Vertical Origin Guide Line
+ */
+- (IonGuideLine*) originGuideVert{
+    return self.guideGroup.originGuideVert;
+}
+
+
+#pragma mark One Third
+
+/**
+ * Horizontal One Third Guide Line
+ */
+- (IonGuideLine*) oneThirdGuideHoriz {
+    return self.guideGroup.oneThirdGuideHoriz;
+}
+
+
+/**
+ * Vertical One Third Guide Line
+ */
+- (IonGuideLine*) oneThirdGuideVert {
+    return self.guideGroup.originGuideVert;
+}
+
+
+#pragma mark Center
+/**
+ * Horizontal Center Guide Line
+ */
+- (IonGuideLine*) centerGuideHoriz {
+    return self.guideGroup.centerGuideHoriz;
+}
+
+
+/**
+ * Vertical Center Guide Line
+ */
+- (IonGuideLine*) centerGuideVert {
+    return self.guideGroup.centerGuideVert;
+}
+
+#pragma mark Two Thirds
+/**
+ * Horizontal Two Thirds Guide Line
+ */
+- (IonGuideLine*) twoThirdsGuideHoriz {
+    return self.guideGroup.twoThirdsGuideHoriz;
+}
+
+
+/**
+ * Vertical Two Thirds Guide Line
+ */
+- (IonGuideLine*) twoThirdsGuideVert {
+    return self.guideGroup.twoThirdsGuideVert;
+}
+
+
+#pragma mark Full Size
+/**
+ * Horizontal  Size Guide Line
+ */
+- (IonGuideLine*) sizeGuideHoriz {
+    return self.guideGroup.sizeGuideHoriz;
+}
+
+
+/**
+ * Vertical Size Guide Line
+ */
+- (IonGuideLine*) sizeGuideVert {
+    return self.guideGroup.sizeGuideVert;
+}
+
+
+
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+ *                              External Guides
+ * = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
+
+#pragma mark Origin External
+/**
+ * Horizontal External Origin Guide Line
+ */
+- (IonGuideLine*) originExternalGuideHoriz {
+    return self.guideGroup.originExternalGuideHoriz;
+}
+
+/**
+ * Vertical External Origin Guide Line
+ */
+- (IonGuideLine*) originExternalGuideVert {
+    return self.guideGroup.originExternalGuideVert;
+}
+
+
+#pragma mark One Third External
+/**
+ * Horizontal External One Third Guide Line
+ */
+- (IonGuideLine*) oneThirdExternalGuideHoriz {
+    return self.guideGroup.oneThirdExternalGuideHoriz;
+}
+
+/**
+ * Vertical External One Third Guide Line
+ */
+- (IonGuideLine*) oneThirdExternalGuideVert {
+    return self.guideGroup.oneThirdExternalGuideVert;
+}
+
+#pragma mark Center External
+/**
+ * Horizontal External Center Guide Line
+ */
+- (IonGuideLine*) centerExternalGuideHoriz {
+    return self.guideGroup.centerExternalGuideHoriz;
+}
+
+/**
+ * Vertical External Center Guide Line
+ */
+- (IonGuideLine*) centerExternalGuideVert {
+    return self.guideGroup.centerExternalGuideVert;
+}
+
+#pragma mark Two Thirds External
+/**
+ * Horizontal External Two Thirds Guide Line
+ */
+- (IonGuideLine*) twoThirdsExternalGuideHoriz {
+    return self.guideGroup.twoThirdsExternalGuideHoriz;
+}
+
+/**
+ * Vertical External Two Thirds Guide Line
+ */
+- (IonGuideLine*) twoThirdsExternalGuideVert {
+    return self.guideGroup.twoThirdsExternalGuideVert;
+}
+
+
+#pragma mark Size External
+/**
+ * Horizontal External Size Guide Line
+ */
+- (IonGuideLine*) sizeExternalGuideHoriz {
+    return self.guideGroup.sizeExternalGuideHoriz;
+}
+
+
+/**
+ * Vertical External Size Guide Line
+ */
+- (IonGuideLine*) sizeExternalGuideVert {
+    return self.guideGroup.originGuideHoriz;
+}
+
+
+
+/** = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = == = =
+ *                                              UIView Spcific Guides
+ *  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 
 #pragma mark Corrner Radius
 
@@ -80,156 +261,6 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
     return obj;
 }
 
-#pragma mark Internal Origin
-
-/**
- * Vertical Internal Origin Guide Line
- */
-- (IonGuideLine*) internalOriginGuideVert {
-    IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_InternialOrigin_Vert];
-    if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 0.0f
-                                           andMode: IonGuideLineFrameMode_Vertical];
-        [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_InternialOrigin_Vert];
-    }
-    return obj;
-}
-
-/**
- * Horizontal Internal Origin Guide Line
- */
-- (IonGuideLine*) internalOriginGuideHoriz {
-    IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_InternialOrigin_Horiz];
-    if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 0.0f
-                                           andMode: IonGuideLineFrameMode_Horizontal];
-        [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_InternialOrigin_Horiz];
-    }
-    return obj;
-}
-
-#pragma mark One Third
-
-/**
- * Vertical One Third Guide Line
- */
-- (IonGuideLine*) oneThirdGuideVert {
-    IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_OneThird_Vert];
-    if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 1.0f/3.0f
-                                           andMode: IonGuideLineFrameMode_Vertical];
-    [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_OneThird_Vert];
-    }
-    return obj;
-}
-
-/**
- * Horizontal One Third Guide Line
- */
-- (IonGuideLine*) oneThirdGuideHoriz {
-    IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_OneThird_Horiz];
-    if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 1.0f/3.0f
-                                           andMode: IonGuideLineFrameMode_Horizontal];
-        [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_OneThird_Horiz];
-    }
-    return obj;
-}
-
-#pragma mark Center
-
-/**
- * Vertical Center Guide Line
- */
-- (IonGuideLine*) centerGuideVert {
-    IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_Center_Vert];
-    if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 1.0f/2.0f
-                                           andMode: IonGuideLineFrameMode_Vertical];
-        [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_Center_Vert];
-    }
-    return obj;
-}
-
-/**
- * Horizontal Center Guide Line
- */
-- (IonGuideLine*) centerGuideHoriz {
-    IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_Center_Horiz];
-    if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 1.0f/2.0f
-                                           andMode: IonGuideLineFrameMode_Horizontal];
-        [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_Center_Horiz];
-    }
-    return obj;
-}
-
-#pragma mark Two Thirds
-
-/**
- * Vertical Two Thirds Guide Line
- */
-- (IonGuideLine*) twoThirdsGuideVert {
-    IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_TwoThirds_Vert];
-    if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: (1.0f/3.0f) * 2.0f
-                                           andMode: IonGuideLineFrameMode_Vertical];
-        [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_TwoThirds_Vert];
-    }
-    return obj;
-}
-
-/**
- * Horizontal Two Thirds Guide Line
- */
-- (IonGuideLine*) twoThirdsGuideHoriz {
-    IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_TwoThirds_Horiz];
-    if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: (1.0f/3.0f) * 2.0f
-                                           andMode: IonGuideLineFrameMode_Horizontal];
-        [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_TwoThirds_Horiz];
-    }
-    return obj;
-}
-
-#pragma mark Full Size
-
-/**
- * Vertical Size Guide Line
- */
-- (IonGuideLine*) sizeGuideVert {
-    IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_Size_Vert];
-    if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 1.0f
-                                           andMode: IonGuideLineFrameMode_Vertical];
-        [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_Size_Vert];
-    }
-    return obj;
-}
-
-/**
- * Horizontal Internal Orgin Guide Line
- */
-- (IonGuideLine*) sizeGuideHoriz {
-    IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_Size_Horiz];
-    if ( !obj ) {
-        obj = [IonGuideLine guideFromViewFrameSize: self
-                                       usingAmount: 1.0f
-                                           andMode: IonGuideLineFrameMode_Horizontal];
-        [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_Size_Horiz];
-    }
-    return obj;
-}
-
 #pragma mark Padding
 
 /**
@@ -238,7 +269,7 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) leftPadding {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_LeftPadding];
     if ( !obj ) {
-        obj = [IonGuideLine guideFromViewStyleMargin: self
+        obj = [IonGuideLine guideFromViewStylePadding: self
                                            usingMode: IonGuideLineFrameMode_Horizontal];
         
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_LeftPadding];
@@ -266,7 +297,7 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) topPadding {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_TopPadding];
     if ( !obj ) {
-        obj = [IonGuideLine guideFromViewStyleMargin: self
+        obj = [IonGuideLine guideFromViewStylePadding: self
                                            usingMode: IonGuideLineFrameMode_Vertical];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_TopPadding];
     }
@@ -380,7 +411,7 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) leftMargin {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_LeftMargin];
     if ( !obj ) {
-        obj = [IonGuideLine guideWithGuide: self.originGuideHorizExternal
+        obj = [IonGuideLine guideWithGuide: self.originExternalGuideHoriz
                                    modType: IonValueModType_Subtract
                             andSecondGuide: [self marginWidth]];
         
@@ -396,7 +427,7 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) rightMargin {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_RightMargin];
     if ( !obj ) {
-        obj = [IonGuideLine guideWithGuide: self.sizeGuideHorizExternal
+        obj = [IonGuideLine guideWithGuide: self.sizeExternalGuideHoriz
                                    modType: IonValueModType_Add
                             andSecondGuide: [self marginWidth]];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_RightMargin];
@@ -410,7 +441,7 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) topMargin {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_TopMargin];
     if ( !obj ) {
-        obj = [IonGuideLine guideWithGuide: self.originGuideVertExternal
+        obj = [IonGuideLine guideWithGuide: self.originExternalGuideVert
                                    modType: IonValueModType_Subtract
                             andSecondGuide: [self marginHeight]];
         
@@ -425,7 +456,7 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) bottomMargin {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_BottomMargin];
     if ( !obj ) {
-        obj = [IonGuideLine guideWithGuide: self.sizeGuideVertExternal
+        obj = [IonGuideLine guideWithGuide: self.sizeExternalGuideVert
                                    modType: IonValueModType_Add
                             andSecondGuide: [self marginHeight]];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_BottomMargin];

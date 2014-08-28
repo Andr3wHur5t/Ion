@@ -1,43 +1,43 @@
 //
-//  UIView+IonGuideLine.m
+//  IonGuideGroup+GuidePositioning.m
 //  Ion
 //
-//  Created by Andrew Hurst on 8/22/14.
+//  Created by Andrew Hurst on 8/27/14.
 //  Copyright (c) 2014 Ion. All rights reserved.
 //
 
-#import "UIView+IonGuideLine.h"
-#import <IonData/IonData.h>
+#import "IonGuideGroup+GuidePositioning.h"
 #import <objc/runtime.h>
+#import <IonData/IonData.h>
 
 static char* sIonGuideSetKey = "IonGuideSet";
-static char* sIonCachedGuideLineKey = "IonCachedGuideLines";
 static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 
-@implementation UIView (IonGuideLine)
+@implementation IonGuideGroup (GuidePositioning)
 
 #pragma mark Guide Set
 
 /**
- * Cached guide lines dictionary setter.
+ * The guide set setter.
  */
-- (void) setCachedGuideLines:(NSMutableDictionary *)cachedGuideLines {
-    objc_setAssociatedObject( self, sIonCachedGuideLineKey, cachedGuideLines, OBJC_ASSOCIATION_RETAIN_NONATOMIC );
+- (void) setGuideSet:(IonViewGuideSet *)guideSet {
+    objc_setAssociatedObject(self, sIonGuideSetKey, guideSet, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 /**
- * Cached guide lines dictionary getter, creates it if it dosn't exsist
+ * The guide set getter, creates it if it dosn't exsist
  * @returns {IonViewGuideSet*} the guide set.
  */
-- (NSMutableDictionary*) cachedGuideLines {
-    NSMutableDictionary* set = objc_getAssociatedObject( self, sIonCachedGuideLineKey );
+- (IonViewGuideSet*) guideSet {
+    IonViewGuideSet* set = objc_getAssociatedObject(self, sIonGuideSetKey);
     if ( !set ) {
-        set = [[NSMutableDictionary alloc] init];
-        self.cachedGuideLines = set;
+        set = [[IonViewGuideSet alloc] init];
+        [set setTarget: self andAction: @selector(updateFrameToMatchGuideSet)];
+        self.guideSet = set;
     }
+    
     return set;
 }
-
 
 #pragma mark Debuging
 
@@ -67,30 +67,6 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
     logKey = self.logAutoFrameUpdatesWithString;
     if ( logKey )
         NSLog( @"%@: %@", logKey, self.guideSet);
-}
-
-#pragma mark Guide Set
-
-/**
- * The guide set setter.
- */
-- (void) setGuideSet:(IonViewGuideSet *)guideSet {
-    objc_setAssociatedObject(self, sIonGuideSetKey, guideSet, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-/**
- * The guide set getter, creates it if it dosn't exsist
- * @returns {IonViewGuideSet*} the guide set.
- */
-- (IonViewGuideSet*) guideSet {
-    IonViewGuideSet* set = objc_getAssociatedObject(self, sIonGuideSetKey);
-    if ( !set ) {
-        set = [[IonViewGuideSet alloc] init];
-        [set setTarget: self andAction: @selector(updateFrameToMatchGuideSet)];
-        self.guideSet = set;
-    }
-    
-    return set;
 }
 
 #pragma mark Local Vert Guide
@@ -137,7 +113,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  * Sets the local vert guide, and updates the frame.
  * @returns {void}
  */
-- (void) setSuperVertGuide:(IonGuideLine*) superVertGuide {
+- (void) setSuperVertGuide:(IonGuideLine*) superVertGuide __attribute__((deprecated)){
     self.guideSet.superVertGuide = superVertGuide;
     [self updateFrameToMatchGuideSet];
 }
@@ -175,7 +151,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  * Sets the local horiz guide, and updates the frame.
  * @returns {void}
  */
-- (void) setLeftSizeGuide:(IonGuideLine*) leftSizeGuide{
+- (void) setLeftSizeGuide:(IonGuideLine*) leftSizeGuide {
     self.guideSet.leftSizeGuide = leftSizeGuide;
     [self updateFrameToMatchGuideSet];
 }
@@ -253,11 +229,11 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  * @param {IonGuideLine*} the horizontal guide line.
  * @returns {void}
  */
-- (void) setLocalGuidesWithVert:(IonGuideLine*) vert andHoriz:(IonGuideLine*) horiz {
+- (void) setLocalGuidesWithVert:(IonGuideLine*) vert andHoriz:(IonGuideLine*) horiz __attribute__((deprecated)){
     NSParameterAssert( vert && [vert isKindOfClass:[IonGuideLine class]] );
     NSParameterAssert( horiz && [horiz isKindOfClass:[IonGuideLine class]] );
     if ( !vert || ![vert isKindOfClass:[IonGuideLine class]] ||
-         !horiz || ![horiz isKindOfClass:[IonGuideLine class]] )
+        !horiz || ![horiz isKindOfClass:[IonGuideLine class]] )
         return;
     
     self.guideSet.localVertGuide = vert;
@@ -271,7 +247,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  * @param {IonGuideLine*} the horizontal guide line.
  * @returns {void}
  */
-- (void) setSuperGuidesWithVert:(IonGuideLine*) vert andHoriz:(IonGuideLine*) horiz {
+- (void) setSuperGuidesWithVert:(IonGuideLine*) vert andHoriz:(IonGuideLine*) horiz __attribute__((deprecated)){
     NSParameterAssert( vert && [vert isKindOfClass:[IonGuideLine class]] );
     NSParameterAssert( horiz && [horiz isKindOfClass:[IonGuideLine class]] );
     if ( !vert || ![vert isKindOfClass:[IonGuideLine class]] ||
@@ -294,15 +270,15 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 - (void) setGuidesWithLocalVert:(IonGuideLine*) lVert
                      localHoriz:(IonGuideLine*) lHoriz
                       superVert:(IonGuideLine*) sVert
-                  andSuperHoriz:(IonGuideLine*) sHoriz {
+                  andSuperHoriz:(IonGuideLine*) sHoriz __attribute__((deprecated)){
     NSParameterAssert( sVert  && [sVert isKindOfClass:[IonGuideLine class]] );
     NSParameterAssert( sHoriz && [sHoriz isKindOfClass:[IonGuideLine class]] );
     NSParameterAssert( lVert  && [lVert isKindOfClass:[IonGuideLine class]] );
     NSParameterAssert( lHoriz && [lHoriz isKindOfClass:[IonGuideLine class]] );
     if ( !sVert  || ![sVert isKindOfClass:[IonGuideLine class]] ||
-         !sHoriz || ![sHoriz isKindOfClass:[IonGuideLine class]] ||
-         !lVert  || ![lVert isKindOfClass:[IonGuideLine class]] ||
-         !lHoriz || ![lHoriz isKindOfClass:[IonGuideLine class]])
+        !sHoriz || ![sHoriz isKindOfClass:[IonGuideLine class]] ||
+        !lVert  || ![lVert isKindOfClass:[IonGuideLine class]] ||
+        !lHoriz || ![lHoriz isKindOfClass:[IonGuideLine class]])
         return;
     
     self.guideSet.superVertGuide  = sVert;
@@ -332,4 +308,6 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
     // Update frame
     self.frame = frame;
 }
+
+
 @end

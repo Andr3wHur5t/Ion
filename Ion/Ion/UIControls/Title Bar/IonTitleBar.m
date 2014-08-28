@@ -7,8 +7,8 @@
 //
 
 #import "IonTitleBar.h"
-#import "UIView+IonGuideLine.h"
-#import "IonGuideGroup.h"
+#import "UIView+IonGuideGroup.h"
+#import "IonCompleteGuideGroup.h"
 
 @interface IonTitleBar (){
     IonGuideGroup* contentGroup;
@@ -65,9 +65,7 @@
  * @returns {void}
  */
 - (void) setFrame:(CGRect) frame {
-    
     [super setFrame: [self currentFrame]];
-    [self updateContentGroupFrame];
 }
 
 /**
@@ -128,18 +126,17 @@
                                               usingRectKeyPath: @"statusBarFrame"
                                                         amount: 1.0f
                                                        andMode: IonGuideLineFrameMode_Vertical];
-}
-
-/**
- * Updates the Guide groups frame.
- */
-- (void) updateContentGroupFrame {
     
-    contentGroup.frame = (CGRect){
-        (CGPoint){ self.leftPadding.position, [self statusOffsetHeight] },
-        (CGSize){ self.rightPadding.position - self.leftPadding.position , self.contentHeight }
-    };
-    NSLog(@"Val: %f", contentGroup.frame.size.width);
+    // Sizeing
+    contentGroup.leftSizeGuide = self.leftPadding;
+    contentGroup.rightSizeGuide = self.rightPadding;
+    contentGroup.topSizeGuide = [IonGuideLine guideWithStaticValue: 0];
+    contentGroup.bottomSizeGuide = [IonGuideLine guideWithTarget: self andKeyPath: @"contentHeight"];
+    
+    // Positioning
+    contentGroup.superHorizGuide = self.leftPadding;
+    contentGroup.superVertGuide = self.sizeGuideVert;
+    contentGroup.localVertGuide = contentGroup.bottomSizeGuide;
 }
 
 #pragma mark Responds to Status Bar
@@ -260,7 +257,7 @@
 - (void) setLeftView:(UIView*) leftView {
     // Remove if it exists
     if ( _leftView ) {
-    //    [self updateCenterViewSizeGuides];
+        [self updateCenterViewSizeGuides];
         [_leftView removeFromSuperview];
         
     }
@@ -277,11 +274,11 @@
     _leftView.themeClass = sIonThemeElementTitleBar_LeftView;
     [self addSubview: _leftView];
     [_leftView setGuidesWithLocalVert: _leftView.centerGuideVert
-                           localHoriz: _leftView.internalOriginGuideHoriz
-                            superVert: contentGroup.centerGuideVert
-                        andSuperHoriz: contentGroup.internalOriginGuideHoriz];
+                           localHoriz: _leftView.originGuideHoriz
+                            superVert: contentGroup.centerExternalGuideVert
+                        andSuperHoriz: contentGroup.originExternalGuideHoriz];
     
- //  [self updateCenterViewSizeGuides];
+   [self updateCenterViewSizeGuides];
 }
 
 
@@ -324,12 +321,8 @@
         return;
     _centerView.themeClass = sIonThemeElementTitleBar_CenterView;
     [self addSubview: _centerView];
-    [_centerView setGuidesWithLocalVert: _centerView.centerGuideVert
-                             localHoriz: _centerView.centerGuideHoriz
-                              superVert: contentGroup.centerGuideVert
-                          andSuperHoriz: contentGroup.centerGuideHoriz];
     
-  //  [self updateCenterViewSizeGuides];
+    [self updateCenterViewSizeGuides];
 }
 
 /**
@@ -340,18 +333,23 @@
     if ( !_centerView )
         return;
     
-    _centerView.topSizeGuide = contentGroup.internalOriginGuideVert;
+    _centerView.topSizeGuide = contentGroup.topSizeGuide; // replace
     _centerView.bottomSizeGuide = contentGroup.sizeGuideVert;
     
     if ( _rightView )
         _centerView.rightSizeGuide = _rightView.leftMargin;
     else
-        _centerView.rightSizeGuide = contentGroup.internalOriginGuideHoriz;
+        _centerView.rightSizeGuide = contentGroup.topSizeGuide; // replace
     
     if ( _leftView )
         _centerView.leftSizeGuide = _leftView.rightMargin;
     else
         _centerView.leftSizeGuide = contentGroup.sizeGuideHoriz;
+    
+    [_centerView setGuidesWithLocalVert: _centerView.centerGuideVert
+                             localHoriz: _centerView.centerGuideHoriz
+                              superVert: contentGroup.centerExternalGuideVert
+                          andSuperHoriz: contentGroup.centerExternalGuideHoriz];
 }
 
 #pragma mark Right View
@@ -369,7 +367,7 @@
 - (void) setRightView:(UIView *)rightView {
     // Remove if it exists
     if ( _rightView ) {
-       // [self updateCenterViewSizeGuides];
+        [self updateCenterViewSizeGuides];
         [_rightView removeFromSuperview];
     }
     
@@ -385,10 +383,10 @@
     _rightView.themeClass = sIonThemeElementTitleBar_RightView;
     [self addSubview: _rightView];
     [_rightView setGuidesWithLocalVert: _rightView.centerGuideVert
-                            localHoriz: _rightView.sizeGuideHoriz
-                             superVert: contentGroup.centerGuideVert
-                         andSuperHoriz: contentGroup.sizeGuideHoriz];
-   // [self updateCenterViewSizeGuides];
+                            localHoriz: _rightView.sizeGuideVert
+                             superVert: contentGroup.centerExternalGuideVert
+                         andSuperHoriz: contentGroup.sizeExternalGuideHoriz];
+    [self updateCenterViewSizeGuides];
 }
 
 @end

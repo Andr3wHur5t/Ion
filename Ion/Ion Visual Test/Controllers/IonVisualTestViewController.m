@@ -9,9 +9,8 @@
 #import "IonVisualTestViewController.h"
 
 @interface IonVisualTestViewController () {
-    IonTitleBar* titleBar;
     IonSimpleCache* sc;
-    IonLabel* testLabel;
+    IonTitleBar* titleBar;
     IonView* containerView;
 }
 
@@ -33,14 +32,17 @@
  */
 - (void) constructTitleBar {
     IonButton *leftButton, *rightButton;
+    IonLabel* testLabel;
     
     titleBar = [[IonTitleBar alloc] init];
     [self.view addSubview: titleBar];
     
     leftButton = [[IonInterfaceButton alloc] initWithFileName: @"Add"];
-    rightButton = [[IonInterfaceButton alloc] initWithFileName: @"Confirm"];
+    rightButton = [[IonInterfaceButton alloc] initWithFileName: @"Add"];
     
-    [self makeTestLabel];
+    testLabel = [[IonLabel alloc] init];
+    //testLabel.text = @"Lorem ipsum dolor sit amet consectetur adipiscing elit";
+    testLabel.text = @"People";
     
     titleBar.leftView = leftButton;
     titleBar.rightView = rightButton;
@@ -59,12 +61,12 @@
     
     button = [[IonInterfaceButton alloc] initWithFileName: @"Hamburger"];
     [button setGuidesWithLocalVert: button.centerGuideVert
-                        localHoriz: button.internalOriginGuideHoriz
+                        localHoriz: button.originGuideHoriz
                          superVert: containerView.centerGuideVert
                      andSuperHoriz: containerView.leftPadding];
     
-    [containerView setSuperGuidesWithVert: titleBar.sizeGuideVertExternal
-                                 andHoriz: self.view.internalOriginGuideHoriz];
+    [containerView setSuperGuidesWithVert: titleBar.sizeGuideVert
+                                 andHoriz: self.view.originGuideVert];
     containerView.themeElement = @"sub-bar";
     
     containerView.frame = (CGRect){CGPointZero, (CGSize){ self.view.frame.size.width, 30 } };
@@ -85,12 +87,7 @@
     [super viewDidAppear: animated];
 }
 
-- (void) makeTestLabel {
-    testLabel = [[IonLabel alloc] initWithFrame: (CGRect){ CGPointZero, (CGSize){ self.view.frame.size.width - 100, 40}}];
-    testLabel.center = (CGPoint){ self.view.frame.size.width / 2 , 25 };
-    //testLabel.text = @"Lorem ipsum dolor sit amet consectetur adipiscing elit";
-    testLabel.text = @"People";
-}
+
 
 /** = = = = = = = = = = = = Tests = = = = = = = = = = = = = = =  */
 
@@ -114,7 +111,7 @@
 
 - (void) test {
     NSMutableArray* paths = [@[] mutableCopy];
-    NSNumber* randomContent;
+    //NSNumber* randomContent;
     
     [self appendItems:200 inGroup:@"here" arr: paths];
     [self appendItems:20 inGroup:@"lie" arr: paths];
@@ -138,10 +135,10 @@
     
     // Position
     titleBar.localHorizGuide = titleBar.centerGuideHoriz;
-    titleBar.localVertGuide = titleBar.internalOriginGuideVert;
+    titleBar.localVertGuide = titleBar.originGuideVert;
     
     titleBar.superHorizGuide = self.view.centerGuideHoriz;
-    titleBar.superVertGuide = self.view.internalOriginGuideVert;
+    titleBar.superVertGuide = self.view.originGuideVert;
 }
 
 /** = = = = = = = = = = = = End Tests = = = = = = = = = = = = = = =  */
