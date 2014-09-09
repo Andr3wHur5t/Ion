@@ -54,7 +54,21 @@
 - (void) markSplashDisplay;
 
 #pragma mark Results
+/**
+ * Generates a dictionary of the collected startup metrics.
+ * @returns {NSDictionary*} the startup metrics.
+ */
+- (NSDictionary*) startupMetricsReport;
 
+/**
+ * Gets a startup metrics pritty report screen.
+ * @returns {NSString*}
+ */
+- (NSString*) startupMetricsReportString;
 
+/**
+ * Writes the startup metrics report to the console.
+ */
+- (void) logStartupMetrics;
 
 @end

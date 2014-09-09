@@ -11,57 +11,63 @@
 
 
 /**
- * This is the rapid start manager deligate protocal
+ * This is the rapid start manager delegate protocol
  */
-@protocol IonRapidStartManagerDeligate <NSObject>
+@protocol IonRapidStartManagerDelegate <NSObject>
 
 @required
 /**
- * This is the rapid splash view that will be used when the application has already been opened in the system once before.
+ * Rapid splash view that will be used when the application has already been opened in the system once before.
  * @returns {IonRapidStartViewController}
  */
-- (IonRapidStartViewController*) rapidSplash;
+- (IonRapidStartViewController *)rapidSplash;
 
 /**
- * This is the rapid splash view that will be used when the application has not been opened in the system once before.
+ * Rapid splash view that will be used when the application has not been opened in the system once before.
  * You should return a on boarding controller here.
  * @returns {IonRapidStartViewController}
  */
-- (IonRapidStartViewController*) onBoardingRapidSplash;
+- (IonRapidStartViewController *)onBoardingRapidSplash;
 
 /**
- * This gets the on boarding screen version string.
+ * Gets the current on boarding screen version used to decide what rapid splash controller is presented.
  * @returns {NSString*}
  */
-- (NSString*) currentOnBoardingScreenVersion;
-
+- (NSString *)currentOnBoardingScreenVersion;
 
 /**
- * This is where we kill the rapid splash manager, it served us well but now it is useless.
- * @returns {void}
+ * Called after the rapid splash view has been rendered.
+ */
+- (void) postDisplay;
+
+/**
+ * Gets called after the rapid splash session has completed an can safely be freed from memory.
  */
 - (void) freeRapidSplashManager;
 
 @end
 
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+ *                                                  Interface
+ * = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =*/
 
 @interface IonRapidStartManager : NSObject
+#pragma mark Constructors
+/**
+ * Constructs a manager using the inputted delegate.
+ * @param {id<IonRapidStartManagerDelegate>} the delegate to construct with.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithDelegate:(id<IonRapidStartManagerDelegate>) delegate;
 
 /**
- * This is the deligate object.
+ * The delegate object.
  */
-@property (weak, nonatomic) id<IonRapidStartManagerDeligate> deligate;
+@property (weak, nonatomic) id<IonRapidStartManagerDelegate> delegate;
 
 /**
- * This is the active view controller to be presented as the rapid controller
+ * The active view controller to be presented as the rapid controller
  */
-@property (nonatomic, strong) IonRapidStartViewController* viewController;
-
-
-/**
- * this sets the did display callback.
- * @returns {void}
- */
-- (void) setPostDisplayCallback:(void(^)()) callback;
+@property (nonatomic, strong) IonRapidStartViewController *viewController;
 
 @end

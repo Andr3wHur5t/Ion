@@ -98,7 +98,7 @@ static NSString* sIonApplication_Metrics_SplashDisplayCallbackTime = @"Metrics_S
 #pragma mark Report Generation
 /**
  * Generates a dictionary of the collected startup metrics.
- * @returns {NSDictionary*} the startup metrics.
+ * @returns {NSDictionary*} the raw startup metrics.
  */
 - (NSDictionary*) startupMetricsReport {
     return @{};
@@ -112,7 +112,7 @@ static NSString* sIonApplication_Metrics_SplashDisplayCallbackTime = @"Metrics_S
     NSString* report;
     
     // Generate the report
-    report = [@"" stringByAppendingString:      @"Time from init to launch: %.2 ms (Shared with OS)\n"];
+    report = [@"\n" stringByAppendingString:      @"Time from init to launch: %.2f ms (Shared with OS)\n"];
     report = [report stringByAppendingString:   @"Time spent launching: %.2f ms\n"];
     report = [report stringByAppendingString:   @"Time generating rapid splash: %.2f ms\n"];
     report = [report stringByAppendingString:   @"Time To first rapid splash render: %.2f ms\n"];

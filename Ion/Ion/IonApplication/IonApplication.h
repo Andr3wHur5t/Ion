@@ -9,36 +9,19 @@
 #import <UIKit/UIKit.h>
 #import <IonData/IonData.h>
 #import "IonWindow.h"
-#import "IonRapidStartManager.h"
 #import "IonViewController.h"
 
 /**
- * A Ion managed application delegate.
+ * A managed application delegate with out of the box demo window, rapid splash, and cacheing support.
  */
-@interface IonApplication : UIResponder <UIApplicationDelegate, IonRapidStartManagerDeligate>
-
+@interface IonApplication : UIResponder <UIApplicationDelegate>
+#pragma mark Application Delegate
 /**
- * The application window.
+ * Application window.
  */
 @property (strong, nonatomic) IonWindow *window;
 
 #pragma mark customization points
-
-/**
- * The rapid splash view that will be used when the application has already been opened in the system once before.
- * *subclassed for customization*
- * @returns {IonRapidStartViewController}
- */
-- (IonRapidStartViewController*) rapidSplash;
-
-/**
- * The rapid splash view that will be used when the application has not been opened in the system once before.
- * You should return a on boarding controller here.
- * *subclassed for customization*
- * @returns {IonRapidStartViewController}
- */
-- (IonRapidStartViewController*) onBoardingRapidSplash;
-
 /**
  * Configures the first real view controller.
  * @peram {block} this is the block we will call when we are finished with preparing the view.
@@ -52,9 +35,7 @@
  */
 - (void) setupApplication;
 
-
 #pragma mark Singletons
-
 /**
  * Gets the current application delegate object.
  * @returns {instancetype} the current app delegate, or NULL.

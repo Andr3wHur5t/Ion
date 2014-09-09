@@ -9,203 +9,64 @@
 #import "IonApplication.h"
 #import "IonRapidStartManager.h"
 #import "IonWindow.h"
+
 #import "IonApplication+StatusBar.h"
 #import "IonApplication+plistGetters.h"
+#import "IonApplication+Metrics.h"
+#import "IonApplication+RapidSplash.h"
 
 // Demo Mode Only
 #import "IonDemoUIWindow.h"
 
-
-@interface IonApplication () {
-    
-#pragma mark Metrics
-    double  startupInitTime;
-    // application Launch
-    double  applicationLaunchBeginTime;
-    double  applicationLaunchEndTime;
-    // rapid splash Launch
-    double  splashDisplayCallbackTime;
-    
-    
-    #pragma mark managers
-    
-    /* This manages the rapid start of the application.
-     */
-    IonRapidStartManager* rapidStartManager;
-}
-
-
-
-#pragma mark constructors
-
-/**
- * This constructs the rapid start manager.
- * @returns {void}
- */
--(void) constructRapidStartManager;
-
-/**
- * This constructs the application window to be used
- * @returns {UIWindow} the application window to be used
- */
-- (IonWindow*) applicationWindow;
-
-#pragma mark configuration utilities
-
-/**
- * This configures the rapid start manager
- * @returns {void}
- */
-- (void) configureRapidStart;
-
-#pragma mark start up utilities
-
-/**
- * This calls all the intensive processes after the rapid splash view has been rendered
- * @returns {void}
- */
-- (void) postDisplaySetup;
-
-@end
-
-/**
- * ============================================================
- * ============================================================
- *                    Implementation Start
- * ============================================================
- * ============================================================
- */
-
-
 @implementation IonApplication
+@synthesize window = _window;
 
+#pragma mark Constructors
 /**
  * This is the default constructor.
- * Note: DON'T RUN ANY INTENSIVE PROCESS HERE
+ * @warning DON'T RUN ANY INTENSIVE PROCESS HERE!
  * @returns {instancetype}
  */
 - (instancetype)init {
     self = [super init];
     if (self) {
         // Record Metrics
-        startupInitTime = [[NSDate date] timeIntervalSince1970];
-        
-        // Construct
-        [self constructRapidStartManager];
-        [self configureRapidStart];
-        
+        [self markStartUpInit];
     }
     return self;
 }
 
-#pragma mark constructors
-
+#pragma mark Window
 /**
- * Constructs the rapid start manager.
- * @returns {void}
+ * Gets, or constructs the window.
+ * @returns {IonWindow*}
  */
-- (void) constructRapidStartManager {
-    rapidStartManager = [[IonRapidStartManager alloc] init];
-}
-
-/**
- * Constructs the application window, using the specified mode (demo mode) from the info.plist
- * @returns {UIWindow} the application window to be used
- */
-- (IonWindow*) applicationWindow {
-    IonWindow* returnedWindow;
-    
-    // Select the correct window according to the mode.
-    if ( ![[self class] isInDemoMode] )
-        returnedWindow = [[IonWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    else
-        returnedWindow = [[IonDemoUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    return returnedWindow;
-}
-
-#pragma mark configuration utilities
-/**
- * This configures the rapid start manager
- * @returns {void}
- */
-- (void) configureRapidStart {
-    if ( !rapidStartManager )
-        return;
-    
-    rapidStartManager.deligate = self;
-    
-    // Set up so we get called once rapid start completes
-    __weak typeof(self) weakSelf = self;
-    [rapidStartManager setPostDisplayCallback:^{
-        [weakSelf postDisplaySetup];
-    }];
+- (IonWindow *)window {
+    if ( !_window ) {
+        // Use the correct type of window for our specified mode.
+        if ( ![[self class] isInDemoMode] )
+            _window = [[IonWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        else
+            _window = [[IonDemoUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    }
+    return _window;
 }
 
 #pragma mark customization points
-
-/**
- * This is the rapid splash view that will be used when the application has already been opened in the system once before.
- * *subclassed for customization*
- * @returns {IonRapidStartViewController}
- */
-- (IonRapidStartViewController*) rapidSplash {
-    return [[IonRapidStartViewController alloc] init];
-}
-
-/**
- * This is the rapid splash view that will be used when the application has not been opened in the system once before.
- * You should return a on boarding controller here.
- * *subclassed for customization*
- * @returns {IonRapidStartViewController}
- */
-- (IonRapidStartViewController*) onBoardingRapidSplash {
-    // We only use on of these so we don't need a copy
-    return [self rapidSplash];
-}
-
 /**
  * This configures the first real view controller.
  * @peram { ^(UIViewController* frvc) } frvc is the "First Real View Controller" to be presented.
- * @returns {void}
  */
 - (void) configureFirstRealViewController:( void(^)( IonViewController* frvc ) ) finished {
-    // configure the default first root view controller here.
-    IonViewController* vc = [[IonViewController alloc] initWithNibName:NULL bundle:NULL];
-    
-    vc.view.backgroundColor = [UIColor whiteColor];
-    
-    // Call completion if it exists.
-    if ( finished )
-        finished(vc);
+    NSAssert( TRUE, @"IonApplication - (void)configureFirstRealViewController: was not overloaded!" );
 }
 
 /**
  * This is a customization point for executing arbitrary code after the construction of the first real view controller.
- * @returns {void}
  */
 - (void) setupApplication {
     // Should be subclassed
-}
-
-#pragma mark start up utilities
-
-/**
- * Calls all the resource intensive processes after the rapid splash view has been rendered.
- * @returns {void}
- */
-- (void) postDisplaySetup {
-    // Record Metrics
-    splashDisplayCallbackTime = [[NSDate date] timeIntervalSince1970];
-    [self logMetrics];
-    
-    // Call the custom view dependent setup here
-    [self configureFirstRealViewController: ^(UIViewController* frvc){
-        // Hand off control from the rapid start view to the next FRVC
-        [rapidStartManager.viewController prepareToDispatchWithNewController: frvc];
-        
-        // Call the custom setup function
-        [self setupApplication];
-    }];
+    NSAssert( TRUE, @"IonApplication - (void)setupApplication; was not overloaded!" );
 }
 
 #pragma mark Application Delegate
@@ -214,20 +75,16 @@
  */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Record Metrics
-    applicationLaunchBeginTime = [[NSDate date] timeIntervalSince1970];
-    
-    // Set the window so we can render stuff
-    self.window = [self applicationWindow];
-    self.window.backgroundColor = [UIColor blackColor];
+    [self markAppLaunchStart];
     
     //set the root view controller to the the rapid start view controller
-    self.window.rootViewController = rapidStartManager.viewController;
+    self.window.rootViewController = self.rapidStartManager.viewController;
     
     //Display the rapid start controller
     [self.window makeKeyAndVisible];
     
     // Record Metrics
-    applicationLaunchEndTime = [[NSDate date] timeIntervalSince1970];
+    [self markAppLaunchEnd];
     return YES;
 }
 
@@ -257,53 +114,13 @@
 }
 
 #pragma mark Memory Management Utilities
-
 /**
- * This saves all cache data.
+ * Saves all cache data.
  */
 - (void) saveCacheData {
     // Save Interface Data
     [[IonImageManager interfaceManager] saveManifest: NULL];
 }
-
-/**
- * This is where we kill the rapid splash manager, it served us well but now it is useless.
- * @returns {void}
- */
-- (void) freeRapidSplashManager {
-    rapidStartManager = NULL;
-}
-
-/**
- * Displays startup metrics after launch.
- * @returns {void}
- */
-- (void) logMetrics {
-    double initToLaunch, launching, toFirstSplash, toRapidSplashDisplay;
-    NSString* logString = @"\nStartup Metrics:\n";
-    
-    // Create string with format
-    logString = [logString stringByAppendingString:@"Time from init to launch: %.2f ms (Note: Shared with OS) \n"];
-    logString = [logString stringByAppendingString:@"Time Spent Launching: %.2f ms \n"];
-    logString = [logString stringByAppendingString:@"Time Generating Rapid Splash: %.2f ms\n"];
-    logString = [logString stringByAppendingString:@"Time To First Rapid Splash Render: %.2f ms \n\n"];
-    
-    // get relative times
-    initToLaunch = applicationLaunchBeginTime - startupInitTime;
-    launching = applicationLaunchEndTime - applicationLaunchBeginTime;
-    toFirstSplash = applicationLaunchEndTime -  startupInitTime;
-    toRapidSplashDisplay = splashDisplayCallbackTime - startupInitTime;
-    
-    // format the string
-    logString = [NSString stringWithFormat:logString,
-                 initToLaunch * 1000,
-                 launching * 1000,
-                 toFirstSplash,toRapidSplashDisplay * 1000 ];
-    
-    // Send to the console
-    NSLog(@"%@",logString);
-}
-
 
 #pragma mark Singletons
 
