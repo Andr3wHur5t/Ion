@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "IonCompleteGuideGroup.h"
+#import "UIView+IonGuideGroup.h"
+#import "UIView+IonTheme.h"
 
 @interface DefaultGuideLineTests : XCTestCase
 
@@ -149,6 +151,46 @@
     XCTAssertEqualWithAccuracy( gg.twoThirdsGuideVert.position,  ( 2 * frame.size.height / 3), 0.2, @"Not Same");
 }
 
+- (void)testGuideGroupOneFourthHoriz{
+    IonGuideGroup* gg;
+    CGRect frame;
+    
+    frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
+    gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    
+    XCTAssertEqualWithAccuracy( gg.oneForthGuideHoriz.position, (frame.size.width / 4), 0.2, @"Not Same");
+}
+
+- (void)testGuideGroupOneFourthVert{
+    IonGuideGroup* gg;
+    CGRect frame;
+    
+    frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
+    gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    
+    XCTAssertEqualWithAccuracy( gg.oneForthGuideVert.position,  (frame.size.height / 4), 0.2, @"Not Same");
+}
+
+- (void)testGuideGroupThreeFourthsHoriz{
+    IonGuideGroup* gg;
+    CGRect frame;
+    
+    frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
+    gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    
+    XCTAssertEqualWithAccuracy( gg.threeForthsGuideHoriz.position,  ( 3 * frame.size.width / 4), 0.2, @"Not Same");
+}
+
+- (void)testGuideGroupThreeFourthsVert{
+    IonGuideGroup* gg;
+    CGRect frame;
+    
+    frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
+    gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    
+    XCTAssertEqualWithAccuracy( gg.threeForthsGuideVert.position,  ( 3 * frame.size.height / 4), 0.2, @"Not Same");
+}
+
 
 /** = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  *                                               External Guides
@@ -258,8 +300,90 @@
     XCTAssertEqualWithAccuracy( gg.twoThirdsExternalGuideVert.position, frame.origin.y + ( 2 * frame.size.height / 3), 0.2, @"Not Same");
 }
 
+- (void)testGuideGroupOneFourthHorizExternal{
+    IonGuideGroup* gg;
+    CGRect frame;
+    
+    frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
+    gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    
+    XCTAssertEqualWithAccuracy( gg.oneForthExternalGuideHoriz.position, frame.origin.x + (frame.size.width / 4), 0.2, @"Not Same");
+}
+
+- (void)testGuideGroupOneFourthVertExternal{
+    IonGuideGroup* gg;
+    CGRect frame;
+    
+    frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
+    gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    
+    XCTAssertEqualWithAccuracy( gg.oneForthExternalGuideVert.position, frame.origin.y + (frame.size.height / 4), 0.2, @"Not Same");
+}
+
+- (void)testGuideGroupThreeFourthsHorizExternal{
+    IonGuideGroup* gg;
+    CGRect frame;
+    
+    frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
+    gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    
+    XCTAssertEqualWithAccuracy( gg.threeForthsExternalGuideHoriz.position, frame.origin.x + ( 3 * frame.size.width / 4), 0.2, @"Not Same");
+}
+
+- (void)testGuideGroupThreeFourthsVertExternal{
+    IonGuideGroup* gg;
+    CGRect frame;
+    
+    frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
+    gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    
+    XCTAssertEqualWithAccuracy( gg.threeForthsExternalGuideVert.position, frame.origin.y + ( 3 * frame.size.height / 4), 0.2, @"Not Same");
+}
+/** = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+ *                                               UIView Specific
+ * = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 
 
+#pragma mark UIView Specific
 
+- (void)testUIViewLeftMargin {
+    CGSize margin = (CGSize) { 5, 12};
+    CGRect frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
+    UIView* view = [[UIView alloc] initWithFrame: frame];
+    view.styleMargin = margin;
+    
+    
+    XCTAssertEqualWithAccuracy( view.leftMargin.position, frame.origin.x - margin.width , 0.2, @"Not Same");
+}
+
+- (void)testUIViewRightMargin {
+    CGSize margin = (CGSize) { 5, 12};
+    CGRect frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
+    UIView* view = [[UIView alloc] initWithFrame: frame];
+    view.styleMargin = margin;
+    
+    
+    XCTAssertEqualWithAccuracy( view.rightMargin.position, frame.origin.x + frame.size.width+ margin.width , 0.2, @"Not Same");
+}
+
+- (void)testUIViewTopMargin {
+    CGSize margin = (CGSize) { 5, 12};
+    CGRect frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
+    UIView* view = [[UIView alloc] initWithFrame: frame];
+    view.styleMargin = margin;
+    
+    
+    XCTAssertEqualWithAccuracy( view.topMargin.position, frame.origin.y - margin.height , 0.2, @"Not Same");
+}
+
+- (void)testUIViewBottomMargin {
+    CGSize margin = (CGSize) { 5, 12};
+    CGRect frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
+    UIView* view = [[UIView alloc] initWithFrame: frame];
+    view.styleMargin = margin;
+    
+    
+    XCTAssertEqualWithAccuracy( view.bottomMargin.position, frame.origin.y + frame.size.height + margin.height , 0.2, @"Not Same");
+}
 
 @end

@@ -17,6 +17,8 @@
 static NSString* sIonGuideLine_Origin_Horiz =           @"IonGuideLine_InternialOrigin_Horiz";
 static NSString* sIonGuideLine_Origin_Vert =            @"IonGuideLine_InternialOrigin_Vert";
 
+static NSString* sIonGuideLine_OneForth_Horiz =         @"IonGuideLine_OneForth_Horiz";
+static NSString* sIonGuideLine_OneForth_Vert =          @"IonGuideLine_OneForth_Vert";
 
 static NSString* sIonGuideLine_TwoThirds_Horiz =        @"IonGuideLine_TwoThirds_Horiz";
 static NSString* sIonGuideLine_TwoThirds_Vert =         @"IonGuideLine_TwoThirds_Vert";
@@ -26,6 +28,9 @@ static NSString* sIonGuideLine_Center_Vert =            @"IonGuideLine_Center_Ve
 
 static NSString* sIonGuideLine_OneThird_Horiz =         @"IonGuideLine_OneThird_Horiz";
 static NSString* sIonGuideLine_OneThird_Vert =          @"IonGuideLine_OneThird_Vert";
+
+static NSString* sIonGuideLine_ThreeForths_Horiz =      @"IonGuideLine_ThreeForths_Horiz";
+static NSString* sIonGuideLine_ThreeForths_Vert =       @"IonGuideLine_ThreeForths_Vert";
 
 static NSString* sIonGuideLine_Size_Horiz =             @"IonGuideLine_Size_Horiz";
 static NSString* sIonGuideLine_Size_Vert =              @"IonGuideLine_Size_Vert";
@@ -231,6 +236,37 @@ static NSString* sIonGuideGroup_FrameKey =              @"frame";
     return obj;
 }
 
+#pragma mark One Forth
+/**
+ * Horizontal One Forth Guide Line
+ */
+- (IonGuideLine*) oneForthGuideHoriz {
+    IonGuideLine* obj = [self guideForKey: sIonGuideLine_OneForth_Horiz];
+    if ( !obj ) {
+        obj = [IonGuideLine guideWithTargetRectSize: self
+                                   usingRectKeyPath: sIonGuideGroup_FrameKey
+                                             amount: 1.0f / 4.0f
+                                            andMode: IonGuideLineFrameMode_Horizontal];
+        [self cacheGuide: obj withKey: sIonGuideLine_OneForth_Horiz];
+    }
+    return obj;
+}
+
+/**
+ * Vertical One Forth Guide Line
+ */
+- (IonGuideLine*) oneForthGuideVert {
+    IonGuideLine* obj = [self guideForKey: sIonGuideLine_OneForth_Vert];
+    if ( !obj ) {
+        obj = [IonGuideLine guideWithTargetRectSize: self
+                                   usingRectKeyPath: sIonGuideGroup_FrameKey
+                                             amount: 1.0f / 4.0f
+                                            andMode: IonGuideLineFrameMode_Vertical];
+        [self cacheGuide: obj withKey: sIonGuideLine_OneForth_Vert];
+    }
+    return obj;
+}
+
 #pragma mark One Third
 /**
  * Horizontal One Third Guide Line
@@ -324,6 +360,37 @@ static NSString* sIonGuideGroup_FrameKey =              @"frame";
     return obj;
 }
 
+#pragma mark Three Forths
+/**
+ * Horizontal Three Forths Guide Line
+ */
+- (IonGuideLine*) threeForthsGuideHoriz {
+    IonGuideLine* obj = [self guideForKey: sIonGuideLine_ThreeForths_Horiz];
+    if ( !obj ) {
+        obj = [IonGuideLine guideWithTargetRectSize: self
+                                   usingRectKeyPath: sIonGuideGroup_FrameKey
+                                             amount: 3.0f / 4.0f
+                                            andMode: IonGuideLineFrameMode_Horizontal];
+        [self cacheGuide: obj withKey: sIonGuideLine_ThreeForths_Horiz];
+    }
+    return obj;
+}
+
+/**
+ * Vertical Three Forths Guide Line
+ */
+- (IonGuideLine*) threeForthsGuideVert {
+    IonGuideLine* obj = [self guideForKey: sIonGuideLine_ThreeForths_Vert];
+    if ( !obj ) {
+        obj = [IonGuideLine guideWithTargetRectSize: self
+                                   usingRectKeyPath: sIonGuideGroup_FrameKey
+                                             amount: 3.0f / 4.0f
+                                            andMode: IonGuideLineFrameMode_Vertical];
+        [self cacheGuide: obj withKey: sIonGuideLine_ThreeForths_Vert];
+    }
+    return obj;
+}
+
 #pragma mark Size
 /**
  * Horizontal  Size Guide Line
@@ -387,6 +454,33 @@ static NSString* sIonGuideGroup_FrameKey =              @"frame";
                                                  amount: 0.0f
                                                 andMode: IonGuideLineFrameMode_Vertical];
         [self cacheGuide: obj withKey: sIonGuideLine_Origin_Vert];
+    }
+    return obj;
+}
+
+#pragma mark One Forth External
+/**
+ * Horizontal One Forth Guide Line
+ */
+- (IonGuideLine*) oneForthExternalGuideHoriz {
+    IonGuideLine* obj = [self externalGuideForKey: sIonGuideLine_OneForth_Horiz];
+    if ( !obj ) {
+        obj = [self guideInParentContext: self.oneForthGuideHoriz
+                                usingMode: IonGuideLineFrameMode_Horizontal];
+        [self cacheExternalGuide: obj withKey: sIonGuideLine_OneForth_Horiz];
+    }
+    return obj;
+}
+
+/**
+ * Vertical One Forth Guide Line
+ */
+- (IonGuideLine*) oneForthExternalGuideVert {
+    IonGuideLine* obj = [self externalGuideForKey: sIonGuideLine_OneForth_Vert];
+    if ( !obj ) {
+        obj = [self guideInParentContext: self.oneForthGuideVert
+                               usingMode: IonGuideLineFrameMode_Vertical];
+        [self cacheExternalGuide: obj withKey: sIonGuideLine_OneForth_Vert];
     }
     return obj;
 }
@@ -471,6 +565,33 @@ static NSString* sIonGuideGroup_FrameKey =              @"frame";
         obj = [self guideInParentContext: self.twoThirdsGuideVert
                                usingMode: IonGuideLineFrameMode_Vertical];
         [self cacheExternalGuide: obj withKey: sIonGuideLine_TwoThirds_Vert];
+    }
+    return obj;
+}
+
+#pragma mark Three Forths External
+/**
+ * Horizontal Three Forths Guide Line
+ */
+- (IonGuideLine*) threeForthsExternalGuideHoriz {
+    IonGuideLine* obj = [self externalGuideForKey: sIonGuideLine_ThreeForths_Horiz];
+    if ( !obj ) {
+        obj = [self guideInParentContext: self.threeForthsGuideHoriz
+                               usingMode: IonGuideLineFrameMode_Horizontal];
+        [self cacheExternalGuide: obj withKey: sIonGuideLine_ThreeForths_Horiz];
+    }
+    return obj;
+}
+
+/**
+ * Vertical Three Forths Guide Line
+ */
+- (IonGuideLine*) threeForthsExternalGuideVert {
+    IonGuideLine* obj = [self externalGuideForKey: sIonGuideLine_ThreeForths_Vert];
+    if ( !obj ) {
+        obj = [self guideInParentContext: self.threeForthsGuideVert
+                               usingMode: IonGuideLineFrameMode_Vertical];
+        [self cacheExternalGuide: obj withKey: sIonGuideLine_ThreeForths_Vert];
     }
     return obj;
 }

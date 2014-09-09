@@ -333,18 +333,18 @@
     if ( !_centerView )
         return;
     
-    _centerView.topSizeGuide = contentGroup.topSizeGuide; // replace
-    _centerView.bottomSizeGuide = contentGroup.sizeGuideVert;
+    _centerView.topSizeGuide = contentGroup.originExternalGuideVert;
+    _centerView.bottomSizeGuide = contentGroup.sizeExternalGuideVert;
     
     if ( _rightView )
         _centerView.rightSizeGuide = _rightView.leftMargin;
     else
-        _centerView.rightSizeGuide = contentGroup.topSizeGuide; // replace
+        _centerView.rightSizeGuide = contentGroup.oneForthExternalGuideHoriz;
     
     if ( _leftView )
         _centerView.leftSizeGuide = _leftView.rightMargin;
     else
-        _centerView.leftSizeGuide = contentGroup.sizeGuideHoriz;
+        _centerView.leftSizeGuide = contentGroup.threeForthsExternalGuideHoriz;
     
     [_centerView setGuidesWithLocalVert: _centerView.centerGuideVert
                              localHoriz: _centerView.centerGuideHoriz

@@ -36,6 +36,17 @@
  */
 @property (strong, nonatomic, readonly) IonGuideLine* originGuideVert;
 
+#pragma mark One Forth
+/**
+ * Horizontal One Forth Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* oneForthGuideHoriz;
+
+/**
+ * Vertical One Forth Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* oneForthGuideVert;
+
 #pragma mark One Third
 
 /**
@@ -70,6 +81,17 @@
  */
 @property (strong, nonatomic, readonly) IonGuideLine* twoThirdsGuideVert;
 
+#pragma mark Three Forths
+/**
+ * Horizontal Three Forths Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* threeForthsGuideHoriz;
+
+/**
+ * Vertical Three Forths Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* threeForthsGuideVert;
+
 #pragma mark Full Size
 /**
  * Horizontal  Size Guide Line
@@ -96,6 +118,17 @@
  * Vertical External Origin Guide Line
  */
 @property (strong, nonatomic, readonly) IonGuideLine* originExternalGuideVert;
+
+#pragma mark One Forth External
+/**
+ * Horizontal One Forth Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* oneForthExternalGuideHoriz;
+
+/**
+ * Vertical One Forth Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* oneForthExternalGuideVert;
 
 #pragma mark One Third External
 /**
@@ -129,6 +162,17 @@
  * Vertical External Two Thirds Guide Line
  */
 @property (strong, nonatomic, readonly) IonGuideLine* twoThirdsExternalGuideVert;
+
+#pragma mark Three Forths External
+/**
+ * Horizontal Three Forths Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* threeForthsExternalGuideHoriz;
+
+/**
+ * Vertical Three Forths Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* threeForthsExternalGuideVert;
 
 #pragma mark Size External
 /**

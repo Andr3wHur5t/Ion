@@ -306,7 +306,8 @@
                                                                    keyPath: keyPath
                                                                     target: self
                                                                   selector: @selector(updatePosition)
-                                                                   options: NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew]];
+                                                                   options: NSKeyValueObservingOptionInitial |
+                                                                            NSKeyValueObservingOptionNew]];
     return;
 }
 

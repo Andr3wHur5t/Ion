@@ -75,9 +75,23 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
     return self.guideGroup.originGuideVert;
 }
 
+#pragma mark One Forth
+/**
+ * Horizontal One Forth Guide Line
+ */
+- (IonGuideLine*) oneForthGuideHoriz {
+    return self.guideGroup.oneForthGuideHoriz;
+}
+
+/**
+ * Vertical One Forth Guide Line
+ */
+- (IonGuideLine*) oneForthGuideVert {
+    return self.guideGroup.oneForthGuideVert;
+}
+
 
 #pragma mark One Third
-
 /**
  * Horizontal One Third Guide Line
  */
@@ -126,6 +140,21 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
     return self.guideGroup.twoThirdsGuideVert;
 }
 
+#pragma mark Three Forths
+/**
+ * Horizontal Three Forths Guide Line
+ */
+- (IonGuideLine*) threeForthsGuideHoriz {
+    return self.guideGroup.threeForthsGuideHoriz;
+}
+
+/**
+ * Vertical Three Forths Guide Line
+ */
+- (IonGuideLine*) threeForthsGuideVert {
+    return self.guideGroup.threeForthsGuideVert;
+}
+
 
 #pragma mark Full Size
 /**
@@ -163,6 +192,23 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) originExternalGuideVert {
     return self.guideGroup.originExternalGuideVert;
 }
+
+#pragma mark One Forth External
+/**
+ * Horizontal One Forth Guide Line
+ */
+- (IonGuideLine*) oneForthExternalGuideHoriz {
+    return self.guideGroup.oneForthExternalGuideHoriz;
+}
+
+
+/**
+ * Vertical One Forth Guide Line
+ */
+- (IonGuideLine*) oneForthExternalGuideVert {
+    return self.guideGroup.oneForthExternalGuideVert;
+}
+
 
 
 #pragma mark One Third External
@@ -210,6 +256,20 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
     return self.guideGroup.twoThirdsExternalGuideVert;
 }
 
+#pragma mark Three Forths External
+/**
+ * Horizontal Three Forths Guide Line
+ */
+- (IonGuideLine*) threeForthsExternalGuideHoriz {
+    return self.guideGroup.threeForthsExternalGuideHoriz;
+}
+
+/**
+ * Vertical Three Forths Guide Line
+ */
+- (IonGuideLine*) threeForthsExternalGuideVert {
+    return self.guideGroup.threeForthsExternalGuideVert;
+}
 
 #pragma mark Size External
 /**
@@ -427,9 +487,9 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) rightMargin {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_RightMargin];
     if ( !obj ) {
-        obj = [IonGuideLine guideWithGuide: self.sizeExternalGuideHoriz
+        obj = [IonGuideLine guideWithGuide: [self marginWidth]
                                    modType: IonValueModType_Add
-                            andSecondGuide: [self marginWidth]];
+                            andSecondGuide: self.sizeExternalGuideHoriz];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_RightMargin];
     }
     return obj;
@@ -457,7 +517,7 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_BottomMargin];
     if ( !obj ) {
         obj = [IonGuideLine guideWithGuide: self.sizeExternalGuideVert
-                                   modType: IonValueModType_Add
+                                   modType: IonValueModType_Subtract
                             andSecondGuide: [self marginHeight]];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_BottomMargin];
     }
