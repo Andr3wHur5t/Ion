@@ -87,28 +87,16 @@
 - (void) overviewThemeTest {
     NSString* logString = @"\nTheme Test:";
     UIColor                                 *resultColor;
-    IonKeyValuePair                         *resultKVP;
-    IonImageRef                             *resultImageRef;
     IonStyle                                *resultStyle;
     IonGradientConfiguration                *resultGradient;
     // Metrics
     double  colorStart, colorEnd,
-            kvpStart, kvpEnd,
-            imageStart, imageEnd,
             styleStart, styleEnd,
             gradientStart, gradientEnd;
     // Test
     colorStart = [[NSDate date] timeIntervalSince1970];
     resultColor = [self.window.systemTheme resolveColorAttribute:@"yellow"];
     colorEnd = [[NSDate date] timeIntervalSince1970];
-    
-    kvpStart = [[NSDate date] timeIntervalSince1970];
-    resultKVP = [self.window.systemTheme resolveKVPAttribute:@"PointlessProperty"];
-    kvpEnd = [[NSDate date] timeIntervalSince1970];
-    
-    imageStart = [[NSDate date] timeIntervalSince1970];
-    resultImageRef = [self.window.systemTheme resolveImageAttribute:@"Image1"];
-    imageEnd = [[NSDate date] timeIntervalSince1970];
     
     styleStart = [[NSDate date] timeIntervalSince1970];
     //resultStyle = [self.window.systemTheme resolveStyleAttribute:@"cls_simpleStyle"];
@@ -120,15 +108,11 @@
     
     // Reporting
     logString = [logString stringByAppendingString:@"\nColor: %@ \nTook: %.4f ms\n"];
-    logString = [logString stringByAppendingString:@"\nKVP: \"%@\" \nTook: %.4f ms\n"];
-    logString = [logString stringByAppendingString:@"\nImage Ref: \"%@\" \nTook: %.4f ms\n"];
     logString = [logString stringByAppendingString:@"\nStyle: %@ \nTook: %.4f ms\n"];
     logString = [logString stringByAppendingString:@"\nGradient: %@Took: %.4f ms \n\n"];
     
     logString = [NSString stringWithFormat:logString,
                  [resultColor toHex], (colorEnd - colorStart) * 1000,
-                 resultKVP, (kvpEnd - kvpStart) * 1000,
-                 resultImageRef,  (imageEnd - imageStart) * 1000,
                  resultStyle, (styleEnd - styleStart) * 1000,
                  resultGradient, (gradientEnd - gradientStart) * 1000];
     

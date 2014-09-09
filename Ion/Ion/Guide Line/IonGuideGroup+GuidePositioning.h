@@ -1,20 +1,14 @@
 //
-//  UIView+IonGuideLine.h
+//  IonGuideGroup+GuidePositioning.h
 //  Ion
 //
-//  Created by Andrew Hurst on 8/22/14.
+//  Created by Andrew Hurst on 8/27/14.
 //  Copyright (c) 2014 Ion. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "IonGuideLine.h"
-#import "IonViewGuideSet.h"
+#import "IonGuideGroup.h"
 
-@interface UIView (IonGuideLine)
-/**
- * A Dictionary of all created guide lines for the view.
- */
-@property (strong, nonatomic) NSMutableDictionary* cachedGuideLines;
+@interface IonGuideGroup (GuidePositioning)
 
 /**
  * The Guide lines states object.
@@ -41,10 +35,12 @@
 @property (weak, nonatomic) IonGuideLine* leftSizeGuide;
 @property (weak, nonatomic) IonGuideLine* rightSizeGuide;
 
+
 /**
  * Logs frame auto updating for the view, with the specified string.
  */
 @property (weak, nonatomic) NSString* logAutoFrameUpdatesWithString;
+
 
 #pragma mark Setters
 
@@ -54,7 +50,7 @@
  * @param {IonGuideLine*} the horizontal guide line.
  * @returns {void}
  */
-- (void) setLocalGuidesWithVert:(IonGuideLine*) vert andHoriz:(IonGuideLine*) horiz;
+- (void) setLocalGuidesWithVert:(IonGuideLine*) vert andHoriz:(IonGuideLine*) horiz __attribute__((deprecated));
 
 /**
  * Sets the super guides.
@@ -62,7 +58,7 @@
  * @param {IonGuideLine*} the horizontal guide line.
  * @returns {void}
  */
-- (void) setSuperGuidesWithVert:(IonGuideLine*) vert andHoriz:(IonGuideLine*) horiz;
+- (void) setSuperGuidesWithVert:(IonGuideLine*) vert andHoriz:(IonGuideLine*) horiz __attribute__((deprecated));
 
 /**
  * Sets all guides.
@@ -75,7 +71,7 @@
 - (void) setGuidesWithLocalVert:(IonGuideLine*) lVert
                      localHoriz:(IonGuideLine*) lHoriz
                       superVert:(IonGuideLine*) sVert
-                  andSuperHoriz:(IonGuideLine*) sHoriz;
+                  andSuperHoriz:(IonGuideLine*) sHoriz __attribute__((deprecated));
 
 #pragma mark Update Functions
 
@@ -84,4 +80,5 @@
  * @returns {void}
  */
 - (void) updateFrameToMatchGuideSet;
+
 @end

@@ -9,290 +9,82 @@
 #import "IonApplication.h"
 #import "IonRapidStartManager.h"
 #import "IonWindow.h"
+
 #import "IonApplication+StatusBar.h"
+#import "IonApplication+plistGetters.h"
+#import "IonApplication+Metrics.h"
+#import "IonApplication+RapidSplash.h"
 
 // Demo Mode Only
 #import "IonDemoUIWindow.h"
 
-
-@interface IonApplication () {
-    
-#pragma mark Metrics
-    double  startupInitTime;
-    // application Launch
-    double  applicationLaunchBeginTime;
-    double  applicationLaunchEndTime;
-    // rapid splash Launch
-    double  splashDisplayCallbackTime;
-    
-    
-    #pragma mark managers
-    
-    /* This manages the rapid start of the application.
-     */
-    IonRapidStartManager* rapidStartManager;
-    
-#pragma mark Extensions
-    NSMutableDictionary* _catagoriesMap;
-}
-
-
-
-
-
-#pragma mark constructors
-
-/**
- * This constructs the rapid start manager.
- * @returns {void}
- */
--(void) constructRapidStartManager;
-
-/**
- * This constructs the application window to be used
- * @returns {UIWindow} the application window to be used
- */
-- (IonWindow*) applicationWindow;
-
-#pragma mark configuration utilities
-
-/**
- * This configures the rapid start manager
- * @returns {void}
- */
-- (void) configureRapidStart;
-
-#pragma mark start up utilities
-
-/**
- * This calls all the intensive processes after the rapid splash view has been rendered
- * @returns {void}
- */
-- (void) postDisplaySetup;
-
-/**
- * This constructs all optional managers based off of the application manifest
- * @returns {void}
- */
-- (void) constructOptionialManagersFromManagerManifest;
-
-
-@end
-
-/**
- * ============================================================
- * ============================================================
- *                    Implementation Start
- * ============================================================
- * ============================================================
- */
-
-
 @implementation IonApplication
+@synthesize window = _window;
 
+#pragma mark Constructors
 /**
  * This is the default constructor.
- * Note: DON'T RUN ANY INTENSIVE PROCESS HERE
+ * @warning DON'T RUN ANY INTENSIVE PROCESS HERE!
  * @returns {instancetype}
  */
 - (instancetype)init {
     self = [super init];
     if (self) {
         // Record Metrics
-        startupInitTime = [[NSDate date] timeIntervalSince1970];
-        
-        // Construct
-        [self constructRapidStartManager];
-        [self configureRapidStart];
-        
+        [self markStartUpInit];
     }
     return self;
 }
 
-#pragma mark constructors
-
+#pragma mark Window
 /**
- * This constructs the rapid start manager.
- * @returns {void}
+ * Gets, or constructs the window.
+ * @returns {IonWindow*}
  */
-- (void) constructRapidStartManager {
-    rapidStartManager = [[IonRapidStartManager alloc] init];
+- (IonWindow *)window {
+    if ( !_window ) {
+        // Use the correct type of window for our specified mode.
+        if ( ![[self class] isInDemoMode] )
+            _window = [[IonWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        else
+            _window = [[IonDemoUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    }
+    return _window;
 }
-
-/**
- * This constructs the application window to be used
- * @returns {UIWindow} the application window to be used
- */
-- (IonWindow*) applicationWindow {
-    IonWindow* returnedWindow;
-    
-    // Select the correct window according to the mode.
-    if ( ![self isInDemoMode] )
-        returnedWindow = [[IonWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    else
-        returnedWindow = [[IonDemoUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    return returnedWindow;
-}
-
-#pragma mark configuration utilities
-
-/**
- * This configures the rapid start manager
- * @returns {void}
- */
-- (void) configureRapidStart {
-    if ( !rapidStartManager )
-        return;
-    
-    rapidStartManager.deligate = self;
-    
-    __weak typeof(self) weakSelf = self;
-    [rapidStartManager setPostDisplayCallback:^{
-        [weakSelf postDisplaySetup];
-    }];
-}
-
-
 
 #pragma mark customization points
-
-/**
- * This states if we use the demo window which displays touch points or not.
- * @returns {bool}
- */
-- (bool) isInDemoMode {
-    return false;
-}
-
-/**
- * This gets the default manifest of optional managers.
- * *subclassed for customization*
- * @returns {applicationManifest} with the default configuration.
- */
-- (bool) loadManagerManifest {
-    // return a static default manager manifest
-    return true;
-}
-
-/**
- * This is the rapid splash view that will be used when the application has already been opened in the system once before.
- * *subclassed for customization*
- * @returns {IonRapidStartViewController}
- */
-- (IonRapidStartViewController*) rapidSplash {
-    return [[IonRapidStartViewController alloc] init];
-}
-
-/**
- * This is the rapid splash view that will be used when the application has not been opened in the system once before.
- * You should return a on boarding controller here.
- * *subclassed for customization*
- * @returns {IonRapidStartViewController}
- */
-- (IonRapidStartViewController*) onBoardingRapidSplash {
-    return [self rapidSplash];
-}
-
-/**
- * This gets the on boarding screen version string.
- * *subclassed for customization*
- * @returns {NSString*}
- */
-- (NSString*) currentOnBoardingScreenVersion {
-    return NULL;
-}
-
 /**
  * This configures the first real view controller.
  * @peram { ^(UIViewController* frvc) } frvc is the "First Real View Controller" to be presented.
- * @returns {void}
  */
 - (void) configureFirstRealViewController:( void(^)( IonViewController* frvc ) ) finished {
-    // configure the default first root view controller here.
-    IonViewController* vc = [[IonViewController alloc] initWithNibName:NULL bundle:NULL];
-    
-    vc.view.backgroundColor = [UIColor whiteColor];
-    
-    // Call completion if it exists.
-    if ( finished )
-        finished(vc);
+    NSAssert( TRUE, @"IonApplication - (void)configureFirstRealViewController: was not overloaded!" );
 }
 
 /**
  * This is a customization point for executing arbitrary code after the construction of the first real view controller.
- * @returns {void}
  */
 - (void) setupApplication {
     // Should be subclassed
-}
-
-/**
- * This is a customization point where we add our theme properties to the Ion style manifest.
- * *Should be subclassed, needs to call super*
- * @returns {void}
- */
-- (void) addMethodClassPairsToStyleManifest {
-    // Add to manifest there
-}
-
-/**
- * 
- */
-#pragma mark start up utilities
-
-/**
- * This calls all the resource intensive processes after the rapid splash view has been rendered.
- * @returns {void}
- */
-- (void) postDisplaySetup {
-    // Record Metrics
-    splashDisplayCallbackTime = [[NSDate date] timeIntervalSince1970];
-    [self logMetrics];
-    
-    // Load & Set the application manifest
-    [self loadManagerManifest];
-    
-    // Construct all managers here
-    [self constructOptionialManagersFromManagerManifest];
-    
-    // Call the custom view dependent setup here
-    [self configureFirstRealViewController: ^(UIViewController* frvc){
-        // Hand off control from the rapid start view to the next FRVC
-        [rapidStartManager.viewController prepareToDispatchWithNewController: frvc];
-        
-        // Call the custom setup function
-        [self setupApplication];
-    }];
-}
-
-/**
- * This constructs all optional managers based off of the application manifest
- * @returns {void}
- */
-- (void) constructOptionialManagersFromManagerManifest {
-    // Check manifest and construct managers
+    NSAssert( TRUE, @"IonApplication - (void)setupApplication; was not overloaded!" );
 }
 
 #pragma mark Application Delegate
 /**
- * This is called when we should present our first view controller.
+ * Called when we should present our first view controller.
  */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Record Metrics
-    applicationLaunchBeginTime = [[NSDate date] timeIntervalSince1970];
-    
-    self.window = [self applicationWindow];
-    self.window.backgroundColor = [UIColor blackColor];
+    [self markAppLaunchStart];
     
     //set the root view controller to the the rapid start view controller
-    self.window.rootViewController = rapidStartManager.viewController;
+    self.window.rootViewController = self.rapidStartManager.viewController;
     
     //Display the rapid start controller
     [self.window makeKeyAndVisible];
     
     // Record Metrics
-    applicationLaunchEndTime = [[NSDate date] timeIntervalSince1970];
+    [self markAppLaunchEnd];
     return YES;
 }
 
@@ -321,78 +113,26 @@
     [self saveCacheData];
 }
 
-#pragma mark Memory Management Utils
-
+#pragma mark Memory Management Utilities
 /**
- * This saves all cache data.
+ * Saves all cache data.
  */
 - (void) saveCacheData {
     // Save Interface Data
     [[IonImageManager interfaceManager] saveManifest: NULL];
 }
 
-/**
- * This is where we kill the rapid splash manager, it served us well but now it is useless.
- * @returns {void}
- */
-- (void) freeRapidSplashManager {
-    rapidStartManager = NULL;
-}
-
-
-/**
- * Displays startup metrics after launch.
- * @returns {void}
- */
-- (void) logMetrics {
-    double initToLaunch, launching, toFirstSplash, toRapidSplashDisplay;
-    NSString* logString = @"\nStartup Metrics:\n";
-    
-    // Create string with format
-    logString = [logString stringByAppendingString:@"Time from init to launch: %.2f ms (Note: Shared with OS) \n"];
-    logString = [logString stringByAppendingString:@"Time Spent Launching: %.2f ms \n"];
-    logString = [logString stringByAppendingString:@"Time Generating Rapid Splash: %.2f ms\n"];
-    logString = [logString stringByAppendingString:@"Time To First Rapid Splash Render: %.2f ms \n\n"];
-    
-    // get relative times
-    initToLaunch = applicationLaunchBeginTime - startupInitTime;
-    launching = applicationLaunchEndTime - applicationLaunchBeginTime;
-    toFirstSplash = applicationLaunchEndTime -  startupInitTime;
-    toRapidSplashDisplay = splashDisplayCallbackTime - startupInitTime;
-    
-    // format the string
-    logString = [NSString stringWithFormat:logString,
-                 initToLaunch * 1000,
-                 launching * 1000,
-                 toFirstSplash,toRapidSplashDisplay * 1000 ];
-    
-    // Send to the console
-    NSLog(@"%@",logString);
-}
-
-#pragma mark Catagories Variables Map
-
-/**
- * Retrives or creates the catagory extension map.
- */
-- (NSMutableDictionary*) catagoriesMap {
-    if ( !_catagoriesMap )
-        _catagoriesMap = [[NSMutableDictionary alloc] init];
-    return _catagoriesMap;
-}
-
 #pragma mark Singletons
 
 /**
- * A singleton reference to the application.
- * @returns {IonApplication*} reference to the application, or NULL if
- *    your not using a IonApplication as your delegate.
+ * Gets the current application delegate object.
+ * @returns {instancetype} the current app delegate, or NULL.
  */
-+ (IonApplication*) sharedApplication {
-    id retrievedApplication = [UIApplication sharedApplication].delegate;
-    if ( !retrievedApplication || ! [retrievedApplication isKindOfClass: [IonApplication class]])
++ (instancetype) sharedApplication {
+    id currentDelegate = [UIApplication sharedApplication].delegate;
+    if ( ![currentDelegate isKindOfClass: [self class]] )
         return NULL;
-    return retrievedApplication;
+    return currentDelegate;
 }
 
 @end

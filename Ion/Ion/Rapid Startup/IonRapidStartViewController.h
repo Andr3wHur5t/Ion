@@ -27,7 +27,7 @@
  * @param {UIViewController*} the controller we will be dispatching to.
  * @returns {void}
  */
-- (void) prepareToDispatchWithNewController:(UIViewController*) vc;
+- (void) prepareToDispatchWithNewController:(UIViewController *)vc;
 
 
 #pragma mark public internial Interface

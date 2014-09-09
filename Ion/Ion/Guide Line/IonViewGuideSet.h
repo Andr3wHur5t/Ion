@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "IonGuideLine.h"
 
+
+/**
+ * Calculates sizes, and positions based off of a set of guide lines.
+ */
 @interface IonViewGuideSet : NSObject
 
 /**
@@ -24,12 +28,14 @@
 @property (strong, nonatomic) IonGuideLine* localHorizGuide;
 
 /**
- * The size views' guide pair.
+ * The size guides
  */
-@property (strong, nonatomic) IonGuideLine* sizeVertGuide;
-@property (strong, nonatomic) IonGuideLine* sizeHorizGuide;
+@property (strong, nonatomic) IonGuideLine* topSizeGuide;
+@property (strong, nonatomic) IonGuideLine* bottomSizeGuide;
+@property (strong, nonatomic) IonGuideLine* leftSizeGuide;
+@property (strong, nonatomic) IonGuideLine* rightSizeGuide;
 
-#pragma mark Setter Utilities.
+#pragma mark Position Setter Utilities.
 /**
  * Sets the super pair to match the inputted guides.
  * @param {IonGuideLine*} the vertical guide line.
@@ -46,7 +52,6 @@
  */
 - (void) setLocalPairWithVert:(IonGuideLine*) vert andHoriz:(IonGuideLine*) horiz;
 
-
 #pragma mark Retrieval
 
 /**
@@ -56,11 +61,16 @@
 - (CGPoint) toPoint;
 
 /**
+ * Gets the size position using size current guides.
+ * @returns {CGSize}
+ */
+- (CGSize) toSize;
+
+/**
  * Gets the resulting rect for the inputted view, and current guides.
- * @param {UIView*} the view to get the rect for.
  * @returns {CGRect} the resulting rect
  */
-- (CGRect) rectForView:(UIView*) view;
+- (CGRect) toRect;
 
 #pragma mark Change Callback
 

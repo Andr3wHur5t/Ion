@@ -8,7 +8,7 @@
         "PlaceHolderColor": "Gray",
         "SearchIconColor": "GrayExtraDark",
         
-        "Clear": "#000000FF",
+        "Clear": "#0004",
         "CleanWhite": "#F5F5F5",
         
         "SpottrNorm": "#F2393B",
@@ -43,7 +43,9 @@
         "TitleButtonStateNorm": "CleanWhite",
         "TitleButtonStateDown": "SystemButtonDown",
         "TitleButtonStateSelected": "SystemButtonSelected",
-        "TitleButtonStateDisabled": "SystemButtonDisabled"
+        "TitleButtonStateDisabled": "SystemButtonDisabled",
+        
+        "SubBarColor": "#F2393B99"
     },
     "images": {
         "Image1": "Path1.png",
@@ -282,7 +284,7 @@
         
         "cornerRadius": 0.0,
         "styleMargin": {"width": 18.0, "height": 10.0},
-        "stylePadding": {"width": 18.0, "height": 10.0},
+        "stylePadding": {"width": 18.0, "height": 5.0},
         
         "button":{
             "size":{"width": 25, "height": 25}
@@ -307,6 +309,12 @@
                     "selected": "TitleButtonStateSelected",
                     "disabled": "TitleButtonStateDisabled"
                 },
+                "button":{
+                    "size":{"width": 30, "height": 30}
+                },
+            },
+            "sub-bar": {
+                "background": { "type": "color", "name": "SubBarColor" },
             },
             "button":{
                 "background": { "type": "color", "name": "CleanWhite" }

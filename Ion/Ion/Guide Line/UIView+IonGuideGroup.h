@@ -1,5 +1,5 @@
 //
-//  IonGuideGroup.h
+//  UIView+IonDefaultGuides.h
 //  Ion
 //
 //  Created by Andrew Hurst on 8/23/14.
@@ -7,85 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IonViewGuideSet.h"
-
-@interface IonGuideGroup : NSObject
-#pragma mark Constructors
-/**
- * Constructs using the inputted frame.
- * @param {CGRect} the frame to construct with.
- * @returns {instancetype}
- */
-- (instancetype) initWithFrame:(CGRect) frame;
+#import "IonGuideGroup.h"
 
 /**
- * Constructs using the inputted view.
- * @param {UIView*} the view to construct with.
- * @returns {instancetype}
+ * A proxy catagory to add guide group functionality.
  */
-- (instancetype) initWithView:(UIView*) view;
+@interface UIView (IonGuideGroup)
 
-#pragma mark States & Caches
+/** = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = == = =
+ *                                                  Guide Group
+ *  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 
-/**
- * The frame of the group
- */
-@property (assign, nonatomic) CGRect frame;
+@property (weak, nonatomic, readonly) IonGuideGroup* guideGroup;
 
-/**
- * The Guide Cache
- */
-@property (strong, nonatomic, readonly) NSMutableDictionary* cachedGuideLines;
-
-#pragma mark Utilities
-
-/**
- * Creates a copy of the inputed guide for the parent context.
- * @param {IonGuideLine*} the guideline to get in the parent context.
- * @param {IonGuideLineFrameMode} the mode to use.
- * @returns {IonGuideLine*} the guide in the parent context.
- */
-- (IonGuideLine*) guideInParentContext:(IonGuideLine*) guide usingMode:(IonGuideLineFrameMode) mode;
-
-/**
- * Gets the inputed key for the external value.
- * @param {NSString*} the key to convert to its external equivelant.
- * @returns {NSString*} the external key.
- */
-- (NSString*) keyToExternal:(NSString*) key;
-
-/**
- * Gets the guide for the specified key from the guide cache.
- * @param {NSString*} the key for the guide.
- * @returns {IonGuideLine*} the guide, or NULL.
- */
-- (IonGuideLine*) guideForKey:(NSString*) key;
-
-/**
- * Gets the external guide for the specified key.
- * @param {NSString*} the base key to get the external guide from.
- * @returns {IonGuideLine*} the guide, or NULL.
- */
-- (IonGuideLine*) externalGuideForKey:(NSString*) key;
-
-/**
- * Caches the guide for the specified key.
- * @param {IonGuideLine*} the guide to cache.
- * @param {NSString*} the key to cache the guide with.
- * @returns {void}
- */
-- (void) cacheGuide:(IonGuideLine*) guide withKey:(NSString*) key;
-
-/**
- * Caches the external guide for the specified key.
- * @param {IonGuideLine*} the guide to cache.
- * @param {NSString*} the base key to cache the guide with.
- * @returns {void}
- */
-- (void) cacheExternalGuide:(IonGuideLine*) guide withKey:(NSString*) key;
-
-
-#pragma mark Guides
 
 /* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  *                              Internal Guides
@@ -114,6 +48,7 @@
 @property (strong, nonatomic, readonly) IonGuideLine* oneForthGuideVert;
 
 #pragma mark One Third
+
 /**
  * Horizontal One Third Guide Line
  */
@@ -169,8 +104,7 @@
 @property (strong, nonatomic, readonly) IonGuideLine* sizeGuideVert;
 
 
-
-/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  *                              External Guides
  * = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 
@@ -250,5 +184,87 @@
  * Vertical External Size Guide Line
  */
 @property (strong, nonatomic, readonly) IonGuideLine* sizeExternalGuideVert;
+
+
+/** = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+ *                                              UIView Spcific Guides
+ *  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
+
+#pragma mark Corrner Radius
+/**
+ * Vertical Corner Radius Margin Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* cornerRadiusMarginGuideVert;
+
+/**
+ * Horizontal Corner Radius Margin Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* cornerRadiusMarginGuideHoriz;
+
+#pragma mark Padding
+
+/**
+ * Left padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* leftPadding;
+
+/**
+ * Right padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* rightPadding;
+
+/**
+ * Top padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* topPadding;
+
+/**
+ * Bottom padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* bottomPadding;
+
+#pragma mark Auto Padding
+
+/**
+ * Left auto padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* leftAutoPadding;
+
+/**
+ * Right auto padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* rightAutoPadding;
+
+/**
+ * Top auto padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* topAutoPadding;
+
+/**
+ * Bottom auto padding Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* bottomAutoPadding;
+
+#pragma mark Margins
+
+/**
+ * Left Margin Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* leftMargin;
+
+/**
+ * Right Margin Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* rightMargin;
+
+/**
+ * Top Margin Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* topMargin;
+
+/**
+ * Top Margin Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* bottomMargin;
 
 @end

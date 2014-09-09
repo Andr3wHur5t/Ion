@@ -64,6 +64,23 @@
 }
 
 /**
+ * Constructs a guide line based off the inputted views' style padding, using the mode to specify axis.
+ * @param {UIView*} the view to base the guide off of.
+ * @param {IonGuideLineFrameMode} the mode specifying axis to use
+ * @returns {instancetype}
+ */
++ (instancetype) guideFromViewStylePadding:(UIView*) view usingMode:(IonGuideLineFrameMode) mode {
+    NSParameterAssert( view && [view isKindOfClass: [UIView class]]);
+    if ( !view || ![view isKindOfClass:[UIView class]] )
+        return NULL;
+    
+    return [[self class] guideWithTarget: view
+                                 keyPath: @"stylePadding"
+                         processingBlock: [[self class] sizeProcessingBlockUsingMode: mode]
+                            andCalcBlock: [[self class] defaultCalculationBlock]];
+}
+
+/**
  * Constructs a guide line based off the inputted views' corner radius, and style margin, using the mode to specify axis.
  * @param {UIView*} the view to base the guide off of.
  * @param {IonGuideLineFrameMode} the mode specifying axis to use

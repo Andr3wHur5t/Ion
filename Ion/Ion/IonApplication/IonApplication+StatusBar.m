@@ -16,7 +16,6 @@ static NSString* sIonApplication_StatusBarCurrentAnimationKey = @"StatusBarCurre
 
 @implementation IonApplication (StatusBar)
 #pragma mark Status Bar Frame
-
 /**
  * Sets dependent variables for the frame
  */
@@ -72,7 +71,6 @@ static NSString* sIonApplication_StatusBarCurrentAnimationKey = @"StatusBarCurre
 }
 
 #pragma mark Status Bar Animation Duration
-
 /**
  * Gets the status bar animation duration.
  * @returns {CGFloat}
@@ -83,13 +81,12 @@ static NSString* sIonApplication_StatusBarCurrentAnimationKey = @"StatusBarCurre
 
 
 #pragma mark Current Status Bar Animation
-
 /**
  * Updates the current status bar animation information.
  */
 - (void) updateStatusBarAnimationTo:(UIStatusBarAnimation) animation {
     [self willChangeValueForKey:@"currentStatusBarAnimation"];
-    [self.catagoriesMap setObject: [NSNumber numberWithInteger: animation]
+    [self.catagoryVariables setObject: [NSNumber numberWithInteger: animation]
                            forKey: sIonApplication_StatusBarCurrentAnimationKey];
     [self didChangeValueForKey:@"currentStatusBarAnimation"];
 }
@@ -98,11 +95,10 @@ static NSString* sIonApplication_StatusBarCurrentAnimationKey = @"StatusBarCurre
  * Gets the current status bar animation type.
  */
 - (UIStatusBarAnimation) currentStatusBarAnimation {
-    return [[self.catagoriesMap numberForKey:sIonApplication_StatusBarCurrentAnimationKey] integerValue];
+    return [[self.catagoryVariables numberForKey:sIonApplication_StatusBarCurrentAnimationKey] integerValue];
 }
 
 #pragma mark Status Bar Animations
-
 /**
  * Runs a animation on the status bar that works with KVO.
  * @param {BOOL} states if the animation bar is to be hidden or not.

@@ -14,11 +14,14 @@
 #import <IonData/UIColor+IonColor.h>
 #import <IonData/IonGradientConfiguration.h>
 #import <IonData/IonImageRef.h>
-
-
 #import "IonStyle.h"
 
 #import <objc/runtime.h>
+
+
+extern void ThemeLog ( NSString* message ) {
+    NSLog(@"Theme System: %@", message);
+}
 
 static char* sParentMap = "IonParentMap";
 
@@ -58,15 +61,15 @@ unsigned int currentColorResolveDepth = 0;
  */
 - (UIColor*) resolveColorAttribute:(NSString*) value {
     UIColor* result;
-    if ( !value || ![value isKindOfClass: [NSString class]] )
+    if ( !value || ![value isKindOfClass: [NSString class]] ) {
+        ThemeLog(@"Incorect input type for color.");
         return NULL;
-    if ( value.length == 0 )
+    }
+    if ( value.length == 0 ) {
+        ThemeLog(@"Input too small for color.");
         return NULL;
-    
+    }
     ++currentColorResolveDepth;
-    // Check if the value is a string.
-    if ( ![value isKindOfClass: [NSString class]] )
-        return NULL;
     
     
     // Check if the string is a hex
@@ -86,10 +89,10 @@ unsigned int currentColorResolveDepth = 0;
             result = [self colorFromMapWithKey: value];
         }
         --currentColorResolveDepth;
+        if ( !result )
+            ThemeLog([NSString stringWithFormat: @"Unable to find color with key \"%@\"", value]);
         return result;
     }
-    
-    return NULL;
 }
 
 /**
@@ -99,40 +102,23 @@ unsigned int currentColorResolveDepth = 0;
  */
 - (IonGradientConfiguration*) resolveGradientAttribute:(NSString*) value {
     id result;
-    if ( !value || ![value isKindOfClass: [NSString class]] )
+    if ( !value || ![value isKindOfClass: [NSString class]] ) {
+        ThemeLog(@"Invalid target for gradient.");
         return NULL;
-    if ( value.length == 0 )
+    }
+    if ( value.length == 0 ) {
+        ThemeLog(@"Target input too small for graient to process.");
         return NULL;
+    }
     
     result = [self resolveAttributeInRootWithGroup: sGradientsGroupKey value: value andGenerationBlock: ^id(IonKVPAccessBasedGenerationMap *context, IonKeyValuePair *data) {
         return [data toGradientConfiguration];
     }];
     
-    if ( ![result isKindOfClass:[IonGradientConfiguration class]] )
+    if ( ![result isKindOfClass:[IonGradientConfiguration class]] ) {
+        ThemeLog( [NSString stringWithFormat: @"Unable to process gradient with name %@ to correct type.", value] );
         return NULL;
-    
-    return result;
-}
-
-/**
- * This resolves a style key into a IonStyle object.
- * @param {NSString*} the key for us to look for.
- * @returns {IonStyle*} representation of the input, or NULL if invalid.
- */
-- (IonStyle*) resolveStyleAttribute:(NSString*) value {
-    id result;
-    if ( !value || ![value isKindOfClass: [NSString class]] )
-        return NULL;
-    if ( value.length == 0 )
-        return NULL;
-    
-    result = [self resolveAttributeInRootWithGroup: sStylesGroupKey value:value andGenerationBlock: ^id(IonKVPAccessBasedGenerationMap *context, IonKeyValuePair *data) {
-        id style = [data toStyle];
-        return style;
-    }];
-    
-    if ( ![result isKindOfClass:[IonStyle class]] )
-        return NULL;
+    }
     
     return result;
 }
@@ -156,47 +142,6 @@ unsigned int currentColorResolveDepth = 0;
     return result;
 }
 
-/**
- * This resolves a Image key into a UIImage object.
- * @param {NSString*} the key for us to look for.
- * @returns {UIImage*} representation of the input, or NULL if invalid.
- */
-- (IonImageRef*) resolveImageAttribute:(NSString*) value {
-    id result;
-    if ( !value || ![value isKindOfClass: [NSString class]] )
-        return NULL;
-    if ( value.length == 0 )
-        return NULL;
-    
-    result = [self resolveAttributeInRootWithGroup: sImagesGroupKey value:value andGenerationBlock:^id(IonKVPAccessBasedGenerationMap *context, IonKeyValuePair *data) {
-        return [data toImageRef];
-    }];
-    
-    if ( ![result isKindOfClass:[IonImageRef class]] )
-        return NULL;
-    
-    return result;
-}
-
-/**
- * This resolves a KVP key into a KVP object.
- * @param {NSString*} the key for us to look for.
- * @returns {UIImage*} representation of the input, or NULL if invalid.
- */
-- (IonKeyValuePair*) resolveKVPAttribute:(NSString*) value {
-    id result;
-    if ( !value || ![value isKindOfClass: [NSString class]] )
-        return NULL;
-    if ( value.length == 0 )
-        return NULL;
-    
-    result = [self resolveAttributeInRootWithGroup: sKVPGroupKey value: value andGenerationBlock:NULL];
-    
-    if ( ![result isKindOfClass:[IonKeyValuePair class]] )
-        return NULL;
-    
-    return result;
-}
 
 /**
  * This will resolve the map for the specified key.
@@ -241,8 +186,12 @@ unsigned int currentColorResolveDepth = 0;
     __weak typeof(self) weakSelf = self;
     result = [[self resolveMapAttribute: sColorsGroupKey] objectForKey: colorKey
                                    usingGenerationBlock:^id(id data) {
+                                       UIColor* color;
                                        ((IonKeyValuePair*)data).attributes = weakSelf;
-                                       return [(IonKeyValuePair*)data toColor];
+                                       color = [(IonKeyValuePair*)data toColor];
+                                       if ( !color )
+                                           ThemeLog(@"Unable to retrive color from KVP.");
+                                       return color;
                                    }];
     
     // continue resolution if we need to.

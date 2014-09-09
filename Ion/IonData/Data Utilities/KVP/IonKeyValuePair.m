@@ -130,18 +130,6 @@
 }
 
 /**
- * This gets the IonImageRef form of our value.
- * @returns {IonImageRef*} representation, or NULL if incorect type.
- */
-- (IonImageRef*) toImageRef {
-    NSString* fileNameString = [self toString];
-    if ( !fileNameString || !_attributes )
-        return NULL;
-    
-    return [IonImageRef resolveWithValue: fileNameString andAttrubutes: _attributes];
-}
-
-/**
  * This gets the IonGradientConfiguration form of our value.
  * @returns {IonGradientConfiguration*} representation, or NULL if incorect type.
  */

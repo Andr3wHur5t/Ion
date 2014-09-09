@@ -83,6 +83,8 @@ typedef void(^IonRawDataSourceCompletion)( NSError* error );
  */
 static const char* ionStandardDispatchQueue_label = "com.ion.standardDispatch";
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-function"
 /**
  * Gets the Standard Dispatch Queue.
  * @returns {dispatch_queue_t}
@@ -97,5 +99,6 @@ static dispatch_queue_t ionStandardDispatchQueue () {
     
     return ionStandardDispatchQueue_Queue;
 }
+#pragma clang diagnostic pop
 
 #endif // Ion_RawDataSource

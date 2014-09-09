@@ -24,6 +24,10 @@
  __x > __high ? __high : (__x < __low ? __low : __x);\
  })
 
+/** Timing */
+#define SecToMil 1000
+#define SecondsToMilliseconds(__Time__) ( __Time__ * SecToMil )
+#define MillisecondsToSeconds(__Time__) ( __Time__ / SecToMil )
 
 /**
  * Constants
@@ -153,8 +157,8 @@ static const CGRect CGRectUndefined = (CGRect){ INFINITY, INFINITY, INFINITY, IN
 + (BOOL) compareSize:(CGSize) a withSize:(CGSize) b usingAccuracy:(NSInteger) accuracy;
 
 /**
- * Normilizes to the scale of the screen.
- * @param {CGSize} the size to be normilized.
+ * Normalizes to the scale of the screen.
+ * @param {CGSize} the size to be normalized.
  * @returns {CGSize}
  */
 + (CGSize) normilizeSizeToScreen:(CGSize) size;
@@ -177,16 +181,16 @@ static const CGRect CGRectUndefined = (CGRect){ INFINITY, INFINITY, INFINITY, IN
  */
 + (BOOL) compareFloat:(CGFloat) a andFloat:(CGFloat) b;
 
-#pragma mark Normilization Utilties
+#pragma mark Normalization Utilities
 
 /**
- * Normailzes a radian, for use in a rotational mathmatics.
- * @param {CGFloat} the radian value to normilize.
- * @returns {CGFloat} the normilized value between 0 and 2pi
+ * Normalizes a radian, for use in a rotational mathematics.
+ * @param {CGFloat} the radian value to normalize.
+ * @returns {CGFloat} the normalized value between 0 and 2pi
  */
 + (CGFloat) normalizeRadialFloat:(CGFloat)value;
 
-#pragma mark Tranform Utilties
+#pragma mark Transform Utilities
 
 /**
  * Adds Perspective to the transform.

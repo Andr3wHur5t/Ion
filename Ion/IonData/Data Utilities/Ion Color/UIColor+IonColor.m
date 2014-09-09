@@ -136,7 +136,7 @@
 + (BOOL) stingIsValidHex:(NSString*)str {
     int strLength = [str length];
     
-    if ( [[str substringToIndex:1] isEqualToString:@"#"] && strLength < 9) {
+    if ( [[str substringToIndex:1] isEqualToString:@"#"] && strLength <= 9) {
         // Check for valid length
         switch ( strLength - 1 ) {
             case 8:  // RRGGBBAA
