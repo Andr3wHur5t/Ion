@@ -6,8 +6,55 @@
 //  Copyright (c) 2014 Ion. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "IonApplication.h"
 
-@interface IonApplication_Metrics : UIViewController
+/**
+ * Records & Reports details about startup times.
+ */
+@interface IonApplication (Metrics)
+#pragma mark Values
+/** Ion Specific Values */
+@property (assign, nonatomic) NSTimeInterval startupInitTime;
+@property (assign, nonatomic) NSTimeInterval applicationLaunchBeginTime;
+@property (assign, nonatomic) NSTimeInterval applicationLaunchEndTime;
+@property (assign, nonatomic) NSTimeInterval splashDisplayCallbackTime;
+
+/** Calculated Values*/
+@property (assign, nonatomic, readonly) NSTimeInterval ionInitToSplashTime;
+@property (assign, nonatomic, readonly) NSTimeInterval ionInitToLaunchTime;
+@property (assign, nonatomic, readonly) NSTimeInterval ionLaunchFunctTime;
+@property (assign, nonatomic, readonly) NSTimeInterval ionInitToSplashGenerationEnd;
+@property (assign, nonatomic, readonly) NSTimeInterval ionLaunchToSplashDisplayTime;
+
+#pragma mark Reporting
+/**
+ * Gets the current time.
+ * @returns {NSTimeInterval} the current time.
+ */
++ (NSTimeInterval) currentTime;
+
+/**
+ * Marks startupInitTimeValue with the current time.
+ */
+- (void) markStartUpInit;
+
+/**
+ * Marks applicationLaunchBeginTime with the current time.
+ */
+- (void) markAppLaunchStart;
+
+/**
+ * Marks applicationLaunchEndTime with the current time.
+ */
+- (void) markAppLaunchEnd;
+
+/**
+ * Marks splashDisplayCallbackTime with the current time.
+ */
+- (void) markSplashDisplay;
+
+#pragma mark Results
+
+
 
 @end

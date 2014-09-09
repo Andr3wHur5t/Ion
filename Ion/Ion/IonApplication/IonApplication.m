@@ -10,6 +10,7 @@
 #import "IonRapidStartManager.h"
 #import "IonWindow.h"
 #import "IonApplication+StatusBar.h"
+#import "IonApplication+plistGetters.h"
 
 // Demo Mode Only
 #import "IonDemoUIWindow.h"
@@ -31,12 +32,7 @@
     /* This manages the rapid start of the application.
      */
     IonRapidStartManager* rapidStartManager;
-    
-#pragma mark Extensions
-    NSMutableDictionary* _catagoriesMap;
 }
-
-
 
 
 
@@ -69,13 +65,6 @@
  * @returns {void}
  */
 - (void) postDisplaySetup;
-
-/**
- * This constructs all optional managers based off of the application manifest
- * @returns {void}
- */
-- (void) constructOptionialManagersFromManagerManifest;
-
 
 @end
 
@@ -112,7 +101,7 @@
 #pragma mark constructors
 
 /**
- * This constructs the rapid start manager.
+ * Constructs the rapid start manager.
  * @returns {void}
  */
 - (void) constructRapidStartManager {
@@ -120,23 +109,21 @@
 }
 
 /**
- * This constructs the application window to be used
+ * Constructs the application window, using the specified mode (demo mode) from the info.plist
  * @returns {UIWindow} the application window to be used
  */
 - (IonWindow*) applicationWindow {
     IonWindow* returnedWindow;
     
     // Select the correct window according to the mode.
-    if ( ![self isInDemoMode] )
+    if ( ![[self class] isInDemoMode] )
         returnedWindow = [[IonWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     else
         returnedWindow = [[IonDemoUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     return returnedWindow;
 }
 
 #pragma mark configuration utilities
-
 /**
  * This configures the rapid start manager
  * @returns {void}
@@ -147,33 +134,14 @@
     
     rapidStartManager.deligate = self;
     
+    // Set up so we get called once rapid start completes
     __weak typeof(self) weakSelf = self;
     [rapidStartManager setPostDisplayCallback:^{
         [weakSelf postDisplaySetup];
     }];
 }
 
-
-
 #pragma mark customization points
-
-/**
- * This states if we use the demo window which displays touch points or not.
- * @returns {bool}
- */
-- (bool) isInDemoMode {
-    return false;
-}
-
-/**
- * This gets the default manifest of optional managers.
- * *subclassed for customization*
- * @returns {applicationManifest} with the default configuration.
- */
-- (bool) loadManagerManifest {
-    // return a static default manager manifest
-    return true;
-}
 
 /**
  * This is the rapid splash view that will be used when the application has already been opened in the system once before.
@@ -191,16 +159,8 @@
  * @returns {IonRapidStartViewController}
  */
 - (IonRapidStartViewController*) onBoardingRapidSplash {
+    // We only use on of these so we don't need a copy
     return [self rapidSplash];
-}
-
-/**
- * This gets the on boarding screen version string.
- * *subclassed for customization*
- * @returns {NSString*}
- */
-- (NSString*) currentOnBoardingScreenVersion {
-    return NULL;
 }
 
 /**
@@ -227,34 +187,16 @@
     // Should be subclassed
 }
 
-/**
- * This is a customization point where we add our theme properties to the Ion style manifest.
- * *Should be subclassed, needs to call super*
- * @returns {void}
- */
-- (void) addMethodClassPairsToStyleManifest {
-    // Add to manifest there
-}
-
-/**
- * 
- */
 #pragma mark start up utilities
 
 /**
- * This calls all the resource intensive processes after the rapid splash view has been rendered.
+ * Calls all the resource intensive processes after the rapid splash view has been rendered.
  * @returns {void}
  */
 - (void) postDisplaySetup {
     // Record Metrics
     splashDisplayCallbackTime = [[NSDate date] timeIntervalSince1970];
     [self logMetrics];
-    
-    // Load & Set the application manifest
-    [self loadManagerManifest];
-    
-    // Construct all managers here
-    [self constructOptionialManagersFromManagerManifest];
     
     // Call the custom view dependent setup here
     [self configureFirstRealViewController: ^(UIViewController* frvc){
@@ -266,22 +208,15 @@
     }];
 }
 
-/**
- * This constructs all optional managers based off of the application manifest
- * @returns {void}
- */
-- (void) constructOptionialManagersFromManagerManifest {
-    // Check manifest and construct managers
-}
-
 #pragma mark Application Delegate
 /**
- * This is called when we should present our first view controller.
+ * Called when we should present our first view controller.
  */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Record Metrics
     applicationLaunchBeginTime = [[NSDate date] timeIntervalSince1970];
     
+    // Set the window so we can render stuff
     self.window = [self applicationWindow];
     self.window.backgroundColor = [UIColor blackColor];
     
@@ -321,7 +256,7 @@
     [self saveCacheData];
 }
 
-#pragma mark Memory Management Utils
+#pragma mark Memory Management Utilities
 
 /**
  * This saves all cache data.
@@ -338,7 +273,6 @@
 - (void) freeRapidSplashManager {
     rapidStartManager = NULL;
 }
-
 
 /**
  * Displays startup metrics after launch.
@@ -370,29 +304,18 @@
     NSLog(@"%@",logString);
 }
 
-#pragma mark Catagories Variables Map
-
-/**
- * Retrives or creates the catagory extension map.
- */
-- (NSMutableDictionary*) catagoriesMap {
-    if ( !_catagoriesMap )
-        _catagoriesMap = [[NSMutableDictionary alloc] init];
-    return _catagoriesMap;
-}
 
 #pragma mark Singletons
 
 /**
- * A singleton reference to the application.
- * @returns {IonApplication*} reference to the application, or NULL if
- *    your not using a IonApplication as your delegate.
+ * Gets the current application delegate object.
+ * @returns {instancetype} the current app delegate, or NULL.
  */
-+ (IonApplication*) sharedApplication {
-    id retrievedApplication = [UIApplication sharedApplication].delegate;
-    if ( !retrievedApplication || ! [retrievedApplication isKindOfClass: [IonApplication class]])
++ (instancetype) sharedApplication {
+    id currentDelegate = [UIApplication sharedApplication].delegate;
+    if ( ![currentDelegate isKindOfClass: [self class]] )
         return NULL;
-    return retrievedApplication;
+    return currentDelegate;
 }
 
 @end
