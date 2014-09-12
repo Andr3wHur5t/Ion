@@ -30,7 +30,8 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 // Key Value Observation
 #import "IonKeyValueObserver.h"
 
-// String Conversions
+// String
+#import "NSString+Utilities.h"
 #import "NSString+TypeExtension.h"
 
 // Color Conversion 

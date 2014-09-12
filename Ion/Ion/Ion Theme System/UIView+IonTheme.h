@@ -21,9 +21,16 @@ static NSString* sIonThemeElementButton_SizeKey =                           @"si
 
 /** Label */
 static NSString* sIonThemeElementLabel =                                    @"label";
-static NSString* sIonThemeLabel_TextColor =                                 @"textColor";
-static NSString* sIonThemeLabel_Font =                                      @"font";
-static NSString* sIonThemeLabel_TextAlignment =                             @"textAlignment";
+
+/** Text Field */
+static NSString* sIonThemeElementTextField =                                @"textField";
+
+/** Text */
+static NSString* sIonThemeText_Color =                                      @"textColor";
+static NSString* sIonThemeText_Font =                                       @"font";
+static NSString* sIonThemeText_Alignment =                                  @"textAlignment";
+static NSString* sIonThemeText_PlaceholderFont =                            @"placeholderFont";
+static NSString* sIonThemeText_PlaceholderColor =                           @"placeholderColor";
 
 /** Title Bar */
 static NSString* sIonThemeElementTitleBar =                                 @"titleBar";

@@ -81,7 +81,7 @@
  * @returns {void}
  */
 - (void) updateFrame {
-    [self setFrame: [self  currentFrame]];
+    [self setFrame: [self currentFrame]];
 }
 
 #pragma mark Style application
@@ -335,15 +335,17 @@
     
     _centerView.topSizeGuide = contentGroup.originExternalGuideVert;
     _centerView.bottomSizeGuide = contentGroup.sizeExternalGuideVert;
-    
-    if ( _rightView )
-        _centerView.rightSizeGuide = _rightView.leftMargin;
-    else
+
+//      There is a sizing bug in the guide system that needs to be fixed first.
+//    if ( _rightView )
+//        _centerView.rightSizeGuide = _rightView.leftMargin;
+//    else
         _centerView.rightSizeGuide = contentGroup.oneForthExternalGuideHoriz;
     
-    if ( _leftView )
-        _centerView.leftSizeGuide = _leftView.rightMargin;
-    else
+//    There is a sizing bug in the guide system that needs to be fixed first.
+//    if ( _leftView )
+//        _centerView.leftSizeGuide = _leftView.rightMargin;
+//    else
         _centerView.leftSizeGuide = contentGroup.threeForthsExternalGuideHoriz;
     
     [_centerView setGuidesWithLocalVert: _centerView.centerGuideVert

@@ -16,6 +16,14 @@
 @class IonGradientConfiguration;
 @class IonLinearGradientConfiguration;
 
+
+/** Regular Expression keys */
+static NSString* sIonRegularExpression_type = @"type";
+static NSString* sIonRegularExpression_content = @"content";
+static NSString* sIonRegularExpression_type_Literal = @"LITERAL";
+static NSString* sIonRegularExpression_type_Inclusive = @"INCLUSIVE";
+static NSString* sIonRegularExpression_type_Exclusive = @"EXCLUSIVE";
+
 /**
  * Contains commonly used dictionary utilities, as well as Ion type conversions.
  * Type conversion function name notation is as fallows: <typeShortName>forKey:(id) key;
@@ -145,8 +153,58 @@
  */
 - (NSTextAlignment) textAlignmentForKey:(id) key;
 
-#pragma mark Multidimensional Vectors
+#pragma mark Keyboard
+/**
+ * Gets the KeyboardType representation at the specified key.
+ * @param {id} the key for the keyboardTyper.
+ * @returns {NSTextAlignment}
+ */
+- (UIKeyboardType) keyboardTypeForKey:(id) key;
 
+/**
+ * Gets the KeyboardAppearence representation at the specified key.
+ * @param {id} the key for the keyboardAppearence.
+ * @returns {UIKeyboardAppearance}
+ */
+- (UIKeyboardAppearance) keyboardAppearenceForKey:(id) key;
+
+/**
+ * Gets the ReturnKeyType representation at the specified key.
+ * @param {id} the key for the ReturnKeyType.
+ * @returns {UIReturnKeyType}
+ */
+- (UIReturnKeyType) returnKeyTypeForKey:(id) key;
+
+/**
+ * Gets the UITextAutocapitalizationType representation at the specified key.
+ * @param {id} the key for the UITextAutocapitalizationType.
+ * @returns {UITextAutocapitalizationType}
+ */
+- (UITextAutocapitalizationType) autocapitalizationTypeForKey:(id) key;
+
+/**
+ * Gets the UITextAutocorrectionType representation at the specified key.
+ * @param {id} the key for the UITextAutocorrectionType.
+ * @returns {UITextAutocorrectionType}
+ */
+- (UITextAutocorrectionType) autocorrectionTypeForKey:(id) key;
+
+/**
+ * Gets the UITextSpellCheckingType representation at the specified key.
+ * @param {id} the key for the UITextSpellCheckingType.
+ * @returns {UITextSpellCheckingType}
+ */
+- (UITextSpellCheckingType) spellcheckTypeForKey:(id) key;
+
+#pragma mark Regular Expression
+/**
+ * Converts the object at the specified key into a regular expression.
+ * @param {id} the key of the object to process.
+ * @returns {NSRegularExpression}
+ */
+- (NSRegularExpression *)expressionForKey:(id) key;
+
+#pragma mark Multidimensional Vectors
 /**
  * Gets the CGPoint equivalent of the value.
  * @param {id} the key to get the value from.

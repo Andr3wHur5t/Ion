@@ -11,7 +11,6 @@
 #import <IonData/IonData.h>
 
 @implementation NSDictionary (IonThemeResolution)
-
 /**
  * Returns the specified keys' value as a UIColor.
  * @param {id} the key of the value.

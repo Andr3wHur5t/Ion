@@ -10,6 +10,7 @@
 #import <IonData/IonData.h>
 #import "IonApplication.h"
 #import "IonViewMotionGestureManager.h"
+#import "UIView+FirstResponderSearch.h"
 
 @interface IonViewController () {
     CGRect oldFrame;
@@ -63,6 +64,18 @@
     return (IonView*)super.view;
 }
 
+#pragma mark Touch Delegation
+/**
+ * Responds to touch begain events.
+ * @param {NSSet*} the current touches
+ * @param {UIEvent*} the current event information accociated with the event
+ */
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    // Automaticly removes current first responder on external selection.
+    [self removeCurrentResponderFromHierarchy];
+}
+
 #pragma mark Motion Delegation
 
 /**
@@ -103,6 +116,14 @@
     
     if ( [delegate conformsToProtocol: @protocol(IonViewMotionGestureDelegate)] )
         [self.viewMotionGestureManager removeGestureDelegate: delegate];
+}
+
+#pragma mark Responder Management
+/**
+ * Removes the current responder in our view hierarchy.
+ */
+- (void) removeCurrentResponderFromHierarchy {
+    [[self.view ionFristResponder] resignFirstResponder];
 }
 
 #pragma mark Ion Controller Interface
@@ -241,7 +262,7 @@
 #pragma mark Motion Delegate Interface
 
 /**
- * Enable the reciveing of motion events.
+ * Enable the receiving of motion events.
  */
 - (BOOL) canBecomeFirstResponder {
     return TRUE;

@@ -14,12 +14,18 @@
 #import "IonImageRef.h"
 #import "IonGradientConfiguration.h"
 #import "UIColor+IonColor.h"
+#import "NSString+Utilities.h"
 
+// Enviorment variables
+#define DebugIonTheme [[[[NSProcessInfo processInfo] environment] objectForKey: @"DebugIonTheme"] boolValue]
+#define DebugIonThemeEmpty [[[[NSProcessInfo processInfo] environment] objectForKey: @"DebugIonThemeEmpty"] boolValue]
 
+// Log Functions
+#define IonReport(args...) if( DebugIonTheme ) NSLog(@"%s - %@",__PRETTY_FUNCTION__, [NSString stringWithFormat: args]);
+#define IonReportEmpty(args...) if( DebugIonThemeEmpty ) IonReport(args);
 
 @implementation NSDictionary (IonTypeExtension)
 #pragma mark Fundamental Objects
-
 /**
  * Gets the NSString of the keyed value.
  * @param {id} the key to get the value from.
@@ -27,12 +33,23 @@
  */
 - (NSString*) stringForKey:(id) key {
     NSString* str;
-    if ( !key )
+    
+    
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return NULL;
+    }
     
     str = [self objectForKey: key];
-    if ( !str || ![str isKindOfClass: [NSString class]] )
+    if ( !str ) {
+        IonReportEmpty( @"\"%@\" dose not exsist!", key );
         return NULL;
+    }
+    if ( ![str isKindOfClass: [NSString class]] ) {
+        IonReport( @"\"%@\" is not a string.", key );
+        return NULL;
+    }
     
     return str;
 }
@@ -44,12 +61,22 @@
  */
 - (NSDictionary*) dictionaryForKey:(id) key {
     NSDictionary* dict;
-    if ( !key )
+    
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return NULL;
+    }
     
     dict = [self objectForKey: key];
-    if ( !dict || ![dict isKindOfClass: [NSDictionary class]] )
+    if ( !dict ) {
+        IonReportEmpty( @"\"%@\" dose not exsist!", key );
         return NULL;
+    }
+    if ( ![dict isKindOfClass: [NSDictionary class]] ) {
+        IonReport( @"\"%@\" is not a dictionary.", key );
+        return NULL;
+    }
     
     return dict;
 }
@@ -61,12 +88,22 @@
  */
 - (NSArray*) arrayForKey:(id) key {
     NSArray* arr;
-    if ( !key )
+    
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return NULL;
+    }
     
     arr = [self objectForKey: key];
-    if ( !arr || ![arr isKindOfClass: [NSArray class]] )
+    if ( !arr ) {
+        IonReportEmpty( @"\"%@\" dose not exsist!", key );
         return NULL;
+    }
+    if ( ![arr isKindOfClass: [NSArray class]] ) {
+        IonReport( @"\"%@\" is not an array.", key );
+        return NULL;
+    }
     
     return arr;
 }
@@ -78,12 +115,22 @@
  */
 - (NSNumber*) numberForKey:(id) key {
     NSNumber* num;
-    if ( !key )
+    
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return NULL;
+    }
     
     num = [self objectForKey: key];
-    if ( !num || ![num isKindOfClass: [NSNumber class]] )
+    if ( !num ) {
+        IonReportEmpty( @"\"%@\" dose not exsist!", key );
         return NULL;
+    }
+    if ( ![num isKindOfClass: [NSNumber class]] ) {
+        IonReport( @"\"%@\" is not a number", key );
+        return NULL;
+    }
     
     return num;
 }
@@ -95,8 +142,11 @@
  */
 - (BOOL) boolForKey:(id) key {
     NSNumber* num;
-    if ( !key )
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return NO;
+    }
     
     num = [self numberForKey: key];
     if ( !num )
@@ -106,7 +156,6 @@
 }
 
 #pragma mark Configuration Objects
-
 /**
  * Gets the UIColor of the keyed value.
  * Note: will only convert from Hex in any of the following formats #RBG #RBGA #RRBBGG #RRBBGGAA
@@ -115,8 +164,12 @@
  */
 - (UIColor*) colorFromKey:(id) key {
     NSString* hexString;
-    if ( !key )
+    
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return NULL;
+    }
 
     hexString = [self stringForKey: key];
     if ( !hexString )
@@ -132,8 +185,12 @@
  */
 - (IonColorWeight*) colorWeightForKey:(id) key {
     NSDictionary* dict;
-    if ( !key )
+    
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return NULL;
+    }
     
     dict = [self dictionaryForKey: key];
     if ( !dict )
@@ -170,12 +227,16 @@
     NSArray *rawColorWeights;
     NSMutableArray* colorWeights;
     
-    if ( !key )
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return NULL;
+    }
     
     dict = [self dictionaryForKey: key];
     if ( !dict )
         return NULL;
+    
     
     rawColorWeights = [self arrayForKey: sIonWeightKey];
     if ( !rawColorWeights )
@@ -195,13 +256,16 @@
  */
 - (IonGradientConfiguration*) gradientConfigurationForKey:(id) key {
     NSDictionary* dict;
-    if ( !key )
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return NULL;
+    }
     
     dict = [self dictionaryForKey: key];
     if ( !dict )
         return NULL;
-    
+        
     return [dict toGradientConfiguration];
 }
 
@@ -216,7 +280,7 @@
     type = [self stringForKey: sIonGradientTypeKey];
     if ( !type )
         return NULL;
-    
+        
     if ( [type isEqualToString: sIonGradientTypeLinear] )
         gradConfig = [self toLinearGradientConfiguration];
     else
@@ -232,8 +296,11 @@
  */
 - (IonLinearGradientConfiguration*) linearGradientConfigurationForKey:(id) key {
     NSDictionary* dict;
-    if ( !key )
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return NULL;
+    }
     
     dict = [self dictionaryForKey: key];
     if ( !dict )
@@ -255,8 +322,10 @@
         return NULL;
     
     angle = [self numberForKey: sIonGradientAngleKey];
-    if ( !angle )
+    if ( !angle ) {
+        IonReport( @"No valid angle specified defaulting to 90" );
         angle = @90.0f;
+    }
     
     return [[IonLinearGradientConfiguration alloc] initWithColor: colorWeights andAngel: [angle floatValue]];
 }
@@ -270,8 +339,11 @@
 - (IonImageRef*) imageRefFromKey:(id) key {
     NSString* fileNameString;
     IonImageRef* result;
-    if ( !key )
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return NULL;
+    }
     
     result = [[IonImageRef alloc] init];
     fileNameString = [self stringForKey: key];
@@ -283,7 +355,6 @@
 }
 
 #pragma mark Fonts
-
 /**
  * Converts the dictionary to a font.
  * @returns {UIFont*} the resulting font, or NULL if invalid.
@@ -310,6 +381,12 @@
  */
 - (UIFont*) fontForKey:(id) key {
     NSDictionary* dict;
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
+        return NULL;
+    }
+    
     dict = [self dictionaryForKey: key];
     if ( !dict )
         return NULL;
@@ -324,14 +401,189 @@
  */
 - (NSTextAlignment) textAlignmentForKey:(id) key {
     NSString* val;
-    if ( !key )
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return NSTextAlignmentNatural;
+    }
     
     val = [self stringForKey: key];
     if ( !val )
         return NSTextAlignmentNatural;
     
     return [val toTextAlignment];
+}
+
+#pragma mark Keyboard
+/**
+ * Gets the KeyboardType representation at the specified key.
+ * @param {id} the key for the keyboardType.
+ * @returns {UIKeyboardType}
+ */
+- (UIKeyboardType) keyboardTypeForKey:(id) key {
+    NSString* val;
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
+        return UIKeyboardTypeDefault;
+    }
+    
+    val = [self stringForKey: key];
+    if ( !val )
+        return UIKeyboardTypeDefault;
+    
+    return [val toKeyboardType];
+}
+
+/**
+ * Gets the KeyboardAppearence representation at the specified key.
+ * @param {id} the key for the keyboardAppearence.
+ * @returns {UIKeyboardAppearance}
+ */
+- (UIKeyboardAppearance) keyboardAppearenceForKey:(id) key {
+    NSString* val;
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
+        return UIKeyboardAppearanceDefault;
+    }
+    
+    val = [self stringForKey: key];
+    if ( !val )
+        return UIKeyboardAppearanceDefault;
+    
+    return [val toKeyboardAppearence];
+}
+
+/**
+ * Gets the ReturnKeyType representation at the specified key.
+ * @param {id} the key for the ReturnKeyType.
+ * @returns {UIReturnKeyType}
+ */
+- (UIReturnKeyType) returnKeyTypeForKey:(id) key {
+    NSString* val;
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
+        return UIReturnKeyDefault;
+    }
+    
+    val = [self stringForKey: key];
+    if ( !val )
+        return UIReturnKeyDefault;
+    
+    return [val toReturnKeyType];
+}
+
+/**
+ * Gets the UITextAutocapitalizationType representation at the specified key.
+ * @param {id} the key for the UITextAutocapitalizationType.
+ * @returns {UITextAutocapitalizationType}
+ */
+- (UITextAutocapitalizationType) autocapitalizationTypeForKey:(id) key {
+    NSString* val;
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
+        return UITextAutocapitalizationTypeSentences;
+    }
+    
+    val = [self stringForKey: key];
+    if ( !val )
+        return UITextAutocapitalizationTypeSentences;
+
+    return [val toAutocapitalizationType];
+}
+
+/**
+ * Gets the UITextAutocorrectionType representation at the specified key.
+ * @param {id} the key for the UITextAutocorrectionType.
+ * @returns {UITextAutocorrectionType}
+ */
+- (UITextAutocorrectionType) autocorrectionTypeForKey:(id) key {
+    NSString* val;
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
+        return UITextAutocorrectionTypeDefault;
+    }
+    
+    val = [self stringForKey: key];
+    if ( !val )
+        return UITextAutocorrectionTypeDefault;
+    
+    return [val toAutocorrectionType];
+}
+
+/**
+ * Gets the UITextSpellCheckingType representation at the specified key.
+ * @param {id} the key for the UITextSpellCheckingType.
+ * @returns {UITextSpellCheckingType}
+ */
+- (UITextSpellCheckingType) spellcheckTypeForKey:(id) key {
+    NSString* val;
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
+        return UITextSpellCheckingTypeDefault;
+    }
+    
+    val = [self stringForKey: key];
+    if ( !val )
+        return UITextSpellCheckingTypeDefault;
+    
+    return [val toSpellCheckingType];
+}
+
+#pragma mark Regular Expression
+/**
+ * Converts the object at the specified key into a regular expression.
+ * @param {id} the key of the object to process.
+ * @returns {NSRegularExpression}
+ */
+- (NSRegularExpression *)expressionForKey:(id) key {
+    NSString *type, *content;
+    id value;
+    
+    NSParameterAssert( key );
+    if ( !key )
+        return NULL;
+    
+    value = [self objectForKey: key];
+    if ( !value ) {
+        IonReport( @"No value at the target key." );
+        return NULL;
+    }
+    
+    if ( [value isKindOfClass: [NSString class]] )
+        return [value toExpresion];
+    else if ( [value isKindOfClass: [NSDictionary class]] ) {
+        // Get type
+        type = [value objectForKey: sIonRegularExpression_type];
+        if ( !type || ![type isKindOfClass: [NSString class]] ) {
+            IonReport( @"Type was not a string, defaulting to literal processing.");
+            type = sIonRegularExpression_type_Literal; // Default to the content being literal
+        }
+        
+        // Get content
+        content = [value objectForKey: sIonRegularExpression_content];
+        if ( !content || ![content isKindOfClass: [NSString class]] ) {
+            IonReport( @"Content was not a string!" );
+            return NULL; // We have no valid content, don't bother doing anything else
+        }
+        
+        // Create pattern
+        if ( [type.uppercaseString isEqualToString: sIonRegularExpression_type_Inclusive] )
+            return [content toInclusiveExpression];
+        else if ( [type.uppercaseString isEqualToString: sIonRegularExpression_type_Exclusive] )
+            return [content toExclusiveExpression];
+        else // Literal
+            return [content toExpresion];
+    }
+    else {
+        IonReport( @"%@ is not a valid type for regular expression generation.", NSStringFromClass( [value class] ));
+        return NULL; // Not a supported type NULL
+    }
 }
 
 #pragma mark Multidimensional Vectors
@@ -342,8 +594,12 @@
  */
 - (CGPoint) pointForKey:(id) key {
     NSDictionary* dict;
-    if ( !key )
+    
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return CGPointUndefined;
+    }
     
     dict = [self dictionaryForKey: key];
     if ( !dict )
@@ -367,9 +623,12 @@
  */
 - (CGSize) sizeForKey:(id) key {
     NSDictionary* dict;
+    
     NSParameterAssert( key );
-    if ( !key )
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return CGSizeUndefined;
+    }
     
     dict = [self dictionaryForKey: key];
     if ( !dict )
@@ -384,9 +643,6 @@
  */
 - (CGSize) toSize {
     CGPoint reference = [self toVec2UsingX1: sIonWidthKey andY1: sIonHeightKey];
-    if ( CGPointEqualToPoint( reference, CGPointUndefined ) )
-        return CGSizeUndefined;
-    
     return (CGSize){ reference.x, reference.y };
 }
 
@@ -397,8 +653,12 @@
  */
 - (CGRect) rectForKey:(id) key {
     NSDictionary* dict;
-    if ( !key )
+    
+    NSParameterAssert( key );
+    if ( !key ) {
+        IonReport( @"No key specified." );
         return CGRectUndefined;
+    }
     
     dict = [self dictionaryForKey: key];
     if ( !dict )
@@ -429,13 +689,14 @@
  */
 - (CGPoint) toVec2UsingX1:(id) x1key andY1:(id) y1Key {
     NSNumber *x1, *y1;
-    if ( !x1key || !y1Key )
+    if ( !x1key || !y1Key ) {
+        IonReport( @"A key was not specified." );
         return CGPointUndefined;
+    }
     
-    x1 = [self objectForKey: x1key];
-    y1 = [self objectForKey: y1Key];
-    if ( !x1 || ![x1 isKindOfClass: [NSNumber class]] ||
-        !y1 || ![y1 isKindOfClass: [NSNumber class]])
+    x1 = [self numberForKey: x1key];
+    y1 = [self numberForKey: y1Key];
+    if ( !x1 || !y1)
         return CGPointUndefined;
     
     return (CGPoint){ [x1 floatValue], [y1 floatValue] };
@@ -453,14 +714,11 @@
     if ( !x1key || !y1Key )
         return CGRectUndefined;
     
-    x1 = [self objectForKey: x1key];
-    y1 = [self objectForKey: y1Key];
-    x2 = [self objectForKey: x2Key];
-    y2 = [self objectForKey: y2Key];
-    if ( !x1 || ![x1 isKindOfClass: [NSNumber class]] ||
-        !y1 || ![y1 isKindOfClass: [NSNumber class]] ||
-        !y2 || ![y2 isKindOfClass: [NSNumber class]] ||
-        !x2 || ![x2 isKindOfClass: [NSNumber class]])
+    x1 = [self numberForKey: x1key];
+    y1 = [self numberForKey: y1Key];
+    x2 = [self numberForKey: x2Key];
+    y2 = [self numberForKey: y2Key];
+    if ( !x1 || !y1 || !y2 || !x2 )
         return CGRectUndefined;
     
     return (CGRect){ [x1 floatValue], [y1 floatValue], [x2 floatValue], [y2 floatValue] };
@@ -492,7 +750,8 @@
  */
 - (NSDictionary*) overriddenByDictionary:(NSDictionary*) overridingDictionary {
     NSMutableDictionary* opDict;
-    if ( !overridingDictionary )
+    NSParameterAssert( overridingDictionary && [overridingDictionary isKindOfClass: [NSDictionary class]] );
+    if ( !overridingDictionary || ![overridingDictionary isKindOfClass: [NSDictionary class]] )
         return [[NSDictionary alloc] initWithDictionary: self];
     
     opDict = [[NSMutableDictionary alloc] initWithDictionary: self];
@@ -512,7 +771,8 @@
 - (NSDictionary*) overriddenByDictionaryRecursively:(NSDictionary*) overridingDictionary {
     NSMutableDictionary* opDict;
     __block id currentItem;
-    if ( !overridingDictionary )
+    NSParameterAssert( overridingDictionary && [overridingDictionary isKindOfClass: [NSDictionary class]] );
+    if ( !overridingDictionary || ![overridingDictionary isKindOfClass: [NSDictionary class]] )
         return [[NSDictionary alloc] initWithDictionary: self];
     
     opDict = [[NSMutableDictionary alloc] initWithDictionary: self];
@@ -541,19 +801,10 @@
  * @returns {NSString*} the sanitized string, or NULL if invalid.
  */
 + (NSString*) sanitizeKey:(NSString*) key {
-    NSRegularExpression* sanitizationExpression;
+    NSParameterAssert( key && [key isKindOfClass: [NSString class]] );
     if ( !key || ![key isKindOfClass: [NSString class]] )
         return NULL;
-    
-    // Create Expression
-    sanitizationExpression = [[NSRegularExpression alloc] initWithPattern: @"[^a-zA-Z0-9\\@\\$\\&\\?\\[\\]\\~\\(\\)\\*\\+\\&/_]+"
-                                                      options: 0
-                                                        error: NULL];
-    
-    return [sanitizationExpression stringByReplacingMatchesInString: key
-                                                            options: 0
-                                                              range: NSMakeRange(0, key.length)
-                                                       withTemplate: @"-"];;
+    return [key replaceMatches: [@"[^a-zA-Z0-9\\@\\$\\&\\?\\[\\]\\~\\(\\)\\*\\+\\&/_]+" toExpresion] withString: @"-"];
 }
 
 
@@ -564,7 +815,9 @@
  * @returns {NSString*} the JSON representation
  */
 - (NSString*) toJSON {
-    return [[NSJSONSerialization dataWithJSONObject: self options:NSJSONWritingPrettyPrinted error:NULL] toString];
+    return [[NSJSONSerialization dataWithJSONObject: self
+                                            options: NSJSONWritingPrettyPrinted
+                                              error: NULL] toString];
 }
 
 @end
