@@ -328,7 +328,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
     if ( CGSizeEqualToSize( frame.size , CGSizeZero ) )
         frame.size = self.frame.size;
     else if ( self.guideSet.leftSizeGuide )
-        NSLog(@"remove me <afsdg>");
+        ;// NSLog(@"remove me <afsdg>");
     
     [self logAutoFrameChange];
     // Update frame

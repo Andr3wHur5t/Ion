@@ -8,7 +8,7 @@
         "PlaceHolderColor": "Gray",
         "SearchIconColor": "GrayExtraDark",
         
-        "Clear": "#0004",
+        "Clear": "#0000",
         "CleanWhite": "#F5F5F5",
         
         "SpottrNorm": "#F2393B",
@@ -30,6 +30,7 @@
         "SystemTextColor": "CleanWhite",
         "SystemPrimaryTextColor": "GrayDark",
         "SyetemSecondaryTextColor": "GrayLight",
+        "SyetemPlaceholderColor":"Gray",
         "SystemSeperatorColor": "GrayExteaLight",
         "SystemButtonNorm": "CleanWhite",
         "SystemButtonDown": "GrayLight",
@@ -282,6 +283,9 @@
         "font": { "name": "Helvetica Neue", "size": 12 },
         "textAlignment": "left",
         
+        "placeholderFont":{ "name": "Helvetica Neue", "size": 12 },
+        "placeholderColor": "SyetemPlaceholderColor",
+        
         "cornerRadius": 0.0,
         "styleMargin": {"width": 18.0, "height": 10.0},
         "stylePadding": {"width": 18.0, "height": 5.0},
@@ -299,28 +303,53 @@
             "label": {
                 "background": { "type": "color", "name": "Clear" }
             },
+            "cls_searchBar":{
+                "background": { "type": "color", "name": "CleanWhite" },
+                "cornerRadius": 0,
+                
+                "textColor": "SystemPrimaryTextColor",
+                "font": { "name": "Helvetica Neue", "size": 14 },
+                
+                "placeholderFont":{ "name": "Helvetica Neue", "size": 14 },
+                "placeholderColor": "SyetemPlaceholderColor",
+                
+                "keyboard": {
+                    "keyboardType": "default",
+                    "keyboardAppearence": "light",
+                    "returnKeyType": "done",
+                    
+                    "autoCapitalizationType":"sentences",
+                    "autocorrectType":"default",
+                    "spellCheck":"default"
+                },
+                "inputFilter": {
+                    "filterExpression":{"type":"literal", "content":""},
+                    "minChars": 1,
+                    "maxChars": 128
+                }
+            },
             "titleBar": {
                 "background": { "type": "color", "name": "TitleBarColor" },
+                
                 "font": { "size": 18 },
                 "textAlignment": "center",
+                
                 "buttonStats": {
                     "norm": "TitleButtonStateNorm",
                     "down": "TitleButtonStateDown",
                     "selected": "TitleButtonStateSelected",
                     "disabled": "TitleButtonStateDisabled"
                 },
-                "button":{
-                    "size":{"width": 30, "height": 30}
-                },
+                "button":{ "size":{"width": 30, "height": 30} }
             },
             "sub-bar": {
-                "background": { "type": "color", "name": "SubBarColor" },
+                "background": { "type": "color", "name": "CleanWhite" },
             },
             "button":{
                 "background": { "type": "color", "name": "CleanWhite" }
             },
             "body":{
-                "background": { "type": "color", "name": "DefaultBody" }
+                "background": { "type": "color", "name": "CleanWhite" }
             }
         }
     }

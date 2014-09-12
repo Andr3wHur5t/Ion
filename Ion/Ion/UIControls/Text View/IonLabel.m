@@ -189,13 +189,13 @@
 
 - (void) applyStyle:(IonStyle*) style {
     // Text Color
-    self.textColor = [style.configuration colorForKey: sIonThemeLabel_TextColor usingTheme: style.theme ];
+    self.textColor = [style.configuration colorForKey: sIonThemeText_Color usingTheme: style.theme];
     
     // Font
-    self.font = [style.configuration fontForKey: sIonThemeLabel_Font];
+    self.font = [style.configuration fontForKey: sIonThemeText_Font];
     
     // Alignment
-    self.textAlignment = [style.configuration textAlignmentForKey: sIonThemeLabel_TextAlignment];
+    self.textAlignment = [style.configuration textAlignmentForKey: sIonThemeText_Alignment];
 }
 
 #pragma mark Defaults

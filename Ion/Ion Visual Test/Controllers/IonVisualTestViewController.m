@@ -8,6 +8,8 @@
 
 #import "IonVisualTestViewController.h"
 
+
+
 @interface IonVisualTestViewController () {
     IonSimpleCache* sc;
     IonTitleBar* titleBar;
@@ -56,22 +58,35 @@
  */
 - (void) constructContentBar {
     IonInterfaceButton* button;
+    IonTextField *textInput;
     
     containerView = [[IonView alloc] init];
     
+    // Button
     button = [[IonInterfaceButton alloc] initWithFileName: @"Hamburger"];
     [button setGuidesWithLocalVert: button.centerGuideVert
                         localHoriz: button.originGuideHoriz
                          superVert: containerView.centerGuideVert
                      andSuperHoriz: containerView.leftPadding];
     
+    // text input
+    textInput = [[IonTextField alloc] initWithFrame: (CGRect){ CGPointZero, (CGSize){ 275, 30 } }];
+    [textInput setGuidesWithLocalVert: textInput.centerGuideVert
+                           localHoriz: textInput.centerGuideHoriz
+                            superVert: containerView.centerGuideVert
+                        andSuperHoriz: containerView.centerGuideHoriz];
+    textInput.placeholder = @"Search For A Name";
+    textInput.themeClass = @"searchBar";
+    [containerView addSubview: textInput];
+    
+    // Container
     [containerView setSuperGuidesWithVert: titleBar.sizeGuideVert
                                  andHoriz: self.view.originGuideVert];
     containerView.themeElement = @"sub-bar";
     
-    containerView.frame = (CGRect){CGPointZero, (CGSize){ self.view.frame.size.width, 30 } };
+    containerView.frame = (CGRect){CGPointZero, (CGSize){ self.view.frame.size.width, 45 } };
     
-    [containerView addSubview: button];
+    //[containerView addSubview: button];
     [self.view addSubview: containerView];
 }
 
