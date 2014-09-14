@@ -54,6 +54,11 @@ static NSString* sIonThemeElementStateUnknown =                             @"st
 static NSString* sIonThemeView_StylePadding =                               @"stylePadding";
 static NSString* sIonThemeView_StyleMargin =                                @"styleMargin";
 
+/**
+ * Animation
+ */
+static NSString* sIonThemeView_AnimationDuration =                          @"animationDuration";
+
 @interface UIView (IonTheme) <IonThemeSpecialUIView>
 
 #pragma mark External Interface
@@ -102,7 +107,6 @@ static NSString* sIonThemeView_StyleMargin =                                @"st
 - (void) setStyle:(IonStyle*) style;
 
 #pragma mark View Positioning Properties
-
 /**
  * The style margin of the view.
  */
@@ -117,5 +121,11 @@ static NSString* sIonThemeView_StyleMargin =                                @"st
  * The auto margin which is decided via the the corner radius, and the style margin.
  */
 @property (assign, nonatomic, readonly) CGSize autoMargin;
+
+#pragma mark Animation Parameters
+/**
+ * The animation duration.
+ */
+@property (assign, nonatomic, readwrite) CGFloat animationDuration;
 
 @end

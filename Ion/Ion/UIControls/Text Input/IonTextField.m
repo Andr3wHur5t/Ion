@@ -25,7 +25,6 @@
 
 @implementation IonTextField
 
-@synthesize inputManager = _inputManager;
 @synthesize inputFilter = _inputFilter;
 
 #pragma mark Constructors
@@ -73,17 +72,7 @@
     _iAlpha = 1.0;
     // Set our theme properties.
     self.themeElement = sIonThemeElementTextField;
-    self.delegate = self.inputManager;
-}
-
-#pragma mark Input Manager
-/**
- * Gets, or constructs the input manager.
- */
-- (IonInputManager *)inputManager {
-    if ( !_inputManager )
-        _inputManager = [[IonInputManager alloc] init];
-    return _inputManager;
+    self.delegate = [IonInputManager sharedManager];
 }
 
 #pragma mark Input Filter
@@ -164,11 +153,14 @@
  * Gets called when we input fails our filter.
  */
 - (void) inputDidFailFilter {
-    // TODO: Remove magic numbers. :p
-    [UIView animateWithDuration: 0.15 animations: ^{
+    [UIView animateWithDuration: self.animationDuration / 2 animations: ^{
+        if ( super.alpha != _iAlpha )
+            return;
         super.alpha = _iAlpha - 0.4;
     } completion: ^(BOOL finished) {
-       [UIView animateWithDuration: 0.15 animations: ^{
+        if ( !finished )
+            return;
+       [UIView animateWithDuration: self.animationDuration / 2 animations: ^{
             super.alpha = _iAlpha;
         }];
     }];

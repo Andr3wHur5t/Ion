@@ -38,4 +38,10 @@
  * according to the IonInputManagerFilterSpec protocol.
  */
 @interface IonInputManager : NSObject <UITextFieldDelegate> // TODO: Add UITextViewDelegate functionality.
+/**
+ * Gets the shared input manager.
+ * @returns {instncetype}
+ */
++ (instancetype) sharedManager;
+
 @end

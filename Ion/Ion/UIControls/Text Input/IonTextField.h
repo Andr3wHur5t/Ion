@@ -35,19 +35,9 @@ static NSString *sIonTextField_InputFilterKey =                 @"inputFilter";
 
 #pragma mark Valadation
 /**
- * Input validation manager
- */
-@property (strong, nonatomic, readonly) IonInputManager *inputManager;
-
-/**
  * The input filter configuration.
  */
 @property (strong, nonatomic, readwrite) IonInputFilter *inputFilter;
-
-/**
- * The color to flash the text when an error occured.
- */
-@property (strong, nonatomic, readwrite) UIColor *valadationErrorColor;
 
 #pragma mark Events
 /**

@@ -183,6 +183,7 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
  * @returns {void}
  */
 - (void) applyStyle:(IonStyle*) style {
+    NSNumber *animationDuration;
     CGSize styleMargin, stylePadding;
     NSParameterAssert( style && [style isKindOfClass: [IonStyle class]] );
     if ( !style || ![style isKindOfClass: [IonStyle class]] )
@@ -199,6 +200,13 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
     if ( CGSizeEqualToSize( stylePadding, CGSizeUndefined) )
         stylePadding = CGSizeZero;
     self.stylePadding = stylePadding;
+    
+    // Get Animation Durration
+    animationDuration = [style.configuration numberForKey: sIonThemeView_AnimationDuration];
+    if ( !animationDuration )
+        animationDuration = @0.3;
+    self.animationDuration = [animationDuration floatValue];
+    
 }
 
 #pragma mark Style Margin
@@ -260,7 +268,7 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
  * @returns {NSSet*} the set
  */
 + (NSSet*) keyPathsForValuesAffectingAutoMargin {
-    return [NSSet setWithObjects: @"styleMargin", @"layer.cornerRadius", nil];
+    return [NSSet setWithObjects: @"stylePadding", @"layer.cornerRadius", nil];
 }
 
 /**
@@ -269,11 +277,33 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
  */
 - (CGSize) autoMargin {
     CGSize autoMargin;
-    autoMargin.width = MAX( self.styleMargin.width, self.layer.cornerRadius );
-    autoMargin.height = MAX( self.styleMargin.height, self.layer.cornerRadius );
+    autoMargin.width = MAX( self.stylePadding.width, self.layer.cornerRadius );
+    autoMargin.height = MAX( self.stylePadding.height, self.layer.cornerRadius );
     return autoMargin;
 }
 
+#pragma mark Animation Duration
+/**
+ * Set animation duration KVO to manual mode.
+ */
++ (BOOL) automaticallyNotifiesObserversOfAnimationDuration { return FALSE; }
+
+/**
+ * Sets the animation duration.
+ * @param {CGFloat} the new value.
+ */
+- (void) setAnimationDuration:(CGFloat) animationDuration {
+    [self willChangeValueForKey: @"animationDuration"];
+    [self.catagoryVariables setObject: [NSNumber numberWithDouble: animationDuration] forKey: @"animationDuration"];
+    [self didChangeValueForKey: @"animationDuration"];
+}
+
+/**
+ * Gets the animation duration.
+ */
+- (CGFloat) animationDuration {
+    return [[self.catagoryVariables numberForKey: @"animationDuration"] floatValue];
+}
 
 #pragma mark Utilities
 

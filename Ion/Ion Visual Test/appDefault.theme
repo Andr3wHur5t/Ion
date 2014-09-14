@@ -282,6 +282,7 @@
         "textColor": "SystemTextColor",
         "font": { "name": "Helvetica Neue", "size": 12 },
         "textAlignment": "left",
+        "animationDuration": 0.3,
         
         "placeholderFont":{ "name": "Helvetica Neue", "size": 12 },
         "placeholderColor": "SyetemPlaceholderColor",
@@ -294,38 +295,58 @@
             "size":{"width": 25, "height": 25}
         },
         
+        "iconSize": {"width": 20, "height": 20},
+        
         "titleBar":{
             "contentStatusBarOffset": -6.0,
             "contentHeight": 45.0,
+        },
+        
+        "keyboard": {
+            "keyboardType": "default",
+            "keyboardAppearence": "light",
+            "returnKeyType": "done",
+            
+            "autoCapitalizationType":"sentences",
+            "autocorrectType":"default",
+            "spellCheck":"default"
+        },
+        "inputFilter": {
+            "filterExpression":{"type":"literal", "content":""},
+            "minChars": 1,
+            "maxChars": 128
         },
         
         "children":{
             "label": {
                 "background": { "type": "color", "name": "Clear" }
             },
-            "cls_searchBar":{
+            "textField": {
                 "background": { "type": "color", "name": "CleanWhite" },
                 "cornerRadius": 0,
                 
                 "textColor": "SystemPrimaryTextColor",
-                "font": { "name": "Helvetica Neue", "size": 14 },
-                
-                "placeholderFont":{ "name": "Helvetica Neue", "size": 14 },
+                "font": { "name": "Helvetica Neue", "size": 16 },
+                "placeholderFont":{ "name": "Helvetica Neue", "size": 16 },
                 "placeholderColor": "SyetemPlaceholderColor",
-                
+            },
+            "cls_peopleSearch": {
+                "background": { "type": "color", "name": "CleanWhite" },
+                "cornerRadius": 15,
                 "keyboard": {
                     "keyboardType": "default",
-                    "keyboardAppearence": "light",
-                    "returnKeyType": "done",
-                    
-                    "autoCapitalizationType":"sentences",
-                    "autocorrectType":"default",
-                    "spellCheck":"default"
+                    "returnKeyType": "search",
+                    "autoCapitalizationType":"words",
                 },
-                "inputFilter": {
-                    "filterExpression":{"type":"literal", "content":""},
-                    "minChars": 1,
-                    "maxChars": 128
+                "stylePadding": {"width": 0.0, "height": 5.0},
+                
+                "children": {
+                    "icon":{
+                        "cornerRadius": 0.0,
+                        "background": { "type": "color", "name": "SystemPrimaryTextColor" },
+                        "iconImage":"General_Search",
+                        "styleMargin": {"width": 18.0, "height": 10.0},
+                    }
                 }
             },
             "titleBar": {
@@ -343,7 +364,7 @@
                 "button":{ "size":{"width": 30, "height": 30} }
             },
             "sub-bar": {
-                "background": { "type": "color", "name": "CleanWhite" },
+                "background": { "type": "color", "name": "SubBarColor" },
             },
             "button":{
                 "background": { "type": "color", "name": "CleanWhite" }
