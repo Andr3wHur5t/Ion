@@ -14,6 +14,7 @@
 #import "IonApplication+plistGetters.h"
 #import "IonApplication+Metrics.h"
 #import "IonApplication+RapidSplash.h"
+#import "IonApplication+Keyboard.h"
 
 // Demo Mode Only
 #import "IonDemoUIWindow.h"
@@ -32,8 +33,19 @@
     if (self) {
         // Record Metrics
         [self markStartUpInit];
+        
+        // Start receiving keyboard frame updates
+        [self startKeyboardObservation];
     }
     return self;
+}
+
+/**
+ * Deallocation.
+ */
+- (void) dealloc {
+    // Stop reciveing keyboard frame updates.
+    [self stopKeyboardObservation];
 }
 
 #pragma mark Window

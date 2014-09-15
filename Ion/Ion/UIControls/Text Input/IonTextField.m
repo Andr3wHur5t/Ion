@@ -178,8 +178,10 @@
  * Note: only will return if current input states are valid.
  */
 - (BOOL) tryReturn {
+    // Conciderations: structure Validation, return type, can return on invalid for key.
+    
     // Only Return if valid, and ! in forcive input mode
-    if ( !true )
+    if ( !true ) // Check for touch based return. if( touch && (Valid || CanRetunrOnInvalid))
         return FALSE;
     
     // Call our target action set for return key.

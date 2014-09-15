@@ -219,6 +219,8 @@
 		3783989D19C421EA000CE43D /* General_Edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 3783988119C41A63000CE43D /* General_Edit.png */; };
 		3783989E19C421EA000CE43D /* General_Hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = 3783988319C41A63000CE43D /* General_Hamburger.png */; };
 		3783989F19C421EA000CE43D /* General_Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 3783988719C41A63000CE43D /* General_Settings.png */; };
+		378398A319C5AE30000CE43D /* IonApplication+Keyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 378398A119C5AE30000CE43D /* IonApplication+Keyboard.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		378398A419C5AE30000CE43D /* IonApplication+Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 378398A219C5AE30000CE43D /* IonApplication+Keyboard.m */; };
 		37B9CD15197F8E6100424EFC /* IonImageRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF188197F8A1C004C14C8 /* IonImageRef.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37B9CD16197F8E6100424EFC /* IonAccessBasedGenerationMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF18C197F8A1C004C14C8 /* IonAccessBasedGenerationMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37B9CD17197F8E6100424EFC /* IonBalancedAccessBasedGenerationMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF18E197F8A1C004C14C8 /* IonBalancedAccessBasedGenerationMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -516,6 +518,8 @@
 		3783988719C41A63000CE43D /* General_Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = General_Settings.png; sourceTree = "<group>"; };
 		3783989119C41AA0000CE43D /* IonIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonIcon.h; path = UIControls/IonIcon/IonIcon.h; sourceTree = "<group>"; };
 		3783989219C41AA0000CE43D /* IonIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonIcon.m; path = UIControls/IonIcon/IonIcon.m; sourceTree = "<group>"; };
+		378398A119C5AE30000CE43D /* IonApplication+Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IonApplication+Keyboard.h"; sourceTree = "<group>"; };
+		378398A219C5AE30000CE43D /* IonApplication+Keyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IonApplication+Keyboard.m"; sourceTree = "<group>"; };
 		37B9CD20197FA12800424EFC /* UIColor+IonColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+IonColor.h"; sourceTree = "<group>"; };
 		37B9CD21197FA12800424EFC /* UIColor+IonColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+IonColor.m"; sourceTree = "<group>"; };
 		37E6816219975709005096AC /* IonInterfaceButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonInterfaceButton.h; path = UIControls/IonInterfaceButton.h; sourceTree = "<group>"; };
@@ -1131,6 +1135,7 @@
 		373A43E619B07CA7008D1832 /* Application Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				378398A019C5AE15000CE43D /* Keyboard */,
 				3737DC4D19BF0FC8005763C2 /* Status Bar */,
 				3737DC5119BF0FF7005763C2 /* Responder */,
 				3737DC4F19BF0FE3005763C2 /* Metrics */,
@@ -1541,6 +1546,15 @@
 				3783989219C41AA0000CE43D /* IonIcon.m */,
 			);
 			name = "Ion Icon";
+			sourceTree = "<group>";
+		};
+		378398A019C5AE15000CE43D /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				378398A119C5AE30000CE43D /* IonApplication+Keyboard.h */,
+				378398A219C5AE30000CE43D /* IonApplication+Keyboard.m */,
+			);
+			name = Keyboard;
 			sourceTree = "<group>";
 		};
 		37B9CD1E197FA12800424EFC /* Data Utilities */ = {
@@ -1986,6 +2000,7 @@
 				376DA8C519791299008D692E /* IonThemePointer.h in Headers */,
 				37F4E05919A9598B004A1734 /* IonGuideGroup.h in Headers */,
 				3737DC4B19BF0D0E005763C2 /* UIView+FirstResponderSearch.h in Headers */,
+				378398A319C5AE30000CE43D /* IonApplication+Keyboard.h in Headers */,
 				373A43E019B07073008D1832 /* IonApplication+plistGetters.h in Headers */,
 				37721A1F19AD21FF005149BD /* IonGuideLine+DefaultConstructors.h in Headers */,
 				370A22A819A67F33006FCD75 /* IonGuideLine.h in Headers */,
@@ -2345,6 +2360,7 @@
 				37721A0C19AB2A80005149BD /* IonStatusBarBehaviorMotionGestureDisplay.m in Sources */,
 				370588A81999E60400597822 /* UIView+IonPositionAndOrientation.m in Sources */,
 				376DA8C619791299008D692E /* IonThemePointer.m in Sources */,
+				378398A419C5AE30000CE43D /* IonApplication+Keyboard.m in Sources */,
 				373A43E519B07C79008D1832 /* IonApplication+Metrics.m in Sources */,
 				371D5D70197FB15000485DC0 /* IonKVP+IonTheme.m in Sources */,
 				370A229A19A2C420006FCD75 /* IonLabel.m in Sources */,

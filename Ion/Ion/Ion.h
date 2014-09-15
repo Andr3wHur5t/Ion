@@ -30,6 +30,7 @@ FOUNDATION_EXPORT const unsigned char IonVersionString[];
 #import "IonButtonBehaviorSimpleFade.h"
 #import "IonButtonBehaviorTapTransform.h"
 #import "UIView+IonGuideGroup.h"
+#import "IonApplication+Keyboard.h"
 
 /** Ion Rapid Start System */
 #import "IonRapidStartViewController.h"
