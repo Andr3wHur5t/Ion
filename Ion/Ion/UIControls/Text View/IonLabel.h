@@ -49,27 +49,27 @@ static NSString* sDefaultFontName = @"Helvetica Neue";
 /**
  * The text to be displayed in the view.
  */
-@property (weak, nonatomic) NSString* text;
+@property (weak, nonatomic, readwrite) NSString* text;
 
 /**
  * The text color to be displayed in the view.
  */
-@property (weak, nonatomic) UIColor* textColor;
+@property (weak, nonatomic, readwrite) UIColor* textColor;
 
 /**
  * The text alignment to use.
  */
-@property (assign, nonatomic) NSTextAlignment textAlignment;
+@property (assign, nonatomic, readwrite) NSTextAlignment textAlignment;
 
 /**
  * The font to use in the view.
  */
-@property (weak, nonatomic) UIFont* font;
+@property (weak, nonatomic, readwrite) UIFont* font;
 
 /**
  * The overflow delegate.
  */
-@property (strong, nonatomic) id<IonLabelOverflowBehaviorDeligate> overflowBehavior;
+@property (strong, nonatomic, readwrite) id<IonLabelOverflowBehaviorDeligate> overflowBehavior;
 
 
 

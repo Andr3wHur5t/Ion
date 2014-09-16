@@ -9,36 +9,38 @@
 #import <Ion/Ion.h>
 
 @interface IonTitleBar : IonView
-
+#pragma mark Views
 /**
  * The left View.
  */
-@property (strong, nonatomic) UIView* leftView;
+@property (strong, nonatomic, readwrite) UIView *leftView;
 
 /**
  * The Center View.
  */
-@property (strong, nonatomic) UIView* centerView;
+@property (strong, nonatomic, readwrite) UIView *centerView;
 
 /**
  * The Center View.
  */
-@property (strong, nonatomic) UIView* rightView;
+@property (strong, nonatomic, readwrite) UIView *rightView;
+
+#pragma mark Status Bar Response Configuration
 
 /**
  * The offset of the title bar content in comparason to the status bar.
  */
-@property (assign, nonatomic) CGFloat statusBarContentOffset;
+@property (assign, nonatomic, readwrite) CGFloat statusBarContentOffset;
 
 /**
  * The content height of the title bar
  */
-@property (assign, nonatomic) CGFloat contentHeight;
+@property (assign, nonatomic, readwrite) CGFloat contentHeight;
 
 /**
  * State if the title bar will respond to changes in the status bar.
  */
-@property (assign, nonatomic) BOOL respondsToStatusBar;
+@property (assign, nonatomic, readwrite) BOOL respondsToStatusBar;
 
 /**
  * Updates the frame to match the current configuration.

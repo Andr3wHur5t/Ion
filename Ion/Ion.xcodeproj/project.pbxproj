@@ -1148,18 +1148,10 @@
 		373B390019A97924000FE567 /* Title Bar */ = {
 			isa = PBXGroup;
 			children = (
-				373B390519AAA737000FE567 /* Default Title */,
 				373B390119A97977000FE567 /* IonTitleBar.h */,
 				373B390219A97977000FE567 /* IonTitleBar.m */,
 			);
 			name = "Title Bar";
-			sourceTree = "<group>";
-		};
-		373B390519AAA737000FE567 /* Default Title */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Default Title";
 			sourceTree = "<group>";
 		};
 		373C997C19846AAC002F46AD /* Caches */ = {

@@ -56,6 +56,7 @@
  * Construction method.
  */
 - (void) construct {
+    self.themeElement = @"textBar";
     [self addSubview: self.icon];
     [self addSubview: self.textField];
 }

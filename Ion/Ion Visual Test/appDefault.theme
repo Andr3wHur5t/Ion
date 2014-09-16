@@ -335,7 +335,7 @@
                 "cornerRadius": 15,
                 "keyboard": {
                     "keyboardType": "default",
-                    "returnKeyType": "search",
+                    "returnKeyType": "next",
                     "autoCapitalizationType":"words",
                 },
                 "stylePadding": {"width": 0.0, "height": 5.0},

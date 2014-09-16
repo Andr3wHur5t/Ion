@@ -264,7 +264,7 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
 }
 
 /**
- * Executes the inputted animation pointer on the button.
+ * Executes the inputted animation pointer on the view.
  * @param {NSDictionary*} animation pointer
  * @returns {void}
  */
@@ -288,9 +288,6 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
         return;
     }
     
-    
-    // Lock Mutex
-   // inTransision = TRUE;
     // Perform Transform for the current key
     [transformationsMap executeChainForKey: entryPoint
                                     onView: self.button
@@ -298,9 +295,6 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
                            // Update to next cycle
                            if ( completion )
                                completion( );
-                           
-                           // Unlock Mutex
-                           //inTransision = FALSE;
                        }];
 }
 

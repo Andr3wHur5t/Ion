@@ -50,7 +50,7 @@
     else if ( [uppercase isEqualToString: sIonKeyboardType_Email] )
         return UIKeyboardTypeEmailAddress;
     else if ( [uppercase isEqualToString: sIonKeyboardType_Decimal] )
-        return UIKeyboardTypeEmailAddress;
+        return UIKeyboardTypeDecimalPad;
     else if ( [uppercase isEqualToString: sIonKeyboardType_Twitter] )
         return UIKeyboardTypeTwitter;
     else if ( [uppercase isEqualToString: sIonKeyboardType_Search] )
@@ -97,8 +97,6 @@
         return UIReturnKeyEmergencyCall;
     else if ( [uppercase isEqualToString: sIonKeyboardReturnKey_Go] )
         return UIReturnKeyGo;
-    else if ( [uppercase isEqualToString: sIonKeyboardReturnKey_Google] )
-        return UIReturnKeyGoogle;
     else if ( [uppercase isEqualToString: sIonKeyboardReturnKey_Join] )
         return UIReturnKeyJoin;
     else if ( [uppercase isEqualToString: sIonKeyboardReturnKey_Next] )
@@ -109,8 +107,6 @@
         return UIReturnKeySearch;
     else if ( [uppercase isEqualToString: sIonKeyboardReturnKey_Send] )
         return UIReturnKeySend;
-    else if ( [uppercase isEqualToString: sIonKeyboardReturnKey_Yahoo] )
-        return UIReturnKeyYahoo;
     else
         return UIReturnKeyDefault;
 }
