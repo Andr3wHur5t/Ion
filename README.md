@@ -1,14 +1,17 @@
-Ion
-===
-Ion is an iOS framework designed to help streamline the development of stable applications while promoting good development practices.
+Welcome to Ion!
+====
+**About**
 
-To use Ion you simply need to link the framework to your application in the XCode project overview, and include the IonGraphics.xcassets in your project directory. 
+Ion is a lightweight framework which enables you to create responsive, robust, and highly customizable iOS UI.
 
-***
-Features:
- - Access Bases Generation Map
- - Simple Cache
- - Theme Based Views
- - Simple Theme System
- - Easy JSON Parser
- - Method Maps
+Ion is split into two parts IonData which handles fundamental data operations, and Ion which handles UI/UX, and customization functionality.
+
+**Getting Started**
+
+If you just want to use IonData please go [here](https://github.com/Andr3wHur5t/Ion/wiki/IonData-Integration) for an integration tutorial, or if you want to use Ion please go [here](https://github.com/Andr3wHur5t/Ion/wiki/Ion-Integration) for its' integration tutorial.
+
+**References**
+
+If your looking for object references just look at the side navigation bar on our [wiki](https://github.com/Andr3wHur5t/Ion/wiki).
+
+Otherwise [here](https://github.com/Andr3wHur5t/Ion/wiki/Concepts) is a page of concepts which will help you build awesome applications with Ion.
