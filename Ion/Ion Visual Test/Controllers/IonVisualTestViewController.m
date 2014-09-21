@@ -23,7 +23,7 @@
 - (void) constructViews {
     [super constructViews];
     
-    [self.view setBackgroundImageUsingKey: @"aspect"];
+//    [self.view setBackgroundImageUsingKey: @"aspect"];
 
     [self constructTitleBar];
     [self constructContentBar];
@@ -57,26 +57,25 @@
  * Constructs the content bar.
  */
 - (void) constructContentBar {
-    IonInterfaceButton* button;
-    IonTextField *textInput;
+    IonTextBar *textInput;
     
     containerView = [[IonView alloc] init];
     
     // Button
-    button = [[IonInterfaceButton alloc] initWithFileName: @"Hamburger"];
-    [button setGuidesWithLocalVert: button.centerGuideVert
-                        localHoriz: button.originGuideHoriz
-                         superVert: containerView.centerGuideVert
-                     andSuperHoriz: containerView.leftPadding];
+//    button = [[IonInterfaceButton alloc] initWithFileName: @"Hamburger"];
+//    [button setGuidesWithLocalVert: button.centerGuideVert
+//                        localHoriz: button.originGuideHoriz
+//                         superVert: containerView.centerGuideVert
+//                     andSuperHoriz: containerView.leftPadding];
     
     // text input
-    textInput = [[IonTextField alloc] initWithFrame: (CGRect){ CGPointZero, (CGSize){ 275, 30 } }];
+    textInput = [[IonTextBar alloc] initWithFrame: (CGRect){ CGPointZero, (CGSize){ 275, 30 } }];
     [textInput setGuidesWithLocalVert: textInput.centerGuideVert
                            localHoriz: textInput.centerGuideHoriz
                             superVert: containerView.centerGuideVert
                         andSuperHoriz: containerView.centerGuideHoriz];
-    textInput.placeholder = @"Search For A Name";
-    textInput.themeClass = @"searchBar";
+    textInput.placeholder = @"Search for a name";
+    textInput.themeClass = @"peopleSearch";
     [containerView addSubview: textInput];
     
     // Container

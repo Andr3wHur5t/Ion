@@ -23,7 +23,7 @@ static const CGFloat sIonNormalStatusBarHeight = 20.0f;
 
 /**
  * States if the in call bar is visible.
- * @warning Dose a literal Check. May Not work in future versions.
+ * @warning Dose a literal Check. May Not work in future versions. This dose not work when the status bar is hidden.
  */
 @property (assign, nonatomic, readonly) BOOL inCallBarActive;
 
@@ -34,7 +34,7 @@ static const CGFloat sIonNormalStatusBarHeight = 20.0f;
 @property (assign, nonatomic, readonly) CGFloat statusBarAnimationDuration;
 
 /**
- * The current status bar animation type.
+ * The current status bar animation type. KVO compliant.
  */
 @property (assign, nonatomic, readonly) UIStatusBarAnimation currentStatusBarAnimation;
 

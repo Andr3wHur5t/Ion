@@ -75,7 +75,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "DebugIonTheme"
-            value = "TRUE"
+            value = "FALSE"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable

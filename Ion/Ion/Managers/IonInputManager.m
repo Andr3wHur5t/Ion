@@ -58,5 +58,17 @@
 
 #pragma mark UITextView Delegate
 
+#pragma mark Shared Manager
+/**
+ * Gets the shared input manager.
+ * @returns {instncetype}
+ */
++ (instancetype) sharedManager {
+    static __strong IonInputManager *sharedManager;
+    @synchronized(self) {
+        sharedManager = [[IonInputManager alloc] init];
+    };
+    return sharedManager;
+}
 
 @end

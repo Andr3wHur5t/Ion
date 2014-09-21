@@ -52,5 +52,11 @@
         "info": {
             "IsMask": true
         }
+    },
+    "General_Search": {
+        "fileName": "General_Search.png",
+        "info": {
+            "IsMask": true
+        }
     }
 }

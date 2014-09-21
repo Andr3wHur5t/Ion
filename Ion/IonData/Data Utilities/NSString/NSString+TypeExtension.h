@@ -18,12 +18,12 @@ static NSString* sIonTextAlignment_Natural = @"NATURAL";
 // Keyboard Type keys
 static NSString* sIonKeyboardType_Default = @"DEFAULT";
 static NSString* sIonKeyboardType_ACII = @"ACII";
-static NSString* sIonKeyboardType_NumbersAndPunctuation = @"NUMBERSAANDPUNCTUATION";
+static NSString* sIonKeyboardType_NumbersAndPunctuation = @"NUMBERSANDPUNCTUATION";
 static NSString* sIonKeyboardType_Email = @"EMAIL";
 static NSString* sIonKeyboardType_Decimal = @"DECIMAL";
 static NSString* sIonKeyboardType_Twitter = @"TWITTER";
 static NSString* sIonKeyboardType_Search = @"SEARCH";
-static NSString* sIonKeyboardType_Name= @"SEARCH";
+static NSString* sIonKeyboardType_Name = @"SEARCH";
 static NSString* sIonKeyboardType_URL = @"URL";
 static NSString* sIonKeyboardType_Number = @"NUMBERS";
 static NSString* sIonKeyboardType_Phone = @"PHONE";
@@ -37,13 +37,11 @@ static NSString* sIonKeyboardAppearence_Default = @"DEFAULT";
 static NSString* sIonKeyboardReturnKey_Done = @"DONE";
 static NSString* sIonKeyboardReturnKey_EmergencyCall = @"EMERGENCYCALL";
 static NSString* sIonKeyboardReturnKey_Go = @"GO";
-static NSString* sIonKeyboardReturnKey_Google = @"GOOGLE";
 static NSString* sIonKeyboardReturnKey_Join = @"JOIN";
 static NSString* sIonKeyboardReturnKey_Next = @"NEXT";
 static NSString* sIonKeyboardReturnKey_Route = @"ROUTE";
 static NSString* sIonKeyboardReturnKey_Search = @"SEARCH";
 static NSString* sIonKeyboardReturnKey_Send = @"SEND";
-static NSString* sIonKeyboardReturnKey_Yahoo = @"YAHOO";
 static NSString* sIonKeyboardReturnKey_Default = @"DEFAULT";
 
 // Auto Capitlization Type
@@ -54,13 +52,13 @@ static NSString* sIonAutocapitalizationType_All = @"ALL";
 
 // Autocorrection Type
 static NSString* sIonAutocorrectionType_Default = @"DEFULT";
-static NSString* sIonAutocorrectionType_No = @"NO";
-static NSString* sIonAutocorrectionType_Yes = @"YES";
+static NSString* sIonAutocorrectionType_No = @"ENABLE";
+static NSString* sIonAutocorrectionType_Yes = @"DISABLE";
 
 // SpellChecking Type
 static NSString* sIonSpellCheckingType_Default = @"DEFULT";
-static NSString* sIonSpellCheckingType_No = @"NO";
-static NSString* sIonSpellCheckingType_Yes = @"YES";
+static NSString* sIonSpellCheckingType_No = @"ENABLE";
+static NSString* sIonSpellCheckingType_Yes = @"DISABLE";
 
 
 @interface NSString (TypeExtension)

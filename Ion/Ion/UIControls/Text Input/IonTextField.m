@@ -13,6 +13,7 @@
 #import "UIView+IonTheme.h"
 #import "IonStyle.h"
 #import "NSDictionary+IonThemeResolution.h"
+#import "UIView+IonAnimation.h"
 
 
 @interface IonTextField () {
@@ -25,8 +26,8 @@
 
 @implementation IonTextField
 
-@synthesize inputManager = _inputManager;
 @synthesize inputFilter = _inputFilter;
+@synthesize behaviorDictionary = _behaviorDictionary;
 
 #pragma mark Constructors
 /**
@@ -73,17 +74,7 @@
     _iAlpha = 1.0;
     // Set our theme properties.
     self.themeElement = sIonThemeElementTextField;
-    self.delegate = self.inputManager;
-}
-
-#pragma mark Input Manager
-/**
- * Gets, or constructs the input manager.
- */
-- (IonInputManager *)inputManager {
-    if ( !_inputManager )
-        _inputManager = [[IonInputManager alloc] init];
-    return _inputManager;
+    self.delegate = [IonInputManager sharedManager];
 }
 
 #pragma mark Input Filter
@@ -126,6 +117,10 @@
     // Input Filter
     self.inputFilter = [style.configuration inputFilterForKey: sIonTextField_InputFilterKey];
     
+    // Set bahaviors
+    self.behaviorDictionary = [style.configuration dictionaryForKey: sIonTextField_ResignBehaviorKey];
+    
+    // Configure keyboard
     [self processKeybordConfiguration: [style.configuration dictionaryForKey: sIonTextField_KeyboardKey]];
 }
 
@@ -141,10 +136,10 @@
     self.keyboardType = [config keyboardTypeForKey: sIonTextField_KeyboardTypeKey];
     
     // Keyboard Appearence
-    self.keyboardAppearance = [config keyboardAppearenceForKey: sIonTextField_KeyboardAppearenceKey];
+    self.keyboardAppearance = [config keyboardAppearenceForKey: sIonTextField_KeyboardAppearanceKey];
     
     // Auto Correct type
-    self.autocorrectionType = [config autocorrectionTypeForKey: sIonTextField_KeyboardAppearenceKey];
+    self.autocorrectionType = [config autocorrectionTypeForKey: sIonTextField_KeyboardAppearanceKey];
     
     // Spell Check type
     self.spellCheckingType = [config spellcheckTypeForKey: sIonTextField_SpellCheckTypeKey];
@@ -164,43 +159,137 @@
  * Gets called when we input fails our filter.
  */
 - (void) inputDidFailFilter {
-    // TODO: Remove magic numbers. :p
-    [UIView animateWithDuration: 0.15 animations: ^{
+    [UIView animateWithDuration: self.animationDuration / 2 animations: ^{
+        if ( super.alpha != _iAlpha )
+            return;
         super.alpha = _iAlpha - 0.4;
     } completion: ^(BOOL finished) {
-       [UIView animateWithDuration: 0.15 animations: ^{
+        if ( !finished )
+            return;
+       [UIView animateWithDuration: self.animationDuration / 2 animations: ^{
             super.alpha = _iAlpha;
         }];
     }];
 }
 
+
+#pragma mark First Responder Paths
 /**
  * Gets called when the enter key is pressed.
  */
 - (void) inputReturnKeyDidGetPressed {
-    [self tryReturn]; // Attempt to return.
+    [self resignFirstResponderWithReason: sIonTextFieldBehavior_Reason_ReturnHit]; // Attempt to resign using the return key action.
 }
 
 /**
- * Trys to invoke the return procedure.
- * Note: only will return if current input states are valid.
+ * Attempts to resign first responder, using the external action.
+ * @returns {BOOL}
  */
-- (BOOL) tryReturn {
-    // Only Return if valid, and ! in forcive input mode
-    if ( !true )
-        return FALSE;
-    
-    // Call our target action set for return key.
-    
-    // Dissmiss keyboard on supper because self points the method twards this.
+- (BOOL) resignFirstResponder {
+    // Attempt to resign using an external call.
+    return [self resignFirstResponderWithReason: sIonTextFieldBehavior_Reason_ExternalResign];
+}
+
+/**
+ * Attempts to resign first responder using the specified reason.
+ * @param {NSString*} the reason for resigning first responder.
+ * @returns {BOOL}
+ */
+- (BOOL) resignFirstResponderWithReason:(NSString *)action {
+    if ( [self canResignFirstResponderWithoutInvalidCheckForReason: action] )
+        return [self forcivlyResignFirstResponder]; // We don't need to run validation to resign.
+    else if ( [self textIsValid] )
+        return [self forcivlyResignFirstResponder]; // Text is valid, we can resign.
+    else { // Text isn't valid, and we are required to have valid text to return.
+        [self invokeErrorAnimationForAction: action]; // Present a validation error animation in the UI.
+        return FALSE; // Report to caller
+    }
+}
+
+/**
+ * Forcevly resigns first responder by ingnoring all checks.
+ * @returns {BOOL} if the super will resign first responder.
+ */
+- (BOOL) forcivlyResignFirstResponder {
     return [super resignFirstResponder];
 }
 
+#pragma mark Behavior Dictionary
 /**
- * Redirects to our return processor.
+ * Switch KVO to manual mode.
  */
-- (BOOL) resignFirstResponder {
-    return [self tryReturn]; // Attempt a return.
++ (BOOL) automaticallyNotifiesObserversOfBehaviorDictionary { return FALSE; }
+
+/**
+ * Sets the behavior dictionary key.
+ * @param {NSDictionary*}
+ */
+- (void) setBehaviorDictionary:(NSDictionary *)behaviorDictionary {
+    if ( !behaviorDictionary || ![behaviorDictionary isKindOfClass: [NSDictionary class]] )
+        return;
+    [self willChangeValueForKey: @"behaviorDictionary"];
+    _behaviorDictionary = behaviorDictionary;
+    [self didChangeValueForKey: @"behaviorDictionary"];
+}
+
+/**
+ * Gets, or constructs the acction dictionary.
+ * @returns {NSDictionary*}
+ */
+- (NSDictionary *)behaviorDictionary {
+    if ( !_behaviorDictionary ) // if the dictionary is empty, construct with the default one.
+        _behaviorDictionary = @{
+                                sIonTextFieldBehavior_Reason_ReturnHit: @{
+                                        sIonTextField_ResignBehavior_NoValidation: @1 // False
+                                        // No Animation
+                                        },
+                                sIonTextFieldBehavior_Reason_ExternalResign: @{
+                                        sIonTextField_ResignBehavior_NoValidation: @1 // True
+                                        // No Animation
+                                        }
+                                };
+    return _behaviorDictionary;
+}
+
+/**
+ * Checks if we can resign first responder without checking if our text is valid for the specified reason,
+ * from our behavior dictionary.
+ * @param {NSString*} the action to invoke the animation for.
+ * @returns {BOOL}
+ */
+- (BOOL) canResignFirstResponderWithoutInvalidCheckForReason:(NSString *)action {
+    NSParameterAssert( action && [action isKindOfClass: [NSString class]] );
+    if ( !action || ![action isKindOfClass: [NSString class]] )
+        return FALSE;
+    
+    return [[self.behaviorDictionary dictionaryForKey: action] boolForKey: sIonTextField_ResignBehavior_NoValidation];
+}
+
+/**
+ * Invokes the error animation for the specified action if it exsists.
+ * @param {NSString*} the action to invoke the animation for.
+ */
+- (void) invokeErrorAnimationForAction:(NSString *)action {
+    NSDictionary *animationPointer;
+    NSParameterAssert( action && [action isKindOfClass: [NSString class]] );
+    if ( !action || ![action isKindOfClass: [NSString class]] )
+        return; // We can't do anything with our input, stop.
+    
+    // Get animation pointer if any.
+    animationPointer = [[self.behaviorDictionary dictionaryForKey: action]
+                        dictionaryForKey: sIonTextField_ResignBehavior_ValidationFailedAnimation];
+    // Only invkoke if there is an animation set.
+    if ( animationPointer )
+        [self startAnimationWithPointerMap: animationPointer];
+}
+
+#pragma mark Text Validation
+/**
+ * Checks if the raw text is valid.
+ * @returns {BOOL}
+ */
+- (BOOL) textIsValid {
+    return FALSE; // TODO Run a check.
 }
 
 #pragma mark Placeholder Integration
