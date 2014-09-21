@@ -9,7 +9,8 @@
 #import "IonButtonBehaviorTapTransform.h"
 #import <IonData/IonData.h>
 #import "UIView+IonPositionAndOrientation.h"
-#import "IonTransformAnimationMap.h"
+#import "UIView+IonAnimation.h"
+#import "IonAnimationSession.h"
 
 static NSString* sIonDefaultCycleName = @"defaultCycle";
 static NSString* sIonDefaultTransformName = @"defaultTransform";
@@ -24,7 +25,7 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
 @end
 
 @implementation IonButtonBehaviorTapTransform
-
+#pragma mark Construction
 /**
  * Default constructor
  */
@@ -97,65 +98,14 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
  * Updates our self with the current configuration.
  */
 - (void) updateToMatchConfiguration {
-    
-    rawCycles = [self.configuration dictionaryForKey: sIonButtonBehavior_TapTransform_CyclesKey];
+    self.cycles = [self.configuration dictionaryForKey: sIonButtonBehavior_TapTransform_CyclesKey];
     self.currentCycleName =  [self.configuration stringForKey: sIonButtonBehavior_TapTransform_StartCycle];
     
-    // Process the animation pointer
-    /*[transformationsMap setRawData: [self.configuration dictionaryForKey: sIonButtonBehavior_TapTransform_TransformationsKey]];*/
-    
-    [self processCycle];
     [self resoleveEventInformation];
     [self normilizeConfiguration];
 }
 
-/**
- * Processes the cycles information.
- * @returns {void}
- */
-- (void) processCycle {
-    __block NSDictionary* animationPointer;
-    __block NSMutableDictionary *mutableCycles, *currentCycle;
-    if ( !rawCycles || ![rawCycles isKindOfClass:[NSDictionary class]])
-        return;
-    
-    mutableCycles = [@{} mutableCopy];
-    [rawCycles enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
-        if ( !obj || ![obj isKindOfClass:[NSDictionary class]] )
-            return;
-        // Construct
-        currentCycle = [@{} mutableCopy];
-        
-        // Get
-        
-        // Copy target cycle
-        [currentCycle setObject: [obj stringForKey: sIonButtonBehavior_TapTransform_Cycles_TargetCycle]
-                         forKey:sIonButtonBehavior_TapTransform_Cycles_TargetCycle];
-        
-        
-        
-        // Create the Animation Map
-        animationPointer = [self resolveAnimationPointer:
-                            [obj dictionaryForKey: sIonButtonBehavior_TapTransform_Cycles_TargetTransform]];
-        if ( !animationPointer ) {
-            currentCycle = NULL;
-            return;
-        }
-        [currentCycle setObject: animationPointer forKey: sIonButtonBehavior_TapTransform_Cycles_TargetTransform];
-        
-        // Set
-        [mutableCycles setObject: currentCycle forKey: key];
-        currentCycle = NULL;
-    }];
-    
-    // Set Cycles
-    self.cycles = mutableCycles;
-}
-
-
-
-#pragma mark Transform Execution
-
+#pragma mark Cycle Execution
 /**
  * Executes the current trasnsision
  * @returns {void}
@@ -181,37 +131,25 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
     if ( !targetCycle )
         targetCycle = self.currentCycleName;
     
-    [self executeAnimationForPointer: animationPointer withCompletion:^{
-        self.currentCycleName = targetCycle;
-    }];
+    [self.button startAnimationWithPointerMap: animationPointer
+                                andCompletion: ^{
+                                    self.currentCycleName = targetCycle;
+                                }];
 }
 
 #pragma mark Events
-
 /**
  * Processes and resolves event information.
  * @returns {void}
  */
 - (void) resoleveEventInformation {
     NSDictionary* rawEvents;
-    NSMutableDictionary* tempEvents;
-    
     rawEvents = [self.configuration dictionaryForKey: sIonButtonBehavior_TapTransform_EventsKey];
     if ( !rawEvents )
         return;
     
-    tempEvents = [@{} mutableCopy];
-    // Enumerate through the objects
-    [rawEvents enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
-        if ( !obj || ![obj isKindOfClass:[NSDictionary class]] )
-            return;
-        
-        // Resolve and set
-        [tempEvents setObject: [self resolveAnimationPointer: obj] forKey: key];
-    }];
-    
     // Set
-    events = [NSDictionary dictionaryWithDictionary: tempEvents];
+    events = [NSDictionary dictionaryWithDictionary: rawEvents];
 }
 
 /**
@@ -229,77 +167,10 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
         return;
     
     // Execute
-    [self executeAnimationForPointer: eventAnimation withCompletion: NULL];
-}
-
-#pragma mark Animation Pointers
-
-/**
- * Resolves Animation an animation pointer into a resolved animation pointer.
- * @param {NSDictionary*} the config to process/
- * @returns {NSDictionary*}
- */
-- (NSDictionary*) resolveAnimationPointer:(NSDictionary*) config {
-    NSString *animationKey, *entryPoint;
-    IonTransformAnimationMap* animationMap;
-    if ( !config || ![config isKindOfClass:[NSDictionary class]] )
-        return NULL;
-    
-    animationKey = [config stringForKey: sIonButtonBehavior_TapTransform_AnimationPointer_AnimationKey];
-    if ( !animationKey )
-        return NULL;
-    
-    entryPoint = [config stringForKey: sIonButtonBehavior_TapTransform_AnimationPointer_EntryPointKey];
-    if ( !entryPoint )
-        return NULL;
-    
-    
-    animationMap = [[IonTransformAnimationMap alloc] init];
-    [animationMap configureWithBundleAnimationKey: animationKey];
-    
-    return @{
-             sIonButtonBehavior_TapTransform_AnimationPointer_AnimationKey: animationMap,
-             sIonButtonBehavior_TapTransform_AnimationPointer_EntryPointKey: entryPoint
-             };
-}
-
-/**
- * Executes the inputted animation pointer on the view.
- * @param {NSDictionary*} animation pointer
- * @returns {void}
- */
-- (void) executeAnimationForPointer:(NSDictionary*) animationPointer withCompletion:(void(^)( )) completion {
-    IonTransformAnimationMap* transformationsMap;
-    NSString *entryPoint;
-    
-    // Get the transformation map
-    transformationsMap = [animationPointer objectForKey: sIonButtonBehavior_TapTransform_AnimationPointer_AnimationKey];
-    if ( !transformationsMap || ![transformationsMap isKindOfClass:[IonTransformAnimationMap class]] ) {
-        if ( completion )
-            completion( );
-        return;
-    }
-    
-    // Get the entry point
-    entryPoint = [animationPointer stringForKey: sIonButtonBehavior_TapTransform_AnimationPointer_EntryPointKey];
-    if ( !entryPoint ) {
-        if ( completion )
-            completion( );
-        return;
-    }
-    
-    // Perform Transform for the current key
-    [transformationsMap executeChainForKey: entryPoint
-                                    onView: self.button
-                       withCompletionBlock: ^{
-                           // Update to next cycle
-                           if ( completion )
-                               completion( );
-                       }];
+    [self.button startAnimationWithPointerMap: eventAnimation];
 }
 
 #pragma mark Utilities
-
 /**
  * Norilizes configuration.
  */
@@ -318,7 +189,6 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
 
 
 #pragma mark Defaults
-
 /**
  * The default cycles object
  */

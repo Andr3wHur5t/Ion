@@ -15,10 +15,10 @@
 		370588A81999E60400597822 /* UIView+IonPositionAndOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 370588A61999E60400597822 /* UIView+IonPositionAndOrientation.m */; };
 		370588AC1999E89000597822 /* IonButtonBehaviorTapTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 370588AA1999E89000597822 /* IonButtonBehaviorTapTransform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		370588AD1999E89000597822 /* IonButtonBehaviorTapTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 370588AB1999E89000597822 /* IonButtonBehaviorTapTransform.m */; };
-		370588B1199A0C5900597822 /* IonTransformAnimationMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 370588AF199A0C5900597822 /* IonTransformAnimationMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		370588B2199A0C5900597822 /* IonTransformAnimationMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 370588B0199A0C5900597822 /* IonTransformAnimationMap.m */; };
-		370588B5199A151E00597822 /* IonTransformAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 370588B3199A151E00597822 /* IonTransformAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		370588B6199A151E00597822 /* IonTransformAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 370588B4199A151E00597822 /* IonTransformAnimation.m */; };
+		370588B1199A0C5900597822 /* IonAnimationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 370588AF199A0C5900597822 /* IonAnimationSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370588B2199A0C5900597822 /* IonAnimationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 370588B0199A0C5900597822 /* IonAnimationSession.m */; };
+		370588B5199A151E00597822 /* IonAnimationFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 370588B3199A151E00597822 /* IonAnimationFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370588B6199A151E00597822 /* IonAnimationFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 370588B4199A151E00597822 /* IonAnimationFrame.m */; };
 		370588BA199AB53100597822 /* Back.button in Resources */ = {isa = PBXBuildFile; fileRef = 370588B9199AB53100597822 /* Back.button */; };
 		370588BC199AB7FA00597822 /* Settings.button in Resources */ = {isa = PBXBuildFile; fileRef = 370588BB199AB7FA00597822 /* Settings.button */; };
 		370588BE199AB9D200597822 /* Expose.button in Resources */ = {isa = PBXBuildFile; fileRef = 370588BD199AB9D200597822 /* Expose.button */; };
@@ -231,6 +231,8 @@
 		37B9CD1C197F8E6100424EFC /* IonRenderUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF1A0197F8A1C004C14C8 /* IonRenderUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37B9CD22197FA12800424EFC /* UIColor+IonColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 37B9CD20197FA12800424EFC /* UIColor+IonColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37B9CD23197FA12800424EFC /* UIColor+IonColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B9CD21197FA12800424EFC /* UIColor+IonColor.m */; };
+		37D6EB5B19CEA4A8007EBFA4 /* IonAnimationMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D6EB5919CEA4A8007EBFA4 /* IonAnimationMap.h */; };
+		37D6EB5C19CEA4A8007EBFA4 /* IonAnimationMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D6EB5A19CEA4A8007EBFA4 /* IonAnimationMap.m */; };
 		37E6816419975709005096AC /* IonInterfaceButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 37E6816219975709005096AC /* IonInterfaceButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37E6816519975709005096AC /* IonInterfaceButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E6816319975709005096AC /* IonInterfaceButton.m */; };
 		37E68168199767C6005096AC /* IonButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 37E68166199767C6005096AC /* IonButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -329,10 +331,10 @@
 		370588A61999E60400597822 /* UIView+IonPositionAndOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+IonPositionAndOrientation.m"; path = "IonView/UIView+IonPositionAndOrientation.m"; sourceTree = "<group>"; };
 		370588AA1999E89000597822 /* IonButtonBehaviorTapTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonButtonBehaviorTapTransform.h; path = "UIControls/Buttons/Button Behaviors/IonButtonBehaviorTapTransform.h"; sourceTree = "<group>"; };
 		370588AB1999E89000597822 /* IonButtonBehaviorTapTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonButtonBehaviorTapTransform.m; path = "UIControls/Buttons/Button Behaviors/IonButtonBehaviorTapTransform.m"; sourceTree = "<group>"; };
-		370588AF199A0C5900597822 /* IonTransformAnimationMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonTransformAnimationMap.h; path = IonTransformAnimationMap/IonTransformAnimationMap.h; sourceTree = "<group>"; };
-		370588B0199A0C5900597822 /* IonTransformAnimationMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonTransformAnimationMap.m; path = IonTransformAnimationMap/IonTransformAnimationMap.m; sourceTree = "<group>"; };
-		370588B3199A151E00597822 /* IonTransformAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonTransformAnimation.h; path = IonTransformAnimationMap/IonTransformAnimation.h; sourceTree = "<group>"; };
-		370588B4199A151E00597822 /* IonTransformAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonTransformAnimation.m; path = IonTransformAnimationMap/IonTransformAnimation.m; sourceTree = "<group>"; };
+		370588AF199A0C5900597822 /* IonAnimationSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonAnimationSession.h; path = IonTransformAnimationMap/IonAnimationSession.h; sourceTree = "<group>"; };
+		370588B0199A0C5900597822 /* IonAnimationSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonAnimationSession.m; path = IonTransformAnimationMap/IonAnimationSession.m; sourceTree = "<group>"; };
+		370588B3199A151E00597822 /* IonAnimationFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonAnimationFrame.h; path = IonTransformAnimationMap/IonAnimationFrame.h; sourceTree = "<group>"; };
+		370588B4199A151E00597822 /* IonAnimationFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonAnimationFrame.m; path = IonTransformAnimationMap/IonAnimationFrame.m; sourceTree = "<group>"; };
 		370588B9199AB53100597822 /* Back.button */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Back.button; path = "Ion Visual Test/Buttons/Back.button"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		370588BB199AB7FA00597822 /* Settings.button */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Settings.button; path = "Ion Visual Test/Buttons/Settings.button"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		370588BD199AB9D200597822 /* Expose.button */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Expose.button; path = "Ion Visual Test/Buttons/Expose.button"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
@@ -522,6 +524,8 @@
 		378398A219C5AE30000CE43D /* IonApplication+Keyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IonApplication+Keyboard.m"; sourceTree = "<group>"; };
 		37B9CD20197FA12800424EFC /* UIColor+IonColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+IonColor.h"; sourceTree = "<group>"; };
 		37B9CD21197FA12800424EFC /* UIColor+IonColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+IonColor.m"; sourceTree = "<group>"; };
+		37D6EB5919CEA4A8007EBFA4 /* IonAnimationMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonAnimationMap.h; path = IonTransformAnimationMap/IonAnimationMap.h; sourceTree = "<group>"; };
+		37D6EB5A19CEA4A8007EBFA4 /* IonAnimationMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonAnimationMap.m; path = IonTransformAnimationMap/IonAnimationMap.m; sourceTree = "<group>"; };
 		37E6816219975709005096AC /* IonInterfaceButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonInterfaceButton.h; path = UIControls/IonInterfaceButton.h; sourceTree = "<group>"; };
 		37E6816319975709005096AC /* IonInterfaceButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonInterfaceButton.m; path = UIControls/IonInterfaceButton.m; sourceTree = "<group>"; };
 		37E68166199767C6005096AC /* IonButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonButton.h; path = UIControls/Buttons/IonButton.h; sourceTree = "<group>"; };
@@ -659,23 +663,25 @@
 			name = TapTransform;
 			sourceTree = "<group>";
 		};
-		370588AE199A0BE100597822 /* TransformAnimationMap */ = {
+		370588AE199A0BE100597822 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				370588B7199AA72D00597822 /* Transform Frame */,
-				370588AF199A0C5900597822 /* IonTransformAnimationMap.h */,
-				370588B0199A0C5900597822 /* IonTransformAnimationMap.m */,
+				370588B7199AA72D00597822 /* Frame */,
+				370588AF199A0C5900597822 /* IonAnimationSession.h */,
+				370588B0199A0C5900597822 /* IonAnimationSession.m */,
+				37D6EB5919CEA4A8007EBFA4 /* IonAnimationMap.h */,
+				37D6EB5A19CEA4A8007EBFA4 /* IonAnimationMap.m */,
 			);
-			name = TransformAnimationMap;
+			name = Animation;
 			sourceTree = "<group>";
 		};
-		370588B7199AA72D00597822 /* Transform Frame */ = {
+		370588B7199AA72D00597822 /* Frame */ = {
 			isa = PBXGroup;
 			children = (
-				370588B3199A151E00597822 /* IonTransformAnimation.h */,
-				370588B4199A151E00597822 /* IonTransformAnimation.m */,
+				370588B3199A151E00597822 /* IonAnimationFrame.h */,
+				370588B4199A151E00597822 /* IonAnimationFrame.m */,
 			);
-			name = "Transform Frame";
+			name = Frame;
 			sourceTree = "<group>";
 		};
 		370588B8199AB50500597822 /* Buttons */ = {
@@ -1651,7 +1657,7 @@
 				37721A0819AB2A44005149BD /* Status Bar Behaviors */,
 				37EBAC58195C9A93008D6BD6 /* Ion.h */,
 				370A22A519A67F11006FCD75 /* Guide Line */,
-				370588AE199A0BE100597822 /* TransformAnimationMap */,
+				370588AE199A0BE100597822 /* Animation */,
 				372DD25119737F5C00CC0A58 /* Utilities */,
 				377C3EB4196F316900EA6599 /* IonApplication */,
 				372DD22F1972766000CC0A58 /* Theme System */,
@@ -1970,7 +1976,7 @@
 				37EBAC59195C9A93008D6BD6 /* Ion.h in Headers */,
 				372DD246197281F400CC0A58 /* IonViewController.h in Headers */,
 				373B390819AAC9D2000FE567 /* IonApplication+StatusBar.h in Headers */,
-				370588B5199A151E00597822 /* IonTransformAnimation.h in Headers */,
+				370588B5199A151E00597822 /* IonAnimationFrame.h in Headers */,
 				37E68168199767C6005096AC /* IonButton.h in Headers */,
 				37E6817019994418005096AC /* IonButtonBehaviorSimpleFade.h in Headers */,
 				372DD22C1972764D00CC0A58 /* IonView.h in Headers */,
@@ -1980,7 +1986,7 @@
 				37FCF135197CDD42004C14C8 /* UIView+IonViewProperties.h in Headers */,
 				373A43E419B07C79008D1832 /* IonApplication+Metrics.h in Headers */,
 				376DA8AE1976FB37008D692E /* IonStyle.h in Headers */,
-				370588B1199A0C5900597822 /* IonTransformAnimationMap.h in Headers */,
+				370588B1199A0C5900597822 /* IonAnimationSession.h in Headers */,
 				373A437819AE87B3008D1832 /* IonGuideGroup+GuidePositioning.h in Headers */,
 				376DA8B21976FB47008D692E /* IonTheme.h in Headers */,
 				3737DC5919C0E70A005763C2 /* IonInputFilter.h in Headers */,
@@ -2004,6 +2010,7 @@
 				3737DC5419BF10F9005763C2 /* IonInputManager.h in Headers */,
 				376DA8E4197B4597008D692E /* IonAttrubutesStanderdResolution.h in Headers */,
 				373B390319A97977000FE567 /* IonTitleBar.h in Headers */,
+				37D6EB5B19CEA4A8007EBFA4 /* IonAnimationMap.h in Headers */,
 				3783989319C41AA0000CE43D /* IonIcon.h in Headers */,
 				376DA8E9197BAD83008D692E /* IonWindow.h in Headers */,
 				37721A2319AD3444005149BD /* IonGuideLine+DependentGuides.h in Headers */,
@@ -2336,12 +2343,12 @@
 				370A22BB19A82D07006FCD75 /* IonViewGuideSet.m in Sources */,
 				377C3ECD196F52AE00EA6599 /* IonDemoUIWindow.m in Sources */,
 				370A22BF19A83409006FCD75 /* UIView+IonGuideLine.m in Sources */,
-				370588B2199A0C5900597822 /* IonTransformAnimationMap.m in Sources */,
+				370588B2199A0C5900597822 /* IonAnimationSession.m in Sources */,
 				3705889D1999C9A500597822 /* IonButtonBehavior.m in Sources */,
 				37E6817119994418005096AC /* IonButtonBehaviorSimpleFade.m in Sources */,
 				3737DC5519BF10F9005763C2 /* IonInputManager.m in Sources */,
 				376DA8AF1976FB37008D692E /* IonStyle.m in Sources */,
-				370588B6199A151E00597822 /* IonTransformAnimation.m in Sources */,
+				370588B6199A151E00597822 /* IonAnimationFrame.m in Sources */,
 				373B390919AAC9D2000FE567 /* IonApplication+StatusBar.m in Sources */,
 				370588AD1999E89000597822 /* IonButtonBehaviorTapTransform.m in Sources */,
 				372DD23E19727C9800CC0A58 /* UIView+IonTheme.m in Sources */,
@@ -2366,6 +2373,7 @@
 				37E6816519975709005096AC /* IonInterfaceButton.m in Sources */,
 				376DA8B31976FB47008D692E /* IonTheme.m in Sources */,
 				37E68169199767C6005096AC /* IonButton.m in Sources */,
+				37D6EB5C19CEA4A8007EBFA4 /* IonAnimationMap.m in Sources */,
 				372DD247197281F400CC0A58 /* IonViewController.m in Sources */,
 				37721A0719AB1E44005149BD /* IonViewMotionGestureManager.m in Sources */,
 				3737DC3C19BEDC8E005763C2 /* IonTextField.m in Sources */,

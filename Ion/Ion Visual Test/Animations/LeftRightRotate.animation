@@ -1,5 +1,5 @@
 {
-    "tranformations": {
+    "transformations": {
         "rotateLeft": {
             "rotation": {
                 "pitch": 0,
