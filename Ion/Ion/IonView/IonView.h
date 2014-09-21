@@ -10,6 +10,7 @@
 #import "UIView+IonTheme.h"
 #import "UIView+IonAnimation.h"
 #import "UIView+IonViewProperties.h"
+#import "UIView+IonAnimation.h"
 #import "IonGuideLine.h"
 
 static NSString* sIonStyle_IonView_StyleMargin = @"styleMargin";

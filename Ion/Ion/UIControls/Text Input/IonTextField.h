@@ -13,18 +13,19 @@
 @class IonInputFilter;
 
 /** Keys */
-static NSString *sIonTextField_KeyboardKey =                    @"keyboard";
-static NSString *sIonTextField_KeyboardTypeKey =                @"keyboardType";
-static NSString *sIonTextField_KeyboardAppearanceKey =          @"keyboardAppearance";
-static NSString *sIonTextField_SpellCheckTypeKey =              @"spellCheckType";
-static NSString *sIonTextField_AutoCorrectionTypeKey =          @"autoCorrectionType";
-static NSString *sIonTextField_AutoCapitalizationTypeKey =      @"autoCapitalizationType";
-static NSString *sIonTextField_ReturnKeyTypeKey =               @"returnKeyType";
-static NSString *sIonTextField_InputFilterKey =                 @"inputFilter";
+static NSString *sIonTextField_KeyboardKey =                                    @"keyboard";
+static NSString *sIonTextField_KeyboardTypeKey =                                @"keyboardType";
+static NSString *sIonTextField_KeyboardAppearanceKey =                          @"keyboardAppearance";
+static NSString *sIonTextField_SpellCheckTypeKey =                              @"spellCheckType";
+static NSString *sIonTextField_AutoCorrectionTypeKey =                          @"autoCorrectionType";
+static NSString *sIonTextField_AutoCapitalizationTypeKey =                      @"autoCapitalizationType";
+static NSString *sIonTextField_ReturnKeyTypeKey =                               @"returnKeyType";
+static NSString *sIonTextField_InputFilterKey =                                 @"inputFilter";
 
 
-static NSString *sIonTextField_ResignBehaviorKey =              @"ResignBehavior";
-static NSString *sIonTextField_ResignBehavior_NoValidation =    @"canResignWithoutValidation";
+static NSString *sIonTextField_ResignBehaviorKey =                              @"ResignBehavior";
+static NSString *sIonTextField_ResignBehavior_NoValidation =                    @"canResignWithoutValidation";
+static NSString *sIonTextField_ResignBehavior_ValidationFailedAnimation =       @"validationFailedAnimation";
 
 
 /** Behavior Reason Keys */

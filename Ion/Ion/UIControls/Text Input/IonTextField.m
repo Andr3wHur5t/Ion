@@ -13,6 +13,7 @@
 #import "UIView+IonTheme.h"
 #import "IonStyle.h"
 #import "NSDictionary+IonThemeResolution.h"
+#import "UIView+IonAnimation.h"
 
 
 @interface IonTextField () {
@@ -117,7 +118,7 @@
     self.inputFilter = [style.configuration inputFilterForKey: sIonTextField_InputFilterKey];
     
     // Set bahaviors
-   // self.behaviorDictionary = [style.configuration dictionaryForKey: sIonTextField_ResignBehaviorKey];
+    self.behaviorDictionary = [style.configuration dictionaryForKey: sIonTextField_ResignBehaviorKey];
     
     // Configure keyboard
     [self processKeybordConfiguration: [style.configuration dictionaryForKey: sIonTextField_KeyboardKey]];
@@ -239,7 +240,7 @@
     if ( !_behaviorDictionary ) // if the dictionary is empty, construct with the default one.
         _behaviorDictionary = @{
                                 sIonTextFieldBehavior_Reason_ReturnHit: @{
-                                        sIonTextField_ResignBehavior_NoValidation: @0 // False
+                                        sIonTextField_ResignBehavior_NoValidation: @1 // False
                                         // No Animation
                                         },
                                 sIonTextFieldBehavior_Reason_ExternalResign: @{
@@ -269,12 +270,17 @@
  * @param {NSString*} the action to invoke the animation for.
  */
 - (void) invokeErrorAnimationForAction:(NSString *)action {
+    NSDictionary *animationPointer;
     NSParameterAssert( action && [action isKindOfClass: [NSString class]] );
     if ( !action || ![action isKindOfClass: [NSString class]] )
-        return; // We can't do anything with our input do stop.
+        return; // We can't do anything with our input, stop.
     
+    // Get animation pointer if any.
+    animationPointer = [[self.behaviorDictionary dictionaryForKey: action]
+                        dictionaryForKey: sIonTextField_ResignBehavior_ValidationFailedAnimation];
     // Only invkoke if there is an animation set.
-    // TODO: Get and invoke the animation.
+    if ( animationPointer )
+        [self startAnimationWithPointerMap: animationPointer];
 }
 
 #pragma mark Text Validation

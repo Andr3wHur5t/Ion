@@ -233,6 +233,7 @@
 		37B9CD23197FA12800424EFC /* UIColor+IonColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B9CD21197FA12800424EFC /* UIColor+IonColor.m */; };
 		37D6EB5B19CEA4A8007EBFA4 /* IonAnimationMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D6EB5919CEA4A8007EBFA4 /* IonAnimationMap.h */; };
 		37D6EB5C19CEA4A8007EBFA4 /* IonAnimationMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D6EB5A19CEA4A8007EBFA4 /* IonAnimationMap.m */; };
+		37D6EB5E19CEB8D1007EBFA4 /* ShakeLeftRightSubtle.animation in Resources */ = {isa = PBXBuildFile; fileRef = 37D6EB5D19CEB8D1007EBFA4 /* ShakeLeftRightSubtle.animation */; };
 		37E6816419975709005096AC /* IonInterfaceButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 37E6816219975709005096AC /* IonInterfaceButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37E6816519975709005096AC /* IonInterfaceButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E6816319975709005096AC /* IonInterfaceButton.m */; };
 		37E68168199767C6005096AC /* IonButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 37E68166199767C6005096AC /* IonButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -526,6 +527,7 @@
 		37B9CD21197FA12800424EFC /* UIColor+IonColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+IonColor.m"; sourceTree = "<group>"; };
 		37D6EB5919CEA4A8007EBFA4 /* IonAnimationMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonAnimationMap.h; path = IonTransformAnimationMap/IonAnimationMap.h; sourceTree = "<group>"; };
 		37D6EB5A19CEA4A8007EBFA4 /* IonAnimationMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonAnimationMap.m; path = IonTransformAnimationMap/IonAnimationMap.m; sourceTree = "<group>"; };
+		37D6EB5D19CEB8D1007EBFA4 /* ShakeLeftRightSubtle.animation */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; name = ShakeLeftRightSubtle.animation; path = "Ion Visual Test/Animations/ShakeLeftRightSubtle.animation"; sourceTree = "<group>"; };
 		37E6816219975709005096AC /* IonInterfaceButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonInterfaceButton.h; path = UIControls/IonInterfaceButton.h; sourceTree = "<group>"; };
 		37E6816319975709005096AC /* IonInterfaceButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonInterfaceButton.m; path = UIControls/IonInterfaceButton.m; sourceTree = "<group>"; };
 		37E68166199767C6005096AC /* IonButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IonButton.h; path = UIControls/Buttons/IonButton.h; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 		370588BF199ABF6200597822 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				37D6EB5D19CEB8D1007EBFA4 /* ShakeLeftRightSubtle.animation */,
 				370588C0199ABF9A00597822 /* LeftRightRotate.animation */,
 				370588C2199AC00E00597822 /* UpDownRotate.animation */,
 				370588C4199AD40F00597822 /* YawFlip.animation */,
@@ -2277,6 +2280,7 @@
 				3783989B19C421EA000CE43D /* General_Cancel.png in Resources */,
 				370588CB199ADA1700597822 /* ShakeLeftRight.animation in Resources */,
 				370588BA199AB53100597822 /* Back.button in Resources */,
+				37D6EB5E19CEB8D1007EBFA4 /* ShakeLeftRightSubtle.animation in Resources */,
 				370588CD199ADB9000597822 /* Cancel.button in Resources */,
 				376484B01994535D00B65EAF /* interfaceImages.manifest in Resources */,
 				376DA8EC197BB496008D692E /* appDefault.theme in Resources */,
