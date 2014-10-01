@@ -162,7 +162,7 @@
     [UIView animateWithDuration: self.animationDuration / 2 animations: ^{
         if ( super.alpha != _iAlpha )
             return;
-        super.alpha = _iAlpha - 0.4;
+        super.alpha = _iAlpha - 0.4f;
     } completion: ^(BOOL finished) {
         if ( !finished )
             return;

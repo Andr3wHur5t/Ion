@@ -30,9 +30,9 @@
 
 /**
  * Constructs from the inputted min, max, and expression string.
- * @param {NSInteger} minimum length for the string to be considered valid.
- * @param {NSInteger} maximum size for the string to be considered valid.
- * @param {NSRegularExpression*} the regular expression used to determine if input is valid.
+ * @param min - minimum length for the string to be considered valid.
+ * @param max - maximum size for the string to be considered valid.
+ * @param expression - the regular expression used to determine if input is valid.
  * @returns {instancetype}
  */
 - (instancetype) initWithMin:(NSInteger) min max:(NSInteger) max andExpression:(NSRegularExpression *)expression {
@@ -47,7 +47,7 @@
 
 /**
  * Constructs from the inputted dictionary.
- * @param {NSDictionary*} the configuration dictionary.
+ * @param configuration - the configuration dictionary.
  * @returns {instancetype}
  */
 - (instancetype) initWithDictionary:(NSDictionary *)configuration {
@@ -76,9 +76,9 @@
 
 /**
  * Constructs from the inputted min, max, and expression string.
- * @param {NSInteger} minimum length for the string to be considered valid.
- * @param {NSInteger} maximum size for the string to be considered valid.
- * @param {NSRegularExpression*} the regular expression used to determine if input is valid.
+ * @param min - minimum length for the string to be considered valid.
+ * @param max - maximum size for the string to be considered valid.
+ * @param expression - the regular expression used to determine if input is valid.
  * @returns {instancetype}
  */
 + (instancetype) filterWithMin:(NSInteger) min max:(NSInteger) max andExpression:(NSRegularExpression *)expression {
@@ -87,7 +87,7 @@
 
 /**
  * Constructs from the inputted dictionary.
- * @param {NSDictionary*} the configuration dictionary.
+ * @param configuration the configuration dictionary.
  * @returns {instancetype}
  */
 + (instancetype) filterWithDictionary:(NSDictionary *)configuration {
@@ -96,7 +96,7 @@
 #pragma mark Conformity Checks
 /**
  * Gets if the inputted string conforms to our specifications.
- * @param {NSString*} the string to check.
+ * @param string - string to check.
  * @returns {BOOL}
  */
 - (BOOL) stringConformsToFilter:(NSString *)string {
@@ -109,26 +109,26 @@
 
 /**
  * Gets if the range, and the string conform to the filter.
- * @param {NSRange} the range to compare the max to.
- * @param {NSString*} the string to check.
+ * @param string - range to compare the max to.
+ * @param range - string to check.
  * @returns {BOOL}
  */
 - (BOOL) string:(NSString *)string ConformsWithRange:(NSRange) range {
     // Don't run checks if deleting.
     if ( string.length != 0 ) // Check max size, and content. Note: Max size of 0 disabled range check.
         return  !(![self stringConformsToFilter: string] || !(self.max == 0 ? TRUE :
-                                                              range.location + (range.length + 1) <= self.max));
+                                                              (NSInteger)(range.location + (range.length + 1)) <= self.max));
     else
         return TRUE;
 }
 
 /**
  * Gets if the current text conforms to the current min size.
- * @param {NSString*} the string to check conformity on.
+ * @param string - string to check conformity on.
  * @returns {BOOL}
  */
 - (BOOL) stringIsValidForFilter:(NSString *)string {
-    return string.length >= self.min && string.length <= self.max;
+    return string.length >= (NSUInteger)self.min && string.length <= (NSUInteger)self.max;
 }
 
 @end
@@ -137,7 +137,7 @@
 
 /**
  * Gets the input filter value for the specified key.
- * @param {id} the key to get the input filter for.
+ * @param key - key to get the input filter for.
  * @returns {IonInputFilter*}
  */
 - (IonInputFilter *)inputFilterForKey:(id) key {

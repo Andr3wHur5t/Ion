@@ -203,6 +203,7 @@
     
     frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    gg.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssert( gg.originExternalGuideHoriz.position == frame.origin.x , @"Not Same");
 }
@@ -213,6 +214,7 @@
     
     frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    gg.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssertEqualWithAccuracy( gg.originExternalGuideVert.position, frame.origin.y , 0.2, @"Not Same");
 }
@@ -223,6 +225,7 @@
     
     frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    gg.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssertEqualWithAccuracy( gg.sizeExternalGuideHoriz.position, frame.origin.x + frame.size.width, 0.2, @"Not Same");
 }
@@ -233,6 +236,7 @@
     
     frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    gg.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssertEqualWithAccuracy( gg.sizeExternalGuideVert.position, frame.origin.y + frame.size.height, 0.2, @"Not Same");
 }
@@ -244,6 +248,7 @@
     
     frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    gg.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssertEqualWithAccuracy( gg.centerExternalGuideHoriz.position, frame.origin.x + (frame.size.width / 2), 0.2, @"Not Same");
 }
@@ -255,6 +260,7 @@
     
     frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    gg.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssertEqualWithAccuracy( gg.centerExternalGuideVert.position, frame.origin.y + (frame.size.height / 2), 0.2, @"Not Same");
 }
@@ -266,6 +272,7 @@
     
     frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    gg.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssertEqualWithAccuracy( gg.oneThirdExternalGuideHoriz.position, frame.origin.x + (frame.size.width / 3), 0.2, @"Not Same");
 }
@@ -276,6 +283,7 @@
     
     frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    gg.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssertEqualWithAccuracy( gg.oneThirdExternalGuideVert.position, frame.origin.y + (frame.size.height / 3), 0.2, @"Not Same");
 }
@@ -286,6 +294,7 @@
     
     frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    gg.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssertEqualWithAccuracy( gg.twoThirdsExternalGuideHoriz.position, frame.origin.x + ( 2 * frame.size.width / 3), 0.2, @"Not Same");
 }
@@ -296,6 +305,7 @@
     
     frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    gg.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssertEqualWithAccuracy( gg.twoThirdsExternalGuideVert.position, frame.origin.y + ( 2 * frame.size.height / 3), 0.2, @"Not Same");
 }
@@ -306,6 +316,7 @@
     
     frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    gg.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssertEqualWithAccuracy( gg.oneForthExternalGuideHoriz.position, frame.origin.x + (frame.size.width / 4), 0.2, @"Not Same");
 }
@@ -316,6 +327,7 @@
     
     frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    gg.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssertEqualWithAccuracy( gg.oneForthExternalGuideVert.position, frame.origin.y + (frame.size.height / 4), 0.2, @"Not Same");
 }
@@ -326,6 +338,7 @@
     
     frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    gg.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssertEqualWithAccuracy( gg.threeForthsExternalGuideHoriz.position, frame.origin.x + ( 3 * frame.size.width / 4), 0.2, @"Not Same");
 }
@@ -336,6 +349,7 @@
     
     frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     gg = [[IonGuideGroup alloc] initWithFrame: frame];
+    gg.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssertEqualWithAccuracy( gg.threeForthsExternalGuideVert.position, frame.origin.y + ( 3 * frame.size.height / 4), 0.2, @"Not Same");
 }
@@ -351,6 +365,7 @@
     CGRect frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     UIView* view = [[UIView alloc] initWithFrame: frame];
     view.styleMargin = margin;
+    view.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     
     XCTAssertEqualWithAccuracy( view.leftMargin.position, frame.origin.x - margin.width , 0.2, @"Not Same");
@@ -361,6 +376,7 @@
     CGRect frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     UIView* view = [[UIView alloc] initWithFrame: frame];
     view.styleMargin = margin;
+    view.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     
     XCTAssertEqualWithAccuracy( view.rightMargin.position, frame.origin.x + frame.size.width+ margin.width , 0.2, @"Not Same");
@@ -381,7 +397,7 @@
     CGRect frame = (CGRect) { (CGPoint){ 100, 10}, (CGSize){ 100, 30} };
     UIView* view = [[UIView alloc] initWithFrame: frame];
     view.styleMargin = margin;
-    
+    view.frame = frame = (CGRect) { (CGPoint){ 1002, 10}, (CGSize){ 1030, 330} };
     
     XCTAssertEqualWithAccuracy( view.bottomMargin.position, frame.origin.y + frame.size.height + margin.height , 0.2, @"Not Same");
 }

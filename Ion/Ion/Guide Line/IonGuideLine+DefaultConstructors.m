@@ -7,6 +7,7 @@
 //
 
 #import "IonGuideLine+DefaultConstructors.h"
+#import "UIView+IonTheme.h"
 
 @implementation IonGuideLine (DefaultConstructors)
 #pragma mark Default UIView Based Guides
@@ -59,7 +60,7 @@
     
     return [[self class] guideWithTarget: view
                                  keyPath: @"styleMargin"
-                         processingBlock: [[self class] sizeProcessingBlockUsingMode: mode]
+                         processingBlock: [IonGuideTargetToken sizeProcessingBlockUsingMode: mode]
                             andCalcBlock: [[self class] defaultCalculationBlock]];
 }
 
@@ -76,7 +77,7 @@
     
     return [[self class] guideWithTarget: view
                                  keyPath: @"stylePadding"
-                         processingBlock: [[self class] sizeProcessingBlockUsingMode: mode]
+                         processingBlock: [IonGuideTargetToken sizeProcessingBlockUsingMode: mode]
                             andCalcBlock: [[self class] defaultCalculationBlock]];
 }
 
@@ -93,7 +94,7 @@
     
     return [[self class] guideWithTarget: view
                                  keyPath: @"autoMargin"
-                         processingBlock: [[self class] sizeProcessingBlockUsingMode: mode]
+                         processingBlock: [IonGuideTargetToken sizeProcessingBlockUsingMode: mode]
                             andCalcBlock: [[self class] defaultCalculationBlock]];
 }
 
@@ -119,9 +120,9 @@
     
     return [[self class] guideWithTarget: target
                                  keyPath: keyPath
-                         processingBlock: [[self class] rectSizeProcessingBlockUsingMode: mode]
-                            andCalcBlock: ^CGFloat(CGFloat target) {
-                                return target * amount;
+                         processingBlock: [IonGuideTargetToken rectSizeProcessingBlockUsingMode: mode]
+                            andCalcBlock: ^CGFloat( NSDictionary *targetValues ) {
+                                return [[self class] defaultCalculationBlock]( targetValues ) * amount;
                             }];
 }
 
@@ -144,7 +145,7 @@
     
     return [[self class] guideWithTarget: target
                                  keyPath: keyPath
-                      andProcessingBlock: [[self class] externalPositioningProcessingBlockUsingMode: mode
+                      andProcessingBlock: [IonGuideTargetToken externalPositioningProcessingBlockUsingMode: mode
                                                                                           andAmount: amount]];
 }
 

@@ -44,7 +44,7 @@
                                                delay: intermediateDelay
                                              options: options
                                           animations: phaseTwo
-                                          completion: ^(BOOL finished) {
+                                          completion: ^(BOOL fin) {
                                               // Invoke the phase two animation if
                                               if ( completion )
                                                   completion( );

@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "IonLabel.h"
 
-static CGFloat sIonTextScrollSpeed = 0.04;//s
+static CGFloat sIonTextScrollSpeed = 0.04f;//s
 
-@interface IonLabelOverflowBehavior : NSObject <IonLabelOverflowBehaviorDeligate>
+@interface IonLabelOverflowBehavior : NSObject <IonLabelOverflowBehaviorDelegate>
 
 /**
  * The containing view.
@@ -24,10 +24,10 @@ static CGFloat sIonTextScrollSpeed = 0.04;//s
 @property (weak, nonatomic) UILabel* label;
 
 
-#pragma mark Utilties
+#pragma mark Utilities
 
 /**
- * Check if we can perform managment functions.
+ * Check if we can perform management functions.
  * @returns {BOOL}
  */
 - (BOOL) canPerformManagementFunctions;

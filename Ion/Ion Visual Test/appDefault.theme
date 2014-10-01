@@ -345,7 +345,7 @@
                         "cornerRadius": 0.0,
                         "background": { "type": "color", "name": "SystemPrimaryTextColor" },
                         "iconImage":"General_Search",
-                        "styleMargin": {"width": 18.0, "height": 10.0},
+                        "styleMargin": {"width": 8.0}
                     }
                 }
             },
@@ -361,10 +361,12 @@
                     "selected": "TitleButtonStateSelected",
                     "disabled": "TitleButtonStateDisabled"
                 },
-                "button":{ "size":{"width": 30, "height": 30} }
+                "button":{ "size":{"width": 30, "height": 30} },
+                "styleMargin": {"width": 8.0}
             },
             "sub-bar": {
                 "background": { "type": "color", "name": "SubBarColor" },
+                "stylePadding": {"width": 18.0, "height": 7.0},
             },
             "button":{
                 "background": { "type": "color", "name": "CleanWhite" }

@@ -100,7 +100,7 @@
     
     // Set the transform
     view.layer.transform = [self compositeTransformOnView: view];
-    view.layer.opacity = self.alpha;
+    view.layer.opacity = (float)self.alpha;
     
     if ( self.debugText )
         NSLog(@"%@", self.debugText);

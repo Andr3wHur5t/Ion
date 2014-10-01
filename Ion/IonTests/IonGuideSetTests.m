@@ -88,7 +88,7 @@
     
     
     self.x = 1000;
-    self.y = 2356.0364;
+    self.y = 2356;
     
     XCTAssert( CGPointEqualToPoint( [staticMountSet toPoint], (CGPoint){ self.x, self.y } ) , @"Invalid point response");
 }

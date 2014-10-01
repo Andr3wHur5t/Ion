@@ -8,17 +8,6 @@
 
 #import "IonGuideLine.h"
 
-/**
- * Modification Types that are supported.
- */
-typedef enum : NSUInteger {
-    IonValueModType_Add = 0,
-    IonValueModType_Subtract = 1,
-    IonValueModType_Multipliy = 2,
-    IonValueModType_Devide = 3
-} IonValueModType;
-
-
 @interface IonGuideLine (DependentGuides)
 
 /**

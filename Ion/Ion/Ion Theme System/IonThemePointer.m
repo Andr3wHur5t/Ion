@@ -126,8 +126,10 @@ static NSString* sPointerTargetTypeStyle = @"style";
    // else if ( [_targetType isEqualToString: sPointerTargetTypeStyle] )
      //   result = [_attributes resolveStyleAttribute: _targetName];
     
-    if ( !result )
-        ThemeLog( [NSString stringWithFormat: @"Unable to resolve %@ with %@", _targetType, _targetName] );
+    
+//    TODO: Make a standard theme logging mechnism
+//    if ( !result )
+//        ThemeLog( [NSString stringWithFormat: @"Unable to resolve %@ with %@", _targetType, _targetName] );
     
     return result;
 

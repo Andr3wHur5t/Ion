@@ -70,7 +70,7 @@
         return NULL;
     
     
-    for ( NSInteger i = 0; i < [colorWeights count]; ++i ) {
+    for ( NSUInteger i = 0; i < [colorWeights count]; ++i ) {
         dict = [colorWeights objectAtIndex: i];
         // Check if there is data to normalize
         if ( dict )

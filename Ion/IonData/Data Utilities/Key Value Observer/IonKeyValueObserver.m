@@ -15,7 +15,7 @@
 
 /**
  * Calls the change change selector on the target object.
- * @param {NSDictionary*} the change dictionary
+ * @param change - the change dictionary
  * @returns {void}
  */
 - (void)didChange:(NSDictionary*) change;

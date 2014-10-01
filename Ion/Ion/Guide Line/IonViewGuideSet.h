@@ -35,6 +35,8 @@
 @property (strong, nonatomic) IonGuideLine* leftSizeGuide;
 @property (strong, nonatomic) IonGuideLine* rightSizeGuide;
 
+@property (strong, nonatomic, readwrite) NSString *tag;
+
 #pragma mark Position Setter Utilities.
 /**
  * Sets the super pair to match the inputted guides.

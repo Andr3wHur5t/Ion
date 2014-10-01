@@ -47,6 +47,10 @@ FOUNDATION_EXPORT const unsigned char IonDataVersionString[];
 // Crypto
 #import "NSData+IonCrypto.h"
 
+// Target Action
+#import "IonTargetActionSet.h"
+#import "IonTargetActionList.h"
+
 // TMP
 #include "IonKeyValuePair.h"
 

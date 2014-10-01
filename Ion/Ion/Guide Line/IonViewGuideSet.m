@@ -11,9 +11,6 @@
 #import <IonData/IonData.h>
 
 @interface IonViewGuideSet () {
-    IonKeyValueObserver *sxObserver, *syObserver, *lxObserver, *lyObserver, // Mount Point
-                        *lSObserver, *rSObserver, *tSObserver, *bSObserver; // Size
-    
     IonGuideLine* _localVertGuide;
     IonGuideLine* _localHorizGuide;
     
@@ -66,10 +63,7 @@
     _superVertGuide = guide;
     [self didChangeValueForKey: @"superVertGuide"];
     
-    syObserver = [IonKeyValueObserver observeObject: _superVertGuide
-                                            keyPath: @"position"
-                                             target: self
-                                           selector: @selector(positionGuideDidChange)];
+    [_superVertGuide addLocalObserverTarget: self andAction: @selector(positionGuideDidChange)];
 }
 
 #pragma mark Super Horiz
@@ -93,10 +87,7 @@
     _superHorizGuide = guide;
     [self didChangeValueForKey: @"superHorizGuide"];
     
-    sxObserver = [IonKeyValueObserver observeObject: _superHorizGuide
-                                            keyPath: @"position"
-                                             target: self
-                                           selector: @selector(positionGuideDidChange)];
+    [_superHorizGuide addLocalObserverTarget: self andAction: @selector(positionGuideDidChange)];
 }
 
 #pragma mark Local
@@ -139,10 +130,7 @@
     _localVertGuide = guide;
     [self didChangeValueForKey: @"localVertGuide"];
     
-    lyObserver = [IonKeyValueObserver observeObject: _localVertGuide
-                                            keyPath: @"position"
-                                             target: self
-                                           selector: @selector(positionGuideDidChange)];
+    [_localVertGuide addLocalObserverTarget: self andAction: @selector(positionGuideDidChange)];
 }
 
 /**
@@ -175,10 +163,7 @@
     _localHorizGuide = guide;
     [self didChangeValueForKey: @"localHorizGuide"];
     
-    lxObserver = [IonKeyValueObserver observeObject: _localHorizGuide
-                                            keyPath: @"position"
-                                             target: self
-                                           selector: @selector(positionGuideDidChange)];
+    [_localHorizGuide addLocalObserverTarget: self andAction: @selector(positionGuideDidChange)];
     
 }
 
@@ -212,11 +197,8 @@
     _leftSizeGuide = guide;
     [self didChangeValueForKey: @"leftSizeGuide"];
     
-    lxObserver = [IonKeyValueObserver observeObject: _leftSizeGuide
-                                            keyPath: @"position"
-                                             target: self
-                                           selector: @selector(sizeGuideDidChange)];
     
+    [_leftSizeGuide addLocalObserverTarget: self andAction: @selector(sizeGuideDidChange)];
 }
 
 /**
@@ -238,11 +220,7 @@
     _rightSizeGuide = guide;
     [self didChangeValueForKey: @"rightSizeGuide"];
     
-    lxObserver = [IonKeyValueObserver observeObject: _rightSizeGuide
-                                            keyPath: @"position"
-                                             target: self
-                                           selector: @selector(sizeGuideDidChange)];
-    
+    [_rightSizeGuide addLocalObserverTarget: self andAction: @selector(sizeGuideDidChange)];
 }
 
 /**
@@ -264,10 +242,7 @@
     _topSizeGuide = guide;
     [self didChangeValueForKey: @"topSizeGuide"];
     
-    lxObserver = [IonKeyValueObserver observeObject: _topSizeGuide
-                                            keyPath: @"position"
-                                             target: self
-                                           selector: @selector(sizeGuideDidChange)];
+    [_topSizeGuide addLocalObserverTarget: self andAction: @selector(sizeGuideDidChange)];
     
 }
 
@@ -290,11 +265,7 @@
     _bottomSizeGuide = guide;
     [self didChangeValueForKey: @"bottomSizeGuide"];
     
-    lxObserver = [IonKeyValueObserver observeObject: _bottomSizeGuide
-                                            keyPath: @"position"
-                                             target: self
-                                           selector: @selector(sizeGuideDidChange)];
-    
+    [_bottomSizeGuide addLocalObserverTarget: self andAction: @selector(sizeGuideDidChange)];
 }
 
 
@@ -319,8 +290,9 @@
  * Respond to changes in guides' position
  * @returns {void}
  */
-- (void) positionGuideDidChange {
+- (id) positionGuideDidChange {
     [self invokeTargetAction];
+    return NULL;
 }
 
 /**
@@ -337,12 +309,15 @@
     // Call the target pair if it exsists
     if ( !_target || !_action )
         return;
-    
+   
+    if (self.tag)
+        NSLog(@"invoke");
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     if ( [_target respondsToSelector: _action] )
         [_target performSelector: _action];
     #pragma clang diagnostic pop
+    return;
 }
 
 
@@ -413,12 +388,4 @@
                                     self.leftSizeGuide, self.rightSizeGuide, self.topSizeGuide, self.bottomSizeGuide,
                                     size.width, size.height ];
 }
-
-#pragma mark Cleanup
-
-- (void) dealloc {
-    sxObserver = syObserver = lxObserver = lyObserver = NULL;
-    lSObserver = rSObserver = tSObserver = bSObserver = NULL;
-}
-
 @end

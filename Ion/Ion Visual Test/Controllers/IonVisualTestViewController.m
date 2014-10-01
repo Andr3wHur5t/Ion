@@ -14,6 +14,7 @@
     IonSimpleCache* sc;
     IonTitleBar* titleBar;
     IonView* containerView;
+    IonScrollView *scrollView;
 }
 
 @end
@@ -23,10 +24,29 @@
 - (void) constructViews {
     [super constructViews];
     
-//    [self.view setBackgroundImageUsingKey: @"aspect"];
+    [self.view setBackgroundImageUsingKey: @"aspect"];
 
     [self constructTitleBar];
     [self constructContentBar];
+    [self constructContentView];
+}
+
+/**
+ * Constructs the content view.
+ */
+- (void) constructContentView {
+    scrollView = [[IonScrollView alloc] init];
+   [scrollView setGuidesWithLocalVert: scrollView.originGuideVert
+                           localHoriz: scrollView.originGuideHoriz
+                            superVert: containerView.sizeExternalGuideVert
+                        andSuperHoriz: self.view.originGuideHoriz];
+    
+    scrollView.leftSizeGuide = self.view.originGuideHoriz;
+    scrollView.rightSizeGuide = self.view.sizeGuideHoriz;
+    scrollView.topSizeGuide = containerView.sizeExternalGuideVert;
+    scrollView.bottomSizeGuide = self.view.sizeGuideVert;
+    
+    [self.view addSubview: scrollView];
 }
 
 /**
@@ -45,6 +65,7 @@
     testLabel = [[IonLabel alloc] init];
     //testLabel.text = @"Lorem ipsum dolor sit amet consectetur adipiscing elit";
     testLabel.text = @"People";
+    
     
     titleBar.leftView = leftButton;
     titleBar.rightView = rightButton;
@@ -71,9 +92,15 @@
     // text input
     textInput = [[IonTextBar alloc] initWithFrame: (CGRect){ CGPointZero, (CGSize){ 275, 30 } }];
     [textInput setGuidesWithLocalVert: textInput.centerGuideVert
-                           localHoriz: textInput.centerGuideHoriz
+                           localHoriz: textInput.originGuideHoriz
                             superVert: containerView.centerGuideVert
-                        andSuperHoriz: containerView.centerGuideHoriz];
+                        andSuperHoriz: containerView.leftAutoPadding];
+    
+    textInput.leftSizeGuide = containerView.leftAutoPadding;
+    textInput.rightSizeGuide = containerView.rightAutoPadding;
+    textInput.topSizeGuide = containerView.topAutoPadding;
+    textInput.bottomSizeGuide = containerView.bottomAutoPadding;
+    
     textInput.placeholder = @"Search for a name";
     textInput.themeClass = @"peopleSearch";
     [containerView addSubview: textInput];
@@ -81,12 +108,16 @@
     // Container
     [containerView setSuperGuidesWithVert: titleBar.sizeGuideVert
                                  andHoriz: self.view.originGuideVert];
+    containerView.leftSizeGuide = self.view.originGuideHoriz;
+    containerView.rightSizeGuide = self.view.sizeGuideHoriz;
+    containerView.topSizeGuide = [IonGuideLine guideWithStaticValue: 0.0f];
+    containerView.bottomSizeGuide = [IonGuideLine guideWithStaticValue: 45.0f];
     containerView.themeElement = @"sub-bar";
     
-    containerView.frame = (CGRect){CGPointZero, (CGSize){ self.view.frame.size.width, 45 } };
     
     //[containerView addSubview: button];
     [self.view addSubview: containerView];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated {

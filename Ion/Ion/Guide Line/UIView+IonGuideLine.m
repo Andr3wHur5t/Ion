@@ -7,6 +7,7 @@
 //
 
 #import "UIView+IonGuideLine.h"
+#import "UIView+IonGuideGroup.h"
 #import <IonData/IonData.h>
 #import <objc/runtime.h>
 
@@ -15,7 +16,6 @@ static char* sIonCachedGuideLineKey = "IonCachedGuideLines";
 static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 
 @implementation UIView (IonGuideLine)
-
 #pragma mark Guide Set
 
 /**
@@ -62,11 +62,8 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  * Logs the guide set if aplicable
  */
 - (void) logAutoFrameChange {
-    NSString* logKey;
-    
-    logKey = self.logAutoFrameUpdatesWithString;
-    if ( logKey )
-        NSLog( @"%@: %@", logKey, self.guideSet);
+    if ( self.logAutoFrameUpdatesWithString )
+        NSLog( @"%@: %@", self.logAutoFrameUpdatesWithString, self.guideSet);
 }
 
 #pragma mark Guide Set

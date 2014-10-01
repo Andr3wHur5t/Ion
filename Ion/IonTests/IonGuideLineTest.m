@@ -97,12 +97,12 @@
 - (void)testGuideLineStyleAutoMarginFromStyleMargin {
     IonGuideLine* line;
     _testRect = [[IonView alloc] initWithFrame: (CGRect){ CGPointZero , (CGSize){ 10,10 } }];
-    _testRect.styleMargin = (CGSize){ 2, 4 };
+    _testRect.stylePadding = (CGSize){ 2, 4 };
     
     line = [IonGuideLine guideFromViewAutoMargin:_testRect usingMode: IonGuideLineFrameMode_Horizontal];
-    _testRect.styleMargin = (CGSize){ 8, 6 };
+    _testRect.stylePadding = (CGSize){ 8, 6 };
     
-    XCTAssert( line.position == _testRect.styleMargin.width  , @"Values do not match.");
+    XCTAssert( line.position == _testRect.stylePadding.width  , @"Values do not match.");
 }
 
 /**
@@ -129,8 +129,8 @@
     _testFloat = 15.0;
     
     line = [IonGuideLine guideWithTarget: self andKeyPath:@"testFloat"];
-    childLine = [line guideAsChildUsingCalcBlock: ^CGFloat(CGFloat target) {
-        return target + amount;
+    childLine = [line guideAsChildUsingCalcBlock: ^CGFloat( NSDictionary *targetValues) {
+        return [IonGuideLine defaultCalculationBlock]( targetValues ) + amount;
     }];
     _testFloat = 50.0f;
     
@@ -141,20 +141,39 @@
  * Test Guide Dependence.
  */
 - (void)testGuideLineDependence {
-    IonGuideLine *lineOne;
-    CGFloat val = 5;
+    IonGuideLine *lineOne, *lineTwo;
+    CGFloat val = 30;
     _testFloat = 15.0;
     
     lineOne = [IonGuideLine guideWithStaticValue: val];
-    [lineOne addDependentTarget: self andKeyPath: @"testFloat"];
-    [lineOne setCalcBlock: ^CGFloat( CGFloat target ){
-        return target * 2;
-    }];
+    
+    lineTwo = [lineOne guideAsChild];
+    [lineTwo addTarget:self withKeyPath:@"testFloat" andName:@"testFloat"];
     
     // Try to force a recalc
     self.testFloat = 50;
     
-    XCTAssert( lineOne.position == val * 2 , @"Values do not match.");
+    XCTAssert( lineTwo.position == _testFloat + val  , @"Values do not match.");
+}
+
+/**
+ * Test Guide Dependence.
+ */
+- (void)testGuideLineDependenceDynamic {
+    IonGuideLine *lineOne, *lineTwo;
+    CGFloat val = 4030;
+    _testFloat = 15.0;
+    
+    lineOne = [IonGuideLine guideWithStaticValue: 10.0f];
+    
+    lineTwo = [lineOne guideAsChild];
+    [lineTwo addTarget:self withKeyPath:@"testFloat" andName:@"testFloat"];
+    
+    // Try to force a recalc
+    self.testFloat = 50;
+    lineOne.position = val;
+    
+    XCTAssert( lineTwo.position == _testFloat + val  , @"Values do not match.");
 }
 
 /**

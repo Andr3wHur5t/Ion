@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IonGuideGroup.h"
+#import "IonCompleteGuideGroup.h"
 
 /**
  * A proxy catagory to add guide group functionality.
@@ -246,6 +246,15 @@
 @property (strong, nonatomic, readonly) IonGuideLine* bottomAutoPadding;
 
 #pragma mark Margins
+/**
+ * Margin Width Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* marginWidth;
+
+/**
+ * Margin Height Guide Line
+ */
+@property (strong, nonatomic, readonly) IonGuideLine* marginHeight;
 
 /**
  * Left Margin Guide Line

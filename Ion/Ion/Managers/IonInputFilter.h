@@ -53,8 +53,7 @@ static NSString *sIonInputFilter_MaxKey = @"maxChars";
  */
 + (instancetype) filterWithDictionary:(NSDictionary *)configuration;
 
-#pragma Configuration
-
+#pragma mark Configuration
 /**
  * The maximum amount of characters allowed.
  */

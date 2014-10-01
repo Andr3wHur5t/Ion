@@ -128,8 +128,8 @@
                                                        andMode: IonGuideLineFrameMode_Vertical];
     
     // Sizeing
-    contentGroup.leftSizeGuide = self.leftPadding;
-    contentGroup.rightSizeGuide = self.rightPadding;
+    contentGroup.leftSizeGuide = self.leftAutoPadding;
+    contentGroup.rightSizeGuide = self.rightAutoPadding;
     contentGroup.topSizeGuide = [IonGuideLine guideWithStaticValue: 0];
     contentGroup.bottomSizeGuide = [IonGuideLine guideWithTarget: self andKeyPath: @"contentHeight"];
     
@@ -335,17 +335,15 @@
     
     _centerView.topSizeGuide = contentGroup.originExternalGuideVert;
     _centerView.bottomSizeGuide = contentGroup.sizeExternalGuideVert;
-
-//      There is a sizing bug in the guide system that needs to be fixed first.
-//    if ( _rightView )
-//        _centerView.rightSizeGuide = _rightView.leftMargin;
-//    else
+    
+    if ( _rightView )
+        _centerView.rightSizeGuide = _rightView.leftMargin;
+    else
         _centerView.rightSizeGuide = contentGroup.oneForthExternalGuideHoriz;
     
-//    There is a sizing bug in the guide system that needs to be fixed first.
-//    if ( _leftView )
-//        _centerView.leftSizeGuide = _leftView.rightMargin;
-//    else
+    if ( _leftView )
+        _centerView.leftSizeGuide = _leftView.rightMargin;
+    else
         _centerView.leftSizeGuide = contentGroup.threeForthsExternalGuideHoriz;
     
     [_centerView setGuidesWithLocalVert: _centerView.centerGuideVert
@@ -355,7 +353,6 @@
 }
 
 #pragma mark Right View
-
 /**
  * Switch notifications to manual
  */

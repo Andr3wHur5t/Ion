@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Ion. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "IonTargetActionSet.h"
 #import <XCTest/XCTest.h>
 
 @interface IonTargetActionSetTests : XCTestCase
@@ -25,16 +25,93 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+- (void)testConstruction {
+    IonTargetActionSet *testSet;
+    
+    testSet = [[IonTargetActionSet alloc] initWithTarget: self andAction: @selector(SelectorTest)];
+    
+    XCTAssert([testSet.target isEqual: self] && testSet.action == @selector(SelectorTest) , @"Pass");
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testConstructionNegitive {
+    IonTargetActionSet *testSet;
+    testSet = [[IonTargetActionSet alloc] initWithTarget: self andAction: @selector(SelectorTest)];
+    
+    XCTAssert(!(![testSet.target isEqual: self] && testSet.action != @selector(SelectorTest)) , @"Pass");
+}
+
+- (void)testValid {
+    IonTargetActionSet *testSet;
+    testSet = [[IonTargetActionSet alloc] initWithTarget: self andAction: @selector(SelectorTest)];
+    
+    XCTAssert(testSet.isValid , @"Pass");
+}
+
+- (void)testValidNegitive {
+    IonTargetActionSet *testSet;
+    testSet = [[IonTargetActionSet alloc] init];
+    
+    XCTAssert(!testSet.isValid , @"Pass");
+}
+
+- (void)testEquality {
+    IonTargetActionSet *oneTestSet, *twoTestSet;
+    oneTestSet = twoTestSet = [[IonTargetActionSet alloc] initWithTarget: self
+                                                               andAction: @selector(SelectorTest)];
+    
+    XCTAssert([oneTestSet isEqual: twoTestSet], @"Pass");
+}
+
+- (void)testRawEquality {
+    IonTargetActionSet *oneTestSet;
+    oneTestSet = [[IonTargetActionSet alloc] initWithTarget: self andAction: @selector(SelectorTest)];
+    
+    XCTAssert([oneTestSet isEqualToTarget: self andAction: @selector(SelectorTest)], @"Pass");
+}
+
+
+- (void)testRawEqualityNegitive {
+    IonTargetActionSet *oneTestSet;
+    oneTestSet = [[IonTargetActionSet alloc] initWithTarget: self andAction: @selector(SelectorTest)];
+    
+    XCTAssert(![oneTestSet isEqualToTarget: NULL andAction: NULL], @"Pass");
+}
+
+- (void)testRawEqualityNoSelectorNegitive {
+    IonTargetActionSet *oneTestSet;
+    oneTestSet = [[IonTargetActionSet alloc] initWithTarget: self andAction: @selector(SelectorTest)];
+    
+    XCTAssert(![oneTestSet isEqualToTarget: self andAction: NULL], @"Pass");
+}
+
+- (void)testRawEqualityNoTargetNegitive {
+    IonTargetActionSet *oneTestSet;
+    oneTestSet = [[IonTargetActionSet alloc] initWithTarget: self andAction: @selector(SelectorTest)];
+    
+    XCTAssert(![oneTestSet isEqualToTarget: NULL andAction: @selector(SelectorTest)], @"Pass");
+}
+
+
+- (void)testRawEqualityInvalidTargetNegitive {
+    IonTargetActionSet *oneTestSet;
+    oneTestSet = [[IonTargetActionSet alloc] initWithTarget: self andAction: @selector(SelectorTest)];
+    
+    XCTAssert(![oneTestSet isEqualToTarget: [[NSObject alloc] init] andAction: @selector(SelectorTest)], @"Pass");
+}
+
+- (void)testRawEqualityInvalidSelectorNegitive {
+    IonTargetActionSet *oneTestSet;
+    oneTestSet = [[IonTargetActionSet alloc] initWithTarget: self andAction: @selector(SelectorTest)];
+    
+    XCTAssert(![oneTestSet isEqualToTarget: self andAction: @selector(SelectorIncorrect)], @"Pass");
+}
+
+- (void) SelectorTest {
+    
+}
+
+- (void) SelectorIncorrect {
+    
 }
 
 @end

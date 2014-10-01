@@ -19,7 +19,7 @@
 #import <objc/runtime.h>
 
 
-extern void ThemeLog ( NSString* message ) {
+inline extern void ThemeLog ( NSString* message ) {
     NSLog(@"Theme System: %@", message);
 }
 

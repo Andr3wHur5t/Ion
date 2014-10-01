@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface IonScrollView : UIScrollView
+#pragma mark Magnets
 
+#pragma mark Events
 @end

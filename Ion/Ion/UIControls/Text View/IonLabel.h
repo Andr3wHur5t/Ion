@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "IonStyle.h"
 
-// Theme Proproties
+// Theme Properties
 
 
 // Default Font Configuration
@@ -21,7 +21,7 @@ static NSString* sDefaultFontName = @"Helvetica Neue";
 /**
  * The protocol for overflow behavior
  */
-@protocol IonLabelOverflowBehaviorDeligate <NSObject>
+@protocol IonLabelOverflowBehaviorDelegate <NSObject>
 
 /**
  * Sets the Current managed views.
@@ -32,11 +32,10 @@ static NSString* sDefaultFontName = @"Helvetica Neue";
 - (void) setContainer:(IonLabel*) view andLabel:(UILabel*) label;
 
 /**
- * Informs the behavior deligate of an attribute change of the label.
+ * Informs the behavior delegate of an attribute change of the label.
  * @returns {void}
  */
 - (void) updateStates;
-
 
 @end
 
@@ -69,7 +68,7 @@ static NSString* sDefaultFontName = @"Helvetica Neue";
 /**
  * The overflow delegate.
  */
-@property (strong, nonatomic, readwrite) id<IonLabelOverflowBehaviorDeligate> overflowBehavior;
+@property (strong, nonatomic, readwrite) id<IonLabelOverflowBehaviorDelegate> overflowBehavior;
 
 
 

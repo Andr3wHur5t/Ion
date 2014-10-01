@@ -187,7 +187,7 @@ static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
         return;
     
     // Update
-    itemCount = [NSNumber numberWithInt: [itemCount integerValue] + 1 ];
+    itemCount = [NSNumber numberWithInteger: [itemCount integerValue] + (NSInteger)1 ];
     [stats setObject: itemCount forKey: valKey];
     [self setStats: stats toItemWithKey: key];
 }

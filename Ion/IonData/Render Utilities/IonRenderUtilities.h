@@ -160,7 +160,7 @@ typedef void(^IonRenderReturnBlock)( UIImage* image );
 
 
 
-#pragma Mark Testing In Main
+#pragma mark Testing In Main
 
 + (void) renderTestingInMainBlock: (void(^)()) block
                 inContextWithSize: (CGSize) contextSize

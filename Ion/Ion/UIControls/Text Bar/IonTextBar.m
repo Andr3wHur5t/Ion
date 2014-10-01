@@ -76,6 +76,7 @@
                                  superVert: self.centerGuideVert
                              andSuperHoriz: self.icon.rightMargin];
         
+        
         // Size the text field to fit with in the icon and the padding.
         _textField.leftSizeGuide = self.icon.rightMargin;
         _textField.rightSizeGuide = self.rightAutoPadding;
