@@ -36,10 +36,8 @@
  */
 - (void) constructContentView {
     scrollView = [[IonScrollView alloc] init];
-   [scrollView setGuidesWithLocalVert: scrollView.originGuideVert
-                           localHoriz: scrollView.originGuideHoriz
-                            superVert: containerView.sizeExternalGuideVert
-                        andSuperHoriz: self.view.originGuideHoriz];
+   [scrollView setSuperGuidesWithHorz: self.view.originGuideHoriz
+                              andVert: containerView.sizeExternalGuideVert];
     
     scrollView.leftSizeGuide = self.view.originGuideHoriz;
     scrollView.rightSizeGuide = self.view.sizeGuideHoriz;
@@ -72,6 +70,13 @@
     titleBar.centerView = testLabel;
     titleBar.respondsToStatusBar = TRUE;
     [titleBar updateFrame];
+    
+    // Position
+    titleBar.localHorizGuide = titleBar.centerGuideHoriz;
+    titleBar.localVertGuide = titleBar.originGuideVert;
+    
+    titleBar.superHorizGuide = self.view.centerGuideHoriz;
+    titleBar.superVertGuide = self.view.originGuideVert;
 }
 
 /**
@@ -91,10 +96,10 @@
     
     // text input
     textInput = [[IonTextBar alloc] initWithFrame: (CGRect){ CGPointZero, (CGSize){ 275, 30 } }];
-    [textInput setGuidesWithLocalVert: textInput.centerGuideVert
-                           localHoriz: textInput.originGuideHoriz
-                            superVert: containerView.centerGuideVert
-                        andSuperHoriz: containerView.leftAutoPadding];
+    [textInput setGuidesWithLocalHoriz: textInput.originGuideHoriz
+                             localVert: textInput.centerGuideVert
+                            superHoriz: containerView.leftAutoPadding
+                          andSuperVert: containerView.centerGuideVert];
     
     textInput.leftSizeGuide = containerView.leftAutoPadding;
     textInput.rightSizeGuide = containerView.rightAutoPadding;
@@ -106,8 +111,9 @@
     [containerView addSubview: textInput];
     
     // Container
-    [containerView setSuperGuidesWithVert: titleBar.sizeGuideVert
-                                 andHoriz: self.view.originGuideVert];
+    [containerView setSuperGuidesWithHorz: self.view.originGuideHoriz
+                                  andVert: titleBar.sizeExternalGuideVert];
+    
     containerView.leftSizeGuide = self.view.originGuideHoriz;
     containerView.rightSizeGuide = self.view.sizeGuideHoriz;
     containerView.topSizeGuide = [IonGuideLine guideWithStaticValue: 0.0f];
@@ -177,13 +183,6 @@
 
 - (void) shouldLayoutSubviews {
     [super shouldLayoutSubviews];
-    
-    // Position
-    titleBar.localHorizGuide = titleBar.centerGuideHoriz;
-    titleBar.localVertGuide = titleBar.originGuideVert;
-    
-    titleBar.superHorizGuide = self.view.centerGuideHoriz;
-    titleBar.superVertGuide = self.view.originGuideVert;
 }
 
 /** = = = = = = = = = = = = End Tests = = = = = = = = = = = = = = =  */

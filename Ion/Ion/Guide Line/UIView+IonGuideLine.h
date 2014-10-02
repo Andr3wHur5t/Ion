@@ -19,69 +19,111 @@
 /**
  * The Guide lines states object.
  */
-@property (strong, nonatomic) IonViewGuideSet* guideSet;
+@property (weak, nonatomic, readonly) IonViewGuideSet *guideSet;
 
 /**
  * Local Guides
  */
-@property (weak, nonatomic) IonGuideLine* localVertGuide;
-@property (weak, nonatomic) IonGuideLine* localHorizGuide;
+@property (weak, nonatomic, readwrite) IonGuideLine *localVertGuide;
+@property (weak, nonatomic, readwrite) IonGuideLine *localHorizGuide;
 
 /**
  * Super Guides
  */
-@property (weak, nonatomic) IonGuideLine* superVertGuide;
-@property (weak, nonatomic) IonGuideLine* superHorizGuide;
+@property (weak, nonatomic, readwrite) IonGuideLine *superVertGuide;
+@property (weak, nonatomic, readwrite) IonGuideLine *superHorizGuide;
 
 /**
  * The size guides
  */
-@property (weak, nonatomic) IonGuideLine* topSizeGuide;
-@property (weak, nonatomic) IonGuideLine* bottomSizeGuide;
-@property (weak, nonatomic) IonGuideLine* leftSizeGuide;
-@property (weak, nonatomic) IonGuideLine* rightSizeGuide;
+@property (weak, nonatomic, readwrite) IonGuideLine *topSizeGuide;
+@property (weak, nonatomic, readwrite) IonGuideLine *bottomSizeGuide;
+@property (weak, nonatomic, readwrite) IonGuideLine *leftSizeGuide;
+@property (weak, nonatomic, readwrite) IonGuideLine *rightSizeGuide;
 
 /**
  * Logs frame auto updating for the view, with the specified string.
  */
-@property (weak, nonatomic) NSString* logAutoFrameUpdatesWithString;
+@property (weak, nonatomic, readwrite) NSString *logAutoFrameUpdatesWithString;
 
-#pragma mark Setters
-
+#pragma mark Setter Utilities.
 /**
  * Sets the local guides.
- * @param {IonGuideLine*} the vertical guide line.
- * @param {IonGuideLine*} the horizontal guide line.
- * @returns {void}
+ * @param horiz - the horizontal guide line.
+ * @param vert - the vertical guide line.
  */
-- (void) setLocalGuidesWithVert:(IonGuideLine*) vert andHoriz:(IonGuideLine*) horiz;
+- (void) setLocalGuidesWithHorz:(IonGuideLine *)horiz andVert:(IonGuideLine *)vert;
 
 /**
  * Sets the super guides.
- * @param {IonGuideLine*} the vertical guide line.
- * @param {IonGuideLine*} the horizontal guide line.
- * @returns {void}
+ * @param horiz - the horizontal guide line.
+ * @param vert - the vertical guide line.
  */
-- (void) setSuperGuidesWithVert:(IonGuideLine*) vert andHoriz:(IonGuideLine*) horiz;
+- (void) setSuperGuidesWithHorz:(IonGuideLine *)horiz andVert:(IonGuideLine *)vert;
 
 /**
- * Sets all guides.
- * @param {IonGuideLine*} the local vertical guide line.
- * @param {IonGuideLine*} the local horizontal guide line.
- * @param {IonGuideLine*} the super vertical guide line.
- * @param {IonGuideLine*} the super horizontal guide line.
- * @returns {void}
+ * Sets all position guides.
+ * @param lHoriz - the local horizontal guide line.
+ * @param lVert - the local vertical guide line.
+ * @param sHoriz- the super horizontal guide line.
+ * @param sVert - the super vertical guide line.
  */
-- (void) setGuidesWithLocalVert:(IonGuideLine*) lVert
-                     localHoriz:(IonGuideLine*) lHoriz
-                      superVert:(IonGuideLine*) sVert
-                  andSuperHoriz:(IonGuideLine*) sHoriz;
+- (void) setGuidesWithLocalHoriz:(IonGuideLine *)lHoriz
+                       localVert:(IonGuideLine *)lVert
+                      superHoriz:(IonGuideLine *)sHoriz
+                    andSuperVert:(IonGuideLine *)sVert;
+
+/**
+ * Sets the horizontal size guides.
+ * @param left - the left size guide.
+ * @param right - the right size guide.
+ */
+- (void) setSizeHorizontalWithLeft:(IonGuideLine *)left andRight:(IonGuideLine *)right;
+
+/**
+ * Sets the horizontal size guides.
+ * @param top - the top size guide.
+ * @param bottom - the bottom size guide.
+ */
+- (void) setSizeVerticalyWithTop:(IonGuideLine *)top andBottom:(IonGuideLine *)bottom;
+
+/**
+ * Sets all size guides.
+ * @param left - the left size guide.
+ * @param right - the right size guide.
+ * @param top - the top size guide.
+ * @param bottom - the bottom size guide.
+ */
+- (void) setSizeGuidesWithLeft:(IonGuideLine *)left
+                         right:(IonGuideLine *)right
+                           top:(IonGuideLine *)top
+                     andBottom:(IonGuideLine *)bottom;
+
+/**
+ * Sets both size, and positioning guides.
+ * @param lHoriz - the local horizontal guide line.
+ * @param lVert - the local vertical guide line.
+ * @param sHoriz- the super horizontal guide line.
+ * @param sVert - the super vertical guide line.
+ * @param left - the left size guide.
+ * @param right - the right size guide.
+ * @param top - the top size guide.
+ * @param bottom - the bottom size guide.
+ */
+- (void) setGuidesWithLocalHoriz:(IonGuideLine *)lHoriz
+                       localVert:(IonGuideLine *)lVert
+                      superHoriz:(IonGuideLine *)sHoriz
+                       superVert:(IonGuideLine *)sVert
+                            left:(IonGuideLine *)left
+                           right:(IonGuideLine *)right
+                             top:(IonGuideLine *)top
+                       andBottom:(IonGuideLine *)bottom;
 
 #pragma mark Update Functions
-
 /**
  * Updates the position of the current frame to match the guide set.
  * @returns {void}
  */
 - (void) updateFrameToMatchGuideSet;
+
 @end

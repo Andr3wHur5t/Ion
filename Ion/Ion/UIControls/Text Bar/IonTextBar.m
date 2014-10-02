@@ -71,11 +71,10 @@
         _textField = [[IonTextField alloc] init];
         
         // Position the text field next to the Icon.
-        [_textField setGuidesWithLocalVert: _textField.centerGuideVert
-                                localHoriz: _textField.originGuideHoriz
-                                 superVert: self.centerGuideVert
-                             andSuperHoriz: self.icon.rightMargin];
-        
+        [_textField setGuidesWithLocalHoriz: _textField.originGuideHoriz
+                                  localVert: _textField.centerGuideVert
+                                 superHoriz: self.icon.rightMargin
+                               andSuperVert: self.centerGuideVert];
         
         // Size the text field to fit with in the icon and the padding.
         _textField.leftSizeGuide = self.icon.rightMargin;
@@ -230,10 +229,10 @@
         return;
     
     // Position
-    [_icon setGuidesWithLocalVert: _icon.centerGuideVert
-                       localHoriz: _icon.originGuideHoriz
-                        superVert: self.centerGuideVert
-                    andSuperHoriz: self.leftAutoPadding];
+    [_icon setGuidesWithLocalHoriz: _icon.originGuideHoriz
+                         localVert: _icon.centerGuideVert
+                        superHoriz: self.leftAutoPadding
+                      andSuperVert: self.centerGuideVert];
     if ( _textField )
         _textField.superHorizGuide = _textField.leftSizeGuide = self.icon.rightMargin;
 }

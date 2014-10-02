@@ -343,9 +343,9 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) rightPadding {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_RightPadding];
     if ( !obj ) {
-        obj = [IonGuideLine guideWithGuide: self.leftPadding
+        obj = [IonGuideLine guideWithGuide: self.sizeGuideHoriz
                                    modType: IonValueModType_Subtract
-                            andSecondGuide: self.sizeGuideHoriz];
+                            andSecondGuide: self.leftPadding];
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_RightPadding];
     }
     return obj;
@@ -404,9 +404,9 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) rightAutoPadding {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_RightAutoPadding];
     if ( !obj ) {
-        obj = [IonGuideLine guideWithGuide: self.leftAutoPadding
+        obj = [IonGuideLine guideWithGuide: self.sizeGuideHoriz
                                    modType: IonValueModType_Subtract
-                            andSecondGuide: self.sizeGuideHoriz];
+                            andSecondGuide: self.leftAutoPadding];
         
         obj.debugName = sIonGuideLine_RightAutoPadding;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_RightAutoPadding];
@@ -435,9 +435,9 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) bottomAutoPadding {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_BottomAutoPadding];
     if ( !obj ) {
-        obj = [IonGuideLine guideWithGuide: self.topAutoPadding
+        obj = [IonGuideLine guideWithGuide: self.sizeGuideVert
                                    modType: IonValueModType_Subtract
-                            andSecondGuide:  self.sizeGuideVert];
+                            andSecondGuide: self.topAutoPadding];
         
         obj.debugName = sIonGuideLine_BottomAutoPadding;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_BottomAutoPadding];
@@ -480,9 +480,9 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) leftMargin {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_LeftMargin];
     if ( !obj ) {
-        obj = [IonGuideLine guideWithGuide: self.marginWidth
+        obj = [IonGuideLine guideWithGuide: self.originExternalGuideHoriz
                                    modType: IonValueModType_Subtract
-                            andSecondGuide: self.originExternalGuideHoriz];
+                            andSecondGuide: self.marginWidth];
         obj.debugName = sIonGuideLine_LeftMargin;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_LeftMargin];
     }
@@ -511,9 +511,9 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) topMargin {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_TopMargin];
     if ( !obj ) {
-        obj = [IonGuideLine guideWithGuide: self.marginHeight
+        obj = [IonGuideLine guideWithGuide: self.originExternalGuideVert
                                    modType: IonValueModType_Subtract
-                            andSecondGuide: self.originExternalGuideVert];
+                            andSecondGuide: self.marginHeight];
         
         obj.debugName = sIonGuideLine_TopMargin;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_TopMargin];

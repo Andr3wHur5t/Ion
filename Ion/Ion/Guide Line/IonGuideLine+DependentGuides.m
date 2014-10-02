@@ -28,7 +28,7 @@
     resultGuide = [IonGuideLine guideWithTarget: firstGuide
                                         keyPath: @"position"
                                    andCalcBlock: modType == IonValueModType_Subtract ?
-                   [[self class] calcBlockWithSubtracted: @"secondGuide"  by: sIonGuideLine_PrimaryTargetKey] :
+                   [[self class] calcBlockWithSubtracted: sIonGuideLine_PrimaryTargetKey by: @"secondGuide"] :
                    [[self class] calcBlockForModType: modType] ];
     
     // Add Secondary target guide

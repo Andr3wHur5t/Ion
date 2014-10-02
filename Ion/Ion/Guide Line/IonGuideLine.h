@@ -28,8 +28,8 @@ typedef CGFloat(^IonValueModBlock)( CGFloat a, CGFloat b );
 typedef enum : NSUInteger {
     IonValueModType_Add = 0,
     IonValueModType_Subtract = 1,
-    IonValueModType_Multipliy = 2,
-    IonValueModType_Devide = 3
+    IonValueModType_Multiply = 2,
+    IonValueModType_Divide = 3
 } IonValueModType;
 
 /**

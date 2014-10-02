@@ -525,12 +525,12 @@ andProcessingBlock:(IonGuideLineProcessingBlock) processingBlock {
                 return a - b;
             };
             break;
-        case IonValueModType_Multipliy:
+        case IonValueModType_Multiply:
             return ^CGFloat(CGFloat a, CGFloat b) {
                 return a * b;
             };
             break;
-        case IonValueModType_Devide:
+        case IonValueModType_Divide:
             return ^CGFloat(CGFloat a, CGFloat b) {
                 return a / b;
             };
