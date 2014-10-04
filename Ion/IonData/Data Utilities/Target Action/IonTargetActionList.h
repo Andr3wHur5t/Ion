@@ -39,7 +39,7 @@
  * @param actionSet - the action set to be removed. Can not be NULL
  * @param group - the group to remove the action set from.
  */
-- (void) removeActionSet:(IonTargetActionSet *)actionSet forGroup:(NSUInteger) group;
+- (void) removeActionSet:(IonTargetActionSet *)actionSet fromGroup:(NSUInteger) group;
 
 
 #pragma mark invocation

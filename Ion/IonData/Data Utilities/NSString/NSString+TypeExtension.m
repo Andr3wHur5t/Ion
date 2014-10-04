@@ -20,7 +20,7 @@
 - (NSTextAlignment) toTextAlignment {
     NSString* uppercase = self.uppercaseString;
     
-    // NOTE: Constants manualy uppercased
+    // NOTE: Constants manually uppercased
     if ( [uppercase isEqualToString: sIonTextAlignment_Centered] )
         return NSTextAlignmentCenter;
     else if ( [uppercase isEqualToString: sIonTextAlignment_Right] )
@@ -42,7 +42,7 @@
 - (UIKeyboardType) toKeyboardType {
     NSString* uppercase = self.uppercaseString;
     
-    // NOTE: Constants manualy uppercased
+    // NOTE: Constants manually uppercased
     if ( [uppercase isEqualToString: sIonKeyboardType_ACII] )
         return UIKeyboardTypeASCIICapable;
     else if ( [uppercase isEqualToString: sIonKeyboardType_NumbersAndPunctuation] )
@@ -68,16 +68,16 @@
 }
 
 /**
- * Converts a string to UIKeyboardAppearence.
- * @returns {UIKeyboardAppearence}
+ * Converts a string to UIKeyboardAppearance.
+ * @returns {UIKeyboardAppearance}
  */
-- (UIKeyboardAppearance) toKeyboardAppearence {
+- (UIKeyboardAppearance) toKeyboardAppearance {
     NSString* uppercase = self.uppercaseString;
     
-    // NOTE: Constants manualy uppercased
-    if ( [uppercase isEqualToString: sIonKeyboardAppearence_Light] )
+    // NOTE: Constants manually uppercased
+    if ( [uppercase isEqualToString: sIonKeyboardAppearance_Light] )
         return UIKeyboardAppearanceLight;
-    else if ( [uppercase isEqualToString: sIonKeyboardAppearence_Dark] )
+    else if ( [uppercase isEqualToString: sIonKeyboardAppearance_Dark] )
         return UIKeyboardAppearanceDark;
     else
         return UIKeyboardAppearanceDefault;
@@ -90,7 +90,7 @@
 - (UIReturnKeyType) toReturnKeyType {
     NSString* uppercase = self.uppercaseString;
     
-    // NOTE: Constants manualy uppercased
+    // NOTE: Constants manually uppercased
     if ( [uppercase isEqualToString: sIonKeyboardReturnKey_Done] )
         return UIReturnKeyDone;
     else if ( [uppercase isEqualToString: sIonKeyboardReturnKey_EmergencyCall] )
@@ -118,7 +118,7 @@
 - (UITextAutocapitalizationType) toAutocapitalizationType {
     NSString* uppercase = self.uppercaseString;
     
-    // NOTE: Constants manualy uppercased
+    // NOTE: Constants manually uppercased
     if ( [uppercase isEqualToString: sIonAutocapitalizationType_All] )
         return UITextAutocapitalizationTypeAllCharacters;
     else if ( [uppercase isEqualToString: sIonAutocapitalizationType_None] )
@@ -136,7 +136,7 @@
 - (UITextAutocorrectionType) toAutocorrectionType {
     NSString* uppercase = self.uppercaseString;
     
-    // NOTE: Constants manualy uppercased
+    // NOTE: Constants manually uppercased
     if ( [uppercase isEqualToString: sIonAutocorrectionType_Yes] )
         return UITextAutocorrectionTypeYes;
     else if ( [uppercase isEqualToString: sIonAutocorrectionType_No] )
@@ -152,7 +152,7 @@
 - (UITextSpellCheckingType) toSpellCheckingType {
     NSString* uppercase = self.uppercaseString;
     
-    // NOTE: Constants manualy uppercased
+    // NOTE: Constants manually uppercased
     if ( [uppercase isEqualToString: sIonSpellCheckingType_Yes] )
         return UITextSpellCheckingTypeYes;
     else if ( [uppercase isEqualToString: sIonSpellCheckingType_No] )
@@ -161,6 +161,52 @@
         return UITextSpellCheckingTypeDefault;
 }
 
+/**
+ * Converts a string to a UIScrollViewKeyboardDismissMode.
+ * @returns {UIScrollViewKeyboardDismissMode}
+ */
+- (UIScrollViewKeyboardDismissMode) toScrollViewKeyboardDismissMode {
+    NSString* uppercase = self.uppercaseString;
+    
+    // NOTE: Constants manually uppercased
+    if ( [uppercase isEqualToString: sIonScrollViewKeyboardDismissMode_OnDrag ] )
+        return UIScrollViewKeyboardDismissModeOnDrag;
+    else if ( [uppercase isEqualToString: sIonScrollViewKeyboardDismissMode_Interactive ] )
+        return UIScrollViewKeyboardDismissModeInteractive;
+    else
+        return UIScrollViewKeyboardDismissModeNone;
+}
+
+/**
+ * Converts a string to a float using the UIScrollView Deceleration rate constants.
+ * @returns {float}
+ */
+- (float) toScrollViewDecelerationRateConstant {
+    NSString* uppercase = self.uppercaseString;
+    
+    // NOTE: Constants manually uppercased
+    if ( [uppercase isEqualToString: sIonScrollViewDecelerationRate_Fast ] )
+        return UIScrollViewDecelerationRateFast;
+    else
+        return UIScrollViewDecelerationRateNormal;
+}
+
+
+/**
+ * Converts a string to a UIScrollViewIndicatorStyle.
+ * @returns {UIScrollViewIndicatorStyle}
+ */
+- (UIScrollViewIndicatorStyle) toScrollViewIndicatorStyle {
+    NSString* uppercase = self.uppercaseString;
+    
+    // NOTE: Constants manually uppercased
+    if ( [uppercase isEqualToString: sIonScrollViewIndicatorStyle_Black ] )
+        return UIScrollViewIndicatorStyleBlack;
+    else if ( [uppercase isEqualToString: sIonScrollViewIndicatorStyle_White ] )
+        return UIScrollViewIndicatorStyleWhite;
+    else
+        return UIScrollViewIndicatorStyleDefault;
+}
 
 
 @end

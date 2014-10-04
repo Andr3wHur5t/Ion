@@ -43,7 +43,7 @@
     
     str = [self objectForKey: key];
     if ( !str ) {
-        IonReportEmpty( @"\"%@\" dose not exsist!", key );
+        IonReportEmpty( @"\"%@\" dose not exist!", key );
         return NULL;
     }
     if ( ![str isKindOfClass: [NSString class]] ) {
@@ -56,26 +56,36 @@
 
 /**
  * Gets the NSDictionary of the keyed value.
- * @param {id} the key to get the value from.
+ * @param key -  the key to get the value from.
  * @retruns {NSDictionary*} a valid NSDictionary, or NULL if invalid.
  */
 - (NSDictionary*) dictionaryForKey:(id) key {
+    return [self dictionaryForKey: key defaultValue: NULL];
+}
+
+/**
+ * Gets the NSDictionary of the keyed value.
+ * @param key - the key to get the value from.
+ * @param defaultValue - the value to return if invalid.
+ * @retruns {NSDictionary*} a valid NSDictionary, or NULL if invalid.
+ */
+- (NSDictionary*) dictionaryForKey:(id) key defaultValue:(id) defaultValue {
     NSDictionary* dict;
     
     NSParameterAssert( key );
     if ( !key ) {
         IonReport( @"No key specified." );
-        return NULL;
+        return defaultValue;
     }
     
     dict = [self objectForKey: key];
     if ( !dict ) {
-        IonReportEmpty( @"\"%@\" dose not exsist!", key );
-        return NULL;
+        IonReportEmpty( @"\"%@\" dose not exist!", key );
+        return defaultValue;
     }
     if ( ![dict isKindOfClass: [NSDictionary class]] ) {
         IonReport( @"\"%@\" is not a dictionary.", key );
-        return NULL;
+        return defaultValue;
     }
     
     return dict;
@@ -97,7 +107,7 @@
     
     arr = [self objectForKey: key];
     if ( !arr ) {
-        IonReportEmpty( @"\"%@\" dose not exsist!", key );
+        IonReportEmpty( @"\"%@\" dose not exist!", key );
         return NULL;
     }
     if ( ![arr isKindOfClass: [NSArray class]] ) {
@@ -110,26 +120,35 @@
 
 /**
  * Gets the NSNumber of the keyed value.
- * @param {id} the key to get the value from.
+ * @param key - the key to get the value from.
  * @retruns {NSNumber*} a valid NSNumber, or NULL if invalid.
  */
 - (NSNumber*) numberForKey:(id) key {
+    return [self numberForKey: key defaultValue: NULL];
+}
+
+/**
+ * Gets the NSNumber of the keyed value.
+ * @param key - the key to get the value from.
+ * @retruns {NSNumber*} a valid NSNumber, or the default value.
+ */
+- (NSNumber*) numberForKey:(id) key defaultValue:(id) defaultValue {
     NSNumber* num;
     
     NSParameterAssert( key );
     if ( !key ) {
         IonReport( @"No key specified." );
-        return NULL;
+        return defaultValue;
     }
     
     num = [self objectForKey: key];
     if ( !num ) {
-        IonReportEmpty( @"\"%@\" dose not exsist!", key );
-        return NULL;
+        IonReportEmpty( @"\"%@\" dose not exist!", key );
+        return defaultValue;
     }
     if ( ![num isKindOfClass: [NSNumber class]] ) {
         IonReport( @"\"%@\" is not a number", key );
-        return NULL;
+        return defaultValue;
     }
     
     return num;
@@ -141,16 +160,26 @@
  * @retruns {BOOL} a valid BOOL, or false.
  */
 - (BOOL) boolForKey:(id) key {
+    return [self boolForKey: key defaultValue: NO];
+}
+
+/**
+ * Gets the BOOL of the keyed value.
+ * @param key - the key to get the value from.
+ * @param default - the default value to return on failure.
+ * @retruns {BOOL}
+ */
+- (BOOL) boolForKey:(id) key defaultValue:(BOOL) defaultValue {
     NSNumber* num;
     NSParameterAssert( key );
     if ( !key ) {
         IonReport( @"No key specified." );
-        return NO;
+        return defaultValue;
     }
     
     num = [self numberForKey: key];
     if ( !num )
-        return NO;
+        return defaultValue;
     
     return [num boolValue];
 }
@@ -436,11 +465,11 @@
 }
 
 /**
- * Gets the KeyboardAppearence representation at the specified key.
- * @param {id} the key for the keyboardAppearence.
+ * Gets the KeyboardAppearance representation at the specified key.
+ * @param {id} the key for the KeyboardAppearance.
  * @returns {UIKeyboardAppearance}
  */
-- (UIKeyboardAppearance) keyboardAppearenceForKey:(id) key {
+- (UIKeyboardAppearance) keyboardAppearanceForKey:(id) key {
     NSString* val;
     NSParameterAssert( key );
     if ( !key ) {
@@ -452,7 +481,7 @@
     if ( !val )
         return UIKeyboardAppearanceDefault;
     
-    return [val toKeyboardAppearence];
+    return [val toKeyboardAppearance];
 }
 
 /**
@@ -535,10 +564,90 @@
     return [val toSpellCheckingType];
 }
 
+#pragma mark Scroll View
+/**
+ * Gets the deceleration rate for the specified key.
+ * @param key - the key of the object to process.
+ * @returns {float}
+ */
+- (float) scrollViewDecelerationRateForKey:(id) key {
+    id value;
+    NSParameterAssert( key );
+    if ( !key )
+        return UIScrollViewDecelerationRateNormal;
+    
+    value = [self objectForKey: key];
+    if ( [value isKindOfClass: [NSString class]] )
+        return [((NSString *)value) toScrollViewDecelerationRateConstant];
+    else if ( [value isKindOfClass: [NSNumber class]] )
+        return [((NSNumber *)value) floatValue];
+    else
+        return UIScrollViewDecelerationRateNormal;
+}
+
+/**
+ * Gets the scroll view indicator style for the specified key.
+ * @param key - the key of the object to process.
+ * @returns {UIScrollViewIndicatorStyle}
+ */
+- (UIScrollViewIndicatorStyle) scrollViewIndicatorStyleForKey:(id) key {
+    NSString *value;
+    NSParameterAssert( key );
+    if ( !key )
+        return UIScrollViewIndicatorStyleDefault;
+    
+    value = [self stringForKey: key];
+    if ( !value )
+        return UIScrollViewIndicatorStyleDefault;
+    
+    return [value toScrollViewIndicatorStyle];
+}
+
+/**
+ * Gets the scroll view keyboard dismiss mode for the specified key.
+ * @param key - the key of the object to process.
+ * @returns {UIScrollViewKeyboardDismissMode}
+ */
+- (UIScrollViewKeyboardDismissMode) scrollViewKeyboardDismissModeForKey:(id) key {
+    NSString *value;
+    NSParameterAssert( key );
+    if ( !key )
+        return UIScrollViewKeyboardDismissModeNone;
+    
+    value = [self stringForKey: key];
+    if ( !value )
+        return UIScrollViewKeyboardDismissModeNone;
+    
+    return [value toScrollViewKeyboardDismissMode];
+}
+
+#pragma mark Edge Insets
+/**
+ * Converts the current Dictionary into a UIEdgeInsets format.
+ * @returns {UIEdgeInsets}
+ */
+- (UIEdgeInsets) toEdgeInsets {
+    return (UIEdgeInsets){
+        [[self numberForKey: sIonEdgeInsets_Top defaultValue: @0.0] floatValue],
+        [[self numberForKey: sIonEdgeInsets_Left defaultValue: @0.0] floatValue],
+        [[self numberForKey: sIonEdgeInsets_Bottom defaultValue: @0.0] floatValue],
+        [[self numberForKey: sIonEdgeInsets_Right defaultValue: @0.0] floatValue]
+    };
+}
+
+/**
+ * Gets the edge insets value of the specified key.
+ * @param key - the key of the object to process.
+ * @returns {UIEdgeInsets}
+ */
+- (UIEdgeInsets) edgeInsetsForKey:(id) key {
+    return [[self dictionaryForKey: key defaultValue: @{}] toEdgeInsets];
+}
+
 #pragma mark Regular Expression
 /**
  * Converts the object at the specified key into a regular expression.
- * @param {id} the key of the object to process.
+ * @param key - the key of the object to process.
  * @returns {NSRegularExpression}
  */
 - (NSRegularExpression *)expressionForKey:(id) key {

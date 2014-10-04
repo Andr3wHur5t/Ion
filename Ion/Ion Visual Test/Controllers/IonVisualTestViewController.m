@@ -8,12 +8,10 @@
 
 #import "IonVisualTestViewController.h"
 
-
-
 @interface IonVisualTestViewController () {
-    IonSimpleCache* sc;
-    IonTitleBar* titleBar;
-    IonView* containerView;
+    IonSimpleCache *sc;
+    IonTitleBar *titleBar;
+    IonView *containerView;
     IonScrollView *scrollView;
 }
 
@@ -36,14 +34,57 @@
  */
 - (void) constructContentView {
     scrollView = [[IonScrollView alloc] init];
-   [scrollView setSuperGuidesWithHorz: self.view.originGuideHoriz
-                              andVert: containerView.sizeExternalGuideVert];
+    [scrollView setSuperGuidesWithHorz: self.view.originGuideHoriz
+                               andVert: containerView.sizeExternalGuideVert];
+    [scrollView setSizeGuidesWithLeft: self.view.originGuideHoriz
+                                right: self.view.sizeGuideHoriz
+                                  top: containerView.sizeExternalGuideVert
+                            andBottom: self.view.sizeGuideVert];
     
-    scrollView.leftSizeGuide = self.view.originGuideHoriz;
-    scrollView.rightSizeGuide = self.view.sizeGuideHoriz;
-    scrollView.topSizeGuide = containerView.sizeExternalGuideVert;
-    scrollView.bottomSizeGuide = self.view.sizeGuideVert;
+    // Add the refresh action view
+    IonScrollRefreshActionView *refreshView = [[IonScrollRefreshActionView alloc] init];
+    refreshView.canAutomaticallyDisplay = FALSE;
+    [scrollView addSubview: refreshView];
     
+    
+    
+    // Test views
+    CGRect nextFrame = (CGRect){ (CGPoint){20,10}, (CGSize){95,95}};
+    UIView *tmpView, *previousView;
+    
+    // Add some polyfill content
+    for ( int i = 0; i <= 10; ++i ) {
+        previousView = tmpView;
+        tmpView = [[UIView alloc] initWithFrame: nextFrame];
+        
+        if ( i != 0)
+            [tmpView setSuperGuidesWithHorz: previousView.originExternalGuideHoriz andVert: previousView.bottomMargin];
+        
+        tmpView.themeClass = @"block";
+        switch ( i % 4) {
+            case 0:
+                tmpView.themeID = @"purple";
+                break;
+            case 1:
+                tmpView.themeID = @"green";
+                break;
+            case 2:
+                tmpView.themeID = @"yellow";
+                break;
+            case 3:
+                tmpView.themeID = @"red";
+                break;
+            default:
+                break;
+        }
+        
+        [scrollView addSubview: tmpView];
+    }
+    
+    // Set the content size
+    [scrollView setContentSizeHoriz: scrollView.sizeGuideHoriz  andVert: tmpView.bottomMargin];
+    
+    // Add Scroll View To Main View
     [self.view addSubview: scrollView];
 }
 
@@ -95,7 +136,7 @@
 //                     andSuperHoriz: containerView.leftPadding];
     
     // text input
-    textInput = [[IonTextBar alloc] initWithFrame: (CGRect){ CGPointZero, (CGSize){ 275, 30 } }];
+    textInput = [[IonTextBar alloc] init];
     [textInput setGuidesWithLocalHoriz: textInput.originGuideHoriz
                              localVert: textInput.centerGuideVert
                             superHoriz: containerView.leftAutoPadding

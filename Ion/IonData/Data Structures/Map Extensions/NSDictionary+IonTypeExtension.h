@@ -24,6 +24,12 @@ static NSString* sIonRegularExpression_type_Literal = @"LITERAL";
 static NSString* sIonRegularExpression_type_Inclusive = @"INCLUSIVE";
 static NSString* sIonRegularExpression_type_Exclusive = @"EXCLUSIVE";
 
+/** UIEdgeInsets Keys*/
+static NSString* sIonEdgeInsets_Left = @"left";
+static NSString* sIonEdgeInsets_Right = @"right";
+static NSString* sIonEdgeInsets_Top = @"top";
+static NSString* sIonEdgeInsets_Bottom = @"bottom";
+
 /**
  * Contains commonly used dictionary utilities, as well as Ion type conversions.
  * Type conversion function name notation is as fallows: <typeShortName>forKey:(id) key;
@@ -47,6 +53,14 @@ static NSString* sIonRegularExpression_type_Exclusive = @"EXCLUSIVE";
 - (NSDictionary*) dictionaryForKey:(id) key;
 
 /**
+ * Gets the NSDictionary of the keyed value.
+ * @param key - the key to get the value from.
+ * @param defaultValue - the value to return if invalid.
+ * @retruns {NSDictionary*} a valid NSDictionary, or NULL if invalid.
+ */
+- (NSDictionary*) dictionaryForKey:(id) key defaultValue:(id) defaultValue;
+
+/**
  * Gets the NSArray of the keyed value.
  * @param {id} the key to get the value from.
  * @retruns {NSArray*} a valid NSArray, or NULL if invalid.
@@ -55,17 +69,32 @@ static NSString* sIonRegularExpression_type_Exclusive = @"EXCLUSIVE";
 
 /**
  * Gets the NSNumber of the keyed value.
- * @param {id} the key to get the value from.
+ * @param key - the key to get the value from.
  * @retruns {NSNumber*} a valid NSNumber, or NULL if invalid.
  */
 - (NSNumber*) numberForKey:(id) key;
 
 /**
+ * Gets the NSNumber of the keyed value.
+ * @param key - the key to get the value from.
+ * @retruns {NSNumber*} a valid NSNumber, or the default value.
+ */
+- (NSNumber*) numberForKey:(id) key defaultValue:(id) defaultValue;
+
+/**
  * Gets the BOOL of the keyed value.
- * @param {id} the key to get the value from.
+ * @param key - the key to get the value from.
  * @retruns {BOOL} a valid BOOL, or false.
  */
 - (BOOL) boolForKey:(id) key;
+
+/**
+ * Gets the BOOL of the keyed value.
+ * @param key - the key to get the value from.
+ * @param default - the default value to return on failure.
+ * @retruns {BOOL}
+ */
+- (BOOL) boolForKey:(id) key defaultValue:(BOOL) defaultValue;
 
 #pragma mark Configuration Objects
 
@@ -162,11 +191,11 @@ static NSString* sIonRegularExpression_type_Exclusive = @"EXCLUSIVE";
 - (UIKeyboardType) keyboardTypeForKey:(id) key;
 
 /**
- * Gets the KeyboardAppearence representation at the specified key.
- * @param {id} the key for the keyboardAppearence.
+ * Gets the KeyboardAppearance representation at the specified key.
+ * @param {id} the key for the KeyboardAppearance.
  * @returns {UIKeyboardAppearance}
  */
-- (UIKeyboardAppearance) keyboardAppearenceForKey:(id) key;
+- (UIKeyboardAppearance) keyboardAppearanceForKey:(id) key;
 
 /**
  * Gets the ReturnKeyType representation at the specified key.
@@ -195,6 +224,42 @@ static NSString* sIonRegularExpression_type_Exclusive = @"EXCLUSIVE";
  * @returns {UITextSpellCheckingType}
  */
 - (UITextSpellCheckingType) spellcheckTypeForKey:(id) key;
+
+#pragma mark Scroll View
+/**
+ * Gets the deceleration rate for the specified key.
+ * @param key - the key of the object to process.
+ * @returns {float}
+ */
+- (float) scrollViewDecelerationRateForKey:(id) key;
+
+/**
+ * Gets the scroll view indicator style for the specified key.
+ * @param key - the key of the object to process.
+ * @returns {UIScrollViewIndicatorStyle}
+ */
+- (UIScrollViewIndicatorStyle) scrollViewIndicatorStyleForKey:(id) key;
+
+/**
+ * Gets the scroll view keyboard dismiss mode for the specified key.
+ * @param key - the key of the object to process.
+ * @returns {UIScrollViewKeyboardDismissMode}
+ */
+- (UIScrollViewKeyboardDismissMode) scrollViewKeyboardDismissModeForKey:(id) key;
+
+#pragma mark Edge Insets
+/**
+ * Converts the current Dictionary into a UIEdgeInsets format.
+ * @returns {UIEdgeInsets}
+ */
+- (UIEdgeInsets) toEdgeInsets;
+
+/**
+ * Gets the edge insets value of the specified key.
+ * @param key - the key of the object to process.
+ * @returns {UIEdgeInsets}
+ */
+- (UIEdgeInsets) edgeInsetsForKey:(id) key;
 
 #pragma mark Regular Expression
 /**

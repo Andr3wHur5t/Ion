@@ -318,6 +318,26 @@
         },
         
         "children":{
+            "scrollView" : {
+                "KeyboardDismissMode":"onDrag"
+            },
+            "scrollRefreshBackground": {
+                "background": { "type": "color", "name": "GrayExtraLight" },
+                "styleMargin": {"height": 20.0},
+            },
+            "cls_block": {
+                "cornerRadius": 15,
+                "background": { "type": "color", "name": "SpecialStateColor" },
+            },
+            "id_red": {
+                "background": { "type": "color", "name": "BadStateColor" },
+            },
+            "id_green": {
+                "background": { "type": "color", "name": "GoodStateColor" },
+            },
+            "id_yellow": {
+                "background": { "type": "color", "name": "OkeyStateColor" },
+            },
             "label": {
                 "background": { "type": "color", "name": "Clear" }
             },

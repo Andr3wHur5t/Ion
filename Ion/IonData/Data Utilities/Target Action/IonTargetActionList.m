@@ -48,7 +48,7 @@
  * @param group - the group the set should be removed from.
  */
 - (void) removeTarget:(id) target andAction:(SEL) action fromGroup:(NSUInteger) group {
-    [self removeActionSet: [IonTargetActionSet setWithTarget: target andAction: action] forGroup: group];
+    [self removeActionSet: [IonTargetActionSet setWithTarget: target andAction: action] fromGroup: group];
 }
 
 /**
@@ -65,7 +65,7 @@
  * @param actionSet - the action set to be removed. Can not be NULL
  * @param group - the group to remove the action set from.
  */
-- (void) removeActionSet:(IonTargetActionSet *)actionSet forGroup:(NSUInteger) group {
+- (void) removeActionSet:(IonTargetActionSet *)actionSet fromGroup:(NSUInteger) group {
     [[self arrayForGroup: group] removeObject: actionSet];
 }
 
@@ -113,7 +113,7 @@
  * @returns {NSString*}
  */
 + (NSString *)idToKey:(NSUInteger) keyId {
-    return [[NSNumber numberWithInteger: keyId] stringValue];
+    return [NSString stringWithFormat:@"%lul", (unsigned long)keyId];
 }
 
 /**

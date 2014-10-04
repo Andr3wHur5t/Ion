@@ -37,8 +37,18 @@ FOUNDATION_EXPORT const unsigned char IonVersionString[];
 #import "IonApplication+Responders.h"
 
 #import "IonInputFilter.h"
+
+/** Scroll View */
 #import "IonScrollView.h"
 
+/** Scroll Actions */
+#import "IonScrollAction.h"
+#import "IonScrollRefreshAction.h"
+#import "IonScrollThresholdAction.h"
+
+/** Scroll Action View */
+#import "IonScrollActionView.h"
+#import "IonScrollRefreshActionView.h"
 
 /** Animation */
 #import "IonAnimationFrame.h"
@@ -65,7 +75,12 @@ FOUNDATION_EXPORT const unsigned char IonVersionString[];
 /** Guide Lines */
 #import "IonGuideLine.h"
 #import "IonGuideLine+DefaultConstructors.h"
+
+/** Guide Sets */
+#import "IonGuideSet.h"
 #import "IonViewGuideSet.h"
+
+/** Guide Groups*/
 #import "IonGuideGroup.h"
 
 /** UI Extensions */

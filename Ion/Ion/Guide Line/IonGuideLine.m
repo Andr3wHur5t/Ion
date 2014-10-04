@@ -553,9 +553,15 @@ andProcessingBlock:(IonGuideLineProcessingBlock) processingBlock {
     
     return ^CGFloat( NSDictionary *targetValues ) {
         __block CGFloat resultValue = 0.0f;
+        __block BOOL hasBeenSet = false;
         
         [targetValues enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
-            resultValue = valueCalcBlock ( resultValue, [obj floatValue] );
+            if ( hasBeenSet )
+                resultValue = valueCalcBlock ( resultValue, [obj floatValue] );
+            else {
+                hasBeenSet = true;
+                resultValue = [obj floatValue];
+            }
         }];
         
         return resultValue;

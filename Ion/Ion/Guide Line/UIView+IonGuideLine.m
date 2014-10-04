@@ -11,13 +11,12 @@
 #import <IonData/IonData.h>
 #import <objc/runtime.h>
 
-static char* sIonGuideSetKey = "IonGuideSet";
+
 static char* sIonCachedGuideLineKey = "IonCachedGuideLines";
 static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 
 @implementation UIView (IonGuideLine)
 #pragma mark Guide Set
-
 /**
  * Cached guide lines dictionary setter.
  */
@@ -40,13 +39,12 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 
 
 #pragma mark Debuging
-
 /**
  * Logs frame auto updating for the view, with the specified string.
  */
-- (void) setLogAutoFrameUpdatesWithString:(NSString*) logAutoFrameUpdatesWithString {
-    if ( logAutoFrameUpdatesWithString )
-        [self.catagoryVariables setObject: logAutoFrameUpdatesWithString forKey: sIonAutoUpdateLogKey];
+- (void) setDebuggingName:(NSString *)debuggingName {
+    if ( debuggingName )
+        [self.catagoryVariables setObject: debuggingName forKey: sIonAutoUpdateLogKey];
     else
         [self.catagoryVariables removeObjectForKey: sIonAutoUpdateLogKey];
 }
@@ -54,7 +52,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 /**
  * Gets the auto update log key.
  */
-- (NSString*) logAutoFrameUpdatesWithString {
+- (NSString*) debuggingName {
     return [self.catagoryVariables objectForKey: sIonAutoUpdateLogKey];
 }
 
@@ -62,8 +60,8 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  * Logs the guide set if aplicable
  */
 - (void) logAutoFrameChange {
-    if ( self.logAutoFrameUpdatesWithString )
-        NSLog( @"%@: %@", self.logAutoFrameUpdatesWithString, self.guideSet);
+    if ( self.debuggingName )
+        NSLog( @"%@: %@", self.debuggingName, self.guideSet);
 }
 
 #pragma mark Guide Set

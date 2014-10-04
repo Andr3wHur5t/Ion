@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IonGuideLine.h"
+#import "IonGuideSet.h"
 
 
 /**
  * Calculates sizes, and positions based off of a set of guide lines.
  */
-@interface IonViewGuideSet : NSObject
+@interface IonViewGuideSet : IonGuideSet
 
 /**
  * The super views' guide pair.
@@ -131,20 +131,5 @@
  * @returns {CGRect} the resulting rect
  */
 - (CGRect) toRect;
-
-#pragma mark Change Callback
-/**
- * Adds the target and action for guides position change updates.
- * @param target - the target to call the action on.
- * @param action the action to call on the target.
- */
-- (void) addTarget:(id) target andAction:(SEL) action;
-
-/**
- * Removes the target and action for guides position change updates.
- * @param target - the target to call the action on.
- * @param action - the action to call on the target.
- */
-- (void) removeTarget:(id) target andAction:(SEL) action;
 
 @end

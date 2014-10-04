@@ -136,7 +136,7 @@
     self.keyboardType = [config keyboardTypeForKey: sIonTextField_KeyboardTypeKey];
     
     // Keyboard Appearence
-    self.keyboardAppearance = [config keyboardAppearenceForKey: sIonTextField_KeyboardAppearanceKey];
+    self.keyboardAppearance = [config keyboardAppearanceForKey: sIonTextField_KeyboardAppearanceKey];
     
     // Auto Correct type
     self.autocorrectionType = [config autocorrectionTypeForKey: sIonTextField_KeyboardAppearanceKey];

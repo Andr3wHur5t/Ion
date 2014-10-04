@@ -92,5 +92,19 @@
  */
 + (instancetype) guideWithStaticValue:(CGFloat) value;
 
+/**
+ * Gets the negative guide of that guide line.
+ * @returns {instancetype}
+ */
+- (instancetype) negativeGuide;
+@end
+
+
+@interface NSNumber (IonGuideLine)
+
+/**
+ * Converts the current number into a static guide line.
+ */
+- (IonGuideLine *)toGuideLine;
 
 @end

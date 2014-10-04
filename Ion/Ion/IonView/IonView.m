@@ -23,8 +23,49 @@ static NSString* sIonGuideLine_StyleMargin_Horiz =      @"IonGuideLine_StyleMarg
 @end
 
 @implementation IonView
-#pragma mark Subview Management
+#pragma mark Construction
+/**
+ * Default constructor
+ * @returns {instancetype}
+ */
+- (instancetype) init {
+    self = [super init];
+    if ( self )
+        [self construct];
+    return self;
+}
 
+/**
+ * Default framed constructor.
+ * @param frame - the frame to construct with.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithFrame:(CGRect) frame {
+    self = [super initWithFrame: frame];
+    if ( self )
+        [self construct];
+    return self;
+}
+
+/**
+ * Default coded constructor.
+ * @param aDecoder - the coder to decode from.
+ * @returns {instancetype}
+ */
+- (instancetype) initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder: aDecoder];
+    if ( self )
+        [self construct];
+    return self;
+}
+
+/**
+ * Standard constructor method.
+ */
+- (void) construct {
+    // Subclass all construction code here.
+}
+#pragma mark Subview Management
 /**
  * Performs the block with each IonView child as a parameter.
  * @param { void(^)( IonView* child) }

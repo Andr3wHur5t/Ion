@@ -41,10 +41,16 @@
 @property (weak, nonatomic, readwrite) IonGuideLine *leftSizeGuide;
 @property (weak, nonatomic, readwrite) IonGuideLine *rightSizeGuide;
 
+#pragma mark Debugging
 /**
  * Logs frame auto updating for the view, with the specified string.
  */
-@property (weak, nonatomic, readwrite) NSString *logAutoFrameUpdatesWithString;
+@property (weak, nonatomic, readwrite) NSString *debuggingName;
+
+/**
+ * States if we log guide frame updates, or not.
+ */
+//@property (assign, nonatomic, readwrite) BOOL debugGuideFrameUpdates;
 
 #pragma mark Setter Utilities.
 /**

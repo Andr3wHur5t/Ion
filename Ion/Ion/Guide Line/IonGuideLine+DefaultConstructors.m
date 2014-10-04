@@ -7,6 +7,7 @@
 //
 
 #import "IonGuideLine+DefaultConstructors.h"
+#import "IonGuideLine+DependentGuides.h"
 #import "UIView+IonTheme.h"
 
 @implementation IonGuideLine (DefaultConstructors)
@@ -158,6 +159,26 @@
     return [[[self class] alloc] initWithStaticValue: value];
 }
 
+/**
+ * Gets the negative guide of that guide line.
+ * @returns {instancetype}
+ */
+- (instancetype) negativeGuide {
+    return [[self class] guideWithGuide: self
+                                modType: IonValueModType_Multiply
+                         andSecondGuide: [@(-1) toGuideLine]];
+}
 
+@end
+
+
+@implementation  NSNumber (IonGuideLine)
+
+/**
+ * Converts the current number into a static guide line.
+ */
+- (IonGuideLine *)toGuideLine {
+    return [IonGuideLine guideWithStaticValue: [self floatValue]];
+}
 
 @end
