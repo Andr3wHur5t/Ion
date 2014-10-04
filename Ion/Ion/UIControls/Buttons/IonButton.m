@@ -68,6 +68,7 @@
  * @returns {void}
  */
 - (void) applyStyle:(IonStyle*) style {
+    [super applyStyle: style];
     NSDictionary* config;
     CGSize newSize;
     

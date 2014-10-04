@@ -79,7 +79,7 @@
  * @retuns {NSString*}
  */
 - (NSString*) description {
-    return [NSString stringWithFormat: @"File Name: %@ with length: %i", _name, _content.length];
+    return [NSString stringWithFormat: @"File Name: %@ with length: %lu", _name, (unsigned long)_content.length];
 }
 
 @end

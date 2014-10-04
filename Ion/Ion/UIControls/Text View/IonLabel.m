@@ -13,7 +13,6 @@
 #import "IonLabelOverflowBehavior.h"
 
 @interface IonLabel () {
-    
     // The label
     UILabel* _labelView;
 }
@@ -21,7 +20,6 @@
 
 @implementation IonLabel
 #pragma mark Constructors
-
 /**
  * Default Constructor
  * @returns {instancetype}
@@ -48,22 +46,19 @@
 
 /**
  * Construction Code.
- * @returns {void}
  */
 - (void) construct {
     self.clipsToBounds = TRUE;
     self.themeElement = sIonThemeElementLabel;
-    [self createlabelView];
+    [self createLabelView];
     self.overflowBehavior = [[IonLabelOverflowBehavior alloc] init];
 }
 
 #pragma mark Label
-
 /**
- * Responds to geting the label
-* @returns {void}
+ * Responds to getting the label
  */
-- (void) createlabelView {
+- (void) createLabelView {
     // Construct
     _labelView = [[UILabel alloc] init];
     _labelView.themeConfiguration.themeShouldBeAppliedToSelf = FALSE;
@@ -77,10 +72,8 @@
 }
 
 #pragma mark Text
-
 /**
  * Responds to changes in text.
- * @returns {void}
  */
 - (void) setText:(NSString*) text {
     _labelView.text = text;
@@ -97,11 +90,9 @@
 }
 
 #pragma mark Text Color
-
 /**
  * Sets the text color.
- * @param {UIColor*} the text color to be set.
- * @retruns {void}
+ * @param textColor the text color to be set.
  */
 - (void) setTextColor:(UIColor*) textColor {
     if ( !textColor )
@@ -117,11 +108,9 @@
 }
 
 #pragma mark Text Alignment
-
 /**
  * Sets the text alignment.
- * @param {NSTextAlignment} the new text alignment to use
- * @returns {void}
+ * @param textAlignment the new text alignment to use
  */
 - (void) setTextAlignment:(NSTextAlignment) textAlignment {
     _labelView.textAlignment = textAlignment;
@@ -140,7 +129,6 @@
 
 /**
  * Responds to changes in font.
- * @returns {void}
  */
 - (void) setFont:(UIFont*) font {
     if ( !font )
@@ -160,13 +148,11 @@
 }
 
 #pragma mark Overflow Behavior
-
 /**
- * Responds to changes in the overflow deligate.
- * @param {id<IonLabelOverflowBehaviorDeligate>} the new overflow behavior.
- * @returns {void}
+ * Responds to changes in the overflow delegate.
+ * @param overflowBehavior the new overflow behavior.
  */
-- (void) setOverflowBehavior:(id<IonLabelOverflowBehaviorDeligate>) overflowBehavior {
+- (void) setOverflowBehavior:(id<IonLabelOverflowBehaviorDelegate>) overflowBehavior {
     _overflowBehavior = overflowBehavior;
     [_overflowBehavior setContainer: self andLabel: _labelView];
 }
@@ -175,8 +161,7 @@
 
 /**
  * Responds to change in the frame.
- * @param {CGRect} the new frame.
- * @returns {void}
+ * @param frame the new frame.
  */
 - (void) setFrame:(CGRect)frame {
     [super setFrame: frame];
@@ -186,8 +171,13 @@
 
 
 #pragma mark Style Application
-
+/**
+ * Applies the style to the view.
+ * @param style the style to apply to the view.
+ */
 - (void) applyStyle:(IonStyle*) style {
+    [super applyStyle: style];
+    
     // Text Color
     self.textColor = [style.configuration colorForKey: sIonThemeText_Color usingTheme: style.theme];
     
@@ -199,7 +189,6 @@
 }
 
 #pragma mark Defaults
-
 /**
  * The Ion default font.
  * @returns {UIFont*}

@@ -28,7 +28,7 @@
  */
 - (NSData*) AES256EncryptWithKey:(NSString *)key {
     NSInteger keySize = kCCKeySizeAES256;
-    NSInteger algorithim = kCCAlgorithmAES128;
+    CCAlgorithm algorithim = kCCAlgorithmAES128;
     BOOL patchNeeded;
     char keyPtr[ keySize + 1 ];
     if ( !key || ![key isKindOfClass:[NSString class]] )
@@ -118,7 +118,7 @@
  */
 - (NSData*) SHA1Hash {
     unsigned char hash[CC_SHA1_DIGEST_LENGTH];
-    if ( CC_SHA512( [self bytes], [self length], hash) )
+    if ( CC_SHA512( [self bytes], (CC_LONG)[self length], hash) )
         return [NSData dataWithBytes: hash length: CC_SHA1_DIGEST_LENGTH];
     
     return NULL;
@@ -130,7 +130,7 @@
  */
 - (NSData*) SHA256Hash {
     unsigned char hash[CC_SHA256_DIGEST_LENGTH];
-    if ( CC_SHA256( [self bytes], [self length], hash) )
+    if ( CC_SHA256( [self bytes], (CC_LONG)[self length], hash) )
         return [NSData dataWithBytes: hash length: CC_SHA256_DIGEST_LENGTH];
     
     return NULL;
@@ -142,7 +142,7 @@
  */
 - (NSData*) SHA512Hash {
     unsigned char hash[CC_SHA512_DIGEST_LENGTH];
-    if ( CC_SHA512( [self bytes], [self length], hash) )
+    if ( CC_SHA512( [self bytes], (CC_LONG)[self length], hash) )
         return [NSData dataWithBytes: hash length: CC_SHA512_DIGEST_LENGTH];
     
     return NULL;

@@ -70,6 +70,7 @@
  * Applies the style to the view.
  */
 - (void) applyStyle:(IonStyle *)style {
+    [super applyStyle: style];
     NSString *imageKey;
     
     // Size

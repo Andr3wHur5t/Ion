@@ -34,7 +34,7 @@
  */
 static const CGPoint CGPointUndefined = (CGPoint){ INFINITY, INFINITY };
 static const CGSize CGSizeUndefined = (CGSize){ INFINITY, INFINITY };
-static const CGRect CGRectUndefined = (CGRect){ INFINITY, INFINITY, INFINITY, INFINITY };
+static const CGRect CGRectUndefined = (CGRect){ {INFINITY, INFINITY}, {INFINITY, INFINITY} };
 
 
 @interface IonMath : NSObject
@@ -105,7 +105,7 @@ static const CGRect CGRectUndefined = (CGRect){ INFINITY, INFINITY, INFINITY, IN
  */
 + (CGRect) rectWhichContainsSize:(CGSize) fillSize maintainingAspectRatio:(CGSize) aspectRatio;
 
-#pragma Rounding Utilities
+#pragma mark Rounding Utilities
 
 /**
  * Rounds a point to the specified accuracy.

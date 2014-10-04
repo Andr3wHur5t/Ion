@@ -128,8 +128,8 @@
                                                        andMode: IonGuideLineFrameMode_Vertical];
     
     // Sizeing
-    contentGroup.leftSizeGuide = self.leftPadding;
-    contentGroup.rightSizeGuide = self.rightPadding;
+    contentGroup.leftSizeGuide = self.leftAutoPadding;
+    contentGroup.rightSizeGuide = self.rightAutoPadding;
     contentGroup.topSizeGuide = [IonGuideLine guideWithStaticValue: 0];
     contentGroup.bottomSizeGuide = [IonGuideLine guideWithTarget: self andKeyPath: @"contentHeight"];
     
@@ -273,10 +273,10 @@
         return;
     _leftView.themeClass = sIonThemeElementTitleBar_LeftView;
     [self addSubview: _leftView];
-    [_leftView setGuidesWithLocalVert: _leftView.centerGuideVert
-                           localHoriz: _leftView.originGuideHoriz
-                            superVert: contentGroup.centerExternalGuideVert
-                        andSuperHoriz: contentGroup.originExternalGuideHoriz];
+    [_leftView setGuidesWithLocalHoriz: _leftView.originGuideHoriz
+                             localVert: _leftView.centerGuideVert
+                            superHoriz: contentGroup.originExternalGuideHoriz
+                          andSuperVert: contentGroup.centerExternalGuideVert];
     
    [self updateCenterViewSizeGuides];
 }
@@ -335,27 +335,24 @@
     
     _centerView.topSizeGuide = contentGroup.originExternalGuideVert;
     _centerView.bottomSizeGuide = contentGroup.sizeExternalGuideVert;
-
-//      There is a sizing bug in the guide system that needs to be fixed first.
-//    if ( _rightView )
-//        _centerView.rightSizeGuide = _rightView.leftMargin;
-//    else
+    
+    if ( _rightView )
+        _centerView.rightSizeGuide = _rightView.leftMargin;
+    else
         _centerView.rightSizeGuide = contentGroup.oneForthExternalGuideHoriz;
     
-//    There is a sizing bug in the guide system that needs to be fixed first.
-//    if ( _leftView )
-//        _centerView.leftSizeGuide = _leftView.rightMargin;
-//    else
+    if ( _leftView )
+        _centerView.leftSizeGuide = _leftView.rightMargin;
+    else
         _centerView.leftSizeGuide = contentGroup.threeForthsExternalGuideHoriz;
     
-    [_centerView setGuidesWithLocalVert: _centerView.centerGuideVert
-                             localHoriz: _centerView.centerGuideHoriz
-                              superVert: contentGroup.centerExternalGuideVert
-                          andSuperHoriz: contentGroup.centerExternalGuideHoriz];
+    [_centerView setGuidesWithLocalHoriz: _centerView.centerGuideHoriz
+                               localVert: _centerView.centerGuideVert
+                              superHoriz: contentGroup.centerExternalGuideHoriz
+                            andSuperVert: contentGroup.centerExternalGuideVert];
 }
 
 #pragma mark Right View
-
 /**
  * Switch notifications to manual
  */
@@ -384,10 +381,10 @@
         return;
     _rightView.themeClass = sIonThemeElementTitleBar_RightView;
     [self addSubview: _rightView];
-    [_rightView setGuidesWithLocalVert: _rightView.centerGuideVert
-                            localHoriz: _rightView.sizeGuideVert
-                             superVert: contentGroup.centerExternalGuideVert
-                         andSuperHoriz: contentGroup.sizeExternalGuideHoriz];
+    [_rightView setGuidesWithLocalHoriz: _rightView.sizeGuideHoriz
+                              localVert: _rightView.centerGuideVert
+                             superHoriz: contentGroup.sizeExternalGuideHoriz
+                           andSuperVert: contentGroup.centerExternalGuideVert];
     [self updateCenterViewSizeGuides];
 }
 

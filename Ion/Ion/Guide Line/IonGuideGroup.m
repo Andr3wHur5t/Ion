@@ -113,13 +113,14 @@ static NSString* sIonGuideGroup_FrameKey =              @"frame";
         return;
     
     rect = [change objectForKey: NSKeyValueChangeNewKey];
-    if ( !rect || ![rect isKindOfClass:[NSValue class]] )
+    if ( !rect || ![rect isKindOfClass: [NSValue class]] )
         return;
     
     self.frame = [rect CGRectValue];
+    return;
 }
 
-#pragma Cached Guide Lines
+#pragma mark Cached Guide Lines
 
 /**
  * Gets or creates the guide cache.
@@ -193,6 +194,8 @@ static NSString* sIonGuideGroup_FrameKey =              @"frame";
     if ( !key || ![key isKindOfClass:[NSString class]] ||
          !guide || ![guide isKindOfClass:[IonGuideLine class]] )
         return;
+    
+    guide.debugName = key;
     [self.cachedGuideLines setObject: guide forKey: key];
 }
 
@@ -633,7 +636,7 @@ static NSString* sIonGuideGroup_FrameKey =              @"frame";
  * @returns {NSString*}
  */
 - (NSString*) description {
-    return [NSString stringWithFormat: @"Active Guides: \"%i\", Current Frame: \"%@\"", [self.cachedGuideLines count], NSStringFromCGRect( _frame )];
+    return [NSString stringWithFormat: @"Active Guides: \"%lu\", Current Frame: \"%@\"", (unsigned long)[self.cachedGuideLines count], NSStringFromCGRect( _frame )];
 }
 
 @end

@@ -27,7 +27,7 @@
 }
 
 
-#pragma mark Protocol Implmentation
+#pragma mark Protocol Implementation
 
 /**
  * Sets the Current managed views.
@@ -41,7 +41,7 @@
 }
 
 /**
- * Informs the behavior deligate of an attribute change of the label.
+ * Informs the behavior delegate of an attribute change of the label.
  * @returns {void}
  */
 - (void) updateStates {
@@ -89,13 +89,13 @@
         animations: ^{
             _label.alpha = 0.0f;
         }
-        completion: ^(BOOL finished) {
+        completion: ^(BOOL complete) {
             [_label setFrame: (CGRect){ CGPointZero, _label.frame.size }];
             [UIView animateWithDuration: 0.2
             animations: ^{
                 _label.alpha = 1.0f;
             }
-            completion: ^(BOOL finished) {
+            completion: ^(BOOL fin) {
                 isAnimating = FALSE;
                 if ( [self shouldAnimateText] )
                     [self animateText];
@@ -104,7 +104,7 @@
     }];
 }
 
-#pragma mark Utilties
+#pragma mark Utilities
 
 /**
  * Updates the label to match the container frame.
@@ -116,15 +116,15 @@
         
     self.label.frame = (CGRect){
         self.label.frame.origin,
-        [self sugestedLabelSize]
+        [self suggestedLabelSize]
     };
 }
 
 /**
- * Gets the Sugested Size of the label.
+ * Gets the Suggested Size of the label.
  * @returns {CGFloat}
  */
-- (CGSize) sugestedLabelSize {
+- (CGSize) suggestedLabelSize {
     CGSize textSize;
     if ( ![self canPerformManagementFunctions] )
         return CGSizeZero;
@@ -140,7 +140,7 @@
 }
 
 /**
- * Check if we can perform managment functions.
+ * Check if we can perform management functions.
  * @returns {BOOL}
  */
 - (BOOL) canPerformManagementFunctions {

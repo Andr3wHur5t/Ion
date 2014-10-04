@@ -136,7 +136,7 @@
     self.keyboardType = [config keyboardTypeForKey: sIonTextField_KeyboardTypeKey];
     
     // Keyboard Appearence
-    self.keyboardAppearance = [config keyboardAppearenceForKey: sIonTextField_KeyboardAppearanceKey];
+    self.keyboardAppearance = [config keyboardAppearanceForKey: sIonTextField_KeyboardAppearanceKey];
     
     // Auto Correct type
     self.autocorrectionType = [config autocorrectionTypeForKey: sIonTextField_KeyboardAppearanceKey];
@@ -162,7 +162,7 @@
     [UIView animateWithDuration: self.animationDuration / 2 animations: ^{
         if ( super.alpha != _iAlpha )
             return;
-        super.alpha = _iAlpha - 0.4;
+        super.alpha = _iAlpha - 0.4f;
     } completion: ^(BOOL finished) {
         if ( !finished )
             return;

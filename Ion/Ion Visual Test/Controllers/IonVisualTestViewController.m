@@ -8,12 +8,11 @@
 
 #import "IonVisualTestViewController.h"
 
-
-
 @interface IonVisualTestViewController () {
-    IonSimpleCache* sc;
-    IonTitleBar* titleBar;
-    IonView* containerView;
+    IonSimpleCache *sc;
+    IonTitleBar *titleBar;
+    IonView *containerView;
+    IonScrollView *scrollView;
 }
 
 @end
@@ -23,10 +22,70 @@
 - (void) constructViews {
     [super constructViews];
     
-//    [self.view setBackgroundImageUsingKey: @"aspect"];
+    [self.view setBackgroundImageUsingKey: @"aspect"];
 
     [self constructTitleBar];
     [self constructContentBar];
+    [self constructContentView];
+}
+
+/**
+ * Constructs the content view.
+ */
+- (void) constructContentView {
+    scrollView = [[IonScrollView alloc] init];
+    [scrollView setSuperGuidesWithHorz: self.view.originGuideHoriz
+                               andVert: containerView.sizeExternalGuideVert];
+    [scrollView setSizeGuidesWithLeft: self.view.originGuideHoriz
+                                right: self.view.sizeGuideHoriz
+                                  top: containerView.sizeExternalGuideVert
+                            andBottom: self.view.sizeGuideVert];
+    
+    // Add the refresh action view
+    IonScrollRefreshActionView *refreshView = [[IonScrollRefreshActionView alloc] init];
+    refreshView.canAutomaticallyDisplay = FALSE;
+    [scrollView addSubview: refreshView];
+    
+    
+    
+    // Test views
+    CGRect nextFrame = (CGRect){ (CGPoint){20,10}, (CGSize){95,95}};
+    UIView *tmpView, *previousView;
+    
+    // Add some polyfill content
+    for ( int i = 0; i <= 10; ++i ) {
+        previousView = tmpView;
+        tmpView = [[UIView alloc] initWithFrame: nextFrame];
+        
+        if ( i != 0)
+            [tmpView setSuperGuidesWithHorz: previousView.originExternalGuideHoriz andVert: previousView.bottomMargin];
+        
+        tmpView.themeClass = @"block";
+        switch ( i % 4) {
+            case 0:
+                tmpView.themeID = @"purple";
+                break;
+            case 1:
+                tmpView.themeID = @"green";
+                break;
+            case 2:
+                tmpView.themeID = @"yellow";
+                break;
+            case 3:
+                tmpView.themeID = @"red";
+                break;
+            default:
+                break;
+        }
+        
+        [scrollView addSubview: tmpView];
+    }
+    
+    // Set the content size
+    [scrollView setContentSizeHoriz: scrollView.sizeGuideHoriz  andVert: tmpView.bottomMargin];
+    
+    // Add Scroll View To Main View
+    [self.view addSubview: scrollView];
 }
 
 /**
@@ -46,11 +105,19 @@
     //testLabel.text = @"Lorem ipsum dolor sit amet consectetur adipiscing elit";
     testLabel.text = @"People";
     
+    
     titleBar.leftView = leftButton;
     titleBar.rightView = rightButton;
     titleBar.centerView = testLabel;
     titleBar.respondsToStatusBar = TRUE;
     [titleBar updateFrame];
+    
+    // Position
+    titleBar.localHorizGuide = titleBar.centerGuideHoriz;
+    titleBar.localVertGuide = titleBar.originGuideVert;
+    
+    titleBar.superHorizGuide = self.view.centerGuideHoriz;
+    titleBar.superVertGuide = self.view.originGuideVert;
 }
 
 /**
@@ -69,24 +136,35 @@
 //                     andSuperHoriz: containerView.leftPadding];
     
     // text input
-    textInput = [[IonTextBar alloc] initWithFrame: (CGRect){ CGPointZero, (CGSize){ 275, 30 } }];
-    [textInput setGuidesWithLocalVert: textInput.centerGuideVert
-                           localHoriz: textInput.centerGuideHoriz
-                            superVert: containerView.centerGuideVert
-                        andSuperHoriz: containerView.centerGuideHoriz];
+    textInput = [[IonTextBar alloc] init];
+    [textInput setGuidesWithLocalHoriz: textInput.originGuideHoriz
+                             localVert: textInput.centerGuideVert
+                            superHoriz: containerView.leftAutoPadding
+                          andSuperVert: containerView.centerGuideVert];
+    
+    textInput.leftSizeGuide = containerView.leftAutoPadding;
+    textInput.rightSizeGuide = containerView.rightAutoPadding;
+    textInput.topSizeGuide = containerView.topAutoPadding;
+    textInput.bottomSizeGuide = containerView.bottomAutoPadding;
+    
     textInput.placeholder = @"Search for a name";
     textInput.themeClass = @"peopleSearch";
     [containerView addSubview: textInput];
     
     // Container
-    [containerView setSuperGuidesWithVert: titleBar.sizeGuideVert
-                                 andHoriz: self.view.originGuideVert];
+    [containerView setSuperGuidesWithHorz: self.view.originGuideHoriz
+                                  andVert: titleBar.sizeExternalGuideVert];
+    
+    containerView.leftSizeGuide = self.view.originGuideHoriz;
+    containerView.rightSizeGuide = self.view.sizeGuideHoriz;
+    containerView.topSizeGuide = [IonGuideLine guideWithStaticValue: 0.0f];
+    containerView.bottomSizeGuide = [IonGuideLine guideWithStaticValue: 45.0f];
     containerView.themeElement = @"sub-bar";
     
-    containerView.frame = (CGRect){CGPointZero, (CGSize){ self.view.frame.size.width, 45 } };
     
     //[containerView addSubview: button];
     [self.view addSubview: containerView];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -146,13 +224,6 @@
 
 - (void) shouldLayoutSubviews {
     [super shouldLayoutSubviews];
-    
-    // Position
-    titleBar.localHorizGuide = titleBar.centerGuideHoriz;
-    titleBar.localVertGuide = titleBar.originGuideVert;
-    
-    titleBar.superHorizGuide = self.view.centerGuideHoriz;
-    titleBar.superVertGuide = self.view.originGuideVert;
 }
 
 /** = = = = = = = = = = = = End Tests = = = = = = = = = = = = = = =  */

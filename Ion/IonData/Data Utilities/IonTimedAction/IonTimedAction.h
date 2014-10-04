@@ -11,12 +11,12 @@
 @interface IonTimedAction : NSObject
 
 /**
- * The time to invoke the selector at, this can be updated during a staged invokation.
+ * The time to invoke the selector at, this can be updated during a staged targetInvocation.
  */
 @property (assign, nonatomic) NSTimeInterval targetTime;
 
 /**
- * States if the invokation is currently staged.
+ * States if the targetInvocation is currently staged.
  */
 @property (assign, nonatomic, readonly) BOOL inProgress;
 

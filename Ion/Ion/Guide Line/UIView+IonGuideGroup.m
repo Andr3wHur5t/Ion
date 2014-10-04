@@ -284,7 +284,7 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
  * Vertical External Size Guide Line
  */
 - (IonGuideLine*) sizeExternalGuideVert {
-    return self.guideGroup.originGuideHoriz;
+    return self.guideGroup.sizeExternalGuideVert;
 }
 
 
@@ -373,6 +373,8 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
         obj = [IonGuideLine guideWithGuide: self.sizeGuideVert
                                    modType: IonValueModType_Subtract
                             andSecondGuide: self.topPadding];
+        
+        obj.debugName = sIonGuideLine_BottomPadding;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_BottomPadding];
     }
     return obj;
@@ -390,6 +392,7 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
         obj = [IonGuideLine guideFromViewAutoMargin: self
                                           usingMode: IonGuideLineFrameMode_Horizontal];
         
+        obj.debugName = sIonGuideLine_LeftAutoPadding;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_LeftAutoPadding];
     }
     return obj;
@@ -404,6 +407,8 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
         obj = [IonGuideLine guideWithGuide: self.sizeGuideHoriz
                                    modType: IonValueModType_Subtract
                             andSecondGuide: self.leftAutoPadding];
+        
+        obj.debugName = sIonGuideLine_RightAutoPadding;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_RightAutoPadding];
     }
     return obj;
@@ -417,6 +422,8 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
     if ( !obj ) {
         obj = [IonGuideLine guideFromViewAutoMargin: self
                                            usingMode: IonGuideLineFrameMode_Vertical];
+        
+        obj.debugName = sIonGuideLine_TopAutoPadding;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_TopAutoPadding];
     }
     return obj;
@@ -431,6 +438,8 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
         obj = [IonGuideLine guideWithGuide: self.sizeGuideVert
                                    modType: IonValueModType_Subtract
                             andSecondGuide: self.topAutoPadding];
+        
+        obj.debugName = sIonGuideLine_BottomAutoPadding;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_BottomAutoPadding];
     }
     return obj;
@@ -446,8 +455,7 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_MarginWidth];
     if ( !obj ) {
         obj = [IonGuideLine guideFromViewStyleMargin: self usingMode: IonGuideLineFrameMode_Horizontal];
-        
-        
+        obj.debugName = sIonGuideLine_MarginWidth;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_MarginWidth];
     }
     return obj;
@@ -460,6 +468,7 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_MarginHeight];
     if ( !obj ) {
         obj = [IonGuideLine guideFromViewStyleMargin: self usingMode: IonGuideLineFrameMode_Vertical];
+        obj.debugName = sIonGuideLine_MarginHeight;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_MarginHeight];
     }
     return obj;
@@ -473,9 +482,8 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
     if ( !obj ) {
         obj = [IonGuideLine guideWithGuide: self.originExternalGuideHoriz
                                    modType: IonValueModType_Subtract
-                            andSecondGuide: [self marginWidth]];
-        
-        
+                            andSecondGuide: self.marginWidth];
+        obj.debugName = sIonGuideLine_LeftMargin;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_LeftMargin];
     }
     return obj;
@@ -487,9 +495,11 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) rightMargin {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_RightMargin];
     if ( !obj ) {
-        obj = [IonGuideLine guideWithGuide: [self marginWidth]
+        obj = [IonGuideLine guideWithGuide: self.marginWidth
                                    modType: IonValueModType_Add
                             andSecondGuide: self.sizeExternalGuideHoriz];
+        
+        obj.debugName = sIonGuideLine_RightMargin;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_RightMargin];
     }
     return obj;
@@ -503,8 +513,9 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
     if ( !obj ) {
         obj = [IonGuideLine guideWithGuide: self.originExternalGuideVert
                                    modType: IonValueModType_Subtract
-                            andSecondGuide: [self marginHeight]];
+                            andSecondGuide: self.marginHeight];
         
+        obj.debugName = sIonGuideLine_TopMargin;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_TopMargin];
     }
     return obj;
@@ -516,9 +527,11 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
 - (IonGuideLine*) bottomMargin {
     IonGuideLine* obj = [self.cachedGuideLines objectForKey: sIonGuideLine_BottomMargin];
     if ( !obj ) {
-        obj = [IonGuideLine guideWithGuide: self.sizeExternalGuideVert
-                                   modType: IonValueModType_Subtract
-                            andSecondGuide: [self marginHeight]];
+        obj = [IonGuideLine guideWithGuide: self.marginHeight
+                                   modType: IonValueModType_Add
+                            andSecondGuide: self.sizeExternalGuideVert];
+        
+        obj.debugName = sIonGuideLine_BottomMargin;
         [self.cachedGuideLines setObject: obj forKey: sIonGuideLine_BottomMargin];
     }
     return obj;

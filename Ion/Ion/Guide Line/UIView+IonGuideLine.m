@@ -7,17 +7,16 @@
 //
 
 #import "UIView+IonGuideLine.h"
+#import "UIView+IonGuideGroup.h"
 #import <IonData/IonData.h>
 #import <objc/runtime.h>
 
-static char* sIonGuideSetKey = "IonGuideSet";
+
 static char* sIonCachedGuideLineKey = "IonCachedGuideLines";
 static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 
 @implementation UIView (IonGuideLine)
-
 #pragma mark Guide Set
-
 /**
  * Cached guide lines dictionary setter.
  */
@@ -40,13 +39,12 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 
 
 #pragma mark Debuging
-
 /**
  * Logs frame auto updating for the view, with the specified string.
  */
-- (void) setLogAutoFrameUpdatesWithString:(NSString*) logAutoFrameUpdatesWithString {
-    if ( logAutoFrameUpdatesWithString )
-        [self.catagoryVariables setObject: logAutoFrameUpdatesWithString forKey: sIonAutoUpdateLogKey];
+- (void) setDebuggingName:(NSString *)debuggingName {
+    if ( debuggingName )
+        [self.catagoryVariables setObject: debuggingName forKey: sIonAutoUpdateLogKey];
     else
         [self.catagoryVariables removeObjectForKey: sIonAutoUpdateLogKey];
 }
@@ -54,7 +52,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 /**
  * Gets the auto update log key.
  */
-- (NSString*) logAutoFrameUpdatesWithString {
+- (NSString*) debuggingName {
     return [self.catagoryVariables objectForKey: sIonAutoUpdateLogKey];
 }
 
@@ -62,35 +60,21 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  * Logs the guide set if aplicable
  */
 - (void) logAutoFrameChange {
-    NSString* logKey;
-    
-    logKey = self.logAutoFrameUpdatesWithString;
-    if ( logKey )
-        NSLog( @"%@: %@", logKey, self.guideSet);
+    if ( self.debuggingName )
+        NSLog( @"%@: %@", self.debuggingName, self.guideSet);
 }
 
 #pragma mark Guide Set
-
-/**
- * The guide set setter.
- */
-- (void) setGuideSet:(IonViewGuideSet *)guideSet {
-    objc_setAssociatedObject(self, sIonGuideSetKey, guideSet, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 /**
  * The guide set getter, creates it if it dosn't exsist
  * @returns {IonViewGuideSet*} the guide set.
  */
 - (IonViewGuideSet*) guideSet {
-    IonViewGuideSet* set = objc_getAssociatedObject(self, sIonGuideSetKey);
-    if ( !set ) {
-        set = [[IonViewGuideSet alloc] init];
-        [set setTarget: self andAction: @selector(updateFrameToMatchGuideSet)];
-        self.guideSet = set;
+    if ( ![self.catagoryVariables objectForKey: @"GuideSetConfigured"] ) {
+        [self.guideGroup.guideSet addTarget: self andAction: @selector(updateFrameToMatchGuideSet)];
+        [self.catagoryVariables setObject: @1 forKey:@"GuideSetConfigured"];
     }
-    
-    return set;
+    return self.guideGroup.guideSet;
 }
 
 #pragma mark Local Vert Guide
@@ -101,7 +85,6 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  */
 - (void) setLocalVertGuide:(IonGuideLine*) localVertGuide {
     self.guideSet.localVertGuide = localVertGuide;
-    [self updateFrameToMatchGuideSet];
 }
 
 /**
@@ -120,7 +103,6 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  */
 - (void) setLocalHorizGuide:(IonGuideLine*) localHorizGuide {
     self.guideSet.localHorizGuide = localHorizGuide;
-    [self updateFrameToMatchGuideSet];
 }
 
 /**
@@ -139,7 +121,6 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  */
 - (void) setSuperVertGuide:(IonGuideLine*) superVertGuide {
     self.guideSet.superVertGuide = superVertGuide;
-    [self updateFrameToMatchGuideSet];
 }
 
 /**
@@ -158,7 +139,6 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  */
 - (void) setSuperHorizGuide:(IonGuideLine*) superHorizGuide {
     self.guideSet.superHorizGuide = superHorizGuide;
-    [self updateFrameToMatchGuideSet];
 }
 
 /**
@@ -170,14 +150,12 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 }
 
 #pragma mark Left Size Guide
-
 /**
  * Sets the local horiz guide, and updates the frame.
  * @returns {void}
  */
 - (void) setLeftSizeGuide:(IonGuideLine*) leftSizeGuide{
     self.guideSet.leftSizeGuide = leftSizeGuide;
-    [self updateFrameToMatchGuideSet];
 }
 
 /**
@@ -196,7 +174,6 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  */
 - (void) setRightSizeGuide:(IonGuideLine*) rightSizeGuide{
     self.guideSet.rightSizeGuide = rightSizeGuide;
-    [self updateFrameToMatchGuideSet];
 }
 
 /**
@@ -215,7 +192,6 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  */
 - (void) setTopSizeGuide:(IonGuideLine*) topSizeGuide{
     self.guideSet.topSizeGuide = topSizeGuide;
-    [self updateFrameToMatchGuideSet];
 }
 
 /**
@@ -234,7 +210,6 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  */
 - (void) setBottomSizeGuide:(IonGuideLine*) bottomSizeGuide{
     self.guideSet.bottomSizeGuide = bottomSizeGuide;
-    [self updateFrameToMatchGuideSet];
 }
 
 /**
@@ -245,75 +220,102 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
     return self.guideSet.bottomSizeGuide;
 }
 
-#pragma mark Setters
-
+#pragma mark Setter Utilities
 /**
  * Sets the local guides.
- * @param {IonGuideLine*} the vertical guide line.
- * @param {IonGuideLine*} the horizontal guide line.
- * @returns {void}
+ * @param horiz - the horizontal guide line.
+ * @param vert - the vertical guide line.
  */
-- (void) setLocalGuidesWithVert:(IonGuideLine*) vert andHoriz:(IonGuideLine*) horiz {
-    NSParameterAssert( vert && [vert isKindOfClass:[IonGuideLine class]] );
-    NSParameterAssert( horiz && [horiz isKindOfClass:[IonGuideLine class]] );
-    if ( !vert || ![vert isKindOfClass:[IonGuideLine class]] ||
-         !horiz || ![horiz isKindOfClass:[IonGuideLine class]] )
-        return;
-    
-    self.guideSet.localVertGuide = vert;
-    self.guideSet.localHorizGuide = horiz;
-    [self updateFrameToMatchGuideSet];
+- (void) setLocalGuidesWithHorz:(IonGuideLine *)horiz andVert:(IonGuideLine *)vert {
+    [self.guideSet setLocalGuidesWithHorz: horiz andVert: vert];
 }
 
 /**
  * Sets the super guides.
- * @param {IonGuideLine*} the vertical guide line.
- * @param {IonGuideLine*} the horizontal guide line.
- * @returns {void}
+ * @param horiz - the horizontal guide line.
+ * @param vert - the vertical guide line.
  */
-- (void) setSuperGuidesWithVert:(IonGuideLine*) vert andHoriz:(IonGuideLine*) horiz {
-    NSParameterAssert( vert && [vert isKindOfClass:[IonGuideLine class]] );
-    NSParameterAssert( horiz && [horiz isKindOfClass:[IonGuideLine class]] );
-    if ( !vert || ![vert isKindOfClass:[IonGuideLine class]] ||
-        !horiz || ![horiz isKindOfClass:[IonGuideLine class]] )
-        return;
-    
-    self.guideSet.superVertGuide = vert;
-    self.guideSet.superHorizGuide = horiz;
-    [self updateFrameToMatchGuideSet];
+- (void) setSuperGuidesWithHorz:(IonGuideLine *)horiz andVert:(IonGuideLine *)vert {
+    [self.guideSet setSuperGuidesWithHorz: horiz andVert: vert];
 }
 
 /**
- * Sets all guides.
- * @param {IonGuideLine*} the local vertical guide line.
- * @param {IonGuideLine*} the local horizontal guide line.
- * @param {IonGuideLine*} the super vertical guide line.
- * @param {IonGuideLine*} the super horizontal guide line.
- * @returns {void}
+ * Sets all position guides.
+ * @param lHoriz - the local horizontal guide line.
+ * @param lVert - the local vertical guide line.
+ * @param sHoriz- the super horizontal guide line.
+ * @param sVert - the super vertical guide line.
  */
-- (void) setGuidesWithLocalVert:(IonGuideLine*) lVert
-                     localHoriz:(IonGuideLine*) lHoriz
-                      superVert:(IonGuideLine*) sVert
-                  andSuperHoriz:(IonGuideLine*) sHoriz {
-    NSParameterAssert( sVert  && [sVert isKindOfClass:[IonGuideLine class]] );
-    NSParameterAssert( sHoriz && [sHoriz isKindOfClass:[IonGuideLine class]] );
-    NSParameterAssert( lVert  && [lVert isKindOfClass:[IonGuideLine class]] );
-    NSParameterAssert( lHoriz && [lHoriz isKindOfClass:[IonGuideLine class]] );
-    if ( !sVert  || ![sVert isKindOfClass:[IonGuideLine class]] ||
-         !sHoriz || ![sHoriz isKindOfClass:[IonGuideLine class]] ||
-         !lVert  || ![lVert isKindOfClass:[IonGuideLine class]] ||
-         !lHoriz || ![lHoriz isKindOfClass:[IonGuideLine class]])
-        return;
-    
-    self.guideSet.superVertGuide  = sVert;
-    self.guideSet.superHorizGuide = sHoriz;
-    self.guideSet.localVertGuide  = lVert;
-    self.guideSet.localHorizGuide = lHoriz;
-    [self updateFrameToMatchGuideSet];
+- (void) setGuidesWithLocalHoriz:(IonGuideLine *)lHoriz
+                       localVert:(IonGuideLine *)lVert
+                      superHoriz:(IonGuideLine *)sHoriz
+                    andSuperVert:(IonGuideLine *)sVert {
+    [self.guideSet setGuidesWithLocalHoriz: lHoriz localVert: lVert superHoriz: sHoriz andSuperVert: sVert];
 }
 
-#pragma mark Size Functions
+/**
+ * Sets the horizontal size guides.
+ * @param left - the left size guide.
+ * @param right - the right size guide.
+ */
+- (void) setSizeHorizontalWithLeft:(IonGuideLine *)left andRight:(IonGuideLine *)right {
+    [self.guideSet setSizeHorizontalWithLeft: left andRight: right];
+}
 
+/**
+ * Sets the horizontal size guides.
+ * @param top - the top size guide.
+ * @param bottom - the bottom size guide.
+ */
+- (void) setSizeVerticalyWithTop:(IonGuideLine *)top andBottom:(IonGuideLine *)bottom {
+    [self.guideSet setSizeVerticalyWithTop: top andBottom: bottom];
+}
+
+/**
+ * Sets all size guides.
+ * @param left - the left size guide.
+ * @param right - the right size guide.
+ * @param top - the top size guide.
+ * @param bottom - the bottom size guide.
+ */
+- (void) setSizeGuidesWithLeft:(IonGuideLine *)left
+                         right:(IonGuideLine *)right
+                           top:(IonGuideLine *)top
+                     andBottom:(IonGuideLine *)bottom {
+    [self.guideSet setSizeGuidesWithLeft: left
+                                   right: right
+                                     top: top
+                               andBottom: bottom];
+}
+
+/**
+ * Sets both size, and positioning guides.
+ * @param lHoriz - the local horizontal guide line.
+ * @param lVert - the local vertical guide line.
+ * @param sHoriz- the super horizontal guide line.
+ * @param sVert - the super vertical guide line.
+ * @param left - the left size guide.
+ * @param right - the right size guide.
+ * @param top - the top size guide.
+ * @param bottom - the bottom size guide.
+ */
+- (void) setGuidesWithLocalHoriz:(IonGuideLine *)lHoriz
+                       localVert:(IonGuideLine *)lVert
+                      superHoriz:(IonGuideLine *)sHoriz
+                       superVert:(IonGuideLine *)sVert
+                            left:(IonGuideLine *)left
+                           right:(IonGuideLine *)right
+                             top:(IonGuideLine *)top
+                       andBottom:(IonGuideLine *)bottom {
+    [self.guideSet setGuidesWithLocalHoriz: lHoriz
+                                 localVert: lVert
+                                superHoriz: sHoriz
+                                 superVert: sVert
+                                      left: left
+                                     right: right
+                                       top: top
+                                 andBottom: bottom];
+}
 
 #pragma mark Update Functions
 

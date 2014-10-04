@@ -23,7 +23,7 @@
 
 @implementation IonViewMotionGestureManager
 
-#pragma Stacks
+#pragma mark Stacks
 
 /**
  * Gets or constructs the began motion stack.

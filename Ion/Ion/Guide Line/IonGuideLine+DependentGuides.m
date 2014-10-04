@@ -9,7 +9,6 @@
 #import "IonGuideLine+DependentGuides.h"
 
 @implementation IonGuideLine (DependentGuides)
-
 /**
  * Creates a guide line from two guide line modified by each other.
  * @param {IonGuideLine*} the first guide line.
@@ -20,39 +19,20 @@
                        modType:(IonValueModType) modType
                 andSecondGuide:(IonGuideLine*) secondGuide {
     IonGuideLine *resultGuide;
-    __block IonGuideLine *blockSafeSecondGuide, *blockSafeFirstGuide;
     NSParameterAssert( secondGuide && [secondGuide isKindOfClass:[IonGuideLine class]] );
     NSParameterAssert( firstGuide && [firstGuide isKindOfClass:[IonGuideLine class]] );
     if ( !firstGuide || ![firstGuide isKindOfClass: [IonGuideLine class]] ||
         !secondGuide || ![secondGuide isKindOfClass: [IonGuideLine class]] )
         return NULL;
     
-    
-    blockSafeSecondGuide = secondGuide;
-    blockSafeFirstGuide = firstGuide;
     resultGuide = [IonGuideLine guideWithTarget: firstGuide
                                         keyPath: @"position"
-                                   andCalcBlock: ^CGFloat(CGFloat target) {
-        CGFloat res;
-        switch ( modType) {
-            case IonValueModType_Subtract:
-                res = blockSafeFirstGuide.position - blockSafeSecondGuide.position;
-                break;
-            case IonValueModType_Multipliy:
-                res = blockSafeFirstGuide.position * blockSafeSecondGuide.position;
-                break;
-            case IonValueModType_Devide:
-                res = blockSafeFirstGuide.position / blockSafeSecondGuide.position;
-                break;
-            default:
-                res = blockSafeFirstGuide.position + blockSafeSecondGuide.position;
-                break;
-        }
-        return res;
-    }];
+                                   andCalcBlock: modType == IonValueModType_Subtract ?
+                   [[self class] calcBlockWithSubtracted: sIonGuideLine_PrimaryTargetKey by: @"secondGuide"] :
+                   [[self class] calcBlockForModType: modType] ];
     
-    // Add Dependent Guide
-    [resultGuide addDependentTarget: secondGuide  andKeyPath: @"position"];
+    // Add Secondary target guide
+    [resultGuide addTarget: secondGuide withKeyPath: @"position" andName:@"secondGuide"];
     
     return resultGuide;
 }

@@ -100,7 +100,7 @@
     
     // Set the transform
     view.layer.transform = [self compositeTransformOnView: view];
-    view.layer.opacity = self.alpha;
+    view.layer.opacity = (float)self.alpha;
     
     if ( self.debugText )
         NSLog(@"%@", self.debugText);
@@ -184,7 +184,7 @@
              
              // Perspective Transforms.
              sIonTransformAnimation_PositionKey: [self.position toDictionary],
-             sIonTransformAnimation_RotationKey: [self.rotation toDictionary],
+             sIonTransformAnimation_RotationKey: [self.rotation toRotationalDictionary],
              sIonTransformAnimation_ScaleKey: [self.scale toDictionary],
              
              // Debugging
@@ -205,7 +205,7 @@
              
              // Appearance
              sIonTransformAnimation_PositionKey: [[IonVec3 vectorZero] toDictionary],
-             sIonTransformAnimation_RotationKey: [[IonVec3 vectorZero] toDictionary],
+             sIonTransformAnimation_RotationKey: [[IonVec3 vectorZero] toRotationalDictionary],
              sIonTransformAnimation_ScaleKey: [[IonVec3 vectorOne] toDictionary],
              
              sIonTransformAnimation_AlphaKey: @1.0f

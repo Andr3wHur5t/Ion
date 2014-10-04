@@ -134,7 +134,7 @@
  * @returns {BOOL} true if the hex is valid, false if it has failed
  */
 + (BOOL) stingIsValidHex:(NSString*)str {
-    int strLength = [str length];
+    NSInteger strLength = [str length];
     
     if ( [[str substringToIndex:1] isEqualToString:@"#"] && strLength <= 9) {
         // Check for valid length
