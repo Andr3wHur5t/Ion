@@ -39,18 +39,18 @@ static NSString *sIonScrollStyle_ZoomBounces =                          @"zoomBo
 #pragma mark Content Offset
 /**
  * Sets the content size guides with the inputted horizontal, and vertical guides.
- * @param horiz - the guide which describes the horizontal size.
- * @param vert - the guide which describes the vertical size.
+ * @param horiz - the guide which describes the horizontal content size.
+ * @param vert - the guide which describes the vertical content size.
  */
 - (void) setContentSizeHoriz:(IonGuideLine *)horiz andVert:(IonGuideLine *)vert;
 
 /**
- * The horizontal guide which describes the content size.
+ * A guide which describes the horizontal content size.
  */
 @property (weak, nonatomic, readwrite) IonGuideLine *contentSizeHoriz;
 
 /**
- * The vertical guide which describes the content size.
+ * A guide which describes the vertical content size.
  */
 @property (weak, nonatomic, readwrite) IonGuideLine *contentSizeVert;
 

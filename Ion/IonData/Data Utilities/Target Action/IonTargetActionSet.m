@@ -28,12 +28,7 @@ inline static BOOL cStringsAreEqual( char *str1, char *str2 ) {
 
 @implementation IonTargetActionSet
 #pragma mark Construction
-/**
- * Constructs a target action set using the inputted target, and selector.
- * @param target - the target object that should be invoked with the selector.
- * @param action - the selector that we will invoke on the target.
- * @raturns {instancetype}
- */
+
 - (instancetype) initWithTarget:(id) target andAction:(SEL) action {
     NSParameterAssert( target );
     NSParameterAssert( action );
@@ -48,21 +43,12 @@ inline static BOOL cStringsAreEqual( char *str1, char *str2 ) {
     return self;
 }
 
-/**
- * Constructs a target action set using the inputted target, and selector.
- * @param target - the target object that should be invoked with the selector.
- * @param action - the selector that we will invoke on the target.
- * @raturns {instancetype}
- */
 + (instancetype) setWithTarget:(id) target andAction:(SEL) action {
     return [[[self class] alloc] initWithTarget: target andAction: action];
 }
 
 #pragma mark Is Valid
-/**
- * Gets if the current target action values are valid.
- * @returns {BOOL}
- */
+
 - (BOOL) isValid {
     if ( !_target || !_action )
         return FALSE;
@@ -70,28 +56,15 @@ inline static BOOL cStringsAreEqual( char *str1, char *str2 ) {
 }
 
 #pragma mark invocation
-/**
- * Invoke the target action set with no arguments.
- */
+
 - (id) invoke {
     return [self invokeWithObject: NULL];
 }
 
-/**
- * Invoke the target action set with the inputted object and returns the result.
- * @param object - the object to invoke on the set.
- * @returns the result of the action.
- */
 - (id) invokeWithObject:(id) object {
     return [self invokeWithObject: object andObject: NULL];
 }
 
-/**
- * Invoke the target action set with the inputted object and returns the result.
- * @param object - the object to invoke on the set.
- * @param otherObject - the other object to invoke on the set.
- * @returns the result of the action.
- */
 - (id) invokeWithObject:(id) object andObject:(id) otherObject {
     NSMethodSignature *methodSig;
     NSInvocation *targetInvocation;
@@ -132,11 +105,7 @@ inline static BOOL cStringsAreEqual( char *str1, char *str2 ) {
 
 
 #pragma mark comparison
-/**
- * Checks if the values are equal.
- * @param object - the object to compare agents self.
- * @returns {BOOL}
- */
+
 - (BOOL) isEqual:(id) object {
     if ( !object || ![object isKindOfClass: [self class]] )
         return FALSE;
@@ -144,12 +113,6 @@ inline static BOOL cStringsAreEqual( char *str1, char *str2 ) {
                        andAction: ((IonTargetActionSet *)object).action];
 }
 
-/**
- * Checks if the target, and action match the inputted values.
- * @param target - the target to compare.
- * @param action - the action to compare.
- * @returns {BOOL}
- */
 - (BOOL) isEqualToTarget:(id) target andAction:(SEL) action {
     if ( !target || !action )
         return FALSE;

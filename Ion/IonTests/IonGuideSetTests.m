@@ -53,8 +53,8 @@
     lX = [IonGuideLine guideWithStaticValue: 10];
     lY = [IonGuideLine guideWithStaticValue: 105];
     
-    [staticMountSet setLocalPairWithVert: lY andHoriz: lX];
-    [staticMountSet setSuperPairWithVert: sY andHoriz: sX];
+    [staticMountSet setLocalGuidesWithHorz: lX andVert: lY];
+    [staticMountSet setSuperGuidesWithHorz: sX andVert: sY];
     
     XCTAssert( CGPointEqualToPoint( [staticMountSet toPoint], (CGPoint){ sX.position - lX.position, sY.position - lY.position} ) , @"Invalid point response");
 }
@@ -69,7 +69,7 @@
     
     sX = [IonGuideLine guideWithStaticValue: 10];
     sY = [IonGuideLine guideWithStaticValue: 1003];
-    [staticMountSet setSuperPairWithVert: sY andHoriz: sX];
+    [staticMountSet setSuperGuidesWithHorz: sX andVert: sY];
     
     XCTAssert( CGPointEqualToPoint( [staticMountSet toPoint], (CGPoint){ sX.position , sY.position} ) , @"Invalid point response");
 }
@@ -84,7 +84,7 @@
     
     sX = [IonGuideLine guideWithTarget: self andKeyPath: @"x"];
     sY = [IonGuideLine guideWithTarget: self andKeyPath: @"y"];
-    [staticMountSet setSuperPairWithVert: sY andHoriz: sX];
+    [staticMountSet setSuperGuidesWithHorz: sX andVert: sY];
     
     
     self.x = 1000;

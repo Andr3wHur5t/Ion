@@ -370,7 +370,7 @@ andProcessingBlock:(IonGuideLineProcessingBlock) processingBlock {
         NSLog( @"%@ - updated position to %f", self.debugName, self.position);
     
     // Inform locally maintained observers of change
-    [self.localObservers invokeActionSetsInGroup: 0];
+    [self.localObservers invokeActionSetsInGroup: @"observers"];
     
     // Call our debug block if we have one.
     if ( _debugBlock )
@@ -394,7 +394,7 @@ andProcessingBlock:(IonGuideLineProcessingBlock) processingBlock {
  * @param {SEL} the action to invoke on the target.
  */
 - (void) addLocalObserverTarget:(id) target andAction:(SEL) action {
-    [self.localObservers addTarget: target andAction: action toGroup: 0];
+    [self.localObservers addTarget: target andAction: action toGroup: @"observers"];
 }
 
 /**
@@ -403,14 +403,14 @@ andProcessingBlock:(IonGuideLineProcessingBlock) processingBlock {
  * @param {SEL} the action to invoke on the target.
  */
 - (void) removeLocalObserverTarget:(id) target andAction:(SEL) action {
-    [self.localObservers removeTarget: target andAction: action fromGroup: 0];
+    [self.localObservers removeTarget: target andAction: action fromGroup: @"observers"];
 }
 
 /**
  * Removes all local observers.
  */
 - (void) removeAllLocalObservers {
-    [self.localObservers removeGroup: 0];
+    [self.localObservers removeGroup: @"observers"];
 }
 
 #pragma mark Debugging

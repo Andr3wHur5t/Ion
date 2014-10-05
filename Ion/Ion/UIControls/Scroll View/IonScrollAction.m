@@ -32,23 +32,23 @@
 }
 
 - (void) addTargetActionSet:(IonTargetActionSet *)targetAction {
-    [self.targetActions addActionSet: targetAction toGroup: 0];
+    [self.targetActions addActionSet: targetAction toGroup: @"observers"];
 }
 
 - (void) addTarget:(id) target andAction:(SEL) action {
-    [self.targetActions addTarget: target andAction: action toGroup: 0];
+    [self.targetActions addTarget: target andAction: action toGroup: @"observers"];
 }
 
 - (void) removeTargetActionSet:(IonTargetActionSet *)targetAction {
-    [self.targetActions removeActionSet: targetAction fromGroup: 0];
+    [self.targetActions removeActionSet: targetAction fromGroup: @"observers"];
 }
 
 - (void) removeTarget:(id) target andAction:(SEL) action {
-    [self.targetActions removeTarget: target andAction: action fromGroup: 0];
+    [self.targetActions removeTarget: target andAction: action fromGroup: @"observers"];
 }
 
 - (void) invokeTargetAction {
-    [self.targetActions invokeActionSetsInGroup: 0];
+    [self.targetActions invokeActionSetsInGroup: @"observers"];
 }
 
 #pragma mark Scroll View Interface

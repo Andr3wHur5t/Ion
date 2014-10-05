@@ -78,7 +78,7 @@
 }
 
 - (void) guideDidUpdate {
-    [self.localObservers invokeActionSetsInGroup: 0];
+    [self.localObservers invokeActionSetsInGroup: @"observers"];
 }
 
 #pragma mark Local Observers
@@ -90,11 +90,11 @@
 }
 
 - (void) addTarget:(id) target andAction:(SEL) action {
-    [self.localObservers addTarget: target andAction: action toGroup: 0];
+    [self.localObservers addTarget: target andAction: action toGroup: @"observers"];
 }
 
 - (void) removeTarget:(id) target andAction:(SEL) action {
-    [self.localObservers removeTarget: target andAction: action fromGroup: 0];
+    [self.localObservers removeTarget: target andAction: action fromGroup: @"observers"];
 }
 
 @end
