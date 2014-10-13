@@ -59,7 +59,7 @@
 /**
  * Sets the data content to a string.
  * @param {NSString*} string
- * @returns {void}
+ 
  */
 - (void) setDataWithString:(NSString*) string;
 

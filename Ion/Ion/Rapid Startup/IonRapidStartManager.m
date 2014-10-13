@@ -55,23 +55,16 @@
 
 @implementation IonRapidStartManager
 #pragma mark Constructors
-/**
- * Constructs a manager using the inputted delegate.
- * @param {id<IonRapidStartManagerDelegate>} the delegate to construct with.
- * @returns {instancetype}
- */
+
 - (instancetype) initWithDelegate:(id<IonRapidStartManagerDelegate>) delegate {
     self = [self init];
     if ( self )
         self.delegate = delegate;
     return self;
 }
+
 #pragma mark view controller utilities
 
-/**
- * Setter for the view controller.
- * @praram {IonRapidStartViewController*} the controller to be set
- */
 - (void) setViewController:(IonRapidStartViewController *)viewController {
     _viewController = viewController;
     if ( !_viewController )
@@ -97,10 +90,6 @@
     
 }
 
-/**
- * Gets the correct rapid start controller.
- * @returns {IonRapidStartViewController*}
- */
 - (IonRapidStartViewController *)getRapidStartController {
    if ( ![self checkDelegate] )
        return NULL;
@@ -115,10 +104,6 @@
         return [_delegate rapidSplash];
 }
 
-
-/**
- * Gets if we should use the on boarding rapid splash or not.
- */
 - (BOOL) useOnBoardingRapidSplash {
     BOOL firstRun = FALSE;
     if ( ![self checkDelegate] )
@@ -140,39 +125,26 @@
 }
 
 #pragma mark System Defaults Management
-/**
- * This sets the last used on boarding screen version ID.
- * BUG: Sometimes doesn't set...
- */
+
 - (void) updateLastOnBoardingVersionIDto:(id) newID {
+    // BUG: Sometimes doesn't set...
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue: newID forKey: OnBoardingScreenVersionKey];
     [userDefaults synchronize];
 }
 
-/**
- * This gets the last displayed on boarding version ID from user defaults.
- * @returns {NSString*}
- */
 -(NSString *)lastOnBoardingVersionID {
     return [[NSUserDefaults standardUserDefaults] stringForKey:OnBoardingScreenVersionKey];
 }
 
 #pragma mark Delegate Utilities
-/**
- * Checks the delegate.
- * @returns {BOOL} TRUE if delegate is valid, otherwise FALSE
- */
+
 - (BOOL) checkDelegate {
     if( !_delegate )
         return FALSE;
     return TRUE;
 }
 
-/**
- * This is the setter for the delegate.
- * @praram {id<IonRapidStartManagerDelegate>} the delegate to set.
- */
 - (void) setDelegate:(id<IonRapidStartManagerDelegate>)delegate {
     _delegate = delegate;
     self.viewController = [self getRapidStartController];

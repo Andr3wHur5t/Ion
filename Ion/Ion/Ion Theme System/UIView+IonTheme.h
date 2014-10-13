@@ -83,26 +83,31 @@ static NSString* sIonThemeView_AnimationDuration =                          @"an
  */
 @property (weak, nonatomic) NSString* themeID;
 
+/**
+ * Can apply background.
+ */
+@property (nonatomic, readwrite) BOOL styleCanSetBackground;
+
 #pragma mark Application
 
 /**
  * This sets the theme of the view, this should be called externally.
  * @praram {NSObject} the theme object to set.
- * @returns {void}
+ 
  */
 - (void) setIonTheme:(IonTheme*) themeObject;
 
 /**
  * Sets the parent style for the view, and subviews.
  * @param {IonStyle*} the style to be applied
- * @returns {void}
+ 
  */
 - (void) setParentStyle:(IonStyle*) style;
 
 /**
  * Sets the current style for the view, and the parent style for subviews.
  * @param {IonStyle*} the current style to apply.
- * @returns {void}
+ 
  */
 - (void) setStyle:(IonStyle*) style;
 

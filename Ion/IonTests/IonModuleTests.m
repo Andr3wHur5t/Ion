@@ -60,7 +60,6 @@
     [secondaryRouter addComponent: module forKey: @"people"];
     [module addAction: @selector(openPersonWithLink:) toEndpoint:@"Open"];
     [module addAction: @selector(addPersonWithLink:) toEndpoint:@"Add"];
-    module.debugLinkInvocations = TRUE;
     
     testLink = [IonLink linkWithURLString: @"ion:///Main/People/Open/?id=124425"
                                    reason: @"Push Notification"

@@ -7,7 +7,7 @@
 //
 
 #import "NSDictionary+IonFile.h"
-#import "NSData+IonTypeExtension.h"
+#import <FOUtilities/FOUtilities.h>
 #import "IonFileIOmanager.h"
 #import "IonPath.h"
 
@@ -19,7 +19,7 @@
  * This returns the JSON dictionary loaded at the specified path.
  * @param {IonPath*} the path.
  * @param {IonResultBlock} the result block where the dictionary will be returned.
- * @returns {void}
+ 
  */
 + (void) dictionaryAtPath:(IonPath*) path usingResultBlock:(IonResultBlock) result {
     __block NSDictionary* unconfirmedObject;
@@ -47,6 +47,18 @@
                      }];
 }
 
++ (NSDictionary *)dictionaryWithFileName:(NSString *)name {
+    return [[self class] dictionaryAtPath: [[IonPath bundleDirectory] pathAppendedByElement: name]];
+}
+
++ (NSDictionary *)dictionaryAtPath:(IonPath *)path {
+    // Do in Ion File manager
+    NSData* file = [[NSData alloc] initWithContentsOfFile: [path toString]];
+    if ( !file || ![file isKindOfClass:[NSData class]] )
+        return NULL;
+    return [NSJSONSerialization JSONObjectWithData:file options:0 error:NULL];
+}
+
 
 #pragma mark Saving As JSON
 /**
@@ -54,7 +66,7 @@
  * @param {IonPath*} the path
  * @param {IonCompletionBloc} the completion block
  * @param {BOOL} states if the json is minified.
- * @returns {void}
+ 
  */
 - (void) saveAtPath:(IonPath*) path minified:(BOOL) isMinified withCompletion:(IonCompletionBlock) completion {
     [IonFileIOmanager saveData: [NSData dataFromJsonEncodedDictionary: self makePretty: !isMinified]

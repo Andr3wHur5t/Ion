@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Ion. All rights reserved.
 //
 
-#import "IonKVPAccessBasedGenerationMap.h"
+#import <IonData/IonData.h>
 
 @class IonKeyValuePair;
 @class IonImageRef;

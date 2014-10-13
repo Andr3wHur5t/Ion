@@ -17,10 +17,11 @@
 /**
  * Sets the views orientation to match the rotational representation of the vector.
  * @params {IonVec3*} the rotational vector to align out orientation to.
- * @returns {void}
+ 
  */
-- (void) setOrientationToMatchVector:(IonVec3*) vector {
-    if ( !vector || ![vector isKindOfClass: [IonVec3 class]] )
+- (void) setOrientationToMatchVector:(SMVec3 *) vector {
+    NSParameterAssert( [vector isKindOfClass: [SMVec3 class]] );
+    if ( ![vector isKindOfClass: [SMVec3 class]] )
         return;
     
     [self applyTransform: [vector toRotationTransform]];
@@ -31,7 +32,7 @@
 /**
  * Applys a CATransform3D to the view.
  * @param {CATransform3D} the transform to apply.
- * @returns {void}
+ 
  */
 - (void) applyTransform:(CATransform3D) transform {
     self.layer.transform = transform;

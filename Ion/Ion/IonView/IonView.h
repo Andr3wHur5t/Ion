@@ -21,7 +21,7 @@ static NSString* sIonStyle_IonView_StyleMargin = @"styleMargin";
 /**
  * Performs the block with each IonView child as a parameter.
  * @param { void(^)( IonView* child) }
- * @returns {void}
+ 
  */
 - (void) forEachIonViewChildPerformBlock: (void(^)( IonView* child )) actionBlock;
 

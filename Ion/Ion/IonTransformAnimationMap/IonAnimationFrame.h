@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@class IonVec3;
+@class SMVec3;
 
 /**
  * The completion called when an animation completes.
@@ -105,17 +105,17 @@ typedef void(^FrameAnimationCompletion)( NSString *nextTarget );
 /**
  * The rotation value to set to the perspective when the frame executes.
  */
-@property (strong, nonatomic, readwrite) IonVec3 *rotation;
+@property (strong, nonatomic, readwrite) SMVec3 *rotation;
 
 /**
  * The scale value to set to the perspective when the frame executes.
  */
-@property (strong, nonatomic, readwrite) IonVec3 *scale;
+@property (strong, nonatomic, readwrite) SMVec3 *scale;
 
 /**
  * The position value to set to the perspective when the frame executes.
  */
-@property (strong, nonatomic, readwrite) IonVec3 *position;
+@property (strong, nonatomic, readwrite) SMVec3 *position;
 
 #pragma mark Configuration
 /**

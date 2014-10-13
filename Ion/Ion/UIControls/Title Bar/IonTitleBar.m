@@ -13,12 +13,17 @@
 @interface IonTitleBar (){
     IonGuideGroup* contentGroup;
     IonGuideLine* statusBarGuide;
-    IonKeyValueObserver* statusFrameObserver;
+    FOKeyValueObserver* statusFrameObserver;
 }
 
+/**
+ * Our status offset height.
+ */
+@property (nonatomic, readonly) CGFloat statusOffsetHeight;
 @end
 
 @implementation IonTitleBar
+
 #pragma mark Constructors
 
 /**
@@ -48,7 +53,7 @@
 
 /**
  * Constructs the view
- * @returns {void}
+ 
  */
 - (void) construct {
     self.respondsToStatusBar = FALSE;
@@ -62,7 +67,7 @@
 /**
  * Responds to frame changes.
  * @param {CGRect} the new frame
- * @returns {void}
+ 
  */
 - (void) setFrame:(CGRect) frame {
     [super setFrame: [self currentFrame]];
@@ -73,17 +78,25 @@
  */
 - (CGRect) currentFrame {
     return( CGRect){ [self.guideSet toPoint],
-        (CGSize){ self.superview.frame.size.width, [self statusOffsetHeight] + self.contentHeight } } ;
+        (CGSize){ self.superview.frame.size.width, self.statusOffsetHeight + self.contentHeight } } ;
 }
 
 /**
  * Updates the frame to match the current configuration.
- * @returns {void}
+ 
  */
 - (void) updateFrame {
     [self setFrame: [self currentFrame]];
 }
 
+- (void) willMoveToSuperview:(UIView *)newSuperview {
+    [super willMoveToSuperview: newSuperview];
+    
+    // This is hackish but it works, basicly we need to observe changes to our supers' size.
+    self.rightSizeGuide = newSuperview.sizeGuideHoriz;
+    
+    [self updateFrame];
+}
 #pragma mark Style application
 
 /**
@@ -149,7 +162,7 @@
 /**
  * The setter for responding to changes in the status bar.
  * @param {BOOL} the new state.
- * @returns {void}
+ 
  */
 - (void) setRespondsToStatusBar:(BOOL) respondsToStatusBar {
     [self willChangeValueForKey: @"respondsToStatusBar"];
@@ -158,10 +171,10 @@
     
     if ( _respondsToStatusBar ) {
         // observe the status frame and update content according to changes
-        statusFrameObserver = [IonKeyValueObserver observeObject: [IonApplication sharedApplication]
-                                                         keyPath: @"statusBarFrame"
-                                                          target: self
-                                                        selector: @selector(updateToMatchStatusBar)];
+        statusFrameObserver = [FOKeyValueObserver observeObject: [IonApplication sharedApplication]
+                                                        keyPath: @"statusBarFrame"
+                                                         target: self
+                                                       selector: @selector(updateToMatchStatusBar)];
     }
     else
         statusFrameObserver = NULL;
@@ -172,7 +185,7 @@
 /**
  * Updates the title bar to respond to the status bar.
  * @warning Will automatically adjust the size of the title bar.
- * @returns {void}
+ 
  */
 - (void) updateToMatchStatusBar {
     [self animateMatchingStatusBarTransition: ^{
@@ -185,7 +198,7 @@
  * Runs the correct animation for the current status bar transition.
  * @param {void^( )} the animation block.
  * @param (void^( )) the completion block.
- * @returns {void}
+ 
  */
 - (void) animateMatchingStatusBarTransition:(void(^)( )) animation usingCompletion:(void(^)( )) completion {
     NSParameterAssert( animation );
@@ -233,7 +246,7 @@
 /**
  * Content Height Setter
  * @param {CGFloat} the new content height
- * @returns {void}
+ 
  */
 - (void) setContentHeight:(CGFloat)contentHeight {
     [self willChangeValueForKey: @"contentHeight"];
@@ -252,7 +265,7 @@
 /**
  * Setter which configures the left view.
  * @param {UIView*} the new view.
- * @returns {void}
+ 
  */
 - (void) setLeftView:(UIView*) leftView {
     // Remove if it exists
@@ -286,7 +299,7 @@
  * Sets the left view using an animation.
  * @param {UIView*} the new view.
  * @param {BOOL} the animation to use.
- * @returns {void}
+ 
  */
 - (void) setLeftView:(UIView *)leftView animated:(BOOL) animated {
     // Run the set left animation an animation
@@ -303,7 +316,7 @@
 /**
  * Setter which configures the left view.
  * @param {UIView*} the new view.
- * @returns {void}
+ 
  */
 - (void) setCenterView:(UIView*) centerView {
     // Remove if it exists
@@ -327,7 +340,7 @@
 
 /**
  * updates the center view size guides.
- * @returns {void}
+ 
  */
 - (void) updateCenterViewSizeGuides {
     if ( !_centerView )
@@ -361,7 +374,7 @@
 /**
  * Setter which configures the right view.
  * @param {UIView*} the new view.
- * @returns {void}
+ 
  */
 - (void) setRightView:(UIView *)rightView {
     // Remove if it exists

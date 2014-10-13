@@ -8,6 +8,7 @@
 
 #import "IonAnimationFrame.h"
 #import <IonData/IonData.h>
+#import <SimpleMath/SimpleMath.h>
 
 @implementation IonAnimationFrame
 #pragma mark Constructors
@@ -115,12 +116,12 @@
  * @param {UIView*} the view to apply to.
  */
 - (CATransform3D) compositeTransformOnView:(UIView *)view {
-    IonVec3 *sizeVector;
+    SMVec3 *sizeVector;
     // Gets a size vector to multiply the the frames position vector,
     // so that animations work no matter the size of the view.
-    sizeVector = [IonVec3 vectorWithX: view.frame.size.width
-                                    Y: view.frame.size.height
-                                 andZ: (view.frame.size.height + view.frame.size.width)/ 2 ];
+    sizeVector = [SMVec3 vectorWithX: view.frame.size.width
+                                   Y: view.frame.size.height
+                                andZ: (view.frame.size.height + view.frame.size.width)/ 2 ];
     return CATransform3DConcat ( [self.scale toScaleTransform],
                                 CATransform3DConcat ( [self.rotation toRotationTransform],
                                                      [[self.position multiplyBy: sizeVector] toPositionTransform]));
@@ -157,11 +158,11 @@
     self.alpha = [[normalizedConfiguration numberForKey: sIonTransformAnimation_AlphaKey] floatValue];
     
     // Frame Perspective Transformations
-    self.position = [[IonVec3 alloc] initWithDictionary:
+    self.position = [[SMVec3 alloc] initWithDictionary:
                      [normalizedConfiguration dictionaryForKey: sIonTransformAnimation_PositionKey]];
-    self.rotation = [[IonVec3 alloc] initWithDictionary:
+    self.rotation = [[SMVec3 alloc] initWithDictionary:
                      [normalizedConfiguration dictionaryForKey: sIonTransformAnimation_RotationKey]];
-    self.scale = [[IonVec3 alloc] initWithDictionary:
+    self.scale = [[SMVec3 alloc] initWithDictionary:
                   [normalizedConfiguration dictionaryForKey: sIonTransformAnimation_ScaleKey]];
 
     // Debugging
@@ -204,9 +205,9 @@
              sIonTransformAnimation_DurationKey: @0.3f,
              
              // Appearance
-             sIonTransformAnimation_PositionKey: [[IonVec3 vectorZero] toDictionary],
-             sIonTransformAnimation_RotationKey: [[IonVec3 vectorZero] toRotationalDictionary],
-             sIonTransformAnimation_ScaleKey: [[IonVec3 vectorOne] toDictionary],
+             sIonTransformAnimation_PositionKey: [[SMVec3 vectorZero] toDictionary],
+             sIonTransformAnimation_RotationKey: [[SMVec3 vectorZero] toRotationalDictionary],
+             sIonTransformAnimation_ScaleKey: [[SMVec3 vectorOne] toDictionary],
              
              sIonTransformAnimation_AlphaKey: @1.0f
              };
@@ -221,10 +222,10 @@
 /**
  * Sets the position.
  */
-- (void) setPosition:(IonVec3 *)position {
+- (void) setPosition:(SMVec3 *)position {
     if ( !position ) {
         if ( !_position )
-            self.position = [IonVec3 vectorZero];
+            self.position = [SMVec3 vectorZero];
         return;
     }
     
@@ -242,10 +243,10 @@
 /**
  * Sets the position.
  */
-- (void) setRotation:(IonVec3 *)rotation {
+- (void) setRotation:(SMVec3 *)rotation {
     if ( !rotation ) {
         if ( !_rotation )
-            self.rotation = [IonVec3 vectorZero];
+            self.rotation = [SMVec3 vectorZero];
         return;
     }
     
@@ -263,10 +264,10 @@
 /**
  * Sets the position.
  */
-- (void) setScale:(IonVec3 *)scale {
+- (void) setScale:(SMVec3 *)scale {
     if ( !scale ) {
         if ( !_scale )
-            self.scale = [IonVec3 vectorOne];
+            self.scale = [SMVec3 vectorOne];
         return;
     }
     

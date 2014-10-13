@@ -7,15 +7,18 @@
 //
 
 #import "IonImageManager.h"
-#import "NSDictionary+IonFile.h"
-#import "NSDictionary+IonTypeExtension.h"
-#import "NSData+IonTypeExtension.h"
+
+
 #import "IonFileIOmanager.h"
 #import "UIImage+IonImage.h"
 #import "ImageManifest.h"
 #import "IonRenderUtilities.h"
 #import "IonPath.h"
-#import "IonMath.h"
+
+#import <SimpleMath/SimpleMath.h>
+#import <FOUtilities/FOUtilities.h>
+#import <IonData/IonData.h>
+
 
 static NSString *sIonInterfaceImageManagerCacheGroupName = @"interfaceImages";
 static NSString *sIonImageManagerBundleManifestExtension = @".manifest";
@@ -196,7 +199,6 @@ static NSString *sIonImageManagerStandardFileExtension = @".png";
  * Gets the image from the file system with the specified key.
  * @param {NSString*} the key for the image to get.
  * @param {IonImageReturn} the callback we will call with the resulting Image.
- * @returns {void}
  */
 - (void) imageForKey:(NSString*) key withReturnCallback:(IonImageReturn) returnCallback {
     __block UIImage* resultingImage;
@@ -236,7 +238,7 @@ static NSString *sIonImageManagerStandardFileExtension = @".png";
  * Gets an Image from the bundle asynchronously.
  * @param {NSString*} the file name to load.
  * @param {IonImageReturn} the callback we will call with the resulting Image.
- * @returns {void}
+ 
  */
 - (void) imageFromBundleUsingName:(NSString*) name andResultBlock:(IonImageReturn) resultBlock {
     __block IonImageReturn safeResult;
@@ -261,7 +263,7 @@ static NSString *sIonImageManagerStandardFileExtension = @".png";
  * @param {NSString*} the key for the raw image.
  * @param {CGSize} the size to resize the image to.
  * @param {IonImageReturn} the callback we will call with the resulting Image.
- * @returns {void}
+ 
  */
 - (void) imageForKey:(NSString*) key
             withSize:(CGSize) size
@@ -275,7 +277,7 @@ static NSString *sIonImageManagerStandardFileExtension = @".png";
  * @param {CGSize} the size to resize the image to.
  * @param {BOOL} stateing weither the image is contained.
  * @param {IonImageReturn} the callback we will call with the resulting Image.
- * @returns {void}
+ 
  */
 - (void) imageForKey:(NSString*) key
             withSize:(CGSize) size
@@ -298,7 +300,7 @@ static NSString *sIonImageManagerStandardFileExtension = @".png";
     
     // Get the string
     cleanKey = [NSDictionary sanitizeKey: key];
-    normilizedSize = [IonMath normilizeSizeToScreen: size];
+    normilizedSize = [SMUtilities normilizeSizeToScreen: size];
     sizedKeyString = [cleanKey stringByAppendingFormat:@"[%ix%i]-%@", (int)normilizedSize.width, (int)normilizedSize.height, typeString];
     
     // Get the Image
@@ -386,7 +388,7 @@ static NSString *sIonImageManagerStandardFileExtension = @".png";
 /**
  * Finished Current Tasks Callback.
  * @peram {void(^)( )} the callback.
- * @returns {void}
+ 
  */
 - (void) tasksDidComplete:(void(^)( )) completion {
     if ( !completion )

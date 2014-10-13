@@ -33,7 +33,7 @@
  * Sets the Current managed views.
  * @param {UIView*} the containing view
  * @param {UILabel*} the label to manage
- * @returns {void}
+ 
  */
 - (void) setContainer:(IonLabel*) view andLabel:(UILabel*) label {
     _label = label;
@@ -42,7 +42,7 @@
 
 /**
  * Informs the behavior delegate of an attribute change of the label.
- * @returns {void}
+ 
  */
 - (void) updateStates {
     if ( ![self canPerformManagementFunctions] )
@@ -65,7 +65,7 @@
 
 /**
  * Executes the default scroll animation
- * @returns {void}
+ 
  */
 - (void) animateText {
     CGFloat durration, delay;
@@ -108,7 +108,7 @@
 
 /**
  * Updates the label to match the container frame.
- * @returns {void}
+ 
  */
 - (void) updateLabelFrameToMatchContainer {
     if ( ![self canPerformManagementFunctions] )

@@ -30,14 +30,14 @@ static NSString* sIonApplication_CurrentOnBoardingScreenVersion = @"On Boarding 
  * @param {NSString*} the key to get the value for.
  * @returns {id} the object from the plist.
  */
-+ (id) plistValueForKey:(NSString*) key;
++ (id) plistValueForKey:(NSString *)key;
 
 #pragma mark Typed Getters
 /**
  * Gets the current on boarding screen version from the plist.
  * @returns {NSString*} the value stored in the plist, or v0.0 if non-existent
  */
-+ (NSString*) currentOnBoardingVersion;
++ (NSString *)currentOnBoardingVersion;
 /**
  * Gets if the application is in demo mode from the plist.
  * @returns {BOOL} the value stored in the plist, or FALSE if non-existent

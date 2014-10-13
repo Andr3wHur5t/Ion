@@ -26,12 +26,6 @@ FOUNDATION_EXPORT const unsigned char IonVersionString[];
 /** Status Bar Behaviors */
 #import "IonStatusBarBehaviorMotionGestureDisplay.h"
 
-/** Communication System */
-#import "IonLink.h"
-#import "IonModule.h"
-#import "IonRouter.h"
-#import "IonActionModule.h"
-
 /** Ion Rapid Start System */
 #import "IonRapidStartViewController.h"
 

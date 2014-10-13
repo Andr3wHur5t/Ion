@@ -43,9 +43,8 @@
 @property (assign, nonatomic, readwrite) BOOL respondsToStatusBar;
 
 /**
- * Updates the frame to match the current configuration.
- * @returns {void}
+ * Updates the of the title bar to fit the super view.
+ * @param superview - the view the title bar will be put in.
  */
 - (void) updateFrame;
-
 @end

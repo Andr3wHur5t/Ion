@@ -323,20 +323,30 @@
             },
             "scrollRefreshBackground": {
                 "background": { "type": "color", "name": "GrayExtraLight" },
-                "styleMargin": {"height": 20.0},
+                "styleMargin": {"height": 25.0},
             },
-            "cls_block": {
-                "cornerRadius": 15,
-                "background": { "type": "color", "name": "SpecialStateColor" },
+            "cell": {
+                "background": { "type": "color", "name": "CleanWhite" },
+                "stylePadding": {"width": 0.0, "height": 5.0},
+                "styleMargin": {"width": 18.0, "height": 5.0},
+                "children": {
+                    "cls_exposeHint": {
+                        "background": { "type": "color", "name": "Clear" },
+                        "cornerRadius": 2
+                    },
+                    "cls_profileImage": {
+                        "cornerRadius": 32.5,
+                        "background": { "type": "color", "name": "SpecialStateColor" },
+                        "styleMargin": {"height": 20.0,"width":10.0},
+                    },
+                    "cls_nameLabel":{
+                        "textColor": "SystemPrimaryTextColor",
+                        "font": { "name": "Helvetica Neue", "size": 18 },
+                    },
+                }
             },
-            "id_red": {
-                "background": { "type": "color", "name": "BadStateColor" },
-            },
-            "id_green": {
-                "background": { "type": "color", "name": "GoodStateColor" },
-            },
-            "id_yellow": {
-                "background": { "type": "color", "name": "OkeyStateColor" },
+            "cls_seperator": {
+                "background": { "type": "color", "name": "GrayExtraLight" },
             },
             "label": {
                 "background": { "type": "color", "name": "Clear" }

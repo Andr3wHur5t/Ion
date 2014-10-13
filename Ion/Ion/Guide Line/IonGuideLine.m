@@ -27,7 +27,7 @@
 /**
  * Local observers
  */
-@property (strong, nonatomic, readonly) IonTargetActionList *localObservers;
+@property (strong, nonatomic, readonly) FOTargetActionList *localObservers;
 @end
 
 @implementation IonGuideLine
@@ -36,11 +36,7 @@
 @synthesize localObservers = _localObservers;
 
 #pragma mark Constructors
-/**
- * Constructs a guide line based off the inputted value.
- * @param {CGFloat} the position value.
- * @returns {instancetype}
- */
+
 - (instancetype) initWithStaticValue:(CGFloat) value {
     self = [super init];
     if ( self ) {
@@ -50,20 +46,10 @@
     return self;
 }
 
-/**
- * Default constructor
- * @retuens {instancetype}
- */
 - (instancetype) init {
     return [self initWithStaticValue: 0.0f];
 }
 
-/**
- * Constructs a guide line using the inputted target token as the primary target token.
- * @param {IonGuideTargetToken*} the primary token.
- * @param {IonGuildLineCalcBlock} the calculation block used to composite the values.
- * @returns {instancetype}
- */
 - (instancetype) initWithTargetToken:(IonGuideTargetToken *)targetToken
                         andCalcBlock:(IonGuildLineCalcBlock) calcBlock {
     NSParameterAssert( targetToken && [targetToken isKindOfClass: [IonGuideTargetToken class]] );
@@ -77,14 +63,6 @@
     return self;
 }
 
-/**
- * Constructs a guide line with the inputted blocks, and target information.
- * @param {id} the target object to get the watched value from.
- * @param {NSString*} the key path of the value to watch on the target object.
- * @param {IonGuideLineProcessingBlock} the block to use in processing the watched value on updates.
- * @param {IonGuildLineCalcBlock} the calculation block used to calculate the resulting position.
- * @returns {instancetype}
- */
 - (instancetype) initWithTarget:(id) target
                         keyPath:(NSString*) keyPath
                 processingBlock:(IonGuideLineProcessingBlock) processingBlock
@@ -99,13 +77,6 @@
                         andCalcBlock: calcBlock];
 }
 
-/**
- * Constructs a guide line with the inputted block, and target information.
- * @param {id} the target object to get the watched value from.
- * @param {NSString*} the key path of the value to watch on the target object.
- * @param {IonGuildLineCalcBlock} the calculation block used to calculate the resulting position.
- * @returns {instancetype}
- */
 - (instancetype) initWithTarget:(id) target
                         keyPath:(NSString*) keyPath
                    andCalcBlock:(IonGuildLineCalcBlock) calcBlock {
@@ -115,13 +86,6 @@
                    andCalcBlock: calcBlock];
 }
 
-/**
- * Constructs a guide line with the inputted block, and target information.
- * @param {id} the target object to get the watched value from.
- * @param {NSString*} the key path of the value to watch on the target object.
- * @param {IonGuideLineProcessingBlock} the block to use in processing the watched value on updates.
- * @returns {instancetype}
- */
 - (instancetype) initWithTarget:(id) target
                         keyPath:(NSString*) keyPath
              andProcessingBlock:(IonGuideLineProcessingBlock) processingBlock {
@@ -132,16 +96,17 @@
 }
 
 
-/**
- * Constructs a guide line with the target information.
- * @param {id} the target object to get the watched value from.
- * @param {NSString*} the key path of the value to watch on the target object.
- * @returns {instancetype}
- */
 - (instancetype) initWithTarget:(id) target
                      andKeyPath:(NSString*) keyPath {
     return [self initWithTarget: target
                         keyPath: keyPath
+                processingBlock: NULL
+                   andCalcBlock: NULL];
+}
+
+- (instancetype) initWithTargetGuide:(IonGuideLine *)guide {
+    return [self initWithTarget: guide
+                        keyPath: @"position"
                 processingBlock: NULL
                    andCalcBlock: NULL];
 }
@@ -151,7 +116,7 @@
 /**
  * Configures a guideline to subscribe to changes in this guide line as a child.
  * @param {IonGuideLine*} the guide line to set.
- * @returns {void}
+ 
  */
 - (void) configureGuideLineAsChild:(IonGuideLine*) line {
     NSParameterAssert( line && [line isKindOfClass: [IonGuideLine class]] );
@@ -254,13 +219,6 @@ andProcessingBlock:(IonGuideLineProcessingBlock) processingBlock {
     [self recalculatePosition];
 }
 
-/**
- * Adds a target variable with the inputted name.
- * @param {id} the target object.
- * @param {NSString*} the target key path.
- * @param {IonGuideLineProcessingBlock} the processing block used to extract the value.
- * @param {NSString*} the string associated with this set.
- */
 - (void) addTarget:(id) target
        withKeyPath:(NSString *)keyPath
    processingBlock:(IonGuideLineProcessingBlock) processingBlock
@@ -271,20 +229,14 @@ andProcessingBlock:(IonGuideLineProcessingBlock) processingBlock {
                 withName: name];
 }
 
-/**
- * Adds a target variable with the inputted name.
- * @param {id} the target object.
- * @param {NSString*} the target key path.
- * @param {NSString*} the string associated with this set.
- */
 - (void) addTarget:(id) target withKeyPath:(NSString *)keyPath andName:(NSString *)name {
     [self addTarget: target withKeyPath: keyPath processingBlock: NULL andName: name];
 }
 
-/**
- * Removes the target variable with the inputted name.
- * @param {NSString*} the name of the pair to remove.
- */
+- (void) addTargetGuide:(IonGuideLine *)guide withName:(NSString *)name {
+    [self addTarget: guide withKeyPath: @"position" andName: name];
+}
+
 - (void) internallyRemoveTargetWithName:(NSString *)name {
     NSParameterAssert( name && [name isKindOfClass: [NSString class]] );
     if ( !name || ![name isKindOfClass:[NSString class]] )
@@ -292,11 +244,6 @@ andProcessingBlock:(IonGuideLineProcessingBlock) processingBlock {
     [self.targets removeObjectForKey: name];
 }
 
-/**
- * Removes the target variable with the inputted name.
- * @param {NSString*} the name of the pair to remove.
- * @warning You can't remove the primary target.
- */
 - (void) removeTargetWithName:(NSString *)name {
     NSParameterAssert( name && [name isKindOfClass: [NSString class]] );
     if ( !name || ![name isKindOfClass: [NSString class]] )
@@ -380,11 +327,11 @@ andProcessingBlock:(IonGuideLineProcessingBlock) processingBlock {
 #pragma mark Local Observers
 /**
  * Gets, or constructs the local targets dictionary.
- * @returns {IonTargetActionList*}
+ * @returns {FOTargetActionList*}
  */
-- (IonTargetActionList *)localObservers {
+- (FOTargetActionList *)localObservers {
     if ( !_localObservers )
-        _localObservers = [[IonTargetActionList alloc] init];
+        _localObservers = [[FOTargetActionList alloc] init];
     return _localObservers;
 }
 

@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Ion.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "370B1A6119E3FB8400D6447C"
+               BuildableName = "libIACommunication.a"
+               BlueprintName = "IACommunication"
+               ReferencedContainer = "container:../IACommunication/IACommunication.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

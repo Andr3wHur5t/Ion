@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IonMethodMap.h"
+#import <IonData/IonData.h>
 
 /**
  * Keys
@@ -27,7 +27,7 @@ static NSString* sIonTheme_StyleId = @"id_";
 /**
  * Applys The Style to self.
  * @param {IonStyle*} the style to apply to the view.
- * @returns {void}
+ 
  */
 - (void) applyStyle:(IonStyle*) style;
 
@@ -83,14 +83,14 @@ static NSString* sIonTheme_StyleId = @"id_";
 /**
  * Sets the attributes that we should resolve with.
  * @param {IonThemeAttributes*} the attribute we should resolve with.
- * @returns {void}
+ 
  */
 - (void) setResolutionAttributes:(IonKVPAccessBasedGenerationMap*) attributes;
 
 /**
  * This applies the current style to the inputted view.
  * @param {UIView*} the view to apply the style to.
- * @returns {void}
+ 
  */
 - (void) applyToView:(UIView*)view;
 

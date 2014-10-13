@@ -50,7 +50,7 @@ static NSString* sIonGuideGroup_FrameKey =              @"frame";
     /**
      * Observes the view that we were initilized with if there was any.
      */
-    IonKeyValueObserver* _viewObserver;
+    FOKeyValueObserver* _viewObserver;
 }
 
 @end
@@ -88,11 +88,11 @@ static NSString* sIonGuideGroup_FrameKey =              @"frame";
 - (instancetype) initWithView:(UIView *)view {
     self = [super init];
     if ( self ) {
-        _viewObserver = [IonKeyValueObserver observeObject: view
-                                                   keyPath: @"frame"
-                                                    target: self
-                                                  selector: @selector(updateFrameToMatchChange:)
-                                                   options: NSKeyValueObservingOptionInitial |
+        _viewObserver = [FOKeyValueObserver observeObject: view
+                                                  keyPath: @"frame"
+                                                   target: self
+                                                 selector: @selector(updateFrameToMatchChange:)
+                                                  options: NSKeyValueObservingOptionInitial |
                                                                 NSKeyValueObservingOptionNew];
     }
     return self;
@@ -104,7 +104,7 @@ static NSString* sIonGuideGroup_FrameKey =              @"frame";
  * Updates the frame to match the inputted change object.
  * @warning Ment for KVO
  * @param {NSDictionary*} the change dictionary
- * @returns {void}
+ 
  */
 -(void) updateFrameToMatchChange:(NSDictionary*) change {
     NSValue* rect;
@@ -186,7 +186,7 @@ static NSString* sIonGuideGroup_FrameKey =              @"frame";
  * Caches the guide for the specified key.
  * @param {IonGuideLine*} the guide to cache.
  * @param {NSString*} the key to cache the guide with.
- * @returns {void}
+ 
  */
 - (void) cacheGuide:(IonGuideLine*) guide withKey:(NSString*) key {
     NSParameterAssert( key && [key isKindOfClass:[NSString class]] );
@@ -203,7 +203,7 @@ static NSString* sIonGuideGroup_FrameKey =              @"frame";
  * Caches the external guide for the specified key.
  * @param {IonGuideLine*} the guide to cache.
  * @param {NSString*} the base key to cache the guide with.
- * @returns {void}
+ 
  */
 - (void) cacheExternalGuide:(IonGuideLine*) guide withKey:(NSString*) key {
     [self cacheGuide: guide withKey: [self keyToExternal: key]];

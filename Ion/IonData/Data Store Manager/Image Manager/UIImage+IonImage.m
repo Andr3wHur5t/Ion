@@ -31,7 +31,7 @@ static const char* sIonImageInfoObjectKey = "sIonImageInfoObject";
 /**
  * Sets arbitrary information pertaining to the image.
  * @param {NSDictionary*} info the info object to set.
- * @returns {void}
+ 
  */
 - (void) setInfo:(NSDictionary*) info {
     objc_setAssociatedObject( self, sIonImageInfoObjectKey, info, OBJC_ASSOCIATION_RETAIN_NONATOMIC );

@@ -48,10 +48,10 @@ static NSString* sIonGuideLine_BottomMargin =           @"IonGuideLine_BottomtMa
  * @returns {IonGuideGroup*} the group object.
  */
 - (IonGuideGroup*) guideGroup {
-    IonGuideGroup* group = [self.catagoryVariables objectForKey: sIonGuideLine_GuideGroupKey];
+    IonGuideGroup* group = [self.categoryVariables objectForKey: sIonGuideLine_GuideGroupKey];
     if ( !group ) {
         group = [[IonGuideGroup alloc] initWithView: self];
-        [self.catagoryVariables setObject: group forKey: sIonGuideLine_GuideGroupKey];
+        [self.categoryVariables setObject: group forKey: sIonGuideLine_GuideGroupKey];
     }
     return group;
 }

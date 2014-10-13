@@ -19,21 +19,16 @@
 
 #pragma mark Init Hooks
 
-/**
- * This is where we initilize all non visual elements of our application.
- * @returns {void}
- */
 - (void) setupApplication {
     NSLog(@"externial application startup called");
 }
-
 
 #pragma mark Controller Init
 
 /**
  * This configures the first real view controller.
  * @peram { ^(UIViewController* frvc) } frvc is the "First Real View Conroller" to be presented.
- * @returns {void}
+ 
  */
 - (void) configureFirstRealViewController:(void(^)( IonViewController* frvc )) finished {
     // configure the default first root view controller here.
@@ -41,10 +36,7 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
-    
-    IonStatusBarBehaviorMotionGestureDisplay* statusBarBehavior;
-    statusBarBehavior = [[IonStatusBarBehaviorMotionGestureDisplay alloc] init];
-    [vc addDelegateToManager: statusBarBehavior];
+    [vc addDelegateToManager: [[IonStatusBarBehaviorMotionGestureDisplay alloc] init]];
     //sc.manifestWillPersist = FALSE;
     //[sc deleteWithCompletion:^(NSError *error) {
     //    NSLog(@"Deleted Cache!");
@@ -60,79 +52,13 @@
     // Test transisions between themes
     //[self testTransision: NULL];
     
+//    IACLink *link = [IACLink linkWithURLString: @"Hello" andReason: @"Test"];
+    
     // Call Based off of finishing Image loading
     [self performBlock:^{
         if (finished)
             finished(vc);
     } afterDelay: 0.5];
-}
-
-/**
- * Tests file IO.
- */
-- (void) testFileIO {
-    
-}
-
-/**
- * This runs all of our theme tests, Note Should move these to unit tests.
- */
-- (void) runThemeTests {
-    [self overviewThemeTest];
-}
-
-/**
- * This reads out the metrics, and the results of diffrent attributes.
- */
-- (void) overviewThemeTest {
-    NSString* logString = @"\nTheme Test:";
-    UIColor                                 *resultColor;
-    IonStyle                                *resultStyle;
-    IonGradientConfiguration                *resultGradient;
-    // Metrics
-    double  colorStart, colorEnd,
-            styleStart, styleEnd,
-            gradientStart, gradientEnd;
-    // Test
-    colorStart = [[NSDate date] timeIntervalSince1970];
-    resultColor = [self.window.systemTheme resolveColorAttribute:@"yellow"];
-    colorEnd = [[NSDate date] timeIntervalSince1970];
-    
-    styleStart = [[NSDate date] timeIntervalSince1970];
-    //resultStyle = [self.window.systemTheme resolveStyleAttribute:@"cls_simpleStyle"];
-    styleEnd = [[NSDate date] timeIntervalSince1970];
-    
-    gradientStart = [[NSDate date] timeIntervalSince1970];
-    resultGradient = [self.window.systemTheme resolveGradientAttribute:@"Royal"];
-    gradientEnd = [[NSDate date] timeIntervalSince1970];
-    
-    // Reporting
-    logString = [logString stringByAppendingString:@"\nColor: %@ \nTook: %.4f ms\n"];
-    logString = [logString stringByAppendingString:@"\nStyle: %@ \nTook: %.4f ms\n"];
-    logString = [logString stringByAppendingString:@"\nGradient: %@Took: %.4f ms \n\n"];
-    
-    logString = [NSString stringWithFormat:logString,
-                 [resultColor toHex], (colorEnd - colorStart) * 1000,
-                 resultStyle, (styleEnd - styleStart) * 1000,
-                 resultGradient, (gradientEnd - gradientStart) * 1000];
-    
-    NSLog(@"%@", logString);
-}
-
-/**
- * This is the transision Test
- */
-- (void) testTransision:(IonTheme*) theme {
-    if ( !theme ) {
-        IonTheme* newtheme = [[IonTheme alloc] initWithFileName:@"TestStyle"];
-        if ( !newtheme )
-            return;
-        // Execute after delay to show diffrence
-        [self performSelector:@selector(testTransision:) withObject:newtheme afterDelay:1.5];
-        return;
-    }
-    
-    self.window.systemTheme = theme;
 }
 
 /**

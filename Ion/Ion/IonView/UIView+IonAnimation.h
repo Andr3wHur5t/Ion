@@ -25,7 +25,7 @@ static NSString* sIonAnimation_EntryPointKey = @"entryPoint";
  * @param {void(^)( )} phaseOne animation
  * @param {CGFloat} durration
  * @param {UIAnimationOptions} options
- * @returns {void}
+ 
  */
 + (void) animationWithPhaseOne:(void(^)( )) phaseOne
                       phaseTwo:(void(^)( )) phaseTwo

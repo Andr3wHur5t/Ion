@@ -27,13 +27,13 @@ static NSString* sDefaultFontName = @"Helvetica Neue";
  * Sets the Current managed views.
  * @param {UIView*} the containing view
  * @param {UILabel*} the label to manage
- * @returns {void}
+ 
  */
 - (void) setContainer:(IonLabel*) view andLabel:(UILabel*) label;
 
 /**
  * Informs the behavior delegate of an attribute change of the label.
- * @returns {void}
+ 
  */
 - (void) updateStates;
 

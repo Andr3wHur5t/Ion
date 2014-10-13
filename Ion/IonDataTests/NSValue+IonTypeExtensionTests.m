@@ -26,16 +26,7 @@
     [super tearDown];
 }
 
-- (void)testCGFloatConversion {
-    NSValue* valObj;
-    CGFloat valIn, valOut;
-    valIn = 2;
-    
-    valObj = [NSValue valueWithFloat: valIn];
-    valOut = [valObj toFloat];
-    
-    XCTAssert( valIn == valOut, @"Pass");
-}
+
 
 
 

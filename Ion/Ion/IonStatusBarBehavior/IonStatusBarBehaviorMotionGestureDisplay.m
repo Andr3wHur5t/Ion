@@ -11,18 +11,19 @@
 #import "IonApplication+StatusBar.h"
 #import <IonData/IonData.h>
 
-@interface IonStatusBarBehaviorMotionGestureDisplay () {
-    IonTimedAction* _timedAction;
-}
+@interface IonStatusBarBehaviorMotionGestureDisplay ()
 
 /**
  * The timing mechnisim for display
  */
-@property (strong, nonatomic, readonly) IonTimedAction* timedAction;
+@property (strong, nonatomic, readonly) FOTimedAction* timedAction;
 
 @end
 
 @implementation IonStatusBarBehaviorMotionGestureDisplay
+
+@synthesize timedAction = _timedAction;
+
 #pragma mark Constructors
 /**
  * Default Constructor.
@@ -42,7 +43,7 @@
 
 /**
  * Updates our internal state, and the status bar.
- * @returns {void}
+ 
  */
 - (void) updateState {
     switch ( self.behaviorMode ) {
@@ -60,9 +61,9 @@
 /**
  * Gets or constructs the timed action.
  */
-- (IonTimedAction*) timedAction {
+- (FOTimedAction *)timedAction {
     if ( !_timedAction ) {
-        _timedAction = [[IonTimedAction alloc] init];
+        _timedAction = [[FOTimedAction alloc] init];
         
         // Set the action to toggle the animation
         [_timedAction setTarget: self andAction: @selector(updateToggleMode)];
@@ -74,7 +75,7 @@
 
 /**
  * Update function for the extend time mode.
- * @returns {void}
+ 
  */
 - (void) updateExtendMode {
     NSTimeInterval netTime;
@@ -100,7 +101,7 @@
 
 /**
  * Animates the status bar to the correct state using the set animation. Same As Toggle mode.
- * @returns {void}
+ 
  */
 - (void) updateToggleMode {
     [[IonApplication sharedApplication] setStatusBarHidden: ![IonApplication sharedApplication].statusBarHidden

@@ -51,18 +51,16 @@ static NSString *sIonGuideLine_PrimaryTargetKey = @"primary";
 
 /**
  * Constructs a guide line based off the inputted value.
- * @param {CGFloat} the value to return.
- * @returns {instancetype}
+ * @param value - the value the guide will be set to.
  */
 - (instancetype) initWithStaticValue:(CGFloat) value;
 
 /**
  * Constructs a guide line with the inputted blocks, and target information.
- * @param {id} the target object to get the watched value from.
- * @param {NSString*} the key path of the value to watch on the target object.
- * @param {IonGuideLineProcessingBlock} the block to use in processing the watched value on updates.
- * @param {IonGuildLineCalcBlock} the calculation block used to calculate the resulting position.
- * @returns {instancetype}
+ * @param target - the target object to get the watched value from.
+ * @param keyPath - the key path of the value to watch on the target object.
+ * @param processingBlock - the block to use in processing the watched value on updates.
+ * @param calcBlock - the calculation block used to calculate the resulting position.
  */
 - (instancetype) initWithTarget:(id) target
                         keyPath:(NSString*) keyPath
@@ -72,10 +70,9 @@ static NSString *sIonGuideLine_PrimaryTargetKey = @"primary";
 
 /**
  * Constructs a guide line with the inputted block, and target information.
- * @param {id} the target object to get the watched value from.
- * @param {NSString*} the key path of the value to watch on the target object.
- * @param {IonGuildLineCalcBlock} the calculation block used to calculate the resulting position.
- * @returns {instancetype}
+ * @param target - the target object to get the watched value from.
+ * @param keyPath - the key path of the value to watch on the target object.
+ * @param calcBlock - the calculation block used to calculate the resulting position.
  */
 - (instancetype) initWithTarget:(id) target
                         keyPath:(NSString*) keyPath
@@ -83,10 +80,9 @@ static NSString *sIonGuideLine_PrimaryTargetKey = @"primary";
 
 /**
  * Constructs a guide line with the inputted block, and target information.
- * @param {id} the target object to get the watched value from.
- * @param {NSString*} the key path of the value to watch on the target object.
- * @param {IonGuideLineProcessingBlock} the block to use in processing the watched value on updates.
- * @returns {instancetype}
+ * @param target - the target object to get the watched value from.
+ * @param keyPath - the key path of the value to watch on the target object.
+ * @param processingBlock - the block to use in processing the watched value on updates.
  */
 - (instancetype) initWithTarget:(id) target
                         keyPath:(NSString*) keyPath
@@ -94,13 +90,17 @@ static NSString *sIonGuideLine_PrimaryTargetKey = @"primary";
 
 /**
  * Constructs a guide line with the target information.
- * @param {id} the target object to get the watched value from.
- * @param {NSString*} the key path of the value to watch on the target object.
- * @returns {instancetype}
+ * @param target - the target object to get the watched value from.
+ * @param keyPath - the key path of the value to watch on the target object.
  */
 - (instancetype) initWithTarget:(id) target
                         andKeyPath:(NSString*) keyPath;
 
+/**
+ * Constructs a guide line with the target as the inputted guide.
+ * @param guide - the target guide to set to the primary target.
+ */
+- (instancetype) initWithTargetGuide:(IonGuideLine *)guide;
 #pragma mark Calculation
 /**
  * The block which will calculate the resulting position.
@@ -115,18 +115,25 @@ static NSString *sIonGuideLine_PrimaryTargetKey = @"primary";
 #pragma mark Target Management
 /**
  * Adds a target variable with the inputted name.
- * @param {id} the target object.
- * @param {NSString*} the target key path.
- * @param {NSString*} the string associated with this set.
+ * @param target - the target object.
+ * @param keyPath - the target key path.
+ * @param name - the name associated with this set.
  */
 - (void) addTarget:(id) target withKeyPath:(NSString *)keyPath andName:(NSString *)name;
 
 /**
+ * Adds a guide as a target variable with the inputted name.
+ * @param guide - the target guide to add.
+ * @param name- the name associated with this set.
+ */
+- (void) addTargetGuide:(IonGuideLine *)guide withName:(NSString *)name;
+
+/**
  * Adds a target variable with the inputted name.
- * @param {id} the target object.
- * @param {NSString*} the target key path.
- * @param {IonGuideLineProcessingBlock} the processing block used to extract the value.
- * @param {NSString*} the string associated with this set.
+ * @param target - the target object.
+ * @param keyPath - the target key path.
+ * @param processingBlock - the processing block used to extract the value.
+ * @param name - the string associated with this set.
  */
 - (void) addTarget:(id) target
        withKeyPath:(NSString *)keyPath
@@ -135,7 +142,7 @@ static NSString *sIonGuideLine_PrimaryTargetKey = @"primary";
 
 /**
  * Removes the target variable with the inputted name.
- * @param {NSString*} the name of the pair to remove.
+ * @param name - the name of the pair to remove.
  * @warning You can't remove the primary target,
  */
 - (void) removeTargetWithName:(NSString *)name;
@@ -143,23 +150,23 @@ static NSString *sIonGuideLine_PrimaryTargetKey = @"primary";
 #pragma mark Change Subscription
 /**
  * Configures a guideline to subscribe to changes in this guide line as a child.
- * @param {IonGuideLine*} the guide line to set.
+ * @param line - the guide line to set.
  */
 - (void) configureGuideLineAsChild:(IonGuideLine *)line;
 
 #pragma mark Primary Target Setters
 /**
  * Sets the primary target value of the guide.
- * @param {id} the target object.
- * @param {NSString*} the key to observe.
+ * @param target - the target object.
+ * @param keyPath- the key to observe.
  */
 - (void) setTarget:(id) target usingKeyPath:(NSString *)keyPath;
 
 /**
  * Sets the primary target value of the guide.
- * @param {id} the target object.
- * @param {NSString*} the key to observe.
- * @param {IonGuideLineProcessingBlock} the processing block used to extract the variable.
+ * @param target - the target object.
+ * @param keyPath - the key to observe.
+ * @param processingBlock - the processing block used to extract the variable.
  */
 - (void) setTarget:(id) target
       usingKeyPath:(NSString *)keyPath
@@ -185,14 +192,12 @@ andProcessingBlock:(IonGuideLineProcessingBlock) processingBlock;
 #pragma mark Utility Constructors
 /**
  * Constructs a guide line as a child of the current guide line with the specified calculation block.
- * @param {IonGuildLineCalcBlock} the calculation block used to calculate the resulting position.
- * @returns {instancetype}
+ * @param calcBlock - the calculation block used to calculate the resulting position.
  */
 - (instancetype) guideAsChildUsingCalcBlock:(IonGuildLineCalcBlock) calcBlock;
 
 /**
  * Constructs a guide line as a child of the current guide line.
- * @returns {instancetype}
  */
 - (instancetype) guideAsChild;
 

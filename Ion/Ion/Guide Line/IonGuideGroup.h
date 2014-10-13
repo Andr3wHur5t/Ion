@@ -72,7 +72,7 @@
  * Caches the guide for the specified key.
  * @param {IonGuideLine*} the guide to cache.
  * @param {NSString*} the key to cache the guide with.
- * @returns {void}
+ 
  */
 - (void) cacheGuide:(IonGuideLine*) guide withKey:(NSString*) key;
 
@@ -80,7 +80,7 @@
  * Caches the external guide for the specified key.
  * @param {IonGuideLine*} the guide to cache.
  * @param {NSString*} the base key to cache the guide with.
- * @returns {void}
+ 
  */
 - (void) cacheExternalGuide:(IonGuideLine*) guide withKey:(NSString*) key;
 

@@ -11,12 +11,12 @@
 #import "IonKeyValuePair.h"
 #import "IonKVP+IonTheme.h"
 
-#import <IonData/UIColor+IonColor.h>
 #import <IonData/IonGradientConfiguration.h>
 #import <IonData/IonImageRef.h>
 #import "IonStyle.h"
 
 #import <objc/runtime.h>
+#import <FOUtilities/FOUtilities.h>
 
 
 inline extern void ThemeLog ( NSString* message ) {
@@ -35,7 +35,7 @@ unsigned int currentColorResolveDepth = 0;
 
 /**
  * This is the setter for the parentMap
- * @returns {void}
+ 
  */
 - (void) setParentMap:(IonKVPAccessBasedGenerationMap *)parentMap {
     objc_setAssociatedObject(self, sParentMap, parentMap,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -73,7 +73,7 @@ unsigned int currentColorResolveDepth = 0;
     
     
     // Check if the string is a hex
-    if ( [UIColor stingIsValidHex:value] ) {
+    if ( [value IsValidHex] ) {
         // We found it!
         result = [UIColor colorFromHexString: value];
         

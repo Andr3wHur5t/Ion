@@ -8,7 +8,6 @@
 
 #import "IonStyle+IonStdStyleApplyMethods.h"
 #import "UIView+IonViewProperties.h"
-#import "NSDictionary+IonTypeExtension.h"
 #import "NSDictionary+IonThemeResolution.h"
 #import "IonAttrubutesStanderdResolution.h"
 
@@ -18,7 +17,7 @@
 
 /**
  * Adds the STD proprieties to the method map.
- * @returns {void}
+ 
  */
 - (void) addIonStdStyleApplyProprieties {
     // Add Background
@@ -49,7 +48,7 @@
     id pointedObject;
     NSParameterAssert( view && [view isKindOfClass:[UIView class]] );
     NSParameterAssert( pointer && [pointer isKindOfClass: [NSDictionary class]] );
-    if ( !self.theme )
+    if ( !self.theme || !view.styleCanSetBackground )
         return NULL;
 
     // Get

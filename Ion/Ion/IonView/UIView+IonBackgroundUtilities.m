@@ -7,9 +7,9 @@
 //
 
 #import "UIView+IonBackgroundUtilities.h"
-#import "IonMath.h"
 #import "UIView+IonTheme.h"
 #import <IonData/IonData.h>
+#import <SimpleMath/SimpleMath.h>
 
 
 @implementation UIView (IonBackgroundUtilities)
@@ -19,7 +19,7 @@
  * This sets the background to a linear gradient with the specified configuration.
  * @param {IonLinearGradientConfiguration*} the gradient configuration to use in generation of the gradient
  * @param {(void(^)())} the completion to be called when finished
- * @returns {void}
+ 
  */
 - (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig
                             completion:( void(^)( ) )completion {
@@ -39,7 +39,7 @@
 /**
  * This sets the background to a linear gradient with the specified configuration.
  * @param {IonLinearGradientConfiguration*} the gradient configuration to use in generation of the gradient
- * @returns {void}
+ 
  */
 - (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig {
     [self setBackgroundToLinearGradient:gradientConfig completion:NULL];
@@ -54,13 +54,16 @@
  * @param {UIImage*} the image to be set
  * @param {CALayer*} the layer for the image to be set to
  * @param {IonBackgroundRenderOptions} the mode which to render the image.
- * @returns {void}
+ 
  */
 + (void) setImage:(UIImage*)image toLayer:(CALayer*)layer renderMode:(IonBackgroundRenderOptions) renderMode {
     void(^returnBlock)( UIImage *resImage );
     if ( !image || !layer )
         return;
-    
+    if ( CGSizeEqualToSize( CGSizeZero, layer.frame.size) ) {
+        NSLog( @"%s - Attempted to set image to a view with a size of {0,0} aborting.", __PRETTY_FUNCTION__ );
+        return;
+    }
     // Our Return Block
     returnBlock = ^( UIImage *resImage ) {
         layer.contents = (id)(resImage.CGImage);
@@ -98,15 +101,16 @@
  * This sets the current background image.
  * @parma {UIImage*} the image to be set to the background
  * @param {IonBackgroundRenderOptions} the mode which to render the image.
- * @returns {void}
+ 
  */
 - (void) setBackgroundImage:(UIImage*)image renderMode:(IonBackgroundRenderOptions) renderMode {
     if ( !image ) {
-        self.themeConfiguration.themeShouldBeAppliedToSelf = TRUE;
+        self.styleCanSetBackground = TRUE;
         return;
     }
     
-    self.themeConfiguration.themeShouldBeAppliedToSelf = FALSE;
+//    self.themeConfiguration.themeShouldBeAppliedToSelf = FALSE;
+    self.styleCanSetBackground = FALSE;
     [UIView setImage:image toLayer:self.layer renderMode: renderMode];
 }
 

@@ -19,7 +19,7 @@
  * @param {void(^)( )} phaseOne animation
  * @param {CGFloat} durration
  * @param {UIAnimationOptions} options
- * @returns {void}
+ 
  */
 + (void) animationWithPhaseOne:(void(^)( )) phaseOne
                       phaseTwo:(void(^)( )) phaseTwo
@@ -58,10 +58,10 @@
  * @returns {IonAnimationSession*}
  */
 - (IonAnimationSession *)animationSession {
-    IonAnimationSession *_animationSession = [self.catagoryVariables objectForKey: @"animationSession"];
+    IonAnimationSession *_animationSession = [self.categoryVariables objectForKey: @"animationSession"];
     if ( !_animationSession ) {
         _animationSession = [[IonAnimationSession alloc] initWithView: self];
-        [self.catagoryVariables setObject:_animationSession forKey: @"animationSession"];
+        [self.categoryVariables setObject:_animationSession forKey: @"animationSession"];
     }
     return _animationSession;
 }

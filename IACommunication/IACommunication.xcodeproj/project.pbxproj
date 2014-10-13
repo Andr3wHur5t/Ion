@@ -1,0 +1,528 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		370B1A7F19E3FCC100D6447C /* IACLink.h in Headers */ = {isa = PBXBuildFile; fileRef = 370B1A7D19E3FCC100D6447C /* IACLink.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370B1A8019E3FCC100D6447C /* IACLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 370B1A7E19E3FCC100D6447C /* IACLink.m */; };
+		370B1A8319E3FCD900D6447C /* IACModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 370B1A8119E3FCD900D6447C /* IACModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370B1A8419E3FCD900D6447C /* IACModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 370B1A8219E3FCD900D6447C /* IACModule.m */; };
+		370B1A8719E3FCEB00D6447C /* IACRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 370B1A8519E3FCEB00D6447C /* IACRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370B1A8819E3FCEB00D6447C /* IACRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 370B1A8619E3FCEB00D6447C /* IACRouter.m */; };
+		370B1A8B19E3FD0B00D6447C /* IACActionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 370B1A8919E3FD0B00D6447C /* IACActionModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370B1A8C19E3FD0B00D6447C /* IACActionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 370B1A8A19E3FD0B00D6447C /* IACActionModule.m */; };
+		3784D85719EB3E440069F078 /* IACActionModule.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 370B1A8919E3FD0B00D6447C /* IACActionModule.h */; };
+		3784D85819EB3E440069F078 /* IACLink.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 370B1A7D19E3FCC100D6447C /* IACLink.h */; };
+		3784D85919EB3E440069F078 /* IACModule.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 370B1A8119E3FCD900D6447C /* IACModule.h */; };
+		3784D85A19EB3E440069F078 /* IACRouter.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 370B1A8519E3FCEB00D6447C /* IACRouter.h */; };
+		37A0FB1019EAE9AE00C1DBB2 /* libIACommunication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 370B1A6219E3FB8400D6447C /* libIACommunication.a */; };
+		37DE298119E417E800BCC51E /* FOUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DE298019E417E800BCC51E /* FOUtilities.framework */; };
+		37DE298919E41A6500BCC51E /* IACLinkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DE298819E41A6500BCC51E /* IACLinkTests.m */; };
+		37DE298B19E41B5200BCC51E /* IACRouterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DE298A19E41B5200BCC51E /* IACRouterTest.m */; };
+		37DE298D19E41BC700BCC51E /* IACActionModuleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DE298C19E41BC700BCC51E /* IACActionModuleTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		37DE298519E41A2900BCC51E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 370B1A5A19E3FB8400D6447C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 370B1A6119E3FB8400D6447C;
+			remoteInfo = IACommunication;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3784D85619EB3DAE0069F078 /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+				3784D85719EB3E440069F078 /* IACActionModule.h in Copy Files */,
+				3784D85819EB3E440069F078 /* IACLink.h in Copy Files */,
+				3784D85919EB3E440069F078 /* IACModule.h in Copy Files */,
+				3784D85A19EB3E440069F078 /* IACRouter.h in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		370B1A6219E3FB8400D6447C /* libIACommunication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIACommunication.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		370B1A6D19E3FB8400D6447C /* IACommunicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IACommunicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		370B1A7019E3FB8400D6447C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		370B1A7D19E3FCC100D6447C /* IACLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IACLink.h; sourceTree = "<group>"; };
+		370B1A7E19E3FCC100D6447C /* IACLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACLink.m; sourceTree = "<group>"; };
+		370B1A8119E3FCD900D6447C /* IACModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IACModule.h; sourceTree = "<group>"; };
+		370B1A8219E3FCD900D6447C /* IACModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACModule.m; sourceTree = "<group>"; };
+		370B1A8519E3FCEB00D6447C /* IACRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IACRouter.h; sourceTree = "<group>"; };
+		370B1A8619E3FCEB00D6447C /* IACRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACRouter.m; sourceTree = "<group>"; };
+		370B1A8919E3FD0B00D6447C /* IACActionModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IACActionModule.h; sourceTree = "<group>"; };
+		370B1A8A19E3FD0B00D6447C /* IACActionModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACActionModule.m; sourceTree = "<group>"; };
+		37DE298019E417E800BCC51E /* FOUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FOUtilities.framework; path = "../../../Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos/FOUtilities.framework"; sourceTree = "<group>"; };
+		37DE298819E41A6500BCC51E /* IACLinkTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACLinkTests.m; sourceTree = "<group>"; };
+		37DE298A19E41B5200BCC51E /* IACRouterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACRouterTest.m; sourceTree = "<group>"; };
+		37DE298C19E41BC700BCC51E /* IACActionModuleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACActionModuleTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		370B1A5F19E3FB8400D6447C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37DE298119E417E800BCC51E /* FOUtilities.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		370B1A6A19E3FB8400D6447C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37A0FB1019EAE9AE00C1DBB2 /* libIACommunication.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		370B1A5919E3FB8400D6447C = {
+			isa = PBXGroup;
+			children = (
+				37DE298019E417E800BCC51E /* FOUtilities.framework */,
+				370B1A6419E3FB8400D6447C /* IAC Foundation */,
+				370B1A6E19E3FB8400D6447C /* IACommunicationTests */,
+				370B1A6319E3FB8400D6447C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		370B1A6319E3FB8400D6447C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				370B1A6219E3FB8400D6447C /* libIACommunication.a */,
+				370B1A6D19E3FB8400D6447C /* IACommunicationTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		370B1A6419E3FB8400D6447C /* IAC Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				370B1A7919E3FC1C00D6447C /* ActionModule */,
+				370B1A7A19E3FC1C00D6447C /* Links */,
+				370B1A7B19E3FC1C00D6447C /* Module */,
+				370B1A7C19E3FC1C00D6447C /* Router */,
+			);
+			name = "IAC Foundation";
+			path = IACommunication;
+			sourceTree = "<group>";
+		};
+		370B1A6E19E3FB8400D6447C /* IACommunicationTests */ = {
+			isa = PBXGroup;
+			children = (
+				370B1A6F19E3FB8400D6447C /* Supporting Files */,
+				37DE298819E41A6500BCC51E /* IACLinkTests.m */,
+				37DE298A19E41B5200BCC51E /* IACRouterTest.m */,
+				37DE298C19E41BC700BCC51E /* IACActionModuleTests.m */,
+			);
+			path = IACommunicationTests;
+			sourceTree = "<group>";
+		};
+		370B1A6F19E3FB8400D6447C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				370B1A7019E3FB8400D6447C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		370B1A7919E3FC1C00D6447C /* ActionModule */ = {
+			isa = PBXGroup;
+			children = (
+				370B1A8919E3FD0B00D6447C /* IACActionModule.h */,
+				370B1A8A19E3FD0B00D6447C /* IACActionModule.m */,
+			);
+			path = ActionModule;
+			sourceTree = SOURCE_ROOT;
+		};
+		370B1A7A19E3FC1C00D6447C /* Links */ = {
+			isa = PBXGroup;
+			children = (
+				370B1A7D19E3FCC100D6447C /* IACLink.h */,
+				370B1A7E19E3FCC100D6447C /* IACLink.m */,
+			);
+			path = Links;
+			sourceTree = SOURCE_ROOT;
+		};
+		370B1A7B19E3FC1C00D6447C /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				370B1A8119E3FCD900D6447C /* IACModule.h */,
+				370B1A8219E3FCD900D6447C /* IACModule.m */,
+			);
+			path = Module;
+			sourceTree = SOURCE_ROOT;
+		};
+		370B1A7C19E3FC1C00D6447C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				370B1A8519E3FCEB00D6447C /* IACRouter.h */,
+				370B1A8619E3FCEB00D6447C /* IACRouter.m */,
+			);
+			path = Router;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		370B1A6019E3FB8400D6447C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				370B1A8B19E3FD0B00D6447C /* IACActionModule.h in Headers */,
+				370B1A8319E3FCD900D6447C /* IACModule.h in Headers */,
+				370B1A7F19E3FCC100D6447C /* IACLink.h in Headers */,
+				370B1A8719E3FCEB00D6447C /* IACRouter.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		370B1A6119E3FB8400D6447C /* IACommunication */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 370B1A7319E3FB8400D6447C /* Build configuration list for PBXNativeTarget "IACommunication" */;
+			buildPhases = (
+				370B1A5E19E3FB8400D6447C /* Sources */,
+				370B1A5F19E3FB8400D6447C /* Frameworks */,
+				370B1A6019E3FB8400D6447C /* Headers */,
+				3784D85619EB3DAE0069F078 /* Copy Files */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IACommunication;
+			productName = IACommunication;
+			productReference = 370B1A6219E3FB8400D6447C /* libIACommunication.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		370B1A6C19E3FB8400D6447C /* IACommunicationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 370B1A7619E3FB8400D6447C /* Build configuration list for PBXNativeTarget "IACommunicationTests" */;
+			buildPhases = (
+				370B1A6919E3FB8400D6447C /* Sources */,
+				370B1A6A19E3FB8400D6447C /* Frameworks */,
+				370B1A6B19E3FB8400D6447C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				37DE298619E41A2900BCC51E /* PBXTargetDependency */,
+			);
+			name = IACommunicationTests;
+			productName = IACommunicationTests;
+			productReference = 370B1A6D19E3FB8400D6447C /* IACommunicationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		370B1A5A19E3FB8400D6447C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Andrew Hurst";
+				TargetAttributes = {
+					370B1A6119E3FB8400D6447C = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					370B1A6C19E3FB8400D6447C = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 370B1A5D19E3FB8400D6447C /* Build configuration list for PBXProject "IACommunication" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 370B1A5919E3FB8400D6447C;
+			productRefGroup = 370B1A6319E3FB8400D6447C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				370B1A6119E3FB8400D6447C /* IACommunication */,
+				370B1A6C19E3FB8400D6447C /* IACommunicationTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		370B1A6B19E3FB8400D6447C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		370B1A5E19E3FB8400D6447C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				370B1A8019E3FCC100D6447C /* IACLink.m in Sources */,
+				370B1A8C19E3FD0B00D6447C /* IACActionModule.m in Sources */,
+				370B1A8419E3FCD900D6447C /* IACModule.m in Sources */,
+				370B1A8819E3FCEB00D6447C /* IACRouter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		370B1A6919E3FB8400D6447C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37DE298D19E41BC700BCC51E /* IACActionModuleTests.m in Sources */,
+				37DE298B19E41B5200BCC51E /* IACRouterTest.m in Sources */,
+				37DE298919E41A6500BCC51E /* IACLinkTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		37DE298619E41A2900BCC51E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 370B1A6119E3FB8400D6447C /* IACommunication */;
+			targetProxy = 37DE298519E41A2900BCC51E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		370B1A7119E3FB8400D6447C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		370B1A7219E3FB8400D6447C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		370B1A7419E3FB8400D6447C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
+				);
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
+					"/Users/andrewhurst/work/Ion/FOUtilities/build/Debug-iphoneos",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = "$(BUILT_PRODUCTS_DIR)/include/${PRODUCT_NAME}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(BUILT_PRODUCTS_DIR)/include/${PRODUCT_NAME}";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		370B1A7519E3FB8400D6447C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
+				);
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
+					"/Users/andrewhurst/work/Ion/FOUtilities/build/Debug-iphoneos",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = "$(BUILT_PRODUCTS_DIR)/include/${PRODUCT_NAME}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(BUILT_PRODUCTS_DIR)/include/${PRODUCT_NAME}";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		370B1A7719E3FB8400D6447C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				INFOPLIST_FILE = IACommunicationTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/andrewhurst/work/Ion/FOUtilities/build/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		370B1A7819E3FB8400D6447C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				INFOPLIST_FILE = IACommunicationTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/andrewhurst/work/Ion/FOUtilities/build/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		370B1A5D19E3FB8400D6447C /* Build configuration list for PBXProject "IACommunication" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				370B1A7119E3FB8400D6447C /* Debug */,
+				370B1A7219E3FB8400D6447C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		370B1A7319E3FB8400D6447C /* Build configuration list for PBXNativeTarget "IACommunication" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				370B1A7419E3FB8400D6447C /* Debug */,
+				370B1A7519E3FB8400D6447C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		370B1A7619E3FB8400D6447C /* Build configuration list for PBXNativeTarget "IACommunicationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				370B1A7719E3FB8400D6447C /* Debug */,
+				370B1A7819E3FB8400D6447C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 370B1A5A19E3FB8400D6447C /* Project object */;
+}

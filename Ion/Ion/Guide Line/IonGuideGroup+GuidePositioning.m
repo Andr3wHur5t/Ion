@@ -43,16 +43,16 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  */
 - (void) setLogAutoFrameUpdatesWithString:(NSString*) logAutoFrameUpdatesWithString {
     if ( logAutoFrameUpdatesWithString )
-        [self.catagoryVariables setObject: logAutoFrameUpdatesWithString forKey: sIonAutoUpdateLogKey];
+        [self.categoryVariables setObject: logAutoFrameUpdatesWithString forKey: sIonAutoUpdateLogKey];
     else
-        [self.catagoryVariables removeObjectForKey: sIonAutoUpdateLogKey];
+        [self.categoryVariables removeObjectForKey: sIonAutoUpdateLogKey];
 }
 
 /**
  * Gets the auto update log key.
  */
 - (NSString*) logAutoFrameUpdatesWithString {
-    return [self.catagoryVariables objectForKey: sIonAutoUpdateLogKey];
+    return [self.categoryVariables objectForKey: sIonAutoUpdateLogKey];
 }
 
 /**

@@ -65,7 +65,7 @@
 /**
  * Applies a theme style to the button.
  * @param {IonStyle*} the style to apply.
- * @returns {void}
+ 
  */
 - (void) applyStyle:(IonStyle*) style {
     [super applyStyle: style];
@@ -104,7 +104,7 @@
 
 /**
  * Gets called when there is a valid complete tap.
- * @returns {void}
+ 
  */
 - (void) validTapCompleted {
     // Subclass this

@@ -151,7 +151,7 @@ static NSString* sIonApplication_Metrics_SplashDisplayCallbackTime = @"Metrics_S
  */
 - (void) setStartupInitTime:(NSTimeInterval) startupInitTime {
     [self willChangeValueForKey: @"startupInitTime"];
-    [self.catagoryVariables setObject: [NSNumber numberWithDouble: startupInitTime]
+    [self.categoryVariables setObject: [NSNumber numberWithDouble: startupInitTime]
                                forKey: sIonApplication_Metrics_StartupInitTime];
     [self didChangeValueForKey: @"startupInitTime"];
 }
@@ -161,7 +161,7 @@ static NSString* sIonApplication_Metrics_SplashDisplayCallbackTime = @"Metrics_S
  * @returns {NSTimeInterval} the value, or 0 if not set.
  */
 - (NSTimeInterval) startupInitTime {
-    return [[self.catagoryVariables numberForKey: sIonApplication_Metrics_StartupInitTime] doubleValue];
+    return [[self.categoryVariables numberForKey: sIonApplication_Metrics_StartupInitTime] doubleValue];
 }
 
 #pragma mark ApplicationLaunchBeginTime
@@ -176,7 +176,7 @@ static NSString* sIonApplication_Metrics_SplashDisplayCallbackTime = @"Metrics_S
  */
 - (void) setApplicationLaunchBeginTime:(NSTimeInterval) applicationLaunchBeginTime {
     [self willChangeValueForKey: @"applicationLaunchBeginTime"];
-    [self.catagoryVariables setObject: [NSNumber numberWithDouble: applicationLaunchBeginTime]
+    [self.categoryVariables setObject: [NSNumber numberWithDouble: applicationLaunchBeginTime]
                                forKey: sIonApplication_Metrics_ApplicationLaunchBeginTime];
     [self didChangeValueForKey: @"applicationLaunchBeginTime"];
 }
@@ -186,7 +186,7 @@ static NSString* sIonApplication_Metrics_SplashDisplayCallbackTime = @"Metrics_S
  * @returns {NSTimeInterval} the value, or 0 if not set.
  */
 - (NSTimeInterval) applicationLaunchBeginTime {
-    return [[self.catagoryVariables numberForKey: sIonApplication_Metrics_ApplicationLaunchBeginTime] doubleValue];
+    return [[self.categoryVariables numberForKey: sIonApplication_Metrics_ApplicationLaunchBeginTime] doubleValue];
 }
 
 #pragma mark ApplicationLaunchEndTime
@@ -201,7 +201,7 @@ static NSString* sIonApplication_Metrics_SplashDisplayCallbackTime = @"Metrics_S
  */
 - (void) setApplicationLaunchEndTime:(NSTimeInterval) applicationLaunchEndTime {
     [self willChangeValueForKey: @"applicationLaunchEndTime"];
-    [self.catagoryVariables setObject: [NSNumber numberWithDouble: applicationLaunchEndTime]
+    [self.categoryVariables setObject: [NSNumber numberWithDouble: applicationLaunchEndTime]
                                forKey: sIonApplication_Metrics_ApplicationLaunchEndTime];
     [self didChangeValueForKey: @"applicationLaunchEndTime"];
 }
@@ -211,7 +211,7 @@ static NSString* sIonApplication_Metrics_SplashDisplayCallbackTime = @"Metrics_S
  * @returns {NSTimeInterval} the value, or 0 if not set.
  */
 - (NSTimeInterval) applicationLaunchEndTime {
-    return [[self.catagoryVariables numberForKey: sIonApplication_Metrics_ApplicationLaunchEndTime] doubleValue];
+    return [[self.categoryVariables numberForKey: sIonApplication_Metrics_ApplicationLaunchEndTime] doubleValue];
 }
 
 #pragma mark ApplicationLaunchEndTime
@@ -226,7 +226,7 @@ static NSString* sIonApplication_Metrics_SplashDisplayCallbackTime = @"Metrics_S
  */
 - (void) setSplashDisplayCallbackTime:(NSTimeInterval) splashDisplayCallbackTime {
     [self willChangeValueForKey: @"splashDisplayCallbackTime"];
-    [self.catagoryVariables setObject: [NSNumber numberWithDouble: splashDisplayCallbackTime]
+    [self.categoryVariables setObject: [NSNumber numberWithDouble: splashDisplayCallbackTime]
                                forKey: sIonApplication_Metrics_SplashDisplayCallbackTime];
     [self didChangeValueForKey: @"splashDisplayCallbackTime"];
 }
@@ -236,7 +236,7 @@ static NSString* sIonApplication_Metrics_SplashDisplayCallbackTime = @"Metrics_S
  * @returns {NSTimeInterval} the value, or 0 if not set.
  */
 - (NSTimeInterval) splashDisplayCallbackTime {
-    return [[self.catagoryVariables numberForKey: sIonApplication_Metrics_SplashDisplayCallbackTime] doubleValue];
+    return [[self.categoryVariables numberForKey: sIonApplication_Metrics_SplashDisplayCallbackTime] doubleValue];
 }
 
 @end

@@ -39,7 +39,7 @@ static NSString* sShadowRadiusKey = @"radius";
 
 /**
  * Adds the STD proprieties to the method map.
- * @returns {void}
+ 
  */
 - (void) addIonStdStyleApplyProprieties;
 

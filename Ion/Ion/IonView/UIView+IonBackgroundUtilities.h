@@ -21,7 +21,7 @@ typedef enum : NSUInteger {
 /**
  * Sets the background to a linear gradient with the specified configuration.
  * @param {IonLinearGradientConfiguration*} the gradient configuration to use in generation of the gradient
- * @returns {void}
+ 
  */
 - (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig;
 
@@ -29,7 +29,7 @@ typedef enum : NSUInteger {
  * Sets the background to a linear gradient with the specified configuration.
  * @param {IonLinearGradientConfiguration*} the gradient configuration to use in generation of the gradient
  * @param {(void(^)())} the completion to be called when finished
- * @returns {void}
+ 
  */
 - (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig completion:( void(^)( ) )completion;
 

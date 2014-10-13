@@ -34,7 +34,7 @@
 /**
  * This will set our target with the inputed map.
  * @param {NSDictionary*} the map to configure our self with.
- * @returns {void}
+ 
  */
 - (void) setTargetWithMap:(NSDictionary*) map;
 

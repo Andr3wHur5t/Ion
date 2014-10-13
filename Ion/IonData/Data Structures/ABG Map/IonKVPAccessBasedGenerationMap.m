@@ -13,7 +13,7 @@
 
 /**
  * This sets the generation block to generate kvp values.
- * @returns {void}
+ 
  */
 - (void) setGenerationBlock {
     __weak typeof( self ) weakSelf = self;

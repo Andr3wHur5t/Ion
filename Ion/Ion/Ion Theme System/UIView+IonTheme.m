@@ -23,7 +23,7 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
 #pragma mark Theme Configuration Object
 /**
  * This is the setter for the themeConfiguration
- * @returns {void}
+ 
  */
 - (void) setThemeConfiguration:(IonThemeConfiguration *) themeConfiguration {
     // Set the change callback
@@ -55,7 +55,7 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
 /**
  * This sets the theme of the view, this should be called externally.
  * @praram {NSObject} the theme object to set.
- * @returns {void}
+ 
  */
 - (void) setIonTheme:(IonTheme*) themeObject {
     if ( !themeObject || ![themeObject isKindOfClass:[IonTheme class]] )
@@ -68,7 +68,7 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
 /**
  * Sets the parent style for the view, and subviews.
  * @param {IonStyle*} the style to be applied
- * @returns {void}
+ 
  */
 - (void) setParentStyle:(IonStyle*) style {
     if ( !style || ![style isKindOfClass: [IonStyle class]] )
@@ -80,7 +80,7 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
 /**
  * Sets the current style for the view, and the parent style for subviews.
  * @param {IonStyle*} the current style to apply.
- * @returns {void}
+ 
  */
 - (void) setStyle:(IonStyle*) style {
     if ( !style || ![style isKindOfClass:[IonStyle class]] )
@@ -107,7 +107,7 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
 /**
  * Sets the theme element key.
  * @param {NSString*} the new key
- * @returns {void}
+ 
  */
 - (void) setThemeElement:(NSString*) themeElement {
     [self willChangeValueForKey: @"themeElement"];
@@ -133,7 +133,7 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
 /**
  * Sets the theme class key.
  * @param {NSString*} the new key
- * @returns {void}
+ 
  */
 - (void) setThemeClass:(NSString *)themeClass {
     [self willChangeValueForKey: @"themeClass"];
@@ -159,7 +159,7 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
 /**
  * Sets the theme id key.
  * @param {NSString*} the new key
- * @returns {void}
+ 
  */
 - (void) setThemeID:(NSString *)themeID {
     [self willChangeValueForKey: @"themeId"];
@@ -180,7 +180,7 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
 /**
  * Applies the style to the view.
  * @param {IonStyle} the style to be applied.
- * @returns {void}
+ 
  */
 - (void) applyStyle:(IonStyle*) style {
     NSNumber *animationDuration;
@@ -206,7 +206,15 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
     if ( !animationDuration )
         animationDuration = @0.3;
     self.animationDuration = [animationDuration floatValue];
-    
+}
+
+#pragma mark Can Set Background
+- (void) setStyleCanSetBackground:(BOOL)styleCanSetBackground {
+    [self.categoryVariables setObject: [NSNumber numberWithBool: styleCanSetBackground] forKey: @"canSetBackground"];
+}
+
+- (BOOL) styleCanSetBackground {
+    return [self.categoryVariables boolForKey: @"canSetBackground" defaultValue: TRUE];
 }
 
 #pragma mark Style Margin
@@ -219,11 +227,11 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
 /**
  * Sets the style margin of the view.
  * @param {CGSize} the new size
- * @returns {void}
+ 
  */
 - (void) setStyleMargin:(CGSize) styleMargin {
     [self willChangeValueForKey: @"styleMargin"];
-    [self.catagoryVariables setObject: [NSValue valueWithCGSize: styleMargin] forKey: sIonStyleMarginKey];
+    [self.categoryVariables setObject: [NSValue valueWithCGSize: styleMargin] forKey: sIonStyleMarginKey];
     [self didChangeValueForKey: @"styleMargin"];
 }
 
@@ -232,7 +240,7 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
  * @returns {CGSize}
  */
 -(CGSize) styleMargin {
-    return [(NSValue*)[self.catagoryVariables objectForKey: sIonStyleMarginKey] CGSizeValue];
+    return [(NSValue*)[self.categoryVariables objectForKey: sIonStyleMarginKey] CGSizeValue];
 }
 
 #pragma mark Style Padding
@@ -244,11 +252,11 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
 /**
  * Sets the style margin of the view.
  * @param {CGSize} the new size
- * @returns {void}
+ 
  */
 - (void) setStylePadding:(CGSize)stylePadding {
     [self willChangeValueForKey: @"stylePadding"];
-    [self.catagoryVariables setObject: [NSValue valueWithCGSize: stylePadding] forKey: sIonStylePaddingKey];
+    [self.categoryVariables setObject: [NSValue valueWithCGSize: stylePadding] forKey: sIonStylePaddingKey];
     [self didChangeValueForKey: @"stylePadding"];
 }
 
@@ -257,7 +265,7 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
  * @returns {CGSize}
  */
 -(CGSize) stylePadding {
-    return [(NSValue*)[self.catagoryVariables objectForKey: sIonStylePaddingKey] CGSizeValue];
+    return [(NSValue*)[self.categoryVariables objectForKey: sIonStylePaddingKey] CGSizeValue];
 }
 
 
@@ -294,7 +302,7 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
  */
 - (void) setAnimationDuration:(CGFloat) animationDuration {
     [self willChangeValueForKey: @"animationDuration"];
-    [self.catagoryVariables setObject: [NSNumber numberWithDouble: animationDuration] forKey: @"animationDuration"];
+    [self.categoryVariables setObject: [NSNumber numberWithDouble: animationDuration] forKey: @"animationDuration"];
     [self didChangeValueForKey: @"animationDuration"];
 }
 
@@ -302,7 +310,7 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
  * Gets the animation duration.
  */
 - (CGFloat) animationDuration {
-    return [[self.catagoryVariables numberForKey: @"animationDuration"] floatValue];
+    return [[self.categoryVariables numberForKey: @"animationDuration"] floatValue];
 }
 
 #pragma mark Utilities

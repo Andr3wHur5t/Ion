@@ -11,6 +11,7 @@
 #import "IonApplication.h"
 #import "IonViewMotionGestureManager.h"
 #import "UIView+FirstResponderSearch.h"
+#import "UIWindow+IonWindow.h"
 
 @interface IonViewController () {
     CGRect oldFrame;
@@ -46,7 +47,7 @@
 /**
  * Overrides the view setter to only allow IonViews.
  * @param {IonView*} the new view.
- * @returns {void}
+ 
  */
 - (void) setView:(IonView *)view {
     NSParameterAssert( view && [view isKindOfClass: [IonView class]] );
@@ -93,7 +94,7 @@
 /**
  * Adds the delegate to the correct manager
  * @param {id} the delegate to add.
- * @returns {void}
+ 
  */
 - (void) addDelegateToManager:(id) delegate {
     NSParameterAssert( delegate );
@@ -107,7 +108,7 @@
 /**
  * Removes the delegate from its manager.
  * @param {id} the delegate to add.
- * @returns {void}
+ 
  */
 - (void) removeDelegateFromManager:(id) delegate {
     NSParameterAssert( delegate );
@@ -130,7 +131,7 @@
 
 /**
  * We layout views here.
- * @returns {void}
+ 
  */
 - (void) shouldLayoutSubviews {
     NSLog(@"Layout");
@@ -140,7 +141,7 @@
 
 /**
  * We free non-critical objects here.
- * @returns {void}
+ 
  */
 - (void) shouldFreeNonCriticalObjects {
     NSLog(@"Free Non-Critical Elements");
@@ -148,7 +149,7 @@
 
 /**
  * We construct the subviews here.
- * @returns {void}
+ 
  */
 - (void) constructViews {
     NSLog(@"Construct Views");
@@ -166,7 +167,7 @@
 /**
  * We encode the temporary state here.
  * @param {NSCoder} the object to encode our state with.
- * @returns {void}
+ 
  */
 - (void) encodeTemporaryState:(NSCoder*) encoder {
     NSLog(@"Encode State");
@@ -175,7 +176,7 @@
 /**
  * We decode the temporary state here.
  * @param {NSCoder} the object to decode our state with.
- * @returns {void}
+ 
  */
 - (void) decodeTemporaryState:(NSCoder*) decoder {
     NSLog(@"Decode State");
@@ -186,7 +187,7 @@
 
 /**
  * Sets the default value for the views' element, class, and id names.
- * @returns {void}
+ 
  */
 - (void) setDefaultThemeSystemNames {
     self.view.themeElement = sIonThemeElementBody;

@@ -107,7 +107,7 @@
 /**
  * Appends current path with the additional hierarchy.
  * @param {NSArray*} the additional hierarchy.
- * @returns {void}
+ 
  */
 - (void) appendHierarchy:(NSArray*) additional;
 

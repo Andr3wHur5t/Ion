@@ -86,7 +86,7 @@
     // Update our status delegate with our current percentage to completion
     if ( self.statusDelegate ) {
         if ( scrollView.contentOffset.y <= 0 )
-            [self updateDelegateWithPercentage: MIN( ABS( scrollView.contentOffset.y ) / ABS( self.distance ), 1.0)];
+            [self updateDelegateWithPercentage: (CGFloat)MIN( ABS( scrollView.contentOffset.y ) / ABS( self.distance ), 1.0)];
         else if ( lastDelegateUpdateValue != 0.0f ) // Only report zero once.
             [self updateDelegateWithPercentage: 0.0f];
     }

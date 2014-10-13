@@ -43,7 +43,7 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
 #pragma mark Protocol implementation
 /**
  * Gets called when there is a valid complete tap.
- * @returns {void}
+ 
  */
 - (void) validTapCompleted {
     [super validTapCompleted];
@@ -64,7 +64,7 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
  * Informs the delegate to update the button to match the inputted state.
  * @param {IonButtonStates} currentState the current state.
  * @param {BOOL} states if the change is animated.
- * @returns {void}
+ 
  */
 - (void) updateButtonToMatchState:(IonButtonStates) currentState animated:(BOOL) animated {
     [super updateButtonToMatchState: currentState animated: animated];
@@ -108,7 +108,7 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
 #pragma mark Cycle Execution
 /**
  * Executes the current trasnsision
- * @returns {void}
+ 
  */
 - (void) executeCurrentCycle {
     NSString *targetCycle;
@@ -140,7 +140,7 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
 #pragma mark Events
 /**
  * Processes and resolves event information.
- * @returns {void}
+ 
  */
 - (void) resoleveEventInformation {
     NSDictionary* rawEvents;
@@ -155,7 +155,7 @@ static NSString* sIonDefaultTransformName = @"defaultTransform";
 /**
  * Sets of the animation with the acociated event.
  * @param {NSString*} the event name to fire.
- * @returns {void}
+ 
  */
 - (void) fireEventWithName:(NSString*) name {
     NSDictionary* eventAnimation;

@@ -128,7 +128,7 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
 /**
  * Setter for the configuration object, Updates the button to match the inputted configuration.
  * @param {NSDictionary*} the new configuration.
- * @returns {void}
+ 
  */
 - (void) setConfiguration:(NSDictionary*) configuration {
     if ( !configuration || ![configuration isKindOfClass:[NSDictionary class]] )
@@ -140,7 +140,7 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
 
 /**
  * Processes the configuration make us match it.
- * @returns {void}
+ 
  */
 - (void) updateToMatchConfiguration {
     // Get Behavior Delegate
@@ -157,7 +157,7 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
 /**
  * Sets the bbehavior using the behavior configuration object.
  * @param {NSDictionary*} the behavior configuration object.
- * @returns {void}
+ 
  */
 - (void) setBehaviorUsingBehaviorConfigObject:(NSDictionary*) config {
     id<IonButtonBehaviorDelegate> behaviorDeligate;
@@ -180,7 +180,7 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
 /**
  * Responds to changes to our behavior delegate, and ensures that it can fulfill our requests.
  * @param {id<IonBehaviorDelegate>} the new delegate object.
- * @returns {void}
+ 
  */
 - (void) setBehavior:(id<IonButtonBehaviorDelegate>) behavior {
     if ( !behavior || ![behavior conformsToProtocol: @protocol(IonButtonBehaviorDelegate)] )
@@ -194,7 +194,7 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
 /**
  * Responds to changes of the base image key.
  * @param {NSString*} the new base image key
- * @returns {void}
+ 
  */
 - (void) setBaseImageKey:(NSString *)baseImageKey {
     if ( baseImageKey || [baseImageKey isKindOfClass: [NSString class]])
@@ -220,7 +220,7 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
 
 /**
  * Update ourself to match the current state.
- * @returns {void}
+ 
  */
 - (void) updateBaseMaskImage {
     // Don't waste our time if we dont hace a valid size.
@@ -252,7 +252,7 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
 
 /**
  * Gets called when there is a valid complete tap.
- * @returns {void}
+ 
  */
 - (void) validTapCompleted {
     if ( _behavior )

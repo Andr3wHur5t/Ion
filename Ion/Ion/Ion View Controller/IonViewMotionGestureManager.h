@@ -16,7 +16,7 @@
  * Will be called when a motion began.
  * @param {UIEventSubtype} the motion type that began
  * @param {UIEvent*} the event object associated with the motion.
- * @returns {void}
+ 
  */
 - (void) motionBegan:(UIEventSubtype) motion withEvent:(UIEvent*) event;
 
@@ -24,7 +24,7 @@
  * Will be called when a motion canceled.
  * @param {UIEventSubtype} the motion type that canceled
  * @param {UIEvent*} the event object associated with the motion.
- * @returns {void}
+ 
  */
 - (void) motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event;
 
@@ -32,7 +32,7 @@
  * Will be called when a motion ended.
  * @param {UIEventSubtype} the motion type that ended
  * @param {UIEvent*} the event object associated with the motion.
- * @returns {void}
+ 
  */
 - (void) motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event;
 
@@ -49,14 +49,14 @@
 /**
  * Adds a gesture deligate.
  * @param {id<IonViewGestureDelegate>} the gesture deligate to add.
- * @returns {void}
+ 
  */
 - (void) addGestureDelegate:(id<IonViewMotionGestureDelegate>) delegate;
 
 /**
  * Removes gesture deligates matching.
  * @param {id<IonViewGestureDelegate>} the gesture deligate to remove.
- * @returns {void}
+ 
  */
 - (void) removeGestureDelegate:(id<IonViewMotionGestureDelegate>) delegate;
 
@@ -66,7 +66,7 @@
  * Will be called when a motion began.
  * @param {UIEventSubtype} the motion type that began
  * @param {UIEvent*} the event object associated with the motion.
- * @returns {void}
+ 
  */
 - (void) motionBegan:(UIEventSubtype) motion withEvent:(UIEvent*) event;
 
@@ -74,7 +74,7 @@
  * Will be called when a motion canceled.
  * @param {UIEventSubtype} the motion type that canceled
  * @param {UIEvent*} the event object associated with the motion.
- * @returns {void}
+ 
  */
 - (void) motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event;
 
@@ -82,7 +82,7 @@
  * Will be called when a motion ended.
  * @param {UIEventSubtype} the motion type that ended
  * @param {UIEvent*} the event object associated with the motion.
- * @returns {void}
+ 
  */
 - (void) motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event;
 

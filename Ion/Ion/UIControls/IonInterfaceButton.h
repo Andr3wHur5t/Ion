@@ -40,13 +40,13 @@ static NSString* sIonButtonConfigurationText_WillDisplayKey = @"display";
  * Sets up the behavior with the button, and the info object.
  * @param {IonInterfaceButton*} the button that the delegate will administrate.
  * @param {NSDictionary*} the info object associated with the behavior
- * @returns {void}
+ 
  */
 - (void) setUpWithButton:(IonInterfaceButton*) button andInfoObject:(NSDictionary*) infoObject;
 
 /**
  * Gets called when there is a valid complete tap.
- * @returns {void}
+ 
  */
 - (void) validTapCompleted;
 
@@ -60,14 +60,14 @@ static NSString* sIonButtonConfigurationText_WillDisplayKey = @"display";
  * Informs the delegate to update the button to match the inputted state.
  * @param {IonButtonStates} currentState the current state.
  * @param {BOOL} states if the change is animated.
- * @returns {void}
+ 
  */
 - (void) updateButtonToMatchState:(IonButtonStates) currentState animated:(BOOL) animated;
 
 /**
  * Informs the behavior that the view was applyed with a style.
  * @param {IonStyle*} the new style.
- * @returns {void}
+ 
  */
 - (void) styleWasApplyed:(IonStyle*) style;
 

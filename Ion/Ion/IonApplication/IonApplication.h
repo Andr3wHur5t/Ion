@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <IonData/IonData.h>
-#import "IonWindow.h"
 #import "IonViewController.h"
 
 /**
@@ -19,21 +18,36 @@
 /**
  * Application window.
  */
-@property (strong, nonatomic) IonWindow *window;
+@property (strong, nonatomic) UIWindow *window;
 
 #pragma mark customization points
 /**
  * Configures the first real view controller.
  * @peram {block} this is the block we will call when we are finished with preparing the view.
- * @returns {void}
+ 
  */
 - (void) configureFirstRealViewController:( void(^)( IonViewController* frvc ) ) finished;
 
 /**
  * Customization point for executing arbitrary code after the construction of the first real view controller.
- * @returns {void}
+ 
  */
 - (void) setupApplication;
+
+/**
+ * Gets called when we need construct a window.
+ */
+- (UIWindow *)constructWindow;
+
+/**
+ * Gets called when we should configure the status bar.
+ */
+- (void) configureStatusBar;
+
+/**
+ * Gets the applications default theme.
+ */
+- (NSDictionary *)defaultTheme;
 
 #pragma mark Singletons
 /**

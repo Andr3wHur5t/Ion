@@ -57,7 +57,7 @@ typedef id(^IonInternialGenerationBlock)( id data , IonGenerationBlock specialGe
 /**
  * This sets our internal raw data, and deletes all curently cached data.
  * @param {NSDictionary*} the new raw data
- * @returns {void}
+ 
  */
 - (void) setRawData:(NSDictionary*) data;
 

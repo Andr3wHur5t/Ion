@@ -7,8 +7,8 @@
 //
 
 #import "NSDictionary+IonThemeResolution.h"
-#import "NSDictionary+IonTypeExtension.h"
 #import <IonData/IonData.h>
+#import <FOUtilities/FOUtilities.h>
 
 @implementation NSDictionary (IonThemeResolution)
 /**

@@ -8,7 +8,6 @@
 
 #import "IonStyle.h"
 #import "IonStyle+IonStdStyleApplyMethods.h"
-#import "NSDictionary+IonTypeExtension.h"
 #import "IonKVPAccessBasedGenerationMap.h"
 #import "UIView+IonTheme.h"
 #import "IonTheme.h"
@@ -85,7 +84,7 @@
 /**
  * Sets the object config.
  * @param {NSDictionary*} the configuration to set.
- * @returns {void}
+ 
  */
 - (void) setObjectConfig:(NSDictionary*) configMap {
     if ( !configMap )
@@ -96,7 +95,7 @@
 /**
  * Sets the attributes that we should resolve with.
  * @param {IonThemeAttributes*} the attributes we should resolve with.
- * @returns {void}
+ 
  */
 - (void) setResolutionAttributes:(IonTheme*) attributes {
     if ( !attributes )
@@ -109,7 +108,7 @@
 /**
  * Applies the current style to the inputted view.
  * @param {UIView*} the view to apply the style to.
- * @returns {void}
+ 
  */
 - (void) applyToView:(UIView*) view {
     NSArray* keys;
@@ -206,7 +205,7 @@
 
 /**
  * Compiles the style recursively using the composited styles of all ancestors.
- * @returns {void}
+ 
  */
 - (void) compileConfiguration {
     if ( !_parentStyle || styleHasBeenCompiled )

@@ -7,13 +7,9 @@
 //
 
 #import "IonGradientConfiguration.h"
-#import "IonMath.h"
 #import "IonAttrubutesStanderdResolution.h"
-#import "UIColor+IonColor.h"
-
-
-
-
+#import <FOUtilities/FOUtilities.h>
+#import <SimpleMath/SimpleMath.h>
 
 
 /**
@@ -137,7 +133,7 @@
 /**
  * The setter for weight, this claps the value between 0.0f and 1.0f
  * @param {CGFloat} the new weight
- * @returns {void}
+ 
  */
 - (void) setWeight:(CGFloat) weight {
     _weight = CLAMP(weight, 0.0f, 1.0f);

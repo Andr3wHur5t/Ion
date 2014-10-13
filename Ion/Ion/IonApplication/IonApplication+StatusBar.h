@@ -44,7 +44,7 @@ static const CGFloat sIonNormalStatusBarHeight = 20.0f;
  * Runs a animation on the status bar that works with KVO.
  * @param {BOOL} states if the animation bar is to be hidden or not.
  * @param {UIStatusBarAnimation} the animation type to run on the status bar.
- * @returns {void}
+ 
  */
 - (void) setStatusBarHidden:(BOOL) statusBarHidden withAnimation:(UIStatusBarAnimation) animation;
 

@@ -69,7 +69,7 @@ static NSString* sIonGuideLine_StyleMargin_Horiz =      @"IonGuideLine_StyleMarg
 /**
  * Performs the block with each IonView child as a parameter.
  * @param { void(^)( IonView* child) }
- * @returns {void}
+ 
  */
 - (void) forEachIonViewChildPerformBlock: (void(^)( IonView* child )) actionBlock {
     if ( !actionBlock )
@@ -82,7 +82,7 @@ static NSString* sIonGuideLine_StyleMargin_Horiz =      @"IonGuideLine_StyleMarg
 /**
  * Adds as a subview, and sets its' style.
  * @param {UIView*} the view to add.
- * @returns {void}
+ 
  */
 - (void) addSubview:(UIView*) view {
     [super addSubview: view];
@@ -96,7 +96,7 @@ static NSString* sIonGuideLine_StyleMargin_Horiz =      @"IonGuideLine_StyleMarg
 /**
  * Applies the style to the view.
  * @param {IonStyle} the style to be applied.
- * @returns {void}
+ 
  */
 - (void) applyStyle:(IonStyle*) style {
     [super applyStyle: style];

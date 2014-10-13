@@ -7,7 +7,7 @@
 //
 
 #import "IonFile.h"
-#import "NSData+IonTypeExtension.h"
+#import <FOUtilities/FOUtilities.h>
 
 @implementation IonFile
 #pragma mark Constructors
@@ -56,7 +56,7 @@
 /**
  * Sets the data content to a string.
  * @param {NSString*} string
- * @returns {void}
+ 
  */
 - (void) setDataWithString:(NSString*) string {
     [_content setData: [NSData dataFromString: string]];

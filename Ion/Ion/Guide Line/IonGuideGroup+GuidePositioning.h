@@ -118,7 +118,7 @@
 #pragma mark Update Functions
 /**
  * Updates the position of the current frame to match the guide set.
- * @returns {void}
+ 
  */
 - (void) updateFrameToMatchGuideSet;
 

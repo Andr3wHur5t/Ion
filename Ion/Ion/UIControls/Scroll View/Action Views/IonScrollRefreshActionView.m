@@ -264,11 +264,11 @@
 
 #pragma mark Target Actions
 
-- (void) addTargetActionSet:(IonTargetActionSet *)targetAction {
+- (void) addTargetActionSet:(FOTargetActionSet *)targetAction {
     [self.scrollAction addTargetActionSet: targetAction];
 }
 
-- (void) removeTargetActionSet:(IonTargetActionSet *)targetAction {
+- (void) removeTargetActionSet:(FOTargetActionSet *)targetAction {
     [self.scrollAction removeTargetActionSet: targetAction];
 }
 

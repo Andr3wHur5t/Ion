@@ -47,7 +47,7 @@ static const char* sThemeAttributeskey = "IonThemethemeAttributes";
  * Sets the corner radius of the view.
  * @warning can cause "off screen render calls", and will turn on is masking.
  * @param {CGFloat} the radius of the view to be masked out.
- * @returns {void}
+ 
  */
 - (void) setCornerRadius:(CGFloat) cornerRadius {
     if ( !self.layer || cornerRadius == 0.0f )
@@ -79,7 +79,7 @@ static const char* sThemeAttributeskey = "IonThemethemeAttributes";
  * Sets the drop shadow color.
  * @param {UIColor*} the new color
  * @warning won't work with corer radius, or masking.
- * @returns {void}
+ 
  */
 - (void) setShadowColor:(UIColor*) shadowColor {
     self.layer.shadowOpacity = 1.0f;
@@ -107,7 +107,7 @@ static const char* sThemeAttributeskey = "IonThemethemeAttributes";
 /**
  * Sets the shadow offset.
  * @warning won't work with corer radius, or masking.
- * @returns {void}
+ 
  */
 - (void) setShadowOffset:(CGSize) shadowOffset {
     [self willChangeValueForKey: @"shadowOffset"];
@@ -134,7 +134,7 @@ static const char* sThemeAttributeskey = "IonThemethemeAttributes";
 /**
  * Sets the drop shadow radius.
  * @warning won't work with corer radius, or masking.
- * @returns {void}
+ 
  */
 - (void) setShadowRadius:(CGFloat) shadowRadius {
     [self willChangeValueForKey: @"shadowRadius"];
@@ -161,7 +161,7 @@ static const char* sThemeAttributeskey = "IonThemethemeAttributes";
 /**
  * Sets the border color.
  * @param {UIColor*} new color.
- * @returns {void}
+ 
  */
 - (void) setBorderColor:(UIColor*) borderColor {
     [self willChangeValueForKey: @"borderColor"];
@@ -188,7 +188,7 @@ static const char* sThemeAttributeskey = "IonThemethemeAttributes";
 /**
  * Sets the border width.
  * @param {CGFloat} the new value.
- * @returns {void}
+ 
  */
 - (void) setBorderWidth:(CGFloat) borderWidth {
     [self willChangeValueForKey: @"borderWidth"];

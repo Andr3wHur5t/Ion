@@ -44,16 +44,16 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  */
 - (void) setDebuggingName:(NSString *)debuggingName {
     if ( debuggingName )
-        [self.catagoryVariables setObject: debuggingName forKey: sIonAutoUpdateLogKey];
+        [self.categoryVariables setObject: debuggingName forKey: sIonAutoUpdateLogKey];
     else
-        [self.catagoryVariables removeObjectForKey: sIonAutoUpdateLogKey];
+        [self.categoryVariables removeObjectForKey: sIonAutoUpdateLogKey];
 }
 
 /**
  * Gets the auto update log key.
  */
 - (NSString*) debuggingName {
-    return [self.catagoryVariables objectForKey: sIonAutoUpdateLogKey];
+    return [self.categoryVariables objectForKey: sIonAutoUpdateLogKey];
 }
 
 /**
@@ -70,9 +70,9 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
  * @returns {IonViewGuideSet*} the guide set.
  */
 - (IonViewGuideSet*) guideSet {
-    if ( ![self.catagoryVariables objectForKey: @"GuideSetConfigured"] ) {
+    if ( ![self.categoryVariables objectForKey: @"GuideSetConfigured"] ) {
         [self.guideGroup.guideSet addTarget: self andAction: @selector(updateFrameToMatchGuideSet)];
-        [self.catagoryVariables setObject: @1 forKey:@"GuideSetConfigured"];
+        [self.categoryVariables setObject: @1 forKey:@"GuideSetConfigured"];
     }
     return self.guideGroup.guideSet;
 }
@@ -81,7 +81,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 
 /**
  * Sets the local vert guide, and updates the frame.
- * @returns {void}
+ 
  */
 - (void) setLocalVertGuide:(IonGuideLine*) localVertGuide {
     self.guideSet.localVertGuide = localVertGuide;
@@ -99,7 +99,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 
 /**
  * Sets the local horiz guide, and updates the frame.
- * @returns {void}
+ 
  */
 - (void) setLocalHorizGuide:(IonGuideLine*) localHorizGuide {
     self.guideSet.localHorizGuide = localHorizGuide;
@@ -117,7 +117,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 
 /**
  * Sets the local vert guide, and updates the frame.
- * @returns {void}
+ 
  */
 - (void) setSuperVertGuide:(IonGuideLine*) superVertGuide {
     self.guideSet.superVertGuide = superVertGuide;
@@ -135,7 +135,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 
 /**
  * Sets the local horiz guide, and updates the frame.
- * @returns {void}
+ 
  */
 - (void) setSuperHorizGuide:(IonGuideLine*) superHorizGuide {
     self.guideSet.superHorizGuide = superHorizGuide;
@@ -152,7 +152,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 #pragma mark Left Size Guide
 /**
  * Sets the local horiz guide, and updates the frame.
- * @returns {void}
+ 
  */
 - (void) setLeftSizeGuide:(IonGuideLine*) leftSizeGuide{
     self.guideSet.leftSizeGuide = leftSizeGuide;
@@ -170,7 +170,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 
 /**
  * Sets the local horiz guide, and updates the frame.
- * @returns {void}
+ 
  */
 - (void) setRightSizeGuide:(IonGuideLine*) rightSizeGuide{
     self.guideSet.rightSizeGuide = rightSizeGuide;
@@ -188,7 +188,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 
 /**
  * Sets the local horiz guide, and updates the frame.
- * @returns {void}
+ 
  */
 - (void) setTopSizeGuide:(IonGuideLine*) topSizeGuide{
     self.guideSet.topSizeGuide = topSizeGuide;
@@ -206,7 +206,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 
 /**
  * Sets the local horiz guide, and updates the frame.
- * @returns {void}
+ 
  */
 - (void) setBottomSizeGuide:(IonGuideLine*) bottomSizeGuide{
     self.guideSet.bottomSizeGuide = bottomSizeGuide;
@@ -321,7 +321,7 @@ static NSString* sIonAutoUpdateLogKey = @"IonAutoUpdateLog";
 
 /**
  * Updates the position of the current frame to match the guide set.
- * @returns {void}
+ 
  */
 - (void) updateFrameToMatchGuideSet {
     CGRect frame = [self.guideSet toRect];

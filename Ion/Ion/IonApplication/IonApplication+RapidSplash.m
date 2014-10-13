@@ -18,9 +18,9 @@
 - (void) setRapidStartManager:(IonRapidStartManager *)rapidStartManager {
     [self willChangeValueForKey: @"rapidStartManager"];
     if ( rapidStartManager )
-        [self.catagoryVariables setObject: rapidStartManager forKey: @"rapidStartManager"];
+        [self.categoryVariables setObject: rapidStartManager forKey: @"rapidStartManager"];
     else
-       [self.catagoryVariables removeObjectForKey:  @"rapidStartManager"];
+       [self.categoryVariables removeObjectForKey:  @"rapidStartManager"];
     [self didChangeValueForKey: @"rapidStartManager"];
 }
 
@@ -29,7 +29,7 @@
  * @returns {IonRapidStartManager*}
  */
 - (IonRapidStartManager *)rapidStartManager {
-    IonRapidStartManager *_manager = [self.catagoryVariables objectForKey: @"rapidStartManager"];
+    IonRapidStartManager *_manager = [self.categoryVariables objectForKey: @"rapidStartManager"];
     if ( !_manager ) {
         _manager = [[IonRapidStartManager alloc] initWithDelegate: self];
         self.rapidStartManager = _manager;
@@ -37,7 +37,7 @@
     return _manager;
 }
 
-#pragma mark Delegate Implmentation
+#pragma mark Delegate Implementation
 /**
  * The rapid splash view that will be used when the application has already been opened in the system once before.
  * @returns {IonRapidStartViewController}
@@ -71,7 +71,7 @@
     self.rapidStartManager = NULL;
 }
 
-#pragma mark Application Implmentation
+#pragma mark Application Implementation
 /**
  * Calls all the resource intensive processes after the rapid splash view has been rendered.
  */

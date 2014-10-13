@@ -11,33 +11,35 @@
 @interface IonRapidStartViewController : UIViewController
 
 /**
- * this sets the post appear callback which will be called after the view appears.
+ * Sets the post appear callback which will be called after the view appears.
  # @returns {void}
  */
 - (void) setPostAppearCallback:(void(^)()) callback;
 
 /**
- * this sets the finished dispatching callback which will be called after the view removes itself from root.
+ * Sets the finished dispatching callback which will be called after the view removes itself from root.
  # @returns {void}
  */
 - (void) setFinishedDispatchingCallback:(void(^)()) callback;
 
 /**
- * This is called when the manager tells us its time to dispatch from the view.
+ * Called when the manager tells us its time to dispatch from the view.
  * @param {UIViewController*} the controller we will be dispatching to.
- * @returns {void}
+ 
  */
 - (void) prepareToDispatchWithNewController:(UIViewController *)vc;
 
 
-#pragma mark public internial Interface
+#pragma mark public internal Interface
 
-// This records if we are ready for automatic transision. (default is yes)
+/**
+ * Records if we are ready for automatic transition. (default is yes)
+ */
 @property (assign, nonatomic) bool readyForViewToDispatchToFRVC;
 
 /**
- * This will Transision to the next root view controller if it has been loaded.
- * @returns {bool} true if successfull, else it failed.
+ * Transmissions to the next root view controller if it has been loaded.
+ * @returns {bool} true if successful, otherwise false.
  */
 - (bool) goToNextRootViewControllerIfReady;
 @end

@@ -93,7 +93,7 @@ typedef CGFloat(^IonGuideLineProcessingBlock)( id data );
 /**
  * The observer helper.
  */
-@property (strong, nonatomic, readonly) IonKeyValueObserver *observer;
+@property (strong, nonatomic, readonly) FOKeyValueObserver *observer;
 
 /**
  * Configures the observer to invokes the target with the selector.
@@ -119,10 +119,27 @@ typedef CGFloat(^IonGuideLineProcessingBlock)( id data );
 /**
  * Size processing block.
  * @param mode the axis to extract
+ * @param mode the ammount of the axis to extract.
+ * @returns {IonGuideLineProcessingBlock}
+ */
++ (IonGuideLineProcessingBlock) sizeProcessingBlockUsingMode:(IonGuideLineFrameMode) mode
+                                                   andAmount:(CGFloat) amount;
+
+/**
+ * Size processing block.
+ * @param mode the axis to extract
  * @returns {IonGuideLineProcessingBlock}
  */
 + (IonGuideLineProcessingBlock) sizeProcessingBlockUsingMode:(IonGuideLineFrameMode) mode;
 
+/**
+ * Point processing block.
+ * @param mode the axis to extract
+ * @param amount the ammount of the axis to extract.
+ * @returns {IonGuideLineProcessingBlock}
+ */
++ (IonGuideLineProcessingBlock) pointProcessingBlockUsingMode:(IonGuideLineFrameMode) mode
+                                                    andAmount:(CGFloat) amount;
 /**
  * Point processing block.
  * @param mode the axis to extract

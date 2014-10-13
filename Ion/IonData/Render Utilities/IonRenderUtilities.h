@@ -49,7 +49,7 @@ typedef void(^IonRenderReturnBlock)( UIImage* image );
  * @param {CGFloat} this is the scale of the context
  * @param {bool} states if the context and the resulting image have an alpha channel
  * @param {void^(UIImage*)} the block to be called once the work is done
- * @returns {void}
+ 
  */
 + (void) renderBlock: (void(^)( )) block
    inContextWithSize: (CGSize) contextSize
@@ -64,7 +64,7 @@ typedef void(^IonRenderReturnBlock)( UIImage* image );
  * @param {CGSize} the size of the context
  * @param {bool} states if the context and the resulting image have an alpha channel
  * @param {IonRenderReturnBlock} the block to be called once the work is done
- * @returns {void}
+ 
  */
 + (void) renderBlock: (void(^)( )) block
    inContextWithSize: (CGSize) contextSize
@@ -77,7 +77,7 @@ typedef void(^IonRenderReturnBlock)( UIImage* image );
  * @param {void^()} the work to be rendered
  * @param {CGSize} the size of the context
  * @param {IonRenderReturnBlock} the block to be called once the work is done
- * @returns {void}
+ 
  */
 + (void) renderBlock: (void(^)( )) block
    inContextWithSize: (CGSize) contextSize
@@ -98,7 +98,7 @@ typedef void(^IonRenderReturnBlock)( UIImage* image );
  * @param {IonLinearGradientConfiguration} this is the config we will use to generate the gradient.
  * @param {CGSize} this is the size we will render the gradient at.
  * @param {IonRenderReturnBlock)} this is the block we will call with the resulting image once it is generated.
- * @returns {void}
+ 
  */
 + (void) renderLinearGradient:(IonLinearGradientConfiguration*) gradientConfig
                    resultSize:(CGSize) size
@@ -109,7 +109,7 @@ typedef void(^IonRenderReturnBlock)( UIImage* image );
  * @param {IonContextState} the context state of the render block
  * @param {NSArray*} color weights to be used in the creation of the gradient
  * @param {CGFloat} the angle of the gradient
- * @returns {void}
+ 
  */
 + (void) linearGradientWithContextState:(IonContextState) state
                    gradientColorWeights:(NSArray*) colorWeights
@@ -123,7 +123,7 @@ typedef void(^IonRenderReturnBlock)( UIImage* image );
  * @param {UIImage*} the image to render
  * @param {CGSize} the size to render the image at
  * @param {void(^)( UIImage* image )} this is the block we will call with the resulting image once it is generated.
- * @returns {void}
+ 
  */
 + (void) renderImage:(UIImage*)image
             withSize:(CGSize)size
@@ -134,7 +134,7 @@ typedef void(^IonRenderReturnBlock)( UIImage* image );
  * @param {UIImage*} the image to render
  * @param {CGSize} the size to render the image within
  * @param {void(^)( UIImage* image )} this is the block we will call with the resulting image once it is generated.
- * @returns {void}
+ 
  */
 + (void) renderImage:(UIImage*) image
           withinSize:(CGSize) size

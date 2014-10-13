@@ -33,7 +33,7 @@ typedef enum : NSUInteger {
 /**
  * Applies a theme style to the button.
  * @param {IonStyle*} the style to apply.
- * @returns {void}
+ 
  */
 - (void) applyStyle:(IonStyle*) style;
 
