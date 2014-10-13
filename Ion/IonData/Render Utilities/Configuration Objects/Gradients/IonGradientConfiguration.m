@@ -7,10 +7,8 @@
 //
 
 #import "IonGradientConfiguration.h"
-#import "IonAttrubutesStanderdResolution.h"
 #import <FOUtilities/FOUtilities.h>
 #import <SimpleMath/SimpleMath.h>
-
 
 /**
  * ==================== Ion Color Weight ====================
@@ -64,7 +62,10 @@
     if ( !colorString || !weight )
         return NULL;
     
-    color = [attributes resolveColorAttribute: colorString];
+    // TODO: Make our color search system work here...
+    // This won't work because it refrences code from IonCore...
+    
+    //color = [attributes resolveColorAttribute: colorString];
     if ( !color )
         return NULL;
     

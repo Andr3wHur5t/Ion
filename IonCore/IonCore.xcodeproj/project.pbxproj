@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		377A13BC19E7FA9000964B61 /* IonCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 377A13BB19E7FA9000964B61 /* IonCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		377A13C619E7FA9000964B61 /* IonCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A13C519E7FA9000964B61 /* IonCoreTests.m */; };
-		3784D85D19EB420A0069F078 /* libIACommunication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3784D85C19EB420A0069F078 /* libIACommunication.a */; };
 		3784D86219EB49500069F078 /* IACActionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 3784D85E19EB49500069F078 /* IACActionModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3784D86319EB49500069F078 /* IACLink.h in Headers */ = {isa = PBXBuildFile; fileRef = 3784D85F19EB49500069F078 /* IACLink.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3784D86419EB49500069F078 /* IACModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 3784D86019EB49500069F078 /* IACModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3784D86519EB49500069F078 /* IACRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3784D86119EB49500069F078 /* IACRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3784D87A19EC56080069F078 /* libIACommunication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3784D87919EC56080069F078 /* libIACommunication.a */; };
 		37A0FA7719EADBEF00C1DBB2 /* IonAnimationFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 37A0F9D319EADBEF00C1DBB2 /* IonAnimationFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37A0FA7819EADBEF00C1DBB2 /* IonAnimationFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A0F9D419EADBEF00C1DBB2 /* IonAnimationFrame.m */; };
 		37A0FA7919EADBEF00C1DBB2 /* IonAnimationMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 37A0F9D619EADBEF00C1DBB2 /* IonAnimationMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -152,11 +152,11 @@
 		377A13C119E7FA9000964B61 /* IonCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IonCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		377A13C419E7FA9000964B61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		377A13C519E7FA9000964B61 /* IonCoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IonCoreTests.m; sourceTree = "<group>"; };
-		3784D85C19EB420A0069F078 /* libIACommunication.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIACommunication.a; path = "../IACommunication/build/Debug-iphoneos/libIACommunication.a"; sourceTree = "<group>"; };
 		3784D85E19EB49500069F078 /* IACActionModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IACActionModule.h; path = ../../IACommunication/ActionModule/IACActionModule.h; sourceTree = "<group>"; };
 		3784D85F19EB49500069F078 /* IACLink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IACLink.h; path = ../../IACommunication/Links/IACLink.h; sourceTree = "<group>"; };
 		3784D86019EB49500069F078 /* IACModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IACModule.h; path = ../../IACommunication/Module/IACModule.h; sourceTree = "<group>"; };
 		3784D86119EB49500069F078 /* IACRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IACRouter.h; path = ../../IACommunication/Router/IACRouter.h; sourceTree = "<group>"; };
+		3784D87919EC56080069F078 /* libIACommunication.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIACommunication.a; path = "../../../Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug/libIACommunication.a"; sourceTree = "<group>"; };
 		37A0F9D319EADBEF00C1DBB2 /* IonAnimationFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonAnimationFrame.h; sourceTree = "<group>"; };
 		37A0F9D419EADBEF00C1DBB2 /* IonAnimationFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonAnimationFrame.m; sourceTree = "<group>"; };
 		37A0F9D619EADBEF00C1DBB2 /* IonAnimationMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonAnimationMap.h; sourceTree = "<group>"; };
@@ -293,7 +293,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3784D85D19EB420A0069F078 /* libIACommunication.a in Frameworks */,
+				3784D87A19EC56080069F078 /* libIACommunication.a in Frameworks */,
 				37A0FB0919EAE93D00C1DBB2 /* FOUtilities.framework in Frameworks */,
 				37A0FB0A19EAE93D00C1DBB2 /* IonData.framework in Frameworks */,
 				37A0FB0C19EAE93D00C1DBB2 /* SimpleAnalytics.framework in Frameworks */,
@@ -314,7 +314,7 @@
 		377A13AC19E7FA9000964B61 = {
 			isa = PBXGroup;
 			children = (
-				3784D85C19EB420A0069F078 /* libIACommunication.a */,
+				3784D87919EC56080069F078 /* libIACommunication.a */,
 				37A0FB0419EAE93D00C1DBB2 /* FOUtilities.framework */,
 				37A0FB0519EAE93D00C1DBB2 /* IonData.framework */,
 				37A0FB0719EAE93D00C1DBB2 /* SimpleAnalytics.framework */,
@@ -1195,7 +1195,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/andrewhurst/work/Ion/IACommunication/build/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1230,7 +1232,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/andrewhurst/work/Ion/IACommunication/build/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
