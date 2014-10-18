@@ -418,7 +418,7 @@
 				EXECUTABLE_PREFIX = lib;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
+					"$(CONFIGURATION_BUILD_DIR)-iphoneos",
 				);
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -446,7 +446,7 @@
 				EXECUTABLE_PREFIX = lib;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
+					"$(CONFIGURATION_BUILD_DIR)-iphoneos",
 				);
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				HEADER_SEARCH_PATHS = (

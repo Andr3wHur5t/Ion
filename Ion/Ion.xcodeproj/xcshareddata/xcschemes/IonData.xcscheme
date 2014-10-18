@@ -20,6 +20,34 @@
                ReferencedContainer = "container:Ion.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3771F6B819E414D000B66C36"
+               BuildableName = "FOUtilities.framework"
+               BlueprintName = "FOUtilities"
+               ReferencedContainer = "container:../FOUtilities/FOUtilities.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "377A136F19E7F55C00964B61"
+               BuildableName = "SimpleMath.framework"
+               BlueprintName = "SimpleMath"
+               ReferencedContainer = "container:../SimpleMath/SimpleMath.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -53,6 +81,15 @@
             </SkippedTests>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "37FCF153197F830C004C14C8"
+            BuildableName = "IonData.framework"
+            BlueprintName = "IonData"
+            ReferencedContainer = "container:Ion.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = ""
@@ -87,6 +124,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "37FCF153197F830C004C14C8"
+            BuildableName = "IonData.framework"
+            BlueprintName = "IonData"
+            ReferencedContainer = "container:Ion.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

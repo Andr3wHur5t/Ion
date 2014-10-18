@@ -408,8 +408,7 @@
 				CLANG_ENABLE_MODULES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
-					"/Users/andrewhurst/work/Ion/IonCore/build/Debug-iphoneos",
+					"$(CONFIGURATION_BUILD_DIR)",
 				);
 				INFOPLIST_FILE = "Ion Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -426,8 +425,7 @@
 				CLANG_ENABLE_MODULES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
-					"/Users/andrewhurst/work/Ion/IonCore/build/Debug-iphoneos",
+					"$(CONFIGURATION_BUILD_DIR)",
 				);
 				INFOPLIST_FILE = "Ion Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;

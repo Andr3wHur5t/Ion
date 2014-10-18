@@ -150,7 +150,7 @@
 		37C494D819EDD9860088FA23 /* IACLink+IonApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C494D619EDD9860088FA23 /* IACLink+IonApplication.m */; };
 		37C494E219EDDB9E0088FA23 /* IonApplication+InterappComunication.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C494E019EDDB9E0088FA23 /* IonApplication+InterappComunication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37C494E319EDDB9E0088FA23 /* IonApplication+InterappComunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C494E119EDDB9E0088FA23 /* IonApplication+InterappComunication.m */; };
-		37EA989919EDE37200FB36CB /* libIACommunication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EA989819EDE37200FB36CB /* libIACommunication.a */; };
+		37C5348719F2349500BDCB9A /* libIACommunication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C5348619F2349500BDCB9A /* libIACommunication.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -301,7 +301,7 @@
 		37C494D619EDD9860088FA23 /* IACLink+IonApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IACLink+IonApplication.m"; path = "Communication/IACLink+IonApplication.m"; sourceTree = "<group>"; };
 		37C494E019EDDB9E0088FA23 /* IonApplication+InterappComunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IonApplication+InterappComunication.h"; sourceTree = "<group>"; };
 		37C494E119EDDB9E0088FA23 /* IonApplication+InterappComunication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IonApplication+InterappComunication.m"; sourceTree = "<group>"; };
-		37EA989819EDE37200FB36CB /* libIACommunication.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIACommunication.a; path = "../../../Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug/libIACommunication.a"; sourceTree = "<group>"; };
+		37C5348619F2349500BDCB9A /* libIACommunication.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIACommunication.a; path = ../Debug/libIACommunication.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,9 +309,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37EA989919EDE37200FB36CB /* libIACommunication.a in Frameworks */,
 				37A0FB0919EAE93D00C1DBB2 /* FOUtilities.framework in Frameworks */,
 				37A0FB0A19EAE93D00C1DBB2 /* IonData.framework in Frameworks */,
+				37C5348719F2349500BDCB9A /* libIACommunication.a in Frameworks */,
 				37A0FB0C19EAE93D00C1DBB2 /* SimpleAnalytics.framework in Frameworks */,
 				37A0FB0D19EAE93D00C1DBB2 /* SimpleMath.framework in Frameworks */,
 			);
@@ -341,7 +341,7 @@
 		377A13AC19E7FA9000964B61 = {
 			isa = PBXGroup;
 			children = (
-				37EA989819EDE37200FB36CB /* libIACommunication.a */,
+				37C5348619F2349500BDCB9A /* libIACommunication.a */,
 				37A0FB0419EAE93D00C1DBB2 /* FOUtilities.framework */,
 				37A0FB0519EAE93D00C1DBB2 /* IonData.framework */,
 				37A0FB0719EAE93D00C1DBB2 /* SimpleAnalytics.framework */,
@@ -1273,8 +1273,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(CONFIGURATION_BUILD_DIR)",
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
 				);
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -1291,7 +1291,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug",
+					"$(BUILD_DIR)/Debug/",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1310,8 +1310,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(CONFIGURATION_BUILD_DIR)",
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
 				);
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -1328,7 +1328,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug",
+					"$(BUILD_DIR)/Debug/",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

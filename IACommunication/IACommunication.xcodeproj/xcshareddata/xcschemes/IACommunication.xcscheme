@@ -14,6 +14,34 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3771F6B819E414D000B66C36"
+               BuildableName = "FOUtilities.framework"
+               BlueprintName = "FOUtilities"
+               ReferencedContainer = "container:../FOUtilities/FOUtilities.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "377A134C19E7F4D300964B61"
+               BuildableName = "SimpleAnalytics.framework"
+               BlueprintName = "SimpleAnalytics"
+               ReferencedContainer = "container:../SimpleAnalytics/SimpleAnalytics.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "370B1A6119E3FB8400D6447C"
                BuildableName = "libIACommunication.a"
                BlueprintName = "IACommunication"
@@ -29,6 +57,15 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "370B1A6119E3FB8400D6447C"
+            BuildableName = "libIACommunication.a"
+            BlueprintName = "IACommunication"
+            ReferencedContainer = "container:IACommunication.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"

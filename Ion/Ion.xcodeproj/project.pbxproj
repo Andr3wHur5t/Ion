@@ -137,19 +137,8 @@
 		3783989D19C421EA000CE43D /* General_Edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 3783988119C41A63000CE43D /* General_Edit.png */; };
 		3783989E19C421EA000CE43D /* General_Hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = 3783988319C41A63000CE43D /* General_Hamburger.png */; };
 		3783989F19C421EA000CE43D /* General_Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 3783988719C41A63000CE43D /* General_Settings.png */; };
-		3784D86819EC4FC80069F078 /* IonCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3784D86719EC4FC80069F078 /* IonCore.framework */; };
-		3784D86919EC4FC80069F078 /* IonCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3784D86719EC4FC80069F078 /* IonCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3784D86B19EC4FC80069F078 /* SimpleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3784D86A19EC4FC80069F078 /* SimpleAnalytics.framework */; };
-		3784D86C19EC4FC80069F078 /* SimpleAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3784D86A19EC4FC80069F078 /* SimpleAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		37A0F9C119EA1E3800C1DBB2 /* IonData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37FCF154197F830C004C14C8 /* IonData.framework */; };
 		37A0F9C219EA1E3800C1DBB2 /* IonData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37FCF154197F830C004C14C8 /* IonData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		37A0F9C519EA1E3900C1DBB2 /* FOUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DE298E19E41DFA00BCC51E /* FOUtilities.framework */; };
-		37A0F9C619EA1E3900C1DBB2 /* FOUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37DE298E19E41DFA00BCC51E /* FOUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		37A0F9C719EA1E3900C1DBB2 /* SimpleMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B8947419E80819009EF8F7 /* SimpleMath.framework */; };
-		37A0F9C819EA1E3900C1DBB2 /* SimpleMath.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37B8947419E80819009EF8F7 /* SimpleMath.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		37A0F9C919EA1E3900C1DBB2 /* PHData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B006BC19E4D7340074DC2C /* PHData.framework */; };
-		37A0F9CA19EA1E3900C1DBB2 /* PHData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37B006BC19E4D7340074DC2C /* PHData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		37B8947519E80819009EF8F7 /* SimpleMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B8947419E80819009EF8F7 /* SimpleMath.framework */; };
 		37B9CD15197F8E6100424EFC /* IonImageRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF188197F8A1C004C14C8 /* IonImageRef.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37B9CD16197F8E6100424EFC /* IonAccessBasedGenerationMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF18C197F8A1C004C14C8 /* IonAccessBasedGenerationMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37B9CD17197F8E6100424EFC /* IonBalancedAccessBasedGenerationMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF18E197F8A1C004C14C8 /* IonBalancedAccessBasedGenerationMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -157,8 +146,18 @@
 		37B9CD19197F8E6100424EFC /* IonMethodMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF193197F8A1C004C14C8 /* IonMethodMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37B9CD1B197F8E6100424EFC /* IonGradientConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF19E197F8A1C004C14C8 /* IonGradientConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37B9CD1C197F8E6100424EFC /* IonRenderUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FCF1A0197F8A1C004C14C8 /* IonRenderUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37C5348919F235A800BDCB9A /* IonCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C5348819F235A800BDCB9A /* IonCore.framework */; };
+		37C5348A19F235A800BDCB9A /* IonCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37C5348819F235A800BDCB9A /* IonCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37C5348C19F235A800BDCB9A /* FOUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C5348B19F235A800BDCB9A /* FOUtilities.framework */; };
+		37C5348D19F235A800BDCB9A /* FOUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37C5348B19F235A800BDCB9A /* FOUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37C5348F19F235A800BDCB9A /* SimpleMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C5348E19F235A800BDCB9A /* SimpleMath.framework */; };
+		37C5349019F235A800BDCB9A /* SimpleMath.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37C5348E19F235A800BDCB9A /* SimpleMath.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37C5349219F235A800BDCB9A /* SimpleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C5349119F235A800BDCB9A /* SimpleAnalytics.framework */; };
+		37C5349319F235A800BDCB9A /* SimpleAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37C5349119F235A800BDCB9A /* SimpleAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37C5349519F235A800BDCB9A /* PHData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C5349419F235A800BDCB9A /* PHData.framework */; };
+		37C5349619F235A800BDCB9A /* PHData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37C5349419F235A800BDCB9A /* PHData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37C5349719F2367400BDCB9A /* FOUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C5348B19F235A800BDCB9A /* FOUtilities.framework */; };
 		37D6EB5E19CEB8D1007EBFA4 /* ShakeLeftRightSubtle.animation in Resources */ = {isa = PBXBuildFile; fileRef = 37D6EB5D19CEB8D1007EBFA4 /* ShakeLeftRightSubtle.animation */; };
-		37DE298F19E41DFA00BCC51E /* FOUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DE298E19E41DFA00BCC51E /* FOUtilities.framework */; };
 		37EBAC78195C9B35008D6BD6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EBAC77195C9B35008D6BD6 /* main.m */; };
 		37EBAC7B195C9B35008D6BD6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EBAC7A195C9B35008D6BD6 /* AppDelegate.m */; };
 		37EBAC7D195C9B35008D6BD6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EBAC7C195C9B35008D6BD6 /* Images.xcassets */; };
@@ -212,12 +211,12 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				37A0F9C819EA1E3900C1DBB2 /* SimpleMath.framework in Embed Frameworks */,
-				37A0F9CA19EA1E3900C1DBB2 /* PHData.framework in Embed Frameworks */,
+				37C5349019F235A800BDCB9A /* SimpleMath.framework in Embed Frameworks */,
+				37C5348A19F235A800BDCB9A /* IonCore.framework in Embed Frameworks */,
+				37C5349619F235A800BDCB9A /* PHData.framework in Embed Frameworks */,
+				37C5349319F235A800BDCB9A /* SimpleAnalytics.framework in Embed Frameworks */,
 				37A0F9C219EA1E3800C1DBB2 /* IonData.framework in Embed Frameworks */,
-				3784D86919EC4FC80069F078 /* IonCore.framework in Embed Frameworks */,
-				37A0F9C619EA1E3900C1DBB2 /* FOUtilities.framework in Embed Frameworks */,
-				3784D86C19EC4FC80069F078 /* SimpleAnalytics.framework in Embed Frameworks */,
+				37C5348D19F235A800BDCB9A /* FOUtilities.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,12 +346,12 @@
 		3783988319C41A63000CE43D /* General_Hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = General_Hamburger.png; sourceTree = "<group>"; };
 		3783988519C41A63000CE43D /* General_Search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = General_Search.png; sourceTree = "<group>"; };
 		3783988719C41A63000CE43D /* General_Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = General_Settings.png; sourceTree = "<group>"; };
-		3784D86719EC4FC80069F078 /* IonCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = IonCore.framework; path = "/Users/andrewhurst/Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos/IonCore.framework"; sourceTree = "<absolute>"; };
-		3784D86A19EC4FC80069F078 /* SimpleAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SimpleAnalytics.framework; path = "/Users/andrewhurst/Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos/SimpleAnalytics.framework"; sourceTree = "<absolute>"; };
-		37B006BC19E4D7340074DC2C /* PHData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PHData.framework; path = "../../../Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos/PHData.framework"; sourceTree = "<group>"; };
-		37B8947419E80819009EF8F7 /* SimpleMath.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleMath.framework; path = "../../../Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos/SimpleMath.framework"; sourceTree = "<group>"; };
+		37C5348819F235A800BDCB9A /* IonCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IonCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37C5348B19F235A800BDCB9A /* FOUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FOUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37C5348E19F235A800BDCB9A /* SimpleMath.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimpleMath.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37C5349119F235A800BDCB9A /* SimpleAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimpleAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37C5349419F235A800BDCB9A /* PHData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PHData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37D6EB5D19CEB8D1007EBFA4 /* ShakeLeftRightSubtle.animation */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; name = ShakeLeftRightSubtle.animation; path = "Ion Visual Test/Animations/ShakeLeftRightSubtle.animation"; sourceTree = "<group>"; };
-		37DE298E19E41DFA00BCC51E /* FOUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FOUtilities.framework; path = "../../../Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos/FOUtilities.framework"; sourceTree = "<group>"; };
 		37EBAC73195C9B35008D6BD6 /* Ion Visual Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ion Visual Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37EBAC76195C9B35008D6BD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37EBAC77195C9B35008D6BD6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -388,12 +387,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37A0F9C719EA1E3900C1DBB2 /* SimpleMath.framework in Frameworks */,
-				37A0F9C919EA1E3900C1DBB2 /* PHData.framework in Frameworks */,
+				37C5348F19F235A800BDCB9A /* SimpleMath.framework in Frameworks */,
+				37C5348919F235A800BDCB9A /* IonCore.framework in Frameworks */,
+				37C5349519F235A800BDCB9A /* PHData.framework in Frameworks */,
+				37C5349219F235A800BDCB9A /* SimpleAnalytics.framework in Frameworks */,
 				37A0F9C119EA1E3800C1DBB2 /* IonData.framework in Frameworks */,
-				3784D86819EC4FC80069F078 /* IonCore.framework in Frameworks */,
-				37A0F9C519EA1E3900C1DBB2 /* FOUtilities.framework in Frameworks */,
-				3784D86B19EC4FC80069F078 /* SimpleAnalytics.framework in Frameworks */,
+				37C5348C19F235A800BDCB9A /* FOUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,8 +407,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37B8947519E80819009EF8F7 /* SimpleMath.framework in Frameworks */,
-				37DE298F19E41DFA00BCC51E /* FOUtilities.framework in Frameworks */,
+				37C5349719F2367400BDCB9A /* FOUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,11 +875,11 @@
 		37EBAC49195C9A93008D6BD6 = {
 			isa = PBXGroup;
 			children = (
-				3784D86A19EC4FC80069F078 /* SimpleAnalytics.framework */,
-				3784D86719EC4FC80069F078 /* IonCore.framework */,
-				37B8947419E80819009EF8F7 /* SimpleMath.framework */,
-				37B006BC19E4D7340074DC2C /* PHData.framework */,
-				37DE298E19E41DFA00BCC51E /* FOUtilities.framework */,
+				37C5349419F235A800BDCB9A /* PHData.framework */,
+				37C5349119F235A800BDCB9A /* SimpleAnalytics.framework */,
+				37C5348E19F235A800BDCB9A /* SimpleMath.framework */,
+				37C5348B19F235A800BDCB9A /* FOUtilities.framework */,
+				37C5348819F235A800BDCB9A /* IonCore.framework */,
 				37FCF175197F8337004C14C8 /* Ion Test Application */,
 				37FCF173197F831F004C14C8 /* Ion Data */,
 				37EBAC54195C9A93008D6BD6 /* Products */,
@@ -1569,7 +1567,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
+					"$(CONFIGURATION_BUILD_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1590,7 +1588,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
+					"$(CONFIGURATION_BUILD_DIR)",
 				);
 				INFOPLIST_FILE = "Ion Visual Test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -1644,8 +1642,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(CONFIGURATION_BUILD_DIR)",
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1669,8 +1667,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(CONFIGURATION_BUILD_DIR)",
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = IonData/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
