@@ -13,9 +13,8 @@
 
 /**
  * The block type which will be used to generate real data from raw data.
- * @param {id} this is the raw data which should be processed to return the real object.
- * @param {IonGenerationResultBlock} the block which will be called with the result data.
- * @returns {void}
+ * @param data - The raw data which should be processed to return the real object.
+ * @param resultBlock - the block which will be called with the result data.
  */
 typedef void(^IonAsyncGenerationBlock)( id data, IonResultBlock resultBlock );
 
@@ -24,7 +23,7 @@ typedef void(^IonAsyncGenerationBlock)( id data, IonResultBlock resultBlock );
  * @param {id} this is the raw data which should be processed to return the real object.
  * @patam {IonGenerationBlock*} the block which will be used to generate the real data.
  * @param {IonGenerationResultBlock} the block which will be called with the result data.
- * @returns {void}
+ 
  */
 typedef void(^IonAsyncInternalGenerationBlock)( id data,
                                            IonAsyncGenerationBlock specialGenerationBlock,
@@ -81,7 +80,7 @@ typedef void(^IonAsyncInternalGenerationBlock)( id data,
 
 /**
  * Clears the internial memory cache.
- * @returns {void}
+ 
  */
 - (void) clearMemoryCache;
 
@@ -92,7 +91,7 @@ typedef void(^IonAsyncInternalGenerationBlock)( id data,
  * @param {id} the key to search for.
  * @param {generationBlock} the block to call to generate the data from when cache object is NULL.
  * @param {IonRawDataSourceResultBlock} the block where the result will be returned, or NULL if invalid.
- * @returns {void}
+ 
  */
 - (void) objectForKey:(id) key
  usingGenerationBlock:(IonAsyncGenerationBlock) specialGenerationBlock

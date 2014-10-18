@@ -17,28 +17,28 @@
 
 /**
  * General purpose result block.
- * @param {id} the returned object.
+ * @param returnedObject - the returned object.
  */
 typedef void(^IonResultBlock)( id returnedObject );
 
 /**
  * General purpose completion block.
- * @param {NSError*} the returned error if any.
+ * @param error - the returned error if any.
  */
-typedef void(^IonCompletionBlock)(  NSError* error  );
+typedef void(^IonCompletionBlock)(  NSError *error  );
 
 /**
  * General purpose completion block.
- * @param {NSError*} the returned error if any.
+ * @param error - the returned error if any.
  */
-typedef void(^IonFileResultBlock)(  IonFile* error  );
+typedef void(^IonFileResultBlock)(  IonFile *error  );
 
 /**
  * The image return callback
- * @param {UIImage*} the resulting image.
- * @returns {void}
+ * @param image - the resulting image.
+ 
  */
-typedef void(^IonImageReturn)( UIImage* image );
+typedef void(^IonImageReturn)( UIImage *image );
 
 
 

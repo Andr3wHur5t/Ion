@@ -7,14 +7,8 @@
 //
 
 #import "IonGradientConfiguration.h"
-#import "IonMath.h"
-#import "IonAttrubutesStanderdResolution.h"
-#import "UIColor+IonColor.h"
-
-
-
-
-
+#import <FOUtilities/FOUtilities.h>
+#import <SimpleMath/SimpleMath.h>
 
 /**
  * ==================== Ion Color Weight ====================
@@ -68,7 +62,10 @@
     if ( !colorString || !weight )
         return NULL;
     
-    color = [attributes resolveColorAttribute: colorString];
+    // TODO: Make our color search system work here...
+    // This won't work because it refrences code from IonCore...
+    
+    //color = [attributes resolveColorAttribute: colorString];
     if ( !color )
         return NULL;
     
@@ -137,7 +134,7 @@
 /**
  * The setter for weight, this claps the value between 0.0f and 1.0f
  * @param {CGFloat} the new weight
- * @returns {void}
+ 
  */
 - (void) setWeight:(CGFloat) weight {
     _weight = CLAMP(weight, 0.0f, 1.0f);

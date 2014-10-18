@@ -47,7 +47,7 @@
 /**
  * Sets the data in the map.
  * @param {NSDictionary*} the dictionary to set up with.
- * @returns {void}
+ 
  */
 - (void) setDictionary:(NSDictionary*) dict {
     [_map setDictionary: dict];
@@ -74,7 +74,7 @@
  * Gets the object with the specified key, or returns NULL.
  * @param {NSString*} the key to get the object for.
  * @param {IonRawDataSourceResultBlock} the block where the result will be returned.
- * @returns {void}
+ 
  */
 - (void) objectForKey:(NSString*) key withResultBlock:(IonRawDataSourceResultBlock) result {
     __block NSString* str;
@@ -102,7 +102,7 @@
  * @param {NSString*} the key for the object to set.
  * @param {id} the object to put in the data system.
  * @param {IonRawDataSourceCompletion} the completion.
- * @returns {void} returns false if the operation isn't valid.
+  returns false if the operation isn't valid.
  */
 - (void) setObject:(id) object forKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
     if ( !key || ![key isKindOfClass: [NSString class]] || !object || !_map ) {
@@ -126,7 +126,7 @@
  * Removes an object for the specified key.
  * @param {NSString*} the key to remove the object for.
  * @param {IonRawDataSourceCompletion} the completion.
- * @returns {void}
+ 
  */
 - (void) removeObjectForKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion  {
     if ( !key || ![key isKindOfClass: [NSString class]] || !_map ) {
@@ -148,7 +148,7 @@
 /**
  * Removes all objects for data source.
  * @param {IonRawDataSourceCompletion} the completion.
- * @returns {void}
+ 
  */
 - (void) removeAllObjects:(IonRawDataSourceCompletion) completion {
     if ( !_map ) {

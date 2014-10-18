@@ -15,7 +15,7 @@
 
 /**
  * This gets values from the map in KVP format.
- * @param {id} the key to look for.
+ * @param key - the key to look for.
  * @returns {IonKeyValuePair*} the resulting object, or NULL if invalid.
  */
 - (IonKeyValuePair*) KVPForKey:(id) key;

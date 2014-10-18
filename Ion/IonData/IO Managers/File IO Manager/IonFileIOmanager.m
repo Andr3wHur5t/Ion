@@ -34,7 +34,7 @@ static const char* IonFileIOqueueLabel = "com.ion.fileManager";
 /**
  * The standerd method for invoking methods on the shared Manager.
  * @param {void(^)( NSFileManager* fileManager )} the block to do your work on the file manager.
- * @returns {void}
+ 
  */
 + (void) preformBlockOnManager:(void(^)( NSFileManager* fileManager )) block {
     __block NSFileManager* manager;
@@ -60,7 +60,7 @@ static const char* IonFileIOqueueLabel = "com.ion.fileManager";
  * @param {IonFile*} the file to add.
  * @param {IonPath*} the path to save the file to.
  * @param {void(^)( NSError* error )} the completion callback.
- * @returns {void}
+ 
  */
 + (void) saveFile:(IonFile*) file atPath:(IonPath*) path withCompletion:(IonCompletionBlock) completion {
     if ( !completion || !file || ![file isKindOfClass:[IonFile class]] )
@@ -112,7 +112,7 @@ static const char* IonFileIOqueueLabel = "com.ion.fileManager";
  * Opens a file within the directory, and returns it in the callback.
  * @param {IonPath*} the path to retrive the data from.
  * @param { void(^)( IonFile* file ) } the return block.
- * @returns {void}
+ 
  */
 + (void) openFileAtPath:(IonPath*) path withResultBlock:(void(^)( IonFile* file )) resultBlock {
     __block IonFile* file;
@@ -134,7 +134,7 @@ static const char* IonFileIOqueueLabel = "com.ion.fileManager";
  * Opens a data with at the path, and returns it in the callback.
  * @param {IonPath*} the path of the data to open.
  * @param {IonResultBlock} the result block to use.
- * @returns {void}
+ 
  */
 + (void) openDataAtPath:(IonPath*) path withResultBlock:(IonResultBlock) resultBlock {
     __block IonPath* targetPath;
@@ -169,7 +169,7 @@ static const char* IonFileIOqueueLabel = "com.ion.fileManager";
  * Deletes the file, or directory at the specified path.
  * @param {IonPath*} the path of the irem to delete.
  * @param {IonCompletionBlock} the completion callback.
- * @returns {void}
+ 
  */
 + (void) deleteItem:(IonPath*) path withCompletion:(IonCompletionBlock) completion {
     __block IonPath* blockPath = [IonPath pathFromPath: path];
@@ -200,7 +200,7 @@ static const char* IonFileIOqueueLabel = "com.ion.fileManager";
  * Lists files, and directories in the specified path.
  * @param {IonPath*} the path for us to look into.
  * @param {void(^)( NSArray* items )} the result callback where we will provide a array of item strings.
- * @returns {void}
+ 
  */
 + (void) listItemsAtPath:(IonPath*) path withResultBlock:(IonResultBlock) resultBlock {
     __block IonPath* targetPath;
@@ -226,7 +226,7 @@ static const char* IonFileIOqueueLabel = "com.ion.fileManager";
  * Creates a directory at the specified path.
  * @param {IonPath*} the path to create the directory at.
  * @param {IonCompletionCallback} the completion to call.
- * @returns {void}
+ 
  */
 + (void) creaateDirectoryAtPath:(IonPath*) path withCompletion:(IonCompletionBlock) completion {
     __block NSError* error;

@@ -7,8 +7,7 @@
 //
 
 #import "IonSimpleCache.h"
-#import "NSData+IonTypeExtension.h"
-#import "NSDictionary+IonTypeExtension.h"
+#import <FOUtilities/FOUtilities.h>
 #import "NSDictionary+IonFile.h"
 #import "IonCacheItemStats.h"
 #import "IonFileIOmanager.h"
@@ -110,7 +109,7 @@
 /**
  * Constructs a cache in the cache directory with the specified name.
  * @param {NSString*} the cache directory name.
- * @returns {void}
+ 
  */
 + (IonSimpleCache*) cacheWithName:(NSString*) cacheName {
     return [IonSimpleCache cacheWithName: cacheName withLoadCompletion: NULL];
@@ -120,7 +119,7 @@
 
 /**
  * The base post construction method.
- * @returns {void}
+ 
  */
 - (void) configureObjects {
     mainfestHasBeenLoaded = FALSE;
@@ -133,7 +132,7 @@
 
 /**
  * The deconstruction function.
- * @returns {void}
+ 
  */
 - (void)dealloc {
     __block IonPath* manifestPath = [self manifestPath];
@@ -156,7 +155,7 @@
  * @param {NSString*} the key for the object to set.
  * @param {id} the object to put in the data system.
  * @param {IonRawDataSourceCompletion} the completion.
- * @returns {void}
+ 
  */
 - (void) setObject:(id) object forKeyInMemory:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
     // Add it to the force to cache list
@@ -168,7 +167,7 @@
 
 /**
  * Clears the internial memory cache.
- * @returns {void}
+ 
  */
 - (void) clearMemoryCache {
     // Remove The items in the forced cache list.
@@ -182,7 +181,7 @@
 
 /**
  * The Manifest Construction Function.
- * @returns {void}
+ 
  */
 - (void) constructManifest {
     _manifest = [[NSMutableDictionary alloc] init];
@@ -199,7 +198,7 @@
 /**
  * Loads the cache manifest from the file system.
  * @param {IonCompletionBlock} the completion block to call.
- * @returns {void}
+ 
  */
 - (void) loadManifest:(IonCompletionBlock) completion {
     __block IonCompletionBlock blockCompletion;
@@ -228,7 +227,7 @@
 /**
  * Saves the cache manifest to the file system.
  * @param {IonCompletionBlock} the completion block to call.
- * @returns {void}
+ 
  */
 - (void) saveManifest:(IonCompletionBlock) completion {
     [_manifest enumerateKeysUsingBlock:^(id key, BOOL *stop) {
@@ -243,7 +242,7 @@
 /**
  * Deletes the cache manifest from the file system.
  * @param {IonCompletionBlock} the completion block to call.
- * @returns {void}
+ 
  */
 - (void) deleteManifest:(IonCompletionBlock) completion {
     [IonFileIOmanager deleteItem: [self manifestPath] withCompletion: ^(NSError *error) {
@@ -267,7 +266,7 @@
  * Sets the extra info for the specified item key.
  * @param {NSString*} the key to get the object for.
  * @param {NSDictionary*} the extra info object to set.
- * @returns {void}
+ 
  */
 - (void) setExtraInfo:(NSDictionary*) extraInfo ForItemWithKey:(NSString*) key {
     [_manifest setExtraInfo: extraInfo forItemWithKey: [NSDictionary sanitizeKey: key]];
@@ -368,7 +367,7 @@
  * @param {NSString*} the key for the object to set.
  * @param {id} the object to put in the data system.
  * @param {IonRawDataSourceCompletion} the completion.
- * @returns {void}
+ 
  */
 - (void) setObject:(id) object forKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
     NSData* objectData = [NSData dataFromObject:object];
@@ -387,7 +386,7 @@
  * Removes an object for the specified key.
  * @param {NSString*} the key to remove the object for.
  * @param {IonRawDataSourceCompletion} the completion.
- * @returns {void}
+ 
  */
 - (void) removeObjectForKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
     [_manifest removeObjectForKey: [NSDictionary sanitizeKey: key]];
@@ -398,7 +397,7 @@
 /**
  * Removes all objects for data source.
  * @param {IonRawDataSourceCompletion} the completion.
- * @returns {void}
+ 
  */
 - (void) removeAllObjects:(IonRawDataSourceCompletion) completion {
     // Delete the manifest file.
@@ -448,7 +447,7 @@
 /**
  * Finished Current Tasks Callback.
  * @peram {void(^)( )} the callback.
- * @returns {void}
+ 
  */
 - (void) tasksDidComplete:(void(^)( )) completion {
     dispatch_async( [IonFileIOmanager fileIOdispatchQueue], completion );

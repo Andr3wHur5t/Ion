@@ -69,21 +69,21 @@ static const NSInteger sIonMinSessionForAverageCalc = 5;
 /**
  * Increment Session Access Count for the state object with the specified Key.
  * @param {NSString*} the relative path of the item, and Key.
- * @returns {void}
+ 
  */
 - (void) incrementSessionAccessCountForItemWithKey:(NSString*) key;
 
 /**
  * Increment Session Count for the state object with the specified Key.
  * @param {NSString*} the relative path of the item, and Key.
- * @returns {void}
+ 
  */
 - (void) incrementSessionCountForItemWithKey:(NSString*) key;
 
 /**
  * Updates the session stats.
  * @param {NSString*} the key to update the stats for.
- * @returns {void}
+ 
  */
 - (void) updateSessionStatsForItemWithKey:(NSString*) key;
 
@@ -117,7 +117,7 @@ static const NSInteger sIonMinSessionForAverageCalc = 5;
  * Sets the extra info for the specified item key.
  * @param {NSString*} the key to get the object for.
  * @param {NSDictionary*} the extra info object to set.
- * @returns {void}
+ 
  */
 - (void) setExtraInfo:(NSDictionary*) extraInfo forItemWithKey:(NSString*) key;
 

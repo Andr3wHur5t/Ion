@@ -70,7 +70,7 @@ static BOOL sIonCacheManifestWillPersist = TRUE;
 /**
  * Constructs a cache in the cache directory with the specified name.
  * @param {NSString*} the cache directory name.
- * @returns {void}
+ 
  */
 + (IonSimpleCache*) cacheWithName:(NSString*) cacheName;
 
@@ -92,20 +92,20 @@ static BOOL sIonCacheManifestWillPersist = TRUE;
 /**
  * Loads the cache manifest from the file system.
  * @param {IonCompletionBlock} the completion block to call.
- * @returns {void}
+ 
  */
 - (void) loadManifest:(IonCompletionBlock) completion;
 
 /**
  * Saves the cache manifest to the file system.
  * @param {IonCompletionBlock} the completion block to call.
- * @returns {void}
+ 
  */
 - (void) saveManifest:(IonCompletionBlock) completion;
 /**
  * Deletes the cache manifest from the file system.
  * @param {IonCompletionBlock} the completion block to call.
- * @returns {void}
+ 
  */
 - (void) deleteManifest:(IonCompletionBlock) completion;
 
@@ -121,7 +121,7 @@ static BOOL sIonCacheManifestWillPersist = TRUE;
  * Sets the extra info for the specified item key.
  * @param {NSString*} the key to get the object for.
  * @param {NSDictionary*} the extra info object to set.
- * @returns {void}
+ 
  */
 - (void) setExtraInfo:(NSDictionary*) extraInfo ForItemWithKey:(NSString*) key;
 
@@ -133,7 +133,7 @@ static BOOL sIonCacheManifestWillPersist = TRUE;
  * @param {NSString*} the key for the object to set.
  * @param {id} the object to put in the data system.
  * @param {IonRawDataSourceCompletion} the completion.
- * @returns {void}
+ 
  */
 - (void) setObject:(id) object forKeyInMemory:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion;
 
@@ -141,7 +141,7 @@ static BOOL sIonCacheManifestWillPersist = TRUE;
 /**
  * Finished Current Tasks Callback.
  * @peram {void(^)( )} the callback.
- * @returns {void}
+ 
  */
 - (void) tasksDidComplete:(void(^)( )) completion;
 

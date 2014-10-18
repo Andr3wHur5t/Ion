@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IonMath.h"
 
 @class IonStyle;
 @class IonGradientConfiguration;

@@ -40,7 +40,7 @@ static NSString* sIonImageMaagerPlaceholderImageKey = @"placeholder";
  * Gets the image from the file system with the specified key.
  * @param {NSString*} the key for the image to get.
  * @param {IonImageReturn} the callback we will call with the resulting Image.
- * @returns {void}
+ 
  */
 - (void) imageForKey:(NSString*) key withReturnCallback:(IonImageReturn) returnCallback;
 
@@ -49,7 +49,7 @@ static NSString* sIonImageMaagerPlaceholderImageKey = @"placeholder";
  * @param {NSString*} the key for the raw image.
  * @param {CGSize} the size to resize the image to.
  * @param {IonImageReturn} the callback we will call with the resulting Image.
- * @returns {void}
+ 
  */
 - (void) imageForKey:(NSString*) key
             withSize:(CGSize) size
@@ -61,7 +61,7 @@ static NSString* sIonImageMaagerPlaceholderImageKey = @"placeholder";
  * @param {CGSize} the size to resize the image to.
  * @param {BOOL} stateing weither the image is contained.
  * @param {IonImageReturn} the callback we will call with the resulting Image.
- * @returns {void}
+ 
  */
 - (void) imageForKey:(NSString*) key
             withSize:(CGSize) size

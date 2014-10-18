@@ -41,7 +41,7 @@
  * Opens a file within the directory, and returns it in the callback.
  * @param {NSString*} the file name to open.
  * @param { void(^)( IonFile* file ) } the return block.
- * @returns {void}
+ 
  */
 - (void) openFile:(NSString*) fileName withResultBlock:(void(^)( IonFile* file )) resultBlock;
 
@@ -49,7 +49,7 @@
  * Saves the file in the directory.
  * @param {IonFile*} the file to add.
  * @param {void(^)( NSError* error )} the completion callback.
- * @returns {void}
+ 
  */
 - (void) saveFile:(IonFile*) file withCompletion:(void(^)( NSError* error )) completion;
 
@@ -60,7 +60,7 @@
  * Opens a directory by name, which already exists in the current directory.
  * @param {NSString*} the directory name.
  * @param { void(^)( IonDirectory* directory ) } the return block.
- * @returns {void}
+ 
  */
 - (void) openDirectory:(NSString*) directoryName
        withResultBlock:(void(^)( IonDirectory* directory )) resultBlock;
@@ -71,7 +71,7 @@
  * Deletes the file, or directory at the specified path.
  * @param {NSString*} the name of the item within the directory to delete.
  * @param {void(^)( NSError* error )} the completion callback.
- * @returns {void}
+ 
  */
 - (void) deleteItem:(NSString*) item withCompletion:(void(^)( NSError* error )) completion;
 
@@ -79,7 +79,7 @@
  * Lists files, and directories in the current directory.
  * @param {void(^)( NSArray* items )} the result callback where we will provide a array of
  *    strings.
- * @returns {void}
+ 
  */
 - (void) listItems:(void(^)( NSArray* items )) resultBlock;
 

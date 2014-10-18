@@ -16,26 +16,28 @@
 
 /**
  * This returns the JSON dictionary loaded at the specified path.
- * @param {IonPath*} the path.
- * @param {IonResultBlock} the result block where the dictionary will be returned.
- * @returns {void}
+ * @param path - the path.
+ * @param result - the result block where the dictionary will be returned.
+ 
  */
-+ (void) dictionaryAtPath:(IonPath*) path usingResultBlock:(IonResultBlock) result;
++ (void) dictionaryAtPath:(IonPath *)path usingResultBlock:(IonResultBlock) result;
+
++ (NSDictionary *)dictionaryWithFileName:(NSString *)name;
+
++ (NSDictionary *)dictionaryAtPath:(IonPath *)path;
 
 #pragma mark Saving As JSON
 
 /**
  * Saves the dictionary as json at the specified path.
- * @param {IonPath*} path
- * @return {void}
+ * @param path - path
  */
-- (void) saveAsJSONAtPath:(IonPath*) path;
+- (void) saveAsJSONAtPath:(IonPath *)path;
 
 /**
  * Saves the dictionary as json at the specified path.
  * @param {IonPath*} path
  * @param {IonCompletionBloc} the completion block
- * @return {void}
  */
 - (void) saveAsJSONAtPath:(IonPath*) path withCompletion:(IonCompletionBlock) completion;
 

@@ -1,0 +1,684 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3771F6DF19E416B400B66C36 /* FOUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 3771F6D219E416B400B66C36 /* FOUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3771F6E119E416B400B66C36 /* NSString+RegularExpression.h in Headers */ = {isa = PBXBuildFile; fileRef = 3771F6D819E416B400B66C36 /* NSString+RegularExpression.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3771F6E219E416B400B66C36 /* NSString+RegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771F6D919E416B400B66C36 /* NSString+RegularExpression.m */; };
+		3771F6E319E416B400B66C36 /* FOTargetActionList.h in Headers */ = {isa = PBXBuildFile; fileRef = 3771F6DB19E416B400B66C36 /* FOTargetActionList.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3771F6E419E416B400B66C36 /* FOTargetActionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771F6DC19E416B400B66C36 /* FOTargetActionList.m */; };
+		3771F6E519E416B400B66C36 /* FOTargetActionSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3771F6DD19E416B400B66C36 /* FOTargetActionSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3771F6E619E416B400B66C36 /* FOTargetActionSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771F6DE19E416B400B66C36 /* FOTargetActionSet.m */; };
+		3771F6EC19E4172700B66C36 /* FOTargetActionListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771F6E919E4172700B66C36 /* FOTargetActionListTests.m */; };
+		3771F6ED19E4172700B66C36 /* FOTargetActionSetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771F6EA19E4172700B66C36 /* FOTargetActionSetTests.m */; };
+		377A130519E70D5A00964B61 /* FOKeyValueObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 377A130319E70D5A00964B61 /* FOKeyValueObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377A130619E70D5A00964B61 /* FOKeyValueObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A130419E70D5A00964B61 /* FOKeyValueObserver.m */; };
+		377A130B19E711E100964B61 /* FOKeyValueObserverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A130A19E711E100964B61 /* FOKeyValueObserverTests.m */; };
+		377A130D19E7136600964B61 /* NSString+RegularExpressionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A130C19E7136600964B61 /* NSString+RegularExpressionTests.m */; };
+		377A131019E714E600964B61 /* NSString+FOTypeExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 377A130E19E714E600964B61 /* NSString+FOTypeExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377A131119E714E600964B61 /* NSString+FOTypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A130F19E714E600964B61 /* NSString+FOTypeExtension.m */; };
+		377A131419E718D000964B61 /* NSDictionary+FOTypeExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 377A131219E718D000964B61 /* NSDictionary+FOTypeExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377A131519E718D000964B61 /* NSDictionary+FOTypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A131319E718D000964B61 /* NSDictionary+FOTypeExtension.m */; };
+		377A131B19E721A400964B61 /* UIColor+FOColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 377A131919E721A400964B61 /* UIColor+FOColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377A131C19E721A400964B61 /* UIColor+FOColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A131A19E721A400964B61 /* UIColor+FOColor.m */; };
+		377A131F19E7255800964B61 /* FOCGTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 377A131E19E7255800964B61 /* FOCGTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377A132219E733EC00964B61 /* NSData+FOCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 377A132019E733EC00964B61 /* NSData+FOCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377A132319E733EC00964B61 /* NSData+FOCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A132119E733EC00964B61 /* NSData+FOCrypto.m */; };
+		377A132619E7340400964B61 /* NSData+FOTypeExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 377A132419E7340400964B61 /* NSData+FOTypeExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377A132719E7340400964B61 /* NSData+FOTypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A132519E7340400964B61 /* NSData+FOTypeExtension.m */; };
+		377A132A19E738BB00964B61 /* NSArray+FOUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 377A132819E738BB00964B61 /* NSArray+FOUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377A132B19E738BB00964B61 /* NSArray+FOUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A132919E738BB00964B61 /* NSArray+FOUtilities.m */; };
+		377A132D19E73CE000964B61 /* FOBlockTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 377A132C19E73CE000964B61 /* FOBlockTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377A133119E743C700964B61 /* FOTimedAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 377A132F19E743C700964B61 /* FOTimedAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377A133219E743C700964B61 /* FOTimedAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A133019E743C700964B61 /* FOTimedAction.m */; };
+		377A133519E77C5000964B61 /* NSValue+FOTypeExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 377A133319E77C5000964B61 /* NSValue+FOTypeExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377A133619E77C5000964B61 /* NSValue+FOTypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A133419E77C5000964B61 /* NSValue+FOTypeExtension.m */; };
+		377A133819E77D8400964B61 /* UIColor+FOColorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A133719E77D8400964B61 /* UIColor+FOColorTests.m */; };
+		377A133A19E77E6E00964B61 /* NSString+TypeExtensionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A133919E77E6E00964B61 /* NSString+TypeExtensionTests.m */; };
+		377A133C19E7E13000964B61 /* NSData+FOTypeExtensionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A133B19E7E13000964B61 /* NSData+FOTypeExtensionTests.m */; };
+		377A133E19E7E22E00964B61 /* NSDictionary+FOTypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A133D19E7E22E00964B61 /* NSDictionary+FOTypeExtension.m */; };
+		377A134019E7E33100964B61 /* NSArray+FOUtilitiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A133F19E7E33100964B61 /* NSArray+FOUtilitiesTests.m */; };
+		377A134219E7E49F00964B61 /* NSValue+FOTypeExtensionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A134119E7E49F00964B61 /* NSValue+FOTypeExtensionTests.m */; };
+		37DE298419E4197300BCC51E /* FOUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3771F6B919E414D000B66C36 /* FOUtilities.framework */; };
+		37DE299219E41F2000BCC51E /* NSObject+FOObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 37DE299019E41F2000BCC51E /* NSObject+FOObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37DE299319E41F2000BCC51E /* NSObject+FOObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DE299119E41F2000BCC51E /* NSObject+FOObject.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		37DE298219E4190900BCC51E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3771F6B019E414D000B66C36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3771F6B819E414D000B66C36;
+			remoteInfo = FOUtilities;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3771F6B919E414D000B66C36 /* FOUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FOUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3771F6C419E414D000B66C36 /* FOUtilitiesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FOUtilitiesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3771F6D219E416B400B66C36 /* FOUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOUtilities.h; sourceTree = "<group>"; };
+		3771F6D819E416B400B66C36 /* NSString+RegularExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RegularExpression.h"; sourceTree = "<group>"; };
+		3771F6D919E416B400B66C36 /* NSString+RegularExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RegularExpression.m"; sourceTree = "<group>"; };
+		3771F6DB19E416B400B66C36 /* FOTargetActionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOTargetActionList.h; sourceTree = "<group>"; };
+		3771F6DC19E416B400B66C36 /* FOTargetActionList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOTargetActionList.m; sourceTree = "<group>"; };
+		3771F6DD19E416B400B66C36 /* FOTargetActionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOTargetActionSet.h; sourceTree = "<group>"; };
+		3771F6DE19E416B400B66C36 /* FOTargetActionSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOTargetActionSet.m; sourceTree = "<group>"; };
+		3771F6E719E4170900B66C36 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3771F6E919E4172700B66C36 /* FOTargetActionListTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOTargetActionListTests.m; sourceTree = "<group>"; };
+		3771F6EA19E4172700B66C36 /* FOTargetActionSetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOTargetActionSetTests.m; sourceTree = "<group>"; };
+		3771F6F119E4174600B66C36 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		377A130319E70D5A00964B61 /* FOKeyValueObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOKeyValueObserver.h; sourceTree = "<group>"; };
+		377A130419E70D5A00964B61 /* FOKeyValueObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOKeyValueObserver.m; sourceTree = "<group>"; };
+		377A130A19E711E100964B61 /* FOKeyValueObserverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOKeyValueObserverTests.m; sourceTree = "<group>"; };
+		377A130C19E7136600964B61 /* NSString+RegularExpressionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RegularExpressionTests.m"; sourceTree = "<group>"; };
+		377A130E19E714E600964B61 /* NSString+FOTypeExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FOTypeExtension.h"; sourceTree = "<group>"; };
+		377A130F19E714E600964B61 /* NSString+FOTypeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FOTypeExtension.m"; sourceTree = "<group>"; };
+		377A131219E718D000964B61 /* NSDictionary+FOTypeExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+FOTypeExtension.h"; sourceTree = "<group>"; };
+		377A131319E718D000964B61 /* NSDictionary+FOTypeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+FOTypeExtension.m"; sourceTree = "<group>"; };
+		377A131919E721A400964B61 /* UIColor+FOColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FOColor.h"; sourceTree = "<group>"; };
+		377A131A19E721A400964B61 /* UIColor+FOColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FOColor.m"; sourceTree = "<group>"; };
+		377A131E19E7255800964B61 /* FOCGTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOCGTypes.h; sourceTree = "<group>"; };
+		377A132019E733EC00964B61 /* NSData+FOCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+FOCrypto.h"; sourceTree = "<group>"; };
+		377A132119E733EC00964B61 /* NSData+FOCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+FOCrypto.m"; sourceTree = "<group>"; };
+		377A132419E7340400964B61 /* NSData+FOTypeExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+FOTypeExtension.h"; sourceTree = "<group>"; };
+		377A132519E7340400964B61 /* NSData+FOTypeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+FOTypeExtension.m"; sourceTree = "<group>"; };
+		377A132819E738BB00964B61 /* NSArray+FOUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FOUtilities.h"; sourceTree = "<group>"; };
+		377A132919E738BB00964B61 /* NSArray+FOUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FOUtilities.m"; sourceTree = "<group>"; };
+		377A132C19E73CE000964B61 /* FOBlockTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOBlockTypes.h; sourceTree = "<group>"; };
+		377A132F19E743C700964B61 /* FOTimedAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOTimedAction.h; sourceTree = "<group>"; };
+		377A133019E743C700964B61 /* FOTimedAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOTimedAction.m; sourceTree = "<group>"; };
+		377A133319E77C5000964B61 /* NSValue+FOTypeExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+FOTypeExtension.h"; sourceTree = "<group>"; };
+		377A133419E77C5000964B61 /* NSValue+FOTypeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+FOTypeExtension.m"; sourceTree = "<group>"; };
+		377A133719E77D8400964B61 /* UIColor+FOColorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FOColorTests.m"; sourceTree = "<group>"; };
+		377A133919E77E6E00964B61 /* NSString+TypeExtensionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TypeExtensionTests.m"; sourceTree = "<group>"; };
+		377A133B19E7E13000964B61 /* NSData+FOTypeExtensionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+FOTypeExtensionTests.m"; sourceTree = "<group>"; };
+		377A133D19E7E22E00964B61 /* NSDictionary+FOTypeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+FOTypeExtension.m"; sourceTree = "<group>"; };
+		377A133F19E7E33100964B61 /* NSArray+FOUtilitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FOUtilitiesTests.m"; sourceTree = "<group>"; };
+		377A134119E7E49F00964B61 /* NSValue+FOTypeExtensionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+FOTypeExtensionTests.m"; sourceTree = "<group>"; };
+		37DE299019E41F2000BCC51E /* NSObject+FOObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FOObject.h"; sourceTree = "<group>"; };
+		37DE299119E41F2000BCC51E /* NSObject+FOObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FOObject.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3771F6B519E414D000B66C36 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3771F6C119E414D000B66C36 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37DE298419E4197300BCC51E /* FOUtilities.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3771F6AF19E414D000B66C36 = {
+			isa = PBXGroup;
+			children = (
+				3771F6BB19E414D000B66C36 /* FOUtilities */,
+				3771F6C519E414D000B66C36 /* FOUtilitiesTests */,
+				3771F6BA19E414D000B66C36 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3771F6BA19E414D000B66C36 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3771F6B919E414D000B66C36 /* FOUtilities.framework */,
+				3771F6C419E414D000B66C36 /* FOUtilitiesTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3771F6BB19E414D000B66C36 /* FOUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				3771F6D219E416B400B66C36 /* FOUtilities.h */,
+				377A131D19E7252D00964B61 /* Types */,
+				377A131619E7218600964B61 /* NSData */,
+				377A131719E7218600964B61 /* NSValue */,
+				377A131819E7218600964B61 /* UIColor */,
+				3771F6D419E416B400B66C36 /* NSArray */,
+				3771F6D519E416B400B66C36 /* NSDictionary */,
+				3771F6D619E416B400B66C36 /* NSObject */,
+				3771F6D719E416B400B66C36 /* NSString */,
+				3771F6DA19E416B400B66C36 /* Target Action */,
+				377A132E19E743AE00964B61 /* Timed Action */,
+				377A130219E70D2700964B61 /* KVO */,
+				3771F6BC19E414D000B66C36 /* Supporting Files */,
+			);
+			path = FOUtilities;
+			sourceTree = "<group>";
+		};
+		3771F6BC19E414D000B66C36 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3771F6E719E4170900B66C36 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3771F6C519E414D000B66C36 /* FOUtilitiesTests */ = {
+			isa = PBXGroup;
+			children = (
+				377A130C19E7136600964B61 /* NSString+RegularExpressionTests.m */,
+				377A130A19E711E100964B61 /* FOKeyValueObserverTests.m */,
+				3771F6E919E4172700B66C36 /* FOTargetActionListTests.m */,
+				3771F6EA19E4172700B66C36 /* FOTargetActionSetTests.m */,
+				3771F6C619E414D000B66C36 /* Supporting Files */,
+				377A133719E77D8400964B61 /* UIColor+FOColorTests.m */,
+				377A133919E77E6E00964B61 /* NSString+TypeExtensionTests.m */,
+				377A133B19E7E13000964B61 /* NSData+FOTypeExtensionTests.m */,
+				377A133D19E7E22E00964B61 /* NSDictionary+FOTypeExtension.m */,
+				377A133F19E7E33100964B61 /* NSArray+FOUtilitiesTests.m */,
+				377A134119E7E49F00964B61 /* NSValue+FOTypeExtensionTests.m */,
+			);
+			path = FOUtilitiesTests;
+			sourceTree = "<group>";
+		};
+		3771F6C619E414D000B66C36 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3771F6F119E4174600B66C36 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3771F6D419E416B400B66C36 /* NSArray */ = {
+			isa = PBXGroup;
+			children = (
+				377A132819E738BB00964B61 /* NSArray+FOUtilities.h */,
+				377A132919E738BB00964B61 /* NSArray+FOUtilities.m */,
+			);
+			path = NSArray;
+			sourceTree = "<group>";
+		};
+		3771F6D519E416B400B66C36 /* NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				377A131219E718D000964B61 /* NSDictionary+FOTypeExtension.h */,
+				377A131319E718D000964B61 /* NSDictionary+FOTypeExtension.m */,
+			);
+			path = NSDictionary;
+			sourceTree = "<group>";
+		};
+		3771F6D619E416B400B66C36 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				37DE299019E41F2000BCC51E /* NSObject+FOObject.h */,
+				37DE299119E41F2000BCC51E /* NSObject+FOObject.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		3771F6D719E416B400B66C36 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				3771F6D819E416B400B66C36 /* NSString+RegularExpression.h */,
+				3771F6D919E416B400B66C36 /* NSString+RegularExpression.m */,
+				377A130E19E714E600964B61 /* NSString+FOTypeExtension.h */,
+				377A130F19E714E600964B61 /* NSString+FOTypeExtension.m */,
+			);
+			path = NSString;
+			sourceTree = "<group>";
+		};
+		3771F6DA19E416B400B66C36 /* Target Action */ = {
+			isa = PBXGroup;
+			children = (
+				3771F6DB19E416B400B66C36 /* FOTargetActionList.h */,
+				3771F6DC19E416B400B66C36 /* FOTargetActionList.m */,
+				3771F6DD19E416B400B66C36 /* FOTargetActionSet.h */,
+				3771F6DE19E416B400B66C36 /* FOTargetActionSet.m */,
+			);
+			path = "Target Action";
+			sourceTree = "<group>";
+		};
+		377A130219E70D2700964B61 /* KVO */ = {
+			isa = PBXGroup;
+			children = (
+				377A130319E70D5A00964B61 /* FOKeyValueObserver.h */,
+				377A130419E70D5A00964B61 /* FOKeyValueObserver.m */,
+			);
+			path = KVO;
+			sourceTree = "<group>";
+		};
+		377A131619E7218600964B61 /* NSData */ = {
+			isa = PBXGroup;
+			children = (
+				377A132019E733EC00964B61 /* NSData+FOCrypto.h */,
+				377A132119E733EC00964B61 /* NSData+FOCrypto.m */,
+				377A132419E7340400964B61 /* NSData+FOTypeExtension.h */,
+				377A132519E7340400964B61 /* NSData+FOTypeExtension.m */,
+			);
+			path = NSData;
+			sourceTree = "<group>";
+		};
+		377A131719E7218600964B61 /* NSValue */ = {
+			isa = PBXGroup;
+			children = (
+				377A133319E77C5000964B61 /* NSValue+FOTypeExtension.h */,
+				377A133419E77C5000964B61 /* NSValue+FOTypeExtension.m */,
+			);
+			path = NSValue;
+			sourceTree = "<group>";
+		};
+		377A131819E7218600964B61 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				377A131919E721A400964B61 /* UIColor+FOColor.h */,
+				377A131A19E721A400964B61 /* UIColor+FOColor.m */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		377A131D19E7252D00964B61 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				377A131E19E7255800964B61 /* FOCGTypes.h */,
+				377A132C19E73CE000964B61 /* FOBlockTypes.h */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
+		377A132E19E743AE00964B61 /* Timed Action */ = {
+			isa = PBXGroup;
+			children = (
+				377A132F19E743C700964B61 /* FOTimedAction.h */,
+				377A133019E743C700964B61 /* FOTimedAction.m */,
+			);
+			path = "Timed Action";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3771F6B619E414D000B66C36 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				377A132A19E738BB00964B61 /* NSArray+FOUtilities.h in Headers */,
+				3771F6E319E416B400B66C36 /* FOTargetActionList.h in Headers */,
+				377A131B19E721A400964B61 /* UIColor+FOColor.h in Headers */,
+				377A133119E743C700964B61 /* FOTimedAction.h in Headers */,
+				37DE299219E41F2000BCC51E /* NSObject+FOObject.h in Headers */,
+				377A131419E718D000964B61 /* NSDictionary+FOTypeExtension.h in Headers */,
+				377A132619E7340400964B61 /* NSData+FOTypeExtension.h in Headers */,
+				377A132219E733EC00964B61 /* NSData+FOCrypto.h in Headers */,
+				377A132D19E73CE000964B61 /* FOBlockTypes.h in Headers */,
+				3771F6DF19E416B400B66C36 /* FOUtilities.h in Headers */,
+				377A131F19E7255800964B61 /* FOCGTypes.h in Headers */,
+				377A130519E70D5A00964B61 /* FOKeyValueObserver.h in Headers */,
+				377A133519E77C5000964B61 /* NSValue+FOTypeExtension.h in Headers */,
+				3771F6E119E416B400B66C36 /* NSString+RegularExpression.h in Headers */,
+				3771F6E519E416B400B66C36 /* FOTargetActionSet.h in Headers */,
+				377A131019E714E600964B61 /* NSString+FOTypeExtension.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3771F6B819E414D000B66C36 /* FOUtilities */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3771F6CC19E414D000B66C36 /* Build configuration list for PBXNativeTarget "FOUtilities" */;
+			buildPhases = (
+				3771F6B419E414D000B66C36 /* Sources */,
+				3771F6B519E414D000B66C36 /* Frameworks */,
+				3771F6B619E414D000B66C36 /* Headers */,
+				3771F6B719E414D000B66C36 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FOUtilities;
+			productName = FOUtilities;
+			productReference = 3771F6B919E414D000B66C36 /* FOUtilities.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3771F6C319E414D000B66C36 /* FOUtilitiesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3771F6CF19E414D000B66C36 /* Build configuration list for PBXNativeTarget "FOUtilitiesTests" */;
+			buildPhases = (
+				3771F6C019E414D000B66C36 /* Sources */,
+				3771F6C119E414D000B66C36 /* Frameworks */,
+				3771F6C219E414D000B66C36 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				37DE298319E4190900BCC51E /* PBXTargetDependency */,
+			);
+			name = FOUtilitiesTests;
+			productName = FOUtilitiesTests;
+			productReference = 3771F6C419E414D000B66C36 /* FOUtilitiesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3771F6B019E414D000B66C36 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Andrew Hurst";
+				TargetAttributes = {
+					3771F6B819E414D000B66C36 = {
+						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = CYK2M28J2X;
+					};
+					3771F6C319E414D000B66C36 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 3771F6B319E414D000B66C36 /* Build configuration list for PBXProject "FOUtilities" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3771F6AF19E414D000B66C36;
+			productRefGroup = 3771F6BA19E414D000B66C36 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3771F6B819E414D000B66C36 /* FOUtilities */,
+				3771F6C319E414D000B66C36 /* FOUtilitiesTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3771F6B719E414D000B66C36 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3771F6C219E414D000B66C36 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3771F6B419E414D000B66C36 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				377A133219E743C700964B61 /* FOTimedAction.m in Sources */,
+				377A131C19E721A400964B61 /* UIColor+FOColor.m in Sources */,
+				377A131119E714E600964B61 /* NSString+FOTypeExtension.m in Sources */,
+				3771F6E219E416B400B66C36 /* NSString+RegularExpression.m in Sources */,
+				377A133619E77C5000964B61 /* NSValue+FOTypeExtension.m in Sources */,
+				377A132B19E738BB00964B61 /* NSArray+FOUtilities.m in Sources */,
+				377A132719E7340400964B61 /* NSData+FOTypeExtension.m in Sources */,
+				37DE299319E41F2000BCC51E /* NSObject+FOObject.m in Sources */,
+				3771F6E419E416B400B66C36 /* FOTargetActionList.m in Sources */,
+				377A130619E70D5A00964B61 /* FOKeyValueObserver.m in Sources */,
+				377A131519E718D000964B61 /* NSDictionary+FOTypeExtension.m in Sources */,
+				377A132319E733EC00964B61 /* NSData+FOCrypto.m in Sources */,
+				3771F6E619E416B400B66C36 /* FOTargetActionSet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3771F6C019E414D000B66C36 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3771F6ED19E4172700B66C36 /* FOTargetActionSetTests.m in Sources */,
+				377A130D19E7136600964B61 /* NSString+RegularExpressionTests.m in Sources */,
+				377A130B19E711E100964B61 /* FOKeyValueObserverTests.m in Sources */,
+				377A134019E7E33100964B61 /* NSArray+FOUtilitiesTests.m in Sources */,
+				377A133C19E7E13000964B61 /* NSData+FOTypeExtensionTests.m in Sources */,
+				377A133819E77D8400964B61 /* UIColor+FOColorTests.m in Sources */,
+				3771F6EC19E4172700B66C36 /* FOTargetActionListTests.m in Sources */,
+				377A134219E7E49F00964B61 /* NSValue+FOTypeExtensionTests.m in Sources */,
+				377A133A19E77E6E00964B61 /* NSString+TypeExtensionTests.m in Sources */,
+				377A133E19E7E22E00964B61 /* NSDictionary+FOTypeExtension.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		37DE298319E4190900BCC51E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3771F6B819E414D000B66C36 /* FOUtilities */;
+			targetProxy = 37DE298219E4190900BCC51E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3771F6CA19E414D000B66C36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3771F6CB19E414D000B66C36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3771F6CD19E414D000B66C36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_ASSIGN_ENUM = NO;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				INFOPLIST_FILE = FOUtilities/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3771F6CE19E414D000B66C36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_ASSIGN_ENUM = NO;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				INFOPLIST_FILE = FOUtilities/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		3771F6D019E414D000B66C36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				INFOPLIST_FILE = FOUtilitiesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3771F6D119E414D000B66C36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				INFOPLIST_FILE = FOUtilitiesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3771F6B319E414D000B66C36 /* Build configuration list for PBXProject "FOUtilities" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3771F6CA19E414D000B66C36 /* Debug */,
+				3771F6CB19E414D000B66C36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3771F6CC19E414D000B66C36 /* Build configuration list for PBXNativeTarget "FOUtilities" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3771F6CD19E414D000B66C36 /* Debug */,
+				3771F6CE19E414D000B66C36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3771F6CF19E414D000B66C36 /* Build configuration list for PBXNativeTarget "FOUtilitiesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3771F6D019E414D000B66C36 /* Debug */,
+				3771F6D119E414D000B66C36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3771F6B019E414D000B66C36 /* Project object */;
+}

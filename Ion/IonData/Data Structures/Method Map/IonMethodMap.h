@@ -33,7 +33,7 @@
  * This sets the inputed key to map to the inputted method.
  * @param {SEL} the selector method to call for the key.
  * @param {id} the key to map tho the method.
- * @returns {void}
+ 
  */
 - (void) setMethod:(SEL) method forKey:(id) key;
 
@@ -47,13 +47,13 @@
 /**
  * This will remove the method, and key mapping from the map.
  * @param {id} the key to find and remove the pair with.
- * @returns {void}
+ 
  */
 - (void) removeMethodForKey:(id) key;
 
 /**
  * This will remove all mappings from the map.
- * @returns {void}
+ 
  */
 - (void) removeAll;
 

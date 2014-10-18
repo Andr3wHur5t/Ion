@@ -176,7 +176,7 @@
 /**
  * Appends current path with the additional hierarchy.
  * @param {NSArray*} the additional hierarchy.
- * @returns {void}
+ 
  */
 - (void) appendHierarchy:(NSArray*) additional {
     if ( !additional )
@@ -188,7 +188,7 @@
 /**
  * Sets the components array.
  * @param {NSArray*} the new components array to make a copy of.
- * @returns {void}
+ 
  */
 - (void) setComponentsArray:(NSArray *)components {
     _components = [[NSArray alloc] initWithArray: components];
@@ -199,7 +199,7 @@
 
 /**
  * Sets our components to match a URL.
- * @returns {void}
+ 
  */
 - (void) setComponentsFromURL:(NSURL*) url {
     [self setComponentsArray: [IonPath normalizeComponents: [IonPath pathComponentsFromURL: url]]];

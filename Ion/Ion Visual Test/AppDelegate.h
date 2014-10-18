@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Ion/Ion.h>
+#import <IonCore/IonCore.h>
 
 @interface AppDelegate : IonApplication
 

@@ -7,7 +7,7 @@
 //
 
 #import "IonRenderUtilities.h"
-#import "IonMath.h"
+#import <SimpleMath/SimpleMath.h>
 
 static const char* IonRenderQueueLabel = "com.ion.render";
 
@@ -25,7 +25,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
  * @param {CGFloat} this is the scale of the context
  * @param {bool} states if the context and the resulting image have an alpha channel
  * @param {void^(UIImage*)} the block to be called once the work is done
- * @returns {void}
+ 
  */
 + (void) renderBlock: (void(^)()) block
    inContextWithSize: (CGSize) contextSize
@@ -72,7 +72,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
  * @param {CGSize} the size of the context
  * @param {bool} states if the context and the resulting image have an alpha channel
  * @param {void^(UIImage*)} the block to be called once the work is done
- * @returns {void}
+ 
  */
 + (void) renderBlock: (void(^)()) block
    inContextWithSize: (CGSize) contextSize
@@ -92,7 +92,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
  * @param {void^()} the work to be rendered
  * @param {CGSize} the size of the context
  * @param {void^(UIImage*)} the block to be called once the work is done
- * @returns {void}
+ 
  */
 + (void) renderBlock: (void(^)()) block
    inContextWithSize: (CGSize) contextSize
@@ -115,7 +115,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
  * @param {CGFloat} this is the scale of the context
  * @param {bool} states if the context and the resulting image have an alpha channel
  * @param {void^(UIImage*)} the block to be called once the work is done
- * @returns {void}
+ 
  */
 + (void) renderTestingInMainBlock: (void(^)()) block
    inContextWithSize: (CGSize) contextSize
@@ -190,7 +190,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
  * @param {IonContextState} the context state of the render block
  * @param {NSArray*} color weights to be used in the creation of the gradient
  * @param {CGFloat} the angle of the gradient
- * @returns {void}
+ 
  */
 + (void) linearGradientWithContextState:(IonContextState)state
                    gradientColorWeights:(NSArray*)colorWeights
@@ -198,8 +198,8 @@ static const char* IonRenderQueueLabel = "com.ion.render";
     CGPoint startPoint, endPoint;
     CGGradientRef gradColorRef;
     
-    startPoint = [IonMath pointAtEdgeOfFrame: state.contextSize angleOfRay: angle];
-    endPoint = [IonMath pointAtEdgeOfFrame: state.contextSize angleOfRay: angle + 180.0f];
+    startPoint = [SMUtilities pointAtEdgeOfFrame: state.contextSize angleOfRay: angle];
+    endPoint = [SMUtilities pointAtEdgeOfFrame: state.contextSize angleOfRay: angle + 180.0f];
     
     gradColorRef = [IonRenderUtilities referenceGradientFromColorWeights: colorWeights];
     
@@ -212,7 +212,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
  * @param {IonLinearGradientConfiguration} this is the config we will use to generate the gradient.
  * @param {CGSize} this is the size we will render the gradient at.
  * @param {(void(^)(UIImage* image))} this is the block we will call with the resulting image once it is generated.
- * @returns {void}
+ 
  */
 + (void) renderLinearGradient:(IonLinearGradientConfiguration*)gradientConfig
                    resultSize:(CGSize)size
@@ -240,7 +240,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
  * @param {UIImage*} the image to render
  * @param {CGSize} the size to render the image at
  * @param {void(^)( UIImage* image )} this is the block we will call with the resulting image once it is generated.
- * @returns {void}
+ 
  */
 + (void) renderImage:(UIImage*) image
             withSize:(CGSize) size
@@ -250,7 +250,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
             return;
         
         // Draw the Image
-        [image drawInRect: [IonMath rectWhichFillsSize: size maintainingAspectRatio: image.size] ];
+        [image drawInRect: [SMUtilities rectWhichFillsSize: size maintainingAspectRatio: image.size] ];
         
     }
                   inContextWithSize: size
@@ -262,7 +262,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
  * @param {UIImage*} the image to render
  * @param {CGSize} the size to render the image within
  * @param {void(^)( UIImage* image )} this is the block we will call with the resulting image once it is generated.
- * @returns {void}
+ 
  */
 + (void) renderImage:(UIImage*) image
           withinSize:(CGSize) size
@@ -272,7 +272,7 @@ static const char* IonRenderQueueLabel = "com.ion.render";
             return;
         
         // Draw the Image
-        [image drawInRect: [IonMath rectWhichContainsSize: size maintainingAspectRatio: image.size]];
+        [image drawInRect: [SMUtilities rectWhichContainsSize: size maintainingAspectRatio: image.size]];
     }
                   inContextWithSize: size
                      andReturnBlock: returnBlock];

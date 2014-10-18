@@ -24,7 +24,7 @@
 /**
  * Sets the data in the map.
  * @param {NSDictionary*} the dictionary to set up with.
- * @returns {void}
+ 
  */
 - (void) setDictionary:(NSDictionary*) dict;
 

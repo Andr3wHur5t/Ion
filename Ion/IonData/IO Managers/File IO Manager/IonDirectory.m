@@ -9,7 +9,7 @@
 #import "IonDirectory.h"
 #import "IonFileIOmanager.h"
 #import "IonFile.h"
-#import "NSData+IonTypeExtension.h"
+#import <FOUtilities/FOUtilities.h>
 
 @implementation IonDirectory
 
@@ -47,7 +47,7 @@
  * Opens a file within the directory, and returns it in the callback.
  * @param {NSString*} the file name to open.
  * @param { void(^)( IonFile* file ) } the return block.
- * @returns {void}
+ 
  */
 - (void) openFile:(NSString*) fileName withResultBlock:(void(^)( IonFile* file )) resultBlock {
     [IonFileIOmanager openFileAtPath: [_path pathAppendedByElement: fileName]
@@ -58,7 +58,7 @@
  * Saves the file in the directory.
  * @param {IonFile*} the file to add.
  * @param {void(^)( NSError* error )} the completion callback.
- * @returns {void}
+ 
  */
 - (void) saveFile:(IonFile*) file withCompletion:(void(^)( NSError* error )) completion {
     [IonFileIOmanager saveFile: file
@@ -73,7 +73,7 @@
  * Opens / Creates a directory by name.
  * @param {NSString*} the directory name.
  * @param { void(^)( IonDirectory* directory ) } the return block.
- * @returns {void}
+ 
  */
 - (void) openDirectory:(NSString*) directoryName
        withResultBlock:(void(^)( IonDirectory* directory )) resultBlock {
@@ -97,7 +97,7 @@
  * Deletes the file, or directory at the specified path.
  * @param {NSString*} the name of the item within the directory to delete.
  * @param {void(^)( NSError* error )} the completion callback.
- * @returns {void}
+ 
  */
 - (void) deleteItem:(NSString*) item withCompletion:(IonCompletionBlock) completion {
     [IonFileIOmanager deleteItem: [_path pathAppendedByElement: item] withCompletion: completion];
@@ -107,7 +107,7 @@
  * Lists files, and directories in the current directory.
  * @param {void(^)( NSArray* items )} the result callback where we will provide a array of
  *    strings.
- * @returns {void}
+ 
  */
 - (void) listItems:(void(^)( NSArray* items )) resultBlock {
     __block NSString* path = [_path toString];
@@ -134,7 +134,7 @@
  * Gets the object with the specified key, or returns NULL.
  * @param {NSString*} the key to get the object for.
  * @param {IonRawDataSourceResultBlock} the block where the result will be returned.
- * @returns {void}
+ 
  */
 - (void) objectForKey:(NSString*) key withResultBlock:(IonRawDataSourceResultBlock) result {
     IonPath *resultingPath;
@@ -162,7 +162,7 @@
  * @param {NSString*} the key for the object to set.
  * @param {id} the object to put in the data system.
  * @param {IonRawDataSourceCompletion} the completion.
- * @returns {void} returns false if the operation isn't valid.
+  returns false if the operation isn't valid.
  */
 - (void) setObject:(id) object forKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
     IonPath* resultingPath;
@@ -206,7 +206,7 @@
  * Removes an object for the specified key.
  * @param {NSString*} the key to remove the object for.
  * @param {IonRawDataSourceCompletion} the completion.
- * @returns {void}
+ 
  */
 - (void) removeObjectForKey:(NSString*) key withCompletion:(IonRawDataSourceCompletion) completion {
     IonPath* resultingPath;
@@ -230,7 +230,7 @@
 /**
  * Removes all objects for data source.
  * @param {IonRawDataSourceCompletion} the completion.
- * @returns {void}
+ 
  */
 - (void) removeAllObjects:(IonRawDataSourceCompletion) completion {
     __block NSString* item;

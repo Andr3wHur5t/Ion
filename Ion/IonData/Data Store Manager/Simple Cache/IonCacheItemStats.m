@@ -153,7 +153,7 @@ static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
 /**
  * Increment Session Access Count for the state object with the specified Key.
  * @param {NSString*} the relative path of the item, and Key.
- * @returns {void}
+ 
  */
 - (void)incrementSessionAccessCountForItemWithKey:(NSString *)key {
     [self incrementValueForKey: sIonStats_Stats_RequestCountKey ItemWithKey: key];
@@ -163,7 +163,7 @@ static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
 /**
  * Increment Session Count for the state object with the specified Key.
  * @param {NSString*} the relative path of the item, and Key.
- * @returns {void}
+ 
  */
 - (void) incrementSessionCountForItemWithKey:(NSString*) key {
      [self incrementValueForKey: sIonStats_Stats_SessionCountKey ItemWithKey: key];
@@ -173,7 +173,7 @@ static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
  * Increment value for the state object with the specified Key.
  * @param {NSString*} the values' key to increment.
  * @param {NSString*} the relative path of the item, and Key.
- * @returns {void}
+ 
  */
 - (void) incrementValueForKey:(NSString*) valKey ItemWithKey:(NSString*) key {
     NSNumber *itemCount;
@@ -223,7 +223,7 @@ static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
  * Sets the extra info for the specified item key.
  * @param {NSString*} the key to get the object for.
  * @param {NSDictionary*} the extra info object to set.
- * @returns {void}
+ 
  */
 - (void) setExtraInfo:(NSDictionary*) extraInfo forItemWithKey:(NSString*) key {
     NSMutableDictionary *item;
@@ -242,7 +242,7 @@ static NSString* sIonStats_Stats_SessionCountKey = @"sessionCount";
 /**
  * Updates the session stats.
  * @param {NSString*} the key to update the stats for.
- * @returns {void}
+ 
  */
 - (void) updateSessionStatsForItemWithKey:(NSString*) key {
     NSNumber *sesionCount, *accessCount;

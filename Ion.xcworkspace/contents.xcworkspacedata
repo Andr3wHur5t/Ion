@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Ion Demo/Ion Demo.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Ion/Ion.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:IonCore/IonCore.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:IonFoundation/IonFoundation.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:FOUtilities/FOUtilities.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SimpleMath/SimpleMath.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:IACommunication/IACommunication.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SimpleAnalytics/SimpleAnalytics.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:PHData/PHData.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OCDynamics/OCDynamics.xcodeproj">
+   </FileRef>
+</Workspace>
