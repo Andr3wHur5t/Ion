@@ -63,11 +63,13 @@
     [self.profileTable registerDataModelInTarget: self atKeyPath: @"profileModel"];
     
     // Generate some data for our profile data model in a KVC compliant way.
-    [self addProfileModelObjects: [PHProfile randomProfilesWithCount: 15]];
+    [self addProfileModelObjects: [PHProfile randomProfilesWithCount: 10]];
     
-    self.view.backgroundColor = [UIColor purpleColor];
+    [self performBlock:^{
+        // NOTE: This appears not to work... for style application
+        [self addProfileModelObjects: [PHProfile randomProfilesWithCount: 10]];
+    } afterDelay: 4.0f];
 }
-
 
 #pragma mark Object Construction
 
@@ -79,14 +81,12 @@
         // We added a status bar behavior to the application, we can observe when it changes and update our position.
         _titleBar.respondsToStatusBar = TRUE;
         
-        // Set the position of the title bar.
+        // Set the position of the title bar. (Technicaly this can be implicit but its here for example.)
         [_titleBar setGuidesWithLocalHoriz: _titleBar.originGuideHoriz
                                  localVert: _titleBar.originGuideVert
                                 superHoriz: self.view.originGuideHoriz
                               andSuperVert: self.view.originGuideVert];
         
-        // Add some buttons, and a label to
-        _titleBar.backgroundColor = [UIColor redColor];
     }
     return _titleBar;
 }

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Ion. All rights reserved.
 //
 
-#import <Ion/Ion.h>
+#import <IonCore/IonCore.h>
 
 @interface IonVisualTestViewController : IonViewController
 

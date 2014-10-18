@@ -21,94 +21,104 @@ FOUNDATION_EXPORT const unsigned char IonCoreVersionString[];
 
 
 /** Application */
-#import "IonApplication.h"
-#import "IonApplication+StatusBar.h"
-#import "IonApplication+Keyboard.h"
-#import "IonApplication+Metrics.h"
-#import "IonApplication+plistGetters.h"
-#import "IonApplication+Responders.h"
+#import <IonCore/IonApplication.h>
+#import <IonCore/IonApplication+StatusBar.h>
+#import <IonCore/IonApplication+Keyboard.h>
+#import <IonCore/IonApplication+Metrics.h>
+#import <IonCore/IonApplication+plistGetters.h>
+#import <IonCore/IonApplication+Responders.h>
+#import <IonCore/IonApplication+RapidSplash.h>
+#import <IonCore/IonApplication+InterappComunication.h>
 
 /** Status Bar Behaviors */
-#import "IonStatusBarBehaviorMotionGestureDisplay.h"
+#import <IonCore/IonStatusBarBehaviorMotionGestureDisplay.h>
+
+/** Windows */
+#import <IonCore/UIWindow+IonWindow.h>
 
 /** Communication */
-#import "IACLink.h"
-#import "IACModule.h"
-#import "IACActionModule.h"
-#import "IACRouter.h"
+#import <IonCore/IACLink.h>
+#import <IonCore/IACLink+IonApplication.h>
+#import <IonCore/IACModule.h>
+#import <IonCore/IACActionModule.h>
+#import <IonCore/IACRouter.h>
 
 /** Ion Rapid Start System */
-#import "IonRapidStartViewController.h"
+#import <IonCore/IonRapidStartViewController.h>
 
 #pragma mark Guides
 /** Guide Lines */
-#import "IonCompleteGuideGroup.h"
-#import "IonGuideLine.h"
-#import "IonGuideLine+DefaultConstructors.h"
-#import "IonGuideGroup+GuidePositioning.h"
+#import <IonCore/IonCompleteGuideGroup.h>
+#import <IonCore/IonGuideLine.h>
+#import <IonCore/IonGuideLine+DefaultConstructors.h>
+#import <IonCore/IonGuideGroup+GuidePositioning.h>
 
 /** Guide Sets */
-#import "IonGuideSet.h"
-#import "IonViewGuideSet.h"
+#import <IonCore/IonGuideSet.h>
+#import <IonCore/IonViewGuideSet.h>
 
 /** Guide Groups*/
-#import "IonGuideGroup.h"
+#import <IonCore/IonGuideGroup.h>
 
 #pragma mark UI
 /** Fundmental UI */
-#import "IonView.h"
-#import "IonViewController.h"
+#import <IonCore/IonView.h>
+#import <IonCore/IonViewController.h>
 
 /** UI Extensions */
-#import "UIView+IonGuideLine.h"
-#import "UIView+IonGuideGroup.h"
-#import "UIView+IonAnimation.h"
-#import "UIView+IonBackgroundUtilities.h"
-#import "UIView+IonViewProperties.h"
-#import "UIView+IonPositionAndOrientation.h"
-#import "UIView+IonGuideGroup.h"
+#import <IonCore/UIView+IonGuideLine.h>
+#import <IonCore/UIView+IonGuideGroup.h>
+#import <IonCore/UIView+IonAnimation.h>
+#import <IonCore/UIView+IonBackgroundUtilities.h>
+#import <IonCore/UIView+IonViewProperties.h>
+#import <IonCore/UIView+FirstResponderSearch.h>
+#import <IonCore/UIView+IonPositionAndOrientation.h>
+#import <IonCore/UIView+IonGuideGroup.h>
 
 /** UI Items*/
-#import "IonIcon.h"
-#import "IonLabel.h"
-#import "IonTitleBar.h"
-#import "IonTextField.h"
-#import "IonTextBar.h"
-#import "IonButton.h"
-#import "IonInterfaceButton.h"
-#import "IonScrollView.h"
+#import <IonCore/IonIcon.h>
+#import <IonCore/IonLabel.h>
+#import <IonCore/IonLabelOverflowBehavior.h>
+#import <IonCore/IonTitleBar.h>
+#import <IonCore/IonTextField.h>
+#import <IonCore/IonTextBar.h>
+#import <IonCore/IonButton.h>
+#import <IonCore/IonInterfaceButton.h>
+#import <IonCore/IonScrollView.h>
+#import <IonCore/IonPaginationView.h>
 
 /** Scroll Actions */
-#import "IonScrollAction.h"
-#import "IonScrollRefreshAction.h"
-#import "IonScrollThresholdAction.h"
+#import <IonCore/IonScrollAction.h>
+#import <IonCore/IonScrollRefreshAction.h>
+#import <IonCore/IonScrollThresholdAction.h>
 
 /** Scroll Action View */
-#import "IonScrollActionView.h"
-#import "IonScrollRefreshActionView.h"
+#import <IonCore/IonScrollActionView.h>
+#import <IonCore/IonScrollRefreshActionView.h>
 
 /** Button Behaviors */
-#import "IonButtonBehavior.h"
-#import "IonButtonBehaviorSimpleFade.h"
-#import "IonButtonBehaviorTapTransform.h"
+#import <IonCore/IonButtonBehavior.h>
+#import <IonCore/IonButtonBehaviorSimpleFade.h>
+#import <IonCore/IonButtonBehaviorTapTransform.h>
 
 #pragma mark Animation System
 /** Animation */
-#import "IonAnimationFrame.h"
-#import "IonAnimationSession.h"
+#import <IonCore/IonAnimationFrame.h>
+#import <IonCore/IonAnimationMap.h>
+#import <IonCore/IonAnimationSession.h>
 
 #pragma mark Theme System
 /** Theme System */
-#import "IonThemePointer.h"
-#import "IonStyle.h"
-#import "IonStyle+IonStdStyleApplyMethods.h"
-#import "IonTheme.h"
-#import "IonAttrubutesStanderdResolution.h"
+#import <IonCore/IonThemePointer.h>
+#import <IonCore/IonStyle.h>
+#import <IonCore/IonStyle+IonStdStyleApplyMethods.h>
+#import <IonCore/IonTheme.h>
+#import <IonCore/IonAttrubutesStanderdResolution.h>
 
 // old
-#import "IonKVP+IonTheme.h"
-#import "NSDictionary+IonThemeResolution.h"
+#import <IonCore/IonKVP+IonTheme.h>
+#import <IonCore/NSDictionary+IonThemeResolution.h>
 
 #pragma mark Validation
 /** Input Filtering */
-#import "IonInputFilter.h"
+#import <IonCore/IonInputFilter.h>

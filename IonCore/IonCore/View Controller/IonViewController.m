@@ -48,8 +48,8 @@
  * @param {IonView*} the new view.  
  */
 - (void) setView:(IonView *)view {
-    NSParameterAssert( view && [view isKindOfClass: [IonView class]] );
-    if ( !view || ![view isKindOfClass: [IonView class]])
+//    NSParameterAssert( [view isKindOfClass: [IonView class]] );
+    if ( ![view isKindOfClass: [IonView class]])
         return;
     
     super.view = view;

@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37694ABE19EDE57B0087AD83 /* IonCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37694ABB19EDE55F0087AD83 /* IonCore.framework */; };
+		37694ABF19EDE57B0087AD83 /* IonCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37694ABB19EDE55F0087AD83 /* IonCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		377A130119E57A6B00964B61 /* IDPeopleTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A130019E57A6B00964B61 /* IDPeopleTable.m */; };
 		3784D87519EC51EE0069F078 /* SimpleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3784D87019EC51BD0069F078 /* SimpleAnalytics.framework */; };
 		3784D87619EC51EE0069F078 /* SimpleAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3784D87019EC51BD0069F078 /* SimpleAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3784D87719EC51EE0069F078 /* IonCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3784D86D19EC51BD0069F078 /* IonCore.framework */; };
-		3784D87819EC51EE0069F078 /* IonCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3784D86D19EC51BD0069F078 /* IonCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		37A0F9BB19EA158F00C1DBB2 /* SimpleMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A0F9B819EA156A00C1DBB2 /* SimpleMath.framework */; };
 		37A0F9BC19EA158F00C1DBB2 /* SimpleMath.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37A0F9B819EA156A00C1DBB2 /* SimpleMath.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		37E26D9B19E54C200043C75C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E26D9A19E54C200043C75C /* main.m */; };
@@ -49,8 +49,8 @@
 				37E26DED19E54E790043C75C /* PHData.framework in Embed Frameworks */,
 				37A0F9BC19EA158F00C1DBB2 /* SimpleMath.framework in Embed Frameworks */,
 				37E26DEB19E54E790043C75C /* IonData.framework in Embed Frameworks */,
+				37694ABF19EDE57B0087AD83 /* IonCore.framework in Embed Frameworks */,
 				3784D87619EC51EE0069F078 /* SimpleAnalytics.framework in Embed Frameworks */,
-				3784D87819EC51EE0069F078 /* IonCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -58,11 +58,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		37694ABB19EDE55F0087AD83 /* IonCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IonCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		377A12FF19E57A6B00964B61 /* IDPeopleTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPeopleTable.h; sourceTree = "<group>"; };
 		377A130019E57A6B00964B61 /* IDPeopleTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPeopleTable.m; sourceTree = "<group>"; };
-		3784D86D19EC51BD0069F078 /* IonCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = IonCore.framework; path = "/Users/andrewhurst/Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos/IonCore.framework"; sourceTree = "<absolute>"; };
-		3784D87019EC51BD0069F078 /* SimpleAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SimpleAnalytics.framework; path = "/Users/andrewhurst/Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos/SimpleAnalytics.framework"; sourceTree = "<absolute>"; };
-		37A0F9B819EA156A00C1DBB2 /* SimpleMath.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SimpleMath.framework; path = "/Users/andrewhurst/Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos/SimpleMath.framework"; sourceTree = "<absolute>"; };
+		3784D87019EC51BD0069F078 /* SimpleAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimpleAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37A0F9B819EA156A00C1DBB2 /* SimpleMath.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimpleMath.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A0F9CC19EA215100C1DBB2 /* AppTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTheme.h; sourceTree = "<group>"; };
 		37E26D9519E54C200043C75C /* Ion Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ion Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37E26D9919E54C200043C75C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,9 +75,9 @@
 		37E26DAE19E54C200043C75C /* Ion DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ion DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37E26DB319E54C200043C75C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37E26DB419E54C200043C75C /* Ion_DemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ion_DemoTests.m; sourceTree = "<group>"; };
-		37E26DD519E54D930043C75C /* FOUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FOUtilities.framework; path = "../../../Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos/FOUtilities.framework"; sourceTree = "<group>"; };
-		37E26DD719E54D930043C75C /* IonData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IonData.framework; path = "../../../Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos/IonData.framework"; sourceTree = "<group>"; };
-		37E26DD819E54D930043C75C /* PHData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PHData.framework; path = "../../../Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos/PHData.framework"; sourceTree = "<group>"; };
+		37E26DD519E54D930043C75C /* FOUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FOUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37E26DD719E54D930043C75C /* IonData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IonData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37E26DD819E54D930043C75C /* PHData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PHData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37E26DEF19E54EEA0043C75C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -90,9 +90,9 @@
 				3784D87519EC51EE0069F078 /* SimpleAnalytics.framework in Frameworks */,
 				37E26DE619E54E790043C75C /* FOUtilities.framework in Frameworks */,
 				37A0F9BB19EA158F00C1DBB2 /* SimpleMath.framework in Frameworks */,
-				3784D87719EC51EE0069F078 /* IonCore.framework in Frameworks */,
 				37E26DEC19E54E790043C75C /* PHData.framework in Frameworks */,
 				37E26DEA19E54E790043C75C /* IonData.framework in Frameworks */,
+				37694ABE19EDE57B0087AD83 /* IonCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,8 +176,8 @@
 		37E26DD419E54D6F0043C75C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37694ABB19EDE55F0087AD83 /* IonCore.framework */,
 				3784D87019EC51BD0069F078 /* SimpleAnalytics.framework */,
-				3784D86D19EC51BD0069F078 /* IonCore.framework */,
 				37A0F9B819EA156A00C1DBB2 /* SimpleMath.framework */,
 				37E26DEF19E54EEA0043C75C /* UIKit.framework */,
 				37E26DD519E54D930043C75C /* FOUtilities.framework */,
@@ -404,12 +404,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
+					"/Users/andrewhurst/work/Ion/IonCore/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "Ion Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -419,12 +422,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
+					"/Users/andrewhurst/work/Ion/IonCore/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "Ion Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

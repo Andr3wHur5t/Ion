@@ -16,16 +16,12 @@
 
 @implementation AppDelegate
 
-
 #pragma mark Application Setup
 
 - (void) setupApplication {
     // This gets called after the first real view controller is presented.
     // You should initialize your networked APIs here.
     NSLog( @"Setup");
-    
-    IACLink *testLink = [IACLink linkWithURLString: @"ion://main/test" andReason: @"test"];
-    NSLog( @"Link \"%@\"", testLink );
 }
 
 - (void) configureFirstRealViewController:(void (^)(IonViewController *))finished {
@@ -39,12 +35,12 @@
     // This gets called when we need to construct the applications window.
     // If you want to use a custom window construct, and return it here.
     // To take advantage of Ions' demo window you need to return [super constructWindow].
-    return [super constructWindow];
+    NSLog( @"Frame %@",  NSStringFromCGRect([[UIScreen mainScreen] bounds]) );
+    return [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
 }
 
 - (void) configureStatusBar {
     // This is where you can configure the staus bar if needed.
-    
     [[UIApplication sharedApplication] setStatusBarHidden: YES];
     [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
 }

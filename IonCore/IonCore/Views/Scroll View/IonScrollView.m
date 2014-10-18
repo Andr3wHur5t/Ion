@@ -7,7 +7,7 @@
 //
 
 #import "IonScrollView.h"
-#import <Ion/Ion.h>
+#import <IonCore/IonCore.h>
 
 @interface IonScrollView ()
 #pragma mark Content Size

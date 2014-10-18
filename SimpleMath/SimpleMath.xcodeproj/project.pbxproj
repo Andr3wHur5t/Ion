@@ -25,7 +25,7 @@
 		377A137F19E7F55D00964B61 /* SimpleMathTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleMathTests.m; sourceTree = "<group>"; };
 		377A13D119E7FE9600964B61 /* SMVec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMVec3.h; sourceTree = "<group>"; };
 		377A13D219E7FE9600964B61 /* SMVec3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMVec3.m; sourceTree = "<group>"; };
-		377A13D519E8003500964B61 /* FOUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FOUtilities.framework; path = "../../../Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos/FOUtilities.framework"; sourceTree = "<group>"; };
+		377A13D519E8003500964B61 /* FOUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FOUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		377A13D719E802DE00964B61 /* SMUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUtilities.h; sourceTree = "<group>"; };
 		377A13D819E802DE00964B61 /* SMUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUtilities.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -352,6 +352,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				INFOPLIST_FILE = SimpleMath/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -380,6 +381,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				INFOPLIST_FILE = SimpleMath/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -435,6 +437,7 @@
 				377A138519E7F55D00964B61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		377A138619E7F55D00964B61 /* Build configuration list for PBXNativeTarget "SimpleMathTests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +446,7 @@
 				377A138819E7F55D00964B61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -17,3 +17,9 @@ FOUNDATION_EXPORT const unsigned char SimpleAnalyticsVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <SimpleAnalytics/PublicHeader.h>
 
 
+#import <SimpleAnalytics/SAEvent.h>
+#import <SimpleAnalytics/SADescription.h>
+#import <SimpleAnalytics/SAMethodTiming.h>
+#import <SimpleAnalytics/SAEventManager.h>
+#import <SimpleAnalytics/SAEventFilter.h>
+#import <SimpleAnalytics/SAEventsProcessor.h>

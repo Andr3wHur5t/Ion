@@ -142,6 +142,9 @@
                      @"background": @{ @"type": @"color", @"name": @"GrayExtraLight" },
                      @"styleMargin": @{ @"height": @25.0},
                  },
+                 @"red": @{
+                             @"background": @{ @"type": @"color", @"name": @"GrayExtraLight" },
+                         },
                  @"cell": @{
                      @"background": @{ @"type": @"color", @"name": @"CleanWhite" },
                      @"stylePadding": @{ @"width": @0.0, @"height": @5.0},

@@ -75,6 +75,15 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
         [child setParentStyle: style];
 }
 
+- (void) addSubviewUsingStyle:(UIView *)view {
+    [self addSubview: view];
+    [view applyStyle: self.style];
+}
+
+- (IonStyle *)style {
+    return self.themeConfiguration.currentStyle;
+}
+
 #pragma mark Theme Element
 
 + (BOOL) automaticallyNotifiesObserversOfThemeElement { return FALSE; }
@@ -122,7 +131,6 @@ static NSString* sIonStylePaddingKey = @"StylePadding";
 - (void) applyStyle:(IonStyle*) style {
     NSNumber *animationDuration;
     CGSize styleMargin, stylePadding;
-    NSParameterAssert( style && [style isKindOfClass: [IonStyle class]] );
     if ( !style || ![style isKindOfClass: [IonStyle class]] )
         return;
     

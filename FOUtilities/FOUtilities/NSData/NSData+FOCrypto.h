@@ -27,19 +27,19 @@
 #pragma mark SHA
 /**
  * Gets the SHA1 has of the data.
- * @returns the SHA1 signature.
+ * @returns the SHA1 hash.
  */
-- (NSData*) SHA1Hash;
+- (NSData *)SHA1Hash;
 /**
  * Gets the SHA256 has of the data.
- * @returns the SHA256 signature.
+ * @returns the SHA256 hash.
  */
-- (NSData*) SHA256Hash;
+- (NSData *)SHA256Hash;
 
 /**
  * Gets the SHA512 has of the data.
- * @returns the SHA512 signature.
+ * @returns the SHA512 hash.
  */
-- (NSData*) SHA512Hash;
+- (NSData *)SHA512Hash;
 
 @end

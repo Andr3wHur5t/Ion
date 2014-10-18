@@ -27,8 +27,8 @@
 // * Gets the AES256 encrypted copy of the data using the inputed key 32 bytes long.
 // * @param {NSString*} the 32 byte key to use, if not it will be null padded.
 // * @returns {NSData*} the encrypted data.
-- (NSData*) AES256EncryptWithKey:(NSString *)key {
-    NSInteger keySize = kCCKeySizeAES256;
+- (NSData *)AES256EncryptWithKey:(NSString *)key {
+    NSUInteger keySize = kCCKeySizeAES256;
     CCAlgorithm algorithim = kCCAlgorithmAES128;
     BOOL patchNeeded;
     char keyPtr[ keySize + 1 ];
@@ -110,7 +110,7 @@
 //                                Hashes
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 #pragma mark SHA
-- (NSData*) SHA1Hash {
+- (NSData *)SHA1Hash {
     unsigned char hash[CC_SHA1_DIGEST_LENGTH];
     if ( CC_SHA512( [self bytes], (CC_LONG)[self length], hash) )
         return [NSData dataWithBytes: hash length: CC_SHA1_DIGEST_LENGTH];
@@ -118,7 +118,7 @@
     return NULL;
 }
 
-- (NSData*) SHA256Hash {
+- (NSData *)SHA256Hash {
     unsigned char hash[CC_SHA256_DIGEST_LENGTH];
     if ( CC_SHA256( [self bytes], (CC_LONG)[self length], hash) )
         return [NSData dataWithBytes: hash length: CC_SHA256_DIGEST_LENGTH];
@@ -126,7 +126,7 @@
     return NULL;
 }
 
-- (NSData*) SHA512Hash {
+- (NSData *)SHA512Hash {
     unsigned char hash[CC_SHA512_DIGEST_LENGTH];
     if ( CC_SHA512( [self bytes], (CC_LONG)[self length], hash) )
         return [NSData dataWithBytes: hash length: CC_SHA512_DIGEST_LENGTH];

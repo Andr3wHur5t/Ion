@@ -2,7 +2,7 @@
     "name":"testTheme",
     "type":"theme",
     "colors": {
-        "BaseColor": "SpottrNorm",
+        "BaseColor": "SpottrDark",
         "DefaultBody": "#000",
         
         "PlaceHolderColor": "Gray",
@@ -46,7 +46,9 @@
         "TitleButtonStateSelected": "SystemButtonSelected",
         "TitleButtonStateDisabled": "SystemButtonDisabled",
         
-        "SubBarColor": "#F2393B99"
+        "SubBarColorDark": "#210F2799",
+        "SubBarColorNorm": "#F2393B99",
+        "SubBarColor": "SubBarColorDark"
     },
     "images": {
         "Image1": "Path1.png",

@@ -9,7 +9,7 @@
 #import <IonCore/IonCore.h>
 #import <PHData/PHData.h>
 
-@interface IDPeopleTable : IonScrollView
+@interface IDPeopleTable : IonPaginationView
 
 #pragma mark KVC Data model.
 /**

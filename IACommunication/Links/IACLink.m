@@ -38,7 +38,6 @@ static NSString *sIACLinkReason_Referral = @"Referral";
     self = [super init];
     if ( self ) {
         self.url = [url standardizedURL];
-        
         // Proprietary data
         self.reason = reason;
         self.referralLink = referral;

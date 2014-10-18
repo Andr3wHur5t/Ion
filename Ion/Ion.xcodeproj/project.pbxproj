@@ -1569,7 +1569,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/andrewhurst/work/Ion/PHData/build/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1577,7 +1576,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Ion Visual Test/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1591,11 +1590,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/andrewhurst/work/Ion/PHData/build/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "Ion Visual Test/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1655,7 +1653,7 @@
 				);
 				INFOPLIST_FILE = IonData/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1676,7 +1674,7 @@
 				);
 				INFOPLIST_FILE = IonData/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";

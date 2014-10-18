@@ -15,6 +15,11 @@
 		370B1A8819E3FCEB00D6447C /* IACRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 370B1A8619E3FCEB00D6447C /* IACRouter.m */; };
 		370B1A8B19E3FD0B00D6447C /* IACActionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 370B1A8919E3FD0B00D6447C /* IACActionModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		370B1A8C19E3FD0B00D6447C /* IACActionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 370B1A8A19E3FD0B00D6447C /* IACActionModule.m */; };
+		37694AC119EDE6070087AD83 /* SimpleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37694AC019EDE6070087AD83 /* SimpleAnalytics.framework */; };
+		37694AC519EDE9F60087AD83 /* IACLinkEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 37694AC319EDE9F60087AD83 /* IACLinkEvent.h */; };
+		37694AC619EDE9F60087AD83 /* IACLinkEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 37694AC419EDE9F60087AD83 /* IACLinkEvent.m */; };
+		37694AC919EDEA2D0087AD83 /* IACLinkDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = 37694AC719EDEA2D0087AD83 /* IACLinkDescription.h */; };
+		37694ACA19EDEA2D0087AD83 /* IACLinkDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 37694AC819EDEA2D0087AD83 /* IACLinkDescription.m */; };
 		3784D85719EB3E440069F078 /* IACActionModule.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 370B1A8919E3FD0B00D6447C /* IACActionModule.h */; };
 		3784D85819EB3E440069F078 /* IACLink.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 370B1A7D19E3FCC100D6447C /* IACLink.h */; };
 		3784D85919EB3E440069F078 /* IACModule.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 370B1A8119E3FCD900D6447C /* IACModule.h */; };
@@ -65,7 +70,12 @@
 		370B1A8619E3FCEB00D6447C /* IACRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACRouter.m; sourceTree = "<group>"; };
 		370B1A8919E3FD0B00D6447C /* IACActionModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IACActionModule.h; sourceTree = "<group>"; };
 		370B1A8A19E3FD0B00D6447C /* IACActionModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACActionModule.m; sourceTree = "<group>"; };
-		37DE298019E417E800BCC51E /* FOUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FOUtilities.framework; path = "../../../Library/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos/FOUtilities.framework"; sourceTree = "<group>"; };
+		37694AC019EDE6070087AD83 /* SimpleAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleAnalytics.framework; path = "../Debug-iphoneos/SimpleAnalytics.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37694AC319EDE9F60087AD83 /* IACLinkEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IACLinkEvent.h; sourceTree = "<group>"; };
+		37694AC419EDE9F60087AD83 /* IACLinkEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACLinkEvent.m; sourceTree = "<group>"; };
+		37694AC719EDEA2D0087AD83 /* IACLinkDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IACLinkDescription.h; sourceTree = "<group>"; };
+		37694AC819EDEA2D0087AD83 /* IACLinkDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACLinkDescription.m; sourceTree = "<group>"; };
+		37DE298019E417E800BCC51E /* FOUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FOUtilities.framework; path = "../Debug-iphoneos/FOUtilities.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DE298819E41A6500BCC51E /* IACLinkTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACLinkTests.m; sourceTree = "<group>"; };
 		37DE298A19E41B5200BCC51E /* IACRouterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACRouterTest.m; sourceTree = "<group>"; };
 		37DE298C19E41BC700BCC51E /* IACActionModuleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACActionModuleTests.m; sourceTree = "<group>"; };
@@ -76,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37694AC119EDE6070087AD83 /* SimpleAnalytics.framework in Frameworks */,
 				37DE298119E417E800BCC51E /* FOUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +105,7 @@
 		370B1A5919E3FB8400D6447C = {
 			isa = PBXGroup;
 			children = (
+				37694AC019EDE6070087AD83 /* SimpleAnalytics.framework */,
 				37DE298019E417E800BCC51E /* FOUtilities.framework */,
 				370B1A6419E3FB8400D6447C /* IAC Foundation */,
 				370B1A6E19E3FB8400D6447C /* IACommunicationTests */,
@@ -113,6 +125,7 @@
 		370B1A6419E3FB8400D6447C /* IAC Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				37694AC219EDE9B60087AD83 /* Analytics */,
 				370B1A7919E3FC1C00D6447C /* ActionModule */,
 				370B1A7A19E3FC1C00D6447C /* Links */,
 				370B1A7B19E3FC1C00D6447C /* Module */,
@@ -177,6 +190,17 @@
 			path = Router;
 			sourceTree = SOURCE_ROOT;
 		};
+		37694AC219EDE9B60087AD83 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				37694AC319EDE9F60087AD83 /* IACLinkEvent.h */,
+				37694AC419EDE9F60087AD83 /* IACLinkEvent.m */,
+				37694AC719EDEA2D0087AD83 /* IACLinkDescription.h */,
+				37694AC819EDEA2D0087AD83 /* IACLinkDescription.m */,
+			);
+			path = Analytics;
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -185,6 +209,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				370B1A8B19E3FD0B00D6447C /* IACActionModule.h in Headers */,
+				37694AC919EDEA2D0087AD83 /* IACLinkDescription.h in Headers */,
+				37694AC519EDE9F60087AD83 /* IACLinkEvent.h in Headers */,
 				370B1A8319E3FCD900D6447C /* IACModule.h in Headers */,
 				370B1A7F19E3FCC100D6447C /* IACLink.h in Headers */,
 				370B1A8719E3FCEB00D6447C /* IACRouter.h in Headers */,
@@ -281,6 +307,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				370B1A8019E3FCC100D6447C /* IACLink.m in Sources */,
+				37694AC619EDE9F60087AD83 /* IACLinkEvent.m in Sources */,
+				37694ACA19EDEA2D0087AD83 /* IACLinkDescription.m in Sources */,
 				370B1A8C19E3FD0B00D6447C /* IACActionModule.m in Sources */,
 				370B1A8419E3FCD900D6447C /* IACModule.m in Sources */,
 				370B1A8819E3FCEB00D6447C /* IACRouter.m in Sources */,

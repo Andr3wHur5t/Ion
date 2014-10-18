@@ -8,6 +8,7 @@
 
 #import "IACRouter.h"
 #import "IACLink.h"
+#import "IACLinkEvent.h"
 
 @interface IACRouter ()
 
@@ -25,7 +26,7 @@
 #pragma mark Module Interface
 
 - (BOOL) invokeLink:(IACLink *)link {
-    IACModule *controllingModule;
+    IACModule *endpoint;
     NSString *key;
     NSParameterAssert( link && [link isKindOfClass: [IACLink class]] );
     if ( !link || ![link isKindOfClass: [IACLink class]] )
@@ -37,12 +38,13 @@
         return FALSE;
     
     // Do we have a assigned module?
-    controllingModule = [self.componentMap objectForKey: key.uppercaseString];
-    if ( !controllingModule || ![controllingModule isKindOfClass: [IACModule class]] )
+    endpoint = [self.componentMap objectForKey: key.uppercaseString];
+    if ( ![endpoint isKindOfClass: [IACModule class]] ) {
+        NSLog( @"Failed To invoke: \"%@\" no endpoint found.", link);
         return FALSE;
-    
+    }
     // Proxy our results through our metrics system so we can record if needed.
-    return [self metricsProxyInvocation: [controllingModule invokeLink: [link linkWithoutFirstComponent]]
+    return [self metricsProxyInvocation: [endpoint invokeLink: [link linkWithoutFirstComponent]]
                                withLink: link];
 }
 
@@ -79,9 +81,9 @@
 
 #pragma mark Metrics
 
-- (BOOL) metricsProxyInvocation:(BOOL)invokedReturnValue withLink:(IACLink *)link {
-    // Record Metrics if needed
-    //    NSLog(@"\nRequest %@ for link [%@]", invokedReturnValue ? @"completed" : @"FAILED", link );
+- (BOOL) metricsProxyInvocation:(BOOL) invokedReturnValue withLink:(IACLink *)link {
+    if ( self.recordToAnalytics ) // Record Metrics
+        [[[IACLinkEvent alloc] initWithLink: link] record];
     return invokedReturnValue;
 }
 

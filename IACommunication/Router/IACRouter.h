@@ -34,4 +34,9 @@
 
 #pragma mark Metrics Configuration
 
+/**
+ * States if metrics are recorded to SimpleAnalytics
+ */
+@property (assign, nonatomic, readwrite) BOOL recordToAnalytics;
+
 @end

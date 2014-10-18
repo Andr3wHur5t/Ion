@@ -21,7 +21,7 @@
 		37B894AF19E882C4009EF8F7 /* SimpleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377A134D19E7F4D300964B61 /* SimpleAnalytics.framework */; };
 		37B894B319E8A5D6009EF8F7 /* SAEventsProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 37B894B119E8A5D6009EF8F7 /* SAEventsProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37B894B419E8A5D6009EF8F7 /* SAEventsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B894B219E8A5D6009EF8F7 /* SAEventsProcessor.m */; };
-		37B894B919E8A832009EF8F7 /* SAEventFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 37B894B719E8A832009EF8F7 /* SAEventFilter.h */; };
+		37B894B919E8A832009EF8F7 /* SAEventFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 37B894B719E8A832009EF8F7 /* SAEventFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37B894BA19E8A832009EF8F7 /* SAEventFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B894B819E8A832009EF8F7 /* SAEventFilter.m */; };
 /* End PBXBuildFile section */
 
@@ -405,6 +405,7 @@
 				GCC_WARN_SIGN_COMPARE = YES;
 				INFOPLIST_FILE = SimpleAnalytics/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -428,6 +429,7 @@
 				GCC_WARN_SIGN_COMPARE = YES;
 				INFOPLIST_FILE = SimpleAnalytics/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

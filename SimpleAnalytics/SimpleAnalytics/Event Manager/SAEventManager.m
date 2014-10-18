@@ -9,6 +9,7 @@
 #import "SAEventManager.h"
 #import "SAEventsProcessor.h"
 #import "SAEventFilter.h"
+#import "SAEvent.h"
 
 const NSUInteger sSAEventManagerDefaultChunkSize = 250;
 
@@ -50,9 +51,8 @@ const NSUInteger sSAEventManagerDefaultChunkSize = 250;
 }
 
 - (void) recordEvent:(SAEvent *)event {
-    if ( ![self.recordingFilter eventIsValid: event] )
+    if ( ![event isKindOfClass: [SAEvent class]] /*![self.recordingFilter eventIsValid: event]*/ )
         return;
-    
     [self.currentChunk addObject: event];
     [self checkChunk];
 }

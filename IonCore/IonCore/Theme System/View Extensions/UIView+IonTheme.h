@@ -84,6 +84,11 @@ static NSString* sIonThemeView_AnimationDuration =                          @"an
 @property (weak, nonatomic) NSString* themeID;
 
 /**
+ * Our current style/
+ */
+@property (weak, nonatomic, readonly) IonStyle *style;
+
+/**
  * Can apply background.
  */
 @property (nonatomic, readwrite) BOOL styleCanSetBackground;
@@ -107,6 +112,12 @@ static NSString* sIonThemeView_AnimationDuration =                          @"an
  * @param style - the current style to apply.
  */
 - (void) setStyle:(IonStyle *)style;
+
+/**
+ * Adds the view as a subview, and applies the current style to it.
+ * @param view - the view to add as a subview.
+ */
+- (void) addSubviewUsingStyle:(UIView *)view;
 
 #pragma mark View Positioning Properties
 /**
