@@ -47,3 +47,16 @@
  */
 - (void) updateFrame;
 @end
+
+@interface IonTitleConfiguration : NSObject
+
+@property (strong, nonatomic, readwrite) UIView *rightView;
+@property (strong, nonatomic, readwrite) UIView *centerView;
+@property (strong, nonatomic, readwrite) UIView *leftView;
+
+/**
+ * Applies the configuration to the specified title bar.
+ */
+- (void) apply:(IonTitleBar *)titlebar;
+
+@end

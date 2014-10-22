@@ -220,7 +220,7 @@ static NSString *sIonImageManagerStandardFileExtension = @".png";
         // Return it if we got it!
         resultingImage = object;
         if ( resultingImage ) {
-            [resultingImage setInfo: imageInfo];
+//            [resultingImage setInfo: imageInfo];
             resultBlock( resultingImage );
             return;
         }
@@ -228,7 +228,7 @@ static NSString *sIonImageManagerStandardFileExtension = @".png";
         // Ok, now we need to check the Bundle
         [self imageFromBundleUsingName: fileName andResultBlock: ^(UIImage *image) {
             resultingImage = image;
-            [resultingImage setInfo: imageInfo];
+//            [resultingImage setInfo: imageInfo];
             resultBlock( resultingImage );
         }];
     }];

@@ -1,0 +1,25 @@
+{
+    "baseImage": "SpottrGeneral_Button_Viewfinder",
+    "behavior": {
+        "key": "SimpleFade",
+        "info": {
+            "childBehavior": "TapTransform",
+            "childInfo": {
+                "startCycle": "tap",
+                "cycles": {
+                    "tap": {
+                        "targetCycle": "tap",
+                        "targetTransision": {
+                            "animation": "GrowBounce",
+                            "entryPoint": "start"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "text": {
+        "key": "Button_Viewfinder",
+        "display": false
+    }
+}

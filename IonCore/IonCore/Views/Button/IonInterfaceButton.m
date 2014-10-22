@@ -10,6 +10,7 @@
 #import "UIView+IonAnimation.h"
 #import "UIView+IonBackgroundUtilities.h"
 #import "IonButtonBehaviorSimpleFade.h"
+#import <IonCore/UIView+IonGuideLine.h>
 #import <IonData/IonData.h>
 
 static NSString* sIonButtonConfigurationFileExtension = @".button";
@@ -37,6 +38,7 @@ static NSString* sIonButtonConfigurationFileExtension = @".button";
     if ( self ) {
         self.behavior = [[IonButtonBehaviorSimpleFade alloc] init];
         self.baseImageKey = NULL;
+        self.manualSizeMode = TRUE;
     }
     return self;
 }

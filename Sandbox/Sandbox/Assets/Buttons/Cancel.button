@@ -1,0 +1,24 @@
+{
+    "baseImage": "General_Button_Cancel",
+    "behavior": {
+        "key": "SimpleFade",
+        "info": {
+            
+            "childBehavior": "TapTransform",
+            "childInfo": {
+                "startCycle": "shake",
+                "cycles": {
+                    "shake": {
+                        "targetCycle": "shake",
+                        "targetTransision": { "animation":"ShakeLeftRight","entryPoint":"start"}
+                    }
+                }
+                
+            }
+        }
+    },
+    "text": {
+        "key": "Button_Cancel",
+        "display": false
+    }
+}

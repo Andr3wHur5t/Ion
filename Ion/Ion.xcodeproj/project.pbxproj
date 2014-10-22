@@ -114,6 +114,7 @@
 		373D91BA19E30A680071F0E6 /* model-049.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 373D918819E30A680071F0E6 /* model-049.jpg */; };
 		373D91BB19E30A680071F0E6 /* model-050.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 373D918919E30A680071F0E6 /* model-050.jpg */; };
 		3750A379198C4CDC00037BEE /* IonGradientConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3750A378198C4CDC00037BEE /* IonGradientConfigurationTests.m */; };
+		3763E92E19F398FB007B5015 /* SimpleMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C5348E19F235A800BDCB9A /* SimpleMath.framework */; };
 		3764848E19907CF000B65EAF /* IONgraphics.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 377C3EDA1970C2C300EA6599 /* IONgraphics.xcassets */; };
 		376484AD199403BD00B65EAF /* IonSimpleCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 376484AC199403BD00B65EAF /* IonSimpleCacheTests.m */; };
 		376484AE199403BD00B65EAF /* IonSimpleCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 376484AC199403BD00B65EAF /* IonSimpleCacheTests.m */; };
@@ -407,6 +408,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3763E92E19F398FB007B5015 /* SimpleMath.framework in Frameworks */,
 				37C5349719F2367400BDCB9A /* FOUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1656,6 +1658,7 @@
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -1677,6 +1680,7 @@
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
 		};

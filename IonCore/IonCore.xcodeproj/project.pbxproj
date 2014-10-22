@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		374AB6F519F0CF6F0024EDE0 /* IonPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 374AB6F319F0CF6F0024EDE0 /* IonPage.h */; };
 		374AB6F619F0CF6F0024EDE0 /* IonPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 374AB6F419F0CF6F0024EDE0 /* IonPage.m */; };
+		3766BB4D19F6007800C18293 /* IonPaginationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3766BB4B19F6007800C18293 /* IonPaginationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3766BB4E19F6007800C18293 /* IonPaginationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3766BB4C19F6007800C18293 /* IonPaginationController.m */; };
 		37694ACF19F04B560087AD83 /* IonPaginationView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37694ACD19F04B560087AD83 /* IonPaginationView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37694AD019F04B560087AD83 /* IonPaginationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37694ACE19F04B560087AD83 /* IonPaginationView.m */; };
 		377A13BC19E7FA9000964B61 /* IonCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 377A13BB19E7FA9000964B61 /* IonCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -156,6 +158,8 @@
 /* Begin PBXFileReference section */
 		374AB6F319F0CF6F0024EDE0 /* IonPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonPage.h; sourceTree = "<group>"; };
 		374AB6F419F0CF6F0024EDE0 /* IonPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonPage.m; sourceTree = "<group>"; };
+		3766BB4B19F6007800C18293 /* IonPaginationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonPaginationController.h; sourceTree = "<group>"; };
+		3766BB4C19F6007800C18293 /* IonPaginationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonPaginationController.m; sourceTree = "<group>"; };
 		37694ACD19F04B560087AD83 /* IonPaginationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonPaginationView.h; sourceTree = "<group>"; };
 		37694ACE19F04B560087AD83 /* IonPaginationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonPaginationView.m; sourceTree = "<group>"; };
 		377A13B619E7FA9000964B61 /* IonCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IonCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,6 +338,8 @@
 				37694ACE19F04B560087AD83 /* IonPaginationView.m */,
 				374AB6F319F0CF6F0024EDE0 /* IonPage.h */,
 				374AB6F419F0CF6F0024EDE0 /* IonPage.m */,
+				3766BB4B19F6007800C18293 /* IonPaginationController.h */,
+				3766BB4C19F6007800C18293 /* IonPaginationController.m */,
 			);
 			path = Pagination;
 			sourceTree = "<group>";
@@ -963,6 +969,7 @@
 				37A0FA9019EADBEF00C1DBB2 /* IonGuideGroup+GuidePositioning.h in Headers */,
 				37A0FA8719EADBEF00C1DBB2 /* IonApplication+StatusBar.h in Headers */,
 				37A0FAD019EADBEF00C1DBB2 /* IonButtonBehaviorSimpleFade.h in Headers */,
+				3766BB4D19F6007800C18293 /* IonPaginationController.h in Headers */,
 				37A0FAC819EADBEF00C1DBB2 /* IonView.h in Headers */,
 				37A0FAC419EADBEF00C1DBB2 /* UIView+IonPositionAndOrientation.h in Headers */,
 				37A0FABE19EADBEF00C1DBB2 /* UIView+FirstResponderSearch.h in Headers */,
@@ -1138,6 +1145,7 @@
 				37A0FAA719EADBEF00C1DBB2 /* IonInputManager.m in Sources */,
 				37A0FAD119EADBEF00C1DBB2 /* IonButtonBehaviorSimpleFade.m in Sources */,
 				37A0FAA119EADBEF00C1DBB2 /* UIView+IonGuideGroup.m in Sources */,
+				3766BB4E19F6007800C18293 /* IonPaginationController.m in Sources */,
 				37A0FAC919EADBEF00C1DBB2 /* IonView.m in Sources */,
 				37A0FA9B19EADBEF00C1DBB2 /* IonViewGuideSet.m in Sources */,
 				37A0FAB919EADBEF00C1DBB2 /* IonThemePointer.m in Sources */,
@@ -1291,11 +1299,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(BUILD_DIR)/Debug/",
+					"$(BUILD_DIR)/$(CONFIGURATION)/",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -1328,11 +1337,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(BUILD_DIR)/Debug/",
+					"$(BUILD_DIR)/$(CONFIGURATION)/",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
 		};

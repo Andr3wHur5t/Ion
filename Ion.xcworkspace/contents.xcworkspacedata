@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Sandbox/Sandbox.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Ion Demo/Ion Demo.xcodeproj">
    </FileRef>
    <FileRef

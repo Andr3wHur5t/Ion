@@ -40,6 +40,11 @@
  */
 @property (assign, nonatomic, readonly) CGRect frame;
 
+/**
+ * Forces the view into manual size mode, overriding size guides.
+ */
+@property (nonatomic, readwrite) BOOL manualSizeMode;
+
 #pragma mark Setter Utilities.
 /**
  * Sets the local guides.

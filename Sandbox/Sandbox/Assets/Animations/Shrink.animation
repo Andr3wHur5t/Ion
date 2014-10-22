@@ -1,0 +1,15 @@
+{
+    "transformations": {
+        "in": {
+            "scale": {
+                "x": 0.98,
+                "y": 0.98,
+                "z": 1
+            },
+            "duration": 0.15
+        },
+        "out": {
+            "duration": 0.15
+        },
+    }
+}

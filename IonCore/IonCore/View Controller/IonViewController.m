@@ -8,10 +8,7 @@
 
 #import "IonViewController.h"
 #import <IonData/IonData.h>
-#import "IonApplication.h"
-#import "IonViewMotionGestureManager.h"
-#import "UIView+FirstResponderSearch.h"
-#import "UIWindow+IonWindow.h"
+#import <IonCore/IonCore.h>
 
 @interface IonViewController () {
     CGRect oldFrame;
@@ -28,6 +25,9 @@
 @end
 
 @implementation IonViewController
+
+@synthesize titleConfiguration = _titleConfiguration;
+
 #pragma mark Constructors
 
 /**
@@ -302,5 +302,19 @@
 - (void) encodeWithCoder:(NSCoder*) aCoder {
     // To-Do our encoding.
     [self encodeTemporaryState: aCoder];
+}
+
+#pragma mark Title Configuration
+
+- (IonTitleConfiguration *)titleConfiguration {
+    if ( !_titleConfiguration ) {
+        _titleConfiguration = [[IonTitleConfiguration alloc] init];
+        [self configureTitleConfiguration];
+    }
+    return _titleConfiguration;
+}
+
+- (void) configureTitleConfiguration {
+    // Should be subclassed
 }
 @end

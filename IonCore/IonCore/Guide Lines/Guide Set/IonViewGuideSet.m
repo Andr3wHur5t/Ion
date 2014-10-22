@@ -19,6 +19,7 @@
 @implementation IonViewGuideSet
 
 @synthesize frame = _frame;
+@synthesize manualSizeMode = _manualSizeMode;
 
 #pragma mark Bulk Setters
 
@@ -169,6 +170,13 @@
     return [self.guides objectForKey: @"bottomSizeGuide"];
 }
 
+#pragma mark Manual Size Mode
+
+- (void) setManualSizeMode:(BOOL)manualSizeMode {
+    _manualSizeMode = manualSizeMode;
+    [self guideDidUpdate];
+}
+
 #pragma mark Change Updates
 
 - (void) guideDidUpdate {
@@ -220,7 +228,7 @@
         height = self.bottomSizeGuide.position - self.topSizeGuide.position;
     
     // Calc and return
-    return (CGSize){ ABS(width), ABS(height) };
+    return self.manualSizeMode ? CGSizeZero : (CGSize){ ABS(width), ABS(height) };
 }
 
 - (CGRect) toRect {

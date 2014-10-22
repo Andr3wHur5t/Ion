@@ -86,6 +86,7 @@ FOUNDATION_EXPORT const unsigned char IonCoreVersionString[];
 #import <IonCore/IonInterfaceButton.h>
 #import <IonCore/IonScrollView.h>
 #import <IonCore/IonPaginationView.h>
+#import <IonCore/IonPaginationController.h>
 
 /** Scroll Actions */
 #import <IonCore/IonScrollAction.h>

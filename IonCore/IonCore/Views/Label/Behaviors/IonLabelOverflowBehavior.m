@@ -58,7 +58,9 @@
  * @return {BOOL}
  */
 - (BOOL) shouldAnimateText {
-    return _container.frame.size.width + 5 < _label.frame.size.width;
+    
+    // This is broken Fix it...
+    return FALSE;//_container.frame.size.width + 5 < _label.frame.size.width;
 }
 
 /**

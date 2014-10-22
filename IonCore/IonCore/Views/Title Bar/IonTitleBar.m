@@ -387,3 +387,17 @@
 }
 
 @end
+
+@implementation IonTitleConfiguration
+
+- (void) apply:(IonTitleBar *)titlebar {
+    NSParameterAssert( [titlebar isKindOfClass: [IonTitleBar class]] );
+    if ( ![titlebar isKindOfClass: [IonTitleBar class]] )
+        return;
+    
+    titlebar.leftView = self.leftView;
+    titlebar.centerView = self.centerView;
+    titlebar.rightView = self.rightView;
+}
+
+@end

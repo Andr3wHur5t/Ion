@@ -1,0 +1,28 @@
+{
+    "baseImage": "General_Button_Arrow",
+    "behavior": {
+        "key": "SimpleFade",
+        "info": {
+            "childBehavior": "TapTransform",
+            "childInfo": {
+                "startCycle": "trunRight",
+                
+                "cycles": {
+                    "trunRight": {
+                        "targetCycle": "turnLeft",
+                        "targetTransision": { "animation":"LeftRightRotate","entryPoint":"rotateLeft"}
+                    },
+                    "turnLeft": {
+                        "targetCycle": "trunRight",
+                        "targetTransision": { "animation":"LeftRightRotate","entryPoint":"rotateRight"}
+                    }
+                }
+                
+            }
+        }
+    },
+    "text": {
+        "key": "Button_Back",
+        "display": false
+    }
+}
