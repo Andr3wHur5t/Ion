@@ -338,6 +338,7 @@
 				3771F6B519E414D000B66C36 /* Frameworks */,
 				3771F6B619E414D000B66C36 /* Headers */,
 				3771F6B719E414D000B66C36 /* Resources */,
+				378690AC1A0050CC007D9FF0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -418,6 +419,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		378690AC1A0050CC007D9FF0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Compiles the framework into a universal framework\nSCRIPT_SRC=$(find \"$PROJECT_DIR/../Build Scripts/\" -name 'makeUniversalFramework.sh')\nif [ ! \"${SCRIPT_SRC}\" ]; then\necho \"Make Universal Framework Failed: err: script not found. Make sure that you're including script in your project directory\"\nexit 1\nfi\nsource \"${SCRIPT_SRC}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3771F6B419E414D000B66C36 /* Sources */ = {
@@ -555,6 +572,7 @@
 		3771F6CD19E414D000B66C36 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_ASSIGN_ENUM = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
@@ -582,6 +600,7 @@
 		3771F6CE19E414D000B66C36 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_ASSIGN_ENUM = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
@@ -600,6 +619,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";

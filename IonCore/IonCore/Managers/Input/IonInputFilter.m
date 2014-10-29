@@ -39,6 +39,7 @@
         self.min = min;
         self.max = max;
         self.expression = expression ? expression : [sIonInputFilter_DefaultExpressionString toExpresion];
+        self.acceptsInput = true;
     }
     return self;
 }
@@ -111,10 +112,12 @@
 - (BOOL) string:(NSString *)string ConformsWithRange:(NSRange) range {
     // Don't run checks if deleting.
     if ( string.length != 0 ) // Check max size, and content. Note: Max size of 0 disabled range check.
-        return  !(![self stringConformsToFilter: string] || !(self.max == 0 ? TRUE :
-                                                              (NSInteger)(range.location + (range.length + 1)) <= self.max));
+        return  (!(![self stringConformsToFilter: string] ||
+                   !(self.max == 0 ? TRUE :
+                                    (NSInteger)(range.location + (range.length + 1)) <= self.max)))
+                    && self.acceptsInput;
     else
-        return TRUE;
+        return self.acceptsInput;
 }
 
 /**

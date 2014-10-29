@@ -167,6 +167,29 @@
         return UIScrollViewIndicatorStyleDefault;
 }
 
+#pragma mark Animation
+
+- (UIViewAnimationOptions)toTransisionType {
+    if ( [self.uppercaseString isEqualToString: sFOTransisionType_CurlUp.uppercaseString] )
+        return UIViewAnimationOptionTransitionCurlUp;
+    else if ( [self.uppercaseString isEqualToString: sFOTransisionType_CurlDown.uppercaseString] )
+        return UIViewAnimationOptionTransitionCurlDown;
+    else if ( [self.uppercaseString isEqualToString: sFOTransisionType_FlipLeft.uppercaseString] )
+        return UIViewAnimationOptionTransitionFlipFromLeft;
+    else if ( [self.uppercaseString isEqualToString: sFOTransisionType_FlipRight.uppercaseString] )
+        return UIViewAnimationOptionTransitionFlipFromRight;
+    else if ( [self.uppercaseString isEqualToString: sFOTransisionType_FlipTop.uppercaseString] )
+        return UIViewAnimationOptionTransitionFlipFromTop;
+    else if ( [self.uppercaseString isEqualToString: sFOTransisionType_FlipBottom.uppercaseString] )
+        return UIViewAnimationOptionTransitionFlipFromBottom;
+    else if ( [self.uppercaseString isEqualToString: sFOTransisionType_Dissolve.uppercaseString] )
+        return UIViewAnimationOptionTransitionCrossDissolve;
+    else if ( [self.uppercaseString isEqualToString: sFOTransisionType_None.uppercaseString] )
+        return UIViewAnimationOptionTransitionNone;
+    else
+        return UIViewAnimationOptionTransitionNone;
+}
+
 #pragma mark Color
 
 + (NSString*) cleanDirtyHex:(NSString *)dirtyHex {

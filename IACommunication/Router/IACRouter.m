@@ -9,6 +9,7 @@
 #import "IACRouter.h"
 #import "IACLink.h"
 #import "IACLinkEvent.h"
+#import <FOUtilities/FOUtilities.h>
 
 @interface IACRouter ()
 
@@ -17,11 +18,18 @@
  */
 @property (strong, nonatomic, readonly) NSMutableDictionary *componentMap;
 
+
+/**
+ * List of this endpoints target actions
+ */
+@property (strong, nonatomic, readonly) FOTargetActionList *endpointTargetActions;
+
 @end
 
 @implementation IACRouter
 
 @synthesize componentMap = _componentMap;
+@synthesize endpointTargetActions = _endpointTargetActions;
 
 #pragma mark Module Interface
 
@@ -34,8 +42,11 @@
     
     // Valid Key?
     key = [link.pathComponents firstObject];
-    if ( !key || ![key isKindOfClass: [NSString class]] )
-        return FALSE;
+    if ( !key || ![key isKindOfClass: [NSString class]] ) {
+        // We are the endpoint
+        [self.endpointTargetActions invokeActionSetsInGroup: @"all" withObject: link];
+        return TRUE;
+    }
     
     // Do we have a assigned module?
     endpoint = [self.componentMap objectForKey: key.uppercaseString];
@@ -79,6 +90,20 @@
     [self.componentMap removeAllObjects];
 }
 
+- (IACRouter *)subRouterWithName:(NSString *)componentName {
+    IACRouter *subRouter;
+    NSParameterAssert( [componentName isKindOfClass: [NSString class]] );
+    if ( ![componentName isKindOfClass: [NSString class]] )
+        return NULL;
+    
+    subRouter = [self.componentMap objectForKey: componentName.uppercaseString];
+    if ( !subRouter ) {
+        subRouter = [[IACRouter alloc] init];
+        [self addComponent: subRouter forKey: componentName];
+    }
+    return subRouter;
+}
+
 #pragma mark Metrics
 
 - (BOOL) metricsProxyInvocation:(BOOL) invokedReturnValue withLink:(IACLink *)link {
@@ -86,6 +111,28 @@
         [[[IACLinkEvent alloc] initWithLink: link] record];
     return invokedReturnValue;
 }
+
+#pragma mark Endpoint actions
+
+- (FOTargetActionList *)endpointTargetActions {
+    if ( !_endpointTargetActions )
+        _endpointTargetActions = [[FOTargetActionList alloc] init];
+    return _endpointTargetActions;
+}
+- (void) addTarget:(id)target addAction:(SEL) action {
+    [self.endpointTargetActions addTarget: target andAction: action toGroup: @"all"];
+}
+
+
+- (void) removeTarget:(id)target addAction:(SEL) action {
+    [self.endpointTargetActions removeTarget: target andAction: action fromGroup: @"all"];
+}
+
+
+- (void) removeAllEndpoints {
+    [self.endpointTargetActions removeAllGroups];
+}
+
 
 
 @end

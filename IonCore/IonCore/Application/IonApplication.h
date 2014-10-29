@@ -33,6 +33,11 @@
 - (void) setupApplication;
 
 /**
+ * Customization Point for seting up the application router.
+ */
+- (void) setupRouter;
+
+/**
  * Gets called when we need construct a window.
  */
 - (UIWindow *)constructWindow;

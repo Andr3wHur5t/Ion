@@ -300,6 +300,7 @@
     
     // text input
     textInput = [[IonTextBar alloc] init];
+    textInput.inputFilter.acceptsInput = FALSE;
     [textInput setGuidesWithLocalHoriz: textInput.originGuideHoriz
                              localVert: textInput.centerGuideVert
                             superHoriz: containerView.leftAutoPadding

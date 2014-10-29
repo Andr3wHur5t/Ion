@@ -121,5 +121,7 @@
     if ( disabled )
         [_stateEffects setObject: disabled
                           forKey: [IonButtonBehavior keyForButtonState: IonButtonState_Disabled]];
+    
+    [self updateButtonToMatchState: self.button.currentState animated: FALSE];
 }
 @end

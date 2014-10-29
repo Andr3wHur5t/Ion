@@ -29,6 +29,7 @@ FOUNDATION_EXPORT const unsigned char IonCoreVersionString[];
 #import <IonCore/IonApplication+Responders.h>
 #import <IonCore/IonApplication+RapidSplash.h>
 #import <IonCore/IonApplication+InterappComunication.h>
+#import <IonCore/IonApplication+ControllerManager.h>
 
 /** Status Bar Behaviors */
 #import <IonCore/IonStatusBarBehaviorMotionGestureDisplay.h>
@@ -87,6 +88,7 @@ FOUNDATION_EXPORT const unsigned char IonCoreVersionString[];
 #import <IonCore/IonScrollView.h>
 #import <IonCore/IonPaginationView.h>
 #import <IonCore/IonPaginationController.h>
+#import <IonCore/IonTextView.h>
 
 /** Scroll Actions */
 #import <IonCore/IonScrollAction.h>

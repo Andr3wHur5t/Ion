@@ -84,6 +84,10 @@
     NSAssert( TRUE, @"IonApplication - (void)setupApplication; was not overloaded!" );
 }
 
+- (void) setupRouter {
+     NSAssert( TRUE, @"IonApplication - (void)setupRouter; was not overloaded!" );
+}
+
 - (void) configureStatusBar {
     NSAssert( TRUE, @"IonApplication - (void)configureStatusBar; was not overloaded!" );
 }
@@ -108,6 +112,9 @@
     
     //Display the rapid start controller
     [self.window makeKeyAndVisible];
+    
+    // Setup our router
+    [self setupRouter];
     
     // Record Metrics
     [self markAppLaunchEnd];
@@ -145,8 +152,6 @@
     // Save Interface Data
     [[IonImageManager interfaceManager] saveManifest: NULL];
 }
-
-#pragma mark Application Router
 
 #pragma mark Singletons
 

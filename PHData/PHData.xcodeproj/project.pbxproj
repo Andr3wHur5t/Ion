@@ -175,6 +175,7 @@
 				37B0068719E4D6AA0074DC2C /* Frameworks */,
 				37B0068819E4D6AA0074DC2C /* Headers */,
 				37B0068919E4D6AA0074DC2C /* Resources */,
+				378690A91A004996007D9FF0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -253,6 +254,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		378690A91A004996007D9FF0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Compiles the framework into a universal framework\nSCRIPT_SRC=$(find \"$PROJECT_DIR/../Build Scripts/\" -name 'makeUniversalFramework.sh')\nif [ ! \"${SCRIPT_SRC}\" ]; then\necho \"Make Universal Framework Failed: err: script not found. Make sure that you're including script in your project directory\"\nexit 1\nfi\nsource \"${SCRIPT_SRC}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		37B0068619E4D6AA0074DC2C /* Sources */ = {
@@ -365,6 +382,7 @@
 		37B0069F19E4D6AB0074DC2C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -382,6 +400,7 @@
 		37B006A019E4D6AB0074DC2C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -390,6 +409,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";

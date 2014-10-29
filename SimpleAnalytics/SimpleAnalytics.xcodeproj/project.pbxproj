@@ -199,6 +199,7 @@
 				377A134919E7F4D300964B61 /* Frameworks */,
 				377A134A19E7F4D300964B61 /* Headers */,
 				377A134B19E7F4D300964B61 /* Resources */,
+				378690AA1A0050AE007D9FF0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -277,6 +278,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		378690AA1A0050AE007D9FF0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Compiles the framework into a universal framework\nSCRIPT_SRC=$(find \"$PROJECT_DIR/../Build Scripts/\" -name 'makeUniversalFramework.sh')\nif [ ! \"${SCRIPT_SRC}\" ]; then\necho \"Make Universal Framework Failed: err: script not found. Make sure that you're including script in your project directory\"\nexit 1\nfi\nsource \"${SCRIPT_SRC}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		377A134819E7F4D300964B61 /* Sources */ = {
@@ -391,6 +408,7 @@
 		377A136119E7F4D300964B61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
@@ -416,6 +434,7 @@
 		377A136219E7F4D300964B61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
@@ -432,6 +451,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";

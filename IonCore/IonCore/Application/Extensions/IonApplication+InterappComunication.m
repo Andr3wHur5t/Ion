@@ -8,6 +8,7 @@
 
 #import "IonApplication+InterappComunication.h"
 #import <IonCore/IACRouter.h>
+#import <IonCore/IACLink.h>
 
 @implementation IonApplication (InterappComunication)
 
@@ -21,6 +22,93 @@
         [self.categoryVariables setObject: _router forKey: @"applicationIACRouter"];
     }
     return _router;
+}
+
+
+#pragma mark Controller Utilties
+
+- (void)openViewController:(UIViewController *)controller withLink:(IACLink *)link {
+    UIViewController *newController, *oldController;
+    NSNumber *duration;
+    UIViewAnimationOptions transision;
+    NSParameterAssert( [controller isKindOfClass: [UIViewController class]] );
+    if ( ![controller isKindOfClass: [UIViewController class]] )
+        return;
+    
+    // Check if the controller is our current controller
+    if ( [controller isEqual: self.window.rootViewController] ) {
+        // Report the link
+        [newController willOpenWithLink: link];
+        [newController didOpenWithLink: link];
+        
+        // Don't continue, we're already on the view controller.
+        return;
+    }
+    
+    // Get Parameters
+    duration = [link.parameters numberForKey: @"duration" defaultValue: @0.5 ];
+    transision = [[link.parameters stringForKey: @"transisionType"] toTransisionType];
+    
+    // Get Controllers
+    newController = controller;
+    oldController = self.window.rootViewController;
+    
+    // Inform the controllers that we will change with link
+    if ( !([newController willOpenWithLink: link] && [oldController willCloseWithLink: link]) )
+        return;
+    
+    // Animate to the new controller
+    [UIView transitionWithView: self.window
+                      duration: [duration doubleValue]
+                       options: transision
+                    animations: ^{
+                        self.window.rootViewController = newController;
+                    } completion:^(BOOL finished) {
+                        // Inform the controllers that we did change with link
+                        [newController didOpenWithLink: link];
+                        [oldController didCloseWithLink: link];
+                    }];
+}
+
+@end
+
+@implementation UIViewController (IACLinkInvokation)
+#pragma mark Router
+
++ (BOOL) automaticallyNotifiesObserversOfRouter { return FALSE; }
+
+- (void) setRouter:(IACRouter *)router {
+    [self willChangeValueForKey: @"router"];
+    if ( router )
+        [self.categoryVariables setObject: router forKeyedSubscript: @"router"];
+    else
+        [self.categoryVariables removeObjectForKey: @"router"];
+    [self didChangeValueForKey: @"router"];
+}
+
+- (IACRouter *)router {
+    return [self.categoryVariables objectForKey: @"router"];
+}
+
+#pragma mark Link Methods
+
+- (BOOL) willOpenWithLink:(IACLink *)link {
+    return true;
+}
+
+
+- (BOOL) willCloseWithLink:(IACLink *)link {
+    return true;
+}
+
+
+- (void) didOpenWithLink:(IACLink *)link {
+
+}
+
+
+- (void) didCloseWithLink:(IACLink *)link {
+    
 }
 
 @end

@@ -68,6 +68,11 @@ static NSString* sDefaultFontName = @"Helvetica Neue";
  */
 @property (strong, nonatomic, readwrite) id<IonLabelOverflowBehaviorDelegate> overflowBehavior;
 
+#pragma mark Guides
+
+/**
+ * Guide representing the height of the text.
+ */
 
 
 @end

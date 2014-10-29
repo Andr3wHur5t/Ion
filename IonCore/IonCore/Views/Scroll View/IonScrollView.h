@@ -85,3 +85,16 @@ static NSString *sIonScrollStyle_ZoomBounces =                          @"zoomBo
 - (void) removeAllActions;
 
 @end
+
+@interface UIScrollView (ContentSizeGuides)
+/**
+ * Guide which represents the current height of the content offset.
+ */
+@property (strong, nonatomic, readonly) IonGuideLine *currentContentHeightGuide;
+
+/**
+ * Guide which represents the current width of the content offset.
+ */
+@property (strong, nonatomic, readonly) IonGuideLine *currentContentWidthGuide;
+
+@end

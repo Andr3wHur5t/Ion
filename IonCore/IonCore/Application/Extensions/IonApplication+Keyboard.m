@@ -7,6 +7,8 @@
 //
 
 #import "IonApplication+Keyboard.h"
+#import "IonGuideLine+DefaultConstructors.h"
+#import "IonGuideLine+DependentGuides.h"
 
 @implementation IonApplication (Keyboard)
 #pragma mark Keyboard Frame
@@ -17,7 +19,7 @@
 - (CGRect) keyboardFrame {
     CGRect recordedRect;
     recordedRect = [[self.categoryVariables objectForKey: @"keyboardFrame"] CGRectValue];
-    return CGRectEqualToRect(recordedRect, CGRectUndefined) ? (CGRect){
+    return CGPointEqualToPoint( recordedRect.origin, CGPointZero) ? (CGRect){
                                                 (CGPoint){ 0 , [UIScreen mainScreen].bounds.size.height }, CGSizeZero
                                                                     } : recordedRect;
 }
@@ -43,4 +45,35 @@
                                                     name: UIKeyboardWillChangeFrameNotification
                                                   object: NULL];
 }
+
+#pragma mark Guides
+
+- (IonGuideLine *)keyboardTop {
+    IonGuideLine *guide = [self.categoryVariables objectForKey: @"keyboardTop"];
+    if ( !guide ) {
+        guide = [IonGuideLine guideWithGuide: self.keyboardPositionVert
+                                     modType: IonValueModType_Subtract
+                              andSecondGuide: self.keyboardHeight];
+    }
+    return guide;
+}
+
+- (IonGuideLine *)keyboardHeight {
+    IonGuideLine *guide = [self.categoryVariables objectForKey: @"keyboardHeight"];
+    if ( !guide ) {
+        guide = [IonGuideLine guideWithTarget: self keyPath: @"keyboardFrame"
+                           andProcessingBlock:[IonGuideTargetToken rectSizeProcessingBlockUsingMode: IonGuideLineFrameMode_Vertical]];
+    }
+    return guide;
+}
+
+- (IonGuideLine *)keyboardPositionVert {
+    IonGuideLine *guide = [self.categoryVariables objectForKey: @"keyboardPositionVert"];
+    if ( !guide ) {
+        guide = [IonGuideLine guideWithTarget: self keyPath: @"keyboardFrame"
+                           andProcessingBlock:[IonGuideTargetToken externalPositioningProcessingBlockUsingMode: IonGuideLineFrameMode_Vertical]];
+    }
+    return guide;
+}
+
 @end

@@ -61,6 +61,11 @@ static NSString *sIonInputFilter_MaxKey = @"maxChars";
 @property (assign, nonatomic, readwrite) NSInteger min;
 
 /**
+ * States if we can accept input.
+ */
+@property (assign, nonatomic, readwrite) BOOL acceptsInput;
+
+/**
  * The regular expression string to filter content with.
  */
 @property (strong, nonatomic, readwrite) NSRegularExpression* expression;

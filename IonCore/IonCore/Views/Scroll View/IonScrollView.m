@@ -300,3 +300,30 @@
 }
 
 @end
+
+@implementation UIScrollView (ContentSizeGuides)
+
+- (IonGuideLine *)currentContentHeightGuide {
+    IonGuideLine *currentGuide = [self.categoryVariables objectForKey: @"currentContentHeightGuide"];
+    if ( !currentGuide ) {
+        currentGuide = [IonGuideLine guideFromSizeOnTarget: self
+                                              usingKeyPath: @"contentSize"
+                                                    amount: 1.0f
+                                                   andMode: IonGuideLineFrameMode_Vertical];
+        [self.categoryVariables setObject: currentGuide forKey: @"currentContentHeightGuide"];
+    }
+    return currentGuide;
+}
+
+- (IonGuideLine *)currentContentWidthGuide {
+    IonGuideLine *currentGuide = [self.categoryVariables objectForKey: @"currentContentWidthGuide"];
+    if ( !currentGuide ) {
+        currentGuide = [IonGuideLine guideFromSizeOnTarget: self
+                                              usingKeyPath: @"contentSize"
+                                                    amount: 1.0f
+                                                   andMode: IonGuideLineFrameMode_Horizontal];
+        [self.categoryVariables setObject: currentGuide forKey: @"currentContentWidthGuide"];
+    }
+    return currentGuide;
+}
+@end

@@ -22,12 +22,18 @@
     UITapGestureRecognizer *tap;
 }
 
+/**
+ * The target action set to call when the enter key is pressed.
+ */
+@property (strong, nonatomic, readonly) FOTargetActionList *enterKeyTargetActionList;
+
 @end
 
 @implementation IonTextField
 
 @synthesize inputFilter = _inputFilter;
 @synthesize behaviorDictionary = _behaviorDictionary;
+@synthesize enterKeyTargetActionList = _enterKeyTargetActionList;
 
 #pragma mark Constructors
 /**
@@ -69,6 +75,8 @@
 - (void) construct {
     // Set Defaults.
     _iAlpha = 1.0;
+    self.canResignExternally = TRUE;
+    
     // Set our theme properties.
     self.themeElement = sIonThemeElementTextField;
     self.delegate = [IonInputManager sharedManager];
@@ -169,6 +177,25 @@
     }];
 }
 
+#pragma mark Enter Target Action
+
+- (FOTargetActionList *)enterKeyTargetActionList {
+    if ( !_enterKeyTargetActionList )
+        _enterKeyTargetActionList = [[FOTargetActionList alloc] init];
+    return _enterKeyTargetActionList;
+}
+
+- (void) addTarget:(id)target action:(SEL)action {
+    [self.enterKeyTargetActionList addTarget: target andAction: action toGroup: @"all"];
+}
+
+- (void) removeTarget:(id)target action:(SEL)action {
+    [self.enterKeyTargetActionList removeTarget: target andAction: action fromGroup: @"all"];
+}
+
+- (void) removeAllTargetActions {
+    [self.enterKeyTargetActionList removeAllGroups];
+}
 
 #pragma mark First Responder Paths
 /**
@@ -176,6 +203,7 @@
  */
 - (void) inputReturnKeyDidGetPressed {
     [self resignFirstResponderWithReason: sIonTextFieldBehavior_Reason_ReturnHit]; // Attempt to resign using the return key action.
+    [self.enterKeyTargetActionList invokeActionSetsInGroup: @"all"];
 }
 
 /**
@@ -184,7 +212,10 @@
  */
 - (BOOL) resignFirstResponder {
     // Attempt to resign using an external call.
-    return [self resignFirstResponderWithReason: sIonTextFieldBehavior_Reason_ExternalResign];
+    if ( self.canResignExternally )
+        return [self resignFirstResponderWithReason: sIonTextFieldBehavior_Reason_ExternalResign];
+    else
+        return FALSE;
 }
 
 /**
