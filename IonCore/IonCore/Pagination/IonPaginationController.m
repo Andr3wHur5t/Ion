@@ -264,7 +264,10 @@
                                  andBottom:self.sizeGuideVert];
 
   // Add As Subview.
-  [self addSubview:controller.view];
+  if ( ![controller.view.superview isEqual: self] )
+    [self addSubview:controller.view];
+  else
+    controller.view.hidden = false;
 }
 
 - (void)removePageAtIndex:(NSUInteger)index {
@@ -277,7 +280,8 @@
     return;
 
   // Remove
-  [controller.view removeFromSuperview];
+//  [controller.view removeFromSuperview];
+  controller.view.hidden = TRUE;
 }
 
 #pragma mark Start
