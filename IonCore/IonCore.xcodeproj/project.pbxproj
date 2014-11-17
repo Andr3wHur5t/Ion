@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		374AB6F519F0CF6F0024EDE0 /* IonPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 374AB6F319F0CF6F0024EDE0 /* IonPage.h */; };
 		374AB6F619F0CF6F0024EDE0 /* IonPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 374AB6F419F0CF6F0024EDE0 /* IonPage.m */; };
+		3760E2A21A10403100FA8DD5 /* IonTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3760E2A01A10403100FA8DD5 /* IonTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3760E2A31A10403100FA8DD5 /* IonTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3760E2A11A10403100FA8DD5 /* IonTableView.m */; };
+		3760E2A71A1045C800FA8DD5 /* IonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3760E2A51A1045C800FA8DD5 /* IonCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3760E2A81A1045C800FA8DD5 /* IonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3760E2A61A1045C800FA8DD5 /* IonCell.m */; };
+		3760E2AB1A104A7500FA8DD5 /* FODataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3760E2A91A104A7500FA8DD5 /* FODataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3760E2AC1A104A7500FA8DD5 /* FODataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3760E2AA1A104A7500FA8DD5 /* FODataModel.m */; };
 		3766BB4D19F6007800C18293 /* IonPaginationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3766BB4B19F6007800C18293 /* IonPaginationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3766BB4E19F6007800C18293 /* IonPaginationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3766BB4C19F6007800C18293 /* IonPaginationController.m */; };
 		37694ACF19F04B560087AD83 /* IonPaginationView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37694ACD19F04B560087AD83 /* IonPaginationView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -162,6 +168,12 @@
 /* Begin PBXFileReference section */
 		374AB6F319F0CF6F0024EDE0 /* IonPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonPage.h; sourceTree = "<group>"; };
 		374AB6F419F0CF6F0024EDE0 /* IonPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonPage.m; sourceTree = "<group>"; };
+		3760E2A01A10403100FA8DD5 /* IonTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonTableView.h; sourceTree = "<group>"; };
+		3760E2A11A10403100FA8DD5 /* IonTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonTableView.m; sourceTree = "<group>"; };
+		3760E2A51A1045C800FA8DD5 /* IonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonCell.h; sourceTree = "<group>"; };
+		3760E2A61A1045C800FA8DD5 /* IonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonCell.m; sourceTree = "<group>"; };
+		3760E2A91A104A7500FA8DD5 /* FODataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FODataModel.h; sourceTree = "<group>"; };
+		3760E2AA1A104A7500FA8DD5 /* FODataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FODataModel.m; sourceTree = "<group>"; };
 		3766BB4B19F6007800C18293 /* IonPaginationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonPaginationController.h; sourceTree = "<group>"; };
 		3766BB4C19F6007800C18293 /* IonPaginationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonPaginationController.m; sourceTree = "<group>"; };
 		37694ACD19F04B560087AD83 /* IonPaginationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonPaginationView.h; sourceTree = "<group>"; };
@@ -339,6 +351,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3760E29F1A10401C00FA8DD5 /* Table View */ = {
+			isa = PBXGroup;
+			children = (
+				3760E2A01A10403100FA8DD5 /* IonTableView.h */,
+				3760E2A11A10403100FA8DD5 /* IonTableView.m */,
+				3760E2A51A1045C800FA8DD5 /* IonCell.h */,
+				3760E2A61A1045C800FA8DD5 /* IonCell.m */,
+				3760E2A91A104A7500FA8DD5 /* FODataModel.h */,
+				3760E2AA1A104A7500FA8DD5 /* FODataModel.m */,
+			);
+			path = "Table View";
+			sourceTree = "<group>";
+		};
 		37694ACC19F04B2E0087AD83 /* Pagination */ = {
 			isa = PBXGroup;
 			children = (
@@ -728,6 +753,7 @@
 		37A0FA4319EADBEF00C1DBB2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3760E29F1A10401C00FA8DD5 /* Table View */,
 				37C0A4FE19FE2A82002D02F5 /* Text View */,
 				37A0FA4419EADBEF00C1DBB2 /* Button */,
 				37A0FA5019EADBEF00C1DBB2 /* Icon */,
@@ -976,11 +1002,13 @@
 				37A0FAD219EADBEF00C1DBB2 /* IonButtonBehaviorTapTransform.h in Headers */,
 				37A0FA7B19EADBEF00C1DBB2 /* IonAnimationSession.h in Headers */,
 				37A0FA8F19EADBEF00C1DBB2 /* IonCompleteGuideGroup.h in Headers */,
+				3760E2A71A1045C800FA8DD5 /* IonCell.h in Headers */,
 				37A0FADC19EADBEF00C1DBB2 /* IonLabel.h in Headers */,
 				37C0A50119FE2AA1002D02F5 /* IonTextView.h in Headers */,
 				37A0FA9C19EADBEF00C1DBB2 /* IonGuideLine.h in Headers */,
 				37A0FAA419EADBEF00C1DBB2 /* IonInputFilter.h in Headers */,
 				37A0FA8319EADBEF00C1DBB2 /* IonApplication+RapidSplash.h in Headers */,
+				3760E2AB1A104A7500FA8DD5 /* FODataModel.h in Headers */,
 				37A0FAA619EADBEF00C1DBB2 /* IonInputManager.h in Headers */,
 				37A0FACC19EADBEF00C1DBB2 /* IonViewMotionGestureManager.h in Headers */,
 				37A0FAB219EADBEF00C1DBB2 /* IonAttrubutesStanderdResolution.h in Headers */,
@@ -996,6 +1024,7 @@
 				37A0FACA19EADBEF00C1DBB2 /* IonViewController.h in Headers */,
 				37694ACF19F04B560087AD83 /* IonPaginationView.h in Headers */,
 				37A0FA7F19EADBEF00C1DBB2 /* IonApplication+Metrics.h in Headers */,
+				3760E2A21A10403100FA8DD5 /* IonTableView.h in Headers */,
 				37A0FAA819EADBEF00C1DBB2 /* IonStatusBarBehaviorMotionGestureDisplay.h in Headers */,
 				37A0FA9019EADBEF00C1DBB2 /* IonGuideGroup+GuidePositioning.h in Headers */,
 				37A0FA8719EADBEF00C1DBB2 /* IonApplication+StatusBar.h in Headers */,
@@ -1086,7 +1115,7 @@
 		377A13AD19E7FA9000964B61 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Andrew Hurst";
 				TargetAttributes = {
 					377A13B519E7FA9000964B61 = {
@@ -1157,7 +1186,9 @@
 				37A0FAE119EADBEF00C1DBB2 /* IonScrollRefreshAction.m in Sources */,
 				37A0FA8619EADBEF00C1DBB2 /* IonApplication+Responders.m in Sources */,
 				37A0FAE319EADBEF00C1DBB2 /* IonScrollThresholdAction.m in Sources */,
+				3760E2A31A10403100FA8DD5 /* IonTableView.m in Sources */,
 				37A0FAE719EADBEF00C1DBB2 /* IonScrollRefreshActionView.m in Sources */,
+				3760E2A81A1045C800FA8DD5 /* IonCell.m in Sources */,
 				37A0FAD519EADBEF00C1DBB2 /* IonButton.m in Sources */,
 				37A0FAED19EADBEF00C1DBB2 /* IonTextField.m in Sources */,
 				37A0FA9319EADBEF00C1DBB2 /* IonGuideGroup.m in Sources */,
@@ -1215,6 +1246,7 @@
 				37A0FA8219EADBEF00C1DBB2 /* IonApplication+plistGetters.m in Sources */,
 				37A0FAA319EADBEF00C1DBB2 /* UIView+IonGuideLine.m in Sources */,
 				37A0FA8E19EADBEF00C1DBB2 /* IonRapidStartViewController.m in Sources */,
+				3760E2AC1A104A7500FA8DD5 /* FODataModel.m in Sources */,
 				37A0FABD19EADBEF00C1DBB2 /* UIWindow+IonWindow.m in Sources */,
 				37A0FACF19EADBEF00C1DBB2 /* IonButtonBehavior.m in Sources */,
 				37A0FAD919EADBEF00C1DBB2 /* IonIcon.m in Sources */,
@@ -1323,7 +1355,6 @@
 		377A13CA19E7FA9000964B61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
@@ -1346,7 +1377,7 @@
 				);
 				INFOPLIST_FILE = IonCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1363,7 +1394,6 @@
 		377A13CB19E7FA9000964B61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
@@ -1386,7 +1416,7 @@
 				);
 				INFOPLIST_FILE = IonCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

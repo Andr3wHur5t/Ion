@@ -99,6 +99,11 @@ FOUNDATION_EXPORT const unsigned char IonCoreVersionString[];
 #import <IonCore/IonScrollActionView.h>
 #import <IonCore/IonScrollRefreshActionView.h>
 
+/** Table View */
+#import <IonCore/FODataModel.h> // TODO: Move to FOUtils
+#import <IonCore/IonTableView.h>
+#import <IonCore/IonCell.h>
+
 /** Button Behaviors */
 #import <IonCore/IonButtonBehavior.h>
 #import <IonCore/IonButtonBehaviorSimpleFade.h>

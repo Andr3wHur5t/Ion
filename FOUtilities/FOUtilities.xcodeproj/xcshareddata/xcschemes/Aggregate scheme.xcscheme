@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "377A136F19E7F55C00964B61"
+               BuildableName = "SimpleMath.framework"
+               BlueprintName = "SimpleMath"
+               ReferencedContainer = "container:../SimpleMath/SimpleMath.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "3771F6B819E414D000B66C36"
                BuildableName = "FOUtilities.framework"
                BlueprintName = "FOUtilities"
-               ReferencedContainer = "container:../FOUtilities/FOUtilities.xcodeproj">
+               ReferencedContainer = "container:FOUtilities.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -45,7 +59,49 @@
                BlueprintIdentifier = "370B1A6119E3FB8400D6447C"
                BuildableName = "libIACommunication.a"
                BlueprintName = "IACommunication"
-               ReferencedContainer = "container:IACommunication.xcodeproj">
+               ReferencedContainer = "container:../IACommunication/IACommunication.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "37FCF153197F830C004C14C8"
+               BuildableName = "IonData.framework"
+               BlueprintName = "IonData"
+               ReferencedContainer = "container:../Ion/Ion.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "377A13B519E7FA9000964B61"
+               BuildableName = "IonCore.framework"
+               BlueprintName = "IonCore"
+               ReferencedContainer = "container:../IonCore/IonCore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "37B0068A19E4D6AA0074DC2C"
+               BuildableName = "PHData.framework"
+               BlueprintName = "PHData"
+               ReferencedContainer = "container:../PHData/PHData.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -56,24 +112,14 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "370B1A6C19E3FB8400D6447C"
-               BuildableName = "IACommunicationTests.xctest"
-               BlueprintName = "IACommunicationTests"
-               ReferencedContainer = "container:IACommunication.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "370B1A6119E3FB8400D6447C"
-            BuildableName = "libIACommunication.a"
-            BlueprintName = "IACommunication"
-            ReferencedContainer = "container:IACommunication.xcodeproj">
+            BlueprintIdentifier = "3771F6B819E414D000B66C36"
+            BuildableName = "FOUtilities.framework"
+            BlueprintName = "FOUtilities"
+            ReferencedContainer = "container:FOUtilities.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -82,17 +128,17 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "370B1A6119E3FB8400D6447C"
-            BuildableName = "libIACommunication.a"
-            BlueprintName = "IACommunication"
-            ReferencedContainer = "container:IACommunication.xcodeproj">
+            BlueprintIdentifier = "3771F6B819E414D000B66C36"
+            BuildableName = "FOUtilities.framework"
+            BlueprintName = "FOUtilities"
+            ReferencedContainer = "container:FOUtilities.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -107,10 +153,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "370B1A6119E3FB8400D6447C"
-            BuildableName = "libIACommunication.a"
-            BlueprintName = "IACommunication"
-            ReferencedContainer = "container:IACommunication.xcodeproj">
+            BlueprintIdentifier = "3771F6B819E414D000B66C36"
+            BuildableName = "FOUtilities.framework"
+            BlueprintName = "FOUtilities"
+            ReferencedContainer = "container:FOUtilities.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

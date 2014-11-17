@@ -17,21 +17,23 @@ static CGFloat sDefaultFontSize = 12.0f;
 static NSString* sDefaultFontName = @"Helvetica Neue";
 
 @class IonLabel;
+@class IonGuideLine;
 
-/**
- * The protocol for overflow behavior
+/*!
+ @brief  The protocol for overflow behavior
  */
 @protocol IonLabelOverflowBehaviorDelegate <NSObject>
 
-/**
- * Sets the Current managed views.
- * @param {UIView*} the containing view
- * @param {UILabel*} the label to manage  
+/*!
+ @brief Sets the Current managed views.
+ 
+ @param view  the containing view
+ @param label the label to manage
  */
 - (void) setContainer:(IonLabel*) view andLabel:(UILabel*) label;
 
-/**
- * Informs the behavior delegate of an attribute change of the label.  
+/*!
+ @brief Informs the behavior delegate of an attribute change of the label.
  */
 - (void) updateStates;
 
@@ -43,36 +45,61 @@ static NSString* sDefaultFontName = @"Helvetica Neue";
  */
 @interface IonLabel : UIView <IonThemeSpecialUIView>
 
-/**
- * The text to be displayed in the view.
+/*!
+ @brief The text to be displayed in the view.
  */
 @property (weak, nonatomic, readwrite) NSString* text;
 
-/**
- * The text color to be displayed in the view.
+/*!
+ @brief The text color to be displayed in the view
  */
 @property (weak, nonatomic, readwrite) UIColor* textColor;
 
-/**
- * The text alignment to use.
+/*!
+ @brief The text alignment to use.
  */
 @property (assign, nonatomic, readwrite) NSTextAlignment textAlignment;
 
-/**
- * The font to use in the view.
+/*!
+ @brief The font to use in the view.
  */
 @property (weak, nonatomic, readwrite) UIFont* font;
 
-/**
- * The overflow delegate.
+/*!
+ @brief The overflow delegate.
  */
 @property (strong, nonatomic, readwrite) id<IonLabelOverflowBehaviorDelegate> overflowBehavior;
 
 #pragma mark Guides
 
-/**
- * Guide representing the height of the text.
+/*!
+ @brief A guide representing the current text height.
  */
+@property (strong, nonatomic, readonly) IonGuideLine *textHeightGuide;
 
+/*!
+ @brief A guide representing the current text width.
+ */
+@property (strong, nonatomic, readonly) IonGuideLine *textWidthGuide;
+
+@end
+
+@interface UILabel (IonStyle)
+
+@property (assign, nonatomic, readonly) CGSize textSize;
+
+/*!
+ @brief A guide representing the current text height.
+ */
+@property (strong, nonatomic, readonly) IonGuideLine *textHeightGuide;
+
+/*!
+ @brief A guide representing the current text width.
+ */
+@property (strong, nonatomic, readonly) IonGuideLine *textWidthGuide;
+
+@property (assign, nonatomic, readonly) CGFloat textSizeConstrainedByWidth;
+
+@property (strong, nonatomic, readonly) IonGuideLine *textSizeConstrainedByWidthGuide;
 
 @end

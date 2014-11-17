@@ -13,14 +13,14 @@
 
 @implementation IACLink (IonApplication)
 
-- (void) invoke {
+- (BOOL) invoke {
     IonApplication *sharedApplication;
     sharedApplication = [IonApplication sharedApplication];
     if ( !sharedApplication )
-        return;
+        return FALSE;
     
     // Invoke the link on our shared applications router
-    [sharedApplication.router invokeLink: self];
+    return [sharedApplication.router invokeLink: self];
 }
 
 @end

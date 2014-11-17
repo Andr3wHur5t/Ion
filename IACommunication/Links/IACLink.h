@@ -234,4 +234,6 @@
  */
 + (NSDictionary *)queryParametersFromString:(NSString *)string;
 
+
++ (NSString *)decodeURLString:(NSString *)string;
 @end

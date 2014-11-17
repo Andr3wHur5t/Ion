@@ -15,6 +15,7 @@
 		370B1A8819E3FCEB00D6447C /* IACRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 370B1A8619E3FCEB00D6447C /* IACRouter.m */; };
 		370B1A8B19E3FD0B00D6447C /* IACActionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 370B1A8919E3FD0B00D6447C /* IACActionModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		370B1A8C19E3FD0B00D6447C /* IACActionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 370B1A8A19E3FD0B00D6447C /* IACActionModule.m */; };
+		373E38291A15845600D12B8E /* SimpleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37694AC019EDE6070087AD83 /* SimpleAnalytics.framework */; };
 		37694AC119EDE6070087AD83 /* SimpleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37694AC019EDE6070087AD83 /* SimpleAnalytics.framework */; };
 		37694AC519EDE9F60087AD83 /* IACLinkEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 37694AC319EDE9F60087AD83 /* IACLinkEvent.h */; };
 		37694AC619EDE9F60087AD83 /* IACLinkEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 37694AC419EDE9F60087AD83 /* IACLinkEvent.m */; };
@@ -95,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				373E38291A15845600D12B8E /* SimpleAnalytics.framework in Frameworks */,
 				37A0FB1019EAE9AE00C1DBB2 /* libIACommunication.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,7 +264,7 @@
 		370B1A5A19E3FB8400D6447C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Andrew Hurst";
 				TargetAttributes = {
 					370B1A6119E3FB8400D6447C = {
@@ -413,13 +415,12 @@
 		370B1A7419E3FB8400D6447C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
 				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)";
 				EXECUTABLE_PREFIX = lib;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(CONFIGURATION_BUILD_DIR)-iphoneos",
+					"$(inherited)",
 				);
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -443,13 +444,12 @@
 		370B1A7519E3FB8400D6447C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
 				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)";
 				EXECUTABLE_PREFIX = lib;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(CONFIGURATION_BUILD_DIR)-iphoneos",
+					"$(inherited)",
 				);
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -474,10 +474,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(CONFIGURATION_BUILD_DIR)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -486,9 +483,8 @@
 				INFOPLIST_FILE = IACommunicationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/andrewhurst/work/Ion/FOUtilities/build/Debug-iphoneos",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
+					"$(CONFIGURATION_BUILD_DIR)",
+					"$(BUILD_DIR)/$(CONFIGURATION)",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -505,17 +501,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(CONFIGURATION_BUILD_DIR)";
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				INFOPLIST_FILE = IACommunicationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/andrewhurst/work/Ion/FOUtilities/build/Debug-iphoneos",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-bdtnrybsqemkylekofnlnukaxodk/Build/Products/Debug-iphoneos",
+					"$(CONFIGURATION_BUILD_DIR)",
+					"$(BUILD_DIR)/$(CONFIGURATION)",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

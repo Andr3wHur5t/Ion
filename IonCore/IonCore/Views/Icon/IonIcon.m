@@ -11,74 +11,90 @@
 #import "UIView+IonTheme.h"
 #import <IonData/IonData.h>
 
+
 @implementation IonIcon
+
+@synthesize image = _image;
+@synthesize imageKey = _imageKey;
+
 #pragma mark Constructors
-/**
- * Default constructor.  
- */
-- (instancetype) init {
-    self = [super init];
-    if ( self )
-        [self construct];
-    return self;
+
+- (instancetype)init {
+  self = [super init];
+  if (self)
+    [self construct];
+  return self;
 }
 
-/**
- * Framed constructor.
- * @param {CGRect} the frame to construct with.  
- */
-- (instancetype) initWithFrame:(CGRect) frame {
-    self = [super initWithFrame: frame];
-    if ( self )
-        [self construct];
-    return self;
+- (instancetype)initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
+  if (self)
+    [self construct];
+  return self;
 }
 
-/**
- * Constructs the icon view with the specified image.
- * @param {UIImage*} the icon.
- */
-- (instancetype) initWithImage:(UIImage *)image {
-    self = [self init];
-    if ( self )
-        [self setMaskImage: image renderMode: IonBackgroundRenderFilled];
-    return self;
+- (instancetype)initWithImage:(UIImage *)image {
+  self = [self init];
+  if (self)
+    self.image = image;
+  return self;
 }
 
-/**
- * Constructs the icon view with the specified image.
- * @param {NSString*} the key for the image.
- */
-- (instancetype) initWithImageKey:(NSString *)imageKey {
-    self = [self init];
-    if ( self )
-        [self setMaskImageUsingKey: imageKey inRenderMode: IonBackgroundRenderFilled];
-    return self;
+- (instancetype)initWithImageKey:(NSString *)imageKey {
+  self = [self init];
+  if (self)
+    self.imageKey = imageKey;
+  return self;
 }
 
-/**
- * General Construction.
- */
-- (void) construct {
-    self.themeElement = sIonIconViewKey;
+- (void)construct {
+  self.themeElement = sIonIconViewKey;
+}
+#pragma mark Configuration
+
++ (BOOL) automaticallyNotifiesObserversOfImage { return FALSE; }
+
+- (void) setImage:(UIImage *)image {
+  NSParameterAssert( [image isKindOfClass: [UIImage class]] );
+  if ( ![image isKindOfClass: [UIImage class]] )
+    return;
+  [self willChangeValueForKey: @"image"];
+  _image = image;
+  [self didChangeValueForKey: @"image"];
+  [self setMaskImage: _image renderMode:IonBackgroundRenderFilled];
+}
+
++ (BOOL)automaticallyNotifiesObserversOfImageKey { return FALSE; }
+
+- (void) setImageKey:(NSString *)imageKey {
+  NSParameterAssert( [imageKey isKindOfClass: [NSString class]] );
+  if ( ![imageKey isKindOfClass: [NSString class]] )
+    return;
+  [self willChangeValueForKey: @"imageKey"];
+  _imageKey = imageKey;
+  [self didChangeValueForKey: @"imageKey"];
+  [self setMaskImageUsingKey: _imageKey inRenderMode:IonBackgroundRenderFilled];
 }
 
 #pragma mark Style Application
-/**
- * Applies the style to the view.
- */
-- (void) applyStyle:(IonStyle *)style {
-    [super applyStyle: style];
-    NSString *imageKey;
-    
-    // Size
-    self.frame = (CGRect){ self.frame.origin, [style.configuration sizeForKey: sIonIconView_IconSize] };
-    
-    // Image
-    imageKey = [style.configuration stringForKey: sIonIconView_IconImage];
-    if ( imageKey && [imageKey isKindOfClass: [NSString class]] ) {
-        [self setMaskImageUsingKey: imageKey inRenderMode: IonBackgroundRenderFilled];
-    }
+
+- (void)applyStyle:(IonStyle *)style {
+  [super applyStyle:style];
+  NSString *imageKey;
+
+  // Size
+  self.frame = (CGRect){self.frame.origin,
+                        [style.configuration sizeForKey:sIonIconView_IconSize]};
+
+  // Image
+  imageKey = [style.configuration stringForKey:sIonIconView_IconImage];
+  if ( [imageKey isKindOfClass:[NSString class]])
+    [self setMaskImageUsingKey:imageKey inRenderMode:IonBackgroundRenderFilled];
+  else if ( [_image isKindOfClass: [UIImage class]] )
+    [self setMaskImage: _image renderMode:IonBackgroundRenderFilled];
+  else if ( [_imageKey isKindOfClass: [NSString class]] )
+    [self setMaskImageUsingKey:_imageKey inRenderMode:IonBackgroundRenderFilled];
+  
 }
 
 @end

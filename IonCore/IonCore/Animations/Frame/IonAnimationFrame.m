@@ -74,13 +74,13 @@
 - (void) executeTransformationOn:(UIView *)view withCompletion:(FrameAnimationCompletion)completion {
     if ( !view || ![view isKindOfClass: [UIView class]] )
         return;
-    [UIView animateKeyframesWithDuration: self.executionDuration
-                                   delay: self.executionDelay
-                                 options: self.options
-                              animations: ^{
-                                  [self applyToView: view];
+    [UIView animateWithDuration: self.executionDuration
+                          delay: self.executionDelay
+                        options: self.options
+                     animations: ^{
+                         [self applyToView: view];
                               }
-                              completion: ^( BOOL finished ) {
+                     completion: ^( BOOL finished ) {
                                   if ( completion )
                                       completion( self.targetFrameName );
                               }];

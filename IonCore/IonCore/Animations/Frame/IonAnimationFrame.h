@@ -83,7 +83,7 @@ typedef void(^FrameAnimationCompletion)( NSString *nextTarget );
 /**
  * The animations keyframe options.
  */
-@property (assign, nonatomic, readwrite) UIViewKeyframeAnimationOptions options;
+@property (assign, nonatomic, readwrite) UIViewAnimationOptions options;
 
 #pragma mark Timing
 /**

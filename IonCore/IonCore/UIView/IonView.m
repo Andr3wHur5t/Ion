@@ -24,9 +24,7 @@ static NSString* sIonGuideLine_StyleMargin_Horiz =      @"IonGuideLine_StyleMarg
 
 @implementation IonView
 #pragma mark Construction
-/**
- * Default constructor  
- */
+
 - (instancetype) init {
     self = [super init];
     if ( self )
@@ -34,10 +32,6 @@ static NSString* sIonGuideLine_StyleMargin_Horiz =      @"IonGuideLine_StyleMarg
     return self;
 }
 
-/**
- * Default framed constructor.
- * @param frame - the frame to construct with.  
- */
 - (instancetype) initWithFrame:(CGRect) frame {
     self = [super initWithFrame: frame];
     if ( self )
@@ -45,10 +39,6 @@ static NSString* sIonGuideLine_StyleMargin_Horiz =      @"IonGuideLine_StyleMarg
     return self;
 }
 
-/**
- * Default coded constructor.
- * @param aDecoder - the coder to decode from.  
- */
 - (instancetype) initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder: aDecoder];
     if ( self )
@@ -56,17 +46,10 @@ static NSString* sIonGuideLine_StyleMargin_Horiz =      @"IonGuideLine_StyleMarg
     return self;
 }
 
-/**
- * Standard constructor method.
- */
 - (void) construct {
     // Subclass all construction code here.
 }
 #pragma mark Subview Management
-/**
- * Performs the block with each IonView child as a parameter.
- * @param { void(^)( IonView* child) }  
- */
 - (void) forEachIonViewChildPerformBlock: (void(^)( IonView* child )) actionBlock {
     if ( !actionBlock )
         return;
@@ -75,24 +58,8 @@ static NSString* sIonGuideLine_StyleMargin_Horiz =      @"IonGuideLine_StyleMarg
 }
 
 
-/**
- * Adds as a subview, and sets its' style.
- * @param {UIView*} the view to add.  
- */
 - (void) addSubview:(UIView*) view {
     [super addSubview: view];
-    if ( !view )
-        return;
     [view setParentStyle: self.themeConfiguration.currentStyle ];
-}
-
-#pragma mark Style Application
-
-/**
- * Applies the style to the view.
- * @param {IonStyle} the style to be applied.  
- */
-- (void) applyStyle:(IonStyle*) style {
-    [super applyStyle: style];
 }
 @end

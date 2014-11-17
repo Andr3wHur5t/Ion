@@ -116,6 +116,14 @@
     return;
 }
 
+#pragma mark View Updates
+
+- (void)addSubview:(UIView *)view {
+  [super addSubview: view];
+  [view setParentStyle: self.themeConfiguration.currentStyle ];
+}
+
+
 #pragma mark Utilities
 
 /**

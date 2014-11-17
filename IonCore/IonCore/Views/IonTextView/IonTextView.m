@@ -36,13 +36,6 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame textContainer:(NSTextContainer *)textContainer {
-    self = [super initWithFrame: frame textContainer: textContainer];
-    if ( self )
-        [self construct];
-    return self;
-}
-
 - (void)construct {
     self.themeElement = @"textView";
 }
@@ -50,13 +43,27 @@
 #pragma mark Text Guides
 
 - (void) setText:(NSString *)text {
-    [super setText: text];
-    
-    if ( ![text isKindOfClass: [NSString class]] )
-        return;
-    
-    // Height
-    self.textHeightConstrainedByWidth.position = self.font.lineHeight * self.textContainer.size.height;
+  [super setText: text];
+  [self updateTextSize];
+}
+
+- (void) setFont:(UIFont *)font {
+  [super setFont: font];
+  [self updateTextSize];
+}
+
+- (void) setFrame:(CGRect)frame {
+  [super setFrame:frame];
+  [self updateTextSize];
+}
+
+
+- (void)updateTextSize {
+  CGSize textSize;
+  if ( ![self.text isKindOfClass:[NSString class]] || ![self.font isKindOfClass:[UIFont class]] )
+    return;
+  textSize.height = [self sizeThatFits:(CGSize){ self.frame.size.width , CGFLOAT_MAX}].height + self.font.lineHeight;
+  self.textHeightConstrainedByWidth.position = textSize.height;
 }
 
 - (IonGuideLine *)textHeightConstrainedByWidth {
@@ -83,4 +90,13 @@
     self.textAlignment = [style.configuration textAlignmentForKey: sIonThemeText_Alignment];
 }
 
+#pragma mark View Updates
+
+- (void)addSubview:(UIView *)view {
+  [super addSubview: view];
+  [view setParentStyle: self.themeConfiguration.currentStyle ];
+}
+
+
 @end
+

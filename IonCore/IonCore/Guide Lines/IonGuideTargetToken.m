@@ -104,7 +104,7 @@
 
 + (IonGuideLineProcessingBlock) defaultProcessingBlock {
     return ^CGFloat( id data ) {
-        if ( !data || ![data isKindOfClass: [NSValue class]] )
+        if ( ![data respondsToSelector: @selector(toFloat)] )
             return 0.0f;
         return [(NSValue*)data toFloat];
     };

@@ -13,6 +13,6 @@
 /**
  * Invokes the link on the current applications IACRouter.
  */
-- (void) invoke;
+- (BOOL) invoke;
 
 @end

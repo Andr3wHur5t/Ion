@@ -64,5 +64,22 @@ static NSString *testReason = @"Because";
     XCTAssert( [[IACLink urlStringFromPath: input] isEqualToString: expected] , @"Pass");
 }
 
+- (void)testURLDecoding {
+  NSString *input, *expected;
+  input = @"tipmonkey:///history?item=356&ref=blockparty%3A%2F%2F%2Fmain%2Factivity%3Fitem%3D33";
+  expected = @"tipmonkey:///history?item=356&ref=blockparty:///main/activity?item=33";
+
+  XCTAssert( [[IACLink decodeURLString: input] isEqualToString: expected] , @"Pass");
+}
+
+- (void)testURLEncodedURL {
+  NSString *input, *expected;
+  IACLink *link;
+  input = @"tipmonkey:///history?item=356&ref=blockparty%3A%2F%2F%2Fmain%2Factivity%3Fitem%3D33";
+  
+  link = [IACLink linkWithURLString:input andReason:@"thing"];
+  
+//  XCTAssert( [ isEqualToString: expected] , @"Pass");
+}
 
 @end

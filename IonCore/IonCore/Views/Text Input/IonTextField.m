@@ -36,9 +36,7 @@
 @synthesize enterKeyTargetActionList = _enterKeyTargetActionList;
 
 #pragma mark Constructors
-/**
- * Default constructor  
- */
+
 - (instancetype) init {
     self = [super init];
     if ( self )
@@ -46,10 +44,6 @@
     return self;
 }
 
-/**
- * Constructs the field with the inputted frame.
- * @param frame - the frame to construct with.
- */
 - (instancetype) initWithFrame:(CGRect) frame {
     self = [super initWithFrame: frame];
     if ( self )
@@ -57,10 +51,6 @@
     return self;
 }
 
-/**
- * Constructs the field with the inputted coder.
- * @param aDecoder - the coder to decode, and construct with.  
- */
 - (instancetype) initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder: aDecoder];
     if ( self )
@@ -68,10 +58,6 @@
     return self;
 }
 
-
-/**
- * Standard construction functions to be shared between the different constructors.
- */
 - (void) construct {
     // Set Defaults.
     _iAlpha = 1.0;
@@ -83,9 +69,7 @@
 }
 
 #pragma mark Input Filter
-/**
- * Gets, or constructs the input filter.
- */
+
 - (IonInputFilter *)inputFilter {
     if ( !_inputFilter )
         _inputFilter = [[IonInputFilter alloc] init];
@@ -94,10 +78,6 @@
 
 #pragma mark Style Integration
 
-/**
- * Process our style information
- * @param {IonStyle*} the style to apply.
- */
 - (void) applyStyle:(IonStyle *)style {
     [super applyStyle: style];
     
@@ -129,10 +109,6 @@
     [self processKeybordConfiguration: [style.configuration dictionaryForKey: sIonTextField_KeyboardKey]];
 }
 
-/**
- * Process the keybord configuration dictionary.
- * @param {NSDictionary*} the input configuration.
- */
 - (void) processKeybordConfiguration:(NSDictionary *)config {
     if ( !config || ![config isKindOfClass: [NSDictionary class]] )
         return;
@@ -160,9 +136,7 @@
 }
 
 #pragma mark Input Processing Responses
-/**
- * Gets called when we input fails our filter.
- */
+
 - (void) inputDidFailFilter {
     [UIView animateWithDuration: self.animationDuration / 2 animations: ^{
         if ( super.alpha != _iAlpha )
@@ -198,18 +172,12 @@
 }
 
 #pragma mark First Responder Paths
-/**
- * Gets called when the enter key is pressed.
- */
+
 - (void) inputReturnKeyDidGetPressed {
     [self resignFirstResponderWithReason: sIonTextFieldBehavior_Reason_ReturnHit]; // Attempt to resign using the return key action.
     [self.enterKeyTargetActionList invokeActionSetsInGroup: @"all"];
 }
 
-/**
- * Attempts to resign first responder, using the external action.
- * @return {BOOL}
- */
 - (BOOL) resignFirstResponder {
     // Attempt to resign using an external call.
     if ( self.canResignExternally )
@@ -218,11 +186,6 @@
         return FALSE;
 }
 
-/**
- * Attempts to resign first responder using the specified reason.
- * @param {NSString*} the reason for resigning first responder.
- * @return {BOOL}
- */
 - (BOOL) resignFirstResponderWithReason:(NSString *)action {
     if ( [self canResignFirstResponderWithoutInvalidCheckForReason: action] )
         return [self forcivlyResignFirstResponder]; // We don't need to run validation to resign.
@@ -234,24 +197,14 @@
     }
 }
 
-/**
- * Forcevly resigns first responder by ingnoring all checks.
- * @return {BOOL} if the super will resign first responder.
- */
 - (BOOL) forcivlyResignFirstResponder {
     return [super resignFirstResponder];
 }
 
 #pragma mark Behavior Dictionary
-/**
- * Switch KVO to manual mode.
- */
+
 + (BOOL) automaticallyNotifiesObserversOfBehaviorDictionary { return FALSE; }
 
-/**
- * Sets the behavior dictionary key.
- * @param {NSDictionary*}
- */
 - (void) setBehaviorDictionary:(NSDictionary *)behaviorDictionary {
     if ( !behaviorDictionary || ![behaviorDictionary isKindOfClass: [NSDictionary class]] )
         return;
@@ -260,10 +213,6 @@
     [self didChangeValueForKey: @"behaviorDictionary"];
 }
 
-/**
- * Gets, or constructs the acction dictionary.
- * @return {NSDictionary*}
- */
 - (NSDictionary *)behaviorDictionary {
     if ( !_behaviorDictionary ) // if the dictionary is empty, construct with the default one.
         _behaviorDictionary = @{
@@ -279,12 +228,6 @@
     return _behaviorDictionary;
 }
 
-/**
- * Checks if we can resign first responder without checking if our text is valid for the specified reason,
- * from our behavior dictionary.
- * @param {NSString*} the action to invoke the animation for.
- * @return {BOOL}
- */
 - (BOOL) canResignFirstResponderWithoutInvalidCheckForReason:(NSString *)action {
     NSParameterAssert( action && [action isKindOfClass: [NSString class]] );
     if ( !action || ![action isKindOfClass: [NSString class]] )
@@ -293,10 +236,6 @@
     return [[self.behaviorDictionary dictionaryForKey: action] boolForKey: sIonTextField_ResignBehavior_NoValidation];
 }
 
-/**
- * Invokes the error animation for the specified action if it exsists.
- * @param {NSString*} the action to invoke the animation for.
- */
 - (void) invokeErrorAnimationForAction:(NSString *)action {
     NSDictionary *animationPointer;
     NSParameterAssert( action && [action isKindOfClass: [NSString class]] );
@@ -312,20 +251,13 @@
 }
 
 #pragma mark Text Validation
-/**
- * Checks if the raw text is valid.
- * @return {BOOL}
- */
+
 - (BOOL) textIsValid {
     return FALSE; // TODO Run a check.
 }
 
 #pragma mark Placeholder Integration
 
-/**
- * Sets the placeholder text.
- * @param {NSString*} the new placeholder text.
- */
 - (void) setPlaceholder:(NSString *)placeholder {
     if ( (!_placeholderTextColor && !_placeholderFont) || !placeholder )
         super.placeholder = placeholder; // Normal No customization.
@@ -334,10 +266,6 @@
                                                                       attributes: [self placeholderAttributes]];
 }
 
-/**
- * Gets the placeholder attributes dictionary from the current settings.
- * @return {NSDictionary*} the attributes.
- */
 - (NSDictionary *)placeholderAttributes {
     return @{
              NSForegroundColorAttributeName: self.placeholderTextColor ? self.placeholderTextColor : [UIColor grayColor],
@@ -346,16 +274,9 @@
 }
 
 #pragma mark Placeholder Color
-/**
- * Switches placeholder text color KVO to manual mode.
- * @return {BOOL}
- */
+
 + (BOOL) automaticallyNotifiesObserversOfPlaceholderTextColor { return FALSE; }
 
-/**
- * Sets the placeholder text color.
- * @param {UIColor*} the new color.
- */
 - (void) setPlaceholderTextColor:(UIColor *)placeholderTextColor {
     [self willChangeValueForKey: @"placeholderTextColor"];
     _placeholderTextColor = placeholderTextColor;
@@ -366,16 +287,9 @@
 }
 
 #pragma mark Placeholder Font
-/**
- * Switches placeholder font KVO to manual mode.
- * @return {BOOL}
- */
+
 + (BOOL) automaticallyNotifiesObserversOfPlaceholderFont { return FALSE; }
 
-/**
- * Sets the placeholder font.
- * @param {UIFont*} the new font.
- */
 - (void) setPlaceholderFont:(UIFont *)placeholderFont {
     [self willChangeValueForKey: @"placeholderFont"];
     _placeholderFont = placeholderFont;
@@ -393,5 +307,13 @@
     _iAlpha = alpha;
     [super setAlpha: alpha];
 }
+
+#pragma mark View Updates
+
+- (void)addSubview:(UIView *)view {
+  [super addSubview: view];
+  [view setParentStyle: self.themeConfiguration.currentStyle ];
+}
+
 
 @end

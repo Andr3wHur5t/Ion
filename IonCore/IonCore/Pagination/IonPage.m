@@ -10,4 +10,15 @@
 
 @implementation IonPage
 
+@synthesize size = _size;
+#pragma mark Construction
+
+- (instancetype) initWithSize:(NSUInteger)size {
+  self = [self init];
+  if ( self )
+    _size = size;
+  return self;
+}
+
+
 @end

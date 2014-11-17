@@ -9,11 +9,7 @@
 #import "IonGuideLine+DependentGuides.h"
 
 @implementation IonGuideLine (DependentGuides)
-/**
- * Creates a guide line from two guide line modified by each other.
- * @param {IonGuideLine*} the first guide line.
- * @param {IonGuideLine*} the second guide line.  
- */
+
 - (instancetype) initWithGuide:(IonGuideLine*) firstGuide
                        modType:(IonValueModType) modType
                 andSecondGuide:(IonGuideLine*) secondGuide {
@@ -36,14 +32,86 @@
     return resultGuide;
 }
 
-/**
- * Creates a guide line from two guide line modified by each other.
- * @param {IonGuideLine*} the first guide line.
- * @param {IonGuideLine*} the second guide line.  
- */
 + (instancetype) guideWithGuide:(IonGuideLine*) firstGuide
                         modType:(IonValueModType) modType
                  andSecondGuide:(IonGuideLine*) secondGuide {
     return [[[self class] alloc] initWithGuide: firstGuide modType: modType andSecondGuide: secondGuide];
 }
+
+#pragma mark Arithmetic
+
+- (IonGuideLine *)dividedBy:(IonGuideLine *)otherGuide {
+  return [IonGuideLine guideWithGuide:self
+                              modType:IonValueModType_Divide
+                       andSecondGuide:otherGuide];
+}
+
+- (IonGuideLine *)multipliedBy:(IonGuideLine *)otherGuide {
+  return [IonGuideLine guideWithGuide:self
+                              modType:IonValueModType_Multiply
+                       andSecondGuide:otherGuide];
+}
+
+- (IonGuideLine *)addedBy:(IonGuideLine *)otherGuide {
+  return [IonGuideLine guideWithGuide:self
+                              modType:IonValueModType_Add
+                       andSecondGuide:otherGuide];
+}
+
+- (IonGuideLine *)subtractedBy:(IonGuideLine *)otherGuide {
+  return [IonGuideLine guideWithGuide:self
+                              modType:IonValueModType_Subtract
+                       andSecondGuide:otherGuide];
+}
+
+#pragma mark Max Guides
+
+- (IonGuideLine *)max:(IonGuideLine *)bGuide {
+  IonGuideLine *guide;
+  NSParameterAssert( [bGuide isKindOfClass: [IonGuideLine class]] );
+  if ( ![bGuide isKindOfClass: [IonGuideLine class]] )
+    return NULL;
+  
+  guide = [[IonGuideLine alloc] initWithTargetGuide: self];
+  if ( ![guide isKindOfClass: [IonGuideLine class]] )
+    return NULL;
+  
+  [guide addTargetGuide: bGuide withName:@"bGuide"];
+  
+  [guide setCalcBlock: ^CGFloat( NSDictionary *targetValues ) {
+    NSNumber *num1, *num2;
+    
+    num1 = [targetValues objectForKey: @"primary"];
+    num2 = [targetValues objectForKey: @"bGuide"];
+    
+    return MAX([(num1 ? num1 : @0) floatValue], [(num2 ? num2 : @0) floatValue]);
+  }];
+  
+  return guide;
+}
+
+- (IonGuideLine *)min:(IonGuideLine *)bGuide {
+  IonGuideLine *guide;
+  NSParameterAssert( [bGuide isKindOfClass: [IonGuideLine class]] );
+  if ( ![bGuide isKindOfClass: [IonGuideLine class]] )
+    return NULL;
+  
+  guide = [[IonGuideLine alloc] initWithTargetGuide: self];
+  if ( ![guide isKindOfClass: [IonGuideLine class]] )
+    return NULL;
+  
+  [guide addTargetGuide: bGuide withName:@"bGuide"];
+  
+  [guide setCalcBlock: ^CGFloat( NSDictionary *targetValues ) {
+    NSNumber *num1, *num2;
+    
+    num1 = [targetValues objectForKey: @"primary"];
+    num2 = [targetValues objectForKey: @"bGuide"];
+    
+    return MIN([(num1 ? num1 : @0) floatValue], [(num2 ? num2 : @0) floatValue]);
+  }];
+  
+  return guide;
+}
+
 @end

@@ -127,9 +127,10 @@
     if ( ![self canPerformManagementFunctions] )
         return CGSizeZero;
     
-    
-    textSize = [_label.text sizeWithAttributes:
-                    @{ NSFontAttributeName: _label.font }];
+    if ( [_label.text respondsToSelector: @selector(sizeWithAttributes:)] )
+        textSize = [_label.text sizeWithAttributes: @{ NSFontAttributeName: _label.font }];
+    else
+        textSize = [_label.text sizeWithFont: _label.font];
     
     return (CGSize) {
         _container.frame.size.width >= textSize.width ? _container.frame.size.width : textSize.width,

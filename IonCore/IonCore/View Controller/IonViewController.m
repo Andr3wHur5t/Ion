@@ -129,7 +129,6 @@
  * We layout views here.  
  */
 - (void) shouldLayoutSubviews {
-    NSLog(@"Layout");
 }
 
 /** Memory Management */
@@ -145,7 +144,6 @@
  * We construct the subviews here.  
  */
 - (void) constructViews {
-    NSLog(@"Construct Views");
 }
 
 /**
