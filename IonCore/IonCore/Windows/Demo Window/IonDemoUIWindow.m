@@ -10,6 +10,7 @@
 
 #import "IonDemoUIWindow.h"
 #import "UITouch + IonDemoTouch.h"
+#import <SimpleMath/SimpleMath.h>
 
 @interface IonDemoUIWindow ()
 
@@ -25,7 +26,6 @@
 - (void) sendEvent:(UIEvent *)event {
     // Intercepts all touch events and sends them to the processing function.
     [super sendEvent:event];
-    
     if (event.type == UIEventTypeTouches) {
         for (UITouch *touch in [event allTouches]) {
             [self processTouchEvent:touch];
@@ -34,6 +34,7 @@
 }
 
 - (void) processTouchEvent:(UITouch *)touch {
+  // I've tried animating this, it doesn't work very well..
     // Processes a touch event, and renders a view depending on the state of the touch.
     if (touch.phase == UITouchPhaseBegan) {
         touch.touchRepresentationView = [self getViewForTouchRepresentation];
@@ -42,6 +43,7 @@
         
         // Add to view
         [self addSubview: touch.touchRepresentationView];
+      
     }
     else if (touch.phase == UITouchPhaseCancelled || touch.phase == UITouchPhaseEnded) {
         // Remove representation

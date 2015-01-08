@@ -39,4 +39,12 @@
     return value ? [value boolValue] : FALSE;
 }
 
++ (BOOL)respondsToScheme:(NSString *)scheme {
+  for (NSDictionary *dict in [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleURLTypes"])
+    for (NSString *lscheme in [dict objectForKey:@"CFBundleURLSchemes"])
+      if ( [lscheme isEqualToString: scheme] )
+        return TRUE;
+  return FALSE;
+}
+
 @end

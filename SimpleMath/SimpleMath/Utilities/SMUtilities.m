@@ -143,6 +143,13 @@
     return fabs( a - b ) < accuracy * FLT_EPSILON * fabs( a + b );
 }
 
++ (CGFloat)floorf:(CGFloat)val {
+  NSParameterAssert( val != NAN );
+  if ( val == NAN )
+    return CGFLOAT_MAX;
+  return val - (CGFloat)fmod(val, 1.0f);
+}
+
 #pragma mark Normilization Utilties
 
 + (CGFloat) normalizeRadialFloat:(CGFloat) value {

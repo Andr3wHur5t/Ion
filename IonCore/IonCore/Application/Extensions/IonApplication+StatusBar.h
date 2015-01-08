@@ -38,6 +38,11 @@ static const CGFloat sIonNormalStatusBarHeight = 20.0f;
  */
 @property (assign, nonatomic, readonly) UIStatusBarAnimation currentStatusBarAnimation;
 
+/*!
+ @brief Guide representing the height of the status bar.
+ */
+@property (nonatomic, readonly) IonGuideLine *statusBarHeightGuide;
+
 #pragma mark Animation Utilities
 
 /**

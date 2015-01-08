@@ -19,6 +19,9 @@ FOUNDATION_EXPORT const unsigned char FOUtilitiesVersionString[];
 #pragma mark NSObject
 #import <FOUtilities/NSObject+FOObject.h>
 
+#pragma mark HTTP
+#import <FOUtilities/FORequest.h>
+
 #pragma mark NSString
 #import <FOUtilities/NSString+RegularExpression.h>
 #import <FOUtilities/NSString+FOTypeExtension.h>

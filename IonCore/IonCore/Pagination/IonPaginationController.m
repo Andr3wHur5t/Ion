@@ -8,6 +8,7 @@
 
 #import "IonPaginationController.h"
 #import <IonCore/IonCore.h>
+#import <SimpleMath/SimpleMath.h>
 #import <objc/runtime.h>
 
 @interface IonPaginationController ()
@@ -369,16 +370,19 @@
 }
 
 - (void)setContentOffset:(CGPoint)contentOffset {
+  CGFloat flooredVal;
   [super setContentOffset:contentOffset];
   // Update our current page position
   self.currentPagePosition = self.contentOffset.x / self.frame.size.width;
 
   // Update navigation if needed.
   if (((CGFloat)self.currentIndex + 0.5f) < self.currentPagePosition ||
-      ((CGFloat)self.currentIndex - 0.5f) > self.currentPagePosition)
-    [self navigatedToIndex:(NSUInteger)floor((self.contentOffset.x -
-                                              self.frame.size.width / 2) /
-                                             self.frame.size.width) + 1];
+      ((CGFloat)self.currentIndex - 0.5f) > self.currentPagePosition) {
+    flooredVal = (CGFloat)floor((self.contentOffset.x - self.frame.size.width / 2) /
+                                self.frame.size.width);
+    [self navigatedToIndex:(NSUInteger)(flooredVal + 1)];
+  }
+  
 }
 
 - (void)configureIndex:(NSUInteger)index {

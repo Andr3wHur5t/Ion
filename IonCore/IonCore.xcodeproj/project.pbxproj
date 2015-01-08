@@ -158,6 +158,8 @@
 		37C0A4F019FCB68D002D02F5 /* IonApplication+ControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0A4EE19FCB68D002D02F5 /* IonApplication+ControllerManager.m */; };
 		37C0A50119FE2AA1002D02F5 /* IonTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0A4FF19FE2AA1002D02F5 /* IonTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37C0A50219FE2AA1002D02F5 /* IonTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0A50019FE2AA1002D02F5 /* IonTextView.m */; };
+		37C241BB1A36DE9A00B6FB12 /* FORequest+IonImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C241B91A36DE9A00B6FB12 /* FORequest+IonImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37C241BC1A36DE9A00B6FB12 /* FORequest+IonImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C241BA1A36DE9A00B6FB12 /* FORequest+IonImage.m */; };
 		37C494D719EDD9860088FA23 /* IACLink+IonApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C494D519EDD9860088FA23 /* IACLink+IonApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37C494D819EDD9860088FA23 /* IACLink+IonApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C494D619EDD9860088FA23 /* IACLink+IonApplication.m */; };
 		37C494E219EDDB9E0088FA23 /* IonApplication+InterappComunication.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C494E019EDDB9E0088FA23 /* IonApplication+InterappComunication.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -321,6 +323,8 @@
 		37C0A4EE19FCB68D002D02F5 /* IonApplication+ControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IonApplication+ControllerManager.m"; sourceTree = "<group>"; };
 		37C0A4FF19FE2AA1002D02F5 /* IonTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonTextView.h; sourceTree = "<group>"; };
 		37C0A50019FE2AA1002D02F5 /* IonTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonTextView.m; sourceTree = "<group>"; };
+		37C241B91A36DE9A00B6FB12 /* FORequest+IonImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FORequest+IonImage.h"; path = "HTTP/FORequest+IonImage.h"; sourceTree = "<group>"; };
+		37C241BA1A36DE9A00B6FB12 /* FORequest+IonImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FORequest+IonImage.m"; path = "HTTP/FORequest+IonImage.m"; sourceTree = "<group>"; };
 		37C494D519EDD9860088FA23 /* IACLink+IonApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IACLink+IonApplication.h"; path = "Communication/IACLink+IonApplication.h"; sourceTree = "<group>"; };
 		37C494D619EDD9860088FA23 /* IACLink+IonApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IACLink+IonApplication.m"; path = "Communication/IACLink+IonApplication.m"; sourceTree = "<group>"; };
 		37C494E019EDDB9E0088FA23 /* IonApplication+InterappComunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IonApplication+InterappComunication.h"; sourceTree = "<group>"; };
@@ -403,6 +407,7 @@
 		377A13B819E7FA9000964B61 /* IonCore */ = {
 			isa = PBXGroup;
 			children = (
+				37C241B81A36DE7E00B6FB12 /* HTTP */,
 				377A13BB19E7FA9000964B61 /* IonCore.h */,
 				37694ACC19F04B2E0087AD83 /* Pagination */,
 				37A0F9D119EADBEF00C1DBB2 /* Animations */,
@@ -919,6 +924,15 @@
 			path = IonTextView;
 			sourceTree = "<group>";
 		};
+		37C241B81A36DE7E00B6FB12 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				37C241B91A36DE9A00B6FB12 /* FORequest+IonImage.h */,
+				37C241BA1A36DE9A00B6FB12 /* FORequest+IonImage.m */,
+			);
+			name = HTTP;
+			sourceTree = "<group>";
+		};
 		37C494D919EDDB390088FA23 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1043,6 +1057,7 @@
 				37A0FAEE19EADBEF00C1DBB2 /* IonTitleBar.h in Headers */,
 				37A0FAE419EADBEF00C1DBB2 /* IonScrollActionView.h in Headers */,
 				37A0FAAA19EADBEF00C1DBB2 /* NSDictionary+IonThemeResolution.h in Headers */,
+				37C241BB1A36DE9A00B6FB12 /* FORequest+IonImage.h in Headers */,
 				37A0FAEC19EADBEF00C1DBB2 /* IonTextField.h in Headers */,
 				37A0FADA19EADBEF00C1DBB2 /* IonLabelOverflowBehavior.h in Headers */,
 				37A0FA7D19EADBEF00C1DBB2 /* IonApplication+Keyboard.h in Headers */,
@@ -1184,6 +1199,7 @@
 			files = (
 				37A0FAC519EADBEF00C1DBB2 /* UIView+IonPositionAndOrientation.m in Sources */,
 				37A0FAE119EADBEF00C1DBB2 /* IonScrollRefreshAction.m in Sources */,
+				37C241BC1A36DE9A00B6FB12 /* FORequest+IonImage.m in Sources */,
 				37A0FA8619EADBEF00C1DBB2 /* IonApplication+Responders.m in Sources */,
 				37A0FAE319EADBEF00C1DBB2 /* IonScrollThresholdAction.m in Sources */,
 				3760E2A31A10403100FA8DD5 /* IonTableView.m in Sources */,
@@ -1377,7 +1393,7 @@
 				);
 				INFOPLIST_FILE = IonCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1416,7 +1432,7 @@
 				);
 				INFOPLIST_FILE = IonCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

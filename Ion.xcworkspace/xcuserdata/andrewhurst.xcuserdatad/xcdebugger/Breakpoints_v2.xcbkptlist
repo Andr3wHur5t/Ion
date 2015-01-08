@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SimpleAnalytics/SimpleAnalytics/Event/SAEvent.m"
-            timestampString = "435213105.639909"
+            filePath = "IonCore/IonCore/Views/Table View/IonTableView.m"
+            timestampString = "439801106.215519"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "-record"
+            startingLineNumber = "415"
+            endingLineNumber = "415"
+            landmarkName = "-didRemoveDataAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

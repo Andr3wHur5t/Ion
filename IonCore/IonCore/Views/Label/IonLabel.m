@@ -33,8 +33,7 @@
 
 - (instancetype)init {
   self = [super init];
-  if (self)
-    [self construct];
+  if (self) [self construct];
   return self;
 }
 
@@ -72,13 +71,11 @@
 #pragma mark Text
 
 - (void)setText:(NSString *)text {
-  
   // Update the label text
   _labelView.text = text;
 
   // Update behavior
-  if (_overflowBehavior)
-    [_overflowBehavior updateStates];
+  if (_overflowBehavior) [_overflowBehavior updateStates];
 
   [self updateTextSize];
 }
@@ -87,14 +84,13 @@
   return _labelView.text;
 }
 
-
 #pragma mark Guides
 
 - (void)updateTextSize {
   CGSize textSize = [self.text sizeWithFont:_labelView.font];
-  
+
   // Shh I'm adding a buffer so that we don't clip the text.
-  self.textSizeWithFont = (CGSize){ textSize.width + 2, textSize.height };
+  self.textSizeWithFont = (CGSize){textSize.width + 2, textSize.height};
 }
 
 - (IonGuideLine *)textHeightGuide {
@@ -120,8 +116,7 @@
 #pragma mark Text Color
 
 - (void)setTextColor:(UIColor *)textColor {
-  if (!textColor)
-    return;
+  if (!textColor) return;
   _labelView.textColor = textColor;
 }
 
@@ -133,8 +128,7 @@
 
 - (void)setTextAlignment:(NSTextAlignment)textAlignment {
   _labelView.textAlignment = textAlignment;
-  if (_overflowBehavior)
-    [_overflowBehavior updateStates];
+  if (_overflowBehavior) [_overflowBehavior updateStates];
 }
 
 - (NSTextAlignment)textAlignment {
@@ -144,13 +138,11 @@
 #pragma mark Font
 
 - (void)setFont:(UIFont *)font {
-  if (!font)
-    return;
+  if (!font) return;
 
   _labelView.font = font;
-  if (_overflowBehavior)
-    [_overflowBehavior updateStates];
-  
+  if (_overflowBehavior) [_overflowBehavior updateStates];
+
   [self updateTextSize];
 }
 
@@ -170,8 +162,7 @@
 
 - (void)setFrame:(CGRect)frame {
   [super setFrame:frame];
-  if (_overflowBehavior)
-    [_overflowBehavior updateStates];
+  if (_overflowBehavior) [_overflowBehavior updateStates];
 }
 
 #pragma mark Style Application
@@ -194,10 +185,9 @@
 #pragma mark View Updates
 
 - (void)addSubview:(UIView *)view {
-  [super addSubview: view];
-  [view setParentStyle: self.themeConfiguration.currentStyle ];
+  [super addSubview:view];
+  [view setParentStyle:self.themeConfiguration.currentStyle];
 }
-
 
 #pragma mark Defaults
 
@@ -211,71 +201,97 @@
 
 - (void)applyStyle:(IonStyle *)style {
   [super applyStyle:style];
-  
+
   // Text Color
   self.textColor = [style.configuration colorForKey:sIonThemeText_Color
                                          usingTheme:style.theme];
-  
+
   // Font
   self.font = [style.configuration fontForKey:sIonThemeText_Font];
-  
+
   // Alignment
   self.textAlignment =
-  [style.configuration textAlignmentForKey:sIonThemeText_Alignment];
+      [style.configuration textAlignmentForKey:sIonThemeText_Alignment];
 }
 
 + (NSSet *)keyPathsForValuesAffectingTextSize {
-  return [[NSSet alloc] initWithArray: @[@"font", @"text", @"frame"]];
+  return [[NSSet alloc] initWithArray:@[ @"font", @"text", @"frame" ]];
 }
-- (CGSize) textSize {
+
+- (CGSize)textSize {
   CGSize textSize = [self.text sizeWithFont:self.font];
   // Shh I'm adding a buffer so that we don't clip the text.
-  return  (CGSize){ textSize.width + 2, textSize.height };
+  return (CGSize){textSize.width + 2, textSize.height};
 }
 
 - (IonGuideLine *)textHeightGuide {
-  IonGuideLine *_textHeightGuide = [self.categoryVariables objectForKeyedSubscript:@"textHeightGuide"];
+  IonGuideLine *_textHeightGuide =
+      [self.categoryVariables objectForKeyedSubscript:@"textHeightGuide"];
   if (!_textHeightGuide) {
     _textHeightGuide =
-    [IonGuideLine guideFromSizeOnTarget:self
-                           usingKeyPath:@"textSizeWithFont"
-                                 amount:1.0f
-                                andMode:IonGuideLineFrameMode_Vertical];
-    
-    [self.categoryVariables setObject: _textHeightGuide forKey:@"textHeightGuide"];
+        [IonGuideLine guideFromSizeOnTarget:self
+                               usingKeyPath:@"textSize"
+                                     amount:1.0f
+                                    andMode:IonGuideLineFrameMode_Vertical];
+
+    [self.categoryVariables setObject:_textHeightGuide
+                               forKey:@"textHeightGuide"];
   }
   return _textHeightGuide;
 }
 
 - (IonGuideLine *)textWidthGuide {
-  IonGuideLine *_textWidthGuide = [self.categoryVariables objectForKeyedSubscript:@"textWidthGuide"];
+  IonGuideLine *_textWidthGuide =
+      [self.categoryVariables objectForKeyedSubscript:@"textWidthGuide"];
   if (!_textWidthGuide) {
     _textWidthGuide =
-    [IonGuideLine guideFromSizeOnTarget:self
-                           usingKeyPath:@"textSizeWithFont"
-                                 amount:1.0f
-                                andMode:IonGuideLineFrameMode_Horizontal];
-    [self.categoryVariables setObject: _textWidthGuide forKey:@"textWidthGuide"];
+        [IonGuideLine guideFromSizeOnTarget:self
+                               usingKeyPath:@"textSize"
+                                     amount:1.0f
+                                    andMode:IonGuideLineFrameMode_Horizontal];
+    [self.categoryVariables setObject:_textWidthGuide forKey:@"textWidthGuide"];
   }
   return _textWidthGuide;
 }
 
 + (NSSet *)keyPathsForValuesAffectingTextSizeConstrainedByWidth {
-  return [[NSSet alloc] initWithArray: @[@"font", @"text", @"frame"]];
+  return [[NSSet alloc] initWithArray:@[ @"font", @"text", @"frame" ]];
 }
 
-- (CGFloat) textSizeConstrainedByWidth {
-  return [self sizeThatFits:(CGSize){ self.frame.size.width, CGFLOAT_MAX }].height;
+- (CGFloat)textSizeConstrainedByWidth {
+  return
+      [self sizeThatFits:(CGSize){self.frame.size.width, CGFLOAT_MAX}].height;
 }
-
 
 - (IonGuideLine *)textSizeConstrainedByWidthGuide {
-  IonGuideLine *_textWidthGuide = [self.categoryVariables objectForKeyedSubscript:@"textSizeConstrainedByWidthGuide"];
+  IonGuideLine *_textWidthGuide = [self.categoryVariables
+      objectForKeyedSubscript:@"textSizeConstrainedByWidthGuide"];
   if (!_textWidthGuide) {
     _textWidthGuide =
-    [IonGuideLine guideWithTarget:self andKeyPath:@"textSizeConstrainedByWidth"];
-    [self.categoryVariables setObject: _textWidthGuide forKey:@"textSizeConstrainedByWidthGuide"];
+        [IonGuideLine guideWithTarget:self
+                           andKeyPath:@"textSizeConstrainedByWidth"];
+    [self.categoryVariables setObject:_textWidthGuide
+                               forKey:@"textSizeConstrainedByWidthGuide"];
   }
   return _textWidthGuide;
 }
+@end
+
+@implementation IonCoreLabel
+
+- (void)applyStyle:(IonStyle *)style {
+  [super applyStyle:style];
+
+  // Text Color
+  self.textColor = [style.configuration colorForKey:sIonThemeText_Color
+                                         usingTheme:style.theme];
+
+  // Font
+  self.font = [style.configuration fontForKey:sIonThemeText_Font];
+
+  // Alignment
+  self.textAlignment =
+      [style.configuration textAlignmentForKey:sIonThemeText_Alignment];
+}
+
 @end

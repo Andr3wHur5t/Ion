@@ -44,6 +44,8 @@
 		377A133E19E7E22E00964B61 /* NSDictionary+FOTypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A133D19E7E22E00964B61 /* NSDictionary+FOTypeExtension.m */; };
 		377A134019E7E33100964B61 /* NSArray+FOUtilitiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A133F19E7E33100964B61 /* NSArray+FOUtilitiesTests.m */; };
 		377A134219E7E49F00964B61 /* NSValue+FOTypeExtensionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A134119E7E49F00964B61 /* NSValue+FOTypeExtensionTests.m */; };
+		379BF6B61A36DCD000054CC0 /* FORequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 379BF6B41A36DCD000054CC0 /* FORequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		379BF6B71A36DCD000054CC0 /* FORequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 379BF6B51A36DCD000054CC0 /* FORequest.m */; };
 		37DE298419E4197300BCC51E /* FOUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3771F6B919E414D000B66C36 /* FOUtilities.framework */; };
 		37DE299219E41F2000BCC51E /* NSObject+FOObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 37DE299019E41F2000BCC51E /* NSObject+FOObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37DE299319E41F2000BCC51E /* NSObject+FOObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DE299119E41F2000BCC51E /* NSObject+FOObject.m */; };
@@ -101,6 +103,8 @@
 		377A133D19E7E22E00964B61 /* NSDictionary+FOTypeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+FOTypeExtension.m"; sourceTree = "<group>"; };
 		377A133F19E7E33100964B61 /* NSArray+FOUtilitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FOUtilitiesTests.m"; sourceTree = "<group>"; };
 		377A134119E7E49F00964B61 /* NSValue+FOTypeExtensionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+FOTypeExtensionTests.m"; sourceTree = "<group>"; };
+		379BF6B41A36DCD000054CC0 /* FORequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FORequest.h; path = HTTP/FORequest.h; sourceTree = "<group>"; };
+		379BF6B51A36DCD000054CC0 /* FORequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FORequest.m; path = HTTP/FORequest.m; sourceTree = "<group>"; };
 		37DE299019E41F2000BCC51E /* NSObject+FOObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FOObject.h"; sourceTree = "<group>"; };
 		37DE299119E41F2000BCC51E /* NSObject+FOObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FOObject.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,6 +149,7 @@
 		3771F6BB19E414D000B66C36 /* FOUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				379BF6B31A36DCB300054CC0 /* HTTP */,
 				3771F6D219E416B400B66C36 /* FOUtilities.h */,
 				377A131D19E7252D00964B61 /* Types */,
 				377A131619E7218600964B61 /* NSData */,
@@ -301,6 +306,15 @@
 			path = "Timed Action";
 			sourceTree = "<group>";
 		};
+		379BF6B31A36DCB300054CC0 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				379BF6B41A36DCD000054CC0 /* FORequest.h */,
+				379BF6B51A36DCD000054CC0 /* FORequest.m */,
+			);
+			name = HTTP;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -309,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				377A132A19E738BB00964B61 /* NSArray+FOUtilities.h in Headers */,
+				379BF6B61A36DCD000054CC0 /* FORequest.h in Headers */,
 				3771F6E319E416B400B66C36 /* FOTargetActionList.h in Headers */,
 				377A131B19E721A400964B61 /* UIColor+FOColor.h in Headers */,
 				377A133119E743C700964B61 /* FOTimedAction.h in Headers */,
@@ -445,6 +460,7 @@
 				377A131C19E721A400964B61 /* UIColor+FOColor.m in Sources */,
 				377A131119E714E600964B61 /* NSString+FOTypeExtension.m in Sources */,
 				3771F6E219E416B400B66C36 /* NSString+RegularExpression.m in Sources */,
+				379BF6B71A36DCD000054CC0 /* FORequest.m in Sources */,
 				377A133619E77C5000964B61 /* NSValue+FOTypeExtension.m in Sources */,
 				377A132B19E738BB00964B61 /* NSArray+FOUtilities.m in Sources */,
 				377A132719E7340400964B61 /* NSData+FOTypeExtension.m in Sources */,
@@ -588,7 +604,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				INFOPLIST_FILE = FOUtilities/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -615,7 +631,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				INFOPLIST_FILE = FOUtilities/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";

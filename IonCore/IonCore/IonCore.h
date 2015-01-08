@@ -5,9 +5,7 @@
 //  Created by Andrew Hurst on 10/10/14.
 //  Copyright (c) 2014 Andrew Hurst. All rights reserved.
 //
-//  This is Ions' core UI framework, it's dependent on 'IonFoundation', 'FOUtilities', 'SimpleMath', 'SimpleAnalytics',
-//  and 'IACommunication'. 'IACommunication' is statically linked so you don't need to include it in you project.
-//
+//  This is Ions' core UI framework, it's dependent on 'IonFoundation', 'FOUtilities', 'SimpleMath', and 'SimpleAnalytics'
 
 #import <UIKit/UIKit.h>
 
@@ -19,6 +17,7 @@ FOUNDATION_EXPORT const unsigned char IonCoreVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <IonCore/PublicHeader.h>
 
+#import <IonCore/FORequest+IonImage.h>
 
 /** Application */
 #import <IonCore/IonApplication.h>

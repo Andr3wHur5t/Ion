@@ -10,6 +10,8 @@
 	<string>Ion</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>90B5351A527AB6A957BF26600907809F069156E0</key>
+		<string>https://github.com/Andr3wHur5t/Xcode-Build-Scripts.git</string>
 		<key>BAFD61C29B6D157884390EC2A27B669155475D52</key>
 		<string>https://github.com/Andr3wHur5t/Ion.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>Ion.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>90B5351A527AB6A957BF26600907809F069156E0</key>
+		<string>../../Xcode-Build-Scripts</string>
 		<key>BAFD61C29B6D157884390EC2A27B669155475D52</key>
 		<string>..</string>
 	</dict>
@@ -35,6 +39,14 @@
 			<string>BAFD61C29B6D157884390EC2A27B669155475D52</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Ion</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>90B5351A527AB6A957BF26600907809F069156E0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Xcode-Build-Scripts</string>
 		</dict>
 	</array>
 </dict>

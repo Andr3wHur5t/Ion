@@ -133,16 +133,19 @@
 }
 
 - (void)setContentSize:(CGSize)contentSize {
-  if ( self.forceScrollVert || self.forceScrollHoriz )
-    contentSize = (CGSize){
-      self.forceScrollHoriz ? MAX( self.frame.size.width, contentSize.width ) : contentSize.width,
-      self.forceScrollVert ? MAX( self.frame.size.height , contentSize.height) : contentSize.height
-    };
-  [super setContentSize:contentSize];
-
+  [self setContentSizeInternal: contentSize];
   // Intercept the last captured manual content size so we can revert to it if
   // necessary
   self.lastManualContentSize = contentSize;
+}
+
+- (void)setContentSizeInternal:(CGSize)contentSize {
+  CGSize iSize = contentSize;
+  iSize = (CGSize){
+    MAX(1, self.forceScrollHoriz ? MAX( self.frame.size.width + 1, iSize.width ) : iSize.width),
+    MAX(1,self.forceScrollVert ? MAX( self.frame.size.height + 1, iSize.height) : iSize.height)
+  };
+  [super setContentSize:iSize];
 }
 
 - (void)setFrame:(CGRect)frame {
@@ -199,7 +202,7 @@
 
   // We need to set it to the super so we can intercept when the user sets the
   // content size manually.
-  super.contentSize = newContentSize;
+  [self setContentSizeInternal: newContentSize];
 }
 
 #pragma mark Style

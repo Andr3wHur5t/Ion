@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "IonLabel.h"
 
-static CGFloat sIonTextScrollSpeed = 0.04f;//s
+static CGFloat sIonTextScrollSpeed = 0.1f;//s
 
 @interface IonLabelOverflowBehavior : NSObject <IonLabelOverflowBehaviorDelegate>
 

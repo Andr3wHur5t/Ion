@@ -43,4 +43,14 @@ static NSString* sIonApplication_CurrentOnBoardingScreenVersion = @"On Boarding 
  */
 + (BOOL) isInDemoMode;
 
+
+/*!
+ @brief Gets if the inputted scheme is a scheme that the application
+ 
+ @param scheme The scheme to check.
+ 
+ @return True if the application responds to the scheme.
+ */
++ (BOOL)respondsToScheme:(NSString *)scheme;
+
 @end

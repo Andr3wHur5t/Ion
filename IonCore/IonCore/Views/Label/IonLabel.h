@@ -102,4 +102,10 @@ static NSString* sDefaultFontName = @"Helvetica Neue";
 
 @property (strong, nonatomic, readonly) IonGuideLine *textSizeConstrainedByWidthGuide;
 
+- (void)applyStyle:(IonStyle *)style;
+
+@end
+
+@interface IonCoreLabel : UILabel
+
 @end

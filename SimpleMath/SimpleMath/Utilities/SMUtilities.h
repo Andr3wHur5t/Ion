@@ -137,6 +137,8 @@
  */
 + (BOOL) compareFloat:(CGFloat) a andFloat:(CGFloat) b;
 
++ (CGFloat)floorf:(CGFloat)val;
+
 #pragma mark Normalization Utilities
 
 /**
