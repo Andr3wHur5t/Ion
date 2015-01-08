@@ -35,6 +35,7 @@
 
 - (void)construct {
   self.themeElement = @"textView";
+  self.styleCanSetBackground = TRUE;
 }
 
 #pragma mark Text Guides

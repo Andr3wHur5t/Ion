@@ -75,28 +75,25 @@
 
 - (instancetype)init {
   self = [super init];
-  if (self)
-    [self construct];
+  if (self) [self construct];
   return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
-  if (self)
-    [self construct];
+  if (self) [self construct];
   return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
-  if (self)
-    [self construct];
+  if (self) [self construct];
   return self;
 }
 
 - (void)construct {
   self.lastManualContentSize = CGSizeZero;
-
+  self.styleCanSetBackground = TRUE;
   // Configurable
   self.themeElement = sIonScrollStyle_Name;
 }
@@ -133,7 +130,7 @@
 }
 
 - (void)setContentSize:(CGSize)contentSize {
-  [self setContentSizeInternal: contentSize];
+  [self setContentSizeInternal:contentSize];
   // Intercept the last captured manual content size so we can revert to it if
   // necessary
   self.lastManualContentSize = contentSize;
@@ -142,9 +139,11 @@
 - (void)setContentSizeInternal:(CGSize)contentSize {
   CGSize iSize = contentSize;
   iSize = (CGSize){
-    MAX(1, self.forceScrollHoriz ? MAX( self.frame.size.width + 1, iSize.width ) : iSize.width),
-    MAX(1,self.forceScrollVert ? MAX( self.frame.size.height + 1, iSize.height) : iSize.height)
-  };
+      MAX(1, self.forceScrollHoriz ? MAX(self.frame.size.width + 1, iSize.width)
+                                   : iSize.width),
+      MAX(1, self.forceScrollVert
+                 ? MAX(self.frame.size.height + 1, iSize.height)
+                 : iSize.height)};
   [super setContentSize:iSize];
 }
 
@@ -202,15 +201,14 @@
 
   // We need to set it to the super so we can intercept when the user sets the
   // content size manually.
-  [self setContentSizeInternal: newContentSize];
+  [self setContentSizeInternal:newContentSize];
 }
 
 #pragma mark Style
 
 - (void)applyStyle:(IonStyle *)style {
   [super applyStyle:style];
-  if (!style || ![style isKindOfClass:[IonStyle class]])
-    return;
+  if (!style || ![style isKindOfClass:[IonStyle class]]) return;
 
   [self applyScrollConfiguration:style.configuration];
   [self applyScrollIndicatorsConfiguration:style.configuration];
@@ -218,8 +216,7 @@
 }
 
 - (void)applyScrollConfiguration:(NSDictionary *)config {
-  if (!config || ![config isKindOfClass:[NSDictionary class]])
-    return;
+  if (!config || ![config isKindOfClass:[NSDictionary class]]) return;
   // Content Inset
   self.contentInset = [config edgeInsetsForKey:sIonScrollStyle_ContentInset];
 
@@ -251,8 +248,7 @@
 }
 
 - (void)applyScrollIndicatorsConfiguration:(NSDictionary *)config {
-  if (!config || ![config isKindOfClass:[NSDictionary class]])
-    return;
+  if (!config || ![config isKindOfClass:[NSDictionary class]]) return;
   // Indicator style
   self.indicatorStyle =
       [config scrollViewIndicatorStyleForKey:sIonScrollStyle_IndicatorStyle];
@@ -273,8 +269,7 @@
 }
 
 - (void)applyZoomConfiguration:(NSDictionary *)config {
-  if (!config || ![config isKindOfClass:[NSDictionary class]])
-    return;
+  if (!config || ![config isKindOfClass:[NSDictionary class]]) return;
   // Minimum zoom scale
   self.minimumZoomScale = [[config numberForKey:sIonScrollStyle_MinimumZoomScale
                                    defaultValue:@1.0] floatValue];
@@ -299,40 +294,37 @@
 
 #pragma mark Force Scroll
 
-- (void) setForceScrollHoriz:(BOOL)forceScrollHoriz {
-  [self willChangeValueForKey: @"forceScrollHoriz"];
+- (void)setForceScrollHoriz:(BOOL)forceScrollHoriz {
+  [self willChangeValueForKey:@"forceScrollHoriz"];
   _forceScrollHoriz = forceScrollHoriz;
-  [self didChangeValueForKey: @"forceScrollHoriz"];
+  [self didChangeValueForKey:@"forceScrollHoriz"];
   self.contentSize = self.contentSize;
 }
 
-- (void) setForceScrollVert:(BOOL)forceScrollVert {
-  [self willChangeValueForKey: @"forceScrollVert"];
+- (void)setForceScrollVert:(BOOL)forceScrollVert {
+  [self willChangeValueForKey:@"forceScrollVert"];
   _forceScrollVert = forceScrollVert;
-  [self didChangeValueForKey: @"forceScrollVert"];
+  [self didChangeValueForKey:@"forceScrollVert"];
   self.contentSize = self.contentSize;
 }
 
 #pragma mark Action Management
 
 - (NSMutableArray *)actions {
-  if (!_actions)
-    _actions = [[NSMutableArray alloc] init];
+  if (!_actions) _actions = [[NSMutableArray alloc] init];
   return _actions;
 }
 
 - (void)addAction:(IonScrollAction *)action {
   NSParameterAssert(action && [action isKindOfClass:[IonScrollAction class]]);
-  if (!action || ![action isKindOfClass:[IonScrollAction class]])
-    return;
+  if (!action || ![action isKindOfClass:[IonScrollAction class]]) return;
 
   [self.actions addObject:action];
 }
 
 - (void)removeAction:(IonScrollAction *)action {
   NSParameterAssert(action && [action isKindOfClass:[IonScrollAction class]]);
-  if (!action || ![action isKindOfClass:[IonScrollAction class]])
-    return;
+  if (!action || ![action isKindOfClass:[IonScrollAction class]]) return;
 
   [self.actions removeObject:action];
 }
@@ -351,8 +343,8 @@
 #pragma mark View Updates
 
 - (void)addSubview:(UIView *)view {
-  [super addSubview: view];
-  [view setParentStyle: self.themeConfiguration.currentStyle ];
+  [super addSubview:view];
+  [view setParentStyle:self.themeConfiguration.currentStyle];
 }
 
 @end

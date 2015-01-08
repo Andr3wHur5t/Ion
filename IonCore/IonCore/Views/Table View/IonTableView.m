@@ -53,7 +53,7 @@
 
 #pragma mark Reuse
 
-@property (strong, nonatomic, readonly) NSMutableDictionary *cellReuseDictionary;
+@property(strong, nonatomic, readonly) NSMutableDictionary *cellReuseDictionary;
 @end
 
 @implementation IonTableView
@@ -66,22 +66,19 @@
 
 - (instancetype)init {
   self = [super init];
-  if (self)
-    [self iConstruct];
+  if (self) [self iConstruct];
   return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
-  if (self)
-    [self iConstruct];
+  if (self) [self iConstruct];
   return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
-  if (self)
-    [self iConstruct];
+  if (self) [self iConstruct];
   return self;
 }
 
@@ -89,6 +86,7 @@
 - (void)iConstruct {
   self.themeElement = @"tableView";
   self.forceScrollVert = TRUE;
+  self.styleCanSetBackground = TRUE;
 }
 
 #pragma mark Scroll View Interface
@@ -170,29 +168,27 @@
 #pragma mark Cell Reuse
 
 - (NSMutableDictionary *)cellReuseDictionary {
-  if ( !_cellReuseDictionary )
+  if (!_cellReuseDictionary)
     _cellReuseDictionary = [[NSMutableDictionary alloc] init];
   return _cellReuseDictionary;
 }
 
 - (NSMutableArray *)reuseArrayForKey:(NSString *)key {
   NSMutableArray *arr;
-  if ( ![key isKindOfClass:[NSString class]] )
-    return NULL;
-  
-  arr = [self.cellReuseDictionary objectForKey: key];
-  if ( ![arr isKindOfClass:[NSMutableArray class]] ) {
+  if (![key isKindOfClass:[NSString class]]) return NULL;
+
+  arr = [self.cellReuseDictionary objectForKey:key];
+  if (![arr isKindOfClass:[NSMutableArray class]]) {
     arr = [[NSMutableArray alloc] init];
-    [self.cellReuseDictionary setObject:arr forKey: key];
+    [self.cellReuseDictionary setObject:arr forKey:key];
   }
-  
+
   return arr;
 }
 
 - (void)unbindCell:(IonCell *)cell {
   NSString *dataModelClassString;
-  if (![cell isKindOfClass:[IonCell class]])
-    return;
+  if (![cell isKindOfClass:[IonCell class]]) return;
 
   // Remove it
   cell.hidden = TRUE;
@@ -216,29 +212,26 @@
   NSString *dataModelClassString;
   IonCell *cell;
   Class cellClass;
-  if (!dataModel)
-    return NULL;
+  if (!dataModel) return NULL;
 
-  if (dataModel)
-    dataModelClassString = NSStringFromClass([dataModel class]);
+  if (dataModel) dataModelClassString = NSStringFromClass([dataModel class]);
 
   // Get from Reuse Dictionary
   if ([dataModelClassString isKindOfClass:[NSString class]]) {
     cell = [[self reuseArrayForKey:dataModelClassString] lastObject];
-    if ( [cell isKindOfClass: [IonCell class]] )
+    if ([cell isKindOfClass:[IonCell class]])
       [[self reuseArrayForKey:dataModelClassString] removeLastObject];
   }
 
   // None Avalable Create one
   if (!cell) {
     cellClass = [self cellClassForDataClass:[dataModel class]];
-    if (!cellClass)
-      return NULL; // No registered cell for data model class
+    if (!cellClass) return NULL;  // No registered cell for data model class
 
     // Construct cell
     cell = [[cellClass alloc] init];
-    [cell.tapGestureRecognizer addTarget: self action: @selector(cellWasTapped:)];
-    
+    [cell.tapGestureRecognizer addTarget:self action:@selector(cellWasTapped:)];
+
     [cell setGuidesWithLocalHoriz:cell.originGuideHoriz
                         localVert:cell.originGuideVert
                        superHoriz:self.leftAutoPadding
@@ -250,16 +243,14 @@
   }
 
   // Bind the cell to its data model
-  if ([cell isKindOfClass:[IonCell class]])
-    [cell bindToDataModel:dataModel];
+  if ([cell isKindOfClass:[IonCell class]]) [cell bindToDataModel:dataModel];
   return cell;
 }
 
 #pragma mark Active Cells
 
 - (NSMutableArray *)activeCells {
-  if (!_activeCells)
-    _activeCells = [[NSMutableArray alloc] init];
+  if (!_activeCells) _activeCells = [[NSMutableArray alloc] init];
   return _activeCells;
 }
 
@@ -270,8 +261,7 @@
 
   if (self.dataModel.count > index)
     dataModel = [self.dataModel.data objectAtIndex:index];
-  if (dataModel)
-    cell = [self cellForDataModel:dataModel];
+  if (dataModel) cell = [self cellForDataModel:dataModel];
 
   // ANDREW YOU LEFT OFF HERE, you need to make it so that this adds to the
   // correct active index as well as making sure that the first cell orgin is
@@ -280,15 +270,13 @@
 
 - (void)removeCellAtActiveIndex:(NSInteger)activeIndex {
   IonCell *cell;
-  if ( self.activeCells.count <= (NSUInteger)activeIndex )
-    return;
-  cell = [self.activeCells objectAtIndex: (NSUInteger)activeIndex];
-  if ( ![cell isKindOfClass: [IonCell class]] )
-    return;
-  
+  if (self.activeCells.count <= (NSUInteger)activeIndex) return;
+  cell = [self.activeCells objectAtIndex:(NSUInteger)activeIndex];
+  if (![cell isKindOfClass:[IonCell class]]) return;
+
   // Hide and Unbind
   [self unbindCell:cell];
-  
+
   // No longer active
   [self.activeCells removeObjectAtIndex:(NSUInteger)activeIndex];
   [self updateContentSize];
@@ -315,8 +303,7 @@
 - (void)addCellWithData:(id)data atIndex:(NSUInteger)index {
   IonCell *cellAtIndex, *nextCell;
   NSUInteger activeIndex = [self activeIndexFromIndex:index];
-  if (activeIndex == NSUIntegerMax)
-    return;
+  if (activeIndex == NSUIntegerMax) return;
 
   if (activeIndex < self.activeCells.count)
     cellAtIndex = [self.activeCells objectAtIndex:index];
@@ -338,7 +325,8 @@
   // Get New Cell
   cellAtIndex = [self cellForDataModel:data];
   [self addSubview:cellAtIndex];
-  if (self.activeCells.count >= activeIndex && [cellAtIndex isKindOfClass:[IonCell class]])
+  if (self.activeCells.count >= activeIndex &&
+      [cellAtIndex isKindOfClass:[IonCell class]])
     [self.activeCells setObject:cellAtIndex atIndexedSubscript:activeIndex];
 
   // Configure next and previous cells.
@@ -351,21 +339,20 @@
 
 - (void)updateContentSize {
   // Set content size
-  self.contentSizeVert = ((IonCell *)[self.activeCells lastObject]).bottomMargin;
+  self.contentSizeVert =
+      ((IonCell *)[self.activeCells lastObject]).bottomMargin;
 }
 
 - (void)replaceCellWithData:(id)data atIndex:(NSUInteger)index {
   NSUInteger activeIndex = [self activeIndexFromIndex:index];
-  if (activeIndex == NSUIntegerMax)
-    return;
+  if (activeIndex == NSUIntegerMax) return;
 
   // TODO: This
 }
 
 - (void)removeCellAtIndex:(NSUInteger)index {
   NSUInteger activeIndex = [self activeIndexFromIndex:index];
-  if (activeIndex == NSUIntegerMax)
-    return;
+  if (activeIndex == NSUIntegerMax) return;
   [self removeCellAtActiveIndex:(NSInteger)activeIndex - (NSInteger)1];
 }
 
@@ -387,13 +374,11 @@
   _dataModel = dataModel;
   [self didChangeValueForKey:@"dataModel"];
 
-  if (![_dataModel isKindOfClass:[FODataModel class]])
-    return;
+  if (![_dataModel isKindOfClass:[FODataModel class]]) return;
   _dataModel.delegate = self;
 
   // Add Initial Data
-  for (id data in _dataModel.data)
-    [self didAddData:data];
+  for (id data in _dataModel.data) [self didAddData:data];
 }
 
 - (void)didAddData:(id)data {
@@ -417,7 +402,7 @@
 }
 
 - (void)didRemoveAllData {
-  for (NSUInteger i = self.activeCells.count; i> 0 ; --i)
+  for (NSUInteger i = self.activeCells.count; i > 0; --i)
     [self removeCellAtIndex:i];
   self.bottomCellIndex = 0;
 }
@@ -425,8 +410,7 @@
 #pragma mark Cell Bindings
 
 - (NSMutableDictionary *)dataBindings {
-  if (!_dataBindings)
-    _dataBindings = [[NSMutableDictionary alloc] init];
+  if (!_dataBindings) _dataBindings = [[NSMutableDictionary alloc] init];
   return _dataBindings;
 }
 
@@ -434,8 +418,7 @@
   NSString *dataClassString, *cellClassString;
   NSParameterAssert(dataModelClass);
   NSParameterAssert(cellClass);
-  if (!dataModelClass || !cellClass)
-    return;
+  if (!dataModelClass || !cellClass) return;
 
   dataClassString = NSStringFromClass(dataModelClass);
   if (![dataClassString isKindOfClass:[NSString class]]) {
@@ -464,8 +447,7 @@
 - (void)removeBindingForDataClass:(Class)dataModelClass {
   NSString *classString;
   NSParameterAssert(dataModelClass);
-  if (!dataModelClass)
-    return;
+  if (!dataModelClass) return;
 
   classString = NSStringFromClass(dataModelClass);
   if (![classString isKindOfClass:[NSString class]]) {
@@ -483,8 +465,7 @@
 - (Class)cellClassForDataClass:(Class)dataClass {
   NSString *dataClassString, *cellClassString;
   NSParameterAssert(dataClass);
-  if (!dataClass)
-    return NULL;
+  if (!dataClass) return NULL;
 
   dataClassString = NSStringFromClass(dataClass);
   if (![dataClassString isKindOfClass:[NSString class]]) {
@@ -495,8 +476,7 @@
   }
 
   cellClassString = [self.dataBindings objectForKey:dataClassString];
-  if (![cellClassString isKindOfClass:[NSString class]])
-    return NULL;
+  if (![cellClassString isKindOfClass:[NSString class]]) return NULL;
 
   return NSClassFromString(cellClassString);
 }

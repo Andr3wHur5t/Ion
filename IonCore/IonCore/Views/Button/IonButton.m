@@ -29,6 +29,7 @@
     self.themeElement = sIonThemeElementButton;
     _currentState = currentPersistantState = IonButtonState_Norm;
     visiblyDisabled = FALSE;
+    self.styleCanSetBackground = TRUE;
     [self addTarget:self
                   action:@selector(checkTapUp)
         forControlEvents:UIControlEventTouchUpInside];

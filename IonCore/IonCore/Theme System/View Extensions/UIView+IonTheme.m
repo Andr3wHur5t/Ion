@@ -47,22 +47,19 @@ static NSString *sIonStylePaddingKey = @"StylePadding";
 #pragma mark Application
 
 - (void)setIonTheme:(IonTheme *)themeObject {
-  if (!themeObject || ![themeObject isKindOfClass:[IonTheme class]])
-    return;
+  if (!themeObject || ![themeObject isKindOfClass:[IonTheme class]]) return;
 
   // Set the root style as the parent style
   [self setParentStyle:[themeObject rootStyle]];
 }
 
 - (void)setParentStyle:(IonStyle *)style {
-  if (!style || ![style isKindOfClass:[IonStyle class]])
-    return;
+  if (!style || ![style isKindOfClass:[IonStyle class]]) return;
   [self setStyle:[style styleForView:self]];
 }
 
 - (void)setStyle:(IonStyle *)style {
-  if (!style || ![style isKindOfClass:[IonStyle class]])
-    return;
+  if (!style || ![style isKindOfClass:[IonStyle class]]) return;
   // Update ourself
   self.themeConfiguration.currentStyle = style;
 
@@ -71,8 +68,7 @@ static NSString *sIonStylePaddingKey = @"StylePadding";
     [style applyToView:self];
 
   // Set Children styles
-  for (UIView *child in self.subviews)
-    [child setParentStyle:style];
+  for (UIView *child in self.subviews) [child setParentStyle:style];
 }
 
 - (void)addSubviewUsingStyle:(UIView *)view {
@@ -96,8 +92,7 @@ static NSString *sIonStylePaddingKey = @"StylePadding";
   [self didChangeValueForKey:@"themeElement"];
 
   // Update self
-  if (self.superview)
-    [self setParentStyle:self.superview.style];
+  if (self.superview) [self setParentStyle:self.superview.style];
 }
 
 - (NSString *)themeElement {
@@ -116,8 +111,7 @@ static NSString *sIonStylePaddingKey = @"StylePadding";
   [self didChangeValueForKey:@"themeClass"];
 
   // Update self
-  if (self.superview)
-    [self setParentStyle:self.superview.style];
+  if (self.superview) [self setParentStyle:self.superview.style];
 }
 
 - (NSString *)themeClass {
@@ -136,8 +130,7 @@ static NSString *sIonStylePaddingKey = @"StylePadding";
   [self didChangeValueForKey:@"themeId"];
 
   // Update self
-  if (self.superview)
-    [self setParentStyle:self.superview.style];
+  if (self.superview) [self setParentStyle:self.superview.style];
 }
 
 - (NSString *)themeID {
@@ -150,13 +143,11 @@ static NSString *sIonStylePaddingKey = @"StylePadding";
   NSNumber *animationDuration;
   CGSize styleMargin, stylePadding;
   NSParameterAssert([style isKindOfClass:[IonStyle class]]);
-  if (![style isKindOfClass:[IonStyle class]])
-    return;
+  if (![style isKindOfClass:[IonStyle class]]) return;
 
   // Get the style margin
   styleMargin = [style.configuration sizeForKey:sIonThemeView_StyleMargin];
-  if (CGSizeEqualToSize(styleMargin, CGSizeUndefined))
-    styleMargin = CGSizeZero;
+  if (CGSizeEqualToSize(styleMargin, CGSizeUndefined)) styleMargin = CGSizeZero;
   self.styleMargin = styleMargin;
 
   // Get the style Padding
@@ -168,8 +159,7 @@ static NSString *sIonStylePaddingKey = @"StylePadding";
   // Get Animation Durration
   animationDuration =
       [style.configuration numberForKey:sIonThemeView_AnimationDuration];
-  if (!animationDuration)
-    animationDuration = @0.3;
+  if (!animationDuration) animationDuration = @0.3;
   self.animationDuration = [animationDuration floatValue];
 }
 
@@ -181,8 +171,8 @@ static NSString *sIonStylePaddingKey = @"StylePadding";
 }
 
 - (BOOL)styleCanSetBackground {
-  return
-      [self.categoryVariables boolForKey:@"canSetBackground" defaultValue:TRUE];
+  return [self.categoryVariables boolForKey:@"canSetBackground"
+                               defaultValue:FALSE];
 }
 
 #pragma mark Style Margin

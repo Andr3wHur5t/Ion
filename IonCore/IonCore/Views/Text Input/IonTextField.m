@@ -63,7 +63,7 @@
   // Set Defaults.
   _iAlpha = 1.0;
   self.canResignExternally = TRUE;
-
+  self.styleCanSetBackground = TRUE;
   // Set our theme properties.
   self.themeElement = sIonThemeElementTextField;
   self.textDelegate = [IonInputManager sharedManager];
