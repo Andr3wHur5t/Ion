@@ -13,7 +13,7 @@
 /*!
  @brief Array of our internal data.
  */
-@property (strong, nonatomic, readonly) NSMutableArray *iData;
+@property(strong, readonly) NSMutableArray *iData;
 
 @end
 
@@ -24,8 +24,7 @@
 #pragma mark Data
 
 - (NSMutableArray *)iData {
-  if ( !_iData )
-      _iData = [[NSMutableArray alloc] init];
+  if (!_iData) _iData = [[NSMutableArray alloc] init];
   return _iData;
 }
 
@@ -41,61 +40,68 @@
 #pragma mark Data Manipulation
 
 - (void)addData:(id)data {
-  NSParameterAssert( data );
-  if ( !data )
-    return;
-  
-  [self.iData addObject: data];
-  if ( [self.delegate respondsToSelector: @selector(didAddData:)] )
-      [self.delegate didAddData: data];
+  NSParameterAssert(data);
+  if (!data) return;
+
+  [self.iData addObject:data];
+  if ([self.delegate respondsToSelector:@selector(didAddData:)])
+    [self.delegate didAddData:data];
 }
 
-- (void)insertData:(id)data atIndex:(NSUInteger) index {
-  NSParameterAssert( data );
-  if ( !data )
-    return;
-  
-  if ( self.iData.count < index ) {
-    [self addData: data];
+- (void)insertData:(id)data atIndex:(NSUInteger)index {
+  NSParameterAssert(data);
+  if (!data) return;
+
+  if (self.iData.count < index) {
+    [self addData:data];
     return;
   }
 
-  [self.iData insertObject: data atIndex: index];
-  
-  if ( [self.delegate respondsToSelector: @selector(didInsertData:atIndex:)] )
-    [self.delegate didInsertData:data atIndex:index];
+  [self.iData insertObject:data atIndex:index];
+
+  __block id sData = data;
+  dispatch_async(dispatch_get_main_queue(), ^{
+      if ([self.delegate respondsToSelector:@selector(didInsertData:atIndex:)])
+        [self.delegate didInsertData:sData atIndex:index];
+  });
 }
 
-- (void)replaceData:(id)data atIndex:(NSUInteger) index {
-  NSParameterAssert( data );
-  if ( !data )
-    return;
-  
-  if ( self.iData.count < index ) {
-    [self addData: data];
+- (void)replaceData:(id)data atIndex:(NSUInteger)index {
+  NSParameterAssert(data);
+  if (!data) return;
+
+  if (self.iData.count < index) {
+    [self addData:data];
     return;
   }
-  
-  [self.iData setObject: data atIndexedSubscript: index];
-  
-  if ( [self.delegate respondsToSelector: @selector(didReplaceData:atIndex:)] )
-    [self.delegate didReplaceData: data atIndex: index];
+
+  [self.iData setObject:data atIndexedSubscript:index];
+
+  __block id sData = data;
+  dispatch_async(dispatch_get_main_queue(), ^{
+      if ([self.delegate respondsToSelector:@selector(didReplaceData:atIndex:)])
+        [self.delegate didReplaceData:sData atIndex:index];
+  });
 }
 
-- (void)removeDataAtIndex:(NSUInteger) index {
-  if ( self.iData.count < index )
-    return;
-  
-  [self.iData removeObjectAtIndex: index];
-  if ( [self.delegate respondsToSelector: @selector(didRemoveDataAtIndex:)] )
-    [self.delegate didRemoveDataAtIndex: index];
+- (void)removeDataAtIndex:(NSUInteger)index {
+  if (self.iData.count < index) return;
+
+  [self.iData removeObjectAtIndex:index];
+
+  __block NSUInteger sIndex = index;
+  dispatch_async(dispatch_get_main_queue(), ^{
+      if ([self.delegate respondsToSelector:@selector(didRemoveDataAtIndex:)])
+        [self.delegate didRemoveDataAtIndex:sIndex];
+  });
 }
 
 - (void)removeAllData {
   [self.iData removeAllObjects];
-  if ( [self.delegate respondsToSelector: @selector(didRemoveAllData)] )
-    [self.delegate didRemoveAllData];
+  dispatch_async(dispatch_get_main_queue(), ^{
+      if ([self.delegate respondsToSelector:@selector(didRemoveAllData)])
+        [self.delegate didRemoveAllData];
+  });
 }
-
 
 @end
