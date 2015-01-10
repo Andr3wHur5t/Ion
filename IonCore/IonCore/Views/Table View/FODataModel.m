@@ -60,10 +60,10 @@
   [self.iData insertObject:data atIndex:index];
 
   __block id sData = data;
-  dispatch_async(dispatch_get_main_queue(), ^{
-      if ([self.delegate respondsToSelector:@selector(didInsertData:atIndex:)])
-        [self.delegate didInsertData:sData atIndex:index];
-  });
+  //  dispatch_async(dispatch_get_main_queue(), ^{
+  if ([self.delegate respondsToSelector:@selector(didInsertData:atIndex:)])
+    [self.delegate didInsertData:sData atIndex:index];
+  //  });
 }
 
 - (void)replaceData:(id)data atIndex:(NSUInteger)index {
@@ -78,10 +78,10 @@
   [self.iData setObject:data atIndexedSubscript:index];
 
   __block id sData = data;
-  dispatch_async(dispatch_get_main_queue(), ^{
-      if ([self.delegate respondsToSelector:@selector(didReplaceData:atIndex:)])
-        [self.delegate didReplaceData:sData atIndex:index];
-  });
+  //  dispatch_async(dispatch_get_main_queue(), ^{
+  if ([self.delegate respondsToSelector:@selector(didReplaceData:atIndex:)])
+    [self.delegate didReplaceData:sData atIndex:index];
+  //  });
 }
 
 - (void)removeDataAtIndex:(NSUInteger)index {
@@ -90,18 +90,18 @@
   [self.iData removeObjectAtIndex:index];
 
   __block NSUInteger sIndex = index;
-  dispatch_async(dispatch_get_main_queue(), ^{
-      if ([self.delegate respondsToSelector:@selector(didRemoveDataAtIndex:)])
-        [self.delegate didRemoveDataAtIndex:sIndex];
-  });
+  //  dispatch_async(dispatch_get_main_queue(), ^{
+  if ([self.delegate respondsToSelector:@selector(didRemoveDataAtIndex:)])
+    [self.delegate didRemoveDataAtIndex:sIndex];
+  //  });
 }
 
 - (void)removeAllData {
   [self.iData removeAllObjects];
-  dispatch_async(dispatch_get_main_queue(), ^{
-      if ([self.delegate respondsToSelector:@selector(didRemoveAllData)])
-        [self.delegate didRemoveAllData];
-  });
+  //  dispatch_async(dispatch_get_main_queue(), ^{
+  if ([self.delegate respondsToSelector:@selector(didRemoveAllData)])
+    [self.delegate didRemoveAllData];
+  //  });
 }
 
 @end

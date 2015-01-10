@@ -180,8 +180,8 @@
 			children = (
 				377A130C19E7136600964B61 /* NSString+RegularExpressionTests.m */,
 				377A130A19E711E100964B61 /* FOKeyValueObserverTests.m */,
-				3771F6E919E4172700B66C36 /* FOTargetActionListTests.m */,
 				3771F6EA19E4172700B66C36 /* FOTargetActionSetTests.m */,
+				3771F6E919E4172700B66C36 /* FOTargetActionListTests.m */,
 				3771F6C619E414D000B66C36 /* Supporting Files */,
 				377A133719E77D8400964B61 /* UIColor+FOColorTests.m */,
 				377A133919E77E6E00964B61 /* NSString+TypeExtensionTests.m */,
@@ -393,7 +393,7 @@
 				TargetAttributes = {
 					3771F6B819E414D000B66C36 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = CYK2M28J2X;
+						DevelopmentTeam = 986AP7KD58;
 					};
 					3771F6C319E414D000B66C36 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -591,6 +591,8 @@
 				CLANG_WARN_ASSIGN_ENUM = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -618,6 +620,8 @@
 				CLANG_WARN_ASSIGN_ENUM = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

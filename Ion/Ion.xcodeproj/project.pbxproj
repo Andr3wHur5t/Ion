@@ -1242,6 +1242,7 @@
 					};
 					37FCF153197F830C004C14C8 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 986AP7KD58;
 					};
 					37FCF15D197F830C004C14C8 = {
 						CreatedOnToolsVersion = 6.0;
@@ -1656,6 +1657,8 @@
 		37FCF16E197F830C004C14C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1683,6 +1686,8 @@
 		37FCF16F197F830C004C14C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
