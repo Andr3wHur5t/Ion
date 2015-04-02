@@ -45,17 +45,17 @@
 
 @implementation IonPaginationController
 
-@synthesize pages             = _pages;
-@synthesize pageNames         = _pageNames;
-@synthesize guideGroups       = _guideGroups;
+@synthesize pages = _pages;
+@synthesize pageNames = _pageNames;
+@synthesize guideGroups = _guideGroups;
 @synthesize activeControllers = _activeControllers;
-@synthesize router            = _router;
-@synthesize currentIndex      = _currentIndex;
+@synthesize router = _router;
+@synthesize currentIndex = _currentIndex;
 
-@synthesize pageCountGuide    = _pageCountGuide;
+@synthesize pageCountGuide = _pageCountGuide;
 @synthesize contentWidthGuide = _contentWidthGuide;
-@synthesize scrollGuide       = _scrollGuide;
-@synthesize pagePosition      = _pagePosition;
+@synthesize scrollGuide = _scrollGuide;
+@synthesize pagePosition = _pagePosition;
 
 #pragma mark Construction
 
@@ -72,11 +72,9 @@
   return self;
 }
 
-
 - (instancetype)initWithHorizontalMode:(BOOL)mode {
   self = [self init];
-  if (self)
-    _isHorizontal = mode;
+  if (self) _isHorizontal = mode;
   // TODO: Add Vertical Mode
   return self;
 }
@@ -84,8 +82,7 @@
 - (instancetype)initWithRouter:(IACRouter *)router
              andHorizontalMode:(BOOL)mode {
   self = [self initWithHorizontalMode:mode];
-  if (self)
-    _router = router;
+  if (self) _router = router;
   return self;
 }
 
@@ -106,14 +103,12 @@
 #pragma mark Page Management
 
 - (NSMutableArray *)pageNames {
-  if (!_pageNames)
-    _pageNames = [[NSMutableArray alloc] init];
+  if (!_pageNames) _pageNames = [[NSMutableArray alloc] init];
   return _pageNames;
 }
 
 - (NSMutableArray *)pages {
-  if (!_pages)
-    _pages = [[NSMutableArray alloc] init];
+  if (!_pages) _pages = [[NSMutableArray alloc] init];
   return _pages;
 }
 
@@ -126,8 +121,7 @@
   IACRouter *subrouter;
   NSParameterAssert(controllerClass);
   NSParameterAssert([name isKindOfClass:[NSString class]]);
-  if (![name isKindOfClass:[NSString class]] || !controllerClass)
-    return;
+  if (![name isKindOfClass:[NSString class]] || !controllerClass) return;
 
   // Generate Controller ID so we can register it.
   // TODO: Register with prepended identifier (Conflict Resolution)
@@ -170,17 +164,17 @@
 
 - (void)setFrame:(CGRect)frame {
   [super setFrame:frame];
-  
+
   // Wait tell after any animation to update position.
   // This is hacky :( need to find a better way.
-  if ( !isnan(self.currentPagePosition) ) {
-//    NSLog( @"Last: %@", @(self.currentPagePosition) );
-//    self.contentOffset = (CGPoint){ self.currentPagePosition * self.frame.size.width, 0.0f };
+  if (!isnan(self.currentPagePosition)) {
+    //    NSLog( @"Last: %@", @(self.currentPagePosition) );
+    //    self.contentOffset = (CGPoint){ self.currentPagePosition *
+    //    self.frame.size.width, 0.0f };
   }
-  
+
   // The first value always seems good, once change occurs things get wierd
 }
-
 
 #pragma mark Router Interface
 
@@ -190,8 +184,7 @@
   return imp_implementationWithBlock(^(IonPaginationController *_self,
                                        IACLink *link) {
       UIViewController *controller;
-      if (![link isKindOfClass:[IACLink class]])
-        return;
+      if (![link isKindOfClass:[IACLink class]]) return;
 
       // Get the controller
       controller = [[IonApplication sharedApplication]
@@ -223,8 +216,7 @@
 #pragma mark Internal Page Management
 
 - (NSMutableArray *)activeControllers {
-  if (!_activeControllers)
-    _activeControllers = [[NSMutableArray alloc] init];
+  if (!_activeControllers) _activeControllers = [[NSMutableArray alloc] init];
   return _activeControllers;
 }
 
@@ -239,8 +231,7 @@
   UIViewController *controller;
   NSString *controllerID;
   IonGuideGroup *guideGroup;
-  if (self.pages.count <= index)
-    return;
+  if (self.pages.count <= index) return;
   // Set up controllers here when we need to.
   controllerID = [self.pages objectAtIndex:index];
 
@@ -265,7 +256,7 @@
                                  andBottom:self.sizeGuideVert];
 
   // Add As Subview.
-  if ( ![controller.view.superview isEqual: self] )
+  if (![controller.view.superview isEqual:self])
     [self addSubview:controller.view];
   else
     controller.view.hidden = false;
@@ -273,15 +264,13 @@
 
 - (void)removePageAtIndex:(NSUInteger)index {
   UIViewController *controller;
-  if (self.activeControllers.count <= index)
-    return;
+  if (self.activeControllers.count <= index) return;
 
   controller = [self.activeControllers objectAtIndex:index];
-  if (![controller isKindOfClass:[UIViewController class]])
-    return;
+  if (![controller isKindOfClass:[UIViewController class]]) return;
 
   // Remove
-//  [controller.view removeFromSuperview];
+  //  [controller.view removeFromSuperview];
   controller.view.hidden = TRUE;
 }
 
@@ -289,15 +278,13 @@
 
 - (void)startAtPageWithName:(NSString *)name {
   NSParameterAssert([name isKindOfClass:[NSString class]]);
-  if (![name isKindOfClass:[NSString class]])
-    return;
+  if (![name isKindOfClass:[NSString class]]) return;
   [self startAtIndex:[self indexOfName:name]];
 }
 
 - (void)startAtIndex:(NSUInteger)index {
   NSParameterAssert(index <= self.pages.count);
-  if (index >= self.pages.count)
-    return;
+  if (index >= self.pages.count) return;
 
   // Load Pages
   [self configureIndex:index];
@@ -319,8 +306,7 @@
 
 - (void)navigateToPageWithName:(NSString *)name animated:(BOOL)animated {
   NSParameterAssert([name isKindOfClass:[NSString class]]);
-  if (![name isKindOfClass:[NSString class]])
-    return;
+  if (![name isKindOfClass:[NSString class]]) return;
 
   [self navigateToPageAtIndex:[self indexOfName:name] animated:animated];
 }
@@ -349,8 +335,7 @@
 }
 
 - (void)navigatedToIndex:(NSUInteger)index {
-  if (index == self.currentIndex)
-    return;
+  if (index == self.currentIndex) return;
 
   [self willChangeValueForKey:@"currentIndex"];
   _currentIndex = index;
@@ -378,11 +363,11 @@
   // Update navigation if needed.
   if (((CGFloat)self.currentIndex + 0.5f) < self.currentPagePosition ||
       ((CGFloat)self.currentIndex - 0.5f) > self.currentPagePosition) {
-    flooredVal = (CGFloat)floor((self.contentOffset.x - self.frame.size.width / 2) /
-                                self.frame.size.width);
+    flooredVal =
+        (CGFloat)floor((self.contentOffset.x - self.frame.size.width / 2) /
+                       self.frame.size.width);
     [self navigatedToIndex:(NSUInteger)(flooredVal + 1)];
   }
-  
 }
 
 - (void)configureIndex:(NSUInteger)index {
@@ -396,8 +381,7 @@
 #pragma mark Guide Groups
 
 - (NSMutableArray *)guideGroups {
-  if (!_guideGroups)
-    _guideGroups = [[NSMutableArray alloc] init];
+  if (!_guideGroups) _guideGroups = [[NSMutableArray alloc] init];
   return _guideGroups;
 }
 
@@ -411,16 +395,16 @@
     guideGroup = [[IonGuideGroup alloc] init];
 
     // Position, and Size.
-    [guideGroup
-        setGuidesWithLocalHoriz:guideGroup.originGuideHoriz
-                      localVert:guideGroup.originGuideVert
-                     superHoriz:[self originHorizGuideForIndex:index]
-                      superVert:self.originGuideVert // TODO Change according to
-                                                     // mode
-                           left:self.originGuideHoriz
-                          right:self.sizeGuideHoriz
-                            top:self.originGuideVert
-                      andBottom:self.sizeGuideVert];
+    [guideGroup setGuidesWithLocalHoriz:guideGroup.originGuideHoriz
+                              localVert:guideGroup.originGuideVert
+                             superHoriz:[self originHorizGuideForIndex:index]
+                              superVert:self.originGuideVert  // TODO Change
+                                                              // according to
+                                                              // mode
+                                   left:self.originGuideHoriz
+                                  right:self.sizeGuideHoriz
+                                    top:self.originGuideVert
+                              andBottom:self.sizeGuideVert];
 
     // Construct all prior guide groups
     while (self.guideGroups.count < index)

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370644171A7DDA1F00DB39B0 /* FOSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 370644131A7DDA1F00DB39B0 /* FOSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370644181A7DDA1F00DB39B0 /* FOSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 370644141A7DDA1F00DB39B0 /* FOSession.m */; };
+		370644191A7DDA1F00DB39B0 /* FOSessionRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 370644151A7DDA1F00DB39B0 /* FOSessionRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3706441A1A7DDA1F00DB39B0 /* FOSessionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 370644161A7DDA1F00DB39B0 /* FOSessionRequest.m */; };
 		3771F6DF19E416B400B66C36 /* FOUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 3771F6D219E416B400B66C36 /* FOUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3771F6E119E416B400B66C36 /* NSString+RegularExpression.h in Headers */ = {isa = PBXBuildFile; fileRef = 3771F6D819E416B400B66C36 /* NSString+RegularExpression.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3771F6E219E416B400B66C36 /* NSString+RegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771F6D919E416B400B66C36 /* NSString+RegularExpression.m */; };
@@ -62,6 +66,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		370644131A7DDA1F00DB39B0 /* FOSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOSession.h; sourceTree = "<group>"; };
+		370644141A7DDA1F00DB39B0 /* FOSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOSession.m; sourceTree = "<group>"; };
+		370644151A7DDA1F00DB39B0 /* FOSessionRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOSessionRequest.h; sourceTree = "<group>"; };
+		370644161A7DDA1F00DB39B0 /* FOSessionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOSessionRequest.m; sourceTree = "<group>"; };
 		3771F6B919E414D000B66C36 /* FOUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FOUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3771F6C419E414D000B66C36 /* FOUtilitiesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FOUtilitiesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3771F6D219E416B400B66C36 /* FOUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOUtilities.h; sourceTree = "<group>"; };
@@ -128,6 +136,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		370644121A7DDA1F00DB39B0 /* FOSession */ = {
+			isa = PBXGroup;
+			children = (
+				370644131A7DDA1F00DB39B0 /* FOSession.h */,
+				370644141A7DDA1F00DB39B0 /* FOSession.m */,
+				370644151A7DDA1F00DB39B0 /* FOSessionRequest.h */,
+				370644161A7DDA1F00DB39B0 /* FOSessionRequest.m */,
+			);
+			path = FOSession;
+			sourceTree = "<group>";
+		};
 		3771F6AF19E414D000B66C36 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +168,7 @@
 		3771F6BB19E414D000B66C36 /* FOUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				370644121A7DDA1F00DB39B0 /* FOSession */,
 				379BF6B31A36DCB300054CC0 /* HTTP */,
 				3771F6D219E416B400B66C36 /* FOUtilities.h */,
 				377A131D19E7252D00964B61 /* Types */,
@@ -332,8 +352,10 @@
 				377A132619E7340400964B61 /* NSData+FOTypeExtension.h in Headers */,
 				377A132219E733EC00964B61 /* NSData+FOCrypto.h in Headers */,
 				377A132D19E73CE000964B61 /* FOBlockTypes.h in Headers */,
+				370644191A7DDA1F00DB39B0 /* FOSessionRequest.h in Headers */,
 				3771F6DF19E416B400B66C36 /* FOUtilities.h in Headers */,
 				377A131F19E7255800964B61 /* FOCGTypes.h in Headers */,
+				370644171A7DDA1F00DB39B0 /* FOSession.h in Headers */,
 				377A130519E70D5A00964B61 /* FOKeyValueObserver.h in Headers */,
 				377A133519E77C5000964B61 /* NSValue+FOTypeExtension.h in Headers */,
 				3771F6E119E416B400B66C36 /* NSString+RegularExpression.h in Headers */,
@@ -468,8 +490,10 @@
 				3771F6E419E416B400B66C36 /* FOTargetActionList.m in Sources */,
 				377A130619E70D5A00964B61 /* FOKeyValueObserver.m in Sources */,
 				377A131519E718D000964B61 /* NSDictionary+FOTypeExtension.m in Sources */,
+				370644181A7DDA1F00DB39B0 /* FOSession.m in Sources */,
 				377A132319E733EC00964B61 /* NSData+FOCrypto.m in Sources */,
 				3771F6E619E416B400B66C36 /* FOTargetActionSet.m in Sources */,
+				3706441A1A7DDA1F00DB39B0 /* FOSessionRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,7 +630,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				INFOPLIST_FILE = FOUtilities/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -635,7 +659,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				INFOPLIST_FILE = FOUtilities/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";

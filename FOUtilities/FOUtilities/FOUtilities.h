@@ -14,7 +14,8 @@ FOUNDATION_EXPORT double FOUtilitiesVersionNumber;
 //! Project version string for FOUtilities.
 FOUNDATION_EXPORT const unsigned char FOUtilitiesVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <FOUtilities/PublicHeader.h>
+// In this header, you should import all the public headers of your framework
+// using statements like #import <FOUtilities/PublicHeader.h>
 
 #pragma mark NSObject
 #import <FOUtilities/NSObject+FOObject.h>
@@ -55,3 +56,7 @@ FOUNDATION_EXPORT const unsigned char FOUtilitiesVersionString[];
 #pragma mark Types
 #import <FOUtilities/FOCGTypes.h>
 #import <FOUtilities/FOBlockTypes.h>
+
+#pragma mark Session Management
+#import <FOUtilities/FOSessionRequest.h>
+#import <FOUtilities/FOSession.h>

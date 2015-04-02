@@ -11,18 +11,6 @@
 		3763E97E19F4CD54007B5015 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3763E97D19F4CD54007B5015 /* AppDelegate.m */; };
 		3763E98619F4CD54007B5015 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3763E98519F4CD54007B5015 /* Images.xcassets */; };
 		3763E99519F4CD54007B5015 /* SandboxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3763E99419F4CD54007B5015 /* SandboxTests.m */; };
-		3766BA2C19F4D06400C18293 /* PHData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3766BA2819F4D03A00C18293 /* PHData.framework */; };
-		3766BA2D19F4D06400C18293 /* PHData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3766BA2819F4D03A00C18293 /* PHData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3766BA2E19F4D06400C18293 /* SimpleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3766BA2519F4D03A00C18293 /* SimpleAnalytics.framework */; };
-		3766BA2F19F4D06400C18293 /* SimpleAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3766BA2519F4D03A00C18293 /* SimpleAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3766BA3019F4D06500C18293 /* SimpleMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3766BA2219F4D03A00C18293 /* SimpleMath.framework */; };
-		3766BA3119F4D06500C18293 /* SimpleMath.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3766BA2219F4D03A00C18293 /* SimpleMath.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3766BA3219F4D06500C18293 /* FOUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3766BA1F19F4D03A00C18293 /* FOUtilities.framework */; };
-		3766BA3319F4D06500C18293 /* FOUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3766BA1F19F4D03A00C18293 /* FOUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3766BA3419F4D06500C18293 /* IonCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3766BA1C19F4D03A00C18293 /* IonCore.framework */; };
-		3766BA3519F4D06500C18293 /* IonCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3766BA1C19F4D03A00C18293 /* IonCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3766BA3619F4D06500C18293 /* IonData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3766BA1919F4D03A00C18293 /* IonData.framework */; };
-		3766BA3719F4D06500C18293 /* IonData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3766BA1919F4D03A00C18293 /* IonData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3766BA3A19F4D0AC00C18293 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3766BA3919F4D0AC00C18293 /* UIKit.framework */; };
 		3766BA9719F4D15A00C18293 /* Events_Addevent.png in Resources */ = {isa = PBXBuildFile; fileRef = 3766BA4019F4D15A00C18293 /* Events_Addevent.png */; };
 		3766BA9919F4D15A00C18293 /* Events_Facebookevent.png in Resources */ = {isa = PBXBuildFile; fileRef = 3766BA4319F4D15A00C18293 /* Events_Facebookevent.png */; };
@@ -106,6 +94,18 @@
 		3766BB4619F595E100C18293 /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3766BB4519F595E100C18293 /* EventCell.m */; };
 		3766BB4919F595F500C18293 /* PersonGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3766BB4819F595F500C18293 /* PersonGroupCell.m */; };
 		3796715419F78DC800C88B6C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3796715319F78DC800C88B6C /* SystemConfiguration.framework */; };
+		37E9EE761AAF826C0070645E /* IonData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9EE751AAF826C0070645E /* IonData.framework */; };
+		37E9EE771AAF826C0070645E /* IonData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9EE751AAF826C0070645E /* IonData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37E9EE791AAF826C0070645E /* IonCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9EE781AAF826C0070645E /* IonCore.framework */; };
+		37E9EE7A1AAF826C0070645E /* IonCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9EE781AAF826C0070645E /* IonCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37E9EE7C1AAF827F0070645E /* FOUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9EE7B1AAF827F0070645E /* FOUtilities.framework */; };
+		37E9EE7D1AAF827F0070645E /* FOUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9EE7B1AAF827F0070645E /* FOUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37E9EE7F1AAF827F0070645E /* SimpleMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9EE7E1AAF827F0070645E /* SimpleMath.framework */; };
+		37E9EE801AAF827F0070645E /* SimpleMath.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9EE7E1AAF827F0070645E /* SimpleMath.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37E9EE821AAF827F0070645E /* SimpleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9EE811AAF827F0070645E /* SimpleAnalytics.framework */; };
+		37E9EE831AAF827F0070645E /* SimpleAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9EE811AAF827F0070645E /* SimpleAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37E9EE851AAF827F0070645E /* PHData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9EE841AAF827F0070645E /* PHData.framework */; };
+		37E9EE861AAF827F0070645E /* PHData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9EE841AAF827F0070645E /* PHData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,12 +125,12 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3766BA2D19F4D06400C18293 /* PHData.framework in Embed Frameworks */,
-				3766BA2F19F4D06400C18293 /* SimpleAnalytics.framework in Embed Frameworks */,
-				3766BA3319F4D06500C18293 /* FOUtilities.framework in Embed Frameworks */,
-				3766BA3519F4D06500C18293 /* IonCore.framework in Embed Frameworks */,
-				3766BA3119F4D06500C18293 /* SimpleMath.framework in Embed Frameworks */,
-				3766BA3719F4D06500C18293 /* IonData.framework in Embed Frameworks */,
+				37E9EE801AAF827F0070645E /* SimpleMath.framework in Embed Frameworks */,
+				37E9EE7A1AAF826C0070645E /* IonCore.framework in Embed Frameworks */,
+				37E9EE861AAF827F0070645E /* PHData.framework in Embed Frameworks */,
+				37E9EE831AAF827F0070645E /* SimpleAnalytics.framework in Embed Frameworks */,
+				37E9EE771AAF826C0070645E /* IonData.framework in Embed Frameworks */,
+				37E9EE7D1AAF827F0070645E /* FOUtilities.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,12 +147,6 @@
 		3763E98E19F4CD54007B5015 /* SandboxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SandboxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3763E99319F4CD54007B5015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3763E99419F4CD54007B5015 /* SandboxTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SandboxTests.m; sourceTree = "<group>"; };
-		3766BA1919F4D03A00C18293 /* IonData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IonData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3766BA1C19F4D03A00C18293 /* IonCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IonCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3766BA1F19F4D03A00C18293 /* FOUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FOUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3766BA2219F4D03A00C18293 /* SimpleMath.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimpleMath.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3766BA2519F4D03A00C18293 /* SimpleAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimpleAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3766BA2819F4D03A00C18293 /* PHData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PHData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3766BA3919F4D0AC00C18293 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3766BA4019F4D15A00C18293 /* Events_Addevent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Events_Addevent.png; sourceTree = "<group>"; };
 		3766BA4319F4D15A00C18293 /* Events_Facebookevent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Events_Facebookevent.png; sourceTree = "<group>"; };
@@ -247,6 +241,12 @@
 		3766BB4719F595F400C18293 /* PersonGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonGroupCell.h; path = ../Cells/PersonGroupCell.h; sourceTree = "<group>"; };
 		3766BB4819F595F500C18293 /* PersonGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonGroupCell.m; path = ../Cells/PersonGroupCell.m; sourceTree = "<group>"; };
 		3796715319F78DC800C88B6C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		37E9EE751AAF826C0070645E /* IonData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IonData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37E9EE781AAF826C0070645E /* IonCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IonCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37E9EE7B1AAF827F0070645E /* FOUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FOUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37E9EE7E1AAF827F0070645E /* SimpleMath.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimpleMath.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37E9EE811AAF827F0070645E /* SimpleAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimpleAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37E9EE841AAF827F0070645E /* PHData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PHData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,14 +256,14 @@
 			files = (
 				3796715419F78DC800C88B6C /* SystemConfiguration.framework in Frameworks */,
 				3766BB3B19F504FF00C18293 /* CoreMedia.framework in Frameworks */,
+				37E9EE851AAF827F0070645E /* PHData.framework in Frameworks */,
 				3766BB3919F4FC1F00C18293 /* AVFoundation.framework in Frameworks */,
 				3766BA3A19F4D0AC00C18293 /* UIKit.framework in Frameworks */,
-				3766BA2C19F4D06400C18293 /* PHData.framework in Frameworks */,
-				3766BA2E19F4D06400C18293 /* SimpleAnalytics.framework in Frameworks */,
-				3766BA3219F4D06500C18293 /* FOUtilities.framework in Frameworks */,
-				3766BA3419F4D06500C18293 /* IonCore.framework in Frameworks */,
-				3766BA3019F4D06500C18293 /* SimpleMath.framework in Frameworks */,
-				3766BA3619F4D06500C18293 /* IonData.framework in Frameworks */,
+				37E9EE7F1AAF827F0070645E /* SimpleMath.framework in Frameworks */,
+				37E9EE7C1AAF827F0070645E /* FOUtilities.framework in Frameworks */,
+				37E9EE791AAF826C0070645E /* IonCore.framework in Frameworks */,
+				37E9EE761AAF826C0070645E /* IonData.framework in Frameworks */,
+				37E9EE821AAF827F0070645E /* SimpleAnalytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +280,12 @@
 		3763E96C19F4CD54007B5015 = {
 			isa = PBXGroup;
 			children = (
+				37E9EE841AAF827F0070645E /* PHData.framework */,
+				37E9EE811AAF827F0070645E /* SimpleAnalytics.framework */,
+				37E9EE7E1AAF827F0070645E /* SimpleMath.framework */,
+				37E9EE7B1AAF827F0070645E /* FOUtilities.framework */,
+				37E9EE781AAF826C0070645E /* IonCore.framework */,
+				37E9EE751AAF826C0070645E /* IonData.framework */,
 				3796715319F78DC800C88B6C /* SystemConfiguration.framework */,
 				3763E97719F4CD54007B5015 /* Sandbox */,
 				3763E99119F4CD54007B5015 /* SandboxTests */,
@@ -349,12 +355,6 @@
 				3766BB3A19F504FF00C18293 /* CoreMedia.framework */,
 				3766BB3819F4FC1F00C18293 /* AVFoundation.framework */,
 				3766BA3919F4D0AC00C18293 /* UIKit.framework */,
-				3766BA2819F4D03A00C18293 /* PHData.framework */,
-				3766BA2519F4D03A00C18293 /* SimpleAnalytics.framework */,
-				3766BA2219F4D03A00C18293 /* SimpleMath.framework */,
-				3766BA1F19F4D03A00C18293 /* FOUtilities.framework */,
-				3766BA1C19F4D03A00C18293 /* IonCore.framework */,
-				3766BA1919F4D03A00C18293 /* IonData.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1065,6 +1065,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BUILT_PRODUCTS_DIR)",
 					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-gwozlyypuoxgvdadsrysxqpuhpgs/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Sandbox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1083,6 +1084,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BUILT_PRODUCTS_DIR)",
 					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Ion-gwozlyypuoxgvdadsrysxqpuhpgs/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Sandbox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

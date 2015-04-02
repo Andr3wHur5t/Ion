@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370644101A7DCFFF00DB39B0 /* IonApplication+KeyboardGuides.h in Headers */ = {isa = PBXBuildFile; fileRef = 3706440E1A7DCFFF00DB39B0 /* IonApplication+KeyboardGuides.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370644111A7DCFFF00DB39B0 /* IonApplication+KeyboardGuides.m in Sources */ = {isa = PBXBuildFile; fileRef = 3706440F1A7DCFFF00DB39B0 /* IonApplication+KeyboardGuides.m */; };
 		374AB6F519F0CF6F0024EDE0 /* IonPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 374AB6F319F0CF6F0024EDE0 /* IonPage.h */; };
 		374AB6F619F0CF6F0024EDE0 /* IonPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 374AB6F419F0CF6F0024EDE0 /* IonPage.m */; };
 		3760E2A21A10403100FA8DD5 /* IonTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3760E2A01A10403100FA8DD5 /* IonTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -168,6 +170,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3706440E1A7DCFFF00DB39B0 /* IonApplication+KeyboardGuides.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IonApplication+KeyboardGuides.h"; sourceTree = "<group>"; };
+		3706440F1A7DCFFF00DB39B0 /* IonApplication+KeyboardGuides.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IonApplication+KeyboardGuides.m"; sourceTree = "<group>"; };
 		374AB6F319F0CF6F0024EDE0 /* IonPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonPage.h; sourceTree = "<group>"; };
 		374AB6F419F0CF6F0024EDE0 /* IonPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IonPage.m; sourceTree = "<group>"; };
 		3760E2A01A10403100FA8DD5 /* IonTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IonTableView.h; sourceTree = "<group>"; };
@@ -936,6 +940,8 @@
 		37C494D919EDDB390088FA23 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				3706440E1A7DCFFF00DB39B0 /* IonApplication+KeyboardGuides.h */,
+				3706440F1A7DCFFF00DB39B0 /* IonApplication+KeyboardGuides.m */,
 				37A0F9DD19EADBEF00C1DBB2 /* IonApplication+Keyboard.h */,
 				37A0F9DE19EADBEF00C1DBB2 /* IonApplication+Keyboard.m */,
 			);
@@ -1079,6 +1085,7 @@
 				3784D86219EB49500069F078 /* IACActionModule.h in Headers */,
 				3784D86319EB49500069F078 /* IACLink.h in Headers */,
 				3784D86419EB49500069F078 /* IACModule.h in Headers */,
+				370644101A7DCFFF00DB39B0 /* IonApplication+KeyboardGuides.h in Headers */,
 				37A0FAF219EADBEF00C1DBB2 /* UITouch + IonDemoTouch.h in Headers */,
 				37A0FAF019EADBEF00C1DBB2 /* IonDemoUIWindow.h in Headers */,
 				3784D86519EB49500069F078 /* IACRouter.h in Headers */,
@@ -1263,6 +1270,7 @@
 				37A0FA8219EADBEF00C1DBB2 /* IonApplication+plistGetters.m in Sources */,
 				37A0FAA319EADBEF00C1DBB2 /* UIView+IonGuideLine.m in Sources */,
 				37A0FA8E19EADBEF00C1DBB2 /* IonRapidStartViewController.m in Sources */,
+				370644111A7DCFFF00DB39B0 /* IonApplication+KeyboardGuides.m in Sources */,
 				3760E2AC1A104A7500FA8DD5 /* FODataModel.m in Sources */,
 				37A0FABD19EADBEF00C1DBB2 /* UIWindow+IonWindow.m in Sources */,
 				37A0FACF19EADBEF00C1DBB2 /* IonButtonBehavior.m in Sources */,
@@ -1395,7 +1403,7 @@
 				);
 				INFOPLIST_FILE = IonCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1436,7 +1444,7 @@
 				);
 				INFOPLIST_FILE = IonCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

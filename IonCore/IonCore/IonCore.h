@@ -5,7 +5,8 @@
 //  Created by Andrew Hurst on 10/10/14.
 //  Copyright (c) 2014 Andrew Hurst. All rights reserved.
 //
-//  This is Ions' core UI framework, it's dependent on 'IonFoundation', 'FOUtilities', 'SimpleMath', and 'SimpleAnalytics'
+//  This is Ions' core UI framework, it's dependent on 'IonFoundation',
+//  'FOUtilities', 'SimpleMath', and 'SimpleAnalytics'
 
 #import <UIKit/UIKit.h>
 
@@ -15,7 +16,8 @@ FOUNDATION_EXPORT double IonCoreVersionNumber;
 //! Project version string for IonCore.
 FOUNDATION_EXPORT const unsigned char IonCoreVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <IonCore/PublicHeader.h>
+// In this header, you should import all the public headers of your framework
+// using statements like #import <IonCore/PublicHeader.h>
 
 #import <IonCore/FORequest+IonImage.h>
 
@@ -23,6 +25,7 @@ FOUNDATION_EXPORT const unsigned char IonCoreVersionString[];
 #import <IonCore/IonApplication.h>
 #import <IonCore/IonApplication+StatusBar.h>
 #import <IonCore/IonApplication+Keyboard.h>
+#import <IonCore/IonApplication+KeyboardGuides.h>
 #import <IonCore/IonApplication+Metrics.h>
 #import <IonCore/IonApplication+plistGetters.h>
 #import <IonCore/IonApplication+Responders.h>
@@ -99,7 +102,7 @@ FOUNDATION_EXPORT const unsigned char IonCoreVersionString[];
 #import <IonCore/IonScrollRefreshActionView.h>
 
 /** Table View */
-#import <IonCore/FODataModel.h> // TODO: Move to FOUtils
+#import <IonCore/FODataModel.h>  // TODO: Move to FOUtils
 #import <IonCore/IonTableView.h>
 #import <IonCore/IonCell.h>
 

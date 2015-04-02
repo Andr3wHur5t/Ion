@@ -44,6 +44,7 @@
 
 - (void)construct {
   self.themeElement = sIonIconViewKey;
+  self.styleCanSetSize = TRUE;
 }
 #pragma mark Configuration
 
@@ -80,8 +81,10 @@
   NSString *imageKey;
 
   // Size
-  self.frame = (CGRect){self.frame.origin,
-                        [style.configuration sizeForKey:sIonIconView_IconSize]};
+  if (self.styleCanSetSize)
+    self.frame =
+        (CGRect){self.frame.origin,
+                 [style.configuration sizeForKey:sIonIconView_IconSize]};
 
   // Image
   imageKey = [style.configuration stringForKey:sIonIconView_IconImage];
