@@ -153,7 +153,7 @@
 #pragma mark Overflow Behavior
 
 - (void)setOverflowBehavior:
-            (id<IonLabelOverflowBehaviorDelegate>)overflowBehavior {
+        (id<IonLabelOverflowBehaviorDelegate>)overflowBehavior {
   _overflowBehavior = overflowBehavior;
   [_overflowBehavior setContainer:self andLabel:_labelView];
 }
@@ -219,8 +219,33 @@
 }
 
 - (CGSize)textSize {
-  CGSize textSize = [self.text sizeWithFont:self.font];
-  // Shh I'm adding a buffer so that we don't clip the text.
+  CGSize textSize;
+  __strong UIFont *font;
+  __strong NSString *text;
+
+  // Be safe
+  if (!self.font || ![self.font isKindOfClass:[UIFont class]])
+    font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+  else
+    font = &*self.font;
+
+  text = !self.text ? @"" : &*self.text;
+  if (text.length == 0) text = @" ";
+
+  // Do os version check check
+  if (![text isKindOfClass:[NSString class]]) {
+    NSLog(@"%s -- Bad val for string.", __func__);
+  }
+
+  if (![font isKindOfClass:[UIFont class]]) {
+    NSLog(@"%s -- Bad val for text.", __func__);
+  }
+
+  // This is not a recursion problem
+  textSize = [text sizeWithFont:font];
+
+  // textSize = [text sizeWithAttributes:@{NSFontAttributeName: font}];
+
   return (CGSize){textSize.width + 2, textSize.height};
 }
 

@@ -72,6 +72,8 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic, readwrite) CGFloat activationDistance;
 
+@property (strong, nonatomic, readwrite) IonGuideLine *offsetGuide;
+
 /**
  * Our current animation state.
  */

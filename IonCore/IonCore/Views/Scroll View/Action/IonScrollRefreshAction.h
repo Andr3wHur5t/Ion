@@ -45,6 +45,7 @@ static const BOOL sIonScrollRefreshActionDefault_CanInvokeActionSets = TRUE;
  * The pull distance required to constitute a refresh.
  */
 @property (assign, nonatomic, readwrite) CGFloat distance;
+@property (assign, nonatomic, readwrite) CGFloat returnBuffer;
 
 #pragma mark Status Delegate
 /**
