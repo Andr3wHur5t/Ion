@@ -28,7 +28,9 @@ typedef enum : NSUInteger {
     IonValueModType_Add = 0,
     IonValueModType_Subtract = 1,
     IonValueModType_Multiply = 2,
-    IonValueModType_Divide = 3
+    IonValueModType_Divide = 3,
+    IonValueModType_Max = 4,
+    IonValueModType_Min = 5
 } IonValueModType;
 
 /**

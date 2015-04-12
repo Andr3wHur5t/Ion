@@ -32,11 +32,37 @@
  */
 - (void) removeAllComponents;
 
+/**
+ * Gets, or constructs a sub router with the specified component name.
+ * @param componentName - the name of the router component to get or contruct.
+ */
+- (IACRouter *)subRouterWithName:(NSString *)componentName;
+
 #pragma mark Metrics Configuration
 
 /**
  * States if metrics are recorded to SimpleAnalytics
  */
 @property (assign, nonatomic, readwrite) BOOL recordToAnalytics;
+
+#pragma mark Endpoint actions
+/**
+ * Adds the target action set to be invoked when the module is invoked with no endpoint.
+ * @param target - the target to add the action for.
+ * @param action - the action to be executed when the key is invoked.
+ */
+- (void) addTarget:(id)target addAction:(SEL) action;
+
+/**
+ * Removes the target action set from this endpoint
+ * @param target - the target to remove the action for.
+ * @param action - the action to remove the target for.
+ */
+- (void) removeTarget:(id)target addAction:(SEL) action;
+
+/**
+ * Removes all target action sets for this endpoint.
+ */
+- (void) removeAllEndpoints;
 
 @end

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0610"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,52 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "377A13B519E7FA9000964B61"
-               BuildableName = "IonCore.framework"
-               BlueprintName = "IonCore"
-               ReferencedContainer = "container:IonCore.xcodeproj">
+               BlueprintIdentifier = "3771F6B819E414D000B66C36"
+               BuildableName = "FOUtilities.framework"
+               BlueprintName = "FOUtilities"
+               ReferencedContainer = "container:../FOUtilities/FOUtilities.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "377A134C19E7F4D300964B61"
+               BuildableName = "SimpleAnalytics.framework"
+               BlueprintName = "SimpleAnalytics"
+               ReferencedContainer = "container:../SimpleAnalytics/SimpleAnalytics.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "377A136F19E7F55C00964B61"
+               BuildableName = "SimpleMath.framework"
+               BlueprintName = "SimpleMath"
+               ReferencedContainer = "container:../SimpleMath/SimpleMath.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "37FCF153197F830C004C14C8"
+               BuildableName = "IonData.framework"
+               BlueprintName = "IonData"
+               ReferencedContainer = "container:../Ion/Ion.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -32,6 +74,20 @@
                BuildableName = "libIACommunication.a"
                BlueprintName = "IACommunication"
                ReferencedContainer = "container:../IACommunication/IACommunication.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "377A13B519E7FA9000964B61"
+               BuildableName = "IonCore.framework"
+               BlueprintName = "IonCore"
+               ReferencedContainer = "container:IonCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

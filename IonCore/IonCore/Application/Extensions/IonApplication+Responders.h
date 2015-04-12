@@ -14,6 +14,6 @@
  * The current first responder.
  * @warning Not KVO compliant; This dose a search on each invocation!
  */
-@property (weak, nonatomic, readonly) UIResponder *firstResponder;
+@property(weak, nonatomic, readonly) UIResponder *firstResponder;
 
 @end

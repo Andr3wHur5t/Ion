@@ -191,22 +191,6 @@
     return  [NSSet setWithArray:@[@"textField.enterKeyTargetAction"]];;
 }
 
-/**
- * Sets the target action object.
- * @param {id} the new target action object.
- */
-- (void) setEnterKeyTargetAction:(id) enterKeyTargetAction {
-    self.textField.enterKeyTargetAction = enterKeyTargetAction;
-}
-
-/**
- * Gets the enter target action object.
- * @return {id}
- */
-- (id) enterKeyTargetAction {
-    return self.textField.enterKeyTargetAction;
-}
-
 #pragma mark Icon
 /**
  * Switch icon to manual KVO mode.

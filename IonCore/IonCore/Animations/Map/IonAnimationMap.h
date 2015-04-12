@@ -11,28 +11,28 @@
 @class IonPath;
 @class IonAnimationFrame;
 
-static NSString* sIonAnimationFileExtension = @".animation";
-static NSString* sIonAnimationMap_FramesKey = @"transformations";
+static NSString *sIonAnimationFileExtension = @".animation";
+static NSString *sIonAnimationMap_FramesKey = @"transformations";
 
 @interface IonAnimationMap : NSObject
 #pragma mark Construction
 /**
  * Constructs the map with the inputted dictionary.
- * @param {NSDictionary*} the configuration dictionary  
+ * @param {NSDictionary*} the configuration dictionary
  */
-- (instancetype) initWithDictionary:(NSDictionary *)dict;
+- (instancetype)initWithDictionary:(NSDictionary *)dict;
 
 /**
- * Constructs witht the inputted name as the file name in the bundel.
- * @param {NSString*} the key for the name in the bundel.  
+ * Constructs with the inputted name as the file name in the bundle.
+ * @param {NSString*} the key for the name in the bundle.
  */
-- (instancetype) initWithName:(NSString *)name;
+- (instancetype)initWithName:(NSString *)name;
 
 /**
  * Constructs the the inputted path.
- * @param {IonPath*} the path of the animation configuration file.  
+ * @param {IonPath*} the path of the animation configuration file.
  */
-- (instancetype) initWithPath:(IonPath *)path;
+- (instancetype)initWithPath:(IonPath *)path;
 
 #pragma mark Frame Retrieval
 /**
@@ -55,13 +55,13 @@ static NSString* sIonAnimationMap_FramesKey = @"transformations";
  * @param {NSString*} the name to add the map for.
  * @param {IonAnimationMap*} the map to add to the cache.
  */
-+ (void) addMapToCache:(IonAnimationMap *)map withName:(NSString *)name;
++ (void)addMapToCache:(IonAnimationMap *)map withName:(NSString *)name;
 
 /**
  * Removes the map for the specified name.
  * @param {NSString*} the name to remove.
  */
-+ (void) removeMapFromCacheWithName:(NSString *)name;
++ (void)removeMapFromCacheWithName:(NSString *)name;
 
 /**
  * The cache object.

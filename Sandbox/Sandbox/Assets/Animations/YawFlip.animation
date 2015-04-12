@@ -1,0 +1,15 @@
+{
+    "transformations": {
+        "rotatePhaseOne": {
+            "rotation": {
+                "pitch": 0,
+                "yaw": 180,
+                "roll": 0
+            },
+            "duration": 0.3
+        },
+        "RotatePhaseTwo": {
+            "duration": 0.3,
+        }
+    }
+}

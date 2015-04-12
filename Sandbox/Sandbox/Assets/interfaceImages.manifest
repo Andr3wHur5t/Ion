@@ -1,0 +1,206 @@
+{
+    "General_Button_Cancel": {
+        "fileName": "General_Cancel.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_Add": {
+        "fileName": "General_Add.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_Arrow": {
+        "fileName": "General_Arrow.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_ExposedArrow": {
+        "fileName": "General_ExposedArrow.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_Settings": {
+        "fileName": "General_Settings.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_Hamburger": {
+        "fileName": "General_Hamburger.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_Edit": {
+        "fileName": "General_Edit.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_Close": {
+        "fileName": "General_Close.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_Confirm": {
+        "fileName": "General_Confirm.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_More": {
+        "fileName": "General_More.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_PlaceholderUser": {
+        "fileName": "General_PlaceholderUser_Foreground.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Button_Save": {
+        "fileName": "General_Save.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "General_Search": {
+        "fileName": "General_Search.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "Backgrounds_Button_Circle": {
+        "fileName": "Backgrounds_Circle.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "Backgrounds_Button_Rounded": {
+        "fileName": "Backgrounds_Rounded.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "EventView_Button_CancelEvent": {
+        "fileName": "EventView_CancelEvent.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "EventView_Button_UpdateEvent": {
+        "fileName": "EventView_UpdateEvent.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "EventView_Button_PlaceholderLocation": {
+        "fileName": "EventView_PlaceholderLocation.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "Events_Button_AddEvent": {
+        "fileName": "Events_AddEvent.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "Events_Button_FacebookEvent": {
+        "fileName": "Events_AddEvent.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "People_Button_Add": {
+        "fileName": "People_Add.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "People_Button_AddContact": {
+        "fileName": "People_AddContact.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "People_Button_Chat": {
+        "fileName": "People_Chat.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "People_Button_Meet": {
+        "fileName": "People_Meet.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "People_Button_QuickMeet": {
+        "fileName": "People_QuickMeet.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "People_Button_Trash": {
+        "fileName": "People_Trash.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "Profile_Button_Facebook": {
+        "fileName": "Profile_Facebook.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "Profile_Button_Googleplus": {
+        "fileName": "Profile_Googleplus.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "Profile_Button_Twitter": {
+        "fileName": "Profile_Twitter.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "SpottrGeneral_Button_Viewfinder": {
+        "fileName": "SpottrGeneral_Viewfinder.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "Viewfinder_Button_Events": {
+        "fileName": "Viewfinder_Events.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "Viewfinder_Button_PowerOverlay": {
+        "fileName": "Viewfinder_PowerOverlay.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "Viewfinder_Button_People": {
+        "fileName": "Viewfinder_People.png",
+        "info": {
+            "IsMask": true
+        }
+    },
+    "Viewfinder_Button_Spottr": {
+        "fileName": "Viewfinder_Spottr.png",
+        "info": {
+            "IsMask": true
+        }
+    }
+}

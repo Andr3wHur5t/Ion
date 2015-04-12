@@ -12,24 +12,24 @@
 @class IonGuideLine;
 
 #pragma mark Style Keys
-static NSString *sIonScrollStyle_Name =                                 @"scrollView";
-static NSString *sIonScrollStyle_UsesScrollToTopGesture =               @"usesScrollToTopGesture";
-static NSString *sIonScrollStyle_KeyboardDismissMode =                  @"keyboardDismissMode";
+static NSString *sIonScrollStyle_Name                     = @"scrollView";
+static NSString *sIonScrollStyle_UsesScrollToTopGesture   = @"usesScrollToTopGesture";
+static NSString *sIonScrollStyle_KeyboardDismissMode      = @"keyboardDismissMode";
 
-static NSString *sIonScrollStyle_ContentInset =                         @"contentInset";
-static NSString *sIonScrollStyle_BouncesAtEdge =                        @"bouncesAtEdge";
-static NSString *sIonScrollStyle_AlwaysBouncesVertical =                @"alwaysBouncesVertical";
-static NSString *sIonScrollStyle_AlwaysBouncesHorizontal =              @"alwaysBouncesHorizontal";
-static NSString *sIonScrollStyle_DecelerationRate =                     @"decelerationRate";
+static NSString *sIonScrollStyle_ContentInset             = @"contentInset";
+static NSString *sIonScrollStyle_BouncesAtEdge            = @"bouncesAtEdge";
+static NSString *sIonScrollStyle_AlwaysBouncesVertical    = @"alwaysBouncesVertical";
+static NSString *sIonScrollStyle_AlwaysBouncesHorizontal  = @"alwaysBouncesHorizontal";
+static NSString *sIonScrollStyle_DecelerationRate         = @"decelerationRate";
 
-static NSString *sIonScrollStyle_IndicatorStyle =                       @"indicatorStyle";
-static NSString *sIonScrollStyle_ShowsHorizontalIndicator =             @"showsHorizontalIndicator";
-static NSString *sIonScrollStyle_ShowsVerticalIndicator =               @"showsVerticalIndicator";
-static NSString *sIonScrollStyle_IndicatorInsets =                      @"indicatorInsets";
+static NSString *sIonScrollStyle_IndicatorStyle           = @"indicatorStyle";
+static NSString *sIonScrollStyle_ShowsHorizontalIndicator = @"showsHorizontalIndicator";
+static NSString *sIonScrollStyle_ShowsVerticalIndicator   = @"showsVerticalIndicator";
+static NSString *sIonScrollStyle_IndicatorInsets          = @"indicatorInsets";
 
-static NSString *sIonScrollStyle_MinimumZoomScale =                     @"minimumZoomScale";
-static NSString *sIonScrollStyle_MaximumZoomScale =                     @"maximumZoomScale";
-static NSString *sIonScrollStyle_ZoomBounces =                          @"zoomBounces";
+static NSString *sIonScrollStyle_MinimumZoomScale         = @"minimumZoomScale";
+static NSString *sIonScrollStyle_MaximumZoomScale         = @"maximumZoomScale";
+static NSString *sIonScrollStyle_ZoomBounces              = @"zoomBounces";
 
 /**
  * An Ion Theme, and guide line compatible scrollview which provides action based event functionality.
@@ -59,12 +59,22 @@ static NSString *sIonScrollStyle_ZoomBounces =                          @"zoomBo
 /**
  * A guide which describes the horizontal content size.
  */
-@property (weak, nonatomic, readwrite) IonGuideLine *contentSizeHoriz;
+@property (strong, nonatomic, readwrite) IonGuideLine *contentSizeHoriz;
 
 /**
  * A guide which describes the vertical content size.
  */
-@property (weak, nonatomic, readwrite) IonGuideLine *contentSizeVert;
+@property (strong, nonatomic, readwrite) IonGuideLine *contentSizeVert;
+
+/*!
+ @brief Forces the content size to enable scrolling verticaly.
+ */
+@property (assign, nonatomic, readwrite) BOOL forceScrollVert;
+
+/*!
+ @brief Forces the content size to enable scrolling horizontaly.
+ */
+@property (assign, nonatomic, readwrite) BOOL forceScrollHoriz;
 
 #pragma mark Action Management
 /**
@@ -83,5 +93,18 @@ static NSString *sIonScrollStyle_ZoomBounces =                          @"zoomBo
  * Removes all actions.
  */
 - (void) removeAllActions;
+
+@end
+
+@interface UIScrollView (ContentSizeGuides)
+/**
+ * Guide which represents the current height of the content offset.
+ */
+@property (strong, nonatomic, readonly) IonGuideLine *currentContentHeightGuide;
+
+/**
+ * Guide which represents the current width of the content offset.
+ */
+@property (strong, nonatomic, readonly) IonGuideLine *currentContentWidthGuide;
 
 @end

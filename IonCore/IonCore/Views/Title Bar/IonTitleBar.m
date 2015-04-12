@@ -329,21 +329,30 @@
  * updates the center view size guides.  
  */
 - (void) updateCenterViewSizeGuides {
+  IonGuideLine *rightViewGuide, *leftViewGuide;
     if ( !_centerView )
         return;
     
     _centerView.topSizeGuide = contentGroup.originExternalGuideVert;
     _centerView.bottomSizeGuide = contentGroup.sizeExternalGuideVert;
-    
-    if ( _rightView )
-        _centerView.rightSizeGuide = _rightView.leftMargin;
-    else
-        _centerView.rightSizeGuide = contentGroup.oneForthExternalGuideHoriz;
-    
-    if ( _leftView )
-        _centerView.leftSizeGuide = _leftView.rightMargin;
-    else
-        _centerView.leftSizeGuide = contentGroup.threeForthsExternalGuideHoriz;
+
+  rightViewGuide = _rightView ? _rightView.leftMargin :
+    contentGroup.oneForthExternalGuideHoriz;
+  
+//   if rv
+//    rvg = rv.lm
+//    if !lv // No Left View Equalize
+//      lvg = *&rvg;
+//
+//  if lv
+//    lvg = lv.rm
+//    if !rv // No Right View Equalize
+//      rvg = *&lvg;
+  
+
+  
+  leftViewGuide = _leftView ? _leftView.rightMargin :
+    contentGroup.threeForthsExternalGuideHoriz;
     
     [_centerView setGuidesWithLocalHoriz: _centerView.centerGuideHoriz
                                localVert: _centerView.centerGuideVert
@@ -384,6 +393,20 @@
                              superHoriz: contentGroup.sizeExternalGuideHoriz
                            andSuperVert: contentGroup.centerExternalGuideVert];
     [self updateCenterViewSizeGuides];
+}
+
+@end
+
+@implementation IonTitleConfiguration
+
+- (void) apply:(IonTitleBar *)titlebar {
+    NSParameterAssert( [titlebar isKindOfClass: [IonTitleBar class]] );
+    if ( ![titlebar isKindOfClass: [IonTitleBar class]] )
+        return;
+    
+    titlebar.leftView = self.leftView;
+    titlebar.centerView = self.centerView;
+    titlebar.rightView = self.rightView;
 }
 
 @end

@@ -29,4 +29,20 @@
  * Ends keyboard notification observation.
  */
 - (void) stopKeyboardObservation;
+
+#pragma mark Guides
+/**
+ * Guide which represents the top of the keyboard in the window.
+ */
+@property (weak, nonatomic, readonly) IonGuideLine *keyboardTop;
+
+/**
+ * Guide Which represents the height of the keyboard.
+ */
+@property (weak, nonatomic, readonly) IonGuideLine *keyboardHeight;
+
+/**
+ * Guide which represent the keyboards vertical position.
+ */
+@property (weak, nonatomic, readonly) IonGuideLine *keyboardPositionVert;
 @end

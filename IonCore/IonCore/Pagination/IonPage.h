@@ -10,15 +10,31 @@
 
 @interface IonPage : NSObject
 
-#pragma mark Refrence Objects
-/**
- * Refrence to the next page.
- */
-@property (strong, nonatomic, readonly) IonPage *nextPage;
+#pragma mark Construction
+/*!
+ @brief Constructs the page with the specified size score.
 
-/**
- * Refrence to the previous page.
+ @param size The size score of the page
+
+ @return The configured page object.
  */
-@property (strong, nonatomic, readonly) IonPage *previousPage;
+- (instancetype)initWithSize:(NSUInteger)size;
+
+#pragma mark Scoring
+/*!
+ @brief The size score of the page.
+ */
+@property(assign, nonatomic, readonly) NSUInteger size;
+
+#pragma mark Reference Objects
+/*!
+ @brief Reference to the next page.
+ */
+@property(strong, nonatomic, readwrite) IonPage *nextPage;
+
+/*!
+ @brief Reference to the previous page.
+ */
+@property(strong, nonatomic, readwrite) IonPage *previousPage;
 
 @end

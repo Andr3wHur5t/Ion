@@ -5,9 +5,8 @@
 //  Created by Andrew Hurst on 10/10/14.
 //  Copyright (c) 2014 Andrew Hurst. All rights reserved.
 //
-//  This is Ions' core UI framework, it's dependent on 'IonFoundation', 'FOUtilities', 'SimpleMath', 'SimpleAnalytics',
-//  and 'IACommunication'. 'IACommunication' is statically linked so you don't need to include it in you project.
-//
+//  This is Ions' core UI framework, it's dependent on 'IonFoundation',
+//  'FOUtilities', 'SimpleMath', and 'SimpleAnalytics'
 
 #import <UIKit/UIKit.h>
 
@@ -17,18 +16,22 @@ FOUNDATION_EXPORT double IonCoreVersionNumber;
 //! Project version string for IonCore.
 FOUNDATION_EXPORT const unsigned char IonCoreVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <IonCore/PublicHeader.h>
+// In this header, you should import all the public headers of your framework
+// using statements like #import <IonCore/PublicHeader.h>
 
+#import <IonCore/FORequest+IonImage.h>
 
 /** Application */
 #import <IonCore/IonApplication.h>
 #import <IonCore/IonApplication+StatusBar.h>
 #import <IonCore/IonApplication+Keyboard.h>
+#import <IonCore/IonApplication+KeyboardGuides.h>
 #import <IonCore/IonApplication+Metrics.h>
 #import <IonCore/IonApplication+plistGetters.h>
 #import <IonCore/IonApplication+Responders.h>
 #import <IonCore/IonApplication+RapidSplash.h>
 #import <IonCore/IonApplication+InterappComunication.h>
+#import <IonCore/IonApplication+ControllerManager.h>
 
 /** Status Bar Behaviors */
 #import <IonCore/IonStatusBarBehaviorMotionGestureDisplay.h>
@@ -86,6 +89,8 @@ FOUNDATION_EXPORT const unsigned char IonCoreVersionString[];
 #import <IonCore/IonInterfaceButton.h>
 #import <IonCore/IonScrollView.h>
 #import <IonCore/IonPaginationView.h>
+#import <IonCore/IonPaginationController.h>
+#import <IonCore/IonTextView.h>
 
 /** Scroll Actions */
 #import <IonCore/IonScrollAction.h>
@@ -95,6 +100,11 @@ FOUNDATION_EXPORT const unsigned char IonCoreVersionString[];
 /** Scroll Action View */
 #import <IonCore/IonScrollActionView.h>
 #import <IonCore/IonScrollRefreshActionView.h>
+
+/** Table View */
+#import <IonCore/FODataModel.h>  // TODO: Move to FOUtils
+#import <IonCore/IonTableView.h>
+#import <IonCore/IonCell.h>
 
 /** Button Behaviors */
 #import <IonCore/IonButtonBehavior.h>

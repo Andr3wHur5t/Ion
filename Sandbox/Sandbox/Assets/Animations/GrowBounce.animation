@@ -1,0 +1,43 @@
+{
+    "transformations": {
+        "start": {
+            "scale": {
+                "x": 1.1,
+                "y": 1.1,
+                "z": 1
+            },
+            "duration": 0.2,
+            "next":"down1"
+        },
+        "down1": {
+            "scale": {
+                "x": 0.9,
+                "y": 0.9,
+                "z": 1
+            },
+            "duration": 0.1,
+            "next":"down2"
+        },
+        "down2": {
+            "scale": {
+                "x": 1.05,
+                "y": 1.05,
+                "z": 1
+            },
+            "duration": 0.1,
+            "next":"down3"
+        },
+        "down3": {
+            "scale": {
+                "x": 0.95,
+                "y": 0.95,
+                "z": 1
+            },
+            "duration": 0.1,
+            "next":"end"
+        },
+        "end": {
+            "duration": 0.1,
+        }
+    }
+}

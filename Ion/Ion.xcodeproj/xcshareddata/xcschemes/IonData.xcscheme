@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0610"
    version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "37FCF153197F830C004C14C8"
-               BuildableName = "IonData.framework"
-               BlueprintName = "IonData"
-               ReferencedContainer = "container:Ion.xcodeproj">
+               BlueprintIdentifier = "377A136F19E7F55C00964B61"
+               BuildableName = "SimpleMath.framework"
+               BlueprintName = "SimpleMath"
+               ReferencedContainer = "container:../SimpleMath/SimpleMath.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -42,10 +42,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "377A136F19E7F55C00964B61"
-               BuildableName = "SimpleMath.framework"
-               BlueprintName = "SimpleMath"
-               ReferencedContainer = "container:../SimpleMath/SimpleMath.xcodeproj">
+               BlueprintIdentifier = "37FCF153197F830C004C14C8"
+               BuildableName = "IonData.framework"
+               BlueprintName = "IonData"
+               ReferencedContainer = "container:Ion.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -92,11 +92,11 @@
       </MacroExpansion>
    </TestAction>
    <LaunchAction
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugXPCServices = "NO"

@@ -14,5 +14,5 @@
  * Using Ion prefix to ensure that we don't collide with apples private APIs
  * @return {UIView*} the first responder view if any.
  */
-- (UIView *)ionFristResponder;
+- (UIView *)ionFirstResponder;
 @end

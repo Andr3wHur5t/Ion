@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370644171A7DDA1F00DB39B0 /* FOSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 370644131A7DDA1F00DB39B0 /* FOSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		370644181A7DDA1F00DB39B0 /* FOSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 370644141A7DDA1F00DB39B0 /* FOSession.m */; };
+		370644191A7DDA1F00DB39B0 /* FOSessionRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 370644151A7DDA1F00DB39B0 /* FOSessionRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3706441A1A7DDA1F00DB39B0 /* FOSessionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 370644161A7DDA1F00DB39B0 /* FOSessionRequest.m */; };
 		3771F6DF19E416B400B66C36 /* FOUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 3771F6D219E416B400B66C36 /* FOUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3771F6E119E416B400B66C36 /* NSString+RegularExpression.h in Headers */ = {isa = PBXBuildFile; fileRef = 3771F6D819E416B400B66C36 /* NSString+RegularExpression.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3771F6E219E416B400B66C36 /* NSString+RegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771F6D919E416B400B66C36 /* NSString+RegularExpression.m */; };
@@ -44,6 +48,8 @@
 		377A133E19E7E22E00964B61 /* NSDictionary+FOTypeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A133D19E7E22E00964B61 /* NSDictionary+FOTypeExtension.m */; };
 		377A134019E7E33100964B61 /* NSArray+FOUtilitiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A133F19E7E33100964B61 /* NSArray+FOUtilitiesTests.m */; };
 		377A134219E7E49F00964B61 /* NSValue+FOTypeExtensionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A134119E7E49F00964B61 /* NSValue+FOTypeExtensionTests.m */; };
+		379BF6B61A36DCD000054CC0 /* FORequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 379BF6B41A36DCD000054CC0 /* FORequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		379BF6B71A36DCD000054CC0 /* FORequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 379BF6B51A36DCD000054CC0 /* FORequest.m */; };
 		37DE298419E4197300BCC51E /* FOUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3771F6B919E414D000B66C36 /* FOUtilities.framework */; };
 		37DE299219E41F2000BCC51E /* NSObject+FOObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 37DE299019E41F2000BCC51E /* NSObject+FOObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37DE299319E41F2000BCC51E /* NSObject+FOObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DE299119E41F2000BCC51E /* NSObject+FOObject.m */; };
@@ -60,6 +66,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		370644131A7DDA1F00DB39B0 /* FOSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOSession.h; sourceTree = "<group>"; };
+		370644141A7DDA1F00DB39B0 /* FOSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOSession.m; sourceTree = "<group>"; };
+		370644151A7DDA1F00DB39B0 /* FOSessionRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOSessionRequest.h; sourceTree = "<group>"; };
+		370644161A7DDA1F00DB39B0 /* FOSessionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOSessionRequest.m; sourceTree = "<group>"; };
 		3771F6B919E414D000B66C36 /* FOUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FOUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3771F6C419E414D000B66C36 /* FOUtilitiesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FOUtilitiesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3771F6D219E416B400B66C36 /* FOUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOUtilities.h; sourceTree = "<group>"; };
@@ -101,6 +111,8 @@
 		377A133D19E7E22E00964B61 /* NSDictionary+FOTypeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+FOTypeExtension.m"; sourceTree = "<group>"; };
 		377A133F19E7E33100964B61 /* NSArray+FOUtilitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FOUtilitiesTests.m"; sourceTree = "<group>"; };
 		377A134119E7E49F00964B61 /* NSValue+FOTypeExtensionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+FOTypeExtensionTests.m"; sourceTree = "<group>"; };
+		379BF6B41A36DCD000054CC0 /* FORequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FORequest.h; path = HTTP/FORequest.h; sourceTree = "<group>"; };
+		379BF6B51A36DCD000054CC0 /* FORequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FORequest.m; path = HTTP/FORequest.m; sourceTree = "<group>"; };
 		37DE299019E41F2000BCC51E /* NSObject+FOObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FOObject.h"; sourceTree = "<group>"; };
 		37DE299119E41F2000BCC51E /* NSObject+FOObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FOObject.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +136,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		370644121A7DDA1F00DB39B0 /* FOSession */ = {
+			isa = PBXGroup;
+			children = (
+				370644131A7DDA1F00DB39B0 /* FOSession.h */,
+				370644141A7DDA1F00DB39B0 /* FOSession.m */,
+				370644151A7DDA1F00DB39B0 /* FOSessionRequest.h */,
+				370644161A7DDA1F00DB39B0 /* FOSessionRequest.m */,
+			);
+			path = FOSession;
+			sourceTree = "<group>";
+		};
 		3771F6AF19E414D000B66C36 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +168,8 @@
 		3771F6BB19E414D000B66C36 /* FOUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				370644121A7DDA1F00DB39B0 /* FOSession */,
+				379BF6B31A36DCB300054CC0 /* HTTP */,
 				3771F6D219E416B400B66C36 /* FOUtilities.h */,
 				377A131D19E7252D00964B61 /* Types */,
 				377A131619E7218600964B61 /* NSData */,
@@ -175,8 +200,8 @@
 			children = (
 				377A130C19E7136600964B61 /* NSString+RegularExpressionTests.m */,
 				377A130A19E711E100964B61 /* FOKeyValueObserverTests.m */,
-				3771F6E919E4172700B66C36 /* FOTargetActionListTests.m */,
 				3771F6EA19E4172700B66C36 /* FOTargetActionSetTests.m */,
+				3771F6E919E4172700B66C36 /* FOTargetActionListTests.m */,
 				3771F6C619E414D000B66C36 /* Supporting Files */,
 				377A133719E77D8400964B61 /* UIColor+FOColorTests.m */,
 				377A133919E77E6E00964B61 /* NSString+TypeExtensionTests.m */,
@@ -301,6 +326,15 @@
 			path = "Timed Action";
 			sourceTree = "<group>";
 		};
+		379BF6B31A36DCB300054CC0 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				379BF6B41A36DCD000054CC0 /* FORequest.h */,
+				379BF6B51A36DCD000054CC0 /* FORequest.m */,
+			);
+			name = HTTP;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -309,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				377A132A19E738BB00964B61 /* NSArray+FOUtilities.h in Headers */,
+				379BF6B61A36DCD000054CC0 /* FORequest.h in Headers */,
 				3771F6E319E416B400B66C36 /* FOTargetActionList.h in Headers */,
 				377A131B19E721A400964B61 /* UIColor+FOColor.h in Headers */,
 				377A133119E743C700964B61 /* FOTimedAction.h in Headers */,
@@ -317,8 +352,10 @@
 				377A132619E7340400964B61 /* NSData+FOTypeExtension.h in Headers */,
 				377A132219E733EC00964B61 /* NSData+FOCrypto.h in Headers */,
 				377A132D19E73CE000964B61 /* FOBlockTypes.h in Headers */,
+				370644191A7DDA1F00DB39B0 /* FOSessionRequest.h in Headers */,
 				3771F6DF19E416B400B66C36 /* FOUtilities.h in Headers */,
 				377A131F19E7255800964B61 /* FOCGTypes.h in Headers */,
+				370644171A7DDA1F00DB39B0 /* FOSession.h in Headers */,
 				377A130519E70D5A00964B61 /* FOKeyValueObserver.h in Headers */,
 				377A133519E77C5000964B61 /* NSValue+FOTypeExtension.h in Headers */,
 				3771F6E119E416B400B66C36 /* NSString+RegularExpression.h in Headers */,
@@ -338,6 +375,7 @@
 				3771F6B519E414D000B66C36 /* Frameworks */,
 				3771F6B619E414D000B66C36 /* Headers */,
 				3771F6B719E414D000B66C36 /* Resources */,
+				378690AC1A0050CC007D9FF0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -372,12 +410,12 @@
 		3771F6B019E414D000B66C36 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Andrew Hurst";
 				TargetAttributes = {
 					3771F6B819E414D000B66C36 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = CYK2M28J2X;
+						DevelopmentTeam = 986AP7KD58;
 					};
 					3771F6C319E414D000B66C36 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -419,6 +457,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		378690AC1A0050CC007D9FF0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Compiles the framework into a universal framework\nSCRIPT_SRC=$(find \"$PROJECT_DIR/../Build Scripts/\" -name 'makeUniversalFramework.sh')\nif [ ! \"${SCRIPT_SRC}\" ]; then\necho \"Make Universal Framework Failed: err: script not found. Make sure that you're including script in your project directory\"\nexit 1\nfi\nsource \"${SCRIPT_SRC}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3771F6B419E414D000B66C36 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -428,6 +482,7 @@
 				377A131C19E721A400964B61 /* UIColor+FOColor.m in Sources */,
 				377A131119E714E600964B61 /* NSString+FOTypeExtension.m in Sources */,
 				3771F6E219E416B400B66C36 /* NSString+RegularExpression.m in Sources */,
+				379BF6B71A36DCD000054CC0 /* FORequest.m in Sources */,
 				377A133619E77C5000964B61 /* NSValue+FOTypeExtension.m in Sources */,
 				377A132B19E738BB00964B61 /* NSArray+FOUtilities.m in Sources */,
 				377A132719E7340400964B61 /* NSData+FOTypeExtension.m in Sources */,
@@ -435,8 +490,10 @@
 				3771F6E419E416B400B66C36 /* FOTargetActionList.m in Sources */,
 				377A130619E70D5A00964B61 /* FOKeyValueObserver.m in Sources */,
 				377A131519E718D000964B61 /* NSDictionary+FOTypeExtension.m in Sources */,
+				370644181A7DDA1F00DB39B0 /* FOSession.m in Sources */,
 				377A132319E733EC00964B61 /* NSData+FOCrypto.m in Sources */,
 				3771F6E619E416B400B66C36 /* FOTargetActionSet.m in Sources */,
+				3706441A1A7DDA1F00DB39B0 /* FOSessionRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,6 +615,8 @@
 				CLANG_WARN_ASSIGN_ENUM = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -571,10 +630,11 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				INFOPLIST_FILE = FOUtilities/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -584,6 +644,8 @@
 				CLANG_WARN_ASSIGN_ENUM = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -597,10 +659,12 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				INFOPLIST_FILE = FOUtilities/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
 		};

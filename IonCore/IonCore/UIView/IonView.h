@@ -16,8 +16,15 @@
 static NSString* sIonStyle_IonView_StyleMargin = @"styleMargin";
 
 @interface IonView : UIView
-#pragma mark Subview Management
 
+#pragma mark Construction
+/**
+ * Standard constructor method.
+ * @warning For internal & subclassing use only.
+ */
+- (void) construct;
+
+#pragma mark Subview Management
 /**
  * Performs the block with each IonView child as a parameter.
  * @param { void(^)( IonView* child) }  

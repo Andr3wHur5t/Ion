@@ -8,6 +8,8 @@
 
 #import "IonLabelOverflowBehavior.h"
 
+const NSTimeInterval aAnimatonDelay = 0.25;
+
 @interface IonLabelOverflowBehavior () {
     BOOL isAnimating;
 }
@@ -20,10 +22,10 @@
  * Standard Constructor
  */
 - (instancetype) init {
-    self = [super init];
-    if ( self )
-        ;
-    return self;
+  self = [super init];
+  if ( self )
+    ;
+  return self;
 }
 
 
@@ -46,9 +48,11 @@
     if ( ![self canPerformManagementFunctions] )
         return;
     [self updateLabelFrameToMatchContainer];
-    
+  
+  [self performBlock:^{
     if ( [self shouldAnimateText] )
-        [self animateText];
+      [self animateText];
+  } afterDelay:aAnimatonDelay];
 }
 
 #pragma mark Default Response
@@ -58,7 +62,7 @@
  * @return {BOOL}
  */
 - (BOOL) shouldAnimateText {
-    return _container.frame.size.width + 5 < _label.frame.size.width;
+  return FALSE;//_container.frame.size.width + 5 < _label.frame.size.width;
 }
 
 /**
@@ -69,8 +73,8 @@
     if ( isAnimating || ![self canPerformManagementFunctions] )
         return;
     
-    durration = sIonTextScrollSpeed * _label.frame.size.width;
-    delay = _container.frame.size.width * sIonTextScrollSpeed;
+    durration = sIonTextScrollSpeed * (_label.frame.size.width / _label.font.xHeight);
+    delay = (_label.frame.size.width / _label.font.xHeight) * sIonTextScrollSpeed;
     isAnimating = TRUE;
     [UIView animateWithDuration: durration
                           delay: delay
@@ -80,24 +84,15 @@
             _label.frame.size }];
     }
     completion: ^(BOOL finished) {
-        [UIView animateWithDuration: 0.2
-                              delay: delay
-                            options: UIViewAnimationOptionCurveEaseIn
-        animations: ^{
-            _label.alpha = 0.0f;
-        }
-        completion: ^(BOOL complete) {
-            [_label setFrame: (CGRect){ CGPointZero, _label.frame.size }];
-            [UIView animateWithDuration: 0.2
-            animations: ^{
-                _label.alpha = 1.0f;
-            }
-            completion: ^(BOOL fin) {
-                isAnimating = FALSE;
-                if ( [self shouldAnimateText] )
-                    [self animateText];
-            }];
-        }];
+      [UIView animateWithDuration: durration / 6
+                       animations: ^{
+                         [_label setFrame: (CGRect){ CGPointZero, _label.frame.size }];
+                       }
+                       completion: ^(BOOL fin) {
+                         isAnimating = FALSE;
+                         if ( [self shouldAnimateText] )
+                           [self animateText];
+                       }];
     }];
 }
 
@@ -125,9 +120,10 @@
     if ( ![self canPerformManagementFunctions] )
         return CGSizeZero;
     
-    
-    textSize = [_label.text sizeWithAttributes:
-                    @{ NSFontAttributeName: _label.font }];
+    if ( [_label.text respondsToSelector: @selector(sizeWithAttributes:)] )
+        textSize = [_label.text sizeWithAttributes: @{ NSFontAttributeName: _label.font }];
+    else
+        textSize = [_label.text sizeWithFont: _label.font];
     
     return (CGSize) {
         _container.frame.size.width >= textSize.width ? _container.frame.size.width : textSize.width,

@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "IonView.h" // load all extensions used in Ion View to extend the view controller.
 
+
+@class IonTitleConfiguration;
+
 @interface IonViewController : UIViewController
 
 @property (strong, nonatomic) IonView* view;
@@ -62,4 +65,16 @@
  * @param {id} the delegate to add.  
  */
 - (void) removeDelegateFromManager:(id) delegate;
+
+
+#pragma mark Title Configuration
+/**
+ * Our Title Configuration if any
+ */
+@property (strong, nonatomic, readonly) IonTitleConfiguration *titleConfiguration;
+
+/**
+ * Configures our title configuration.
+ */
+- (void) configureTitleConfiguration;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "IonApplication+StatusBar.h"
+#import <IonCore/IonCore.h>
 #import <IonData/IonData.h>
 
 /**
@@ -55,7 +56,6 @@ static NSString *sIonApplication_StatusBarCurrentAnimationKey = @"StatusBarCurre
     return 0.25f;
 }
 
-
 #pragma mark Current Status Bar Animation
 
 - (void) updateStatusBarAnimationTo:(UIStatusBarAnimation) animation {
@@ -81,6 +81,20 @@ static NSString *sIonApplication_StatusBarCurrentAnimationKey = @"StatusBarCurre
     
     // Set the animation key
     [self updateStatusBarAnimationTo: animation];
+}
+
+#pragma mark Status Bar Guide
+
+- (IonGuideLine *)statusBarHeightGuide {
+  IonGuideLine *guide = [self.categoryVariables objectForKey:@"statusBarHeightGuide"];
+  if ( !guide ) {
+    guide = [IonGuideLine guideWithTargetRectSize:self
+                                 usingRectKeyPath:@"statusBarFrame"
+                                           amount:1.0f
+                                          andMode:IonGuideLineFrameMode_Vertical];
+    [self.categoryVariables setObject: guide forKey:@"statusBarHeightGuide"];
+  }
+  return guide;
 }
 
 @end

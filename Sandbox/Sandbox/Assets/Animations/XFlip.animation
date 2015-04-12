@@ -1,0 +1,31 @@
+{
+    "transformations": {
+            "rotateUp": {
+                "rotation": {
+                    "pitch": 180,
+                    "roll": 0,
+                    "yaw": 0
+                },
+                "duration": 0.3
+            },
+            "rotateDown": {
+                "rotation": {
+                    "pitch": 359,
+                    "roll": 0,
+                    "yaw": 0
+                },
+                "duration": 0.3,
+                "next":"rotateDown1"
+            },
+            "rotateDown1": {
+                "rotation": {
+                    "pitch": 0,
+                    "roll": 0,
+                    "yaw": 0
+                },
+                "duration": 0.0
+            }
+        
+    }
+    
+}

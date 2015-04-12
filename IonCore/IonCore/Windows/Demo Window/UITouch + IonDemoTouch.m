@@ -26,4 +26,5 @@ static void *sTouchImageViewKey;
     self.touchRepresentationView.frame = CGRectMake(point.x - 20, point.y - 20, 40, 40);
 }
 
+
 @end

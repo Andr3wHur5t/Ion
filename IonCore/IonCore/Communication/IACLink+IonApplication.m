@@ -9,18 +9,22 @@
 #import "IACLink+IonApplication.h"
 #import <IonCore/IonApplication.h>
 #import <IonCore/IonApplication+InterappComunication.h>
+#import "IonApplication+plistGetters.h"
 #import <IonCore/IACRouter.h>
 
 @implementation IACLink (IonApplication)
 
-- (void) invoke {
+- (BOOL) invoke {
     IonApplication *sharedApplication;
     sharedApplication = [IonApplication sharedApplication];
     if ( !sharedApplication )
-        return;
-    
+        return FALSE;
+  
+  if ( [IonApplication respondsToScheme:[NSURL URLWithString:self.urlString].scheme])
     // Invoke the link on our shared applications router
-    [sharedApplication.router invokeLink: self];
+    return [sharedApplication.router invokeLink: self];
+  else
+    return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.urlString]];
 }
 
 @end

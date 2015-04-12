@@ -13,35 +13,38 @@
 /**
  * The required protocol to support input filtering on the IonInputManager.
  */
-@protocol IonInputManagerFilterSpec <NSObject>
+@protocol IonInputManagerFilterSpec<NSObject>
 @required
 /**
  * The input filter the Input manager will use.
  */
-@property (strong, nonatomic, readwrite) IonInputFilter *inputFilter;
+@property(strong, nonatomic, readwrite) IonInputFilter *inputFilter;
 
 @optional
 /**
  * The method that will be called when there is an error in filtering the input.
  */
-- (void) inputDidFailFilter;
+- (void)inputDidFailFilter;
 
 /**
- * The method that will be called when the return key was pressed on a input field.
+ * The method that will be called when the return key was pressed on a input
+ * field.
  */
-- (void) inputReturnKeyDidGetPressed;
+- (void)inputReturnKeyDidGetPressed;
 
 @end
 
 /**
- * A test input manager which when put as a delegate to a TextField, or a TextView will filter input 
+ * A test input manager which when put as a delegate to a TextField, or a
+ * TextView will filter input
  * according to the IonInputManagerFilterSpec protocol.
  */
-@interface IonInputManager : NSObject <UITextFieldDelegate> // TODO: Add UITextViewDelegate functionality.
-/**
- * Gets the shared input manager.
- * @return {instncetype}
- */
-+ (instancetype) sharedManager;
+@interface IonInputManager
+    : NSObject<UITextFieldDelegate>  // TODO: Add UITextViewDelegate
+                                     // functionality.
+                                     /**
+                                      * Gets the shared input manager.
+                                      */
++ (instancetype)sharedManager;
 
 @end

@@ -13,27 +13,27 @@
 #pragma mark Constructors
 /**
  * Constructs using the inputted frame.
- * @param {CGRect} the frame to construct with.  
+ * @param {CGRect} the frame to construct with.
  */
-- (instancetype) initWithFrame:(CGRect) frame;
+- (instancetype)initWithFrame:(CGRect)frame;
 
 /**
  * Constructs using the inputted view.
- * @param {UIView*} the view to construct with.  
+ * @param {UIView*} the view to construct with.
  */
-- (instancetype) initWithView:(UIView*) view;
+- (instancetype)initWithView:(UIView*)view;
 
 #pragma mark States & Caches
 
 /**
  * The frame of the group
  */
-@property (assign, nonatomic) CGRect frame;
+@property(assign, nonatomic) CGRect frame;
 
 /**
  * The Guide Cache
  */
-@property (strong, nonatomic, readonly) NSMutableDictionary* cachedGuideLines;
+@property(strong, nonatomic, readonly) NSMutableDictionary* cachedGuideLines;
 
 #pragma mark Utilities
 
@@ -43,43 +43,43 @@
  * @param {IonGuideLineFrameMode} the mode to use.
  * @return {IonGuideLine*} the guide in the parent context.
  */
-- (IonGuideLine*) guideInParentContext:(IonGuideLine*) guide usingMode:(IonGuideLineFrameMode) mode;
+- (IonGuideLine*)guideInParentContext:(IonGuideLine*)guide
+                            usingMode:(IonGuideLineFrameMode)mode;
 
 /**
  * Gets the inputed key for the external value.
- * @param {NSString*} the key to convert to its external equivelant.
+ * @param {NSString*} the key to convert to its external equivalent.
  * @return {NSString*} the external key.
  */
-- (NSString*) keyToExternal:(NSString*) key;
+- (NSString*)keyToExternal:(NSString*)key;
 
 /**
  * Gets the guide for the specified key from the guide cache.
  * @param {NSString*} the key for the guide.
  * @return {IonGuideLine*} the guide, or NULL.
  */
-- (IonGuideLine*) guideForKey:(NSString*) key;
+- (IonGuideLine*)guideForKey:(NSString*)key;
 
 /**
  * Gets the external guide for the specified key.
  * @param {NSString*} the base key to get the external guide from.
  * @return {IonGuideLine*} the guide, or NULL.
  */
-- (IonGuideLine*) externalGuideForKey:(NSString*) key;
+- (IonGuideLine*)externalGuideForKey:(NSString*)key;
 
 /**
  * Caches the guide for the specified key.
  * @param {IonGuideLine*} the guide to cache.
- * @param {NSString*} the key to cache the guide with.  
+ * @param {NSString*} the key to cache the guide with.
  */
-- (void) cacheGuide:(IonGuideLine*) guide withKey:(NSString*) key;
+- (void)cacheGuide:(IonGuideLine*)guide withKey:(NSString*)key;
 
 /**
  * Caches the external guide for the specified key.
  * @param {IonGuideLine*} the guide to cache.
- * @param {NSString*} the base key to cache the guide with.  
+ * @param {NSString*} the base key to cache the guide with.
  */
-- (void) cacheExternalGuide:(IonGuideLine*) guide withKey:(NSString*) key;
-
+- (void)cacheExternalGuide:(IonGuideLine*)guide withKey:(NSString*)key;
 
 #pragma mark Guides
 
@@ -91,82 +91,80 @@
 /**
  * Horizontal Origin Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* originGuideHoriz;
+@property(strong, nonatomic, readonly) IonGuideLine* originGuideHoriz;
 
 /**
  * Vertical Origin Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* originGuideVert;
+@property(strong, nonatomic, readonly) IonGuideLine* originGuideVert;
 
 #pragma mark One Forth
 /**
  * Horizontal One Forth Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* oneForthGuideHoriz;
+@property(strong, nonatomic, readonly) IonGuideLine* oneForthGuideHoriz;
 
 /**
  * Vertical One Forth Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* oneForthGuideVert;
+@property(strong, nonatomic, readonly) IonGuideLine* oneForthGuideVert;
 
 #pragma mark One Third
 /**
  * Horizontal One Third Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* oneThirdGuideHoriz;
+@property(strong, nonatomic, readonly) IonGuideLine* oneThirdGuideHoriz;
 
 /**
  * Vertical One Third Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* oneThirdGuideVert;
+@property(strong, nonatomic, readonly) IonGuideLine* oneThirdGuideVert;
 
 #pragma mark Center
 /**
  * Horizontal Center Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* centerGuideHoriz;
+@property(strong, nonatomic, readonly) IonGuideLine* centerGuideHoriz;
 
 /**
  * Vertical Center Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* centerGuideVert;
+@property(strong, nonatomic, readonly) IonGuideLine* centerGuideVert;
 
 #pragma mark Two Thirds
 /**
  * Horizontal Two Thirds Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* twoThirdsGuideHoriz;
+@property(strong, nonatomic, readonly) IonGuideLine* twoThirdsGuideHoriz;
 
 /**
  * Vertical Two Thirds Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* twoThirdsGuideVert;
+@property(strong, nonatomic, readonly) IonGuideLine* twoThirdsGuideVert;
 
-#pragma mark Three Forths
+#pragma mark Three Fourths
 /**
- * Horizontal Three Forths Guide Line
+ * Horizontal Three Fourths Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* threeForthsGuideHoriz;
+@property(strong, nonatomic, readonly) IonGuideLine* threeForthsGuideHoriz;
 
 /**
- * Vertical Three Forths Guide Line
+ * Vertical Three Fourths Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* threeForthsGuideVert;
+@property(strong, nonatomic, readonly) IonGuideLine* threeForthsGuideVert;
 
 #pragma mark Full Size
 /**
  * Horizontal  Size Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* sizeGuideHoriz;
+@property(strong, nonatomic, readonly) IonGuideLine* sizeGuideHoriz;
 
 /**
  * Vertical Size Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* sizeGuideVert;
+@property(strong, nonatomic, readonly) IonGuideLine* sizeGuideVert;
 
-
-
-/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  *                              External Guides
  * = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 
@@ -174,77 +172,80 @@
 /**
  * Horizontal External Origin Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* originExternalGuideHoriz;
+@property(strong, nonatomic, readonly) IonGuideLine* originExternalGuideHoriz;
 
 /**
  * Vertical External Origin Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* originExternalGuideVert;
+@property(strong, nonatomic, readonly) IonGuideLine* originExternalGuideVert;
 
 #pragma mark One Forth External
 /**
  * Horizontal One Forth Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* oneForthExternalGuideHoriz;
+@property(strong, nonatomic, readonly) IonGuideLine* oneForthExternalGuideHoriz;
 
 /**
  * Vertical One Forth Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* oneForthExternalGuideVert;
+@property(strong, nonatomic, readonly) IonGuideLine* oneForthExternalGuideVert;
 
 #pragma mark One Third External
 /**
  * Horizontal External One Third Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* oneThirdExternalGuideHoriz;
+@property(strong, nonatomic, readonly) IonGuideLine* oneThirdExternalGuideHoriz;
 
 /**
  * Vertical External One Third Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* oneThirdExternalGuideVert;
+@property(strong, nonatomic, readonly) IonGuideLine* oneThirdExternalGuideVert;
 
 #pragma mark Center External
 /**
  * Horizontal External Center Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* centerExternalGuideHoriz;
+@property(strong, nonatomic, readonly) IonGuideLine* centerExternalGuideHoriz;
 
 /**
  * Vertical External Center Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* centerExternalGuideVert;
+@property(strong, nonatomic, readonly) IonGuideLine* centerExternalGuideVert;
 
 #pragma mark Two Thirds External
 /**
  * Horizontal External Two Thirds Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* twoThirdsExternalGuideHoriz;
+@property(strong, nonatomic, readonly)
+    IonGuideLine* twoThirdsExternalGuideHoriz;
 
 /**
  * Vertical External Two Thirds Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* twoThirdsExternalGuideVert;
+@property(strong, nonatomic, readonly) IonGuideLine* twoThirdsExternalGuideVert;
 
-#pragma mark Three Forths External
+#pragma mark Three Fourths External
 /**
- * Horizontal Three Forths Guide Line
+ * Horizontal Three Fourths Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* threeForthsExternalGuideHoriz;
+@property(strong, nonatomic, readonly)
+    IonGuideLine* threeForthsExternalGuideHoriz;
 
 /**
- * Vertical Three Forths Guide Line
+ * Vertical Three Fourths Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* threeForthsExternalGuideVert;
+@property(strong, nonatomic, readonly)
+    IonGuideLine* threeForthsExternalGuideVert;
 
 #pragma mark Size External
 /**
  * Horizontal External Size Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* sizeExternalGuideHoriz;
+@property(strong, nonatomic, readonly) IonGuideLine* sizeExternalGuideHoriz;
 
 /**
  * Vertical External Size Guide Line
  */
-@property (strong, nonatomic, readonly) IonGuideLine* sizeExternalGuideVert;
+@property(strong, nonatomic, readonly) IonGuideLine* sizeExternalGuideVert;
 
 @end

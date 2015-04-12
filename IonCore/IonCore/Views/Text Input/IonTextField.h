@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FOUtilities/FOUtilities.h>
 #import "IonInputManager.h"
 
 @class IonInputManager;
@@ -50,15 +51,42 @@ static NSString *sIonTextFieldBehavior_Reason_ExternalResign = @"externalResign"
  */
 @property (strong, nonatomic, readwrite) IonInputFilter *inputFilter;
 
-#pragma mark Events
 /**
- * The target action set to call when the enter key is pressed.
+ * States if the text view can resign externally.
  */
-@property (strong, nonatomic, readwrite) id enterKeyTargetAction;
+@property (assign, nonatomic, readwrite) BOOL canResignExternally;
+
+#pragma mark Events
+
+/**
+ * Adds the inputed target action set with the return key.
+ * @param target - the target to associate with the action.
+ * @param acton - the action to invoke on the target when the return key is pressed.
+ */
+- (void) addTarget:(id)target action:(SEL)action;
+
+/**
+ * Removes the inputted target action set associated with the return key.
+ * @param target - the associated target to remove.
+ * @param action - the associated action to remove.
+ */
+- (void) removeTarget:(id)target action:(SEL)action;
+
+/**
+ * Removes all target action sets associated with the return key.
+ */
+- (void) removeAllTargetActions;
 
 #pragma mark Actions
 /**
  * The dictionary which holds all of our behavior reasons, and associated configurations.
  */
 @property (strong, nonatomic, readwrite) NSDictionary* behaviorDictionary;
+
+/**
+ * Forcefully resigns first responder by ignoring all checks.
+ * @return {BOOL} if the super will resign first responder.
+ */
+- (BOOL) forcivlyResignFirstResponder;
+
 @end

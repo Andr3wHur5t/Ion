@@ -114,6 +114,7 @@
 		373D91BA19E30A680071F0E6 /* model-049.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 373D918819E30A680071F0E6 /* model-049.jpg */; };
 		373D91BB19E30A680071F0E6 /* model-050.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 373D918919E30A680071F0E6 /* model-050.jpg */; };
 		3750A379198C4CDC00037BEE /* IonGradientConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3750A378198C4CDC00037BEE /* IonGradientConfigurationTests.m */; };
+		3763E92E19F398FB007B5015 /* SimpleMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C5348E19F235A800BDCB9A /* SimpleMath.framework */; };
 		3764848E19907CF000B65EAF /* IONgraphics.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 377C3EDA1970C2C300EA6599 /* IONgraphics.xcassets */; };
 		376484AD199403BD00B65EAF /* IonSimpleCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 376484AC199403BD00B65EAF /* IonSimpleCacheTests.m */; };
 		376484AE199403BD00B65EAF /* IonSimpleCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 376484AC199403BD00B65EAF /* IonSimpleCacheTests.m */; };
@@ -407,6 +408,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3763E92E19F398FB007B5015 /* SimpleMath.framework in Frameworks */,
 				37C5349719F2367400BDCB9A /* FOUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1193,6 +1195,7 @@
 				37FCF150197F830C004C14C8 /* Frameworks */,
 				37FCF151197F830C004C14C8 /* Headers */,
 				37FCF152197F830C004C14C8 /* Resources */,
+				378690AF1A0050ED007D9FF0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1227,7 +1230,7 @@
 		37EBAC4A195C9A93008D6BD6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Ion;
 				TargetAttributes = {
 					37EBAC72195C9B35008D6BD6 = {
@@ -1239,6 +1242,7 @@
 					};
 					37FCF153197F830C004C14C8 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 986AP7KD58;
 					};
 					37FCF15D197F830C004C14C8 = {
 						CreatedOnToolsVersion = 6.0;
@@ -1378,6 +1382,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		378690AF1A0050ED007D9FF0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Compiles the framework into a universal framework\nSCRIPT_SRC=$(find \"$PROJECT_DIR/../Build Scripts/\" -name 'makeUniversalFramework.sh')\nif [ ! \"${SCRIPT_SRC}\" ]; then\necho \"Make Universal Framework Failed: err: script not found. Make sure that you're including script in your project directory\"\nexit 1\nfi\nsource \"${SCRIPT_SRC}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		37EBAC6F195C9B35008D6BD6 /* Sources */ = {
@@ -1574,7 +1594,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Ion Visual Test/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1591,7 +1611,7 @@
 					"$(CONFIGURATION_BUILD_DIR)",
 				);
 				INFOPLIST_FILE = "Ion Visual Test/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1637,6 +1657,8 @@
 		37FCF16E197F830C004C14C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1651,17 +1673,21 @@
 				);
 				INFOPLIST_FILE = IonData/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
 		};
 		37FCF16F197F830C004C14C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1672,11 +1698,14 @@
 				);
 				INFOPLIST_FILE = IonData/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
 		};

@@ -41,6 +41,11 @@
 @property (weak, nonatomic, readwrite) IonGuideLine *leftSizeGuide;
 @property (weak, nonatomic, readwrite) IonGuideLine *rightSizeGuide;
 
+/**
+ * Forces the view into manual size mode, overriding size guides.
+ */
+@property (nonatomic, readwrite) BOOL manualSizeMode;
+
 #pragma mark Debugging
 /**
  * Logs frame auto updating for the view, with the specified string.
