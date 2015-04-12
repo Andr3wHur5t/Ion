@@ -13,11 +13,11 @@
 @class IACRouter;
 @class IACLink;
 
-@protocol IonPaginationControllerDelegate <NSObject>
+@protocol IonPaginationControllerDelegate<NSObject>
 
 /*!
  @brief Invoked when the pagination view changes its' current index.
- 
+
  @param index The new index.
  */
 - (void)didNavigateToPageAtIndex:(NSUInteger)index;
@@ -25,23 +25,24 @@
 @optional
 
 /*!
- @brief Invoked when a subcontrollers' router was invoked as an endpoint before the subcontroller is notified.
- 
- @param link The link that opened the subcontroller.
+ @brief Invoked when a sub-controllers' router was invoked as an endpoint before
+ the sub-controller is notified.
+
+ @param link The link that opened the sub-controller.
  */
 - (void)willOpenSubControllerWithLink:(IACLink *)link;
 
-
 /*!
- @brief Invoked when a subcontrollers' router was invoked as an endpoint after the subcontroller is notified.
- 
- @param link The link that opened the subcontroller.
+ @brief Invoked when a sub-controllers' router was invoked as an endpoint after
+ the sub-controller is notified.
+
+ @param link The link that opened the sub-controller.
  */
 - (void)didOpenSubControllerWithLink:(IACLink *)link;
 
 @end
 
-@interface IonPaginationController : IonScrollView <UIScrollViewDelegate>
+@interface IonPaginationController : IonScrollView<UIScrollViewDelegate>
 
 /**
  * Constructs with the specified mode.
@@ -84,10 +85,10 @@
     id<IonPaginationControllerDelegate> pageDelegate;
 
 /*!
- @brief The router used as the parrent router for all sub controllers.
+ @brief The router used as the parent router for all sub controllers.
 
- @discussion This can be a parent controllers' router, thus allowing invokation
- from that parrent.
+ @discussion This can be a parent controllers' router, thus allowing invocation
+ from that parent.
  */
 @property(strong, nonatomic, readonly) IACRouter *router;
 
@@ -119,11 +120,11 @@
 /*!
  @brief  Adds a page to the controller.
 
- @discussion Contrurcts the controller when needed using the inputted controller
+ @discussion Constructs the controller when needed using the inputted controller
  class.
 
  @param controllerClass The class used to construct the controller.
- @param name            The string used to refrence the class.
+ @param name            The string used to reference the class.
  */
 - (void)addPageControllerClass:(Class)controllerClass withName:(NSString *)name;
 
@@ -134,7 +135,7 @@
  identifier.
 
  @param name     The page identifier that you wish to navigate to.
- @param animated States if the transision is animated or not.
+ @param animated States if the transition is animated or not.
  */
 - (void)navigateToPageWithName:(NSString *)name animated:(BOOL)animated;
 
@@ -148,15 +149,15 @@
 /*!
  @brief Navigates to the page at the specified index.
 
- @param index    The index you want to transision to.
- @param animated States if the transision is animatied or not.
+ @param index    The index you want to transition to.
+ @param animated States if the transition is animated or not.
  */
 - (void)navigateToPageAtIndex:(NSUInteger)index animated:(BOOL)animated;
 
 /*!
  @brief Navigates to the page at the specified index animated.
 
- @param index  The index you want to transision to.
+ @param index  The index you want to transition to.
  */
 - (void)navigateToPageAtIndex:(NSUInteger)index;
 

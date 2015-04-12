@@ -13,28 +13,28 @@
 #pragma mark Construction
 /*!
  @brief Constructs the page with the specified size score.
- 
+
  @param size The size score of the page
- 
+
  @return The configured page object.
  */
-- (instancetype) initWithSize:(NSUInteger) size;
+- (instancetype)initWithSize:(NSUInteger)size;
 
 #pragma mark Scoring
 /*!
  @brief The size score of the page.
  */
-@property (assign, nonatomic, readonly) NSUInteger size;
+@property(assign, nonatomic, readonly) NSUInteger size;
 
-#pragma mark Refrence Objects
+#pragma mark Reference Objects
 /*!
- @brief Refrence to the next page.
+ @brief Reference to the next page.
  */
-@property (strong, nonatomic, readwrite) IonPage *nextPage;
+@property(strong, nonatomic, readwrite) IonPage *nextPage;
 
 /*!
- @brief Refrence to the previous page.
+ @brief Reference to the previous page.
  */
-@property (strong, nonatomic, readwrite) IonPage *previousPage;
+@property(strong, nonatomic, readwrite) IonPage *previousPage;
 
 @end

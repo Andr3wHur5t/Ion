@@ -170,7 +170,7 @@
 
 #pragma mark Animation
 
-- (UIViewAnimationOptions)toTransisionType {
+- (UIViewAnimationOptions)toTransitionType {
   if ([self.uppercaseString
           isEqualToString:sFOTransisionType_CurlUp.uppercaseString])
     return UIViewAnimationOptionTransitionCurlUp;

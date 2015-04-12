@@ -10,8 +10,15 @@
 
 @interface IonApplication (KeyboardGuides)
 
-+ (IonGuideLine *)keybordTopGuideWithGuide:(IonGuideLine *)defaultGuide;
++ (IonGuideLine *)keybordTopGuideWithGuide:(IonGuideLine *)defaultGuide
+    __attribute__((deprecated));
+
++ (IonGuideLine *)keyboardTopGuideWithGuide:(IonGuideLine *)defaultGuide;
 
 + (IonGuideLine *)ifKeybordOutUse:(IonGuideLine *)keybordOut
-                          elseUse:(IonGuideLine *)keybordIn;
+                          elseUse:(IonGuideLine *)keybordIn
+    __attribute__((deprecated));
+
++ (IonGuideLine *)ifKeyboardOutUse:(IonGuideLine *)keyboardOut
+                           elseUse:(IonGuideLine *)keyboardIn;
 @end

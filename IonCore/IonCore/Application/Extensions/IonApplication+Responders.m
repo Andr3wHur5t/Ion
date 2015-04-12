@@ -13,8 +13,8 @@
 #pragma mark First Responder
 
 - (UIResponder *)firstResponder {
-    // Get the first responder from the key window.
-    return [[[UIApplication sharedApplication] keyWindow] ionFristResponder];
+  // Get the first responder from the key window.
+  return [[[UIApplication sharedApplication] keyWindow] ionFirstResponder];
 }
 
 @end

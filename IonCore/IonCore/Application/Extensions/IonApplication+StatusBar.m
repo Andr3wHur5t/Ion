@@ -92,7 +92,6 @@ static NSString *sIonApplication_StatusBarCurrentAnimationKey = @"StatusBarCurre
                                  usingRectKeyPath:@"statusBarFrame"
                                            amount:1.0f
                                           andMode:IonGuideLineFrameMode_Vertical];
-    guide.debuggingDepth = IonGuideDebugDepth_Shallow;
     [self.categoryVariables setObject: guide forKey:@"statusBarHeightGuide"];
   }
   return guide;

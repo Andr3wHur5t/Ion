@@ -51,7 +51,7 @@
 /**
  * Converts a string to UIViewAnimationOptions transition.
  */
-- (UIViewAnimationOptions)toTransisionType;
+- (UIViewAnimationOptions)toTransitionType;
 
 #pragma mark Scroll View Conversion
 /**

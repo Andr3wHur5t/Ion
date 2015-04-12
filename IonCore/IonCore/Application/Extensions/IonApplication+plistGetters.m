@@ -11,39 +11,40 @@
 @implementation IonApplication (plistGetters)
 #pragma mark Untyped Getters
 
-+ (id) plistValueForKey:(NSString *)key {
-    return [[NSBundle mainBundle] objectForInfoDictionaryKey: key];
++ (id)plistValueForKey:(NSString *)key {
+  return [[NSBundle mainBundle] objectForInfoDictionaryKey:key];
 }
 
-+ (id) plistValueForKey:(NSString *)key typedToClass:(Class) type {
-    id value;
-    value = [[self class] plistValueForKey: key];
-    if ( !value || ![value isKindOfClass: type] )
-        return NULL;
-    return value;
++ (id)plistValueForKey:(NSString *)key typedToClass:(Class)type {
+  id value;
+  value = [[self class] plistValueForKey:key];
+  if (!value || ![value isKindOfClass:type]) return NULL;
+  return value;
 }
 
 #pragma mark Typed Getters
 
-+ (NSString*) currentOnBoardingVersion {
-    NSString* value;
-    value = [[self class] plistValueForKey: sIonApplication_CurrentOnBoardingScreenVersion
-                              typedToClass: [NSString class]];
-    return value ? value : @"v0.0";
++ (NSString *)currentOnBoardingVersion {
+  NSString *value;
+  value = [[self class]
+      plistValueForKey:sIonApplication_CurrentOnBoardingScreenVersion
+          typedToClass:[NSString class]];
+  return value ? value : @"v0.0";
 }
 
-+ (BOOL) isInDemoMode {
-    NSNumber* value;
-    value = [[self class] plistValueForKey: sIonApplication_IsDemoModeKey
-                              typedToClass: [NSNumber class]];
-    return value ? [value boolValue] : FALSE;
++ (BOOL)isInDemoMode {
+  NSNumber *value;
+  value = [[self class] plistValueForKey:sIonApplication_IsDemoModeKey
+                            typedToClass:[NSNumber class]];
+  return value ? [value boolValue] : FALSE;
 }
 
 + (BOOL)respondsToScheme:(NSString *)scheme {
-  for (NSDictionary *dict in [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleURLTypes"])
+  for (
+      NSDictionary *dict in
+      [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleURLTypes"])
     for (NSString *lscheme in [dict objectForKey:@"CFBundleURLSchemes"])
-      if ( [lscheme isEqualToString: scheme] )
-        return TRUE;
+      if ([lscheme isEqualToString:scheme]) return TRUE;
   return FALSE;
 }
 

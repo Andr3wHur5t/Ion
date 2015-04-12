@@ -39,7 +39,7 @@
 - (void)setupApplication;
 
 /**
- * Customization Point for seting up the application router.
+ * Customization Point for setting up the application router.
  */
 - (void)setupRouter;
 

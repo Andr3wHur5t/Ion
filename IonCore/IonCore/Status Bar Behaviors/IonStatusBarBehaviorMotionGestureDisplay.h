@@ -11,35 +11,36 @@
 #import "IonViewMotionGestureManager.h"
 
 /**
- * The Modes avalable for motion gesture status bar display.
+ * The Modes available for motion gesture status bar display.
  */
 typedef enum : NSUInteger {
-    IonStatusBarBehavior_ToggleStatus = 0,
-    IonStatusBarBehavior_ExtendExposureTime,
-    IonStatusBarBehavior_ToggelTimed,
+  IonStatusBarBehavior_ToggleStatus = 0,
+  IonStatusBarBehavior_ExtendExposureTime,
+  IonStatusBarBehavior_ToggelTimed,
 } IonStatusBarBehavior;
 
-@interface IonStatusBarBehaviorMotionGestureDisplay : NSObject <IonViewMotionGestureDelegate>
+@interface IonStatusBarBehaviorMotionGestureDisplay
+    : NSObject<IonViewMotionGestureDelegate>
 
 /**
  * The Duration that the status bar will be displayed.
  * If Zero it will stay out indefinitely.
  */
-@property (assign, nonatomic) NSTimeInterval duration;
+@property(assign, nonatomic) NSTimeInterval duration;
 
 /**
- * The mode which describe how an aditional gesture will be handeled.
+ * The mode which describe how an additional gesture will be handled.
  */
-@property (assign, nonatomic) IonStatusBarBehavior behaviorMode;
+@property(assign, nonatomic) IonStatusBarBehavior behaviorMode;
 
 /**
- * The animation to use when changeing the state of the status bar.
+ * The animation to use when changing the state of the status bar.
  */
-@property (assign, nonatomic) UIStatusBarAnimation animation;
+@property(assign, nonatomic) UIStatusBarAnimation animation;
 
 /**
  * The gesture type which will cause the status bar to be exposed.
  */
-@property (assign, nonatomic) UIEventSubtype targetMotionType;
+@property(assign, nonatomic) UIEventSubtype targetMotionType;
 
 @end

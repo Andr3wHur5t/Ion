@@ -120,7 +120,7 @@
  * Removes the current responder in our view hierarchy.
  */
 - (void) removeCurrentResponderFromHierarchy {
-    [[self.view ionFristResponder] resignFirstResponder];
+    [[self.view ionFirstResponder] resignFirstResponder];
 }
 
 #pragma mark Ion Controller Interface

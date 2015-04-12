@@ -17,6 +17,6 @@
 /**
  * The Rapid start manager.
  */
-@property (strong, nonatomic) IonRapidStartManager *rapidStartManager;
+@property(strong, nonatomic) IonRapidStartManager *rapidStartManager;
 
 @end

@@ -14,16 +14,15 @@
  * Using Ion prefix to ensure that we don't collide with apples private APIs
  * @return {UIView*} the first responder view if any.
  */
-- (UIView *)ionFristResponder {
-    UIView *responder;
-    if ( self.isFirstResponder )
-        return self;
-    else
-        for ( UIView *subview in self.subviews ) {
-            responder = [subview ionFristResponder];
-            if ( responder )
-                return responder;
-        }
-    return NULL;
+- (UIView *)ionFirstResponder {
+  UIView *responder;
+  if (self.isFirstResponder)
+    return self;
+  else
+    for (UIView *subview in self.subviews) {
+      responder = [subview ionFirstResponder];
+      if (responder) return responder;
+    }
+  return NULL;
 }
 @end

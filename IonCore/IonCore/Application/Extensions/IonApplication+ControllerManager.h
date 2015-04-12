@@ -16,10 +16,11 @@
  @brief Registers a controller class to be invokable with a link with the
  specified path.
 
- @discussion This automaticly registers the controller class at the specified
+ @discussion This automatically registers the controller class at the specified
  path. this will generate, or get routers for the specified path, and register
  for it to be used by the controller when it is constructed. It also adds a
- method to the application alowing the controller to be invoked and transisioned
+ method to the application allowing the controller to be invoked and
+ transitioned
  to via a URL.
 
  @param viewClass The class of the controller to construct.
@@ -29,24 +30,24 @@
 
 #pragma mark Controller Cacheing
 /*!
- @brief Gets, or contructs the controller with the sepcified identity.
+ @brief Gets, or constructs the controller with the specified identity.
 
- @discussion This is a lazyly constructing method for controllers if the
+ @discussion This is a lazily constructing method for controllers if the
  controller is not constructed this will construct it using the identifiers
  registered class, and router. Once constructed it will set the views router
- enabiling it to be hooked into the route tree afterwards caching the
+ enabling it to be hooked into the route tree afterwards caching the
  constructed controller to the controller cache.
 
  @param name The identity of the controller to get, or construct.
 
- @return the controller with the specified identity, or NULL if invald.
+ @return the controller with the specified identity, or NULL if invalid.
  */
 - (UIViewController *)controllerForName:(NSString *)name;
 
 /*!
  @brief Gets a composite name from the inputted components
 
- @discussion This is used to composite an array of values into camal case to be
+ @discussion This is used to composite an array of values into camel case to be
  used as a controller identifier. It is case insensitive.
 
  @param components The set of components to generate the composite name from.

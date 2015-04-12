@@ -140,10 +140,10 @@
 + (IMP)impToOpenControllerWithLinkUsingName:(NSString *)name {
   __block NSString *controllerName = name;
   return imp_implementationWithBlock(^(IonApplication *_self, IACLink *link) {
-      // Gets the controller for the specified name, and opens it with the
-      // specified link.
-      [_self openViewController:[_self controllerForName:controllerName]
-                       withLink:link];
+    // Gets the controller for the specified name, and opens it with the
+    // specified link.
+    [_self openViewController:[_self controllerForName:controllerName]
+                     withLink:link];
   });
 }
 
@@ -153,15 +153,13 @@
   UIViewController *controller;
   Class controllerClass;
   NSParameterAssert([name isKindOfClass:[NSString class]]);
-  if (![name isKindOfClass:[NSString class]])
-    return NULL;
+  if (![name isKindOfClass:[NSString class]]) return NULL;
 
   controller = [[self activeControllers] objectForKey:name];
   if (!controller) {
     // Get the class to construct the controller from
     controllerClass = [[self registeredControllerClasses] objectForKey:name];
-    if (!controllerClass)
-      return NULL;
+    if (!controllerClass) return NULL;
 
     // Construct the controller from its registered class
     controller = [[controllerClass alloc] init];
@@ -180,8 +178,7 @@
 + (NSString *)controllerNameFromComponents:(NSArray *)components {
   NSString *compositeName;
   NSParameterAssert([components isKindOfClass:[NSArray class]]);
-  if (![components isKindOfClass:[NSArray class]])
-    return NULL;
+  if (![components isKindOfClass:[NSArray class]]) return NULL;
 
   for (NSString *component in components)
     compositeName = [NSString

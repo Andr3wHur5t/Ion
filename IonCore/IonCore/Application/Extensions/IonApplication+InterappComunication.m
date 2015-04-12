@@ -25,7 +25,7 @@
   return _router;
 }
 
-#pragma mark Controller Utilties
+#pragma mark Controller Utilities
 
 - (void)openViewController:(UIViewController *)controller
                   withLink:(IACLink *)link {
@@ -38,7 +38,7 @@
   if (![controller isKindOfClass:[UIViewController class]]) return;
 
   NSNumber *duration;
-  UIViewAnimationOptions transision;
+  UIViewAnimationOptions transition;
 
   // Check if the controller is our current controller
   if ([controller isEqual:self.window.rootViewController]) {
@@ -52,8 +52,8 @@
 
   // Get Parameters
   duration = [link.parameters numberForKey:@"duration" defaultValue:@0.5];
-  transision =
-      [[link.parameters stringForKey:@"transisionType"] toTransisionType];
+  transition =
+      [[link.parameters stringForKey:@"transitionType"] toTransitionType];
 
   // Inform the controllers that we will change with link
   if (!([newController willOpenWithLink:link] &&
@@ -63,18 +63,18 @@
   // Animate to the new controller
   [UIView transitionWithView:self.window
       duration:[duration doubleValue]
-      options:transision
+      options:transition
       animations:^{
-          if ([newController isKindOfClass:[UIViewController class]])
-            self.window.rootViewController = newController;
-          else
-            NSLog(@"Failed to transision controler is a '%@'",
-                  NSStringFromClass([newController class]));
+        if ([newController isKindOfClass:[UIViewController class]])
+          self.window.rootViewController = newController;
+        else
+          NSLog(@"Failed to transition controller is a '%@'",
+                NSStringFromClass([newController class]));
       }
       completion:^(BOOL finished) {
-          // Inform the controllers that we did change with link
-          [newController didOpenWithLink:link];
-          [oldController didCloseWithLink:link];
+        // Inform the controllers that we did change with link
+        [newController didOpenWithLink:link];
+        [oldController didCloseWithLink:link];
       }];
 }
 

@@ -160,7 +160,7 @@
   self.pageCount += 1;
 }
 
-#pragma mark Orentation Change
+#pragma mark Orientation Change
 
 - (void)setFrame:(CGRect)frame {
   [super setFrame:frame];
@@ -173,7 +173,7 @@
     //    self.frame.size.width, 0.0f };
   }
 
-  // The first value always seems good, once change occurs things get wierd
+  // The first value always seems good, once change occurs things get weird
 }
 
 #pragma mark Router Interface
@@ -181,31 +181,31 @@
 - (IMP)impForControllerWithLocalName:(NSString *)name {
   // We need a name to invoke that persists.
   __block NSString *localName = name;
-  return imp_implementationWithBlock(^(IonPaginationController *_self,
-                                       IACLink *link) {
-      UIViewController *controller;
-      if (![link isKindOfClass:[IACLink class]]) return;
+  return imp_implementationWithBlock(
+      ^(IonPaginationController *_self, IACLink *link) {
+        UIViewController *controller;
+        if (![link isKindOfClass:[IACLink class]]) return;
 
-      // Get the controller
-      controller = [[IonApplication sharedApplication]
-          controllerForName:[self.pages
-                                objectAtIndex:[_self indexOfName:localName]]];
+        // Get the controller
+        controller = [[IonApplication sharedApplication]
+            controllerForName:[self.pages
+                                  objectAtIndex:[_self indexOfName:localName]]];
 
-      // Report to the delegate
-      if ([self.pageDelegate
-              respondsToSelector:@selector(willOpenSubControllerWithLink:)])
-        [self.pageDelegate willOpenSubControllerWithLink:link];
+        // Report to the delegate
+        if ([self.pageDelegate
+                respondsToSelector:@selector(willOpenSubControllerWithLink:)])
+          [self.pageDelegate willOpenSubControllerWithLink:link];
 
-      // Invoke link methods so the controller can respond
-      [controller willOpenWithLink:link];
-      [_self navigateToPageWithName:localName];
-      [controller didOpenWithLink:link];
+        // Invoke link methods so the controller can respond
+        [controller willOpenWithLink:link];
+        [_self navigateToPageWithName:localName];
+        [controller didOpenWithLink:link];
 
-      // Report to the delegate
-      if ([self.pageDelegate
-              respondsToSelector:@selector(didOpenSubControllerWithLink:)])
-        [self.pageDelegate didOpenSubControllerWithLink:link];
-  });
+        // Report to the delegate
+        if ([self.pageDelegate
+                respondsToSelector:@selector(didOpenSubControllerWithLink:)])
+          [self.pageDelegate didOpenSubControllerWithLink:link];
+      });
 }
 
 - (SEL)selectorForControllerWithLocalName:(NSString *)name {

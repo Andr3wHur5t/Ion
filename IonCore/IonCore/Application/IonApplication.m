@@ -13,7 +13,7 @@
 // Rapid Start
 #import "IonRapidStartManager.h"
 
-// Window Implmentation
+// Window Implementation
 #import "UIWindow+IonWindow.h"
 #import "IonDemoUIWindow.h"
 
@@ -45,7 +45,7 @@
 }
 
 - (void)dealloc {
-  // Stop reciveing keyboard frame updates.
+  // Stop receiving keyboard frame updates.
   [self stopKeyboardObservation];
 }
 
@@ -56,8 +56,8 @@
     // Use the correct type of window for our specified mode.
     _window = [self constructWindow];
 
-    // TODO: currentlly this is proxied through a UIWindow catagory, insted we
-    // should do this via our UIView catagory
+    // TODO: currently this is proxied through a UIWindow category, instead we
+    // should do this via our UIView category
     _window.systemTheme =
         [[IonTheme alloc] initWithConfiguration:[self defaultTheme]];
   }
@@ -78,7 +78,7 @@
 }
 
 - (void)configureFirstRealViewController:
-            (void (^)(IonViewController *frvc))finished {
+        (void (^)(IonViewController *frvc))finished {
   NSAssert(TRUE, @"IonApplication - (void)configureFirstRealViewController: "
            @"was not overloaded!");
 }

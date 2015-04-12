@@ -229,7 +229,6 @@
   return ([self.offsetGuide isKindOfClass:[IonGuideLine class]]
               ? self.offsetGuide.position
               : 0);
-  ;
 }
 
 - (UIEdgeInsets)realInsets {

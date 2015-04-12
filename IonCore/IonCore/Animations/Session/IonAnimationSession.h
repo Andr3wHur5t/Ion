@@ -14,20 +14,20 @@
 #pragma mark Construction
 /**
  * Constructs the session with the specified view.
- * @param {UIView*} the view to construct with.  
+ * @param {UIView*} the view to construct with.
  */
-- (instancetype) initWithView:(UIView *)view;
+- (instancetype)initWithView:(UIView *)view;
 
 #pragma mark Configurations
 /**
  * The view for the session.
  */
-@property (strong, nonatomic, readonly) UIView *view;
+@property(strong, nonatomic, readonly) UIView *view;
 
 /**
  * The animation map used in the session.
  */
-@property (strong, nonatomic, readwrite) IonAnimationMap *animationMap;
+@property(strong, nonatomic, readwrite) IonAnimationMap *animationMap;
 
 #pragma mark Execution
 /**
@@ -35,13 +35,14 @@
  * @param {NSString*} the name of the entry point frame.
  * @param {void(^)( )} the completion to be called at the end of the animation.
  */
-- (void) startAtEntryPoint:(NSString *)entryPoint usingCompletion:(void(^)( )) completion;
+- (void)startAtEntryPoint:(NSString *)entryPoint
+          usingCompletion:(void (^)())completion;
 
 /**
  * Starts the session at the inputted entry point.
  * @param {NSString*} the frames' name which to start the animation at.
  */
-- (void) startAtEntryPoint:(NSString *)entryPoint;
+- (void)startAtEntryPoint:(NSString *)entryPoint;
 
 #pragma mark Hook Management
 

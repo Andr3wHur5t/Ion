@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "IonGuideSet.h"
 
-
 /**
  * Calculates sizes, and positions based off of a set of guide lines.
  */
@@ -18,32 +17,32 @@
 /**
  * The super views' guide pair.
  */
-@property (weak, nonatomic, readwrite) IonGuideLine* superVertGuide;
-@property (weak, nonatomic, readwrite) IonGuideLine* superHorizGuide;
+@property(weak, nonatomic, readwrite) IonGuideLine *superVertGuide;
+@property(weak, nonatomic, readwrite) IonGuideLine *superHorizGuide;
 
 /**
  * The local views' guide pair.
  */
-@property (weak, nonatomic, readwrite) IonGuideLine* localVertGuide;
-@property (weak, nonatomic, readwrite) IonGuideLine* localHorizGuide;
+@property(weak, nonatomic, readwrite) IonGuideLine *localVertGuide;
+@property(weak, nonatomic, readwrite) IonGuideLine *localHorizGuide;
 
 /**
  * The size guides
  */
-@property (weak, nonatomic, readwrite) IonGuideLine* topSizeGuide;
-@property (weak, nonatomic, readwrite) IonGuideLine* bottomSizeGuide;
-@property (weak, nonatomic, readwrite) IonGuideLine* leftSizeGuide;
-@property (weak, nonatomic, readwrite) IonGuideLine* rightSizeGuide;
+@property(weak, nonatomic, readwrite) IonGuideLine *topSizeGuide;
+@property(weak, nonatomic, readwrite) IonGuideLine *bottomSizeGuide;
+@property(weak, nonatomic, readwrite) IonGuideLine *leftSizeGuide;
+@property(weak, nonatomic, readwrite) IonGuideLine *rightSizeGuide;
 
 /**
  * The guides frame.
  */
-@property (assign, nonatomic, readonly) CGRect frame;
+@property(assign, nonatomic, readonly) CGRect frame;
 
 /**
  * Forces the view into manual size mode, overriding size guides.
  */
-@property (nonatomic, readwrite) BOOL manualSizeMode;
+@property(nonatomic, readwrite) BOOL manualSizeMode;
 
 #pragma mark Setter Utilities.
 /**
@@ -51,14 +50,16 @@
  * @param horiz - the horizontal guide line.
  * @param vert - the vertical guide line.
  */
-- (void) setLocalGuidesWithHorz:(IonGuideLine *)horiz andVert:(IonGuideLine *)vert;
+- (void)setLocalGuidesWithHorz:(IonGuideLine *)horiz
+                       andVert:(IonGuideLine *)vert;
 
 /**
  * Sets the super guides.
  * @param horiz - the horizontal guide line.
  * @param vert - the vertical guide line.
  */
-- (void) setSuperGuidesWithHorz:(IonGuideLine *)horiz andVert:(IonGuideLine *)vert;
+- (void)setSuperGuidesWithHorz:(IonGuideLine *)horiz
+                       andVert:(IonGuideLine *)vert;
 
 /**
  * Sets all position guides.
@@ -67,24 +68,26 @@
  * @param sHoriz- the super horizontal guide line.
  * @param sVert - the super vertical guide line.
  */
-- (void) setGuidesWithLocalHoriz:(IonGuideLine *)lHoriz
-                       localVert:(IonGuideLine *)lVert
-                      superHoriz:(IonGuideLine *)sHoriz
-                    andSuperVert:(IonGuideLine *)sVert;
+- (void)setGuidesWithLocalHoriz:(IonGuideLine *)lHoriz
+                      localVert:(IonGuideLine *)lVert
+                     superHoriz:(IonGuideLine *)sHoriz
+                   andSuperVert:(IonGuideLine *)sVert;
 
 /**
  * Sets the horizontal size guides.
  * @param left - the left size guide.
  * @param right - the right size guide.
  */
-- (void) setSizeHorizontalWithLeft:(IonGuideLine *)left andRight:(IonGuideLine *)right;
+- (void)setSizeHorizontalWithLeft:(IonGuideLine *)left
+                         andRight:(IonGuideLine *)right;
 
 /**
  * Sets the horizontal size guides.
  * @param top - the top size guide.
  * @param bottom - the bottom size guide.
  */
-- (void) setSizeVerticalyWithTop:(IonGuideLine *)top andBottom:(IonGuideLine *)bottom;
+- (void)setSizeVerticalyWithTop:(IonGuideLine *)top
+                      andBottom:(IonGuideLine *)bottom;
 
 /**
  * Sets all size guides.
@@ -93,10 +96,10 @@
  * @param top - the top size guide.
  * @param bottom - the bottom size guide.
  */
-- (void) setSizeGuidesWithLeft:(IonGuideLine *)left
-                         right:(IonGuideLine *)right
-                           top:(IonGuideLine *)top
-                     andBottom:(IonGuideLine *)bottom;
+- (void)setSizeGuidesWithLeft:(IonGuideLine *)left
+                        right:(IonGuideLine *)right
+                          top:(IonGuideLine *)top
+                    andBottom:(IonGuideLine *)bottom;
 
 /**
  * Sets both size, and positioning guides.
@@ -109,32 +112,32 @@
  * @param top - the top size guide.
  * @param bottom - the bottom size guide.
  */
-- (void) setGuidesWithLocalHoriz:(IonGuideLine *)lHoriz
-                       localVert:(IonGuideLine *)lVert
-                      superHoriz:(IonGuideLine *)sHoriz
-                       superVert:(IonGuideLine *)sVert
-                            left:(IonGuideLine *)left
-                           right:(IonGuideLine *)right
-                             top:(IonGuideLine *)top
-                       andBottom:(IonGuideLine *)bottom;
+- (void)setGuidesWithLocalHoriz:(IonGuideLine *)lHoriz
+                      localVert:(IonGuideLine *)lVert
+                     superHoriz:(IonGuideLine *)sHoriz
+                      superVert:(IonGuideLine *)sVert
+                           left:(IonGuideLine *)left
+                          right:(IonGuideLine *)right
+                            top:(IonGuideLine *)top
+                      andBottom:(IonGuideLine *)bottom;
 
 #pragma mark Retrieval
 /**
  * Gets the origin position using the current guide pairs.
  * @return {CGPoint}
  */
-- (CGPoint) toPoint;
+- (CGPoint)toPoint;
 
 /**
  * Gets the size position using size current guides.
  * @return {CGSize}
  */
-- (CGSize) toSize;
+- (CGSize)toSize;
 
 /**
  * Gets the resulting rect for the inputted view, and current guides.
  * @return {CGRect} the resulting rect
  */
-- (CGRect) toRect;
+- (CGRect)toRect;
 
 @end
