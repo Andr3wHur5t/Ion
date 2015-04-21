@@ -312,7 +312,9 @@
 }
 
 - (void)navigateToPageWithName:(NSString *)name {
-  [self navigateToPageWithName:name animated:TRUE];
+  [self navigateToPageWithName:name
+                      animated:ABS((NSInteger)self.currentIndex -
+                                   (NSInteger)[self indexOfName:name]) <= 2];
 }
 
 - (void)navigateToPageAtIndex:(NSUInteger)index animated:(BOOL)animated {
