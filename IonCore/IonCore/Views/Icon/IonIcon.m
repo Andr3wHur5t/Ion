@@ -11,10 +11,21 @@
 #import "UIView+IonTheme.h"
 #import <IonData/IonData.h>
 
+@interface IonIcon ()
+
+/*!
+ @brief The ID of the current set image operation.
+ */
+@property(strong, nonatomic, readwrite) NSUUID *setID;
+@property(assign, nonatomic, readwrite) BOOL hasSetImage;
+
+@end
+
 @implementation IonIcon
 
 @synthesize image = _image;
 @synthesize imageKey = _imageKey;
+@synthesize alpha = _alpha;
 
 #pragma mark Constructors
 
@@ -44,8 +55,59 @@
 
 - (void)construct {
   self.themeElement = sIonIconViewKey;
+  _alpha = 1.0f;
   self.styleCanSetSize = TRUE;
+  self.hasSetImage = FALSE;
 }
+
+#pragma mark Image Set Overrides
+
+- (void)setMaskImage:(UIImage *)image
+          renderMode:(IonBackgroundRenderOptions)renderMode {
+  [super setMaskImage:image
+           renderMode:renderMode
+           completion:[self imageSetCompletionForState]];
+}
+
+- (void)setMaskImageUsingKey:(NSString *)key
+                inRenderMode:(IonBackgroundRenderOptions)renderMode {
+  [super setMaskImageUsingKey:key
+                 inRenderMode:renderMode
+                   completion:[self imageSetCompletionForState]];
+}
+
+- (void (^)(NSError *e))imageSetCompletionForState {
+  __block void (^completion)(void);
+  __block NSUUID *currentSetId;
+
+  if (!self.hasSetImage) {
+    super.alpha = 0.0f;
+    completion = ^{
+      super.alpha = _alpha;
+    };
+  } else {
+    completion = ^{};
+  }
+
+  currentSetId = [[NSUUID alloc] init];
+  self.setID = currentSetId;
+  return ^(NSError *e) {
+    if ([e isKindOfClass:[NSError class]]) {
+      NSLog(@"%s -- %@", __func__, e.localizedDescription);
+    }
+    // If we are the most recent set id then set
+    if ([currentSetId.UUIDString isEqualToString:self.setID.UUIDString])
+      completion();
+  };
+}
+
+#pragma mark UIView Override
+
+- (void)setAlpha:(CGFloat)alpha {
+  _alpha = alpha;
+  [super setAlpha:alpha];
+}
+
 #pragma mark Configuration
 
 + (BOOL)automaticallyNotifiesObserversOfImage {
@@ -68,6 +130,7 @@
 - (void)setImageKey:(NSString *)imageKey {
   NSParameterAssert([imageKey isKindOfClass:[NSString class]]);
   if (![imageKey isKindOfClass:[NSString class]]) return;
+  if ([_imageKey isEqualToString:imageKey]) return;  // Dedupe
   [self willChangeValueForKey:@"imageKey"];
   _imageKey = imageKey;
   [self didChangeValueForKey:@"imageKey"];

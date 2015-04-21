@@ -10,8 +10,8 @@
 #import <IonData/IonRenderUtilities.h>
 
 typedef enum : NSUInteger {
-    IonBackgroundRenderFilled = 0,
-    IonBackgroundRenderContained = 1
+  IonBackgroundRenderFilled = 0,
+  IonBackgroundRenderContained = 1
 } IonBackgroundRenderOptions;
 
 @interface UIView (IonBackgroundUtilities)
@@ -20,96 +20,163 @@ typedef enum : NSUInteger {
 
 /**
  * Sets the background to a linear gradient with the specified configuration.
- * @param {IonLinearGradientConfiguration*} the gradient configuration to use in generation of the gradient  
+ * @param {IonLinearGradientConfiguration*} the gradient configuration to use in
+ * generation of the gradient
  */
-- (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig;
+- (void)setBackgroundToLinearGradient:
+        (IonLinearGradientConfiguration *)gradientConfig;
 
 /**
  * Sets the background to a linear gradient with the specified configuration.
- * @param {IonLinearGradientConfiguration*} the gradient configuration to use in generation of the gradient
- * @param {(void(^)())} the completion to be called when finished  
+ * @param {IonLinearGradientConfiguration*} the gradient configuration to use in
+ * generation of the gradient
+ * @param {(void(^)())} the completion to be called when finished
  */
-- (void) setBackgroundToLinearGradient:(IonLinearGradientConfiguration*)gradientConfig completion:( void(^)( ) )completion;
-
+- (void)setBackgroundToLinearGradient:
+            (IonLinearGradientConfiguration *)gradientConfig
+                           completion:(void (^)())completion;
 
 #pragma mark Image Backgrounds
 
-/**
- * Sets the image to the specified CALayer and configures it.
- * @param {UIImage*} the image to be set
- * @param {CALayer*} the layer for the image to be set to
- * @param {IonBackgroundRenderOptions} the mode which to render the image.
+/*!
+ @brief Sets the image to the specified CALayer and configures it.
+
+ @param image the image to be set
+ @param layer the layer for the image to be set to
+ @param renderMode the mode which to render the image.
  */
-+ (void) setImage:(UIImage*)image toLayer:(CALayer*)layer renderMode:(IonBackgroundRenderOptions) renderMode;
++ (void)setImage:(UIImage *)image
+         toLayer:(CALayer *)layer
+      renderMode:(IonBackgroundRenderOptions)renderMode;
+
+/*!
+ @brief Sets the image to the specified CALayer and configures it.
+
+ @param image the image to be set
+ @param layer the layer for the image to be set to
+ @param renderMode the mode which to render the image.
+ @param completion the completion to call when the operation completes or fails
+ */
++ (void)setImage:(UIImage *)image
+         toLayer:(CALayer *)layer
+      renderMode:(IonBackgroundRenderOptions)renderMode
+      completion:(void (^)(NSError *))completion;
 
 #pragma mark Background
-/**
- * Sets the current background image.
- * @parma {UIImage*} the image to be set to the background
- */
--(void) setBackgroundImage:(UIImage*)image;
+/*!
+ @brief Sets the background image of the view.
 
-/**
- * Sets the current background image.
- * @parma {UIImage*} the image to be set to the background
- * @param {IonBackgroundRenderOptions} the mode which to render the image.
+ @param image      The image to set to the background.
  */
--(void) setBackgroundImage:(UIImage*)image renderMode:(IonBackgroundRenderOptions) renderMode;
+- (void)setBackgroundImage:(UIImage *)image;
 
-/**
- * Sets the current background image from the key in fill mode.
- * @param {NSString*} the key of the image you want to set.
- * @return {void*}
- */
-- (void) setBackgroundImageUsingKey:(NSString*) key;
+/*!
+ @brief Sets the background image of the view.
 
-/**
- * Sets the current background image from the key in fill mode.
- * @param {NSString*} the key of the image you want to set.
- * @param {IonBackgroundRenderOptions} the mode which to render the image.
- * @return {void*}
+ @param image      The image to set to the background.
+ @param renderMode The mode to render the background image in.
  */
-- (void) setBackgroundImageUsingKey:(NSString*) key inRenderMode:(IonBackgroundRenderOptions) renderMode;
+- (void)setBackgroundImage:(UIImage *)image
+                renderMode:(IonBackgroundRenderOptions)renderMode;
+
+/*!
+ @brief Sets the background image of the view.
+
+ @param image      The image to set to the background.
+ @param renderMode The mode to render the background image in.
+ @param completion The completion to call.
+ */
+- (void)setBackgroundImage:(UIImage *)image
+                renderMode:(IonBackgroundRenderOptions)renderMode
+                completion:(void (^)(NSError *))completion;
+
+/*!
+ @brief Set the background image to the image with the specified key.
+
+ @param key The key of the image to use.
+ */
+- (void)setBackgroundImageUsingKey:(NSString *)key;
+
+/*!
+ @brief Set the background image to the image with the specified key.
+
+ @param key        The key of the image to use.
+ @param renderMode The mode to render the image in.
+ */
+- (void)setBackgroundImageUsingKey:(NSString *)key
+                      inRenderMode:(IonBackgroundRenderOptions)renderMode;
+
+/*!
+ @brief Set the background image to the image with the specified key.
+
+ @param key         The key of the image to use.
+ @param renderMode  The mode to render the image in.
+  @param completion The completion to call.
+ */
+- (void)setBackgroundImageUsingKey:(NSString *)key
+                      inRenderMode:(IonBackgroundRenderOptions)renderMode
+                        completion:(void (^)(NSError *))completion;
 
 #pragma mark Mask
-/**
- * This sets the mask Image of the view.
- * @param {UIImage*} The image to be set as the mask
- * @return {void}
+/*!
+ @brief Sets the mask layer using the inputted image.
+
+ @param image      The image to use as the mask
  */
-- (void) setMaskImage:(UIImage*)image;
+- (void)setMaskImage:(UIImage *)image;
 
-/**
- * This sets the mask Image of the view in the specified render mode.
- * @param {UIImage*} The image to be set as the mask
- * @param {IonBackgroundRenderOptions} the mode which to render the image.
- * @return {void}
+/*!
+ @brief Sets the mask layer using the inputted image.
+
+ @param image      The image to use as the mask
+ @param renderMode The mode used to render the mask image.
  */
-- (void) setMaskImage:(UIImage*)image renderMode:(IonBackgroundRenderOptions) renderMode;
+- (void)setMaskImage:(UIImage *)image
+          renderMode:(IonBackgroundRenderOptions)renderMode;
 
-/**
- * Sets the current mask image from the key in contained mode.
- * @param {NSString*} the key of the image you want to set.
- * @return {void*}
+/*!
+ @brief Sets the mask layer using the inputted image.
+
+ @param image      The image to use as the mask
+ @param renderMode The mode used to render the mask image.
+ @param completion The completion to call when the mask image has been set.
  */
-- (void) setMaskImageUsingKey:(NSString*) key;
+- (void)setMaskImage:(UIImage *)image
+          renderMode:(IonBackgroundRenderOptions)renderMode
+          completion:(void (^)(NSError *))completion;
 
-/**
- * Sets the current mask image from the key in fill mode.
- * @param {NSString*} the key of the image you want to set.
- * @param {IonBackgroundRenderOptions} the mode which to render the image.
- * @return {void*}
+/*!
+ @brief Sets the mask layer using the inputted image key.
+
+ @param key        The key of the image to use as the mask.
  */
-- (void) setMaskImageUsingKey:(NSString*) key inRenderMode:(IonBackgroundRenderOptions) renderMode;
+- (void)setMaskImageUsingKey:(NSString *)key;
 
+/*!
+ @brief Sets the mask layer using the inputted image key.
 
+ @param key        The key of the image to use as the mask.
+ @param renderMode The mode used to render the mask image.
+ */
+- (void)setMaskImageUsingKey:(NSString *)key
+                inRenderMode:(IonBackgroundRenderOptions)renderMode;
+
+/*!
+ @brief Sets the mask layer using the inputted image key.
+
+ @param key        The key of the image to use as the mask.
+ @param renderMode The mode used to render the mask image.
+ @param completion The completion to call when the mask image has been set.
+ */
+- (void)setMaskImageUsingKey:(NSString *)key
+                inRenderMode:(IonBackgroundRenderOptions)renderMode
+                  completion:(void (^)(NSError *))completion;
 
 #pragma mark Utilities
 
-/**
- * Reports if the view is visible.
- * @return {BOOL}
+/*!
+ @brief Reports if the view is visible.
  */
-- (BOOL) isVisible;
+- (BOOL)isVisible;
 
 @end

@@ -50,4 +50,9 @@ static NSString *sIonIconView_IconSize = @"iconSize";
  */
 @property(assign, nonatomic, readwrite) BOOL styleCanSetSize;
 
+
+#pragma UIView Override
+
+@property(assign, nonatomic, readwrite) CGFloat alpha;
+
 @end

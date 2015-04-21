@@ -27,16 +27,14 @@
   [IonRenderUtilities renderLinearGradient:gradientConfig
                                 resultSize:netSize
                            withReturnBlock:^(UIImage *image) {
-                               self.layer.contents =
-                                   (__bridge id)(image.CGImage);
+                             self.layer.contents = (__bridge id)(image.CGImage);
 
-                               if (completion)
-                                 completion();
+                             if (completion) completion();
                            }];
 }
 
 - (void)setBackgroundToLinearGradient:
-            (IonLinearGradientConfiguration *)gradientConfig {
+        (IonLinearGradientConfiguration *)gradientConfig {
   [self setBackgroundToLinearGradient:gradientConfig completion:NULL];
 }
 
@@ -44,33 +42,57 @@
 
 + (void)setImage:(UIImage *)image
          toLayer:(CALayer *)layer
-      renderMode:(IonBackgroundRenderOptions)renderMode {
-  void (^returnBlock)(UIImage * resImage);
-  if ( ![image isKindOfClass: [UIImage class]] || ![layer isKindOfClass: [CALayer class]] ) {
-    NSLog( @"Can't set a image to layer because one or both parameters are NULL." );
+      renderMode:(IonBackgroundRenderOptions)renderMode
+      completion:(void (^)(NSError *))completion {
+  void (^returnBlock)(UIImage *resImage);
+  __block void (^sCom)(NSError *) = completion;
+  if (![image isKindOfClass:[UIImage class]] ||
+      ![layer isKindOfClass:[CALayer class]]) {
+    if (sCom)
+      sCom([NSError errorWithDomain:@"com.ion.backgrounds"
+                               code:-201
+
+                           userInfo:@{
+                             NSLocalizedDescriptionKey :
+                                 @"Can't set a image to layer because one or "
+                             @"both parameters are NULL."
+                           }]);
     return;
   }
-    
+
   if (CGSizeEqualToSize(CGSizeZero, layer.frame.size)) {
-    NSLog(
-        @"%s - Attempted to set image to a view with a size of {0,0} aborting.",
-        __PRETTY_FUNCTION__);
+    if (sCom)
+      sCom([NSError errorWithDomain:@"com.ion.backgrounds"
+                               code:-202
+
+                           userInfo:@{
+                             NSLocalizedDescriptionKey :
+                                 @"Attempted to set image to a view with a "
+                             @"size of {0,0} aborting."
+                           }]);
     return;
   }
   // Our Return Block
-  returnBlock =
-      ^(UIImage *resImage) {
-        if ( !resImage.CGImage ) {
-          NSLog( @"Failed to resize image." );
-          return;
-        }
-        layer.contents = (id)(resImage.CGImage);
-      };
+  returnBlock = ^(UIImage *resImage) {
+    if (!resImage.CGImage) {
+      if (sCom)
+        sCom([NSError
+            errorWithDomain:@"com.ion.backgrounds"
+                       code:-203
+                   userInfo:@{
+                     NSLocalizedDescriptionKey : @"Failed to resize image."
+                   }]);
+      return;
+    }
+
+    layer.contents = (id)(resImage.CGImage);
+    if (sCom) sCom(NULL);
+  };
 
   // Check if the image is already the corrent size
   if (CGSizeEqualToSize(image.size, layer.frame.size)) {
-    returnBlock(image); // call the return block because we are already the
-                        // correct size.
+    returnBlock(image);  // call the return block because we are already the
+    // correct size.
     return;
   }
 
@@ -84,6 +106,18 @@
                      andReturnBlock:returnBlock];
 }
 
++ (void)setImage:(UIImage *)image
+         toLayer:(CALayer *)layer
+      renderMode:(IonBackgroundRenderOptions)renderMode {
+  [self setImage:image
+         toLayer:layer
+      renderMode:renderMode
+      completion:^(NSError *e) {
+        if ([e isKindOfClass:[NSError class]])
+          NSLog(@"%s -- %@", __func__, e.localizedDescription);
+      }];
+}
+
 #pragma mark Background
 
 - (void)setBackgroundImage:(UIImage *)image {
@@ -92,14 +126,27 @@
 
 - (void)setBackgroundImage:(UIImage *)image
                 renderMode:(IonBackgroundRenderOptions)renderMode {
+  [self setBackgroundImage:image
+                renderMode:renderMode
+                completion:^(NSError *e) {
+                  if ([e isKindOfClass:[NSError class]])
+                    NSLog(@"%s -- %@", __func__, e.localizedDescription);
+                }];
+}
+
+- (void)setBackgroundImage:(UIImage *)image
+                renderMode:(IonBackgroundRenderOptions)renderMode
+                completion:(void (^)(NSError *))completion {
   if (!image) {
     self.styleCanSetBackground = TRUE;
     return;
   }
 
-  //    self.themeConfiguration.themeShouldBeAppliedToSelf = FALSE;
   self.styleCanSetBackground = FALSE;
-  [UIView setImage:image toLayer:self.layer renderMode:renderMode];
+  [UIView setImage:image
+           toLayer:self.layer
+        renderMode:renderMode
+        completion:completion];
 }
 
 - (void)setBackgroundImageUsingKey:(NSString *)key {
@@ -108,12 +155,38 @@
 
 - (void)setBackgroundImageUsingKey:(NSString *)key
                       inRenderMode:(IonBackgroundRenderOptions)renderMode {
+  [self setBackgroundImageUsingKey:key
+                      inRenderMode:renderMode
+                        completion:^(NSError *e) {
+                          if ([e isKindOfClass:[NSError class]])
+                            NSLog(@"%s -- %@", __func__,
+                                  e.localizedDescription);
+                        }];
+}
+
+- (void)setBackgroundImageUsingKey:(NSString *)key
+                      inRenderMode:(IonBackgroundRenderOptions)renderMode
+                        completion:(void (^)(NSError *))completion {
+  __block void (^sCom)(NSError *) = completion;
   [[IonImageManager interfaceManager]
             imageForKey:key
                withSize:self.frame.size
                contined:renderMode == IonBackgroundRenderContained
       andReturnCallback:^(UIImage *image) {
-          [self setBackgroundImage:image renderMode:renderMode];
+        if (![image isKindOfClass:[UIImage class]]) {
+          if (sCom)
+            sCom([NSError
+                errorWithDomain:@"com.ion.backgrounds"
+                           code:-200
+                       userInfo:@{
+                         NSLocalizedDescriptionKey : [NSString
+                             stringWithFormat:
+                                 @"Failed to load image for key \"%@\".", key]
+                       }]);
+          return;
+        }
+
+        [self setBackgroundImage:image renderMode:renderMode completion:sCom];
       }];
 }
 
@@ -125,15 +198,25 @@
 
 - (void)setMaskImage:(UIImage *)image
           renderMode:(IonBackgroundRenderOptions)renderMode {
-  if (!image)
-    return;
+  [self setMaskImage:image
+          renderMode:renderMode
+          completion:^(NSError *e) {
+            if ([e isKindOfClass:[NSError class]])
+              NSLog(@"%s -- %@", __func__, e.localizedDescription);
+          }];
+}
 
-  if (!self.layer.mask)
-    self.layer.mask = [CALayer layer];
+- (void)setMaskImage:(UIImage *)image
+          renderMode:(IonBackgroundRenderOptions)renderMode
+          completion:(void (^)(NSError *))completion {
+  if (!image) return;
+
+  if (!self.layer.mask) self.layer.mask = [CALayer layer];
   self.layer.mask.frame = self.bounds;
   [UIView setImage:image
            toLayer:self.layer.mask
-        renderMode:renderMode];
+        renderMode:renderMode
+        completion:completion];
 }
 
 - (void)setMaskImageUsingKey:(NSString *)key {
@@ -142,19 +225,40 @@
 
 - (void)setMaskImageUsingKey:(NSString *)key
                 inRenderMode:(IonBackgroundRenderOptions)renderMode {
-  NSParameterAssert( [key isKindOfClass: [NSString class]] );
-  if ( ![key isKindOfClass: [NSString class]] )
-    return;
-  
+  [self setMaskImageUsingKey:key
+                inRenderMode:renderMode
+                  completion:^(NSError *e) {
+                    if ([e isKindOfClass:[NSError class]])
+                      NSLog(@"%s -- %@", __func__, e.localizedDescription);
+                  }];
+}
+
+- (void)setMaskImageUsingKey:(NSString *)key
+                inRenderMode:(IonBackgroundRenderOptions)renderMode
+                  completion:(void (^)(NSError *))completion {
+  __block void (^sCom)(NSError *) = completion;
+  NSParameterAssert([key isKindOfClass:[NSString class]]);
+  if (![key isKindOfClass:[NSString class]]) return;
+
   [[IonImageManager interfaceManager]
             imageForKey:key
                withSize:self.frame.size
                contined:renderMode == IonBackgroundRenderContained
       andReturnCallback:^(UIImage *image) {
-          if (![image isKindOfClass:[UIImage class]])
-            NSLog(@"Failed to load image for key \"%@\".", key);
-          else
-            [self setMaskImage:image renderMode:renderMode];
+        if (![image isKindOfClass:[UIImage class]]) {
+          if (sCom)
+            sCom([NSError
+                errorWithDomain:@"com.ion.backgrounds"
+                           code:-200
+                       userInfo:@{
+                         NSLocalizedDescriptionKey : [NSString
+                             stringWithFormat:
+                                 @"Failed to load image for key \"%@\".", key]
+                       }]);
+          return;
+        }
+
+        [self setMaskImage:image renderMode:renderMode completion:sCom];
       }];
 }
 
