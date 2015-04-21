@@ -161,6 +161,15 @@
  */
 - (void)navigateToPageAtIndex:(NSUInteger)index;
 
+#pragma mark Preloading
+
+/*!
+ @brief Preloads the controller at the specified index.
+
+ @param index The index to preload the controller at.
+ */
+- (void)preloadPageAtIndex:(NSUInteger)index;
+
 #pragma mark Start
 
 /*!

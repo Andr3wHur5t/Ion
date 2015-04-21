@@ -270,8 +270,14 @@
   if (![controller isKindOfClass:[UIViewController class]]) return;
 
   // Remove
-  //  [controller.view removeFromSuperview];
   controller.view.hidden = TRUE;
+}
+
+#pragma mark Preloading
+
+- (void)preloadPageAtIndex:(NSUInteger)index {
+  [self configurePageAtIndex:index];
+  [self removePageAtIndex:index];
 }
 
 #pragma mark Start
