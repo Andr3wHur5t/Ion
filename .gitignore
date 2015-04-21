@@ -6,3 +6,7 @@
 #
 # Pods/
 
+# User Data
+Ion.xcworkspace/xcuserdata/**/*
+TableViewProto/TableViewProto.xcodeproj/xcuserdata/**/*
+
