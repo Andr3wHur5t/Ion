@@ -71,7 +71,6 @@
 - (NSDictionary*)dictionaryForKey:(id)key defaultValue:(id)defaultValue {
   NSDictionary* dict;
 
-  NSParameterAssert(key);
   if (!key) {
     FOReport(@"No key specified.");
     return defaultValue;
@@ -521,14 +520,14 @@
 
   [overridingDictionary
       enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL* stop) {
-          [opDict setObject:obj forKey:key];
+        [opDict setObject:obj forKey:key];
       }];
 
   return [[NSDictionary alloc] initWithDictionary:opDict];
 }
 
 - (NSDictionary*)overriddenByDictionaryRecursively:
-                     (NSDictionary*)overridingDictionary {
+        (NSDictionary*)overridingDictionary {
   NSMutableDictionary* opDict;
   __block id currentItem;
   NSParameterAssert(overridingDictionary &&
@@ -541,18 +540,17 @@
 
   [overridingDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj,
                                                             BOOL* stop) {
-      currentItem = [opDict objectForKey:key];
+    currentItem = [opDict objectForKey:key];
 
-      if ([currentItem isKindOfClass:[NSDictionary class]] &&
-          [obj isKindOfClass:[NSDictionary class]])
-        obj =
-            [(NSDictionary*)currentItem overriddenByDictionaryRecursively:obj];
+    if ([currentItem isKindOfClass:[NSDictionary class]] &&
+        [obj isKindOfClass:[NSDictionary class]])
+      obj = [(NSDictionary*)currentItem overriddenByDictionaryRecursively:obj];
 
-      if ([currentItem isKindOfClass:[NSArray class]] &&
-          [obj isKindOfClass:[NSArray class]])
-        obj = [(NSArray*)currentItem overwriteRecursivelyWithArray:obj];
+    if ([currentItem isKindOfClass:[NSArray class]] &&
+        [obj isKindOfClass:[NSArray class]])
+      obj = [(NSArray*)currentItem overwriteRecursivelyWithArray:obj];
 
-      [opDict setObject:obj forKey:key];
+    [opDict setObject:obj forKey:key];
   }];
 
   return [[NSDictionary alloc] initWithDictionary:opDict];
