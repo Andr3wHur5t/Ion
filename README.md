@@ -1,17 +1,16 @@
-Welcome to Ion!
-====
-**About**
+## Welcome to Ion!
 
-Ion is a lightweight framework which enables you to create responsive, robust, and highly customizable iOS UI.
+### WARNING: 
+This repository is **no longer maintained**, use at your own descression. 
 
-Ion is split into two parts IonData which handles fundamental data operations, and Ion which handles UI/UX, and customization functionality.
+I've moved to **react-native** for a simpler, cross platform app development.
 
-**Getting Started**
+### About
 
-If you just want to use IonData please go [here](https://github.com/Andr3wHur5t/Ion/wiki/IonData-Integration) for an integration tutorial, or if you want to use Ion please go [here](https://github.com/Andr3wHur5t/Ion/wiki/Ion-Integration) for its' integration tutorial.
+Ion is a lightweight framework which enables you to create responsive, robust, highly customizable UI for iOS.
 
-**References**
+### Getting Started
 
-If your looking for object references just look at the side navigation bar on our [wiki](https://github.com/Andr3wHur5t/Ion/wiki).
+You can see intagration instructions [here](https://github.com/Andr3wHur5t/Ion/wiki/Ion-Integration).
 
-Otherwise [here](https://github.com/Andr3wHur5t/Ion/wiki/Concepts) is a page of concepts which will help you build awesome applications with Ion.
+API refrences are in the wiki [wiki](https://github.com/Andr3wHur5t/Ion/wiki).
