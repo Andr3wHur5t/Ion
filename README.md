@@ -1,7 +1,7 @@
 ### WARNING: 
 This repository is **no longer maintained**, use at your own descression. 
 
-I've moved to **react-native** for a simpler, cross platform app development.
+I've moved to **react-native** for simpler cross platform app development.
 
 ## Welcome to Ion!
 
